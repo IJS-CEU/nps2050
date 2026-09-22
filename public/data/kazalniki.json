@@ -1,0 +1,443 @@
+{
+ "meta": {
+  "draft": "NPS_v38",
+  "draft_date": "2026-09-22",
+  "generated": "2026-09-23",
+  "sources": [
+   "NPS_v38: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Vrednosti so zapisane kot v načrtu (text); value je številka za mali graf, pri razponu zgornja meja."
+ },
+ "years": [
+  2030,
+  2040,
+  2050
+ ],
+ "items": [
+  {
+   "id": "koncna_energija",
+   "label": "Raba končne energije v stavbah",
+   "unit": "ktoe",
+   "baseline": {
+    "text": "1.149 (2023)",
+    "value": 1149,
+    "year": 2023
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "976 (−15 %)",
+     "value": 976
+    },
+    {
+     "year": 2040,
+     "text": "852 (−26 %)",
+     "value": 852
+    },
+    {
+     "year": 2050,
+     "text": "792 (−31 %)",
+     "value": 792
+    }
+   ],
+   "chart": true
+  },
+  {
+   "id": "primarna_energija",
+   "label": "Raba primarne energije v stavbah, scenarij DU-OVE",
+   "unit": "ktoe",
+   "baseline": {
+    "text": "1.665 (2023)",
+    "value": 1665,
+    "year": 2023
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "1.374 (−17 %)",
+     "value": 1374
+    },
+    {
+     "year": 2040,
+     "text": "1.194 (−28 %)",
+     "value": 1194
+    },
+    {
+     "year": 2050,
+     "text": "1.064 (−36 %)",
+     "value": 1064
+    }
+   ],
+   "chart": true
+  },
+  {
+   "id": "primarna_energija_fiksni",
+   "label": "Raba primarne energije pri nespremenjenih faktorjih primarne energije (učinek prenov in zamenjave energentov v stavbah)",
+   "unit": "ktoe",
+   "baseline": {
+    "text": "1.665 (2023)",
+    "value": 1665,
+    "year": 2023
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "1.496 (−10 %)",
+     "value": 1496
+    },
+    {
+     "year": 2040,
+     "text": "1.397 (−16 %)",
+     "value": 1397
+    },
+    {
+     "year": 2050,
+     "text": "1.331 (−20 %)",
+     "value": 1331
+    }
+   ],
+   "chart": true
+  },
+  {
+   "id": "emisije",
+   "label": "Emisije TGP iz stavb (neposredne in posredne)",
+   "unit": "kt CO₂ ekv",
+   "baseline": {
+    "text": "2.142 (2023)",
+    "value": 2142,
+    "year": 2023
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "1.777 (−17 %)",
+     "value": 1777
+    },
+    {
+     "year": 2040,
+     "text": "587 (−73 %)",
+     "value": 587
+    },
+    {
+     "year": 2050,
+     "text": "223 (−90 %)",
+     "value": 223
+    }
+   ],
+   "chart": true
+  },
+  {
+   "id": "ove",
+   "label": "Delež OVE v rabi energije v stavbah",
+   "unit": "%",
+   "baseline": {
+    "text": "52 (2023)",
+    "value": 52,
+    "year": 2023
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "61",
+     "value": 61
+    },
+    {
+     "year": 2040,
+     "text": "73",
+     "value": 73
+    },
+    {
+     "year": 2050,
+     "text": "77",
+     "value": 77
+    }
+   ],
+   "chart": true
+  },
+  {
+   "id": "stopnja_prenove",
+   "label": "Letna stopnja energetske prenove, celoten fond (povprečje obdobja)",
+   "unit": "% površine na leto",
+   "baseline": {
+    "text": "–",
+    "value": null,
+    "year": null
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "2,2 (2020–2030)",
+     "value": null
+    },
+    {
+     "year": 2040,
+     "text": "2,0 (2031–2040)",
+     "value": null
+    },
+    {
+     "year": 2050,
+     "text": "2,0 (2041–2050)",
+     "value": null
+    }
+   ],
+   "chart": false
+  },
+  {
+   "id": "prenovljena_povrsina",
+   "label": "Letno prenovljena površina: stanovanjske / javne / zasebne storitvene stavbe",
+   "unit": "mio m2 na leto",
+   "baseline": {
+    "text": "–",
+    "value": null,
+    "year": null
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "1,52 / 0,29 / 0,26",
+     "value": null
+    },
+    {
+     "year": 2040,
+     "text": "1,20 / 0,38 / 0,50",
+     "value": null
+    },
+    {
+     "year": 2050,
+     "text": "1,14 / 0,47 / 0,69",
+     "value": null
+    }
+   ],
+   "chart": false
+  },
+  {
+   "id": "trajektorija",
+   "label": "Povprečna raba primarne energije stanovanjskega fonda (člen 9(2) EPBD, fiksni faktorji)",
+   "unit": "kWh/(m2·a)",
+   "baseline": {
+    "text": "269 (2020)",
+    "value": 269,
+    "year": 2020
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "217 (−19 %, EPBD ≥ −16 %)",
+     "value": 217
+    },
+    {
+     "year": 2040,
+     "text": "180 (−33 %)",
+     "value": 180
+    },
+    {
+     "year": 2050,
+     "text": "164 (−39 %)",
+     "value": 164
+    }
+   ],
+   "chart": true
+  },
+  {
+   "id": "najslabse_stavbe",
+   "label": "Prenovljen delež 43 % najmanj učinkovitih stanovanjskih stavb (23,8 mio m2)",
+   "unit": "% skupine",
+   "baseline": {
+    "text": "0 (2020)",
+    "value": 0,
+    "year": 2020
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "23",
+     "value": 23
+    },
+    {
+     "year": 2040,
+     "text": "65",
+     "value": 65
+    },
+    {
+     "year": 2050,
+     "text": "100",
+     "value": 100
+    }
+   ],
+   "chart": true
+  },
+  {
+   "id": "meps",
+   "label": "Nestanovanjske stavbe: minimalni standardi energetske učinkovitosti (člen 9(1) EPBD)",
+   "unit": "prag",
+   "baseline": {
+    "text": "–",
+    "value": null,
+    "year": null
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "16 % stavb (2030), 26 % stavb (2033)",
+     "value": null
+    },
+    {
+     "year": 2040,
+     "text": "meja razredov D│E",
+     "value": null
+    },
+    {
+     "year": 2050,
+     "text": "meja razredov B│C",
+     "value": null
+    }
+   ],
+   "chart": false
+  },
+  {
+   "id": "fosilna_goriva",
+   "label": "Raba fosilnih goriv v stavbah glede na leto 2020: tekoča goriva / fosilni plin",
+   "unit": "%",
+   "baseline": {
+    "text": "100 (2020)",
+    "value": null,
+    "year": 2020
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "–",
+     "value": null
+    },
+    {
+     "year": 2040,
+     "text": "14 / 32",
+     "value": null
+    },
+    {
+     "year": 2050,
+     "text": "0 / 0",
+     "value": null
+    }
+   ],
+   "chart": false
+  },
+  {
+   "id": "energetska_revscina",
+   "label": "Energetsko revna gospodinjstva",
+   "unit": "% gospodinjstev",
+   "baseline": {
+    "text": "7,3 (2024)",
+    "value": 7.3,
+    "year": 2024
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "≤ 3,8–4,6",
+     "value": 4.6,
+     "range": [
+      3.8,
+      4.6
+     ]
+    },
+    {
+     "year": 2040,
+     "text": "≤ 2,5",
+     "value": 2.5
+    },
+    {
+     "year": 2050,
+     "text": "≤ 1,5",
+     "value": 1.5
+    }
+   ],
+   "chart": true
+  },
+  {
+   "id": "investicije",
+   "label": "Investicijske potrebe za energetsko prenovo",
+   "unit": "mrd €",
+   "baseline": {
+    "text": "–",
+    "value": null,
+    "year": null
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "4,07 (2026–2030)",
+     "value": null
+    },
+    {
+     "year": 2040,
+     "text": "≈ 19 (2026–2050)",
+     "value": null
+    },
+    {
+     "year": 2050,
+     "text": "",
+     "value": null
+    }
+   ],
+   "chart": false
+  },
+  {
+   "id": "nepokrite_investicije",
+   "label": "Nepokrite investicijske potrebe ob obstoječih virih",
+   "unit": "mrd €",
+   "baseline": {
+    "text": "–",
+    "value": null,
+    "year": null
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "1,17 (2026–2030)",
+     "value": null
+    },
+    {
+     "year": 2040,
+     "text": "–",
+     "value": null
+    },
+    {
+     "year": 2050,
+     "text": "–",
+     "value": null
+    }
+   ],
+   "chart": false
+  },
+  {
+   "id": "koristi",
+   "label": "Nižji stroški energije uporabnikov / podprta delovna mesta",
+   "unit": "mio € na leto / tisoč na leto",
+   "baseline": {
+    "text": "–",
+    "value": null,
+    "year": null
+   },
+   "values": [
+    {
+     "year": 2030,
+     "text": "162–242 / 12–14,5",
+     "value": null
+    },
+    {
+     "year": 2040,
+     "text": "–",
+     "value": null
+    },
+    {
+     "year": 2050,
+     "text": "–",
+     "value": null
+    }
+   ],
+   "chart": false
+  }
+ ]
+}

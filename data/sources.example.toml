@@ -1,0 +1,20 @@
+# Vzorec: kopiraj v data/sources.toml in vpiši poti do map z viri (sources.toml ni v gitu).
+# Izvorne datoteke niso v repozitoriju; cevovod jih samo bere.
+# Na drugem računalniku povozi korena z okoljskima spremenljivkama NPS_ROOT in GREENRENOV8_ROOT.
+
+[roots]
+nps = "C:/pot/do/mape/2025 NPS"
+greenrenov8 = "C:/pot/do/mape/2024 LIFE23-CET-GreenRenoV8"
+
+[draft]
+# Besedilo načrta: vedno najvišja številka NPS_vNN.docx v korenu `nps`
+# (delovne kopije z dodatki v imenu in podmape se ne upoštevajo).
+root = "nps"
+pattern = '^NPS_v(\d+)\.docx$'
+
+[files]
+# Kontrolni viri: z njimi cevovod preveri vrednosti, prebrane iz osnutka.
+kataster_obdobje = { root = "nps", path = "5 Primarni razredi/Kataster_fond_po_obdobju_2026.xlsx" }
+grafikoni = { root = "nps", path = "Grafikoni.xlsx" }
+# Model RenRates: 5-letne serije za primerjavo strategij S0–S2 (poglavje 4.1.1).
+renrates = { root = "greenrenov8", path = "WP3 - Scenarios/T.3.1 Rates/Claude code - the method/Results/SI/RenRates_SI_NPS_scenariji.xlsx" }

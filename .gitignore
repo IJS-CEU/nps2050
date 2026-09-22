@@ -1,0 +1,22 @@
+node_modules/
+dist/
+.astro/
+# Surovi podatki se nikoli ne commitajo (CLAUDE.md §5, §8)
+data/raw/
+__pycache__/
+*.pyc
+.env
+.env.*
+test-results/
+playwright-report/
+screenshots/
+
+# Lokalna orodja
+.claude/
+
+# Interno – ostane samo lokalno (CLAUDE.md §7), ne gre v javni repozitorij
+CLAUDE.md
+prototip/
+docs/konceptni-predlog.md
+docs/ODLOCITVE.md
+data/sources.toml

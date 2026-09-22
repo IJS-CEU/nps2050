@@ -1,0 +1,69 @@
+---
+/**
+ * Ovoj grafa: naslov, izbire, graf (ECharts), opis in vir, podatkovna preglednica (deluje brez JS) ter prenos PNG/SVG/CSV.
+ */
+import { withBase } from '../../i18n/routes';
+
+interface Props {
+  id: string;
+  title: string;
+  subtitle?: string;
+  file: string;
+  csv: { file: string; label: string }[];
+  ariaLabel: string;
+  height?: number;
+}
+const { id, title, subtitle, file, csv, ariaLabel, height = 360 } = Astro.props;
+---
+<figure class="chart" id={id} data-file={file} aria-labelledby={`${id}-t`}>
+  <div class="chart-head">
+    <h3 id={`${id}-t`}>{title}</h3>
+    {subtitle && <p class="chart-sub">{subtitle}</p>}
+  </div>
+  {Astro.slots.has('controls') && <div class="chart-controls"><slot name="controls" /></div>}
+  <div class="chart-canvas" role="img" aria-label={ariaLabel} aria-describedby={`${id}-data`} style={`height:${height}px`}>
+    <p class="chart-nojs">Graf potrebuje JavaScript. Podatki so v preglednici spodaj.</p>
+  </div>
+  <slot name="after" />
+  <figcaption class="chart-cap"><slot name="caption" /></figcaption>
+  <details class="chart-data" id={`${id}-data`}>
+    <summary>Podatki v preglednici</summary>
+    <div class="tblwrap" tabindex="0" role="region" aria-label={`Podatki: ${title}`}><slot name="table" /></div>
+  </details>
+  <div class="chart-tools">
+    <span class="lbl">Prenesi:</span>
+    <button type="button" class="tool js-only" data-dl="png">PNG</button>
+    <button type="button" class="tool js-only" data-dl="svg">SVG</button>
+    {csv.map((c) => <a class="tool" href={withBase(`data/csv/${c.file}`)} download>{c.label}</a>)}
+  </div>
+</figure>
+
+<style is:global>
+  .chart { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem 1rem; margin: 1.2rem 0 2rem; max-width: 100%; }
+  .chart-head h3 { margin: 0; }
+  .chart-sub { color: var(--ink2); font-size: .88rem; margin: .25rem 0 0; }
+  .chart-controls { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin: .9rem 0 .2rem; align-items: center; }
+  .chart-canvas { width: 100%; margin-top: .8rem; position: relative; }
+  .chart-canvas.ready .chart-nojs { display: none; }
+  .chart-nojs { color: var(--ink2); font-size: .9rem; padding-top: 2rem; }
+  .chart-cap { font-size: .82rem; color: var(--ink2); margin-top: .6rem; max-width: 80ch; }
+  .chart-cap p { margin: 0 0 .3rem; max-width: none; }
+  .chart-data { margin-top: .7rem; border-top: 1px solid var(--line); padding-top: .5rem; }
+  .chart-data summary { cursor: pointer; font-weight: 700; font-size: .9rem; color: var(--green); }
+  .chart-data table { margin-top: .5rem; font-size: .85rem; }
+  .chart-tools { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-top: .7rem; font-size: .82rem; }
+  .chart-tools .lbl { color: var(--ink2); margin-right: .2rem; }
+  .tool { border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 6px; padding: .25rem .6rem; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; }
+  .tool:hover { border-color: var(--green); color: var(--green); }
+  html:not(.js) .js-only { display: none; }
+
+  /* Izbirni gumbi (radio) kot segmentirani preklop */
+  .seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 8px; padding: 2px; background: var(--bg); }
+  .seg legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .seg input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .seg label { padding: .3rem .7rem; border-radius: 6px; font-size: .85rem; font-weight: 600; color: var(--ink2); cursor: pointer; }
+  .seg input:checked + label { background: var(--panel); color: var(--ink); box-shadow: 0 0 0 1px var(--line); }
+  .seg input:focus-visible + label { outline: 2px solid var(--green); outline-offset: 1px; }
+  fieldset.seg { margin: 0; min-width: 0; }
+  .ctl-label { font-size: .8rem; font-weight: 700; color: var(--ink2); letter-spacing: .02em; }
+</style>

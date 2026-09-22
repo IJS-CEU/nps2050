@@ -1,0 +1,149 @@
+---
+/** Graf 1: trajektorija primarne energije stanovanjskega fonda (čl. 9(2) EPBD) in primarna raba stavb v ktoe. */
+import ChartFigure from './ChartFigure.astro';
+import Seg from './Seg.astro';
+import { loadData, type Trajektorija } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const d = loadData<Trajektorija>('trajektorija');
+const k = d.kwh_m2;
+const epbd = (y: number) => {
+  const e = k.epbd_max.find((x) => x.year === y);
+  return e ? (e.min === e.max ? `≤ ${nf(e.max)}` : `≤ ${nf(e.min)}–${nf(e.max)}`) : '–';
+};
+const last = k.nps.length - 1;
+---
+<ChartFigure
+  id="graf-trajektorija"
+  title="Trajektorija rabe primarne energije stanovanjskih stavb"
+  subtitle="Povprečna raba primarne energije stanovanjskega fonda, 2020–2050"
+  file="nps2050-trajektorija"
+  csv={[{ file: 'trajektorija_kwh_m2.csv', label: 'CSV (kWh/m²)' }, { file: 'trajektorija_ktoe.csv', label: 'CSV (ktoe)' }]}
+  ariaLabel={`Trajektorija: povprečna raba primarne energije stanovanjskega fonda se po scenariju NPS 2050 zmanjša s ${nf(k.nps[0])} kWh/(m²·a) leta ${k.years[0]} na ${nf(k.nps[last])} kWh/(m²·a) leta ${k.years[last]}.`}
+>
+  <Seg slot="controls" name="traj-mode" legend="Enota prikaza"
+       options={[{ value: 'kwh', label: 'kWh/(m²·a)' }, { value: 'ktoe', label: 'ktoe' }]} />
+  <Fragment slot="caption">
+    <p data-mode-cap="kwh">Stanovanjske stavbe, scenarij NPS 2050 pri fiksnih faktorjih primarne energije iz leta 2020, kot zahteva člen 9(2) EPBD. Oranžne oznake so najvišje vrednosti, ki jih EPBD dopušča za leti 2030 in 2035. Siva črta je informativni prikaz pri faktorjih, veljavnih v posameznem letu.</p>
+    <p data-mode-cap="ktoe" hidden>Vse stavbe: primarna raba energije v obsegu EPBD. Za stanovanjski fond ločeno pri fiksnih faktorjih načrt vrednosti v ktoe ne navaja.</p>
+    <p>Vir: osnutek NPS 2050, poglavji 4.7.1 in 4.3.</p>
+  </Fragment>
+  <Fragment slot="table">
+    <table>
+      <caption class="visually-hidden">Trajektorija rabe primarne energije stanovanjskega fonda, kWh/(m²·a)</caption>
+      <thead><tr><th scope="col">Leto</th><th scope="col" class="num">Scenarij NPS 2050</th><th scope="col" class="num">Zmanjšanje glede na 2020</th><th scope="col" class="num">Najvišja vrednost po EPBD</th><th scope="col" class="num">Pri veljavnih faktorjih (informativno)</th></tr></thead>
+      <tbody>
+        {k.years.map((y, i) => (
+          <tr><th scope="row">{y}</th><td class="num">{nf(k.nps[i])}</td><td class="num">{k.reduction_pct[i] === null ? '–' : `−${nf(k.reduction_pct[i])} %`}</td><td class="num">{epbd(y)}</td><td class="num">{nf(k.nps_valid_factors[i])}</td></tr>
+        ))}
+      </tbody>
+    </table>
+    <table>
+      <caption class="visually-hidden">Primarna raba energije stavb, ktoe</caption>
+      <thead><tr><th scope="col">Leto</th><th scope="col" class="num">Vse stavbe [ktoe]</th><th scope="col" class="num">Vse stavbe pri faktorjih 2025 [ktoe]</th></tr></thead>
+      <tbody>
+        {d.ktoe.years.map((y, i) => (
+          <tr><th scope="row">{y}</th><td class="num">{nf(d.ktoe.total[i])}</td><td class="num">{nf(d.ktoe.total_fixed[i])}</td></tr>
+        ))}
+      </tbody>
+    </table>
+  </Fragment>
+</ChartFigure>
+
+<script>
+  import { base, choice, loadJson, mount, nf, tipRow, tipTitle, valueAxis, yearAxis, type Tokens } from '../../scripts/charts/core';
+  import type { Trajektorija } from '../../lib/data';
+
+  async function init(fig: HTMLElement) {
+    const d = await loadJson<Trajektorija>('trajektorija');
+    let mode = 'kwh';
+
+    const dot = (t: Tokens, color: string) => ({ color, borderColor: t.panel, borderWidth: 2 });
+    // Oznaka samo na prvi in zadnji točki (nikoli številka na vsaki točki).
+    const ends = (years: number[], vals: number[]) =>
+      years.map((y, i) => ({ value: [y, vals[i]], label: { show: i === 0 || i === years.length - 1 } }));
+
+    const render = (t: Tokens) => {
+      const o = base(t) as Record<string, any>;
+      const x = yearAxis(t, { type: 'value', min: 2020, max: 2050, interval: 5 });
+      if (mode === 'kwh') {
+        const k = d.kwh_m2;
+        const NPS = 'Scenarij NPS 2050', EPBD = 'Najvišja vrednost po EPBD', INFO = 'Pri veljavnih faktorjih (informativno)';
+        return {
+          ...o,
+          legend: { ...o.legend, data: [NPS, EPBD, INFO] },
+          xAxis: x,
+          yAxis: valueAxis(t, { min: 0, max: 300, interval: 50, name: 'kWh/(m²·a)' }),
+          tooltip: {
+            ...o.tooltip, trigger: 'axis', axisPointer: { type: 'line', lineStyle: { color: t.axis } },
+            formatter: (ps: any[]) => {
+              const y = ps[0].value[0];
+              const i = k.years.indexOf(y);
+              const e = k.epbd_max.find((z) => z.year === y);
+              let h = tipTitle(String(y)) + tipRow(t.s.s2, NPS, `${nf(k.nps[i])} kWh/(m²·a)`);
+              if (e) h += tipRow(t.s.ref, EPBD, e.min === e.max ? `≤ ${nf(e.max)}` : `≤ ${nf(e.min)}–${nf(e.max)}`);
+              h += tipRow(t.s.info, INFO, nf(k.nps_valid_factors[i]));
+              return h;
+            },
+          },
+          series: [
+            {
+              name: INFO, type: 'line', data: ends(k.years, k.nps_valid_factors).map((p) => ({ ...p, label: { show: false } })),
+              color: t.s.info, lineStyle: { width: 2 }, symbol: 'circle', symbolSize: 8, itemStyle: dot(t, t.s.info), z: 2,
+            },
+            {
+              name: NPS, type: 'line', data: ends(k.years, k.nps), color: t.s.s2, lineStyle: { width: 2 },
+              symbol: 'circle', symbolSize: 9, itemStyle: dot(t, t.s.s2), z: 4,
+              label: { position: 'top', distance: 8, color: t.ink, fontWeight: 700, formatter: (p: any) => nf(p.value[1]) },
+            },
+            {
+              name: EPBD, type: 'scatter', symbol: 'diamond', symbolSize: 13, color: t.s.ref, itemStyle: dot(t, t.s.ref), z: 5,
+              data: k.epbd_max.map((e) => ({ value: [e.year, e.max], label: { show: true } })),
+              label: {
+                position: 'right', distance: 8, color: t.ink2, fontSize: 11,
+                formatter: (p: any) => { const e = k.epbd_max.find((z) => z.year === p.value[0])!; return e.min === e.max ? `EPBD ≤ ${nf(e.max)}` : `EPBD ≤ ${nf(e.min)}–${nf(e.max)}`; },
+              },
+            },
+            // Razpon meje 2035 (210–215) kot kratka navpična črta.
+            ...k.epbd_max.filter((e) => e.min !== e.max).map((e) => ({
+              name: EPBD, type: 'line', data: [[e.year, e.min], [e.year, e.max]], color: t.s.ref,
+              lineStyle: { width: 2 }, symbol: 'none', silent: true, tooltip: { show: false }, z: 5,
+            })),
+          ],
+        };
+      }
+      const k = d.ktoe;
+      const TOT = 'Vse stavbe (faktorji posameznega leta)', FIX = 'Vse stavbe pri faktorjih 2025';
+      return {
+        ...o,
+        grid: { ...o.grid, right: 56 },
+        legend: { ...o.legend, data: [TOT, FIX] },
+        xAxis: x,
+        yAxis: valueAxis(t, { min: 0, name: 'ktoe' }),
+        tooltip: {
+          ...o.tooltip, trigger: 'axis', axisPointer: { type: 'line', lineStyle: { color: t.axis } },
+          formatter: (ps: any[]) => {
+            const i = k.years.indexOf(ps[0].value[0]);
+            return tipTitle(String(k.years[i])) + tipRow(t.s.s2, TOT, `${nf(k.total[i])} ktoe`) + tipRow(t.s.info, FIX, `${nf(k.total_fixed[i])} ktoe`);
+          },
+        },
+        // Vrednosti samo na koncu črt (desno od zadnje točke), izhodišče je v opisu in preglednici.
+        series: [
+          { name: FIX, type: 'line', data: k.years.map((y, i) => [y, k.total_fixed[i]]), color: t.s.info, lineStyle: { width: 2 }, symbol: 'circle', symbolSize: 8, itemStyle: dot(t, t.s.info),
+            endLabel: { show: true, distance: 8, color: t.ink2, formatter: (p: any) => nf(p.value[1]) } },
+          { name: TOT, type: 'line', data: k.years.map((y, i) => [y, k.total[i]]), color: t.s.s2, lineStyle: { width: 2 }, symbol: 'circle', symbolSize: 9, itemStyle: dot(t, t.s.s2),
+            endLabel: { show: true, distance: 8, color: t.ink, fontWeight: 700, formatter: (p: any) => nf(p.value[1]) } },
+        ],
+      };
+    };
+
+    const m = mount(fig, render);
+    choice(fig, 'traj-mode', (v) => {
+      mode = v;
+      fig.querySelectorAll<HTMLElement>('[data-mode-cap]').forEach((p) => (p.hidden = p.dataset.modeCap !== v));
+      m.redraw();
+    });
+  }
+  const fig = document.getElementById('graf-trajektorija');
+  if (fig) init(fig).catch((e) => console.error('graf trajektorija:', e));
+</script>

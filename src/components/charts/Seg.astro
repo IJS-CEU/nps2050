@@ -1,0 +1,14 @@
+---
+/** Segmentirani preklop (skupina radijskih gumbov) za izbire nad grafom. */
+interface Props { name: string; legend: string; options: { value: string; label: string }[]; checked?: string }
+const { name, legend, options, checked = options[0].value } = Astro.props;
+---
+<fieldset class="seg">
+  <legend>{legend}</legend>
+  {options.map((o) => (
+    <>
+      <input type="radio" id={`${name}-${o.value}`} name={name} value={o.value} checked={o.value === checked} />
+      <label for={`${name}-${o.value}`}>{o.label}</label>
+    </>
+  ))}
+</fieldset>

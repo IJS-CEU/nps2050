@@ -1,0 +1,236 @@
+---
+/** Graf 2: stavbni fond po segmentih in kategorijah EPBD; izbira kategorije odpre podrobnosti in cilje zanjo. */
+import ChartFigure from './ChartFigure.astro';
+import Seg from './Seg.astro';
+import { loadData, type StavbniFond } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const d = loadData<StavbniFond>('stavbni_fond');
+const s = d.segments;
+---
+<ChartFigure
+  id="graf-fond"
+  title="Stavbni fond po kategorijah EPBD"
+  subtitle={`Kataster nepremičnin, 2026: ${nf(s.skupaj.buildings)} stavb, ${nf(s.skupaj.area_mio_m2, 1)} mio m² uporabne površine`}
+  file="nps2050-stavbni-fond"
+  csv={[{ file: 'stavbni_fond.csv', label: 'CSV' }, { file: 'stavbni_fond_po_obdobju.csv', label: 'CSV po obdobjih' }]}
+  ariaLabel={`Stavbni fond: ${nf(s.stanovanjske.area_mio_m2, 1)} mio m² stanovanjskih in ${nf(s.nestanovanjske.area_mio_m2, 1)} mio m² nestanovanjskih stavb, od tega ${nf(s.javne.area_mio_m2, 1)} mio m² javnih.`}
+  height={420}
+>
+  <Fragment slot="controls">
+    <Seg name="fond-mera" legend="Prikaži" options={[{ value: 'area', label: 'Površina' }, { value: 'buildings', label: 'Število stavb' }]} />
+  </Fragment>
+  <Fragment slot="after">
+    <div class="fond-pick js-only" role="group" aria-label="Podrobnosti za kategorijo">
+      <span class="ctl-label">Podrobnosti:</span>
+      {d.categories.map((c, i) => (
+        <button type="button" class="chip" data-cat={c.id} aria-pressed={i === 0 ? 'true' : 'false'} aria-controls="fond-detail">{c.name}</button>
+      ))}
+    </div>
+    <section class="fond-detail js-only" id="fond-detail" aria-live="polite"></section>
+  </Fragment>
+  <Fragment slot="caption">
+    <p>Javne stavbe so določene po pretežni dejanski rabi, ne po lastništvu. Uporabna površina po katastru vključuje tudi neogrevane površine, zato je večja od ogrevane površine v scenariju NPS 2050 ({nf(s.skupaj.heated_area_2020_mio_m2, 1)} mio m²).</p>
+    <p>Vir: osnutek NPS 2050, poglavja 2.1, 2.2.5, 3, 4.7.1 in 4.7.2; kataster nepremičnin GURS.</p>
+  </Fragment>
+  <Fragment slot="table">
+    <table>
+      <caption class="visually-hidden">Stavbni fond po kategorijah EPBD</caption>
+      <thead><tr><th scope="col">Kategorija</th><th scope="col">Segment</th><th scope="col" class="num">Stavbe</th><th scope="col" class="num">od tega javne</th><th scope="col" class="num">Površina [mio m²]</th><th scope="col" class="num">od tega javne [mio m²]</th></tr></thead>
+      <tbody>
+        {d.categories.map((c) => (
+          <tr><th scope="row">{c.name}</th><td>{c.segment}</td><td class="num">{nf(c.buildings)}</td><td class="num">{nf(c.public_buildings)}</td><td class="num">{nf(c.area_mio_m2, 2)}</td><td class="num">{c.public_area_mio_m2 === null ? '–' : nf(c.public_area_mio_m2, 1)}</td></tr>
+        ))}
+      </tbody>
+    </table>
+    <table>
+      <caption class="visually-hidden">Število stavb po obdobju gradnje</caption>
+      <thead><tr><th scope="col">Kategorija</th>{d.periods.map((p) => <th scope="col" class="num">{p}</th>)}</tr></thead>
+      <tbody>
+        {d.categories.map((c) => (
+          <tr><th scope="row">{c.name}</th>{c.by_period.buildings.map((v) => <td class="num">{nf(v)}</td>)}</tr>
+        ))}
+      </tbody>
+    </table>
+  </Fragment>
+</ChartFigure>
+
+<style is:global>
+  .fond-pick { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; margin-top: .8rem; }
+  .chip { border: 1px solid var(--line); background: var(--bg); color: var(--ink2); border-radius: 999px; padding: .2rem .65rem; font: inherit; font-size: .82rem; font-weight: 600; cursor: pointer; }
+  .chip:hover { color: var(--green); border-color: var(--green); }
+  .chip[aria-pressed='true'] { background: var(--greenbg); color: var(--ink); border-color: var(--green); }
+  .fond-detail { margin-top: .8rem; border-top: 1px solid var(--line); padding-top: .9rem; }
+  .fond-detail h4 { font-family: var(--font-serif); font-size: 1.1rem; margin: 0 0 .5rem; }
+  .fd-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 1.2rem 2rem; }
+  @media (max-width: 760px) { .fd-grid { grid-template-columns: 1fr; } }
+  .fd-facts { margin: 0; display: grid; grid-template-columns: auto auto; gap: .25rem 1rem; font-size: .9rem; }
+  .fd-facts dt { color: var(--ink2); }
+  .fd-facts dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .fd-goal { background: var(--greenbg); border-radius: 8px; padding: .7rem .9rem; font-size: .9rem; margin-top: .9rem; }
+  .fd-goal p { margin: 0 0 .35rem; }
+  .fd-goal p:last-child { margin: 0; }
+  .fd-mini-title { font-size: .82rem; font-weight: 700; color: var(--ink2); margin: 0 0 .2rem; }
+  .fd-mini { height: 190px; }
+  .fd-classes { margin-top: .8rem; font-size: .8rem; }
+  .fd-classes td, .fd-classes th { padding: .25rem .4rem; }
+  .fd-classes thead th { letter-spacing: 0; white-space: nowrap; }
+</style>
+
+<script>
+  import { base, choice, loadJson, mount, nf, tipRow, tipTitle, valueAxis, yearAxis, type Tokens } from '../../scripts/charts/core';
+  import type { Category, StavbniFond } from '../../lib/data';
+
+  const SEG_COLOR: Record<string, string> = { HISA: 'enodruzinske', BLOKI: 'vecstanovanjske' };
+
+  function el<K extends keyof HTMLElementTagNameMap>(tag: K, text?: string, cls?: string) {
+    const e = document.createElement(tag);
+    if (text !== undefined) e.textContent = text;
+    if (cls) e.className = cls;
+    return e;
+  }
+
+  async function init(fig: HTMLElement) {
+    const d = await loadJson<StavbniFond>('stavbni_fond');
+    const cats = d.categories;
+    let measure = 'area';
+    let selected = cats[0].id;
+
+    const S = { eno: 'Enostanovanjske hiše', vec: 'Večstanovanjske stavbe', jav: 'Javne stavbe', zas: 'Zasebne storitvene stavbe' };
+    const val = (c: Category, part: 'total' | 'public' | 'private') => {
+      const tot = measure === 'area' ? c.area_mio_m2 : c.buildings;
+      const pub = (measure === 'area' ? c.public_area_mio_m2 : c.public_buildings) ?? 0;
+      if (part === 'total') return tot;
+      if (part === 'public') return pub;
+      return measure === 'area' ? Math.round((tot - pub) * 100) / 100 : tot - pub;
+    };
+    const fmt = (v: number) => (measure === 'area' ? `${nf(v, 2)} mio m²` : `${nf(v)} stavb`);
+
+    const render = (t: Tokens) => {
+      const o = base(t) as Record<string, any>;
+      const names = cats.map((c) => c.name);
+      const gap = { borderColor: t.panel, borderWidth: 1 };
+      const col = (id: string) => (id === 'HISA' ? S.eno : id === 'BLOKI' ? S.vec : null);
+      const bar = (name: string, color: string, fn: (c: Category) => number | null, radius: number[] | ((c: Category) => number[])) => ({
+        name, type: 'bar', stack: 'fond', barMaxWidth: 22, color, cursor: 'pointer',
+        data: cats.map((c) => {
+          const v = fn(c);
+          return v === null ? null : {
+            value: v, itemStyle: { ...gap, borderRadius: typeof radius === 'function' ? radius(c) : radius, opacity: c.id === selected ? 1 : 0.55 },
+          };
+        }),
+        emphasis: { focus: 'none', itemStyle: { opacity: 1 } },
+      });
+      const endLabel = {
+        show: true, position: 'right', distance: 6, color: t.ink2, fontSize: 11, opacity: 1,
+        formatter: (p: any) => (measure === 'area' ? nf(val(cats[p.dataIndex], 'total'), 1) : nf(val(cats[p.dataIndex], 'total'))),
+      };
+      const series = [
+        { ...bar(S.eno, t.s.enodruzinske, (c) => (col(c.id) === S.eno ? val(c, 'total') : null), [0, 4, 4, 0]), label: endLabel },
+        { ...bar(S.vec, t.s.vecstanovanjske, (c) => (col(c.id) === S.vec ? val(c, 'total') : null), [0, 4, 4, 0]), label: endLabel },
+        bar(S.jav, t.s.javne, (c) => (c.segment === 'nestanovanjske' ? val(c, 'public') : null), (c) => (val(c, 'private') > 0 ? [0, 0, 0, 0] : [0, 4, 4, 0])),
+        { ...bar(S.zas, t.s.zasebne, (c) => (c.segment === 'nestanovanjske' ? val(c, 'private') : null), [0, 4, 4, 0]), label: endLabel },
+      ];
+      return {
+        ...o,
+        grid: { ...o.grid, right: 44, bottom: 30 },
+        legend: { ...o.legend, data: [S.eno, S.vec, S.jav, S.zas], selectedMode: false },
+        tooltip: {
+          ...o.tooltip, trigger: 'item',
+          formatter: (p: any) => {
+            const c = cats[p.dataIndex];
+            let h = tipTitle(c.name) + tipRow(p.color, p.seriesName, fmt(p.value), 'rect');
+            if (c.segment === 'nestanovanjske') h += tipRow(t.muted, 'Skupaj', fmt(val(c, 'total')), 'rect');
+            return h;
+          },
+        },
+        xAxis: valueAxis(t, { name: measure === 'area' ? 'Uporabna površina, mio m²' : 'Število stavb', nameLocation: 'middle', nameGap: 28, nameTextStyle: { color: t.muted, align: 'center' } }),
+        yAxis: yearAxis(t, { type: 'category', data: names, inverse: true, axisLabel: { color: t.ink2, fontSize: 12, formatter: (v: string) => v } }),
+        series,
+      };
+    };
+
+    const m = mount(fig, render);
+    choice(fig, 'fond-mera', (v) => { measure = v; m.redraw(); });
+
+    // Podrobnosti izbrane kategorije
+    const panel = fig.querySelector<HTMLElement>('#fond-detail')!;
+    const chips = [...fig.querySelectorAll<HTMLButtonElement>('.chip')];
+    let mini: ReturnType<typeof mount> | null = null;
+
+    const select = (id: string) => {
+      selected = id;
+      chips.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === id)));
+      m.redraw();
+      showDetail(cats.find((c) => c.id === id)!);
+    };
+
+    function showDetail(c: Category) {
+      mini?.chart.dispose();
+      panel.replaceChildren();
+      panel.append(el('h4', c.name));
+      const grid = el('div', undefined, 'fd-grid');
+      const left = el('div');
+      const dl = el('dl', undefined, 'fd-facts');
+      const fact = (k: string, v: string) => { dl.append(el('dt', k), el('dd', v)); };
+      fact('Število stavb', nf(c.buildings));
+      fact('Uporabna površina', `${nf(c.area_mio_m2, 2)} mio m²`);
+      if (c.segment === 'nestanovanjske') {
+        fact('od tega javne stavbe', `${nf(c.public_buildings)} stavb`);
+        fact('površina javnih stavb', `${nf(c.public_area_mio_m2, 1)} mio m²`);
+      } else if (c.heated_area_2020_mio_m2 !== null) {
+        fact('Ogrevana površina v scenariju (2020)', `${nf(c.heated_area_2020_mio_m2, 1)} mio m²`);
+      }
+      left.append(dl);
+
+      const goal = el('div', undefined, 'fd-goal');
+      const b = c.class_bounds;
+      if (c.worst_43) {
+        goal.append(el('p', `Med 43 % energijsko najmanj učinkovitih stanovanjskih stavb sodijo stavbe z več kot ${nf(c.worst_43.threshold)} kWh/(m²·a) primarne energije. To je ${nf(c.worst_43.area_share_pct)} % površine kategorije, s povprečno rabo ${nf(c.worst_43.avg_pe_above)} kWh/(m²·a).`));
+        goal.append(el('p', `Ciljna raven njihove prenove je najmanj razred B (meja B|C: ${nf(b['B|C'])} kWh/(m²·a)).`));
+      }
+      if (c.meps) {
+        const mp = c.meps;
+        goal.append(el('p', `Minimalni standardi energetske učinkovitosti: do leta 2030 prag ${nf(mp.threshold_2030)} kWh/(m²·a) (zajetih ${nf(mp.covered_2030.buildings)} stavb, ${nf(mp.covered_2030.area_mio_m2, 2)} mio m²), do leta 2033 prag ${nf(mp.threshold_2033)} kWh/(m²·a) (${nf(mp.covered_2033.buildings)} stavb, ${nf(mp.covered_2033.area_mio_m2, 2)} mio m²).`));
+        goal.append(el('p', `Za leto 2040 je predlagan prag na meji razredov D|E (${nf(b['D|E'])} kWh/(m²·a)), za leto 2050 na meji B|C (${nf(b['B|C'])} kWh/(m²·a)).`));
+        if (mp.indicative) goal.append(el('p', 'Vzorec izkaznic je v tej kategoriji majhen, zato so pragovi okvirni.'));
+      }
+      left.append(goal);
+
+      const right = el('div');
+      right.append(el('p', 'Uporabna površina po obdobju gradnje, mio m²', 'fd-mini-title'));
+      const box = el('div', undefined, 'fd-mini');
+      right.append(box);
+      const tbl = el('table', undefined, 'fd-classes');
+      const cap = el('caption', 'Meje energijskih razredov 2025, kWh/(m²·a) primarne energije');
+      cap.style.textAlign = 'left'; cap.style.fontWeight = '700'; cap.style.color = 'var(--ink2)';
+      const hr = el('tr'), br = el('tr');
+      for (const k of Object.keys(b)) { const th = el('th', k.replace('|', ' | '), 'num'); th.setAttribute('scope', 'col'); hr.append(th); br.append(el('td', nf(b[k]), 'num')); }
+      const thead = el('thead'); thead.append(hr); const tbody = el('tbody'); tbody.append(br);
+      tbl.append(cap, thead, tbody);
+      right.append(tbl);
+      grid.append(left, right);
+      panel.append(grid);
+
+      // Ena serija → ena barva (barva segmenta za stanovanjske kategorije, sicer osnovna zelena).
+      const color = (t: Tokens) => t.s[SEG_COLOR[c.id] ?? 's2'];
+      mini = mount(fig, (t) => {
+        const o = base(t) as Record<string, any>;
+        return {
+          ...o, legend: { show: false }, grid: { left: 4, right: 4, top: 12, bottom: 4, containLabel: true },
+          tooltip: { ...o.tooltip, trigger: 'item', formatter: (p: any) => tipTitle(p.name) + tipRow(color(t), 'Uporabna površina', `${nf(p.value, 2)} mio m²`, 'rect') },
+          xAxis: yearAxis(t, { type: 'category', data: d.periods, axisLabel: { color: t.muted, fontSize: 10, interval: 0, rotate: t.narrow ? 45 : 30 } }),
+          yAxis: valueAxis(t, { splitNumber: 3 }),
+          series: [{ type: 'bar', data: c.by_period.area_mio_m2, color: color(t), barMaxWidth: 22, itemStyle: { borderRadius: [4, 4, 0, 0] } }],
+        };
+      }, box);
+    }
+
+    chips.forEach((b) => b.addEventListener('click', () => select(b.dataset.cat!)));
+    m.chart.on('click', (p: any) => select(cats[p.dataIndex].id));
+    select(selected);
+  }
+
+  const fig = document.getElementById('graf-fond');
+  if (fig) init(fig).catch((e) => console.error('graf stavbni fond:', e));
+</script>

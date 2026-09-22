@@ -1,0 +1,39 @@
+/* Barvni žetoni, prevzeti iz potrjenega prototipa (prototip/nps2050-prototip.html). */
+:root {
+  color-scheme: light;
+  --bg: #F6F7F3; --panel: #FFFFFF; --panel2: #ECEFE8; --ink: #1B2622; --ink2: #4C5A54; --line: #D7DDD5;
+  --green: #1E6B4E; --green2: #2F8B67; --greenbg: #E4F0E9; --on-green: #FFFFFF;
+  --amber: #8F5A08; --amberbg: #F7EBD3; --blue: #4F6B80; --bluebg: #E3EAF0;
+  --grid: #DCE2DB;
+  /* Grafi – paleta preverjena z validatorjem dataviz (svetla površina #FFFFFF), glej docs/ODLOCITVE.md */
+  --s-enodruzinske: #1F7A57; --s-vecstanovanjske: #86A11C; --s-javne: #2A6FC9; --s-zasebne: #C4661A;
+  --s-s0: #C4661A; --s-s1: #7B5CC4; --s-s2: #1F7A57; --s-info: #87918C; --s-ref: #8F5A08;
+  --chart-grid: #E6EAE4; --chart-axis: #C9D0C8; --chart-muted: #69756F;
+  --logo-filter: none; --show-light: inline; --show-dark: none;
+  --font-serif: 'Source Serif 4 Variable', Georgia, serif;
+  --font-sans: 'Manrope Variable', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --bg: #131A17; --panel: #1B2420; --panel2: #222D28; --ink: #EEF2EE; --ink2: #AEBBB4; --line: #31403A;
+    --green: #5FC493; --green2: #7AD3A8; --greenbg: #1E3A2E; --on-green: #0F1A15;
+    --amber: #E4A94A; --amberbg: #3D2E14; --blue: #9DB6C8; --bluebg: #22323E;
+    --grid: #2C3A34;
+    --s-enodruzinske: #23855F; --s-vecstanovanjske: #8AA10A; --s-javne: #4A86DB; --s-zasebne: #C8732F;
+    --s-s0: #C8732F; --s-s1: #9179DE; --s-s2: #2E9A70; --s-info: #7F8B85; --s-ref: #E4A94A;
+    --chart-grid: #26312C; --chart-axis: #3A4842; --chart-muted: #93A09A;
+    --logo-filter: invert(1); --show-light: none; --show-dark: inline;
+  }
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #131A17; --panel: #1B2420; --panel2: #222D28; --ink: #EEF2EE; --ink2: #AEBBB4; --line: #31403A;
+  --green: #5FC493; --green2: #7AD3A8; --greenbg: #1E3A2E; --on-green: #0F1A15;
+  --amber: #E4A94A; --amberbg: #3D2E14; --blue: #9DB6C8; --bluebg: #22323E;
+  --grid: #2C3A34;
+  --s-enodruzinske: #23855F; --s-vecstanovanjske: #8AA10A; --s-javne: #4A86DB; --s-zasebne: #C8732F;
+  --s-s0: #C8732F; --s-s1: #9179DE; --s-s2: #2E9A70; --s-info: #7F8B85; --s-ref: #E4A94A;
+  --chart-grid: #26312C; --chart-axis: #3A4842; --chart-muted: #93A09A;
+  --logo-filter: invert(1); --show-light: none; --show-dark: inline;
+}

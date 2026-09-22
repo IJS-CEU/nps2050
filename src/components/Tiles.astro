@@ -1,0 +1,30 @@
+---
+/**
+ * Cilji v petih številkah (naslovna stran). Vse vrednosti iz public/data/kazalniki.json (povzetek NPS_vNN),
+ * izbor po konceptnem predlogu: trajektorija, prenova, emisije, energetska revščina, naložbe.
+ */
+import { loadData, type Kazalniki } from '../lib/data';
+import { nf } from '../lib/format';
+
+const d = loadData<Kazalniki>('kazalniki');
+const k = Object.fromEntries(d.items.map((i) => [i.id, i]));
+const v2050 = (id: string) => k[id].values.find((v) => v.year === 2050)!;
+const pct = (a: number, b: number) => Math.round(((b - a) / a) * 100);
+const lead = (s: string) => Number(s.replace(/\s*\(.*$/, '').replace(/[≈≤\s]/g, '').replace('.', '').replace(',', '.'));
+
+const traj = k.trajektorija, emi = k.emisije, rev = k.energetska_revscina, rate = k.stopnja_prenove, inv = k.investicije;
+const inv30 = inv.values.find((v) => v.year === 2030)!.text;   // »4,07 (2026–2030)«
+const inv40 = inv.values.find((v) => v.year === 2040)!.text;   // »≈ 19 (2026–2050)«
+const tiles = [
+  { v: `${nf(pct(traj.baseline.value!, v2050('trajektorija').value!))} %`, l: `manj primarne energije na m² stanovanjskih stavb do leta 2050 (${nf(traj.baseline.value)} → ${nf(v2050('trajektorija').value)} kWh/(m²·a))` },
+  { v: `${nf(lead(rate.values[0].text), 1)}`, small: '% na leto', l: `površine stavb se energetsko prenovi v obdobju 2020–2030, nato okoli ${nf(lead(rate.values[2].text), 0)} % na leto` },
+  { v: `${nf(pct(emi.baseline.value!, v2050('emisije').value!))} %`, l: `emisij toplogrednih plinov iz stavb do leta 2050 glede na leto ${emi.baseline.year}` },
+  { v: `≤ ${nf(v2050('energetska_revscina').value, 1)}`, small: '%', l: `energetsko revnih gospodinjstev do leta 2050 (${nf(rev.baseline.value, 1)} % leta ${rev.baseline.year})` },
+  { v: `${nf(lead(inv30), 2)}`, small: 'mrd €', l: `naložb v energetsko prenovo 2026–2030, okoli ${nf(lead(inv40))} mrd € do leta 2050` },
+];
+---
+<div class="tiles">
+  {tiles.map((t) => (
+    <div class="tile"><div class="v">{t.v}{t.small && <small> {t.small}</small>}</div><div class="l">{t.l}</div></div>
+  ))}
+</div>

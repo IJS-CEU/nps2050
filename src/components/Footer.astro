@@ -1,0 +1,45 @@
+---
+import { withBase } from '../i18n/routes';
+import { ui as t } from '../i18n/ui';
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+// Različica osnutka pride iz podatkovnega cevovoda (public/data/meta.json), ne iz besedila.
+const publicDir = resolve(process.cwd(), 'public');
+let draftDate: string | undefined;
+const metaPath = resolve(publicDir, 'data/meta.json');
+if (existsSync(metaPath)) {
+  const meta = JSON.parse(readFileSync(metaPath, 'utf-8'));
+  if (meta.draft_date) {
+    // Slovenski zapis 22. 9. 2026 (Intl vrne imenovalnik »22. september«, kar ni pravilno).
+    const [y, m, d] = String(meta.draft_date).split('-').map(Number);
+    draftDate = `${d}. ${m}. ${y}`;
+  }
+}
+// Izvirniki logotipov so v design/logos/; v public/logos/ so samo uporabljene različice.
+---
+<footer>
+  <div class="wrap foot">
+    <div>
+      <p>{t.footerBy}</p>
+      {draftDate && <p class="ver">{t.footerVersion} {draftDate}.</p>}
+    </div>
+    <div class="logos">
+      <img class="ijs" src={withBase('logos/ijs.png')} alt={t.logoIjs} width="173" height="28" />
+      <img class="light-only" src={withBase('logos/mzie.svg')} alt={t.logoMin} width="268" height="28" />
+      <img class="dark-only" src={withBase('logos/mzie-dark.svg')} alt={t.logoMin} width="268" height="28" />
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer { border-top: 1px solid var(--line); padding-block: 2rem; font-size: .85rem; color: var(--ink2); margin-top: 2rem; }
+  .foot { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; }
+  .foot p { max-width: 60ch; }
+  .ver { font-size: .8rem; }
+  .logos { display: flex; gap: 1rem 1.6rem; align-items: center; flex-wrap: wrap; }
+  .logos img { height: 28px; width: auto; max-width: 100%; }
+  .ijs { filter: var(--logo-filter); }
+  .light-only { display: var(--show-light); }
+  .dark-only { display: var(--show-dark); }
+</style>

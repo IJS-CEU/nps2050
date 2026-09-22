@@ -1,0 +1,483 @@
+{
+ "meta": {
+  "draft": "NPS_v38",
+  "draft_date": "2026-09-22",
+  "generated": "2026-09-23",
+  "sources": [
+   "NPS_v38: preglednice »Končna raba energije v stavbah v opazovanih letih«, »Primarna raba energije …«, »Emisije toplogrednih plinov …«, »Obnovljivi viri energije …« (pogl. 4.3–4.5)",
+   "NPS_v38: preglednici »Opredelitev primerjanih strategij …« in »Rezultati primerjave strategij …« (pogl. 4.1.1)",
+   "Model RenRates_SI, list Scenario_Compare (5-letne serije S0–S2)"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Primerjava S0–S2 je izražena v indeksih (2025 = 100), ker ima model RenRates drugačne absolutne vrednosti kot projekcija NPS 2050. Primarna energija v zavihku NPS je pri faktorjih, veljavnih v posameznem letu (DU-OVE)."
+ },
+ "nps": {
+  "years": [
+   2023,
+   2030,
+   2040,
+   2050
+  ],
+  "sectors": [
+   {
+    "id": "enodruzinske",
+    "name": "Enodružinske stavbe"
+   },
+   {
+    "id": "vecstanovanjske",
+    "name": "Večstanovanjske stavbe"
+   },
+   {
+    "id": "javne",
+    "name": "Stavbe javnega sektorja"
+   },
+   {
+    "id": "zasebne",
+    "name": "Stavbe zasebnega storitvenega sektorja"
+   },
+   {
+    "id": "stanovanjski",
+    "name": "Stanovanjski sektor skupaj"
+   },
+   {
+    "id": "storitveni",
+    "name": "Storitveni sektor skupaj"
+   },
+   {
+    "id": "skupaj",
+    "name": "Stavbe skupaj"
+   }
+  ],
+  "indicators": {
+   "koncna_energija": {
+    "unit": "ktoe",
+    "sectors": [
+     "enodruzinske",
+     "vecstanovanjske",
+     "javne",
+     "zasebne",
+     "stanovanjski",
+     "storitveni",
+     "skupaj"
+    ],
+    "values": {
+     "enodruzinske": [
+      624.8,
+      489.4,
+      396.3,
+      357.3
+     ],
+     "vecstanovanjske": [
+      189.4,
+      168.8,
+      149.9,
+      138.1
+     ],
+     "javne": [
+      131.5,
+      123.8,
+      115.5,
+      107.8
+     ],
+     "zasebne": [
+      203.8,
+      193.8,
+      190.6,
+      188.8
+     ],
+     "stanovanjski": [
+      814.2,
+      658.2,
+      546.3,
+      495.5
+     ],
+     "storitveni": [
+      335.3,
+      317.5,
+      306.1,
+      296.6
+     ],
+     "skupaj": [
+      1149.4,
+      975.7,
+      852.3,
+      792
+     ]
+    }
+   },
+   "primarna_energija": {
+    "unit": "ktoe",
+    "sectors": [
+     "enodruzinske",
+     "vecstanovanjske",
+     "javne",
+     "zasebne",
+     "stanovanjski",
+     "storitveni",
+     "skupaj"
+    ],
+    "values": {
+     "enodruzinske": [
+      842,
+      659,
+      537,
+      471
+     ],
+     "vecstanovanjske": [
+      260,
+      227,
+      203,
+      182
+     ],
+     "javne": [
+      196,
+      173,
+      159,
+      140
+     ],
+     "zasebne": [
+      367,
+      315,
+      294,
+      270
+     ],
+     "stanovanjski": [
+      1102,
+      886,
+      740,
+      654
+     ],
+     "storitveni": [
+      563,
+      488,
+      453,
+      410
+     ],
+     "skupaj": [
+      1665,
+      1374,
+      1194,
+      1064
+     ]
+    }
+   },
+   "emisije": {
+    "unit": "kt CO₂ ekv",
+    "sectors": [
+     "stanovanjski",
+     "storitveni",
+     "skupaj"
+    ],
+    "values": {
+     "stanovanjski": [
+      1308.9,
+      1008.2,
+      388.8,
+      146
+     ],
+     "storitveni": [
+      832.9,
+      768.6,
+      198,
+      76.9
+     ],
+     "skupaj": [
+      2141.8,
+      1776.7,
+      586.8,
+      222.9
+     ]
+    }
+   },
+   "ove": {
+    "unit": "%",
+    "sectors": [
+     "stanovanjski",
+     "storitveni",
+     "skupaj"
+    ],
+    "values": {
+     "stanovanjski": [
+      60,
+      67,
+      75,
+      78
+     ],
+     "storitveni": [
+      33,
+      50,
+      68,
+      76
+     ],
+     "skupaj": [
+      52,
+      61,
+      73,
+      77
+     ]
+    }
+   }
+  }
+ },
+ "primerjava": {
+  "scenarios": [
+   {
+    "id": "S0",
+    "name": "S0 – nadaljevanje sedanje prakse"
+   },
+   {
+    "id": "S1",
+    "name": "S1 – ciljna celovita energetska prenova"
+   },
+   {
+    "id": "S2",
+    "name": "S2 – scenarij NPS 2050"
+   }
+  ],
+  "fe_index": {
+   "years": [
+    2025,
+    2030,
+    2040,
+    2050
+   ],
+   "S0": [
+    100,
+    95,
+    86,
+    79
+   ],
+   "S1": [
+    100,
+    87,
+    70,
+    63
+   ],
+   "S2": [
+    100,
+    86,
+    67,
+    58
+   ]
+  },
+  "pe_index_2050": {
+   "S0": 65,
+   "S1": 53,
+   "S2": 49
+  },
+  "pe_res_fixed_index": {
+   "years": [
+    2025,
+    2030,
+    2035,
+    2040,
+    2045,
+    2050
+   ],
+   "S0": [
+    100.0,
+    95.8,
+    92.0,
+    88.3,
+    84.9,
+    81.8
+   ],
+   "S1": [
+    100.0,
+    90.3,
+    82.8,
+    77.1,
+    72.5,
+    68.6
+   ],
+   "S2": [
+    100.0,
+    87.6,
+    79.0,
+    72.0,
+    66.6,
+    61.9
+   ]
+  },
+  "worst_fg_share_pct": {
+   "years": [
+    2025,
+    2030,
+    2035,
+    2040,
+    2045,
+    2050
+   ],
+   "S0": [
+    11.6,
+    9.1,
+    7.9,
+    6.4,
+    5.7,
+    4.9
+   ],
+   "S1": [
+    11.6,
+    7.0,
+    4.8,
+    2.9,
+    2.4,
+    1.9
+   ],
+   "S2": [
+    11.6,
+    6.9,
+    4.5,
+    2.3,
+    1.7,
+    1.5
+   ]
+  },
+  "table": [
+   {
+    "label": "Končna raba energije 2030 (2025 = 100)",
+    "unit": "indeks",
+    "values": {
+     "S0": "95",
+     "S1": "87",
+     "S2": "86"
+    }
+   },
+   {
+    "label": "Končna raba energije 2040 (2025 = 100)",
+    "unit": "indeks",
+    "values": {
+     "S0": "86",
+     "S1": "70",
+     "S2": "67"
+    }
+   },
+   {
+    "label": "Končna raba energije 2050 (2025 = 100)",
+    "unit": "indeks",
+    "values": {
+     "S0": "79",
+     "S1": "63",
+     "S2": "58"
+    }
+   },
+   {
+    "label": "Primarna raba energije 2050 (2025 = 100)",
+    "unit": "indeks",
+    "values": {
+     "S0": "65",
+     "S1": "53",
+     "S2": "49"
+    }
+   },
+   {
+    "label": "Emisije CO₂ 2050 pri zamrznjenih faktorjih 2025 (učinek prenov)",
+    "unit": "% glede na 2025",
+    "values": {
+     "S0": "−23",
+     "S1": "−38",
+     "S2": "−43"
+    }
+   },
+   {
+    "label": "Kumulativna končna raba 2025–2050",
+    "unit": "TWh",
+    "values": {
+     "S0": "293",
+     "S1": "252",
+     "S2": "242"
+    }
+   },
+   {
+    "label": "Povprečna primarna energija stanovanjskih stavb 2030, fiksni faktorji (zahteva EPBD −16 %)",
+    "unit": "% glede na 2025",
+    "values": {
+     "S0": "−4,2",
+     "S1": "−9,7",
+     "S2": "−12,4"
+    }
+   },
+   {
+    "label": "Povprečna primarna energija stanovanjskih stavb 2035, fiksni faktorji (zahteva −20 do −22 %)",
+    "unit": "% glede na 2025",
+    "values": {
+     "S0": "−8,0",
+     "S1": "−17,2",
+     "S2": "−21,0"
+    }
+   },
+   {
+    "label": "Delež površine v razredih F in G 2030 / 2035 / 2050",
+    "unit": "%",
+    "values": {
+     "S0": "9,1 / 7,9 / 4,9",
+     "S1": "7,0 / 4,8 / 1,9",
+     "S2": "6,9 / 4,5 / 1,5"
+    }
+   },
+   {
+    "label": "Površina v razredu A leta 2050",
+    "unit": "mio m²",
+    "values": {
+     "S0": "20,9",
+     "S1": "27,5",
+     "S2": "27,0"
+    }
+   },
+   {
+    "label": "Prenovljena površina 2026–2050 (od tega celovito)",
+    "unit": "mio m²",
+    "values": {
+     "S0": "41,8 (10,0)",
+     "S1": "25,3 (17,7)",
+     "S2": "30,9 (18,4)"
+    }
+   },
+   {
+    "label": "Povprečna dosežena letna stopnja prenove 2026–2050",
+    "unit": "% fonda",
+    "values": {
+     "S0": "1,92",
+     "S1": "1,16",
+     "S2": "1,42"
+    }
+   },
+   {
+    "label": "Investicije 2026–2050 (od tega 2026–2030)",
+    "unit": "mrd €",
+    "values": {
+     "S0": "10,1 (2,2)",
+     "S1": "12,3 (3,4)",
+     "S2": "13,2 (3,7)"
+    }
+   },
+   {
+    "label": "Javna nepovratna sredstva 2026–2050",
+    "unit": "mrd €",
+    "values": {
+     "S0": "3,34",
+     "S1": "4,56",
+     "S2": "4,55"
+    }
+   },
+   {
+    "label": "Investicija na enoto prihranka končne energije 2050",
+    "unit": "mio € na GWh/leto",
+    "values": {
+     "S0": "3,56",
+     "S1": "2,48",
+     "S2": "2,36"
+    }
+   },
+   {
+    "label": "Izpolnjeni mejniki (od 12)",
+    "unit": "št.",
+    "values": {
+     "S0": "2",
+     "S1": "10",
+     "S2": "11"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,86 @@
+---
+/**
+ * Graf 4: ključni cilji in kazalniki NPS 2050 – preglednica in mali grafi (izhodišče / 2030 / 2040 / 2050).
+ * Mali grafi so statični SVG, izrisani ob gradnji; vrednosti so tudi v preglednici.
+ */
+import { withBase } from '../../i18n/routes';
+import { loadData, type Kazalnik, type Kazalniki } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const d = loadData<Kazalniki>('kazalniki');
+const charts = d.items.filter((i) => i.chart);
+
+const W = 240, H = 120, PAD_T = 22, PAD_B = 20, BAR = 22;
+function bars(k: Kazalnik) {
+  const pts = [{ year: k.baseline.year, value: k.baseline.value!, text: k.baseline.text, base: true }, ...k.values.map((v) => ({ year: v.year, value: v.value!, text: v.text, base: false }))];
+  const max = Math.max(...pts.map((p) => p.value)) || 1;
+  const step = W / pts.length;
+  return pts.map((p, i) => {
+    const h = Math.max(1, ((H - PAD_T - PAD_B) * p.value) / max);
+    const x = step * i + (step - BAR) / 2;
+    const y = H - PAD_B - h;
+    // Oznaka vrednosti samo na izhodišču in zadnjem letu (ne na vsakem stolpcu).
+    const label = i === 0 || i === pts.length - 1;
+    const r = Math.min(4, h);
+    const path = `M${x},${H - PAD_B} V${y + r} Q${x},${y} ${x + r},${y} H${x + BAR - r} Q${x + BAR},${y} ${x + BAR},${y + r} V${H - PAD_B} Z`;
+    return { ...p, x, y, h, path, label, cx: x + BAR / 2 };
+  });
+}
+const short = (k: Kazalnik) => k.label.replace(/\s*\(.*\)$/, '');
+---
+<section class="kaz" id="graf-kazalniki" aria-labelledby="kaz-t">
+  <h3 id="kaz-t">Ključni cilji in kazalniki NPS 2050</h3>
+  <p class="chart-sub">Izhodišče in mejniki 2030, 2040 in 2050 v obsegu EPBD</p>
+
+  <div class="kaz-grid">
+    {charts.map((k) => {
+      const b = bars(k);
+      return (
+        <figure class="kaz-card">
+          <figcaption><span class="kaz-name">{short(k)}</span><span class="kaz-unit">{k.unit}</span></figcaption>
+          <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${short(k)}: ${b.map((p) => `${p.year ?? 'izhodišče'} ${p.text}`).join(', ')}`}>
+            <line x1="0" x2={W} y1={H - PAD_B} y2={H - PAD_B} stroke="var(--chart-axis)" stroke-width="1" />
+            {b.map((p) => (
+              <g>
+                <title>{`${p.year ?? ''}: ${p.text} ${k.unit}`}</title>
+                <path d={p.path} fill={p.base ? 'var(--s-info)' : 'var(--s-s2)'} />
+                {p.label && <text x={p.cx} y={p.y - 6} text-anchor="middle" class="kaz-val">{nf(p.value)}</text>}
+                <text x={p.cx} y={H - 5} text-anchor="middle" class="kaz-yr">{p.year}</text>
+              </g>
+            ))}
+          </svg>
+        </figure>
+      );
+    })}
+  </div>
+  <p class="chart-cap">Sivo: izhodišče (leto je navedeno pod stolpcem). Zeleno: cilji NPS 2050. Pri energetski revščini je za leto 2030 prikazana zgornja meja razpona 3,8–4,6 %.</p>
+
+  <div class="tblwrap" tabindex="0" role="region" aria-label="Preglednica ključnih ciljev in kazalnikov">
+    <table class="kaz-table">
+      <caption class="visually-hidden">Ključni cilji in kazalniki NPS 2050</caption>
+      <thead><tr><th scope="col">Kazalnik</th><th scope="col">Enota</th><th scope="col" class="num">Izhodišče</th>{d.years.map((y) => <th scope="col" class="num">{y}</th>)}</tr></thead>
+      <tbody>
+        {d.items.map((k) => (
+          <tr><th scope="row">{k.label}</th><td>{k.unit}</td><td class="num">{k.baseline.text}</td>{k.values.map((v) => <td class="num">{v.text}</td>)}</tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p class="chart-cap">Vir: osnutek NPS 2050, povzetek (preglednica ključnih ciljev in kazalnikov).</p>
+  <div class="chart-tools"><span class="lbl">Prenesi:</span><a class="tool" href={withBase('data/csv/kazalniki.csv')} download>CSV</a></div>
+</section>
+
+<style>
+  .kaz { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.2rem 1rem; margin: 1.2rem 0 2rem; }
+  .kaz h3 { margin: 0; }
+  .kaz-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem 1.4rem; margin: 1rem 0 .4rem; }
+  .kaz-card { margin: 0; }
+  .kaz-card figcaption { display: flex; flex-direction: column; font-size: .84rem; line-height: 1.3; min-height: 2.9em; }
+  .kaz-name { font-weight: 700; color: var(--ink); }
+  .kaz-unit { color: var(--ink2); font-size: .78rem; }
+  .kaz-card svg { width: 100%; height: auto; display: block; margin-top: .3rem; overflow: visible; }
+  .kaz-val { font-size: 12px; font-weight: 700; fill: var(--ink); font-family: var(--font-sans); }
+  .kaz-yr { font-size: 10.5px; fill: var(--chart-muted); font-family: var(--font-sans); }
+  .kaz-table { margin-top: 1rem; font-size: .85rem; }
+  .kaz-table td.num { white-space: normal; min-width: 7.5em; }
+</style>
