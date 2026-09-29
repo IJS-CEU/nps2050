@@ -1,0 +1,116 @@
+---
+/**
+ * Graf 5: prehodi stanovanjskih stavb med razredi primarne energije po scenariju NPS 2050 (S2), 2025–2050.
+ * Vir: model RenRates (list Sankey_export), enako kot sliki v pogl. 4.1.1 osnutka.
+ */
+import ChartFigure from './ChartFigure.astro';
+import Seg from './Seg.astro';
+import { loadData, type Sankey } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const d = loadData<Sankey>('sankey');
+const types = Object.entries(d.types);
+const [, first] = types[0];
+const y0 = first.years[0], yL = first.years[first.years.length - 1];
+const val = (t: typeof first, c: string, y: number) => t.nodes.find((n) => n.class === c && n.year === y)?.value;
+---
+<ChartFigure
+  id="graf-sankey"
+  title="Prehodi stanovanjskih stavb med energijskimi razredi"
+  subtitle={`Scenarij NPS 2050, primarna energija stavb po razredih, ${y0}–${yL}`}
+  file="nps2050-prehodi-razredi"
+  csv={[{ file: 'sankey_prehodi.csv', label: 'CSV' }]}
+  ariaLabel={`Prehodi med razredi: primarna energija enostanovanjskih hiš se zmanjša s ${nf(first.totals[String(y0)], 0)} GWh na leto leta ${y0} na ${nf(first.totals[String(first.years[first.years.length - 2])], 0)} GWh na leto leta ${first.years[first.years.length - 2]}. Podrobnosti so v preglednici.`}
+  height={480}
+  minWidth={680}
+>
+  <Seg slot="controls" name="sk-tip" legend="Vrsta stavb" options={types.map(([value, t]) => ({ value, label: t.name }))} />
+  <Fragment slot="caption">
+    <p>Stolpci so leta, vozlišča energijski razredi po lestvici primarne energije (od A1 do G). Širina vozlišča in toka je primarna energija stavb v razredu v GWh na leto, ne površina: s prenovo se stavba premakne v boljši razred in porabi manj energije, zato se vozlišča z leti ožijo. Tok iz enega leta v naslednje nosi energijo stavb ob začetku petletnega koraka, zato zadnji stolpec ({yL}) kaže razred stavb leta {yL} pri energiji leta {first.years[first.years.length - 2]}.</p>
+    <p>Vir: osnutek NPS 2050, poglavje 4.1.1; model RenRates_SI (scenarij NPS 2050).</p>
+  </Fragment>
+  <Fragment slot="table">
+    {types.map(([, t]) => (
+      <table>
+        <caption style="text-align:left;font-weight:700">{t.name}: primarna energija po razredih [GWh/leto]</caption>
+        <thead><tr><th scope="col">Razred</th>{t.years.map((y) => <th scope="col" class="num">{y === yL ? `${y}*` : y}</th>)}</tr></thead>
+        <tbody>
+          {d.classes.map((c) => (
+            <tr><th scope="row">{c}</th>{t.years.map((y) => <td class="num">{nf(val(t, c, y), 1)}</td>)}</tr>
+          ))}
+          <tr><th scope="row">Skupaj</th>{t.years.map((y) => <td class="num"><b>{nf(t.totals[String(y)], 1)}</b></td>)}</tr>
+        </tbody>
+      </table>
+    ))}
+    <p class="note">* Razred stavb leta {yL} pri primarni energiji leta {first.years[first.years.length - 2]}.</p>
+  </Fragment>
+</ChartFigure>
+
+<script>
+  import { base, choice, loadJson, mount, nf, tipRow, tipTitle, type Tokens } from '../../scripts/charts/core';
+  import type { Sankey } from '../../lib/data';
+
+  async function init(fig: HTMLElement) {
+    const d = await loadJson<Sankey>('sankey');
+    let tip = Object.keys(d.types)[0];
+    const cs = () => getComputedStyle(document.documentElement);
+    const clsColor = (c: string) => cs().getPropertyValue(`--cls-${c}`).trim();
+
+    const render = (t: Tokens) => {
+      const o = base(t) as Record<string, any>;
+      const T = d.types[tip];
+      const last = T.years[T.years.length - 1];
+      const colTotal = (y: number) => T.totals[String(y)];
+      const L = 16, R = 64, NW = 14;
+      const W = Math.max(t.width, 680);
+      const colX = (i: number) => L + (i * (W - L - R - NW)) / (T.years.length - 1) + NW / 2;
+      return {
+        ...o,
+        legend: { show: false },
+        tooltip: {
+          ...o.tooltip, trigger: 'item',
+          formatter: (p: any) => {
+            if (p.dataType === 'edge') {
+              return tipTitle(`${p.data.source} → ${p.data.target}`) + tipRow(clsColor(p.data.source.split(' ')[0]), 'Primarna energija', `${nf(p.data.value, 1)} GWh/leto`, 'rect');
+            }
+            const n = T.nodes.find((x) => x.name === p.name)!;
+            const share = (100 * n.value) / colTotal(n.year);
+            return tipTitle(`Razred ${n.class}, leto ${n.year}${n.year === last ? '*' : ''}`)
+              + tipRow(clsColor(n.class), 'Primarna energija', `${nf(n.value, 1)} GWh/leto`, 'rect')
+              + tipRow(t.muted, 'Delež leta', `${nf(share, 1)} %`, 'rect');
+          },
+        },
+        graphic: T.years.map((y, i) => ({
+          type: 'text', left: colX(i) - 16, top: 0,
+          style: { text: String(y) + (y === last ? '*' : ''), fill: t.ink2, font: `700 12px ${t.font}` },
+        })),
+        series: [{
+          type: 'sankey', left: L, right: R, top: 28, bottom: 8, nodeWidth: NW, nodeGap: 6,
+          layoutIterations: 0, // vrstni red razredov A1 … G ostane, kot je podan
+          draggable: false,
+          emphasis: { focus: 'adjacency' },
+          data: T.nodes.map((n) => ({
+            name: n.name, value: n.value,
+            itemStyle: { color: clsColor(n.class), borderColor: t.panel, borderWidth: 1 },
+          })),
+          links: T.links.map((l) => ({ ...l, lineStyle: { color: clsColor(l.source.split(' ')[0]), opacity: 0.32 } })),
+          lineStyle: { curveness: 0.5 },
+          label: {
+            color: t.ink, fontSize: 11, fontFamily: t.font, position: 'right', distance: 4,
+            // Oznaka samo pri vozliščih, ki so dovolj visoka (≥ 2 % energije leta), da se napisi ne prekrivajo.
+            formatter: (p: any) => {
+              const n = T.nodes.find((x) => x.name === p.name)!;
+              return n.value / colTotal(n.year) >= 0.02 ? n.class : '';
+            },
+          },
+        }],
+      };
+    };
+
+    const m = mount(fig, render);
+    choice(fig, 'sk-tip', (v) => { tip = v; m.redraw(); });
+  }
+
+  const fig = document.getElementById('graf-sankey');
+  if (fig) init(fig).catch((e) => console.error('graf sankey:', e));
+</script>

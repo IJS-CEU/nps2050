@@ -59,3 +59,11 @@ export interface Kazalniki { meta: Meta; years: number[]; items: Kazalnik[] }
 export function loadData<T>(name: string): T {
   return JSON.parse(readFileSync(resolve(process.cwd(), 'public', 'data', `${name}.json`), 'utf-8')) as T;
 }
+
+export interface SankeyType {
+  name: string; years: number[];
+  nodes: { name: string; class: string; year: number; value: number }[];
+  links: { source: string; target: string; value: number }[];
+  totals: Record<string, number>;
+}
+export interface Sankey { meta: Meta; classes: string[]; types: Record<string, SankeyType> }

@@ -13,7 +13,8 @@
   "trajektorija",
   "stavbni_fond",
   "scenariji",
-  "kazalniki"
+  "kazalniki",
+  "sankey"
  ],
- "checks": 122
+ "checks": 336
 }

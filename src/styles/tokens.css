@@ -37,3 +37,10 @@
   --chart-grid: #26312C; --chart-axis: #3A4842; --chart-muted: #93A09A;
   --logo-filter: invert(1); --show-light: none; --show-dark: inline;
 }
+
+/* Energijski razredi A1–G: ustaljena lestvica od zelene do rdeče (kot na izkaznicah); ista v obeh temah,
+   vozlišča imajo vedno tudi oznako razreda, zato barva ni edini nosilec pomena. */
+:root {
+  --cls-A1: #0B7A45; --cls-A2: #2A9A4A; --cls-B1: #62B044; --cls-B2: #A3C43A; --cls-C: #D9C92B;
+  --cls-D: #F0AE2E; --cls-E: #EC842B; --cls-F: #DE5A2B; --cls-G: #C4302C;
+}

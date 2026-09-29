@@ -1,0 +1,1599 @@
+{
+ "meta": {
+  "draft": "NPS_v38",
+  "draft_date": "2026-09-22",
+  "generated": "2026-09-23",
+  "sources": [
+   "Model RenRates_SI, list Sankey_export (scenarij NPS 2050, S2), prikazan v pogl. 4.1.1 osnutka"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Vrednosti so primarna energija stavb v razredu [GWh/leto], ne površina. Razredi po lestvici primarne energije (A1–G). Tokovi pod 1e-6 GWh (numerični ostanki) so izpuščeni."
+ },
+ "classes": [
+  "A1",
+  "A2",
+  "B1",
+  "B2",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G"
+ ],
+ "types": {
+  "enostanovanjske": {
+   "name": "Enostanovanjske hiše",
+   "years": [
+    2025,
+    2030,
+    2035,
+    2040,
+    2045,
+    2050
+   ],
+   "nodes": [
+    {
+     "name": "A1 2025",
+     "class": "A1",
+     "year": 2025,
+     "value": 183.1
+    },
+    {
+     "name": "A2 2025",
+     "class": "A2",
+     "year": 2025,
+     "value": 426.1
+    },
+    {
+     "name": "B1 2025",
+     "class": "B1",
+     "year": 2025,
+     "value": 1241.8
+    },
+    {
+     "name": "B2 2025",
+     "class": "B2",
+     "year": 2025,
+     "value": 1947.4
+    },
+    {
+     "name": "C 2025",
+     "class": "C",
+     "year": 2025,
+     "value": 2639.4
+    },
+    {
+     "name": "D 2025",
+     "class": "D",
+     "year": 2025,
+     "value": 2436.7
+    },
+    {
+     "name": "E 2025",
+     "class": "E",
+     "year": 2025,
+     "value": 1539.8
+    },
+    {
+     "name": "F 2025",
+     "class": "F",
+     "year": 2025,
+     "value": 437.8
+    },
+    {
+     "name": "G 2025",
+     "class": "G",
+     "year": 2025,
+     "value": 34.8
+    },
+    {
+     "name": "A1 2030",
+     "class": "A1",
+     "year": 2030,
+     "value": 234.7
+    },
+    {
+     "name": "A2 2030",
+     "class": "A2",
+     "year": 2030,
+     "value": 560.4
+    },
+    {
+     "name": "B1 2030",
+     "class": "B1",
+     "year": 2030,
+     "value": 1532.4
+    },
+    {
+     "name": "B2 2030",
+     "class": "B2",
+     "year": 2030,
+     "value": 2134.2
+    },
+    {
+     "name": "C 2030",
+     "class": "C",
+     "year": 2030,
+     "value": 2304.0
+    },
+    {
+     "name": "D 2030",
+     "class": "D",
+     "year": 2030,
+     "value": 2094.9
+    },
+    {
+     "name": "E 2030",
+     "class": "E",
+     "year": 2030,
+     "value": 928.6
+    },
+    {
+     "name": "F 2030",
+     "class": "F",
+     "year": 2030,
+     "value": 143.4
+    },
+    {
+     "name": "G 2030",
+     "class": "G",
+     "year": 2030,
+     "value": 2.7
+    },
+    {
+     "name": "A1 2035",
+     "class": "A1",
+     "year": 2035,
+     "value": 301.7
+    },
+    {
+     "name": "A2 2035",
+     "class": "A2",
+     "year": 2035,
+     "value": 687.9
+    },
+    {
+     "name": "B1 2035",
+     "class": "B1",
+     "year": 2035,
+     "value": 1734.0
+    },
+    {
+     "name": "B2 2035",
+     "class": "B2",
+     "year": 2035,
+     "value": 2248.1
+    },
+    {
+     "name": "C 2035",
+     "class": "C",
+     "year": 2035,
+     "value": 2005.1
+    },
+    {
+     "name": "D 2035",
+     "class": "D",
+     "year": 2035,
+     "value": 1565.3
+    },
+    {
+     "name": "E 2035",
+     "class": "E",
+     "year": 2035,
+     "value": 462.0
+    },
+    {
+     "name": "F 2035",
+     "class": "F",
+     "year": 2035,
+     "value": 43.4
+    },
+    {
+     "name": "G 2035",
+     "class": "G",
+     "year": 2035,
+     "value": 0.2
+    },
+    {
+     "name": "A1 2040",
+     "class": "A1",
+     "year": 2040,
+     "value": 384.1
+    },
+    {
+     "name": "A2 2040",
+     "class": "A2",
+     "year": 2040,
+     "value": 799.8
+    },
+    {
+     "name": "B1 2040",
+     "class": "B1",
+     "year": 2040,
+     "value": 1895.7
+    },
+    {
+     "name": "B2 2040",
+     "class": "B2",
+     "year": 2040,
+     "value": 2314.4
+    },
+    {
+     "name": "C 2040",
+     "class": "C",
+     "year": 2040,
+     "value": 1685.1
+    },
+    {
+     "name": "D 2040",
+     "class": "D",
+     "year": 2040,
+     "value": 1059.2
+    },
+    {
+     "name": "E 2040",
+     "class": "E",
+     "year": 2040,
+     "value": 231.8
+    },
+    {
+     "name": "F 2040",
+     "class": "F",
+     "year": 2040,
+     "value": 14.8
+    },
+    {
+     "name": "A1 2045",
+     "class": "A1",
+     "year": 2045,
+     "value": 471.0
+    },
+    {
+     "name": "A2 2045",
+     "class": "A2",
+     "year": 2045,
+     "value": 895.0
+    },
+    {
+     "name": "B1 2045",
+     "class": "B1",
+     "year": 2045,
+     "value": 2012.0
+    },
+    {
+     "name": "B2 2045",
+     "class": "B2",
+     "year": 2045,
+     "value": 2354.9
+    },
+    {
+     "name": "C 2045",
+     "class": "C",
+     "year": 2045,
+     "value": 1260.8
+    },
+    {
+     "name": "D 2045",
+     "class": "D",
+     "year": 2045,
+     "value": 609.4
+    },
+    {
+     "name": "E 2045",
+     "class": "E",
+     "year": 2045,
+     "value": 112.7
+    },
+    {
+     "name": "F 2045",
+     "class": "F",
+     "year": 2045,
+     "value": 4.1
+    },
+    {
+     "name": "A1 2050",
+     "class": "A1",
+     "year": 2050,
+     "value": 478.4
+    },
+    {
+     "name": "A2 2050",
+     "class": "A2",
+     "year": 2050,
+     "value": 937.6
+    },
+    {
+     "name": "B1 2050",
+     "class": "B1",
+     "year": 2050,
+     "value": 2060.1
+    },
+    {
+     "name": "B2 2050",
+     "class": "B2",
+     "year": 2050,
+     "value": 2369.1
+    },
+    {
+     "name": "C 2050",
+     "class": "C",
+     "year": 2050,
+     "value": 1260.8
+    },
+    {
+     "name": "D 2050",
+     "class": "D",
+     "year": 2050,
+     "value": 520.8
+    },
+    {
+     "name": "E 2050",
+     "class": "E",
+     "year": 2050,
+     "value": 90.5
+    },
+    {
+     "name": "F 2050",
+     "class": "F",
+     "year": 2050,
+     "value": 2.6
+    }
+   ],
+   "links": [
+    {
+     "source": "G 2025",
+     "target": "G 2030",
+     "value": 11.58
+    },
+    {
+     "source": "G 2025",
+     "target": "B2 2030",
+     "value": 6.64
+    },
+    {
+     "source": "G 2025",
+     "target": "B1 2030",
+     "value": 10.14
+    },
+    {
+     "source": "G 2025",
+     "target": "A2 2030",
+     "value": 4.69
+    },
+    {
+     "source": "G 2025",
+     "target": "A1 2030",
+     "value": 1.8
+    },
+    {
+     "source": "F 2025",
+     "target": "F 2030",
+     "value": 327.97
+    },
+    {
+     "source": "F 2025",
+     "target": "B2 2030",
+     "value": 33.74
+    },
+    {
+     "source": "F 2025",
+     "target": "B1 2030",
+     "value": 52.01
+    },
+    {
+     "source": "F 2025",
+     "target": "A2 2030",
+     "value": 24.06
+    },
+    {
+     "source": "E 2025",
+     "target": "E 2030",
+     "value": 1347.37
+    },
+    {
+     "source": "E 2025",
+     "target": "B2 2030",
+     "value": 58.89
+    },
+    {
+     "source": "E 2025",
+     "target": "B1 2030",
+     "value": 91.3
+    },
+    {
+     "source": "E 2025",
+     "target": "A2 2030",
+     "value": 42.21
+    },
+    {
+     "source": "D 2025",
+     "target": "D 2030",
+     "value": 2436.67
+    },
+    {
+     "source": "C 2025",
+     "target": "C 2030",
+     "value": 2639.41
+    },
+    {
+     "source": "B2 2025",
+     "target": "B2 2030",
+     "value": 1947.42
+    },
+    {
+     "source": "B1 2025",
+     "target": "B1 2030",
+     "value": 1241.81
+    },
+    {
+     "source": "A2 2025",
+     "target": "A2 2030",
+     "value": 426.12
+    },
+    {
+     "source": "A1 2025",
+     "target": "A1 2030",
+     "value": 183.06
+    },
+    {
+     "source": "G 2030",
+     "target": "G 2035",
+     "value": 1.33
+    },
+    {
+     "source": "G 2030",
+     "target": "B2 2035",
+     "value": 0.34
+    },
+    {
+     "source": "G 2030",
+     "target": "B1 2035",
+     "value": 0.54
+    },
+    {
+     "source": "G 2030",
+     "target": "A2 2035",
+     "value": 0.35
+    },
+    {
+     "source": "G 2030",
+     "target": "A1 2035",
+     "value": 0.18
+    },
+    {
+     "source": "F 2030",
+     "target": "F 2035",
+     "value": 96.53
+    },
+    {
+     "source": "F 2030",
+     "target": "B2 2035",
+     "value": 10.71
+    },
+    {
+     "source": "F 2030",
+     "target": "B1 2035",
+     "value": 18.41
+    },
+    {
+     "source": "F 2030",
+     "target": "A2 2035",
+     "value": 11.66
+    },
+    {
+     "source": "F 2030",
+     "target": "A1 2035",
+     "value": 6.12
+    },
+    {
+     "source": "E 2030",
+     "target": "E 2035",
+     "value": 803.11
+    },
+    {
+     "source": "E 2030",
+     "target": "B2 2035",
+     "value": 32.46
+    },
+    {
+     "source": "E 2030",
+     "target": "B1 2035",
+     "value": 56.95
+    },
+    {
+     "source": "E 2030",
+     "target": "A2 2035",
+     "value": 36.03
+    },
+    {
+     "source": "D 2030",
+     "target": "D 2035",
+     "value": 1954.87
+    },
+    {
+     "source": "D 2030",
+     "target": "B2 2035",
+     "value": 35.92
+    },
+    {
+     "source": "D 2030",
+     "target": "B1 2035",
+     "value": 63.77
+    },
+    {
+     "source": "D 2030",
+     "target": "A2 2035",
+     "value": 40.31
+    },
+    {
+     "source": "C 2030",
+     "target": "C 2035",
+     "value": 2303.99
+    },
+    {
+     "source": "B2 2030",
+     "target": "B2 2035",
+     "value": 2134.19
+    },
+    {
+     "source": "B1 2030",
+     "target": "B1 2035",
+     "value": 1532.41
+    },
+    {
+     "source": "A2 2030",
+     "target": "A2 2035",
+     "value": 560.4
+    },
+    {
+     "source": "A1 2030",
+     "target": "A1 2035",
+     "value": 234.72
+    },
+    {
+     "source": "G 2035",
+     "target": "B2 2040",
+     "value": 0.03
+    },
+    {
+     "source": "G 2035",
+     "target": "B1 2040",
+     "value": 0.06
+    },
+    {
+     "source": "G 2035",
+     "target": "A2 2040",
+     "value": 0.05
+    },
+    {
+     "source": "G 2035",
+     "target": "A1 2040",
+     "value": 0.04
+    },
+    {
+     "source": "F 2035",
+     "target": "F 2040",
+     "value": 30.63
+    },
+    {
+     "source": "F 2035",
+     "target": "B2 2040",
+     "value": 1.99
+    },
+    {
+     "source": "F 2035",
+     "target": "B1 2040",
+     "value": 4.74
+    },
+    {
+     "source": "F 2035",
+     "target": "A2 2040",
+     "value": 3.48
+    },
+    {
+     "source": "F 2035",
+     "target": "A1 2040",
+     "value": 2.59
+    },
+    {
+     "source": "E 2035",
+     "target": "E 2040",
+     "value": 376.18
+    },
+    {
+     "source": "E 2035",
+     "target": "B2 2040",
+     "value": 15.89
+    },
+    {
+     "source": "E 2035",
+     "target": "B1 2040",
+     "value": 40.5
+    },
+    {
+     "source": "E 2035",
+     "target": "A2 2040",
+     "value": 29.47
+    },
+    {
+     "source": "D 2035",
+     "target": "D 2040",
+     "value": 1433.02
+    },
+    {
+     "source": "D 2035",
+     "target": "B2 2040",
+     "value": 24.14
+    },
+    {
+     "source": "D 2035",
+     "target": "B1 2040",
+     "value": 62.62
+    },
+    {
+     "source": "D 2035",
+     "target": "A2 2040",
+     "value": 45.53
+    },
+    {
+     "source": "C 2035",
+     "target": "C 2040",
+     "value": 2005.09
+    },
+    {
+     "source": "B2 2035",
+     "target": "B2 2040",
+     "value": 2248.08
+    },
+    {
+     "source": "B1 2035",
+     "target": "B1 2040",
+     "value": 1734.04
+    },
+    {
+     "source": "A2 2035",
+     "target": "A2 2040",
+     "value": 687.86
+    },
+    {
+     "source": "A1 2035",
+     "target": "A1 2040",
+     "value": 301.68
+    },
+    {
+     "source": "F 2040",
+     "target": "F 2045",
+     "value": 11.17
+    },
+    {
+     "source": "F 2040",
+     "target": "B2 2045",
+     "value": 0.47
+    },
+    {
+     "source": "F 2040",
+     "target": "B1 2045",
+     "value": 1.23
+    },
+    {
+     "source": "F 2040",
+     "target": "A2 2045",
+     "value": 1.03
+    },
+    {
+     "source": "F 2040",
+     "target": "A1 2045",
+     "value": 0.94
+    },
+    {
+     "source": "E 2040",
+     "target": "E 2045",
+     "value": 185.21
+    },
+    {
+     "source": "E 2040",
+     "target": "B2 2045",
+     "value": 5.77
+    },
+    {
+     "source": "E 2040",
+     "target": "B1 2045",
+     "value": 15.89
+    },
+    {
+     "source": "E 2040",
+     "target": "A2 2045",
+     "value": 13.04
+    },
+    {
+     "source": "E 2040",
+     "target": "A1 2045",
+     "value": 11.89
+    },
+    {
+     "source": "D 2040",
+     "target": "D 2045",
+     "value": 947.06
+    },
+    {
+     "source": "D 2040",
+     "target": "B2 2045",
+     "value": 18.0
+    },
+    {
+     "source": "D 2040",
+     "target": "B1 2045",
+     "value": 51.76
+    },
+    {
+     "source": "D 2040",
+     "target": "A2 2045",
+     "value": 42.37
+    },
+    {
+     "source": "C 2040",
+     "target": "C 2045",
+     "value": 1685.07
+    },
+    {
+     "source": "B2 2040",
+     "target": "B2 2045",
+     "value": 2314.43
+    },
+    {
+     "source": "B1 2040",
+     "target": "B1 2045",
+     "value": 1895.74
+    },
+    {
+     "source": "A2 2040",
+     "target": "A2 2045",
+     "value": 799.79
+    },
+    {
+     "source": "A1 2040",
+     "target": "A1 2045",
+     "value": 384.05
+    },
+    {
+     "source": "F 2045",
+     "target": "F 2050",
+     "value": 2.56
+    },
+    {
+     "source": "F 2045",
+     "target": "B2 2050",
+     "value": 0.15
+    },
+    {
+     "source": "F 2045",
+     "target": "B1 2050",
+     "value": 0.49
+    },
+    {
+     "source": "F 2045",
+     "target": "A2 2050",
+     "value": 0.44
+    },
+    {
+     "source": "F 2045",
+     "target": "A1 2050",
+     "value": 0.5
+    },
+    {
+     "source": "E 2045",
+     "target": "E 2050",
+     "value": 90.52
+    },
+    {
+     "source": "E 2045",
+     "target": "B2 2050",
+     "value": 2.18
+    },
+    {
+     "source": "E 2045",
+     "target": "B1 2050",
+     "value": 6.95
+    },
+    {
+     "source": "E 2045",
+     "target": "A2 2050",
+     "value": 6.2
+    },
+    {
+     "source": "E 2045",
+     "target": "A1 2050",
+     "value": 6.89
+    },
+    {
+     "source": "D 2045",
+     "target": "D 2050",
+     "value": 520.79
+    },
+    {
+     "source": "D 2045",
+     "target": "B2 2050",
+     "value": 11.86
+    },
+    {
+     "source": "D 2045",
+     "target": "B1 2050",
+     "value": 40.7
+    },
+    {
+     "source": "D 2045",
+     "target": "A2 2050",
+     "value": 36.01
+    },
+    {
+     "source": "C 2045",
+     "target": "C 2050",
+     "value": 1260.75
+    },
+    {
+     "source": "B2 2045",
+     "target": "B2 2050",
+     "value": 2354.94
+    },
+    {
+     "source": "B1 2045",
+     "target": "B1 2050",
+     "value": 2012.0
+    },
+    {
+     "source": "A2 2045",
+     "target": "A2 2050",
+     "value": 895.0
+    },
+    {
+     "source": "A1 2045",
+     "target": "A1 2050",
+     "value": 471.02
+    }
+   ],
+   "totals": {
+    "2025": 10886.9,
+    "2030": 9935.3,
+    "2035": 9047.7,
+    "2040": 8384.9,
+    "2045": 7719.9,
+    "2050": 7719.9
+   }
+  },
+  "vecstanovanjske": {
+   "name": "Večstanovanjske stavbe",
+   "years": [
+    2025,
+    2030,
+    2035,
+    2040,
+    2045,
+    2050
+   ],
+   "nodes": [
+    {
+     "name": "A1 2025",
+     "class": "A1",
+     "year": 2025,
+     "value": 67.0
+    },
+    {
+     "name": "A2 2025",
+     "class": "A2",
+     "year": 2025,
+     "value": 134.0
+    },
+    {
+     "name": "B1 2025",
+     "class": "B1",
+     "year": 2025,
+     "value": 301.1
+    },
+    {
+     "name": "B2 2025",
+     "class": "B2",
+     "year": 2025,
+     "value": 529.1
+    },
+    {
+     "name": "C 2025",
+     "class": "C",
+     "year": 2025,
+     "value": 540.9
+    },
+    {
+     "name": "D 2025",
+     "class": "D",
+     "year": 2025,
+     "value": 338.2
+    },
+    {
+     "name": "E 2025",
+     "class": "E",
+     "year": 2025,
+     "value": 116.8
+    },
+    {
+     "name": "F 2025",
+     "class": "F",
+     "year": 2025,
+     "value": 20.5
+    },
+    {
+     "name": "G 2025",
+     "class": "G",
+     "year": 2025,
+     "value": 2.4
+    },
+    {
+     "name": "A1 2030",
+     "class": "A1",
+     "year": 2030,
+     "value": 82.9
+    },
+    {
+     "name": "A2 2030",
+     "class": "A2",
+     "year": 2030,
+     "value": 171.8
+    },
+    {
+     "name": "B1 2030",
+     "class": "B1",
+     "year": 2030,
+     "value": 364.0
+    },
+    {
+     "name": "B2 2030",
+     "class": "B2",
+     "year": 2030,
+     "value": 576.6
+    },
+    {
+     "name": "C 2030",
+     "class": "C",
+     "year": 2030,
+     "value": 405.7
+    },
+    {
+     "name": "D 2030",
+     "class": "D",
+     "year": 2030,
+     "value": 204.6
+    },
+    {
+     "name": "E 2030",
+     "class": "E",
+     "year": 2030,
+     "value": 33.2
+    },
+    {
+     "name": "F 2030",
+     "class": "F",
+     "year": 2030,
+     "value": 0.4
+    },
+    {
+     "name": "A1 2035",
+     "class": "A1",
+     "year": 2035,
+     "value": 98.3
+    },
+    {
+     "name": "A2 2035",
+     "class": "A2",
+     "year": 2035,
+     "value": 199.0
+    },
+    {
+     "name": "B1 2035",
+     "class": "B1",
+     "year": 2035,
+     "value": 396.0
+    },
+    {
+     "name": "B2 2035",
+     "class": "B2",
+     "year": 2035,
+     "value": 596.4
+    },
+    {
+     "name": "C 2035",
+     "class": "C",
+     "year": 2035,
+     "value": 321.3
+    },
+    {
+     "name": "D 2035",
+     "class": "D",
+     "year": 2035,
+     "value": 98.4
+    },
+    {
+     "name": "E 2035",
+     "class": "E",
+     "year": 2035,
+     "value": 4.6
+    },
+    {
+     "name": "A1 2040",
+     "class": "A1",
+     "year": 2040,
+     "value": 115.1
+    },
+    {
+     "name": "A2 2040",
+     "class": "A2",
+     "year": 2040,
+     "value": 220.6
+    },
+    {
+     "name": "B1 2040",
+     "class": "B1",
+     "year": 2040,
+     "value": 420.6
+    },
+    {
+     "name": "B2 2040",
+     "class": "B2",
+     "year": 2040,
+     "value": 607.9
+    },
+    {
+     "name": "C 2040",
+     "class": "C",
+     "year": 2040,
+     "value": 176.8
+    },
+    {
+     "name": "D 2040",
+     "class": "D",
+     "year": 2040,
+     "value": 27.5
+    },
+    {
+     "name": "E 2040",
+     "class": "E",
+     "year": 2040,
+     "value": 0.1
+    },
+    {
+     "name": "A1 2045",
+     "class": "A1",
+     "year": 2045,
+     "value": 135.1
+    },
+    {
+     "name": "A2 2045",
+     "class": "A2",
+     "year": 2045,
+     "value": 240.9
+    },
+    {
+     "name": "B1 2045",
+     "class": "B1",
+     "year": 2045,
+     "value": 438.4
+    },
+    {
+     "name": "B2 2045",
+     "class": "B2",
+     "year": 2045,
+     "value": 614.5
+    },
+    {
+     "name": "C 2045",
+     "class": "C",
+     "year": 2045,
+     "value": 54.6
+    },
+    {
+     "name": "D 2045",
+     "class": "D",
+     "year": 2045,
+     "value": 3.0
+    },
+    {
+     "name": "A1 2050",
+     "class": "A1",
+     "year": 2050,
+     "value": 146.2
+    },
+    {
+     "name": "A2 2050",
+     "class": "A2",
+     "year": 2050,
+     "value": 251.2
+    },
+    {
+     "name": "B1 2050",
+     "class": "B1",
+     "year": 2050,
+     "value": 450.0
+    },
+    {
+     "name": "B2 2050",
+     "class": "B2",
+     "year": 2050,
+     "value": 618.8
+    },
+    {
+     "name": "C 2050",
+     "class": "C",
+     "year": 2050,
+     "value": 20.3
+    }
+   ],
+   "links": [
+    {
+     "source": "G 2025",
+     "target": "B2 2030",
+     "value": 0.66
+    },
+    {
+     "source": "G 2025",
+     "target": "B1 2030",
+     "value": 0.92
+    },
+    {
+     "source": "G 2025",
+     "target": "A2 2030",
+     "value": 0.55
+    },
+    {
+     "source": "G 2025",
+     "target": "A1 2030",
+     "value": 0.23
+    },
+    {
+     "source": "F 2025",
+     "target": "F 2030",
+     "value": 1.81
+    },
+    {
+     "source": "F 2025",
+     "target": "B2 2030",
+     "value": 5.23
+    },
+    {
+     "source": "F 2025",
+     "target": "B1 2030",
+     "value": 7.25
+    },
+    {
+     "source": "F 2025",
+     "target": "A2 2030",
+     "value": 4.37
+    },
+    {
+     "source": "F 2025",
+     "target": "A1 2030",
+     "value": 1.84
+    },
+    {
+     "source": "E 2025",
+     "target": "E 2030",
+     "value": 77.52
+    },
+    {
+     "source": "E 2025",
+     "target": "B2 2030",
+     "value": 12.23
+    },
+    {
+     "source": "E 2025",
+     "target": "B1 2030",
+     "value": 16.83
+    },
+    {
+     "source": "E 2025",
+     "target": "A2 2030",
+     "value": 10.21
+    },
+    {
+     "source": "D 2025",
+     "target": "D 2030",
+     "value": 287.23
+    },
+    {
+     "source": "D 2025",
+     "target": "B2 2030",
+     "value": 14.6
+    },
+    {
+     "source": "D 2025",
+     "target": "B1 2030",
+     "value": 19.52
+    },
+    {
+     "source": "D 2025",
+     "target": "A2 2030",
+     "value": 11.86
+    },
+    {
+     "source": "D 2025",
+     "target": "A1 2030",
+     "value": 5.01
+    },
+    {
+     "source": "C 2025",
+     "target": "C 2030",
+     "value": 540.91
+    },
+    {
+     "source": "B2 2025",
+     "target": "B2 2030",
+     "value": 529.14
+    },
+    {
+     "source": "B1 2025",
+     "target": "B1 2030",
+     "value": 301.05
+    },
+    {
+     "source": "A2 2025",
+     "target": "A2 2030",
+     "value": 133.98
+    },
+    {
+     "source": "A1 2025",
+     "target": "A1 2030",
+     "value": 67.05
+    },
+    {
+     "source": "F 2030",
+     "target": "B2 2035",
+     "value": 0.08
+    },
+    {
+     "source": "F 2030",
+     "target": "B1 2035",
+     "value": 0.14
+    },
+    {
+     "source": "F 2030",
+     "target": "A2 2035",
+     "value": 0.11
+    },
+    {
+     "source": "F 2030",
+     "target": "A1 2035",
+     "value": 0.06
+    },
+    {
+     "source": "E 2030",
+     "target": "E 2035",
+     "value": 17.43
+    },
+    {
+     "source": "E 2030",
+     "target": "B2 2035",
+     "value": 3.26
+    },
+    {
+     "source": "E 2030",
+     "target": "B1 2035",
+     "value": 5.45
+    },
+    {
+     "source": "E 2030",
+     "target": "A2 2035",
+     "value": 4.53
+    },
+    {
+     "source": "E 2030",
+     "target": "A1 2035",
+     "value": 2.54
+    },
+    {
+     "source": "D 2030",
+     "target": "D 2035",
+     "value": 171.27
+    },
+    {
+     "source": "D 2030",
+     "target": "B2 2035",
+     "value": 6.88
+    },
+    {
+     "source": "D 2030",
+     "target": "B1 2035",
+     "value": 11.37
+    },
+    {
+     "source": "D 2030",
+     "target": "A2 2035",
+     "value": 9.63
+    },
+    {
+     "source": "D 2030",
+     "target": "A1 2035",
+     "value": 5.43
+    },
+    {
+     "source": "C 2030",
+     "target": "C 2035",
+     "value": 405.69
+    },
+    {
+     "source": "B2 2030",
+     "target": "B2 2035",
+     "value": 576.59
+    },
+    {
+     "source": "B1 2030",
+     "target": "B1 2035",
+     "value": 363.98
+    },
+    {
+     "source": "A2 2030",
+     "target": "A2 2035",
+     "value": 171.75
+    },
+    {
+     "source": "A1 2030",
+     "target": "A1 2035",
+     "value": 82.91
+    },
+    {
+     "source": "E 2035",
+     "target": "E 2040",
+     "value": 0.42
+    },
+    {
+     "source": "E 2035",
+     "target": "B2 2040",
+     "value": 0.54
+    },
+    {
+     "source": "E 2035",
+     "target": "B1 2040",
+     "value": 1.37
+    },
+    {
+     "source": "E 2035",
+     "target": "A2 2040",
+     "value": 1.26
+    },
+    {
+     "source": "E 2035",
+     "target": "A1 2040",
+     "value": 0.98
+    },
+    {
+     "source": "D 2035",
+     "target": "D 2040",
+     "value": 70.78
+    },
+    {
+     "source": "D 2035",
+     "target": "B2 2040",
+     "value": 3.44
+    },
+    {
+     "source": "D 2035",
+     "target": "B1 2040",
+     "value": 8.91
+    },
+    {
+     "source": "D 2035",
+     "target": "A2 2040",
+     "value": 8.53
+    },
+    {
+     "source": "D 2035",
+     "target": "A1 2040",
+     "value": 6.77
+    },
+    {
+     "source": "C 2035",
+     "target": "C 2040",
+     "value": 278.84
+    },
+    {
+     "source": "C 2035",
+     "target": "B2 2040",
+     "value": 7.46
+    },
+    {
+     "source": "C 2035",
+     "target": "B1 2040",
+     "value": 14.26
+    },
+    {
+     "source": "C 2035",
+     "target": "A2 2040",
+     "value": 11.8
+    },
+    {
+     "source": "C 2035",
+     "target": "A1 2040",
+     "value": 8.99
+    },
+    {
+     "source": "B2 2035",
+     "target": "B2 2040",
+     "value": 596.43
+    },
+    {
+     "source": "B1 2035",
+     "target": "B1 2040",
+     "value": 396.03
+    },
+    {
+     "source": "A2 2035",
+     "target": "A2 2040",
+     "value": 199.02
+    },
+    {
+     "source": "A1 2035",
+     "target": "A1 2040",
+     "value": 98.35
+    },
+    {
+     "source": "E 2040",
+     "target": "B2 2045",
+     "value": 0.01
+    },
+    {
+     "source": "E 2040",
+     "target": "B1 2045",
+     "value": 0.03
+    },
+    {
+     "source": "E 2040",
+     "target": "A2 2045",
+     "value": 0.03
+    },
+    {
+     "source": "E 2040",
+     "target": "A1 2045",
+     "value": 0.03
+    },
+    {
+     "source": "D 2040",
+     "target": "D 2045",
+     "value": 11.79
+    },
+    {
+     "source": "D 2040",
+     "target": "B2 2045",
+     "value": 1.66
+    },
+    {
+     "source": "D 2040",
+     "target": "B1 2045",
+     "value": 4.42
+    },
+    {
+     "source": "D 2040",
+     "target": "A2 2045",
+     "value": 4.87
+    },
+    {
+     "source": "D 2040",
+     "target": "A1 2045",
+     "value": 4.77
+    },
+    {
+     "source": "C 2040",
+     "target": "C 2045",
+     "value": 127.94
+    },
+    {
+     "source": "C 2040",
+     "target": "B2 2045",
+     "value": 4.9
+    },
+    {
+     "source": "C 2040",
+     "target": "B1 2045",
+     "value": 13.37
+    },
+    {
+     "source": "C 2040",
+     "target": "A2 2045",
+     "value": 15.38
+    },
+    {
+     "source": "C 2040",
+     "target": "A1 2045",
+     "value": 15.23
+    },
+    {
+     "source": "B2 2040",
+     "target": "B2 2045",
+     "value": 607.88
+    },
+    {
+     "source": "B1 2040",
+     "target": "B1 2045",
+     "value": 420.56
+    },
+    {
+     "source": "A2 2040",
+     "target": "A2 2045",
+     "value": 220.6
+    },
+    {
+     "source": "A1 2040",
+     "target": "A1 2045",
+     "value": 115.09
+    },
+    {
+     "source": "D 2045",
+     "target": "B2 2050",
+     "value": 0.25
+    },
+    {
+     "source": "D 2045",
+     "target": "B1 2050",
+     "value": 0.77
+    },
+    {
+     "source": "D 2045",
+     "target": "A2 2050",
+     "value": 0.9
+    },
+    {
+     "source": "D 2045",
+     "target": "A1 2050",
+     "value": 1.12
+    },
+    {
+     "source": "C 2045",
+     "target": "C 2050",
+     "value": 20.26
+    },
+    {
+     "source": "C 2045",
+     "target": "B2 2050",
+     "value": 4.1
+    },
+    {
+     "source": "C 2045",
+     "target": "B1 2050",
+     "value": 10.81
+    },
+    {
+     "source": "C 2045",
+     "target": "A2 2050",
+     "value": 9.43
+    },
+    {
+     "source": "C 2045",
+     "target": "A1 2050",
+     "value": 9.97
+    },
+    {
+     "source": "B2 2045",
+     "target": "B2 2050",
+     "value": 614.45
+    },
+    {
+     "source": "B1 2045",
+     "target": "B1 2050",
+     "value": 438.39
+    },
+    {
+     "source": "A2 2045",
+     "target": "A2 2050",
+     "value": 240.88
+    },
+    {
+     "source": "A1 2045",
+     "target": "A1 2050",
+     "value": 135.12
+    }
+   ],
+   "totals": {
+    "2025": 2050.0,
+    "2030": 1839.1,
+    "2035": 1714.2,
+    "2040": 1568.6,
+    "2045": 1486.5,
+    "2050": 1486.5
+   }
+  }
+ }
+}

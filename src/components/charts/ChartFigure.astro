@@ -12,8 +12,10 @@ interface Props {
   csv: { file: string; label: string }[];
   ariaLabel: string;
   height?: number;
+  /** Najmanjša širina grafa v px; na ožjih zaslonih se graf vodoravno drsi. */
+  minWidth?: number;
 }
-const { id, title, subtitle, file, csv, ariaLabel, height = 360 } = Astro.props;
+const { id, title, subtitle, file, csv, ariaLabel, height = 360, minWidth } = Astro.props;
 ---
 <figure class="chart" id={id} data-file={file} aria-labelledby={`${id}-t`}>
   <div class="chart-head">
@@ -21,9 +23,17 @@ const { id, title, subtitle, file, csv, ariaLabel, height = 360 } = Astro.props;
     {subtitle && <p class="chart-sub">{subtitle}</p>}
   </div>
   {Astro.slots.has('controls') && <div class="chart-controls"><slot name="controls" /></div>}
-  <div class="chart-canvas" role="img" aria-label={ariaLabel} aria-describedby={`${id}-data`} style={`height:${height}px`}>
-    <p class="chart-nojs">Graf potrebuje JavaScript. Podatki so v preglednici spodaj.</p>
-  </div>
+  {minWidth ? (
+    <div class="chart-scroll" tabindex="0" role="region" aria-label={`${title} (vodoravno drsenje)`}>
+      <div class="chart-canvas" role="img" aria-label={ariaLabel} aria-describedby={`${id}-data`} style={`height:${height}px;min-width:${minWidth}px`}>
+        <p class="chart-nojs">Graf potrebuje JavaScript. Podatki so v preglednici spodaj.</p>
+      </div>
+    </div>
+  ) : (
+    <div class="chart-canvas" role="img" aria-label={ariaLabel} aria-describedby={`${id}-data`} style={`height:${height}px`}>
+      <p class="chart-nojs">Graf potrebuje JavaScript. Podatki so v preglednici spodaj.</p>
+    </div>
+  )}
   <slot name="after" />
   <figcaption class="chart-cap"><slot name="caption" /></figcaption>
   <details class="chart-data" id={`${id}-data`}>
@@ -44,6 +54,7 @@ const { id, title, subtitle, file, csv, ariaLabel, height = 360 } = Astro.props;
   .chart-sub { color: var(--ink2); font-size: .88rem; margin: .25rem 0 0; }
   .chart-controls { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin: .9rem 0 .2rem; align-items: center; }
   .chart-canvas { width: 100%; margin-top: .8rem; position: relative; }
+  .chart-scroll { overflow-x: auto; }
   .chart-canvas.ready .chart-nojs { display: none; }
   .chart-nojs { color: var(--ink2); font-size: .9rem; padding-top: 2rem; }
   .chart-cap { font-size: .82rem; color: var(--ink2); margin-top: .6rem; max-width: 80ch; }
