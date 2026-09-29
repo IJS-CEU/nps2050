@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import Base from '../../layouts/Base.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
+import Icon from '../../components/Icon.astro';
 import Stolpci from '../../components/Stolpci.astro';
 import { loadData, type ObSkupine, type Obcina, type ObcineIndex, type ObcineModel } from '../../lib/data';
 import { nf } from '../../lib/format';
@@ -100,143 +101,58 @@ const resShare = va.fe_gwh.total ? (100 * va.fe_gwh.res) / va.fe_gwh.total : 0;
 const resShareSi = (100 * vs.fe_gwh.res) / vs.fe_gwh.total;
 const carRows = [{ lab: 'Občina', c: mo.carriers_pct }, { lab: 'Slovenija', c: ms.carriers_pct }];
 const npsRows = [{ lab: 'Občina', c: mo.nps_pct }, { lab: 'Slovenija', c: ms.nps_pct }];
+const TOC = [
+  { id: 'ob-vse-t', icon: 'gauge', label: 'Raba energije in emisije', hint: 'na prebivalca, obnovljivi viri' },
+  { id: 'ob-peer-t', icon: 'map', label: 'Primerjava', hint: 'sosednje in podobne občine' },
+  { id: 'ob-cilji-t', icon: 'target', label: 'Cilji NPS 2050', hint: 'potrebna prenova v občini' },
+  { id: 'ob-pot-t', icon: 'trending-down', label: 'Pot do leta 2050', hint: 'energija, emisije, OVE' },
+  { id: 'ob-model-t', icon: 'house', label: 'Stanovanjske stavbe', hint: 'energenti in razredi' },
+  { id: 'reg-seg', icon: 'building-2', label: 'Podatki iz registrov', hint: 'stavbe, izkaznice, prenove' },
+  { id: 'lek', icon: 'file-text', label: 'Izvoz za LEK', hint: 'PDF in CSV' },
+];
 const title = `Občina ${o.name}`;
-const description = `Stavbni fond, energetske izkaznice, energijski razredi in podprti ukrepi Eko sklada v občini ${o.name}, s primerjavo s Slovenijo.`;
+const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NPS 2050 v občini ${o.name}: primerjava s sosednjimi in podobnimi občinami ter s Slovenijo.`;
 ---
 <Base page="obcine" title={title} description={description}>
   <div class="wrap page-head">
     <p class="ob-crumb"><a href={pageUrl('obcine')}>Moja občina</a> / {o.region_name}</p>
     <h1>{o.name}</h1>
-    <p class="lead">Kaj pravijo registri o stavbah v občini: koliko jih je, koliko jih ima energetsko izkaznico, v katerih razredih so in koliko prenov je podprl Eko sklad. Vsak kazalnik je primerjan s Slovenijo.</p>
+    <p class="lead">Stavbe, raba energije, emisije in cilji NPS 2050 v občini {o.name}, v primerjavi s sosednjimi in podobnimi občinami ter s Slovenijo.</p>
   </div>
   <div class="wrap prose ob">
     <div class="tiles ob-tiles">
       {tiles.map((t) => <div class="tile"><div class="v">{t.v}{t.small && <small> {t.small}</small>}</div><div class="l">{t.l}</div></div>)}
     </div>
 
-    <h2>Stavbe po segmentih</h2>
-    <div class="tblwrap" tabindex="0" role="region" aria-label="Stavbe po segmentih">
-      <table>
-        <thead><tr><th scope="col">Segment</th><th scope="col" class="num">Stavbe</th><th scope="col" class="num">Površina [tisoč m²]</th><th scope="col" class="num">Stavbe z izkaznico</th><th scope="col" class="num">Površina z izkaznico</th><th scope="col" class="num">Slovenija: površina z izkaznico</th></tr></thead>
-        <tbody>
-          {ix.segments.map((s) => { const g = o.segments[s.id], gs = si.segments[s.id]; return (
-            <tr><th scope="row">{s.name}</th><td class="num">{g.buildings === null ? few : nf(g.buildings)}</td><td class="num">{g.area_k_m2 === null ? '–' : nf(g.area_k_m2, 1)}</td>
-              <td class="num">{pct(g.ei_buildings_pct) ?? '–'}</td><td class="num">{pct(g.ei_area_pct) ?? '–'}</td><td class="num">{pct(gs.ei_area_pct)}</td></tr>); })}
-        </tbody>
-      </table>
+    <nav class="ob-toc" aria-label="Na tej strani">
+      <p class="ob-toc-t">Na tej strani</p>
+      <ol>
+        {TOC.map((t) => <li><a href={`#${t.id}`}><span class="ob-toc-i"><Icon name={t.icon} size={18} /></span><span><b>{t.label}</b><small>{t.hint}</small></span></a></li>)}
+      </ol>
+    </nav>
+    <div class="ob-part" id="del-1">
+      <span class="ob-part-n" aria-hidden="true">1</span>
+      <div><p class="ob-part-t">Povzetek</p><p class="ob-part-s">Raba energije, emisije in obnovljivi viri ter primerjava z drugimi občinami</p></div>
     </div>
-    <p class="note">Javne stavbe so nestanovanjske stavbe, katerih pretežna dejanska raba je javna (uprava, šola, vrtec, zdravstvo, kultura, šport …), kot v osnutku NPS 2050.</p>
-
-    <h2>Kdaj so bile zgrajene stanovanjske stavbe</h2>
-    {[['Občina ' + o.name, o.res_period_area_pct], ['Slovenija', si.res_period_area_pct]].map(([lab, per]) => (
-      <div class="ob-stack">
-        <span class="ob-stack-l">{lab as string}</span>
-        <div class="ob-bar" role="img" aria-label={`${lab}: ${ix.periods.map((p) => `${p} ${pct((per as Record<string, number | null>)[p]) ?? 'ni podatka'}`).join(', ')}`}>
-          {ix.periods.map((p, i) => { const v = (per as Record<string, number | null>)[p] ?? 0; return v > 0 && <span class={`ob-p ob-p${i}`} style={`width:${v}%`}>{v >= 9 && `${nf(v, 0)} %`}</span>; })}
-        </div>
+    <section class="ob-model ob-vse" aria-labelledby="ob-vse-t">
+      <p class="ob-model-k">Ocena modela · vse stavbe</p>
+      <h2 id="ob-vse-t">Raba energije, emisije in obnovljivi viri v stavbah občine</h2>
+      <p>Stanovanjske, javne in zasebne storitvene stavbe skupaj, na prebivalca ({nf(va.pop)} prebivalcev, 1. 1. 2026). Vsota za Slovenijo se ujema z osnutkom NPS 2050 (končna energija, emisije in delež obnovljivih virov za izhodiščno leto 2023).</p>
+      <div class="tiles ob-tiles">
+        {vTiles.map((t) => <div class="tile"><div class="v">{t.v}<small>{t.unit}</small></div><div class="l">{t.l}</div></div>)}
       </div>
-    ))}
-    <ul class="ob-leg" aria-hidden="true">{ix.periods.map((p, i) => <li><i class={`ob-p ob-p${i}`}></i>{p}</li>)}</ul>
-    <p class="note">Deleži uporabne površine stanovanjskih stavb po obdobju gradnje. Stavbe pred letom 1981 so nastale pred prvimi toplotnimi predpisi. </p>
-
-    <h2>Energijski razredi stanovanjskih stavb z izkaznico</h2>
-    <p>Razred je določen iz primarne energije v računski energetski izkaznici po mejah razredov iz osnutka NPS 2050, posebej za hiše in bloke. Izkaznice imajo predvsem stavbe, ki so bile prodane ali oddane, zato razvrstitev ni nujno reprezentativna za vse stavbe v občini.</p>
-    {clsBlocks.map((cb) => (
-      <div class="ob-cls">
-        <h3>{cb.name}</h3>
-        {cb.rows ? <>
-          {cb.rows.map((r) => (
-            <div class="ob-stack">
-              <span class="ob-stack-l">{r.lab}<small>{nf(r.n)} stavb</small></span>
-              <div class="ob-bar" role="img" aria-label={`${r.lab}: ${cb.keys.map((k) => `razred ${k} ${nf(r.c[k], 1)} %`).join(', ')}`}>
-                {cb.keys.map((k) => r.c[k] > 0 && <span class={`ob-c ${LIGHT_TXT.has(k) ? 'lt' : ''}`} style={`width:${r.c[k]}%;background:var(--cls-${CG[k] ?? CV[k]})`}>{r.c[k] >= (cb.grouped ? 12 : 7) && <b>{cb.grouped ? `${k} · ${nf(r.c[k], 0)} %` : k}</b>}</span>)}
-              </div>
-            </div>
-          ))}
-          {cb.grouped && <p class="note">Razredi so združeni v tri skupine, ker ima posamezen razred v občini manj kot {MIN} stavb z izkaznico.</p>}
-        </> : <p class="note">Premalo izkaznic za zanesljivo razvrstitev (izkaznic: {nf(cb.n ?? 0)}).</p>}
-      </div>
-    ))}
-
-    <h2>Najslabše stavbe in minimalni standardi</h2>
-    <div class="ob-cmp">
-      {[
-        cmp('Stanovanjske stavbe z izkaznico nad pragom 43 % najmanj učinkovitih', o.res_above43_pct, si.res_above43_pct),
-        cmp('Nestanovanjske stavbe z izkaznico nad pragom minimalnih standardov 2030', o.nres_above_meps30_pct, si.nres_above_meps30_pct),
-        cmp('Nestanovanjske stavbe z izkaznico nad pragom minimalnih standardov 2033', o.nres_above_meps33_pct, si.nres_above_meps33_pct),
-      ].map((c) => (
-        <div class="ob-cmp-r">
-          <p class="ob-cmp-l">{c.label}</p>
-          {c.v === null ? <p class="note">Premalo izkaznic za zanesljiv delež.</p> : (
-            <div class="ob-pair" role="img" aria-label={`Občina ${nf(c.v, 1)} %, Slovenija ${nf(c.s, 1)} %`}>
-              <span class="lab">Občina</span><span class="trk"><i class="o" style={`width:${c.v}%`}></i></span><b>{nf(c.v, 1)} %</b>
-              <span class="lab">Slovenija</span><span class="trk"><i class="s" style={`width:${c.s}%`}></i></span><b>{nf(c.s, 1)} %</b>
-            </div>
-          )}
+      <h3>Stanovanjske in nestanovanjske stavbe</h3>
+      {[{ lab: 'Občina', r: resShare, fe: va.fe_gwh }, { lab: 'Slovenija', r: resShareSi, fe: vs.fe_gwh }].map((x) => (
+        <div class="ob-stack">
+          <span class="ob-stack-l">{x.lab}<small>{nf(x.fe.total, 0)} GWh</small></span>
+          <div class="ob-bar" role="img" aria-label={`${x.lab}: stanovanjske stavbe ${nf(x.r, 0)} %, nestanovanjske ${nf(100 - x.r, 0)} % končne energije`}>
+            <span class="ob-c lt" style={`width:${x.r}%;background:#1F7A57`}>{x.r >= 12 && <b>stanovanjske {nf(x.r, 0)} %</b>}</span>
+            <span class="ob-c lt" style={`width:${100 - x.r}%;background:#2A6FC9`}>{100 - x.r >= 12 && <b>nestanovanjske {nf(100 - x.r, 0)} %</b>}</span>
+          </div>
         </div>
       ))}
-    </div>
-    <p class="note">Deleži med stavbami z veljavno računsko izkaznico. Pragovi iz osnutka: za hiše {nf(320)} in za bloke {nf(222)} kWh/(m²·a) primarne energije; za nestanovanjske stavbe po kategorijah (glej <a href={pageUrl('preveri')}>Preverite svojo stavbo</a>).</p>
-
-    <h2>Prenove, ki jih je podprl Eko sklad</h2>
-    <p>Delež stanovanjskih stavb v občini, v katerih je Eko sklad podprl vsaj eno naložbo posamezne vrste (vsa leta do 2025). Skupaj ima vsaj en tak ukrep {pct(o.es_res_any_pct) ?? '–'} stanovanjskih stavb (Slovenija {nf(si.es_res_any_pct, 1)} %).</p>
-    <div class="tblwrap" tabindex="0" role="region" aria-label="Ukrepi Eko sklada">
-      <table class="ob-es">
-        <thead><tr><th scope="col">Ukrep</th><th scope="col" class="num">Stavbe</th><th scope="col">Delež stanovanjskih stavb: občina / Slovenija</th></tr></thead>
-        <tbody>
-          {esRows.map((r) => (
-            <tr><th scope="row">{r.name}</th><td class="num">{r.o.b === null ? few : nf(r.o.b)}</td>
-              <td><div class="ob-mini" aria-label={`občina ${pct(r.o.pct) ?? 'ni podatka'}, Slovenija ${pct(r.s.pct)}`} role="img">
-                <span class="trk"><i class="o" style={`width:${(100 * (r.o.pct ?? 0)) / esMax}%`}></i></span><b>{pct(r.o.pct) ?? '–'}</b>
-                <span class="trk"><i class="s" style={`width:${(100 * (r.s.pct ?? 0)) / esMax}%`}></i></span><b class="s">{pct(r.s.pct)}</b>
-              </div></td></tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-    <p class="note">Veliko prenov se izvede brez spodbude Eko sklada, zato ti deleži niso celoten obseg prenov.</p>
-
-    <h2>Obnove, vpisane v kataster</h2>
-    <div class="ob-cmp">
-      {[
-        cmp('Stanovanjske stavbe z vpisanim letom obnove strehe, fasade ali oken', o.obnova_res_pct, si.obnova_res_pct),
-        cmp('… od tega obnova leta 2010 ali pozneje', o.obnova_res_since2010_pct, si.obnova_res_since2010_pct),
-      ].map((c) => (
-        <div class="ob-cmp-r">
-          <p class="ob-cmp-l">{c.label}</p>
-          {c.v === null ? <p class="note">Premalo podatkov.</p> : (
-            <div class="ob-pair" role="img" aria-label={`Občina ${nf(c.v, 1)} %, Slovenija ${nf(c.s, 1)} %`}>
-              <span class="lab">Občina</span><span class="trk"><i class="o" style={`width:${c.v}%`}></i></span><b>{nf(c.v, 1)} %</b>
-              <span class="lab">Slovenija</span><span class="trk"><i class="s" style={`width:${c.s}%`}></i></span><b>{nf(c.s, 1)} %</b>
-            </div>
-          )}
-        </div>
-      ))}
-    </div>
-    <p class="note">Leto obnove vpiše lastnik ali geodet ob spremembi v katastru. Vpis ne pove, ali je bila obnova energetska; starejši vpisi pogosto pomenijo le barvanje fasade ali menjavo kritine. V oceni modela zato štejejo le obnove od leta 2010.</p>
-
-
-
-
-
-    <section class="ob-cilji ob-pot" aria-labelledby="ob-pot-t">
-      <p class="ob-model-k">NPS 2050 v občini · pot do leta 2050</p>
-      <h2 id="ob-pot-t">Pot občine do leta 2050 po scenariju NPS 2050</h2>
-      <p>Če bi se stavbe v občini prenavljale enako kot v scenariju NPS 2050 za vso državo, bi se raba končne energije v stavbah do leta 2050 zmanjšala za <strong>{-red(pot['2023'].fe_gwh, pot['2050'].fe_gwh)} %</strong> (Slovenija {-red(potSi['2023'].fe_gwh, potSi['2050'].fe_gwh)} %), emisije pa za {-red(pot['2023'].tgp_kt, pot['2050'].tgp_kt)} %. Občine z več starimi in slabo izoliranimi stavbami imajo večji potencial zmanjšanja.</p>
-      <div class="ob-pot-grid">
-        <Stolpci id="st-pot-fe" title="Raba končne energije v stavbah, GWh na leto" labels={PY} series={[{ name: 'raba končne energije', values: PY.map((y) => pot[y].fe_gwh), color: '#1F7A57' }]} />
-        <Stolpci id="st-pot-tgp" title="Emisije TGP iz stavb, kt CO₂ ekv. na leto" labels={PY} series={[{ name: 'emisije', values: PY.map((y) => pot[y].tgp_kt), color: '#8F5A08' }]} />
-      </div>
-      <div class="tblwrap" tabindex="0" role="region" aria-label="Pot do leta 2050">
-        <table>
-          <thead><tr><th scope="col">Kazalnik</th>{PY.map((y) => <th scope="col" class="num">{y}</th>)}</tr></thead>
-          <tbody>
-            <tr><th scope="row">Delež obnovljivih virov [%]</th>{PY.map((y) => <td class="num">{nf(pot[y].ove_pct, 0)}</td>)}</tr>
-            <tr><th scope="row">Delež kurilnega olja in plina [%]</th>{PY.map((y) => <td class="num">{nf(pot[y].fossil_pct, 0)}</td>)}</tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="note">Ponazoritev: prehodi med energijskimi razredi po scenariju NPS 2050 (model RenRates) so uporabljeni za vsako stavbo v občini; vsota za državo po vrstah stavb sledi osnutku, emisije in delež obnovljivih virov pa se za državo ujemajo z osnutkom v vsakem letu. Leto 2023 je izhodišče.</p>
+      <p class="note">Raba končne energije v nestanovanjskih stavbah je {va.nres_kwh_m2 === null ? '–' : nf(va.nres_kwh_m2)} kWh/m² (Slovenija {nf(vs.nres_kwh_m2 ?? 0)}); za {va.nres_measured_area_pct === null ? '–' : nf(va.nres_measured_area_pct, 0)} % njihove površine je raba izmerjena (energetsko knjigovodstvo javnega sektorja 2025 ali merjena izkaznica), za druge ocenjena z modelom.{va.dh_ove_pct !== null && ` Daljinska toplota v občini je iz obnovljivih virov ${nf(va.dh_ove_pct, 0)} % (AGEN-RS, 2025).`}</p>
+      <p class="note"><strong>Pri primerjavi na prebivalca pazite:</strong> bolnišnice, srednje šole, trgovski centri in hoteli služijo tudi prebivalcem drugih občin in turistom. Zato imajo središča in turistične občine več energije na prebivalca, ne da bi bile njihove stavbe slabše. Podobno počitniška stanovanja in hiše (vikendi) nimajo stalnih prebivalcev, zato je v turističnih občinah višja tudi raba stanovanjskih stavb na prebivalca.</p>
     </section>
 
     <section class="ob-peer" aria-labelledby="ob-peer-t">
@@ -251,6 +167,10 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
       <p class="note">Sosednje občine: {nb.map((r, i) => <>{i > 0 && ', '}<a href={withBase(`obcina/${r.sifra}/`)}>{r.name}</a></>)}. Skupine: mestne občine; turistične občine (površina hotelov in gostinstva na prebivalca vsaj trikrat nad državnim povprečjem); druge po gostoti poselitve (gosto nad 150, srednje 60–150, redko pod 60 prebivalcev na km², SURS 2026). Kazalniki z rabo energije, emisijami in obnovljivimi viri so ocena modela.</p>
     </section>
 
+    <div class="ob-part" id="del-2">
+      <span class="ob-part-n" aria-hidden="true">2</span>
+      <div><p class="ob-part-t">NPS 2050 v občini</p><p class="ob-part-s">Kaj državni cilji pomenijo za občino in kakšna je pot do leta 2050</p></div>
+    </div>
     <section class="ob-cilji" aria-labelledby="ob-cilji-t">
       <p class="ob-model-k">NPS 2050 v občini · ponazoritev</p>
       <h2 id="ob-cilji-t">Kaj cilji NPS 2050 pomenijo za občino {o.name}</h2>
@@ -280,27 +200,30 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
       <p class="note">Obseg prenove: državni letni obseg po vrstah stavb iz osnutka (preglednica potrebnega obsega prenov), razdeljen po deležu uporabne površine občine. Skupina 43 %: ocenjena površina nad pragom v občini in državni tempo najmanj 1,1 mio m² na leto. Fosilna goriva: ocenjena raba v občini, zmanjšana v enakem razmerju kot v scenariju NPS 2050 za državo. Minimalni standardi: nestanovanjske stavbe, prilagojeno deležu nad pragom med izkaznicami {ci.meps.local_ei ? 'v občini' : 'v Sloveniji (v občini je premalo izkaznic)'}.</p>
     </section>
 
-    <section class="ob-model ob-vse" aria-labelledby="ob-vse-t">
-      <p class="ob-model-k">Ocena modela · vse stavbe</p>
-      <h2 id="ob-vse-t">Raba energije, emisije in obnovljivi viri v stavbah občine</h2>
-      <p>Stanovanjske, javne in zasebne storitvene stavbe skupaj, na prebivalca ({nf(va.pop)} prebivalcev, 1. 1. 2026). Vsota za Slovenijo se ujema z osnutkom NPS 2050 (končna energija, emisije in delež obnovljivih virov za izhodiščno leto 2023).</p>
-      <div class="tiles ob-tiles">
-        {vTiles.map((t) => <div class="tile"><div class="v">{t.v}<small>{t.unit}</small></div><div class="l">{t.l}</div></div>)}
+    <section class="ob-cilji ob-pot" aria-labelledby="ob-pot-t">
+      <p class="ob-model-k">NPS 2050 v občini · pot do leta 2050</p>
+      <h2 id="ob-pot-t">Pot občine do leta 2050 po scenariju NPS 2050</h2>
+      <p>Če bi se stavbe v občini prenavljale enako kot v scenariju NPS 2050 za vso državo, bi se raba končne energije v stavbah do leta 2050 zmanjšala za <strong>{-red(pot['2023'].fe_gwh, pot['2050'].fe_gwh)} %</strong> (Slovenija {-red(potSi['2023'].fe_gwh, potSi['2050'].fe_gwh)} %), emisije pa za {-red(pot['2023'].tgp_kt, pot['2050'].tgp_kt)} %. Občine z več starimi in slabo izoliranimi stavbami imajo večji potencial zmanjšanja.</p>
+      <div class="ob-pot-grid">
+        <Stolpci id="st-pot-fe" title="Raba končne energije v stavbah, GWh na leto" labels={PY} series={[{ name: 'raba končne energije', values: PY.map((y) => pot[y].fe_gwh), color: '#1F7A57' }]} />
+        <Stolpci id="st-pot-tgp" title="Emisije TGP iz stavb, kt CO₂ ekv. na leto" labels={PY} series={[{ name: 'emisije', values: PY.map((y) => pot[y].tgp_kt), color: '#8F5A08' }]} />
       </div>
-      <h3>Stanovanjske in nestanovanjske stavbe</h3>
-      {[{ lab: 'Občina', r: resShare, fe: va.fe_gwh }, { lab: 'Slovenija', r: resShareSi, fe: vs.fe_gwh }].map((x) => (
-        <div class="ob-stack">
-          <span class="ob-stack-l">{x.lab}<small>{nf(x.fe.total, 0)} GWh</small></span>
-          <div class="ob-bar" role="img" aria-label={`${x.lab}: stanovanjske stavbe ${nf(x.r, 0)} %, nestanovanjske ${nf(100 - x.r, 0)} % končne energije`}>
-            <span class="ob-c lt" style={`width:${x.r}%;background:#1F7A57`}>{x.r >= 12 && <b>stanovanjske {nf(x.r, 0)} %</b>}</span>
-            <span class="ob-c lt" style={`width:${100 - x.r}%;background:#2A6FC9`}>{100 - x.r >= 12 && <b>nestanovanjske {nf(100 - x.r, 0)} %</b>}</span>
-          </div>
-        </div>
-      ))}
-      <p class="note">Raba končne energije v nestanovanjskih stavbah je {va.nres_kwh_m2 === null ? '–' : nf(va.nres_kwh_m2)} kWh/m² (Slovenija {nf(vs.nres_kwh_m2 ?? 0)}); za {va.nres_measured_area_pct === null ? '–' : nf(va.nres_measured_area_pct, 0)} % njihove površine je raba izmerjena (energetsko knjigovodstvo javnega sektorja 2025 ali merjena izkaznica), za druge ocenjena z modelom.{va.dh_ove_pct !== null && ` Daljinska toplota v občini je iz obnovljivih virov ${nf(va.dh_ove_pct, 0)} % (AGEN-RS, 2025).`}</p>
-      <p class="note"><strong>Pri primerjavi na prebivalca pazite:</strong> bolnišnice, srednje šole, trgovski centri in hoteli služijo tudi prebivalcem drugih občin in turistom. Zato imajo središča in turistične občine več energije na prebivalca, ne da bi bile njihove stavbe slabše. Podobno počitniška stanovanja in hiše (vikendi) nimajo stalnih prebivalcev, zato je v turističnih občinah višja tudi raba stanovanjskih stavb na prebivalca.</p>
+      <div class="tblwrap" tabindex="0" role="region" aria-label="Pot do leta 2050">
+        <table>
+          <thead><tr><th scope="col">Kazalnik</th>{PY.map((y) => <th scope="col" class="num">{y}</th>)}</tr></thead>
+          <tbody>
+            <tr><th scope="row">Delež obnovljivih virov [%]</th>{PY.map((y) => <td class="num">{nf(pot[y].ove_pct, 0)}</td>)}</tr>
+            <tr><th scope="row">Delež kurilnega olja in plina [%]</th>{PY.map((y) => <td class="num">{nf(pot[y].fossil_pct, 0)}</td>)}</tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Ponazoritev: prehodi med energijskimi razredi po scenariju NPS 2050 (model RenRates) so uporabljeni za vsako stavbo v občini; vsota za državo po vrstah stavb sledi osnutku, emisije in delež obnovljivih virov pa se za državo ujemajo z osnutkom v vsakem letu. Leto 2023 je izhodišče.</p>
     </section>
 
+    <div class="ob-part" id="del-3">
+      <span class="ob-part-n" aria-hidden="true">3</span>
+      <div><p class="ob-part-t">Stanovanjske stavbe</p><p class="ob-part-s">Raba energije, energenti in energijski razredi (ocena modela)</p></div>
+    </div>
     <section class="ob-model" aria-labelledby="ob-model-t">
       <p class="ob-model-k">Ocena modela</p>
       <h2 id="ob-model-t">Raba energije v stanovanjskih stavbah</h2>
@@ -334,8 +257,117 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
       <p class="note">Deleži uporabne površine. Za razliko od razvrstitve zgoraj, ki velja le za stavbe z izkaznico, ta ocena zajame vse stanovanjske stavbe v občini. Neposredni podatek (izkaznico) ima {nf(mo.known_pct, 1)} % stavb. Občina {tkTxt}. Razpon kaže, kako se ocena spremeni, če toplotne karte ne upoštevamo ali jo upoštevamo močneje.</p>
     </section>
 
+    <div class="ob-part" id="del-4">
+      <span class="ob-part-n" aria-hidden="true">4</span>
+      <div><p class="ob-part-t">Podatki iz registrov</p><p class="ob-part-s">Kataster, energetske izkaznice in Eko sklad</p></div>
+    </div>
+    <h2 id="reg-seg">Stavbe po segmentih</h2>
+    <div class="tblwrap" tabindex="0" role="region" aria-label="Stavbe po segmentih">
+      <table>
+        <thead><tr><th scope="col">Segment</th><th scope="col" class="num">Stavbe</th><th scope="col" class="num">Površina [tisoč m²]</th><th scope="col" class="num">Stavbe z izkaznico</th><th scope="col" class="num">Površina z izkaznico</th><th scope="col" class="num">Slovenija: površina z izkaznico</th></tr></thead>
+        <tbody>
+          {ix.segments.map((s) => { const g = o.segments[s.id], gs = si.segments[s.id]; return (
+            <tr><th scope="row">{s.name}</th><td class="num">{g.buildings === null ? few : nf(g.buildings)}</td><td class="num">{g.area_k_m2 === null ? '–' : nf(g.area_k_m2, 1)}</td>
+              <td class="num">{pct(g.ei_buildings_pct) ?? '–'}</td><td class="num">{pct(g.ei_area_pct) ?? '–'}</td><td class="num">{pct(gs.ei_area_pct)}</td></tr>); })}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Javne stavbe so nestanovanjske stavbe, katerih pretežna dejanska raba je javna (uprava, šola, vrtec, zdravstvo, kultura, šport …), kot v osnutku NPS 2050.</p>
+
+    <h2 id="reg-gradnja">Kdaj so bile zgrajene stanovanjske stavbe</h2>
+    {[['Občina ' + o.name, o.res_period_area_pct], ['Slovenija', si.res_period_area_pct]].map(([lab, per]) => (
+      <div class="ob-stack">
+        <span class="ob-stack-l">{lab as string}</span>
+        <div class="ob-bar" role="img" aria-label={`${lab}: ${ix.periods.map((p) => `${p} ${pct((per as Record<string, number | null>)[p]) ?? 'ni podatka'}`).join(', ')}`}>
+          {ix.periods.map((p, i) => { const v = (per as Record<string, number | null>)[p] ?? 0; return v > 0 && <span class={`ob-p ob-p${i}`} style={`width:${v}%`}>{v >= 9 && `${nf(v, 0)} %`}</span>; })}
+        </div>
+      </div>
+    ))}
+    <ul class="ob-leg" aria-hidden="true">{ix.periods.map((p, i) => <li><i class={`ob-p ob-p${i}`}></i>{p}</li>)}</ul>
+    <p class="note">Deleži uporabne površine stanovanjskih stavb po obdobju gradnje. Stavbe pred letom 1981 so nastale pred prvimi toplotnimi predpisi. </p>
+
+    <h2 id="reg-razredi">Energijski razredi stanovanjskih stavb z izkaznico</h2>
+    <p>Razred je določen iz primarne energije v računski energetski izkaznici po mejah razredov iz osnutka NPS 2050, posebej za hiše in bloke. Izkaznice imajo predvsem stavbe, ki so bile prodane ali oddane, zato razvrstitev ni nujno reprezentativna za vse stavbe v občini.</p>
+    {clsBlocks.map((cb) => (
+      <div class="ob-cls">
+        <h3>{cb.name}</h3>
+        {cb.rows ? <>
+          {cb.rows.map((r) => (
+            <div class="ob-stack">
+              <span class="ob-stack-l">{r.lab}<small>{nf(r.n)} stavb</small></span>
+              <div class="ob-bar" role="img" aria-label={`${r.lab}: ${cb.keys.map((k) => `razred ${k} ${nf(r.c[k], 1)} %`).join(', ')}`}>
+                {cb.keys.map((k) => r.c[k] > 0 && <span class={`ob-c ${LIGHT_TXT.has(k) ? 'lt' : ''}`} style={`width:${r.c[k]}%;background:var(--cls-${CG[k] ?? CV[k]})`}>{r.c[k] >= (cb.grouped ? 12 : 7) && <b>{cb.grouped ? `${k} · ${nf(r.c[k], 0)} %` : k}</b>}</span>)}
+              </div>
+            </div>
+          ))}
+          {cb.grouped && <p class="note">Razredi so združeni v tri skupine, ker ima posamezen razred v občini manj kot {MIN} stavb z izkaznico.</p>}
+        </> : <p class="note">Premalo izkaznic za zanesljivo razvrstitev (izkaznic: {nf(cb.n ?? 0)}).</p>}
+      </div>
+    ))}
+
+    <h2 id="reg-najslabse">Najslabše stavbe in minimalni standardi</h2>
+    <div class="ob-cmp">
+      {[
+        cmp('Stanovanjske stavbe z izkaznico nad pragom 43 % najmanj učinkovitih', o.res_above43_pct, si.res_above43_pct),
+        cmp('Nestanovanjske stavbe z izkaznico nad pragom minimalnih standardov 2030', o.nres_above_meps30_pct, si.nres_above_meps30_pct),
+        cmp('Nestanovanjske stavbe z izkaznico nad pragom minimalnih standardov 2033', o.nres_above_meps33_pct, si.nres_above_meps33_pct),
+      ].map((c) => (
+        <div class="ob-cmp-r">
+          <p class="ob-cmp-l">{c.label}</p>
+          {c.v === null ? <p class="note">Premalo izkaznic za zanesljiv delež.</p> : (
+            <div class="ob-pair" role="img" aria-label={`Občina ${nf(c.v, 1)} %, Slovenija ${nf(c.s, 1)} %`}>
+              <span class="lab">Občina</span><span class="trk"><i class="o" style={`width:${c.v}%`}></i></span><b>{nf(c.v, 1)} %</b>
+              <span class="lab">Slovenija</span><span class="trk"><i class="s" style={`width:${c.s}%`}></i></span><b>{nf(c.s, 1)} %</b>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+    <p class="note">Deleži med stavbami z veljavno računsko izkaznico. Pragovi iz osnutka: za hiše {nf(320)} in za bloke {nf(222)} kWh/(m²·a) primarne energije; za nestanovanjske stavbe po kategorijah (glej <a href={pageUrl('preveri')}>Preverite svojo stavbo</a>).</p>
+
+    <h2 id="reg-eko">Prenove, ki jih je podprl Eko sklad</h2>
+    <p>Delež stanovanjskih stavb v občini, v katerih je Eko sklad podprl vsaj eno naložbo posamezne vrste (vsa leta do 2025). Skupaj ima vsaj en tak ukrep {pct(o.es_res_any_pct) ?? '–'} stanovanjskih stavb (Slovenija {nf(si.es_res_any_pct, 1)} %).</p>
+    <div class="tblwrap" tabindex="0" role="region" aria-label="Ukrepi Eko sklada">
+      <table class="ob-es">
+        <thead><tr><th scope="col">Ukrep</th><th scope="col" class="num">Stavbe</th><th scope="col">Delež stanovanjskih stavb: občina / Slovenija</th></tr></thead>
+        <tbody>
+          {esRows.map((r) => (
+            <tr><th scope="row">{r.name}</th><td class="num">{r.o.b === null ? few : nf(r.o.b)}</td>
+              <td><div class="ob-mini" aria-label={`občina ${pct(r.o.pct) ?? 'ni podatka'}, Slovenija ${pct(r.s.pct)}`} role="img">
+                <span class="trk"><i class="o" style={`width:${(100 * (r.o.pct ?? 0)) / esMax}%`}></i></span><b>{pct(r.o.pct) ?? '–'}</b>
+                <span class="trk"><i class="s" style={`width:${(100 * (r.s.pct ?? 0)) / esMax}%`}></i></span><b class="s">{pct(r.s.pct)}</b>
+              </div></td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Veliko prenov se izvede brez spodbude Eko sklada, zato ti deleži niso celoten obseg prenov.</p>
+
+    <h2 id="reg-obnove">Obnove, vpisane v kataster</h2>
+    <div class="ob-cmp">
+      {[
+        cmp('Stanovanjske stavbe z vpisanim letom obnove strehe, fasade ali oken', o.obnova_res_pct, si.obnova_res_pct),
+        cmp('… od tega obnova leta 2010 ali pozneje', o.obnova_res_since2010_pct, si.obnova_res_since2010_pct),
+      ].map((c) => (
+        <div class="ob-cmp-r">
+          <p class="ob-cmp-l">{c.label}</p>
+          {c.v === null ? <p class="note">Premalo podatkov.</p> : (
+            <div class="ob-pair" role="img" aria-label={`Občina ${nf(c.v, 1)} %, Slovenija ${nf(c.s, 1)} %`}>
+              <span class="lab">Občina</span><span class="trk"><i class="o" style={`width:${c.v}%`}></i></span><b>{nf(c.v, 1)} %</b>
+              <span class="lab">Slovenija</span><span class="trk"><i class="s" style={`width:${c.s}%`}></i></span><b>{nf(c.s, 1)} %</b>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+    <p class="note">Leto obnove vpiše lastnik ali geodet ob spremembi v katastru. Vpis ne pove, ali je bila obnova energetska; starejši vpisi pogosto pomenijo le barvanje fasade ali menjavo kritine. V oceni modela zato štejejo le obnove od leta 2010.</p>
+
+
+
+
+
     {pub.length > 0 && <>
-      <h2>Javne stavbe</h2>
+      <h2 id="reg-javne">Javne stavbe</h2>
       <div class="tblwrap" tabindex="0" role="region" aria-label="Javne stavbe po vrsti">
         <table>
           <thead><tr><th scope="col">Vrsta stavbe</th><th scope="col" class="num">Stavbe</th><th scope="col" class="num">Površina [tisoč m²]</th></tr></thead>
@@ -344,7 +376,7 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
       </div>
     </>}
 
-    <div class="card green ob-lek">
+    <div class="card green ob-lek" id="lek">
       <p><strong>Izvleček za lokalni energetski koncept (LEK).</strong> Ključni kazalniki občine in kaj cilji NPS 2050 pomenijo zanjo, na eni strani za tisk ali kot PDF, in v obliki CSV. Izvleček je intelektualna lastnina IJS CEU; uporaba je dovoljena z navedbo vira, brez predelave in brez komercialne uporabe (CC BY-NC-ND 4.0).</p>
       <p><a class="btn primary" href={withBase(`obcina/${o.sifra}/lek/`)}>Izvleček za tisk / PDF</a> <a class="btn" href={withBase(`obcina/${o.sifra}/lek.csv`)} download={`NPS2050_${o.name}_LEK.csv`}>CSV</a></p>
     </div>
@@ -357,6 +389,20 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
 </Base>
 
 <style>
+  .ob-toc { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1rem 1.1rem 1.1rem; margin: 1.4rem 0 2.2rem; }
+  .ob-toc-t { font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); margin: 0 0 .6rem; }
+  .ob-toc ol { list-style: none; padding: 0; margin: 0; max-width: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .5rem; }
+  .ob-toc a { display: flex; gap: .6rem; align-items: center; padding: .55rem .65rem; border-radius: 10px; text-decoration: none; color: var(--ink); border: 1px solid transparent; transition: background .12s, border-color .12s; }
+  .ob-toc a:hover, .ob-toc a:focus-visible { background: var(--greenbg); border-color: var(--green); }
+  .ob-toc-i { flex: none; width: 2.1rem; height: 2.1rem; border-radius: 9px; display: grid; place-items: center; background: var(--greenbg); color: var(--green); }
+  .ob-toc b { display: block; font-size: .9rem; line-height: 1.2; }
+  .ob-toc small { display: block; font-size: .76rem; color: var(--ink2); line-height: 1.3; }
+  .ob-part { display: flex; gap: .9rem; align-items: center; margin: 3rem 0 .4rem; padding-bottom: .7rem; border-bottom: 2px solid var(--green); scroll-margin-top: 8.5rem; }
+  .ob-part-n { flex: none; width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; background: var(--green); color: var(--on-green); font-weight: 800; font-size: 1.1rem; }
+  .ob-part-t { font-family: var(--font-serif); font-size: 1.45rem; font-weight: 700; margin: 0; line-height: 1.15; }
+  .ob-part-s { margin: .15rem 0 0; color: var(--ink2); font-size: .9rem; }
+  .ob h2[id], .ob section, .ob [id] { scroll-margin-top: 8.5rem; }
+  @media (prefers-reduced-motion: reduce) { .ob-toc a { transition: none; } }
   .ob-crumb { font-size: .85rem; color: var(--ink2); margin: 0 0 .4rem; }
   .ob-tiles { margin: .5rem 0 1.5rem; }
   .ob h3 { font-size: 1.02rem; margin: 1rem 0 .4rem; }
