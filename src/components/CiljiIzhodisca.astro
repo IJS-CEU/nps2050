@@ -1,0 +1,34 @@
+---
+/**
+ * Cilji za končno in primarno energijo ter emisije kot odstotek glede na izhodišči 2020 in 2023 (CLAUDE.md §10.2).
+ * Odstotki glede na 2023 so iz preglednice ključnih ciljev osnutka, glede na 2020 so izpeljani (izhodiščna preglednica 2020).
+ */
+import { withBase } from '../i18n/routes';
+import { loadData, type Trajektorija } from '../lib/data';
+import { nf } from '../lib/format';
+
+const c = loadData<Trajektorija>('trajektorija').zgodba.cilji;
+const Y = ['2030', '2040', '2050'];
+const pct = (v: number | null) => (v === null ? '–' : `${v > 0 ? '+' : '−'}${nf(Math.abs(v))} %`);
+---
+<div class="tblwrap" tabindex="0" role="region" aria-label="Cilji glede na izhodišči 2020 in 2023">
+  <table class="ci">
+    <caption>Cilji NPS 2050 za vse stavbe, glede na izhodišči 2020 in 2023</caption>
+    <thead>
+      <tr><th scope="col">Kazalnik</th><th scope="col" class="num">2020</th><th scope="col" class="num">2023</th>{Y.map((y) => <th scope="col" class="num">{y}</th>)}</tr>
+    </thead>
+    <tbody>
+      {c.map((r) => (
+        <tr><th scope="row">{r.label}<small>{r.unit}</small></th><td class="num">{r.base2020 === null ? '–' : nf(r.base2020)}</td><td class="num">{nf(r.base2023)}</td>
+          {Y.map((y) => <td class="num"><b>{nf(r.years[y].value)}</b>{r.years[y].vs2020 !== null && <small>{pct(r.years[y].vs2020)} glede na 2020</small>}<small>{pct(r.years[y].vs2023)} glede na 2023</small></td>)}</tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+<p class="note">Odstotki glede na leto 2023 so iz preglednice ključnih ciljev osnutka. Odstotki glede na leto 2020 so izpeljani iz izhodiščne preglednice rabe energije za leto 2020; za emisije osnutek vrednosti za leto 2020 ne navaja. Primarna energija pri faktorjih, veljavnih v posameznem letu. <a href={withBase('data/csv/cilji_2020_2023.csv')} download>Prenesi CSV</a></p>
+
+<style>
+  .ci { font-size: .86rem; }
+  .ci caption { text-align: left; font-weight: 700; margin-bottom: .4rem; }
+  .ci th small, .ci td small { display: block; font-weight: 500; color: var(--ink2); font-size: .75rem; white-space: nowrap; }
+</style>

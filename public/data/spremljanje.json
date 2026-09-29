@@ -1,0 +1,284 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "Register energetskih izkaznic (izvoz 28. 9. 2026)",
+   "Register poročil o pregledih klimatskih sistemov KLIMSIS (izvoz 28. 9. 2026)",
+   "Eko sklad: podprte naložbe po stavbah do 2025",
+   "Kataster nepremičnin GURS (30. 8. 2026)"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Izhodišče 2026; od leta 2027 se doda ena vrstica na leto z isto metodo. Leto 2026 je delno (do dneva izvoza)."
+ },
+ "stanje": "28. 9. 2026",
+ "ei": {
+  "valid": {
+   "skupaj": 85590,
+   "racunske": 80505,
+   "merjene": 5084
+  },
+  "issued": {
+   "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "REI": [
+    748,
+    6428,
+    6462,
+    4950,
+    7408,
+    7517,
+    6388,
+    7267,
+    9907,
+    7265
+   ],
+   "MEI": [
+    10,
+    132,
+    171,
+    228,
+    143,
+    128,
+    266,
+    384,
+    1178,
+    620
+   ]
+  },
+  "coverage": {
+   "hise": {
+    "buildings_pct": 5.8,
+    "area_pct": 6.4
+   },
+   "bloki": {
+    "buildings_pct": 53.2,
+    "area_pct": 77.4
+   },
+   "javne": {
+    "buildings_pct": 27.0,
+    "area_pct": 51.9
+   },
+   "zasebne": {
+    "buildings_pct": 13.2,
+    "area_pct": 39.7
+   }
+  },
+  "classes": {
+   "hise": {
+    "A": 2.9,
+    "B": 26.3,
+    "C": 21.8,
+    "D": 16.3,
+    "E": 11.7,
+    "F": 7.4,
+    "G": 13.7
+   },
+   "bloki": {
+    "A": 2.8,
+    "B": 14.3,
+    "C": 24.2,
+    "D": 19.9,
+    "E": 12.8,
+    "F": 8.1,
+    "G": 18.0
+   },
+   "javne": {
+    "A": 17.0,
+    "B": 21.0,
+    "C": 18.9,
+    "D": 14.8,
+    "E": 8.8,
+    "F": 5.7,
+    "G": 13.7
+   },
+   "zasebne": {
+    "A": 14.0,
+    "B": 23.3,
+    "C": 20.4,
+    "D": 14.4,
+    "E": 9.4,
+    "F": 5.7,
+    "G": 12.8
+   }
+  },
+  "ei_calc": {
+   "hise": 26611,
+   "bloki": 14243,
+   "javne": 1066,
+   "zasebne": 2403
+  }
+ },
+ "klimsis": {
+  "years": [
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025,
+   2026
+  ],
+  "reports": [
+   81,
+   79,
+   54,
+   26,
+   129,
+   220,
+   59
+  ],
+  "total": 648,
+  "buildings": 200,
+  "by_use": [
+   {
+    "name": "trgovski objekti",
+    "n": 274
+   },
+   {
+    "name": "upravne poslovne",
+    "n": 139
+   },
+   {
+    "name": "turisticni objekti",
+    "n": 62
+   },
+   {
+    "name": "drugo",
+    "n": 62
+   },
+   {
+    "name": "bolnisnice",
+    "n": 47
+   },
+   {
+    "name": "izobraževalne",
+    "n": 40
+   },
+   {
+    "name": "sportni objekti",
+    "n": 12
+   },
+   {
+    "name": "zdravstveni domovi",
+    "n": 9
+   }
+  ]
+ },
+ "eko_sklad": {
+  "years": [
+   2017,
+   2018,
+   2019,
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "groups": [
+   {
+    "id": "ovoj",
+    "name": "izolacija ovoja",
+    "buildings": [
+     1341,
+     1305,
+     1768,
+     1634,
+     1390,
+     1378,
+     1570,
+     1335,
+     1677
+    ]
+   },
+   {
+    "id": "okna",
+    "name": "zamenjava oken",
+    "buildings": [
+     928,
+     870,
+     920,
+     954,
+     874,
+     838,
+     1024,
+     1071,
+     1203
+    ]
+   },
+   {
+    "id": "tc",
+    "name": "toplotna črpalka",
+    "buildings": [
+     2267,
+     3142,
+     5034,
+     4944,
+     4951,
+     6453,
+     11083,
+     11634,
+     6260
+    ]
+   },
+   {
+    "id": "biomasa",
+    "name": "kurilna naprava na lesno biomaso",
+    "buildings": [
+     611,
+     954,
+     1694,
+     1507,
+     1504,
+     1902,
+     2085,
+     1836,
+     1990
+    ]
+   },
+   {
+    "id": "pv",
+    "name": "sončna elektrarna",
+    "buildings": [
+     0,
+     1,
+     2,
+     2710,
+     4392,
+     4435,
+     8009,
+     11652,
+     153
+    ]
+   },
+   {
+    "id": "prezr",
+    "name": "prezračevanje z vračanjem toplote",
+    "buildings": [
+     693,
+     870,
+     1281,
+     2232,
+     2675,
+     2529,
+     3581,
+     4114,
+     4567
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,56 @@
+---
+/**
+ * Navpični (naloženi) stolpci, izrisani ob gradnji (brez JS), s podatkovno preglednico v <details>.
+ * props: labels (os x), series [{name, values, color}], unit, title (za aria), note.
+ */
+import { nf } from '../lib/format';
+
+interface Props { id: string; title: string; labels: (string | number)[]; series: { name: string; values: number[]; color: string }[]; unit?: string; csv?: string; partialLast?: boolean }
+const { id, title, labels, series, unit = '', csv, partialLast = false } = Astro.props;
+const totals = labels.map((_, i) => series.reduce((s, x) => s + (x.values[i] ?? 0), 0));
+const max = Math.max(...totals, 1);
+const aria = `${title}: ` + labels.map((l, i) => `${l} ${nf(totals[i])}${unit}`).join(', ');
+---
+<figure class="stc" id={id}>
+  <figcaption class="stc-t">{title}</figcaption>
+  {series.length > 1 && <ul class="stc-leg" aria-hidden="true">{series.map((s) => <li><i style={`background:${s.color}`}></i>{s.name}</li>)}</ul>}
+  <div class="stc-plot" role="img" aria-label={aria}>
+    {labels.map((l, i) => (
+      <div class={`stc-col ${partialLast && i === labels.length - 1 ? 'is-partial' : ''}`}>
+        <span class="stc-v">{nf(totals[i])}</span>
+        <span class="stc-bar" style={`height:${(100 * totals[i]) / max}%`}>
+          {series.map((s) => (s.values[i] ?? 0) > 0 && <i style={`height:${(100 * s.values[i]) / Math.max(totals[i], 1)}%;background:${s.color}`}></i>)}
+        </span>
+        <span class="stc-l">{l}{partialLast && i === labels.length - 1 ? '*' : ''}</span>
+      </div>
+    ))}
+  </div>
+  <details class="stc-tbl">
+    <summary>Podatki v preglednici</summary>
+    <div class="tblwrap" tabindex="0" role="region" aria-label={title}>
+      <table>
+        <thead><tr><th scope="col"></th>{series.map((s) => <th scope="col" class="num">{s.name}</th>)}{series.length > 1 && <th scope="col" class="num">Skupaj</th>}</tr></thead>
+        <tbody>{labels.map((l, i) => <tr><th scope="row">{l}</th>{series.map((s) => <td class="num">{nf(s.values[i])}</td>)}{series.length > 1 && <td class="num">{nf(totals[i])}</td>}</tr>)}</tbody>
+      </table>
+    </div>
+    {csv && <p class="note"><a href={csv} download>Prenesi CSV</a></p>}
+  </details>
+</figure>
+
+<style>
+  .stc { margin: 1rem 0 1.6rem; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; }
+  .stc-t { font-weight: 700; margin-bottom: .5rem; }
+  .stc-leg { list-style: none; padding: 0; margin: 0 0 .6rem; display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .8rem; color: var(--ink2); max-width: none; }
+  .stc-leg li { display: flex; align-items: center; gap: .35rem; }
+  .stc-leg i { width: 12px; height: 10px; border-radius: 2px; display: inline-block; }
+  .stc-plot { display: flex; align-items: flex-end; gap: .4rem; height: 190px; border-bottom: 1px solid var(--chart-axis); padding-top: 1.2rem; }
+  .stc-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; min-width: 0; }
+  .stc-bar { width: 70%; max-width: 44px; display: flex; flex-direction: column-reverse; border-radius: 3px 3px 0 0; overflow: hidden; }
+  .stc-bar i { display: block; width: 100%; }
+  .stc-col.is-partial .stc-bar { opacity: .55; }
+  .stc-v { font-size: .7rem; font-weight: 700; color: var(--ink); margin-bottom: .2rem; white-space: nowrap; }
+  .stc-l { font-size: .72rem; color: var(--ink2); margin-top: .3rem; position: relative; top: 1.3rem; height: 0; }
+  .stc-tbl { margin-top: 2.4rem; }
+  .stc-tbl summary { cursor: pointer; font-weight: 700; color: var(--green); font-size: .88rem; }
+  @media (max-width: 560px) { .stc-v { font-size: .6rem; } .stc-l { font-size: .62rem; } }
+</style>

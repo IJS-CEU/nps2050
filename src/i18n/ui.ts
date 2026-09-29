@@ -8,6 +8,7 @@ export const nav: Partial<Record<PageId, string>> = {
   obcine: 'Moja občina',
   'strokovne-podlage': 'Strokovne podlage',
   ukrepi: 'Ukrepi in financiranje',
+  spremljanje: 'Spremljanje',
   'javna-obravnava': 'Javna obravnava',
   dokumenti: 'Dokumenti',
 };

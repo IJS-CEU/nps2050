@@ -1,0 +1,89 @@
+---
+page: spremljanje
+title: 'Spremljanje'
+description: 'Letni kazalniki izvajanja NPS 2050 iz obstoječih registrov: energetske izkaznice, pregledi klimatskih sistemov, stopnje prenove in spodbude Eko sklada. Izhodišče 2026.'
+lead: 'Ali prenova poteka po načrtu? Tukaj bodo vsako leto z isto metodo objavljeni kazalniki iz obstoječih registrov. Letos je prikazano izhodišče 2026.'
+---
+import Stolpci from '../../components/Stolpci.astro';
+import { loadData } from '../../lib/data';
+import { nf } from '../../lib/format';
+import { pageUrl, withBase } from '../../i18n/routes';
+
+export const d = loadData('spremljanje');
+export const SEG = [['hise', 'Enostanovanjske hiše'], ['bloki', 'Večstanovanjske stavbe'], ['javne', 'Javne stavbe'], ['zasebne', 'Zasebne storitvene stavbe']];
+export const CV = { A: 'A1', B: 'B1', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G' };
+export const ESCOL = { ovoj: '#1F7A57', okna: '#86A11C', tc: '#2A6FC9', biomasa: '#8A6A4F', pv: '#D6B25E', prezr: '#7B5CC4' };
+
+{/* Vir: CLAUDE.md §10.4. Register energetskih izkaznic in KLIMSIS (izvoz 28. 9. 2026), Eko sklad (do 2025), kataster (30. 8. 2026); stopnje prenove: NPS_v39, pogl. 2.2.6; pregledi: priloga o pregledih sistemov. Številke bere data/npsdata/spremljanje.py. */}
+
+Kazalniki so izračunani iz registrov, ki jih država že vodi, z enakimi metodami kot v osnutku NPS 2050. Od leta 2027 bo rubrika posodobljena enkrat na leto, tako da bo vidno, ali se prenova približuje ciljem. Stanje podatkov: {d.stanje}.
+
+## Energetske izkaznice
+
+<div class="tiles">
+  <div class="tile"><div class="v">{nf(d.ei.valid.skupaj)}</div><div class="l">veljavnih energetskih izkaznic</div></div>
+  <div class="tile"><div class="v">{nf(d.ei.valid.racunske)}</div><div class="l">računskih (izračunana raba energije)</div></div>
+  <div class="tile"><div class="v">{nf(d.ei.valid.merjene)}</div><div class="l">merjenih (izmerjena raba, večje nestanovanjske stavbe)</div></div>
+</div>
+
+<Stolpci id="st-ei" title="Izdane energetske izkaznice po letih" labels={d.ei.issued.years} partialLast
+  series={[{ name: 'računske', values: d.ei.issued.REI, color: '#1F7A57' }, { name: 'merjene', values: d.ei.issued.MEI, color: '#2A6FC9' }]}
+  csv={withBase('data/csv/spremljanje_izkaznice.csv')} />
+
+<p class="note">* Leto 2026 do 28. septembra. Izkaznica velja deset let, zato število veljavnih izkaznic ne raste sorazmerno z izdajo: stare izkaznice potekajo.</p>
+
+### Pokritost in razredi
+
+<div class="tblwrap" tabindex="0" role="region" aria-label="Pokritost z izkaznicami in razredi">
+  <table>
+    <thead><tr><th scope="col">Segment</th><th scope="col" class="num">Stavbe z izkaznico</th><th scope="col" class="num">Površina z izkaznico</th><th scope="col">Razvrstitev stavb z računsko izkaznico po razredih NPS</th></tr></thead>
+    <tbody>
+      {SEG.map(([k, n]) => (
+        <tr><th scope="row">{n}</th><td class="num">{nf(d.ei.coverage[k].buildings_pct, 1)} %</td><td class="num">{nf(d.ei.coverage[k].area_pct, 1)} %</td>
+          <td><span class="sp-cls" role="img" aria-label={Object.entries(d.ei.classes[k]).map(([c, v]) => `${c} ${nf(v, 1)} %`).join(', ')}>
+            {Object.entries(d.ei.classes[k]).map(([c, v]) => v > 0 && <i style={`width:${v}%;background:var(--cls-${CV[c]});color:${c === 'A' || c === 'G' ? '#fff' : '#1B2622'}`} title={`${c}: ${nf(v, 1)} %`}>{v >= 9 && c}</i>)}
+          </span></td></tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<p class="note">Razred je določen iz primarne energije v računski izkaznici po mejah razredov NPS 2050 (metoda iz poglavja 3). Izkaznice imajo predvsem prodane in oddane stavbe, zato razvrstitev ni reprezentativna za ves fond. Razvrstitev po občinah je v rubriki <a href={pageUrl('obcine')}>Moja občina</a>.</p>
+
+## Pregledi klimatskih sistemov
+
+<div class="tiles">
+  <div class="tile"><div class="v">{nf(d.klimsis.total)}</div><div class="l">izdanih poročil o rednem pregledu od leta 2020</div></div>
+  <div class="tile"><div class="v">{nf(d.klimsis.buildings)}</div><div class="l">stavb s pregledanim klimatskim sistemom</div></div>
+  <div class="tile"><div class="v">300–500</div><div class="l">ocenjeno število zavezanih pregledov na leto (osnutek)</div></div>
+</div>
+
+<Stolpci id="st-ks" title="Izdana poročila o pregledu klimatskih sistemov po letih" labels={d.klimsis.years} partialLast
+  series={[{ name: 'poročila', values: d.klimsis.reports, color: '#2A6FC9' }]} csv={withBase('data/csv/spremljanje_klimsis.csv')} />
+
+<p class="note">Poročilo se nanaša na en klimatski sistem; stavba ima praviloma več sistemov. Leto poročila je datum izdaje. Za preglede ogrevalnih sistemov register še ne omogoča enakega pregleda – podatek bo objavljen, ko bo na voljo.</p>
+
+## Stopnje energetske prenove
+
+{/* Vir: NPS_v39, pogl. 2.2.6 (Letne stopnje prenov stavb): stanovanjske stavbe po obdobjih, PO08 za javne stavbe, ocena za zasebni storitveni sektor. */}
+
+<div class="tblwrap" tabindex="0" role="region" aria-label="Stopnje energetske prenove">
+  <table>
+    <thead><tr><th scope="col">Segment</th><th scope="col" class="num">2010–2014</th><th scope="col" class="num">2015–2018</th><th scope="col" class="num">2019–2023</th><th scope="col" class="num">Scenarij NPS 2050, 2026–2030</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Eno- in dvostanovanjske stavbe</th><td class="num">2,8 %</td><td class="num">2,1 %</td><td class="num">2,1 %</td><td class="num">2,06 %</td></tr>
+      <tr><th scope="row">Tri- in večstanovanjske stavbe</th><td class="num">4,3 %</td><td class="num">3,0 %</td><td class="num">2,9 %</td><td class="num">2,58 %</td></tr>
+      <tr><th scope="row">Javne stavbe (kazalnik PO08, 2021–2024)</th><td class="num">–</td><td class="num">–</td><td class="num">1,4 %</td><td class="num">3,05 %</td></tr>
+      <tr><th scope="row">Stavbe zasebnega storitvenega sektorja</th><td class="num">–</td><td class="num">–</td><td class="num">pod 1,5 % (ocena)</td><td class="num">1,52 %</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="note">Delež prenovljene uporabne površine na leto. Za stavbe zasebnega storitvenega sektorja sistematičnega spremljanja še ni; načrt ga predvideva od leta 2027 s povezavo registra izkaznic, izkaza o prenovi in katastra (ukrepa N4 in N19).</p>
+
+## Spodbude Eko sklada
+
+<Stolpci id="st-es" title="Stavbe s podprto naložbo po letih in vrsti ukrepa" labels={d.eko_sklad.years}
+  series={d.eko_sklad.groups.map((g) => ({ name: g.name, values: g.buildings, color: ESCOL[g.id] }))} csv={withBase('data/csv/spremljanje_eko_sklad.csv')} />
+
+<p class="note">Število stavb, v katerih je Eko sklad v posameznem letu prvič podprl naložbo te vrste. Stavba z več vrstami ukrepov je šteta pri vsaki. Veliko prenov se izvede brez spodbude, zato to ni celoten obseg prenov. Podatki za leto 2025 so iz letnega poročila in se lahko po vrstah razlikujejo od prejšnjih let (npr. sončne elektrarne).</p>

@@ -37,3 +37,4 @@ es_2025 = { root = "baze", path = "Eko sklad/2025/IJS_2025_REPORT_posodobljen_VI
 toplotna_karta = { root = "baze", path = "TK_2020/TK_ogr2020.gpkg" }
 kataster_stavbe_zip = { root = "baze", path = "GURS/KN_SLO_STAVBE_SLO_stavbe_20260830.zip" }
 ek_porocanja = { root = "baze", path = "Energetsko knjigovodstvo/Stanje 2025/EK_porocanja.csv" }
+klimsis = { root = "baze", path = "Klimatski sistemi/KS 20260928/KS_porocila.csv" }

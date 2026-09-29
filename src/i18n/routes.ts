@@ -6,6 +6,7 @@ export const pages = [
   { id: 'obcine', slug: 'moja-obcina' },
   { id: 'strokovne-podlage', slug: 'strokovne-podlage' },
   { id: 'ukrepi', slug: 'ukrepi-in-financiranje' },
+  { id: 'spremljanje', slug: 'spremljanje' },
   { id: 'javna-obravnava', slug: 'javna-obravnava' },
   { id: 'dokumenti', slug: 'dokumenti' },
   // Podstrani zunaj glavne navigacije

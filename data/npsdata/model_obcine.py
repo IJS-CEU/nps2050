@@ -29,7 +29,7 @@ from shapely.geometry import shape
 from .context import OUT, Context, write_csv, write_json
 from .draft import row
 from .numbers import num
-from . import kazalniki_obcin, model_nres
+from . import cilji_obcin, kazalniki_obcin, model_nres
 from .context import DATA_DIR
 from .meritve import build_measured
 from .stavbe import CARRIERS, HEAT_CLASSES, build_table
@@ -378,6 +378,10 @@ def build(ctx: Context) -> dict:
     kz = kazalniki_obcin.build(ctx, c, nres, muni, DATA_DIR / 'raw' / 'prebivalci.json')
     for sfx, v in kz['municipalities'].items():
         out[sfx]['vse'] = v
+    ixj = json.loads((OUT / 'obcine_index.json').read_text(encoding='utf-8'))
+    ci = cilji_obcin.build(ctx, df, c, nres, muni, {'si': ixj['si'], 'm': {r['sifra']: json.loads((OUT / 'obcine' / f"{r['sifra']}.json").read_text(encoding='utf-8')) for r in ixj['municipalities']}})
+    for sfx, v in ci.items():
+        out[sfx]['cilji'] = v
     data = {
         'meta': ctx.meta([
             'Model RenRates (arhetipi, razporeditev po razredih toplotnih potreb, specifična končna energija, kalibracija λ na bilanco 2024)',

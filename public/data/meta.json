@@ -17,7 +17,8 @@
   "IJS_2025_REPORT_posodobljen_VIB_2026-07-29.xlsx",
   "TK_ogr2020.gpkg",
   "KN_SLO_STAVBE_SLO_stavbe_20260830.zip",
-  "EK_porocanja.csv"
+  "EK_porocanja.csv",
+  "KS_porocila.csv"
  ],
  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
  "datasets": [
@@ -25,13 +26,15 @@
   "stavbni_fond",
   "scenariji",
   "kazalniki",
+  "trajektorija_zgodba",
   "sankey",
   "zemljevid",
   "ukrepi",
   "revscina",
   "prihranek",
   "obcine",
-  "obcine_model"
+  "obcine_model",
+  "spremljanje"
  ],
- "checks": 729
+ "checks": 736
 }

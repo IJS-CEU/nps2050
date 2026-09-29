@@ -10,6 +10,7 @@ import Scenariji from '../../components/charts/Scenariji.astro';
 import Kazalniki from '../../components/charts/Kazalniki.astro';
 import Sankey from '../../components/charts/Sankey.astro';
 import Zemljevid from '../../components/charts/Zemljevid.astro';
+import CiljiIzhodisca from '../../components/CiljiIzhodisca.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
 
 {/* Grafi berejo public/data/*.json iz podatkovnega cevovoda (data/build_all.py). */}
@@ -67,6 +68,14 @@ Izhodišče leta 2020 je 269 kWh/(m²·a) (enostanovanjske hiše 300, večstanov
 Trajektorija se vrednoti pri faktorjih primarne energije iz leta 2020 (PURES 2021). Tako zmanjšanje izhaja iz prenove stavb, ne iz razogljičenja elektrike. Informativno je prikazana tudi pri faktorjih, veljavnih v posameznem letu. Izhodišče bo leta 2028 preverjeno z vzorcem energetskih izkaznic.
 
 <Trajektorija />
+
+### Cilji glede na leti 2020 in 2023
+
+{/* Vir: NPS_v39, povzetek (preglednica ključnih ciljev, glede na 2023) in pogl. 2.2 (izhodiščna preglednica 2020). Odstotki glede na 2020 izpeljani v data/npsdata/trajektorija_zgodba.py. */}
+
+Evropska komisija cilje primerja glede na leti 2020 in 2023, zato so prikazani oboji.
+
+<CiljiIzhodisca />
 
 ## Metodologija
 

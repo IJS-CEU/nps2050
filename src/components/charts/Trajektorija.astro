@@ -12,19 +12,38 @@ const epbd = (y: number) => {
   return e ? (e.min === e.max ? `≤ ${nf(e.max)}` : `≤ ${nf(e.min)}–${nf(e.max)}`) : '–';
 };
 const last = k.nps.length - 1;
+const z = d.zgodba;
 ---
 <ChartFigure
   id="graf-trajektorija"
   title="Trajektorija rabe primarne energije stanovanjskih stavb"
   subtitle="Povprečna raba primarne energije stanovanjskega fonda, 2020–2050"
   file="nps2050-trajektorija"
-  csv={[{ file: 'trajektorija_kwh_m2.csv', label: 'CSV (kWh/m²)' }, { file: 'trajektorija_ktoe.csv', label: 'CSV (ktoe)' }]}
+  csv={[{ file: 'trajektorija_kwh_m2.csv', label: 'CSV (kWh/m²)' }, { file: 'trajektorija_strategije.csv', label: 'CSV (strategije)' }, { file: 'trajektorija_ktoe.csv', label: 'CSV (ktoe)' }]}
   ariaLabel={`Trajektorija: povprečna raba primarne energije stanovanjskega fonda se po scenariju NPS 2050 zmanjša s ${nf(k.nps[0])} kWh/(m²·a) leta ${k.years[0]} na ${nf(k.nps[last])} kWh/(m²·a) leta ${k.years[last]}.`}
 >
-  <Seg slot="controls" name="traj-mode" legend="Enota prikaza"
-       options={[{ value: 'kwh', label: 'kWh/(m²·a)' }, { value: 'ktoe', label: 'ktoe' }]} />
+  <Fragment slot="controls">
+    <Seg name="traj-mode" legend="Enota prikaza" options={[{ value: 'kwh', label: 'kWh/(m²·a)' }, { value: 'ktoe', label: 'ktoe' }]} />
+    <Seg name="traj-scen" legend="Strategije" options={[{ value: 'nps', label: 'Scenarij NPS 2050' }, { value: 'cmp', label: 'Primerjava S0–S2' }]} />
+  </Fragment>
+  <Fragment slot="after">
+    <div class="tr-wpb" data-mode-cap="kwh">
+      <p class="tr-wpb-t"><strong>Najslabše stavbe najprej.</strong> Skupina 43 % energetsko najmanj učinkovitih stanovanjskih stavb obsega {nf(z.wpb.area_mio_m2, 1)} mio m² in je imela leta 2020 povprečno okoli {nf(z.wpb.avg_pe_2020)} kWh/(m²·a) – daleč nad zgornjim robom grafa. Cilj je, da jo do leta 2050 v celoti prenovimo na najmanj razred B (do okoli {nf(z.wpb.target_bc)} kWh/(m²·a)).</p>
+      <ol class="tr-steps" aria-label="Kumulativno prenovljen delež skupine 43 %">
+        {z.wpb.years.map((y, i) => <li><span class="tr-bar"><i style={`width:${z.wpb.renovated_pct[i]}%`}></i></span><b>{z.wpb.renovated_pct[i]} %</b><span>{y}</span></li>)}
+      </ol>
+    </div>
+    <div class="tr-scen" data-scen-cap="cmp" hidden>
+      <p><strong>Tri strategije spodbujanja prenove</strong> (osnutek, poglavje 4.1.1):</p>
+      <ul>
+        <li><b>S0 – nadaljevanje sedanje prakse:</b> sedanje stopnje prenove, pretežno delne prenove, šibko ciljanje najslabših stavb, 1,33 mrd € javnih sredstev za stanovanjske stavbe 2026–2050.</li>
+        <li><b>S1 – ciljna celovita energetska prenova:</b> manj prenov, a pretežno celovite in močno usmerjene v najslabše razrede, z enakimi javnimi sredstvi kot S2 (2,54 mrd €).</li>
+        <li><b>S2 – scenarij NPS 2050:</b> višje stopnje prenove, več kot polovica celovitih prenov in spodbude, stopnjevane glede na izhodiščni razred (ukrep N1), 2,54 mrd €.</li>
+      </ul>
+    </div>
+  </Fragment>
   <Fragment slot="caption">
-    <p data-mode-cap="kwh">Stanovanjske stavbe, scenarij NPS 2050 pri fiksnih faktorjih primarne energije iz leta 2020, kot zahteva člen 9(2) EPBD. Oranžne oznake so najvišje vrednosti, ki jih EPBD dopušča za leti 2030 in 2035. Siva črta je informativni prikaz pri faktorjih, veljavnih v posameznem letu.</p>
+    <p data-mode-cap="kwh">Stanovanjske stavbe, scenarij NPS 2050 pri fiksnih faktorjih primarne energije iz leta 2020, kot zahteva člen 9(2) EPBD. Oranžne oznake so najvišje vrednosti, ki jih EPBD dopušča za leti 2030 in 2035. Siva črta je informativni prikaz pri faktorjih, veljavnih v posameznem letu. Barvni pasovi so energijski razredi NPS za povprečno stanovanjsko stavbo (meje hiš in blokov, tehtane po površini). Strategiji S0 in S1 sta preračunani iz primerjave strategij (trajektorija NPS × razmerje indeksov).</p>
     <p data-mode-cap="ktoe" hidden>Vse stavbe: primarna raba energije v obsegu EPBD. Za stanovanjski fond ločeno pri fiksnih faktorjih načrt vrednosti v ktoe ne navaja.</p>
     <p>Vir: osnutek NPS 2050, poglavji 4.7.1 in 4.3.</p>
   </Fragment>
@@ -37,6 +56,11 @@ const last = k.nps.length - 1;
           <tr><th scope="row">{y}</th><td class="num">{nf(k.nps[i])}</td><td class="num">{k.reduction_pct[i] === null ? '–' : `−${nf(k.reduction_pct[i])} %`}</td><td class="num">{epbd(y)}</td><td class="num">{nf(k.nps_valid_factors[i])}</td></tr>
         ))}
       </tbody>
+    </table>
+    <table>
+      <caption class="visually-hidden">Primerjava strategij, kWh/(m²·a)</caption>
+      <thead><tr><th scope="col">Leto</th><th scope="col" class="num">S0</th><th scope="col" class="num">S1</th><th scope="col" class="num">S2 – NPS 2050</th></tr></thead>
+      <tbody>{z.scenarios.years.map((y, i) => <tr><th scope="row">{y}</th><td class="num">{nf(z.scenarios.S0[i])}</td><td class="num">{nf(z.scenarios.S1[i])}</td><td class="num">{nf(z.scenarios.S2[i])}</td></tr>)}</tbody>
     </table>
     <table>
       <caption class="visually-hidden">Primarna raba energije stavb, ktoe</caption>
@@ -56,7 +80,10 @@ const last = k.nps.length - 1;
 
   async function init(fig: HTMLElement) {
     const d = await loadJson<Trajektorija>('trajektorija');
-    let mode = 'kwh';
+    let mode = 'kwh', scen = 'nps';
+    const z = d.zgodba;
+    const cs = getComputedStyle(document.documentElement);
+    const clsCol = (c: string) => cs.getPropertyValue(`--cls-${c}`).trim();
 
     const dot = (t: Tokens, color: string) => ({ color, borderColor: t.panel, borderWidth: 2 });
     // Oznaka samo na prvi in zadnji točki (nikoli številka na vsaki točki).
@@ -69,9 +96,23 @@ const last = k.nps.length - 1;
       if (mode === 'kwh') {
         const k = d.kwh_m2;
         const NPS = 'Scenarij NPS 2050', EPBD = 'Najvišja vrednost po EPBD', INFO = 'Pri veljavnih faktorjih (informativno)';
+        const S0 = 'S0 – nadaljevanje sedanje prakse', S1 = 'S1 – ciljna celovita prenova';
+        const cmp = scen === 'cmp';
+        const bnd = z.bands;
+        const bands = [['A', 0, bnd['A|B'], 'A1'], ['B', bnd['A|B'], bnd['B|C'], 'B1'], ['C', bnd['B|C'], bnd['C|D'], 'C'], ['D', bnd['C|D'], Math.min(bnd['D|E'], 300), 'D']] as const;
+        const bandArea = {
+            silent: true,
+            data: bands.map(([l, lo, hi, v]) => [{ yAxis: lo, itemStyle: { color: clsCol(v), opacity: 0.14 }, label: { show: true, position: 'insideRight', formatter: `razred ${l}`, color: t.ink2, fontSize: 10, fontWeight: 700 } }, { yAxis: hi }]),
+        };
+        const sLine = (name: string, vals: number[], color: string) => ({
+          name, type: 'line', data: z.scenarios.years.map((y, i) => [y, vals[i]]), color, lineStyle: { width: 2, type: 'dashed' },
+          symbol: 'circle', symbolSize: 7, itemStyle: dot(t, color), z: 3,
+          endLabel: { show: true, distance: 6, color: t.ink2, fontSize: 11, formatter: (p: any) => `${name.slice(0, 2)} ${nf(p.value[1])}` },
+        });
         return {
           ...o,
-          legend: { ...o.legend, data: [NPS, EPBD, INFO] },
+          legend: { ...o.legend, data: cmp ? [NPS, S1, S0, EPBD] : [NPS, EPBD, INFO] },
+          grid: { ...o.grid, right: cmp ? 64 : o.grid?.right },
           xAxis: x,
           yAxis: valueAxis(t, { min: 0, max: 300, interval: 50, name: 'kWh/(m²·a)' }),
           tooltip: {
@@ -80,19 +121,22 @@ const last = k.nps.length - 1;
               const y = ps[0].value[0];
               const i = k.years.indexOf(y);
               const e = k.epbd_max.find((z) => z.year === y);
-              let h = tipTitle(String(y)) + tipRow(t.s.s2, NPS, `${nf(k.nps[i])} kWh/(m²·a)`);
+              const j = z.scenarios.years.indexOf(y);
+              let h = tipTitle(String(y)) + (i >= 0 ? tipRow(t.s.s2, NPS, `${nf(k.nps[i])} kWh/(m²·a)`) : '');
+              if (cmp && j >= 0) h += tipRow(t.s.s1, S1, nf(z.scenarios.S1[j])) + tipRow(t.s.s0, S0, nf(z.scenarios.S0[j]));
               if (e) h += tipRow(t.s.ref, EPBD, e.min === e.max ? `≤ ${nf(e.max)}` : `≤ ${nf(e.min)}–${nf(e.max)}`);
-              h += tipRow(t.s.info, INFO, nf(k.nps_valid_factors[i]));
+              if (!cmp && i >= 0) h += tipRow(t.s.info, INFO, nf(k.nps_valid_factors[i]));
               return h;
             },
           },
           series: [
-            {
+            ...(cmp ? [sLine(S0, z.scenarios.S0, t.s.s0), sLine(S1, z.scenarios.S1, t.s.s1)] : []),
+            ...(cmp ? [] : [{
               name: INFO, type: 'line', data: ends(k.years, k.nps_valid_factors).map((p) => ({ ...p, label: { show: false } })),
               color: t.s.info, lineStyle: { width: 2 }, symbol: 'circle', symbolSize: 8, itemStyle: dot(t, t.s.info), z: 2,
-            },
+            }]),
             {
-              name: NPS, type: 'line', data: ends(k.years, k.nps), color: t.s.s2, lineStyle: { width: 2 },
+              name: NPS, type: 'line', data: ends(k.years, k.nps), color: t.s.s2, lineStyle: { width: 2 }, markArea: bandArea,
               symbol: 'circle', symbolSize: 9, itemStyle: dot(t, t.s.s2), z: 4,
               label: { position: 'top', distance: 8, color: t.ink, fontWeight: 700, formatter: (p: any) => nf(p.value[1]) },
             },
@@ -138,12 +182,30 @@ const last = k.nps.length - 1;
     };
 
     const m = mount(fig, render);
-    choice(fig, 'traj-mode', (v) => {
-      mode = v;
-      fig.querySelectorAll<HTMLElement>('[data-mode-cap]').forEach((p) => (p.hidden = p.dataset.modeCap !== v));
-      m.redraw();
-    });
+    const scenCtl = fig.querySelector<HTMLElement>('[data-seg="traj-scen"]') ?? fig.querySelector<HTMLInputElement>('input[name="traj-scen"]')?.closest('fieldset') as HTMLElement | null;
+    const syncCaps = () => {
+      fig.querySelectorAll<HTMLElement>('[data-mode-cap]').forEach((p) => (p.hidden = p.dataset.modeCap !== mode));
+      fig.querySelectorAll<HTMLElement>('[data-scen-cap]').forEach((p) => (p.hidden = !(mode === 'kwh' && scen === 'cmp')));
+      if (scenCtl) scenCtl.hidden = mode !== 'kwh';
+    };
+    choice(fig, 'traj-mode', (v) => { mode = v; syncCaps(); m.redraw(); });
+    choice(fig, 'traj-scen', (v) => { scen = v; syncCaps(); m.redraw(); });
+    syncCaps();
   }
   const fig = document.getElementById('graf-trajektorija');
   if (fig) init(fig).catch((e) => console.error('graf trajektorija:', e));
 </script>
+
+<style>
+  :global(fieldset.seg[hidden]) { display: none; }
+  .tr-wpb { margin-top: .9rem; border-top: 1px solid var(--line); padding-top: .8rem; }
+  .tr-wpb-t { font-size: .9rem; margin: 0 0 .6rem; max-width: 80ch; }
+  .tr-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: .6rem; max-width: 46rem; }
+  .tr-steps li { display: grid; gap: .2rem; font-size: .8rem; color: var(--ink2); }
+  .tr-steps b { color: var(--ink); font-size: .95rem; }
+  .tr-bar { display: block; height: 10px; background: var(--panel2); border-radius: 3px; overflow: hidden; }
+  .tr-bar i { display: block; height: 100%; background: var(--green); }
+  .tr-scen { margin-top: .9rem; font-size: .88rem; }
+  .tr-scen ul { padding-left: 1.2rem; margin: .3rem 0 0; }
+  .tr-scen li { margin-bottom: .3rem; }
+</style>

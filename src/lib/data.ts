@@ -11,6 +11,12 @@ export interface Trajektorija {
   meta: Meta;
   kwh_m2: { unit: string; years: number[]; nps: number[]; reduction_pct: (number | null)[]; epbd_max: { year: number; max: number; min: number }[]; nps_valid_factors: number[] };
   ktoe: { unit: string; years: number[]; total: number[]; total_fixed: number[]; residential: number[] };
+  zgodba: {
+    bands: Record<string, number>;
+    wpb: { area_mio_m2: number; avg_pe_2020: number; target_bc: number; years: number[]; renovated_pct: number[] };
+    scenarios: { years: number[]; S0: number[]; S1: number[]; S2: number[]; names: Record<string, string> };
+    cilji: { id: string; label: string; unit: string; base2020: number | null; base2023: number; years: Record<string, { value: number; vs2023: number; vs2020: number | null }> }[];
+  };
 }
 
 export interface Category {
@@ -130,6 +136,14 @@ export interface ObModelArea {
   fe_gwh: number; fe_gwh_lo: number; fe_gwh_hi: number; fe_kwh_m2: number; pe_gwh: number; pe_kwh_m2: number;
   carriers_pct: Record<string, number>; nps_pct: Record<string, number>; above43_area_pct: number; known_pct: number; tk_factor?: number; name?: string;
   vse: ObVse;
+  cilji?: ObCilji;
+}
+export interface ObCilji {
+  prenova_m2_leto: Record<string, { '2026_2030': number; '2031_2040': number }>;
+  prenova_skupaj_m2_leto: { '2026_2030': number; '2031_2040': number };
+  wpb: { area_m2: number; m2_leto_2026_2030: number; cum_pct: Record<string, number> };
+  fosilna: Record<string, { gwh_2023: number; gwh: number[] }>;
+  meps: { nres_buildings: number; n_2030: number; n_2033: number; local_ei: boolean };
 }
 export interface ObVse {
   pop: number; fe_gwh: { res: number; nres: number; total: number }; tgp_kt: { res: number; nres: number; total: number };

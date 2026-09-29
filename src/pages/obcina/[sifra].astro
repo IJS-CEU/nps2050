@@ -61,6 +61,8 @@ const clsBlocks = ['hise', 'bloki'].map((sid) => {
   };
 });
 const va = mo.vse, vs = ms.vse;
+const ci = mo.cilji!;
+const SEGN: [string, string][] = [['hise', 'enostanovanjske hiše'], ['bloki', 'večstanovanjske stavbe'], ['javne', 'javne stavbe'], ['zasebne', 'zasebne storitvene stavbe']];
 const cmpTile = (v: number | null, si: number | null, dec: number, unit: string, label: string) => ({ v: v === null ? '–' : nf(v, dec), unit, l: `${label} (Slovenija ${si === null ? '–' : nf(si, dec)}${unit.trim() === '%' ? ' %' : ''})` });
 const vTiles = [
   cmpTile(va.fe_mwh_preb.total, vs.fe_mwh_preb.total, 1, ' MWh', 'raba končne energije v vseh stavbah na prebivalca na leto'),
@@ -189,6 +191,36 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
 
 
 
+
+    <section class="ob-cilji" aria-labelledby="ob-cilji-t">
+      <p class="ob-model-k">NPS 2050 v občini · ponazoritev</p>
+      <h2 id="ob-cilji-t">Kaj cilji NPS 2050 pomenijo za občino {o.name}</h2>
+      <p>Državni cilji iz osnutka, preneseni na občino sorazmerno z njenim stavbnim fondom in oceno modela. To ni obveznost občine, ampak pomoč pri načrtovanju: pove, koliko prenove bi bilo v občini potrebne, če bi sledila državnemu tempu.</p>
+      <div class="tiles ob-tiles">
+        <div class="tile"><div class="v">{nf(Math.round(ci.prenova_skupaj_m2_leto['2026_2030'] / 100) * 100)}<small> m²</small></div><div class="l">stavb na leto bi bilo treba energetsko prenoviti v obdobju 2026–2030 (vse vrste stavb)</div></div>
+        <div class="tile"><div class="v">{nf(Math.round(ci.wpb.m2_leto_2026_2030 / 100) * 100)}<small> m²</small></div><div class="l">na leto od tega iz skupine 43 % najmanj učinkovitih stanovanjskih stavb (v občini okoli {nf(Math.round(ci.wpb.area_m2 / 1000))} tisoč m²)</div></div>
+        <div class="tile"><div class="v">{nf(ci.meps.n_2030)}</div><div class="l">nestanovanjskih stavb bi morali izboljšati do leta 2030 in še {nf(Math.max(0, ci.meps.n_2033 - ci.meps.n_2030))} do leta 2033 (minimalni standardi, ocena)</div></div>
+      </div>
+      <div class="tblwrap" tabindex="0" role="region" aria-label="Obseg prenove po vrstah stavb">
+        <table>
+          <caption class="visually-hidden">Potrebni letni obseg energetske prenove v občini po vrstah stavb, m² na leto</caption>
+          <thead><tr><th scope="col">Vrsta stavb</th><th scope="col" class="num">2026–2030 [m²/leto]</th><th scope="col" class="num">2031–2040 [m²/leto]</th></tr></thead>
+          <tbody>{SEGN.map(([k, n]) => <tr><th scope="row">{n}</th><td class="num">{nf(ci.prenova_m2_leto[k]['2026_2030'])}</td><td class="num">{nf(ci.prenova_m2_leto[k]['2031_2040'])}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <h3>Opuščanje kurilnega olja in zemeljskega plina</h3>
+      <div class="tblwrap" tabindex="0" role="region" aria-label="Opuščanje fosilnih goriv">
+        <table>
+          <caption class="visually-hidden">Raba kurilnega olja in zemeljskega plina v stavbah občine, GWh na leto: ocena 2023 in pot po scenariju NPS 2050</caption>
+          <thead><tr><th scope="col">Energent</th><th scope="col" class="num">2023 (ocena)</th><th scope="col" class="num">2030</th><th scope="col" class="num">2040</th><th scope="col" class="num">2050</th></tr></thead>
+          <tbody>
+            {[['elko', 'kurilno olje'], ['gas', 'zemeljski plin']].map(([g, n]) => <tr><th scope="row">{n} [GWh]</th><td class="num">{nf(ci.fosilna[g].gwh_2023, 1)}</td>{ci.fosilna[g].gwh.map((v) => <td class="num">{nf(v, 1)}</td>)}</tr>)}
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Obseg prenove: državni letni obseg po vrstah stavb iz osnutka (preglednica potrebnega obsega prenov), razdeljen po deležu uporabne površine občine. Skupina 43 %: ocenjena površina nad pragom v občini in državni tempo najmanj 1,1 mio m² na leto. Fosilna goriva: ocenjena raba v občini, zmanjšana v enakem razmerju kot v scenariju NPS 2050 za državo. Minimalni standardi: nestanovanjske stavbe, prilagojeno deležu nad pragom med izkaznicami {ci.meps.local_ei ? 'v občini' : 'v Sloveniji (v občini je premalo izkaznic)'}.</p>
+    </section>
+
     <section class="ob-model ob-vse" aria-labelledby="ob-vse-t">
       <p class="ob-model-k">Ocena modela · vse stavbe</p>
       <h2 id="ob-vse-t">Raba energije, emisije in obnovljivi viri v stavbah občine</h2>
@@ -253,6 +285,10 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
       </div>
     </>}
 
+    <div class="card green ob-lek">
+      <p><strong>Izvleček za lokalni energetski koncept (LEK).</strong> Ključni kazalniki občine in kaj cilji NPS 2050 pomenijo zanjo, na eni strani za tisk ali kot PDF, in v obliki CSV. Izvleček je intelektualna lastnina IJS CEU; pri uporabi navedite vir.</p>
+      <p><a class="btn primary" href={withBase(`obcina/${o.sifra}/lek/`)}>Izvleček za tisk / PDF</a> <a class="btn" href={withBase(`obcina/${o.sifra}/lek.csv`)} download={`NPS2050_${o.name}_LEK.csv`}>CSV</a></p>
+    </div>
     <div class="card ob-more">
       <p><strong>Podatki za prenos:</strong> <a href={withBase(`data/obcine/${o.sifra}.json`)} download>JSON (občina {o.name})</a> · <a href={withBase('data/csv/obcine.csv')} download>CSV (vse občine)</a>. Licenca CC BY 4.0.</p>
       <p>Kaj načrt pomeni za posamezno stavbo: <a href={pageUrl('preveri')}>Preverite svojo stavbo</a>. Stavbni fond vse Slovenije: <a href={pageUrl('strokovne-podlage')}>Strokovne podlage</a>.</p>
@@ -290,9 +326,15 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
   .ob-es td { vertical-align: middle; }
   .ob-mini { display: grid; grid-template-columns: minmax(6rem, 14rem) 3.6rem; gap: .2rem .5rem; align-items: center; font-size: .78rem; }
   .ob-mini b.s { color: var(--ink2); font-weight: 600; }
-  .ob-more { margin-top: 2rem; }
+  .ob-more { margin-top: 1rem; }
+  .ob-lek { margin-top: 2rem; }
+  .ob-lek p { margin: .3rem 0; }
+  .ob-lek .btn { display: inline-block; margin: .4rem .4rem 0 0; }
   .ob-model { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--s-s1); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 2rem 0; }
   .ob-model h2 { margin-top: .2rem; }
+  .ob-cilji { background: var(--greenbg); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 2rem 0; }
+  .ob-cilji h2 { margin-top: .2rem; }
+  .ob-cilji .ob-model-k { color: var(--green); }
   .ob-model-k { font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--s-s1); margin: 0; }
   .ob-more p { margin: .3rem 0; }
   @media (max-width: 560px) { .ob-stack { grid-template-columns: 1fr; gap: .2rem; } }

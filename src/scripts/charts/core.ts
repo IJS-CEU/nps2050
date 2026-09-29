@@ -4,13 +4,13 @@
  */
 import * as echarts from 'echarts/core';
 import { BarChart, LineChart, MapChart, SankeyChart, ScatterChart } from 'echarts/charts';
-import { GraphicComponent, GridComponent, LegendComponent, TooltipComponent, VisualMapComponent } from 'echarts/components';
+import { GraphicComponent, GridComponent, LegendComponent, MarkAreaComponent, TooltipComponent, VisualMapComponent } from 'echarts/components';
 import { LabelLayout } from 'echarts/features';
 import { SVGRenderer } from 'echarts/renderers';
 import { esc, nf } from '../../lib/format';
 import { loadJson } from '../../lib/load';
 
-echarts.use([BarChart, LineChart, MapChart, SankeyChart, ScatterChart, GraphicComponent, GridComponent, LegendComponent, TooltipComponent, VisualMapComponent, LabelLayout, SVGRenderer]);
+echarts.use([BarChart, LineChart, MapChart, SankeyChart, ScatterChart, GraphicComponent, GridComponent, LegendComponent, MarkAreaComponent, TooltipComponent, VisualMapComponent, LabelLayout, SVGRenderer]);
 
 export { echarts, esc, loadJson, nf };
 export type Option = echarts.EChartsCoreOption;

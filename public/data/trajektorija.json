@@ -87,5 +87,152 @@
    740,
    654
   ]
+ },
+ "zgodba": {
+  "bands": {
+   "A|B": 75,
+   "B|C": 155,
+   "C|D": 234,
+   "D|E": 313,
+   "E|F": 393,
+   "F|G": 472
+  },
+  "wpb": {
+   "area_mio_m2": 23.8,
+   "avg_pe_2020": 481,
+   "target_bc": 155,
+   "years": [
+    2030,
+    2035,
+    2040,
+    2045,
+    2050
+   ],
+   "renovated_pct": [
+    23,
+    46,
+    65,
+    83,
+    100
+   ]
+  },
+  "scenarios": {
+   "years": [
+    2020,
+    2025,
+    2030,
+    2035,
+    2040,
+    2045,
+    2050
+   ],
+   "S0": [
+    269,
+    243,
+    237,
+    232,
+    221,
+    219,
+    217
+   ],
+   "S1": [
+    269,
+    243,
+    224,
+    209,
+    193,
+    187,
+    182
+   ],
+   "S2": [
+    269,
+    243,
+    217,
+    199,
+    180,
+    172,
+    164
+   ],
+   "names": {
+    "S0": "S0 – nadaljevanje sedanje prakse",
+    "S1": "S1 – ciljna celovita energetska prenova",
+    "S2": "S2 – scenarij NPS 2050"
+   }
+  },
+  "cilji": [
+   {
+    "id": "koncna_energija",
+    "label": "Končna energija v stavbah",
+    "unit": "ktoe",
+    "base2020": 1212,
+    "base2023": 1149,
+    "years": {
+     "2030": {
+      "value": 976,
+      "vs2023": -15,
+      "vs2020": -19
+     },
+     "2040": {
+      "value": 852,
+      "vs2023": -26,
+      "vs2020": -30
+     },
+     "2050": {
+      "value": 792,
+      "vs2023": -31,
+      "vs2020": -35
+     }
+    }
+   },
+   {
+    "id": "primarna_energija",
+    "label": "Primarna energija v stavbah",
+    "unit": "ktoe",
+    "base2020": 1744,
+    "base2023": 1665,
+    "years": {
+     "2030": {
+      "value": 1374,
+      "vs2023": -17,
+      "vs2020": -21
+     },
+     "2040": {
+      "value": 1194,
+      "vs2023": -28,
+      "vs2020": -32
+     },
+     "2050": {
+      "value": 1064,
+      "vs2023": -36,
+      "vs2020": -39
+     }
+    }
+   },
+   {
+    "id": "emisije",
+    "label": "Emisije TGP iz stavb",
+    "unit": "kt CO₂ ekv.",
+    "base2020": null,
+    "base2023": 2142,
+    "years": {
+     "2030": {
+      "value": 1777,
+      "vs2023": -17,
+      "vs2020": null
+     },
+     "2040": {
+      "value": 587,
+      "vs2023": -73,
+      "vs2020": null
+     },
+     "2050": {
+      "value": 223,
+      "vs2023": -90,
+      "vs2020": null
+     }
+    }
+   }
+  ],
+  "note": "Pasovi razredov: meje za hiše in bloke, tehtane po uporabni površini. S0 in S1 preračunana iz indeksov primerjave strategij (trajektorija NPS × indeks strategije / indeks S2). Odstotki glede na 2020 izpeljani iz izhodiščne preglednice 2020."
  }
 }

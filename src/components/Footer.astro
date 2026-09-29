@@ -23,6 +23,7 @@ if (existsSync(metaPath)) {
     <div>
       <p>{t.footerBy}</p>
       {draftDate && <p class="ver">{t.footerVersion} {draftDate}.</p>}
+      <p class="ver">Kontakt: <a href="mailto:ceu@ijs.si">{'ceu@ijs.si'}</a></p>
       <p class="ver"><a href={pageUrl('mediji')}>Za medije</a> · <a href={pageUrl('preveri')}>Preverite svojo stavbo</a> · <a href={pageUrl('revscina')}>Energetska revščina</a> · <a href={pageUrl('slovar')}>Slovar izrazov</a> · <a href={withBase('nps2050-povzetek.pdf')}>Povzetek (PDF)</a> · Podatki: CC BY 4.0</p>
     </div>
     <div class="logos">
