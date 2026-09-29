@@ -1,0 +1,207 @@
+---
+/**
+ * Preverjanje stavbe: razred na lestvici primarne energije, minimalni standardi (nestanovanjske stavbe) in
+ * skupina 43 % najmanj učinkovitih (stanovanjske stavbe). Pragovi iz public/data/stavbni_fond.json (osnutek NPS 2050).
+ * Brez JS: preglednica pragov po kategorijah.
+ */
+import { loadData, type StavbniFond } from '../lib/data';
+import { nf } from '../lib/format';
+
+const d = loadData<StavbniFond>('stavbni_fond');
+const bounds = ['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G'];
+---
+<section class="chk" id="preveri" aria-labelledby="chk-t">
+  <h2 id="chk-t" class="visually-hidden">Preverite stavbo</h2>
+  <form class="chk-form js-only" id="chk-form" novalidate>
+    <div class="chk-field">
+      <label for="chk-cat">Vrsta stavbe</label>
+      <select id="chk-cat" required>
+        <option value="">– izberite –</option>
+        <optgroup label="Stanovanjske stavbe">
+          {d.categories.filter((c) => c.segment === 'stanovanjske').map((c) => <option value={c.id}>{c.name}</option>)}
+        </optgroup>
+        <optgroup label="Nestanovanjske stavbe">
+          {d.categories.filter((c) => c.segment !== 'stanovanjske').map((c) => <option value={c.id}>{c.name}</option>)}
+        </optgroup>
+      </select>
+    </div>
+    <div class="chk-field">
+      <label for="chk-pe">Primarna energija iz energetske izkaznice</label>
+      <div class="chk-unit"><input id="chk-pe" type="number" inputmode="decimal" min="0" max="3000" step="any" required aria-describedby="chk-pe-help" /><span>kWh/(m²·a)</span></div>
+      <p class="chk-help" id="chk-pe-help">Letna raba primarne energije na enoto uporabne površine, ki je navedena v računski energetski izkaznici.</p>
+    </div>
+    <fieldset class="chk-field">
+      <legend>Ali je stavba kulturna dediščina?</legend>
+      <label><input type="radio" name="chk-dd" value="ne" checked /> Ne (ali le v vplivnem območju dediščine)</label>
+      <label><input type="radio" name="chk-dd" value="dediscina" /> Registrirana stavbna ali naselbinska dediščina</label>
+      <label><input type="radio" name="chk-dd" value="spomenik" /> Spomenik državnega ali lokalnega pomena</label>
+    </fieldset>
+    <button type="submit" class="btn primary">Preveri</button>
+  </form>
+
+  <div class="chk-out" id="chk-out" aria-live="polite"></div>
+
+  <noscript><p>Za interaktivno preverjanje je potreben JavaScript. Pragovi so v preglednici spodaj.</p></noscript>
+
+  <details class="chk-table">
+    <summary>Pragovi po vrstah stavb (preglednica)</summary>
+    <div class="tblwrap" tabindex="0" role="region" aria-label="Pragovi po vrstah stavb">
+      <table>
+        <caption class="visually-hidden">Meje energijskih razredov in pragovi po vrstah stavb, kWh/(m²·a) primarne energije</caption>
+        <thead><tr><th scope="col">Vrsta stavbe</th>{bounds.map((b) => <th scope="col" class="num">{b.replace('|', ' | ')}</th>)}<th scope="col" class="num">Prag 2030</th><th scope="col" class="num">Prag 2033</th><th scope="col" class="num">Prag 43 %</th></tr></thead>
+        <tbody>
+          {d.categories.map((c) => (
+            <tr><th scope="row">{c.name}{c.meps?.indicative ? ' *' : ''}</th>{bounds.map((b) => <td class="num">{nf(c.class_bounds[b])}</td>)}
+              <td class="num">{c.meps ? nf(c.meps.threshold_2030) : '–'}</td><td class="num">{c.meps ? nf(c.meps.threshold_2033) : '–'}</td><td class="num">{c.worst_43 ? nf(c.worst_43.threshold) : '–'}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Meje razredov 2025 in pragovi iz osnutka NPS 2050 (poglavji 3 in 4.7). Prag 2030/2033: minimalni standardi za nestanovanjske stavbe. Prag 43 %: meja skupine 43 % energetsko najmanj učinkovitih stanovanjskih stavb. * Majhen vzorec izkaznic, pragovi so okvirni.</p>
+  </details>
+</section>
+
+<style>
+  .chk { margin: 1rem 0 2rem; max-width: 72ch; }
+  .chk-form { display: grid; gap: 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem 1.3rem; }
+  .chk-field { display: grid; gap: .3rem; border: 0; padding: 0; margin: 0; }
+  .chk-field > label, .chk-field legend { font-weight: 700; font-size: .92rem; }
+  fieldset.chk-field label { font-size: .92rem; display: flex; gap: .45rem; align-items: baseline; }
+  .chk select, .chk input[type=number] { font: inherit; padding: .45rem .55rem; border: 1px solid var(--ink2); border-radius: 6px; background: var(--bg); color: var(--ink); max-width: 100%; }
+  .chk-unit { display: flex; gap: .5rem; align-items: center; }
+  .chk-unit input { width: 9rem; }
+  .chk-help { font-size: .82rem; color: var(--ink2); margin: 0; }
+  .chk .btn { justify-self: start; cursor: pointer; font: inherit; font-weight: 700; }
+  .chk-out:not(:empty) { margin-top: 1.2rem; }
+  .chk-table { margin-top: 1.4rem; }
+  .chk-table summary { cursor: pointer; font-weight: 700; color: var(--green); }
+  .chk-table table { font-size: .82rem; margin-top: .5rem; }
+  .chk-table thead th { letter-spacing: 0; }
+</style>
+
+<style is:global>
+  .chk-res { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.3rem; }
+  .chk-res h3 { margin: 0 0 .6rem; }
+  .chk-cls { display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 8px; color: #fff; font-weight: 800; font-size: 1.3rem; margin-right: .6rem; vertical-align: middle; text-shadow: 0 1px 1px rgba(0,0,0,.35); }
+  .chk-scale { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin: 1.6rem 0 2.2rem; }
+  .chk-scale span { height: 14px; display: grid; place-items: center; }
+  .chk-scale span:first-child { border-radius: 4px 0 0 4px; } .chk-scale span:last-child { border-radius: 0 4px 4px 0; }
+  .chk-scale b { position: absolute; top: 18px; font-size: .72rem; color: var(--ink2); transform: translateX(-50%); font-weight: 700; }
+  .chk-mark { position: absolute; top: -22px; transform: translateX(-50%); font-size: .75rem; font-weight: 800; color: var(--ink); white-space: nowrap; }
+  .chk-mark::after { content: ''; position: absolute; left: 50%; top: 16px; width: 2px; height: 22px; background: var(--ink); transform: translateX(-50%); }
+  .chk-tick { position: absolute; top: 14px; width: 2px; height: 10px; background: var(--ink2); transform: translateX(-50%); }
+  .chk-res ul { padding-left: 1.2rem; margin: .4rem 0 .8rem; }
+  .chk-res li { margin-bottom: .35rem; }
+  .chk-ok { color: var(--green); font-weight: 700; }
+  .chk-no { color: var(--amber); font-weight: 700; }
+</style>
+
+<script>
+  import { loadJson, nf } from '../scripts/charts/core';
+  import type { Category, StavbniFond } from '../lib/data';
+
+  const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  const B = ['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G'];
+  const CLS_VAR: Record<string, string> = { A: 'A1', B: 'B1', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G' };
+
+  function el<K extends keyof HTMLElementTagNameMap>(tag: K, text?: string, cls?: string) {
+    const e = document.createElement(tag);
+    if (text !== undefined) e.textContent = text;
+    if (cls) e.className = cls;
+    return e;
+  }
+
+  const classOf = (c: Category, v: number) => {
+    const i = B.findIndex((b) => v <= c.class_bounds[b]);
+    return CLS[i === -1 ? 6 : i];
+  };
+
+  /** Položaj vrednosti na lestvici z enako širokimi razredi (0–1). */
+  const pos = (c: Category, v: number) => {
+    const edges = [0, ...B.map((b) => c.class_bounds[b])];
+    edges.push(edges[6] * 1.35);
+    const j = edges.findIndex((e, k) => k > 0 && v <= e);
+    if (j === -1) return 1; // nad lestvico: na konec razreda G
+    const i = j - 1, lo = edges[i], hi = edges[j];
+    return (i + Math.min(1, Math.max(0, (v - lo) / (hi - lo)))) / 7;
+  };
+
+  function li(ul: HTMLElement, parts: (string | [string, string])[]) {
+    const item = el('li');
+    for (const p of parts) item.append(typeof p === 'string' ? document.createTextNode(p) : el('span', p[0], p[1]));
+    ul.append(item);
+  }
+
+  async function init() {
+    const d = await loadJson<StavbniFond>('stavbni_fond');
+    const form = document.getElementById('chk-form') as HTMLFormElement;
+    const out = document.getElementById('chk-out')!;
+    const cat = document.getElementById('chk-cat') as HTMLSelectElement;
+    const pe = document.getElementById('chk-pe') as HTMLInputElement;
+    const cs = getComputedStyle(document.documentElement);
+
+    form.addEventListener('submit', (ev) => {
+      ev.preventDefault();
+      out.replaceChildren();
+      const c = d.categories.find((x) => x.id === cat.value);
+      const v = Number(String(pe.value).replace(',', '.'));
+      if (!c || !pe.value || !Number.isFinite(v) || v <= 0) {
+        out.append(el('p', 'Izberite vrsto stavbe in vnesite primarno energijo iz izkaznice (število, večje od 0).', 'chk-no'));
+        (c ? pe : cat).focus();
+        return;
+      }
+      const dd = (form.querySelector('input[name="chk-dd"]:checked') as HTMLInputElement).value;
+      const k = classOf(c, v);
+      const box = el('div', undefined, 'chk-res');
+      const h = el('h3');
+      const badge = el('span', k, 'chk-cls');
+      badge.style.background = cs.getPropertyValue(`--cls-${CLS_VAR[k]}`).trim();
+      badge.setAttribute('aria-hidden', 'true');
+      h.append(badge, document.createTextNode(`Razred ${k} (${nf(v, 0)} kWh/(m²·a), ${c.name.toLowerCase()})`));
+      box.append(h);
+
+      // Lestvica razredov z oznako vrednosti in pragov
+      const scale = el('div', undefined, 'chk-scale');
+      scale.setAttribute('aria-hidden', 'true');
+      CLS.forEach((x, i) => {
+        const s = el('span'); s.style.background = cs.getPropertyValue(`--cls-${CLS_VAR[x]}`).trim(); scale.append(s);
+        const lab = el('b', x); lab.style.left = `${((i + 0.5) / 7) * 100}%`; scale.append(lab);
+      });
+      const mark = el('i', `${nf(v, 0)}`, 'chk-mark'); mark.style.left = `${pos(c, v) * 100}%`; scale.append(mark);
+      if (c.meps) for (const t of [c.meps.threshold_2030, c.meps.threshold_2033]) { const tk = el('i', undefined, 'chk-tick'); tk.style.left = `${pos(c, t) * 100}%`; scale.append(tk); }
+      box.append(scale);
+
+      const ul = el('ul');
+      if (c.meps) {
+        const m = c.meps;
+        if (dd === 'spomenik') {
+          li(ul, ['Za spomenike se številčni pragovi minimalnih standardov ne uporabljajo. Velja obveznost enakovrednega izboljšanja: energetski pregled, izkaz o prenovi z ukrepi, združljivimi z varstvom, in do leta 2040 izboljšanje za najmanj en razred ali za 30 % manj primarne energije.']);
+        } else {
+          li(ul, ['Do leta 2030 (prag ', nf(m.threshold_2030), ' kWh/(m²·a)): ', v > m.threshold_2030 ? ['stavba prag presega – do leta 2030 mora doseči prag.', 'chk-no'] : ['stavba prag izpolnjuje.', 'chk-ok']]);
+          li(ul, ['Do leta 2033 (prag ', nf(m.threshold_2033), ' kWh/(m²·a)): ', v > m.threshold_2033 ? ['stavba prag presega – do leta 2033 mora doseči prag.', 'chk-no'] : ['stavba prag izpolnjuje.', 'chk-ok']]);
+          const t40 = c.class_bounds['D|E'];
+          const t50 = dd === 'dediscina' ? c.class_bounds['C|D'] : c.class_bounds['B|C'];
+          li(ul, ['Predlagan prag za leto 2040: najmanj razred D (', nf(t40), ' kWh/(m²·a)) – ', v > t40 ? ['stavba ga še ne dosega.', 'chk-no'] : ['stavba ga že dosega.', 'chk-ok']]);
+          li(ul, [`Predlagan prag za leto 2050: najmanj razred ${dd === 'dediscina' ? 'C (za kulturno dediščino)' : 'B'} (`, nf(t50), ' kWh/(m²·a)) – ', v > t50 ? ['stavba ga še ne dosega.', 'chk-no'] : ['stavba ga že dosega.', 'chk-ok']]);
+        }
+        if (m.indicative) li(ul, ['Vzorec izkaznic je v tej kategoriji majhen, zato so pragovi okvirni.']);
+        box.append(ul);
+        box.append(el('p', 'Izjeme: stavbe za verske obrede, začasni objekti z rabo do dveh let, stavbe pod 50 m² ter industrijske in kmetijske stavbe. Posamezno izjemo (npr. predvidena rušitev, insolventnost lastnika, negativna ocena stroškov in koristi) odobri ministrstvo na vlogo lastnika.', 'note'));
+      } else if (c.worst_43) {
+        const w = c.worst_43;
+        const target = dd === 'ne' ? c.class_bounds['B|C'] : c.class_bounds['C|D'];
+        li(ul, v > w.threshold
+          ? ['Stavba ', ['sodi med 43 % energetsko najmanj učinkovitih', 'chk-no'], ` stanovanjskih stavb (prag ${nf(w.threshold)} kWh/(m²·a)). Te stavbe imajo pri prenovi prednost in višje spodbude.`]
+          : ['Stavba ', ['ne sodi', 'chk-ok'], ` med 43 % energetsko najmanj učinkovitih stanovanjskih stavb (prag ${nf(w.threshold)} kWh/(m²·a)).`]);
+        li(ul, [`Ciljna raven prenove teh stavb je najmanj razred ${dd === 'ne' ? 'B' : 'C (za kulturno dediščino)'} (do ${nf(target)} kWh/(m²·a)).`]);
+        li(ul, ['Obvezne prenove posamezne stanovanjske stavbe načrt ne določa. Priporočljivo je, da vsako prenovo načrtujete kot korak k brezemisijski stavbi.']);
+        box.append(ul);
+      }
+      box.append(el('p', 'Rezultat je informativen in temelji na predlogu v osnutku NPS 2050. Ni uradna ugotovitev. Pragovi se lahko do sprejema načrta in ob rekalibraciji razredov še spremenijo.', 'note'));
+      out.append(box);
+      box.setAttribute('tabindex', '-1');
+      box.focus();
+    });
+  }
+  if (document.getElementById('chk-form')) init().catch((e) => console.error('preveri:', e));
+</script>

@@ -1,0 +1,20 @@
+---
+page: preveri
+title: 'Preverite svojo stavbo'
+description: 'V kateri energijski razred sodi stavba po lestvici NPS 2050 in ali presega pragove minimalnih standardov za nestanovanjske stavbe ali prag 43 % najmanj učinkovitih stanovanjskih stavb.'
+lead: 'Vnesite vrsto stavbe in primarno energijo iz energetske izkaznice. Orodje pokaže razred po novi lestvici in katere pragove iz osnutka NPS 2050 stavba izpolnjuje.'
+---
+import Preveri from '../../components/Preveri.astro';
+import { pageUrl } from '../../i18n/routes';
+
+{/* Vir: NPS_v38, pogl. 3 (meje razredov 2025), 4.7.1.1 (prag 43 %), 4.7.2 (minimalni standardi, izjeme, časovnica 2040/2050), 4.7.2.2 (kulturna dediščina). Vrednosti bere komponenta iz public/data/stavbni_fond.json. */}
+
+<Preveri />
+
+## Kako brati rezultat
+
+- **Razred** je določen po novi lestvici primarne energije, posebej za vsako vrsto stavb. Meja med razredoma A in B je raven brezemisijske stavbe, v razredu G je 15 % energetsko najslabših stavb vsake vrste.
+- **Nestanovanjske stavbe** morajo po predlogu do leta 2030 doseči prag, nad katerim je 16 % najslabših stavb v njihovi kategoriji, do leta 2033 pa prag 26 %. Za leti 2040 in 2050 sta predlagana pragova na mejah razredov D in B.
+- **Stanovanjske stavbe** nimajo obveznih pragov. Stavbe med 43 % energetsko najmanj učinkovitih imajo pri prenovi prednost in po predlogu višje spodbude (<a href={pageUrl('lastniki')}>več za lastnike</a>).
+
+Primarna energija v izkaznici je izračunana s faktorji, ki veljajo za izkaznice, zato je neposredno primerljiva s pragovi. Če izkaznice nimate, vam pri oceni pomaga brezplačno svetovanje ENSVET.

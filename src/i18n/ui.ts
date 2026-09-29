@@ -1,6 +1,7 @@
 import type { PageId } from './routes';
 
-export const nav: Record<Exclude<PageId, 'domov'>, string> = {
+/** Glavna navigacija (podstrani, kot sta Preveri stavbo in Za medije, v njej niso). */
+export const nav: Partial<Record<PageId, string>> = {
   'kaj-je-nps': 'Kaj je NPS 2050',
   lastniki: 'Za lastnike in občane',
   'strokovne-podlage': 'Strokovne podlage',

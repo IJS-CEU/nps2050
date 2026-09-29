@@ -5,7 +5,7 @@ import { chromium } from 'playwright';
 import { AxeBuilder } from '@axe-core/playwright';
 
 const baseUrl = (process.argv[2] || 'http://localhost:4321/').replace(/\/?$/, '/');
-const paths = ['', 'kaj-je-nps-2050/', 'za-lastnike/', 'strokovne-podlage/', 'javna-obravnava/', 'dokumenti/', 'ne-obstaja/'];
+const paths = ['', 'kaj-je-nps-2050/', 'za-lastnike/', 'strokovne-podlage/', 'javna-obravnava/', 'dokumenti/', 'preveri-stavbo/', 'ne-obstaja/'];
 const browser = await chromium.launch();
 const found = new Map();
 

@@ -6,6 +6,9 @@ export const pages = [
   { id: 'strokovne-podlage', slug: 'strokovne-podlage' },
   { id: 'javna-obravnava', slug: 'javna-obravnava' },
   { id: 'dokumenti', slug: 'dokumenti' },
+  // Podstrani zunaj glavne navigacije
+  { id: 'preveri', slug: 'preveri-stavbo' },
+  { id: 'mediji', slug: 'za-medije' },
 ] as const;
 
 export type PageId = (typeof pages)[number]['id'];

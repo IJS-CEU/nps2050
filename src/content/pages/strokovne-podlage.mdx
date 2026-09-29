@@ -10,7 +10,7 @@ import Scenariji from '../../components/charts/Scenariji.astro';
 import Kazalniki from '../../components/charts/Kazalniki.astro';
 import Sankey from '../../components/charts/Sankey.astro';
 import Zemljevid from '../../components/charts/Zemljevid.astro';
-import { withBase } from '../../i18n/routes';
+import { pageUrl, withBase } from '../../i18n/routes';
 
 {/* Grafi berejo public/data/*.json iz podatkovnega cevovoda (data/build_all.py). */}
 
@@ -76,7 +76,7 @@ Trajektorija se vrednoti pri faktorjih primarne energije iz leta 2020 (PURES 202
 
 **Energijski razredi.** Razredi so določeni na ravni primarne energije za vsako kategorijo stavb posebej, po dvotočkovni metodi standarda SIST EN ISO 52003-1. Meja A|B je raven brezemisijske stavbe, meja F|G pa 85. percentil v bazi 72.553 računskih energetskih izkaznic. Meje se rekalibrirajo najmanj vsakih pet let.
 
-**Najslabše stavbe.** Skupina 43 % energetsko najmanj učinkovitih stanovanjskih stavb je določena s 57. percentilom primarne energije po številu stavb, ločeno za hiše in večstanovanjske stavbe. Pragova minimalnih standardov za nestanovanjske stavbe sta 84. in 74. percentil po kategorijah, iz izkaznic stavb, zgrajenih do leta 2020.
+**Najslabše stavbe.** Skupina 43 % energetsko najmanj učinkovitih stanovanjskih stavb je določena s 57. percentilom primarne energije po številu stavb, ločeno za hiše in večstanovanjske stavbe. Pragova minimalnih standardov za nestanovanjske stavbe sta 84. in 74. percentil po kategorijah, iz izkaznic stavb, zgrajenih do leta 2020. Razred in pragove za posamezno stavbo lahko <a href={pageUrl('preveri')}>preverite tukaj</a>.
 
 **Scenarij NPS 2050.** Stavbni model IJS CEU, usklajen z energetsko bilanco scenarija NEPN 2024 z dodatnimi ukrepi, z referenčnim scenarijem elektroenergetskega sistema z večjim deležem obnovljivih virov (DU-OVE). Zajema rabe energije iz Priloge I EPBD: ogrevanje, hlajenje, pripravo tople vode, prezračevanje in vgrajeno razsvetljavo. Brez gospodinjskih aparatov, kuhanja in procesne rabe. Zato je raba v scenariju (1.149 ktoe leta 2023) manjša od celotne rabe energije v stavbah po energetski bilanci (1.477 ktoe).
 

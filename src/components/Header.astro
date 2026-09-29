@@ -4,7 +4,7 @@ import { nav, ui as t } from '../i18n/ui';
 
 interface Props { page?: PageId; }
 const { page } = Astro.props;
-const items = Object.entries(nav) as [Exclude<PageId, 'domov'>, string][];
+const items = Object.entries(nav) as [PageId, string][];
 ---
 <header class="top">
   <div class="wrap bar">
