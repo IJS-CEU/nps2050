@@ -1,7 +1,7 @@
 ---
 /**
  * Izpostavljeni pas »Moja občina« na naslovni strani: iskalnik občine in zemljevid vseh 212 občin (statični SVG,
- * vsaka občina je povezava na svojo stran), obarvan po deležu obnovljivih virov v rabi energije stavb (ocena modela).
+ * vsaka občina je povezava na svojo stran), obarvan po deležu obnovljivih virov v rabi energije v stavbah (ocena modela).
  * Zemljevid je za miško; enakovreden dostop s tipkovnico in bralnikom zaslona sta iskalnik in seznam občin.
  */
 import { readFileSync } from 'node:fs';
@@ -22,9 +22,9 @@ const si = ix.si;
 ---
 <section class="mo" aria-labelledby="mo-t">
   <div class="mo-text">
-    <p class="mo-k"><span class="mo-new">Novo</span> Moja občina</p>
-    <h2 id="mo-t">Kako so stavbe v vaši občini?</h2>
-    <p class="mo-lead">Za vseh 212 občin: koliko energije porabijo stavbe, koliko emisij povzročijo, koliko energije je iz obnovljivih virov, v katerih energijskih razredih so hiše in bloki ter koliko prenov je že izvedenih. Vse primerjano s Slovenijo.</p>
+    <p class="mo-k">Moja občina</p>
+    <h2 id="mo-t">Stavbni fond in raba energije po občinah</h2>
+    <p class="mo-lead">Kako se izhodišče NPS 2050 kaže v posamezni občini: stavbni fond, raba energije v stavbah, emisije toplogrednih plinov, delež obnovljivih virov, energijski razredi hiš in blokov ter izvedene prenove. Za vseh 212 občin, v primerjavi s Slovenijo.</p>
     <form class="mo-form" action={pageUrl('obcine')} method="get" id="mo-form">
       <label for="mo-q">Vaša občina</label>
       <div class="mo-row">
@@ -35,9 +35,9 @@ const si = ix.si;
       <p class="mo-err" id="mo-err" role="alert" hidden>Občine s tem imenom ni. Izberite jo s seznama ali odprite <a href={pageUrl('obcine')}>vse občine</a>.</p>
     </form>
     <dl class="mo-si">
-      <div><dt>Slovenija</dt><dd><b>{nf(si.k_fe_mwh_preb, 1)}</b> MWh energije stavb na prebivalca</dd></div>
-      <div><dt></dt><dd><b>{nf(si.k_tgp_t_preb, 1)}</b> t CO₂ ekv. na prebivalca</dd></div>
-      <div><dt></dt><dd><b>{nf(si.k_ove_pct, 0)} %</b> iz obnovljivih virov</dd></div>
+      <div><dt>Slovenija</dt><dd><b>{nf(si.k_fe_mwh_preb, 1)}</b> MWh rabe končne energije v stavbah na prebivalca</dd></div>
+      <div><dt></dt><dd><b>{nf(si.k_tgp_t_preb, 1)}</b> t CO₂ ekv. emisij iz stavb na prebivalca</dd></div>
+      <div><dt></dt><dd><b>{nf(si.k_ove_pct, 0)} %</b> delež obnovljivih virov</dd></div>
     </dl>
     <p class="mo-more"><a href={pageUrl('obcine')}>Vse občine na zemljevidu in v preglednici →</a></p>
   </div>
@@ -45,13 +45,13 @@ const si = ix.si;
     <svg viewBox={`0 0 ${mini.w} ${mini.h}`} aria-hidden="true" focusable="false">
       {ix.municipalities.map((m) => (
         <a href={withBase(`obcina/${m.sifra}/`)} tabindex="-1">
-          <path d={mini.paths[String(m.sifra)]} class={`mo-c${cls(m.k_ove_pct)}`}><title>{m.name}: {nf(m.k_ove_pct, 0)} % obnovljivih virov</title></path>
+          <path d={mini.paths[String(m.sifra)]} class={`mo-c${cls(m.k_ove_pct)}`}><title>{m.name}: delež obnovljivih virov {nf(m.k_ove_pct, 0)} %</title></path>
         </a>
       ))}
     </svg>
     <figcaption>
       <span class="mo-leg">{labels.map((l, i) => <span><i class={`mo-c${i + 1}`}></i>{l}</span>)}</span>
-      Delež obnovljivih virov v rabi energije stavb (ocena modela). Kliknite občino.
+      Delež obnovljivih virov v rabi energije v stavbah (ocena modela). Kliknite občino.
     </figcaption>
   </figure>
 </section>
@@ -61,7 +61,6 @@ const si = ix.si;
     background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--green); border-radius: 16px; padding: 1.8rem 2rem; margin: 0 0 2.6rem; }
   @media (max-width: 880px) { .mo { grid-template-columns: 1fr; padding: 1.4rem 1.2rem; } }
   .mo-k { display: flex; align-items: center; gap: .5rem; font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin: 0 0 .4rem; }
-  .mo-new { background: var(--green); color: var(--on-green); border-radius: 999px; padding: .1rem .55rem; letter-spacing: .06em; }
   .mo h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 .6rem; }
   .mo-lead { color: var(--ink2); margin: 0 0 1.1rem; }
   .mo-form label { font-size: .82rem; font-weight: 700; color: var(--ink2); }

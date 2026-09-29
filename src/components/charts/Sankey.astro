@@ -26,7 +26,7 @@ const val = (t: typeof first, c: string, y: number) => t.nodes.find((n) => n.cla
 >
   <Seg slot="controls" name="sk-tip" legend="Vrsta stavb" options={types.map(([value, t]) => ({ value, label: t.name }))} />
   <Fragment slot="caption">
-    <p>Stolpci so leta, vozlišča energijski razredi po lestvici primarne energije (od A1 do G). Širina vozlišča in toka je primarna energija stavb v razredu v GWh na leto, ne površina: s prenovo se stavba premakne v boljši razred in porabi manj energije, zato se vozlišča z leti ožijo. Tok iz enega leta v naslednje nosi energijo stavb ob začetku petletnega koraka, zato zadnji stolpec ({yL}) kaže razred stavb leta {yL} pri energiji leta {first.years[first.years.length - 2]}.</p>
+    <p>Stolpci so leta, vozlišča energijski razredi po lestvici primarne energije (od A1 do G). Širina vozlišča in toka je primarna energija stavb v razredu v GWh na leto, ne površina: s prenovo se stavba premakne v boljši razred in ima manjšo rabo energije, zato se vozlišča z leti ožijo. Tok iz enega leta v naslednje nosi energijo stavb ob začetku petletnega koraka, zato zadnji stolpec ({yL}) kaže razred stavb leta {yL} pri energiji leta {first.years[first.years.length - 2]}.</p>
     <p>Vir: osnutek NPS 2050, poglavje 4.1.1; model RenRates_SI (scenarij NPS 2050).</p>
   </Fragment>
   <Fragment slot="table">

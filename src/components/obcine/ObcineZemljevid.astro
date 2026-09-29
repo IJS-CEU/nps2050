@@ -15,21 +15,21 @@ const d = loadData<ObcineIndex>('obcine_index');
   subtitle="Izberite kazalnik; klik na občino odpre njeno stran"
   file="nps2050-obcine"
   csv={[{ file: 'obcine_kazalniki.csv', label: 'CSV (kazalniki)' }, { file: 'obcine.csv', label: 'CSV (registri)' }]}
-  ariaLabel={`Zemljevid 212 občin, obarvan po izbranem kazalniku. Privzeto: ocenjena končna energija vseh stavb na prebivalca (Slovenija ${nf(d.si.k_fe_mwh_preb, 1)} MWh). Vse vrednosti so v preglednici občin pod zemljevidom.`}
+  ariaLabel={`Zemljevid 212 občin, obarvan po izbranem kazalniku. Privzeto: ocenjena raba končne energije v vseh stavbah na prebivalca (Slovenija ${nf(d.si.k_fe_mwh_preb, 1)} MWh). Vse vrednosti so v preglednici občin pod zemljevidom.`}
   height={460}
 >
   <Fragment slot="controls">
     <label class="ob-sel"><span class="ctl-label">Kazalnik</span>
       <select id="ob-mera">
         <optgroup label="Vse stavbe – primerjava občin (ocena)">
-          <option value="k_fe_mwh_preb">Končna energija na prebivalca</option>
+          <option value="k_fe_mwh_preb">Raba končne energije na prebivalca</option>
           <option value="k_tgp_t_preb">Emisije TGP na prebivalca</option>
           <option value="k_ove_pct">Delež obnovljivih virov</option>
-          <option value="k_res_fe_mwh_preb">Stanovanjske stavbe: energija na prebivalca</option>
-          <option value="k_nres_kwh_m2">Nestanovanjske stavbe: energija na m²</option>
+          <option value="k_res_fe_mwh_preb">Stanovanjske stavbe: raba energije na prebivalca</option>
+          <option value="k_nres_kwh_m2">Nestanovanjske stavbe: raba energije na m²</option>
         </optgroup>
         <optgroup label="Stanovanjske stavbe – ocena modela">
-          <option value="model_fe_kwh_m2">Končna energija na m²</option>
+          <option value="model_fe_kwh_m2">Raba končne energije na m²</option>
           <option value="model_above43_pct">Površina nad pragom 43 %</option>
         </optgroup>
         <optgroup label="Stanovanjske stavbe – registri">
@@ -60,16 +60,16 @@ const d = loadData<ObcineIndex>('obcine_index');
   import type { ObcineIndex, ObIndexRow } from '../../lib/data';
 
   const METRIC: Record<string, { label: string; si: (d: ObcineIndex) => number | null; cap: string; unit?: string; dec?: number }> = {
-    k_fe_mwh_preb: { label: 'Končna energija vseh stavb na prebivalca', si: (d) => d.si.k_fe_mwh_preb, unit: ' MWh', dec: 1, cap: 'Ocena: letna končna energija vseh stavb (stanovanjskih, javnih in zasebnih storitvenih) na prebivalca. Občine s središči, bolnišnicami, šolami in turizmom imajo več nestanovanjskih stavb, ki služijo tudi prebivalcem drugih občin.' },
+    k_fe_mwh_preb: { label: 'Raba končne energije v vseh stavbah na prebivalca', si: (d) => d.si.k_fe_mwh_preb, unit: ' MWh', dec: 1, cap: 'Ocena: letna raba končne energije v vseh stavbah (stanovanjskih, javnih in zasebnih storitvenih) na prebivalca. Občine s središči, bolnišnicami, šolami in turizmom imajo več nestanovanjskih stavb, ki služijo tudi prebivalcem drugih občin.' },
     k_tgp_t_preb: { label: 'Emisije TGP vseh stavb na prebivalca', si: (d) => d.si.k_tgp_t_preb, unit: ' t CO₂ ekv.', dec: 2, cap: 'Ocena: letne emisije toplogrednih plinov iz stavb (neposredne in posredne) na prebivalca, umerjene na osnutek NPS 2050. Veljajo ista opozorila o središčih.' },
-    k_ove_pct: { label: 'Delež OVE v rabi energije stavb', si: (d) => d.si.k_ove_pct, cap: 'Ocena: delež obnovljivih virov v končni energiji vseh stavb (lesna biomasa, toplota okolice, sončna energija ter obnovljivi del elektrike in daljinske toplote).' },
-    k_res_fe_mwh_preb: { label: 'Končna energija stanovanjskih stavb na prebivalca', si: (d) => d.si.k_res_fe_mwh_preb, unit: ' MWh', dec: 1, cap: 'Ocena: letna končna energija stanovanjskih stavb na prebivalca. Najbolj primerljiv kazalnik med občinami.' },
-    k_nres_kwh_m2: { label: 'Končna energija nestanovanjskih stavb na m²', si: (d) => d.si.k_nres_kwh_m2, unit: ' kWh/m²', cap: 'Ocena: letna končna energija javnih in zasebnih storitvenih stavb na m² uporabne površine; kjer je na voljo, iz energetskega knjigovodstva ali merjenih izkaznic.' },
+    k_ove_pct: { label: 'Delež OVE v rabi energije v stavbah', si: (d) => d.si.k_ove_pct, cap: 'Ocena: delež obnovljivih virov v rabi končne energije v vseh stavbah (lesna biomasa, toplota okolice, sončna energija ter obnovljivi del elektrike in daljinske toplote).' },
+    k_res_fe_mwh_preb: { label: 'Raba končne energije v stanovanjskih stavbah na prebivalca', si: (d) => d.si.k_res_fe_mwh_preb, unit: ' MWh', dec: 1, cap: 'Ocena: letna raba končne energije v stanovanjskih stavbah na prebivalca. Najbolj primerljiv kazalnik med občinami.' },
+    k_nres_kwh_m2: { label: 'Raba končne energije v nestanovanjskih stavbah na m²', si: (d) => d.si.k_nres_kwh_m2, unit: ' kWh/m²', cap: 'Ocena: letna raba končne energije v javnih in zasebnih storitvenih stavbah na m² uporabne površine; kjer je na voljo, iz energetskega knjigovodstva ali merjenih izkaznic.' },
     ei_area_res_pct: { label: 'Stanovanjska površina z veljavno izkaznico', si: (d) => d.si.ei_area_res_pct, cap: 'Delež uporabne površine stanovanjskih stavb, ki imajo vsaj eno veljavno energetsko izkaznico.' },
     pre1981_res_area_pct: { label: 'Stanovanjska površina, zgrajena pred 1981', si: (d) => d.si.pre1981_res_area_pct, cap: 'Delež uporabne površine stanovanjskih stavb, zgrajenih pred prvimi toplotnimi predpisi (1981).' },
     es_res_any_pct: { label: 'Stanovanjske stavbe z ukrepom Eko sklada', si: (d) => d.si.es_res_any_pct, cap: 'Delež stanovanjskih stavb z vsaj eno naložbo, ki jo je podprl Eko sklad (izolacija, okna, ogrevanje, sončna elektrarna, prezračevanje).' },
     obnova_res_pct: { label: 'Stanovanjske stavbe z vpisano obnovo', si: (d) => d.si.obnova_res_pct, cap: 'Delež stanovanjskih stavb, pri katerih je v katastru vpisano leto obnove strehe, fasade ali oken.' },
-    model_fe_kwh_m2: { label: 'Ocenjena končna raba na m²', si: (d) => d.si.model_fe_kwh_m2, unit: ' kWh/m²', cap: 'Ocena modela: letna končna energija stanovanjskih stavb na m² uporabne površine (ogrevanje, topla voda, prezračevanje, razsvetljava).' },
+    model_fe_kwh_m2: { label: 'Ocenjena raba končne energije na m²', si: (d) => d.si.model_fe_kwh_m2, unit: ' kWh/m²', cap: 'Ocena modela: letna raba končne energije v stanovanjskih stavbah na m² uporabne površine (ogrevanje, topla voda, prezračevanje, razsvetljava).' },
     model_above43_pct: { label: 'Ocenjena površina nad pragom 43 %', si: (d) => d.si.model_above43_pct, cap: 'Ocena modela: delež stanovanjske površine nad pragom 43 % energetsko najmanj učinkovitih stavb.' },
   };
 

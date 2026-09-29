@@ -63,10 +63,10 @@ const clsBlocks = ['hise', 'bloki'].map((sid) => {
 const va = mo.vse, vs = ms.vse;
 const cmpTile = (v: number | null, si: number | null, dec: number, unit: string, label: string) => ({ v: v === null ? '–' : nf(v, dec), unit, l: `${label} (Slovenija ${si === null ? '–' : nf(si, dec)}${unit.trim() === '%' ? ' %' : ''})` });
 const vTiles = [
-  cmpTile(va.fe_mwh_preb.total, vs.fe_mwh_preb.total, 1, ' MWh', 'končne energije vseh stavb na prebivalca na leto'),
+  cmpTile(va.fe_mwh_preb.total, vs.fe_mwh_preb.total, 1, ' MWh', 'raba končne energije v vseh stavbah na prebivalca na leto'),
   cmpTile(va.tgp_t_preb.total, vs.tgp_t_preb.total, 2, ' t', 'emisij TGP iz stavb na prebivalca na leto'),
-  cmpTile(va.ove_pct.total, vs.ove_pct.total, 0, ' %', 'energije stavb iz obnovljivih virov'),
-  cmpTile(va.fe_mwh_preb.res, vs.fe_mwh_preb.res, 1, ' MWh', 'končne energije stanovanjskih stavb na prebivalca'),
+  cmpTile(va.ove_pct.total, vs.ove_pct.total, 0, ' %', 'delež obnovljivih virov v rabi energije v stavbah'),
+  cmpTile(va.fe_mwh_preb.res, vs.fe_mwh_preb.res, 1, ' MWh', 'raba končne energije v stanovanjskih stavbah na prebivalca'),
 ];
 const resShare = va.fe_gwh.total ? (100 * va.fe_gwh.res) / va.fe_gwh.total : 0;
 const resShareSi = (100 * vs.fe_gwh.res) / vs.fe_gwh.total;
@@ -191,7 +191,7 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
 
     <section class="ob-model ob-vse" aria-labelledby="ob-vse-t">
       <p class="ob-model-k">Ocena modela · vse stavbe</p>
-      <h2 id="ob-vse-t">Energija, emisije in obnovljivi viri v občini</h2>
+      <h2 id="ob-vse-t">Raba energije, emisije in obnovljivi viri v stavbah občine</h2>
       <p>Stanovanjske, javne in zasebne storitvene stavbe skupaj, na prebivalca ({nf(va.pop)} prebivalcev, 1. 1. 2026). Vsota za Slovenijo se ujema z osnutkom NPS 2050 (končna energija, emisije in delež obnovljivih virov za izhodiščno leto 2023).</p>
       <div class="tiles ob-tiles">
         {vTiles.map((t) => <div class="tile"><div class="v">{t.v}<small>{t.unit}</small></div><div class="l">{t.l}</div></div>)}
@@ -206,18 +206,18 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
           </div>
         </div>
       ))}
-      <p class="note">Nestanovanjske stavbe porabijo {va.nres_kwh_m2 === null ? '–' : nf(va.nres_kwh_m2)} kWh/m² (Slovenija {nf(vs.nres_kwh_m2 ?? 0)}); za {va.nres_measured_area_pct === null ? '–' : nf(va.nres_measured_area_pct, 0)} % njihove površine je raba izmerjena (energetsko knjigovodstvo javnega sektorja 2025 ali merjena izkaznica), za druge ocenjena z modelom.{va.dh_ove_pct !== null && ` Daljinska toplota v občini je iz obnovljivih virov ${nf(va.dh_ove_pct, 0)} % (AGEN-RS, 2025).`}</p>
+      <p class="note">Raba končne energije v nestanovanjskih stavbah je {va.nres_kwh_m2 === null ? '–' : nf(va.nres_kwh_m2)} kWh/m² (Slovenija {nf(vs.nres_kwh_m2 ?? 0)}); za {va.nres_measured_area_pct === null ? '–' : nf(va.nres_measured_area_pct, 0)} % njihove površine je raba izmerjena (energetsko knjigovodstvo javnega sektorja 2025 ali merjena izkaznica), za druge ocenjena z modelom.{va.dh_ove_pct !== null && ` Daljinska toplota v občini je iz obnovljivih virov ${nf(va.dh_ove_pct, 0)} % (AGEN-RS, 2025).`}</p>
       <p class="note"><strong>Pri primerjavi na prebivalca pazite:</strong> bolnišnice, srednje šole, trgovski centri in hoteli služijo tudi prebivalcem drugih občin in turistom. Zato imajo središča in turistične občine več energije na prebivalca, ne da bi bile njihove stavbe slabše. Podobno počitniška stanovanja in hiše (vikendi) nimajo stalnih prebivalcev, zato je v turističnih občinah višja tudi raba stanovanjskih stavb na prebivalca.</p>
     </section>
 
     <section class="ob-model" aria-labelledby="ob-model-t">
       <p class="ob-model-k">Ocena modela</p>
-      <h2 id="ob-model-t">Koliko energije porabijo stanovanjske stavbe</h2>
+      <h2 id="ob-model-t">Raba energije v stanovanjskih stavbah</h2>
       <p>Za večino stavb ni izmerjenih podatkov, zato je raba ocenjena z modelom, s katerim so izračunani scenariji NPS 2050. Model upošteva vrsto in starost vsake stavbe, izkaznice, ukrepe Eko sklada, obnove iz katastra in toplotno karto, vsota za vso Slovenijo pa se ujema z energetsko bilanco. <a href={`${pageUrl('obcine')}#metoda`}>Kako je ocena izračunana</a></p>
       <div class="tiles ob-tiles">
-        <div class="tile"><div class="v">{nf(mo.fe_gwh, 0)}<small> GWh</small></div><div class="l">končne energije na leto (razpon {nf(mo.fe_gwh_lo, 0)}–{nf(mo.fe_gwh_hi, 0)} GWh)</div></div>
-        <div class="tile"><div class="v">{nf(mo.fe_kwh_m2)}<small> kWh/m²</small></div><div class="l">končne energije na m² uporabne površine (Slovenija {nf(ms.fe_kwh_m2)})</div></div>
-        <div class="tile"><div class="v">{nf(mo.pe_kwh_m2)}<small> kWh/m²</small></div><div class="l">primarne energije na m² (Slovenija {nf(ms.pe_kwh_m2)})</div></div>
+        <div class="tile"><div class="v">{nf(mo.fe_gwh, 0)}<small> GWh</small></div><div class="l">raba končne energije na leto (razpon {nf(mo.fe_gwh_lo, 0)}–{nf(mo.fe_gwh_hi, 0)} GWh)</div></div>
+        <div class="tile"><div class="v">{nf(mo.fe_kwh_m2)}<small> kWh/m²</small></div><div class="l">raba končne energije na m² uporabne površine (Slovenija {nf(ms.fe_kwh_m2)})</div></div>
+        <div class="tile"><div class="v">{nf(mo.pe_kwh_m2)}<small> kWh/m²</small></div><div class="l">raba primarne energije na m² (Slovenija {nf(ms.pe_kwh_m2)})</div></div>
         <div class="tile"><div class="v">{nf(mo.above43_area_pct, 0)} %</div><div class="l">stanovanjske površine je ocenjeno nad pragom 43 % najmanj učinkovitih (Slovenija {nf(ms.above43_area_pct, 0)} %)</div></div>
       </div>
       <h3>S čim se ogrevajo</h3>
