@@ -112,7 +112,7 @@ const s = d.segments;
       const gap = { borderColor: t.panel, borderWidth: 1 };
       const col = (id: string) => (id === 'HISA' ? S.eno : id === 'BLOKI' ? S.vec : null);
       const bar = (name: string, color: string, fn: (c: Category) => number | null, radius: number[] | ((c: Category) => number[])) => ({
-        name, type: 'bar', stack: 'fond', barMaxWidth: 22, color, cursor: 'pointer',
+        name, type: 'bar', stack: 'fond', barWidth: '62%', barMaxWidth: 30, color, cursor: 'pointer',
         data: cats.map((c) => {
           const v = fn(c);
           return v === null ? null : {
@@ -223,7 +223,7 @@ const s = d.segments;
           tooltip: { ...o.tooltip, trigger: 'item', formatter: (p: any) => tipTitle(p.name) + tipRow(color(t), 'Uporabna površina', `${nf(p.value, 2)} mio m²`, 'rect') },
           xAxis: yearAxis(t, { type: 'category', data: d.periods, axisLabel: { color: t.muted, fontSize: 10, interval: 0, rotate: t.narrow ? 45 : 30 } }),
           yAxis: valueAxis(t, { splitNumber: 3 }),
-          series: [{ type: 'bar', data: c.by_period.area_mio_m2, color: color(t), barMaxWidth: 22, itemStyle: { borderRadius: [4, 4, 0, 0] } }],
+          series: [{ type: 'bar', data: c.by_period.area_mio_m2, color: color(t), barWidth: '60%', barMaxWidth: 40, itemStyle: { borderRadius: [4, 4, 0, 0] } }],
         };
       }, box);
     }

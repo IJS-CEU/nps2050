@@ -10,7 +10,7 @@ import { nf } from '../../lib/format';
 const d = loadData<Kazalniki>('kazalniki');
 const charts = d.items.filter((i) => i.chart);
 
-const W = 240, H = 120, PAD_T = 22, PAD_B = 20, BAR = 22;
+const W = 240, H = 120, PAD_T = 22, PAD_B = 20, BAR = 34;
 function bars(k: Kazalnik) {
   const pts = [{ year: k.baseline.year, value: k.baseline.value!, text: k.baseline.text, base: true }, ...k.values.map((v) => ({ year: v.year, value: v.value!, text: v.text, base: false }))];
   const max = Math.max(...pts.map((p) => p.value)) || 1;

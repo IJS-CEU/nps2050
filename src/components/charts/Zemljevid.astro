@@ -129,12 +129,16 @@ const top = [...regions].sort((a, b) => b[1].buildings - a[1].buildings)[0][1];
           },
         },
         visualMap: {
-          type: 'piecewise', pieces, orient: t.narrow ? 'vertical' : 'horizontal', left: 0, bottom: 0, itemWidth: 14, itemHeight: 10, itemGap: 10,
+          type: 'piecewise', pieces, orient: t.narrow ? 'vertical' : 'horizontal', left: 0, ...(t.narrow ? { top: 262 } : { bottom: 0 }), itemWidth: 14, itemHeight: 10, itemGap: 10,
           textStyle: { color: t.ink2, fontFamily: t.font, fontSize: 11 }, selectedMode: false,
         },
         series: [{
           type: 'map', map: level === 'regije' ? 'nps-regije' : 'nps-obcine', aspectScale: 0.72, roam: false, showLegendSymbol: false,
-          top: 8, bottom: t.narrow ? 120 : 40, left: 0, right: 0,
+          // Brez hkratnega levo/desno/zgoraj/spodaj: ECharts bi karto raztegnil čez polje. layoutCenter/layoutSize ohranita
+          // razmerje stranic (aspectScale ≈ cos 46° za zemljepisno širino Slovenije).
+          // layoutSize = daljša stranica (širina) v px: največ 96 % širine ali toliko, da višina (širina / 1,54) ne preseže prostora nad legendo.
+          layoutCenter: ['50%', t.narrow ? '31%' : '45%'],
+          layoutSize: Math.round(Math.min(t.width * 0.96, (t.narrow ? 290 : 400) * 1.54)),
           itemStyle: { borderColor: t.panel, borderWidth: level === 'regije' ? 1.2 : 0.5 },
           // Izbira in lebdenje: jantarna barva označb strani (na tem grafu ne nosi vrednosti) in temna obroba.
           emphasis: { label: { color: t.ink }, itemStyle: { areaColor: t.s.ref, borderColor: t.ink, borderWidth: 1.5 } },

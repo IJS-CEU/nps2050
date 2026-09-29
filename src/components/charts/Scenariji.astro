@@ -128,7 +128,7 @@ const fe = n.indicators.koncna_energija.values.skupaj;
         xAxis: yearAxis(t, { type: 'category', data: years }),
         yAxis: valueAxis(t, { min: 0, name: unit }),
         series: parts.map((s, i) => ({
-          name: sectorName[s], type: 'bar', stack: 'nps', barMaxWidth: 24, color: t.s[SECTOR_COLOR[s]],
+          name: sectorName[s], type: 'bar', stack: 'nps', barWidth: '42%', barMaxWidth: 64, color: t.s[SECTOR_COLOR[s]],
           itemStyle: { borderColor: t.panel, borderWidth: 1, borderRadius: i === parts.length - 1 ? [4, 4, 0, 0] : 0 },
           data: I.values[s],
           // Skupna vrednost na vrhu stolpca (samo na zadnjem delu sklada).
