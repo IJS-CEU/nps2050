@@ -4,50 +4,72 @@ title: 'Kaj je NPS 2050'
 description: 'Okvir Nacionalnega načrta prenove stavb: člen 3 EPBD, nadomestitev DSEPS 2050, kdo pripravlja kaj in časovnica do sprejema.'
 lead: 'Nacionalni načrt prenove stavb do leta 2050 (NPS 2050) določa, kako Slovenija do leta 2050 prenovi stavbni fond v energetsko učinkovit in razogljičen fond brezemisijskih stavb.'
 ---
+import Icon from '../../components/Icon.astro';
+import { loadData } from '../../lib/data';
+import { nf } from '../../lib/format';
+import { pageUrl } from '../../i18n/routes';
+
+export const sf = loadData('stavbni_fond').segments;
+
+<div class="kj">
 
 ## Zakaj načrt nastaja
 
 {/* Vir: NPS_v38, povzetek in pogl. 1 (Pravna podlaga in postopek priprave). */}
 
-Prenovljena evropska direktiva o energetski učinkovitosti stavb (EPBD, Direktiva (EU) 2024/1275) v členu 3 zahteva, da vsaka država članica pripravi nacionalni načrt prenove stavb. Načrt zajema javne in zasebne, stanovanjske in nestanovanjske stavbe. Evropski komisiji (EK) se predloži prvič do 31. decembra 2026, nato vsakih pet let.
-
-NPS 2050 nadomešča Dolgoročno strategijo energetske prenove stavb do leta 2050 (DSEPS 2050) iz leta 2021. Cilji za stavbe izhajajo iz posodobljenega Nacionalnega energetskega in podnebnega načrta (NEPN 2024).
+<div class="kj-intro">
+<div>
+<p>Prenovljena evropska <strong>direktiva o energetski učinkovitosti stavb</strong> (EPBD, Direktiva (EU) 2024/1275) v členu 3 zahteva, da <strong>vsaka država članica pripravi nacionalni načrt prenove stavb</strong>. Načrt zajema javne in zasebne, stanovanjske in nestanovanjske stavbe.</p>
+<p>NPS 2050 <strong>nadomešča Dolgoročno strategijo energetske prenove stavb do leta 2050 (DSEPS 2050)</strong> iz leta 2021. Cilji za stavbe izhajajo iz posodobljenega <strong>Nacionalnega energetskega in podnebnega načrta (NEPN 2024)</strong>.</p>
+</div>
+<ul class="kj-facts" aria-label="Ključna dejstva">
+<li><span class="kj-ic"><Icon name="scale" size={20} /></span><span><b>Člen 3 EPBD</b>pravna podlaga za načrt</span></li>
+<li><span class="kj-ic"><Icon name="calendar-check" size={20} /></span><span><b>31. 12. 2026</b>prva predložitev Evropski komisiji (EK)</span></li>
+<li><span class="kj-ic"><Icon name="refresh-cw" size={20} /></span><span><b>Vsakih pet let</b>posodobitev načrta</span></li>
+<li><span class="kj-ic"><Icon name="flag" size={20} /></span><span><b>Do leta 2050</b>brezemisijski stavbni fond</span></li>
+</ul>
+</div>
 
 ## Kaj je novega
 
 {/* Vir: NPS_v38, pogl. 1 (Novosti NPS 2050 glede na DSEPS 2050). */}
 
-Poleg ciljev in ukrepov vsebuje NPS 2050 zavezujoče in merljive elemente, ki jih zahteva EPBD:
+<p class="kj-wide">Poleg ciljev in ukrepov vsebuje NPS 2050 <strong>zavezujoče in merljive elemente</strong>, ki jih zahteva EPBD:</p>
 
-- nacionalno lestvico energijskih razredov na ravni primarne energije, z mejo za brezemisijske stavbe;
-- trajektorijo povprečne rabe primarne energije stanovanjskih stavb z mejniki do leta 2050 in prednostno prenovo 43 % energijsko najmanj učinkovitih stanovanjskih stavb;
-- minimalne standarde energetske učinkovitosti za nestanovanjske stavbe z roki 2030 in 2033;
-- časovni načrt opuščanja kotlov na fosilna goriva;
-- oceno naložb in virov financiranja;
-- cilje za zmanjšanje energetske revščine;
-- kazalnike, po katerih se napredek vsako leto spremlja in poroča EK.
+<ul class="kj-grid">
+<li><span class="kj-ic"><Icon name="bar-chart-3" size={22} /></span><b>Lestvica energijskih razredov</b><span>nacionalna, na ravni primarne energije, z mejo za brezemisijske stavbe</span></li>
+<li><span class="kj-ic"><Icon name="trending-down" size={22} /></span><b>Trajektorija do leta 2050</b><span>povprečne rabe primarne energije stanovanjskih stavb, z mejniki</span></li>
+<li><span class="kj-ic"><Icon name="house" size={22} /></span><b>Najslabše stavbe najprej</b><span>prednostna prenova 43 % energijsko najmanj učinkovitih stanovanjskih stavb</span></li>
+<li><span class="kj-ic"><Icon name="gauge" size={22} /></span><b>Minimalni standardi</b><span>energetske učinkovitosti za nestanovanjske stavbe z roki 2030 in 2033</span></li>
+<li><span class="kj-ic"><Icon name="flame" size={22} /></span><b>Opuščanje fosilnih kotlov</b><span>časovni načrt za kotle na fosilna goriva</span></li>
+<li><span class="kj-ic"><Icon name="euro" size={22} /></span><b>Naložbe in financiranje</b><span>ocena potrebnih naložb in virov financiranja</span></li>
+<li><span class="kj-ic"><Icon name="hand-heart" size={22} /></span><b>Manj energetske revščine</b><span>cilji za zmanjšanje energetske revščine</span></li>
+<li><span class="kj-ic"><Icon name="chart-line" size={22} /></span><b>Letno spremljanje</b><span>kazalniki, po katerih se napredek vsako leto spremlja in poroča EK</span></li>
+</ul>
 
-Ukrepe NEPN 2024 načrt dopolnjuje z 20 novimi ukrepi (N1–N20).
+<p class="kj-callout">Ukrepe NEPN 2024 načrt dopolnjuje z <strong>20 novimi ukrepi (N1–N20)</strong>. <a href={pageUrl('ukrepi')}>Pregled ukrepov</a></p>
 
 ## Kaj načrt pokriva
 
-{/* Vir: NPS_v38, pogl. 2.1 (Splošen opis, preglednica 3). */}
+{/* Vir: NPS_v38, pogl. 2.1 (Splošen opis, preglednica 3); števila iz public/data/stavbni_fond.json. */}
 
-NPS 2050 stavbni fond deli na tri segmente:
+<p class="kj-wide">NPS 2050 stavbni fond – <strong>{nf(sf.skupaj.buildings)} stavb</strong> s <strong>{nf(sf.skupaj.area_mio_m2, 1)} mio m²</strong> uporabne površine – deli na <strong>tri segmente</strong>. Javne in zasebne storitvene stavbe so skupaj nestanovanjske stavbe po EPBD.</p>
 
-- **stanovanjske stavbe** – enostanovanjske hiše in večstanovanjske stavbe,
-- **javne stavbe** – v lasti ali rabi države, občin in javnih zavodov (uprava, izobraževanje, zdravstvo, kultura, šport),
-- **stavbe zasebnega storitvenega sektorja** – pisarne, trgovine, hoteli in gostinstvo ter druge storitvene stavbe.
-
-Javne in zasebne storitvene stavbe so skupaj nestanovanjske stavbe po EPBD.
+<ul class="kj-seg">
+<li><span class="kj-ic big"><Icon name="house" size={26} /></span><b>Stanovanjske stavbe</b><span class="kj-n">{nf(sf.stanovanjske.buildings)} stavb · {nf(sf.stanovanjske.area_mio_m2, 1)} mio m²</span><span>enostanovanjske hiše in večstanovanjske stavbe</span></li>
+<li><span class="kj-ic big"><Icon name="landmark" size={26} /></span><b>Javne stavbe</b><span class="kj-n">{nf(sf.javne.buildings)} stavb · {nf(sf.javne.area_mio_m2, 1)} mio m²</span><span>v lasti ali rabi države, občin in javnih zavodov: uprava, izobraževanje, zdravstvo, kultura, šport</span></li>
+<li><span class="kj-ic big"><Icon name="building-2" size={26} /></span><b>Stavbe zasebnega storitvenega sektorja</b><span class="kj-n">{nf(sf.zasebne_storitvene.buildings)} stavb · {nf(sf.zasebne_storitvene.area_mio_m2, 1)} mio m²</span><span>pisarne, trgovine, hoteli in gostinstvo ter druge storitvene stavbe</span></li>
+</ul>
 
 ## Kdo pripravlja kaj
 
 {/* Vir: NPS_v38, pogl. 9 (Časovnica: nosilec MzIE, strokovna podpora IJS CEU); navodila projekta §1. */}
 
-- **Ministrstvo za infrastrukturo in energetiko (MzIE)** pripravlja NPS 2050, vodi javno posvetovanje in načrt predloži EK.
-- **IJS CEU** pripravlja strokovne podlage: analizo stavbnega fonda, energijske razrede, scenarije, trajektorijo, kazalnike in oceno naložb. Pri analizi pripomb iz javnega posvetovanja zagotavlja strokovno podporo.
-- **Eko sklad in mreža ENSVET** izvajata spodbude in svetovanje za lastnike stavb.
+<ul class="kj-seg kj-roles">
+<li><span class="kj-ic big"><Icon name="landmark" size={26} /></span><b>Ministrstvo za infrastrukturo in energetiko (MzIE)</b><span>pripravlja NPS 2050, vodi javno posvetovanje in načrt predloži EK</span></li>
+<li><span class="kj-ic big"><Icon name="flask-conical" size={26} /></span><b>IJS CEU</b><span>pripravlja strokovne podlage: analizo stavbnega fonda, energijske razrede, scenarije, trajektorijo, kazalnike in oceno naložb; pri analizi pripomb iz javnega posvetovanja zagotavlja strokovno podporo</span></li>
+<li><span class="kj-ic big"><Icon name="messages-square" size={26} /></span><b>Eko sklad in mreža ENSVET</b><span>izvajata spodbude in svetovanje za lastnike stavb</span></li>
+</ul>
 
 ## Časovnica
 
@@ -66,8 +88,12 @@ Javne in zasebne storitvene stavbe so skupaj nestanovanjske stavbe po EPBD.
 
 {/* Vir: NPS_v38, pogl. 1 (Uporabljeni izrazi); terminologija potrjena z ministrstvom (navodila projekta §6); brezemisijska stavba: EPBD člen 2(2), člen 7 in člen 1. */}
 
-- **Energetska prenova** je vsaka prenova, ki izboljša energetsko učinkovitost stavbe (ovoj in/ali tehnični sistemi).
-- **Celovita energetska prenova** je prenova ovoja in tehničnih sistemov skupaj, s katero se stavba izboljša za najmanj dva energijska razreda ali doseže najmanj razred B.
-- **Delna energetska prenova** je posamezen ukrep, na primer zamenjava kotla ali oken ali izolacija fasade.
-- **Energetska in potresna prenova** je energetska prenova, izvedena skupaj s potresno utrditvijo.
-- **Brezemisijska stavba** je zelo energetsko učinkovita stavba, ki potrebuje zelo malo energije, na kraju samem nima emisij iz fosilnih goriv in ima ničelne ali zelo majhne obratovalne emisije toplogrednih plinov (EPBD, člen 2). Od leta 2030 morajo biti take vse nove stavbe, javne že od leta 2028. Do leta 2050 naj bi se v brezemisijske preoblikovale tudi obstoječe stavbe. V lestvici razredov je to meja med razredoma A in B.
+<dl class="kj-terms">
+<div><dt>Energetska prenova</dt><dd>Vsaka prenova, ki izboljša energetsko učinkovitost stavbe (ovoj in/ali tehnični sistemi).</dd></div>
+<div><dt>Celovita energetska prenova</dt><dd>Prenova ovoja in tehničnih sistemov skupaj, s katero se stavba izboljša za <strong>najmanj dva energijska razreda</strong> ali doseže <strong>najmanj razred B</strong>.</dd></div>
+<div><dt>Delna energetska prenova</dt><dd>Posamezen ukrep, na primer zamenjava kotla ali oken ali izolacija fasade.</dd></div>
+<div><dt>Energetska in potresna prenova</dt><dd>Energetska prenova, izvedena skupaj s potresno utrditvijo.</dd></div>
+<div class="wide"><dt>Brezemisijska stavba</dt><dd>Zelo energetsko učinkovita stavba, ki potrebuje zelo malo energije, na kraju samem nima emisij iz fosilnih goriv in ima ničelne ali zelo majhne obratovalne emisije toplogrednih plinov (EPBD, člen 2). <strong>Od leta 2030 morajo biti take vse nove stavbe, javne že od leta 2028.</strong> Do leta 2050 naj bi se v brezemisijske preoblikovale tudi obstoječe stavbe. V lestvici razredov je to <strong>meja med razredoma A in B</strong>.</dd></div>
+</dl>
+
+</div>
