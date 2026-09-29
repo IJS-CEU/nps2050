@@ -5,7 +5,9 @@ description: 'S čim bo država dosegla cilje NPS 2050: 24 ukrepov NEPN 2024 in 
 lead: 'Cilji sami ne prenovijo nobene stavbe. Tu je pregled, s katerimi ukrepi jih bo država dosegla, do kdaj in koliko to stane.'
 ---
 import UkrepiPregled from '../../components/UkrepiPregled.astro';
-import Kotli from '../../components/Kotli.astro';
+import Casovnica from '../../components/ukrepi/Casovnica.astro';
+import Orodja from '../../components/ukrepi/Orodja.astro';
+import KdoPlaca from '../../components/ukrepi/KdoPlaca.astro';
 import Financiranje from '../../components/charts/Financiranje.astro';
 import ViriFinanciranja from '../../components/ViriFinanciranja.astro';
 import { pageUrl } from '../../i18n/routes';
@@ -17,6 +19,8 @@ import { pageUrl } from '../../i18n/routes';
 Ukrepi so orodja, s katerimi država spodbuja in usmerja prenovo stavb: predpisi, finančne spodbude in posojila, svetovanje in obveščanje, organizacijski ukrepi ter spremljanje napredka. EPBD v členu 3 zahteva, da nacionalni načrt prenove vsebuje pregled obstoječih in načrtovanih politik in ukrepov.
 
 NPS 2050 gradi na **24 ukrepih iz NEPN 2024**, ki se nanašajo na stavbe, in jih povezuje s področji, ki jih zahteva EPBD. Ocena prvega osnutka, ki jo je pripravilo Skupno raziskovalno središče EK (JRC), je pokazala, da nekatera področja niso pokrita. Zato načrt dodaja **20 novih ukrepov (N1–N20)**, zapisanih po enaki strukturi – z nosilcem, rokom, kazalnikom in ciljno vrednostjo –, da jih je mogoče prenesti v posodobitev NEPN. Novi ukrepi so v osnutku predlog za odločanje.
+
+<Orodja />
 
 ## Od cilja do ukrepa
 
@@ -48,7 +52,7 @@ Izberite področje, vrsto ukrepa ali rok, ali poiščite nosilca ali ključno be
 
 Časovni načrt povezuje veljavne prepovedi, cenovne signale in spodbude. Obstoječih kotlov načrt ne prepoveduje; njihovo zamenjavo spodbuja, leta 2035 pa se preveri napredek. Za lastnike je kratek povzetek v rubriki <a href={pageUrl('lastniki')}>Za lastnike</a>.
 
-<Kotli />
+<Casovnica />
 
 ## Financiranje
 
@@ -57,6 +61,8 @@ Izberite področje, vrsto ukrepa ali rok, ali poiščite nosilca ali ključno be
 Investicijske potrebe za energetsko prenovo stavb znašajo **4,07 mrd € v obdobju 2026–2030** in približno **19 mrd € do leta 2050**. Ob obstoječih virih v obdobju 2026–2030 ostaja nepokritih 1,17 mrd €, največ pri stanovanjskih stavbah in stavbah zasebnega storitvenega sektorja. To ne pomeni manjkajočih javnih sredstev, ampak naložbe, za katere finančni instrument še ni določen – na primer energetsko pogodbeništvo, zelena posojila in garancijska shema.
 
 Za nepovratni delež 16 do 25 % naložb je po letu 2030 potrebnih 120 do 190 mio € javnih sredstev na leto.
+
+<KdoPlaca />
 
 <Financiranje />
 

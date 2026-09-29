@@ -1,0 +1,75 @@
+---
+/**
+ * Ikonografika »Kdo plača naložbe 2026–2030«: po segmentih razdelitev investicijskih potreb na nepovratna sredstva,
+ * zasebna sredstva (spodbujene naložbe) in še nepokrito. Vir: ukrepi.json (preglednica investicijskih potreb, pogl. 7.1).
+ */
+import Icon from '../Icon.astro';
+import { loadData, type Ukrepi } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const d = loadData<Ukrepi>('ukrepi');
+const S = d.investments.segments;
+const sum5 = (a: (number | null)[] | undefined) => (a ?? []).slice(0, 5).reduce<number>((s, v) => s + (v ?? 0), 0);
+const rows = [
+  ['Stanovanjske stavbe', 'house'], ['Stavbe javnega sektorja', 'landmark'], ['Stavbe zasebnega storitvenega sektorja', 'building-2'],
+].map(([name, icon]) => {
+  const needs = sum5(S[name].needs), grants = sum5(S[name].grants), priv = sum5(S[name].private);
+  const gap = Math.max(0, needs - grants - priv);
+  const base = Math.max(needs, grants + priv);
+  return { name, icon, needs, grants, priv, gap, pct: (v: number) => (100 * v) / base };
+});
+const tot = rows.reduce((a, r) => ({ needs: a.needs + r.needs, grants: a.grants + r.grants, priv: a.priv + r.priv, gap: a.gap + r.gap }), { needs: 0, grants: 0, priv: 0, gap: 0 });
+const mrd = (v: number) => nf(v / 1000, 2);
+---
+<section class="kp" aria-labelledby="kp-t">
+  <h3 id="kp-t">Kdo plača {`${mrd(tot.needs)} mrd €`} naložb do leta 2030</h3>
+  <p class="kp-lead">Investicijske potrebe 2026–2030 po segmentih: koliko pokrijejo nepovratna javna sredstva, koliko zasebna sredstva, ki jih spodbude sprožijo, in koliko finančnega instrumenta še nima.</p>
+  <ul class="kp-legend" aria-hidden="true">
+    <li><i class="kp-g"></i>Nepovratna javna sredstva</li>
+    <li><i class="kp-p"></i>Zasebna sredstva (spodbujene naložbe)</li>
+    <li><i class="kp-x"></i>Še nepokrito</li>
+  </ul>
+  <div class="kp-rows">
+    {rows.map((r) => (
+      <div class="kp-row">
+        <div class="kp-head">
+          <span class="kp-ic"><Icon name={r.icon} size={20} /></span>
+          <span class="kp-name">{r.name}</span>
+          <span class="kp-total">{`${nf(r.needs)} mio €`}</span>
+        </div>
+        <div class="kp-bar" role="img" aria-label={`${r.name}: potrebe ${nf(r.needs)} mio €; nepovratna sredstva ${nf(r.grants)} mio € (${nf(r.pct(r.grants), 0)} %), zasebna sredstva ${nf(r.priv)} mio € (${nf(r.pct(r.priv), 0)} %), še nepokrito ${nf(r.gap)} mio € (${nf(r.pct(r.gap), 0)} %).`}>
+          <span class="kp-g" style={`width:${r.pct(r.grants)}%`}>{r.pct(r.grants) >= 9 && `${nf(r.pct(r.grants), 0)} %`}</span>
+          <span class="kp-p" style={`width:${r.pct(r.priv)}%`}>{r.pct(r.priv) >= 9 && `${nf(r.pct(r.priv), 0)} %`}</span>
+          {r.gap > 0 && <span class="kp-x" style={`width:${r.pct(r.gap)}%`}>{r.pct(r.gap) >= 9 && `${nf(r.pct(r.gap), 0)} %`}</span>}
+        </div>
+        <p class="kp-nums">Nepovratna {nf(r.grants)} · zasebna {nf(r.priv)} · nepokrito {nf(r.gap)} mio €</p>
+      </div>
+    ))}
+  </div>
+  <p class="kp-sum"><b>Skupaj:</b> nepovratna sredstva {mrd(tot.grants)} mrd €, zasebna sredstva {mrd(tot.priv)} mrd €, še nepokrito {mrd(tot.gap)} mrd €. Nepokrit del ne pomeni manjkajočih javnih sredstev, ampak naložbe, za katere finančni instrument še ni določen.</p>
+</section>
+
+<style>
+  .kp { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.2rem 1.3rem; margin: 1.2rem 0 2rem; }
+  .kp h3 { margin: 0 0 .3rem; }
+  .kp-lead { color: var(--ink2); font-size: .9rem; }
+  .kp-legend { list-style: none; padding: 0; margin: .6rem 0 1rem; display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .82rem; color: var(--ink2); max-width: none; }
+  .kp-legend li { display: flex; align-items: center; gap: .4rem; }
+  .kp-legend i { width: 14px; height: 10px; border-radius: 2px; display: inline-block; }
+  .kp-rows { display: grid; gap: 1.1rem; }
+  .kp-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .35rem; }
+  .kp-ic { color: var(--ink2); display: grid; }
+  .kp-name { font-weight: 700; font-size: .95rem; }
+  .kp-total { white-space: nowrap; margin-left: auto; font-weight: 700; font-variant-numeric: tabular-nums; font-size: .9rem; }
+  .kp-bar { display: flex; height: 30px; border-radius: 6px; overflow: hidden; gap: 2px; background: var(--panel); }
+  .kp-bar span { display: grid; place-items: center; font-size: .78rem; font-weight: 700; white-space: nowrap; }
+  .kp-g { background: var(--green); color: var(--on-green); }
+  /* Zasebna sredstva: nevtralna siva podlaga z besedilom v barvi besedila (zadosten kontrast v obeh temah). */
+  .kp-p { background: var(--panel2); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line); }
+  /* Nepokrito: svetla podlaga s poševnimi črtami in obrobo (ni zapolnjeno). */
+  .kp-x { background: repeating-linear-gradient(135deg, var(--amberbg) 0 6px, transparent 6px 10px); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--s-ref); }
+  .kp-legend .kp-x { box-shadow: inset 0 0 0 1.5px var(--s-ref); }
+  .kp-legend .kp-p { box-shadow: inset 0 0 0 1px var(--ink2); }
+  .kp-nums { font-size: .78rem; color: var(--ink2); margin: .3rem 0 0; font-variant-numeric: tabular-nums; }
+  .kp-sum { font-size: .88rem; margin: 1rem 0 0; max-width: none; }
+</style>

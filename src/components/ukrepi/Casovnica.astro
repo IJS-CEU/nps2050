@@ -1,0 +1,89 @@
+---
+/**
+ * Vodoravna časovnica opuščanja kotlov na fosilna goriva (pogl. 6.1.6) z ikonami.
+ * Brez JS: navpični seznam vseh mejnikov (vsi odprti). Z JS: gumbi na osi, podrobnost izbranega mejnika pod njo.
+ */
+import Icon from '../Icon.astro';
+import { loadData, type Ukrepi } from '../../lib/data';
+
+const d = loadData<Ukrepi>('ukrepi');
+// Ikona in kratek naslov po vsebini mejnika (ključne besede v besedilu iz osnutka).
+const pick = (m: string): [string, string] => {
+  if (/Konec finančnih spodbud/i.test(m)) return ['ban', 'Konec spodbud za fosilne kotle'];
+  if (/Prepoved projektiranja, vgradnje in prodaje kotlov na kurilno olje/i.test(m)) return ['ban', 'Prepoved kotlov na olje in premog'];
+  if (/ETS2/i.test(m) && /ranljiv/i.test(m)) return ['hand-coins', 'Prihodki ETS2 za zamenjavo kotlov'];
+  if (/javne stavbe brezemisijske/i.test(m)) return ['landmark', 'Nove javne stavbe brezemisijske'];
+  if (/Razširitev prepovedi/i.test(m)) return ['house', 'Plinski kotli prepovedani v novih stavbah in celovitih prenovah'];
+  if (/pod 16-odstotnim pragom/i.test(m)) return ['gauge', 'Minimalni standardi za nestanovanjske stavbe'];
+  if (/dajatve na CO/i.test(m)) return ['receipt-euro', 'Višja dajatev na CO₂ in trošarine'];
+  if (/Pregled napredka/i.test(m)) return ['clipboard-check', 'Pregled napredka in odločitev o zamenjavi starih kotlov'];
+  if (/Preostali kotli/i.test(m)) return ['leaf', 'Preostali plinski sistemi na obnovljive pline'];
+  return ['flame', m.split(/[.:]/)[0]];
+};
+const items = d.boilers.map((b, i) => {
+  const [icon, title] = pick(b.milestone);
+  return { ...b, i, icon, title, year: b.when.replace(/\s*\(velja\)/, ''), now: /velja/.test(b.when) };
+});
+---
+<section class="cas" aria-labelledby="cas-t">
+  <h3 id="cas-t" class="visually-hidden">Časovnica opuščanja kotlov na fosilna goriva</h3>
+  <div class="cas-track js-only" tabindex="0" role="region" aria-label="Časovnica (vodoravno drsenje)">
+    <ol class="cas-axis">
+      {items.map((it) => (
+        <li>
+          <button type="button" class={`cas-node ${it.now ? 'is-now' : ''}`} aria-controls={`cas-d-${it.i}`} aria-expanded={it.i === 0 ? 'true' : 'false'} data-i={it.i}>
+            <span class="cas-ic"><Icon name={it.icon} size={22} /></span>
+            <span class="cas-y">{it.year}{it.now && <em>velja</em>}</span>
+            <span class="cas-t">{it.title}</span>
+          </button>
+        </li>
+      ))}
+    </ol>
+  </div>
+  <ol class="cas-details">
+    {items.map((it) => (
+      <li id={`cas-d-${it.i}`} class="cas-d" data-i={it.i}>
+        <p class="cas-dy"><span class="cas-ic small"><Icon name={it.icon} size={18} /></span> {it.year}{it.now && ' – velja'}</p>
+        <p class="cas-dm">{it.milestone}</p>
+        <p class="cas-de"><b>Podlaga:</b> {it.basis}. <b>Pričakovani učinek:</b> {it.effect}.</p>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  .cas { margin: 1rem 0 2rem; }
+  .cas-track { overflow-x: auto; padding-bottom: .4rem; }
+  .cas-axis { list-style: none; padding: 0; margin: 0; max-width: none; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(100px, 1fr); position: relative; min-width: 900px; }
+  .cas-axis::before { content: ''; position: absolute; left: 3%; right: 3%; top: 26px; height: 2px; background: var(--line); }
+  .cas-node { position: relative; width: 100%; display: grid; justify-items: center; gap: .35rem; padding: 0 .3rem .4rem; background: none; border: 0; cursor: pointer; font: inherit; color: var(--ink); text-align: center; border-radius: 10px; }
+  .cas-ic { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--panel); color: var(--green); border: 2px solid var(--green); position: relative; z-index: 1; }
+  .cas-node.is-now .cas-ic { background: var(--green); color: var(--on-green); }
+  .cas-node[aria-expanded='true'] .cas-ic { box-shadow: 0 0 0 4px var(--greenbg); }
+  .cas-node[aria-expanded='true'] .cas-t { color: var(--ink); font-weight: 700; }
+  .cas-node:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+  .cas-y { font-weight: 800; color: var(--green); font-variant-numeric: tabular-nums; }
+  .cas-y em { display: block; font-style: normal; font-size: .66rem; font-weight: 700; color: var(--ink); background: var(--greenbg); border-radius: 999px; padding: 0 .4rem; margin-top: .1rem; }
+  .cas-t { font-size: .78rem; color: var(--ink2); line-height: 1.3; }
+  .cas-details { list-style: none; padding: 0; margin: .6rem 0 0; max-width: 80ch; }
+  .cas-d { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; }
+  .cas-dy { font-weight: 800; color: var(--green); margin: 0 0 .3rem; display: flex; align-items: center; gap: .5rem; }
+  .cas-ic.small { width: 30px; height: 30px; border-width: 1.5px; }
+  .cas-dm { font-weight: 600; margin: 0 0 .3rem; }
+  .cas-de { font-size: .86rem; color: var(--ink2); margin: 0; }
+  /* Z JS je viden le izbrani mejnik. */
+  :global(html.js) .cas-d:not(.is-open) { display: none; }
+</style>
+
+<script>
+  const nodes = [...document.querySelectorAll<HTMLButtonElement>('.cas-node')];
+  const details = [...document.querySelectorAll<HTMLElement>('.cas-d')];
+  const show = (i: string) => {
+    nodes.forEach((n) => n.setAttribute('aria-expanded', String(n.dataset.i === i)));
+    details.forEach((d) => d.classList.toggle('is-open', d.dataset.i === i));
+  };
+  if (nodes.length) {
+    nodes.forEach((n) => n.addEventListener('click', () => show(n.dataset.i!)));
+    show('0');
+  }
+</script>
