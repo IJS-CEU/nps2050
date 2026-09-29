@@ -1,8 +1,8 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { pages, pageUrl } from '../i18n/routes';
-import { ui } from '../i18n/ui';
+import { pages } from '../i18n/routes';
+import Hero from '../components/home/Hero.astro';
 
 export async function getStaticPaths() {
   const entries = await getCollection('pages');
@@ -17,17 +17,14 @@ const { Content } = await render(entry);
 const { page, title, description, lead } = entry.data;
 ---
 <Base page={page} title={title} description={description}>
-  <div class="wrap page-head">
-    {page === 'domov' && <div class="eyebrow">{ui.siteSub}</div>}
-    <h1>{title}</h1>
-    {lead && <p class="lead">{lead}</p>}
-    {page === 'domov' && (
-      <div class="cta">
-        <a class="btn primary" href={pageUrl('javna-obravnava')}>Osnutek in javna obravnava</a>
-        <a class="btn ghost" href={pageUrl('strokovne-podlage')}>Strokovne podlage</a>
-      </div>
-    )}
-  </div>
+  {page === 'domov' ? (
+    <Hero title={title} lead={lead} />
+  ) : (
+    <div class="wrap page-head">
+      <h1>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+    </div>
+  )}
   <div class="wrap prose">
     <Content />
   </div>

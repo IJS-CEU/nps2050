@@ -1,0 +1,34 @@
+---
+/** Ostale rubrike na naslovni strani kot manjše kartice z enovrstičnim opisom, in povezava Za medije. */
+import { pageUrl, type PageId } from '../../i18n/routes';
+
+const cards: { id: PageId; title: string; text: string; badge?: string }[] = [
+  { id: 'kaj-je-nps', title: 'Kaj je NPS 2050', text: 'Zakaj načrt nastaja, kaj prinaša novega, kdo ga pripravlja in časovnica do sprejema.' },
+  { id: 'javna-obravnava', title: 'Javna obravnava', text: 'Kdaj poteka obravnava osnutka in kje oddate pripombe ministrstvu.', badge: 'Predvidoma oktobra 2026' },
+  { id: 'dokumenti', title: 'Dokumenti in viri', text: 'Osnutek načrta, podatkovne priloge, direktiva EPBD, NEPN 2024 in DSEPS 2050.' },
+];
+---
+<div class="rub">
+  {cards.map((c) => (
+    <article class="rub-c">
+      {c.badge && <p class="rub-badge">{c.badge}</p>}
+      <h3><a href={pageUrl(c.id)}>{c.title}</a></h3>
+      <p>{c.text}</p>
+      <span class="rub-arrow" aria-hidden="true">→</span>
+    </article>
+  ))}
+</div>
+<p class="rub-media"><a href={pageUrl('mediji')}><strong>Za medije</strong> – ključne številke, grafi za prenos in kontakt</a></p>
+
+<style>
+  .rub { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin: 1rem 0 1.2rem; }
+  .rub-c { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.2rem 1.3rem 2.2rem; transition: border-color .15s ease; }
+  .rub-c:hover, .rub-c:focus-within { border-color: var(--green); }
+  .rub-c h3 { margin: 0 0 .4rem; font-size: 1.15rem; }
+  .rub-c h3 a { color: var(--ink); text-decoration: none; }
+  .rub-c h3 a::after { content: ''; position: absolute; inset: 0; border-radius: 14px; }
+  .rub-c p { font-size: .9rem; color: var(--ink2); margin: 0; }
+  .rub-badge { display: inline-block; font-size: .72rem !important; font-weight: 700; letter-spacing: .04em; color: var(--ink) !important; background: var(--amberbg); border-radius: 999px; padding: .15rem .6rem; margin: 0 0 .6rem !important; }
+  .rub-arrow { position: absolute; right: 1.2rem; bottom: .9rem; color: var(--green); font-weight: 700; }
+  .rub-media { margin: 0 0 1rem; font-size: .95rem; }
+</style>

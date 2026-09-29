@@ -140,6 +140,16 @@ const bounds = ['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G'];
     const pe = document.getElementById('chk-pe') as HTMLInputElement;
     const cs = getComputedStyle(document.documentElement);
 
+    // Obrazec na naslovni strani pošlje ?kat=…&pe=… – izpolni polji in takoj preveri.
+    const q = new URLSearchParams(location.search);
+    const pre = () => {
+      if (q.get('kat') && q.get('pe')) {
+        cat.value = q.get('kat')!;
+        pe.value = q.get('pe')!;
+        form.requestSubmit();
+      }
+    };
+
     form.addEventListener('submit', (ev) => {
       ev.preventDefault();
       out.replaceChildren();
@@ -202,6 +212,7 @@ const bounds = ['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G'];
       box.setAttribute('tabindex', '-1');
       box.focus();
     });
+    pre();
   }
   if (document.getElementById('chk-form')) init().catch((e) => console.error('preveri:', e));
 </script>

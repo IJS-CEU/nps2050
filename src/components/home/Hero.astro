@@ -1,0 +1,35 @@
+---
+/**
+ * Glava naslovne strani po vzoru naslovnice NPS 2050: temno olivno polje z naslovom in pas fotografije mesta
+ * (izrez iz naslovnice, brez grba, logotipa in napisov). Ista v obeh temah.
+ */
+import { withBase } from '../../i18n/routes';
+import { ui } from '../../i18n/ui';
+
+interface Props { title: string; lead?: string }
+const { title, lead } = Astro.props;
+---
+<section class="hero" aria-labelledby="hero-t">
+  <div class="hero-text wrap">
+    <p class="hero-eyebrow"><span>{ui.siteSub}</span><span class="hero-tag">Osnutek · 2026</span></p>
+    <h1 id="hero-t">{title}</h1>
+    {lead && <p class="hero-lead">{lead}</p>}
+  </div>
+  <picture class="hero-photo">
+    <source type="image/webp" srcset={`${withBase('img/hero-mesto-800.webp')} 800w, ${withBase('img/hero-mesto-1600.webp')} 1600w`} sizes="100vw" />
+    <img src={withBase('img/hero-mesto-1600.jpg')} srcset={`${withBase('img/hero-mesto-800.jpg')} 800w, ${withBase('img/hero-mesto-1600.jpg')} 1600w`} sizes="100vw"
+         alt="" width="1588" height="835" fetchpriority="high" decoding="async" />
+  </picture>
+</section>
+
+<style>
+  .hero { --olive: #333D22; --gold: #D6B25E; --paper: #F5F2E8; background: var(--olive); color: var(--paper); }
+  .hero-text { padding-block: 3.2rem 2.4rem; border-bottom: 1px solid var(--gold); }
+  .hero-eyebrow { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .76rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin: 0 0 1.4rem; max-width: none; }
+  .hero-tag { letter-spacing: .18em; }
+  .hero h1 { color: var(--paper); font-size: clamp(2.1rem, 5vw, 3.6rem); max-width: 18ch; line-height: 1.08; }
+  .hero-lead { color: #DAD8C9; font-size: 1.1rem; margin: 1.2rem 0 0; max-width: 60ch; }
+  .hero-photo { display: block; height: clamp(140px, 22vw, 260px); overflow: hidden; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; display: block; }
+  @media (max-width: 560px) { .hero-text { padding-block: 2.2rem 1.8rem; } .hero-lead { font-size: 1rem; } }
+</style>

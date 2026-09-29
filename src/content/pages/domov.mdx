@@ -1,39 +1,28 @@
 ---
 page: domov
-title: 'Kako Slovenija do leta 2050 prenovi svoje stavbe'
-description: 'Strokovne podlage IJS CEU za Nacionalni načrt prenove stavb NPS 2050: stavbni fond, scenariji, trajektorija in kazalniki.'
+title: 'Kako naj Slovenija do leta 2050 prenovi svoje stavbe'
+description: 'Strokovne podlage IJS CEU za Nacionalni načrt prenove stavb NPS 2050: stavbni fond, scenariji, trajektorija, kazalniki in orodje za preverjanje stavbe.'
 lead: 'NPS 2050 določa, koliko energije bodo porabile slovenske stavbe v letih 2030, 2040 in 2050, katere stavbe se prenovijo najprej in kako se prenova financira. Na tej strani so strokovne podlage, na katerih načrt temelji.'
 ---
+import Vstopi from '../../components/home/Vstopi.astro';
+import HitroPreveri from '../../components/home/HitroPreveri.astro';
+import Rubrike from '../../components/home/Rubrike.astro';
 import Tiles from '../../components/Tiles.astro';
-import { pageUrl } from '../../i18n/routes';
 
-{/* Vir: NPS_v38, povzetek (preglednica ključnih ciljev in kazalnikov) – številke v ploščicah bere komponenta iz public/data/kazalniki.json. */}
+{/* Zgradba naslovne strani potrjena 29. 9. 2026: dva vstopa, orodje, pet številk, ostale rubrike. Številke v ploščicah bere komponenta iz public/data/kazalniki.json (NPS_v38, povzetek). */}
+
+<Vstopi />
+
+<HitroPreveri />
 
 ## Cilji v petih številkah
 
 <Tiles />
 
-## Kaj najdete na tej strani
+## Več o načrtu
 
-<div class="paths">
-  <div class="card">
-    <h3><a href={pageUrl('lastniki')}>Za lastnike in občane</a></h3>
-    <p>Kaj načrt pomeni za vašo hišo ali stanovanje, kaj so energijski razredi in kje dobite svetovanje ter spodbude.</p>
-  </div>
-  <div class="card">
-    <h3><a href={pageUrl('strokovne-podlage')}>Strokovne podlage</a></h3>
-    <p>Stavbni fond, scenariji prenove, trajektorija primarne energije, kazalniki in podatki za prenos.</p>
-  </div>
-  <div class="card">
-    <h3><a href={pageUrl('javna-obravnava')}>Osnutek in javna obravnava</a></h3>
-    <p>Kdaj in kje bo osnutek v javni obravnavi ter kam oddate pripombe.</p>
-  </div>
-</div>
-
-## Kdo pripravlja NPS 2050
+<Rubrike />
 
 {/* Vir: navodila projekta §1 (okvir, potrjen z MzIE, september 2026); NPS_v38, pogl. 1 in 9. */}
 
-NPS 2050 je dokument Ministrstva za infrastrukturo in energetiko. Strokovne podlage zanj – analizo stavbnega fonda, scenarije, trajektorijo, kazalnike in oceno naložb – pripravlja Center za energetsko učinkovitost Instituta »Jožef Stefan« (IJS CEU). Ta stran predstavlja strokovne podlage. Ni uradna stran načrta in ne zbira pripomb: te gredo na uradni kanal ministrstva.
-
-<p class="note">Številke na tej strani so iz osnutka NPS 2050 in se lahko do sprejema še spremenijo.</p>
+<p class="note">NPS 2050 je dokument Ministrstva za infrastrukturo in energetiko. Strokovne podlage zanj pripravlja Center za energetsko učinkovitost Instituta »Jožef Stefan« (IJS CEU). Ta stran ni uradna stran načrta in ne zbira pripomb. Številke so iz osnutka in se lahko do sprejema še spremenijo.</p>

@@ -1,0 +1,81 @@
+---
+/**
+ * Dva vstopa na naslovni strani (konceptni predlog): za lastnike in za stroko.
+ * Vizualna elementa sta iz podatkov strani: lestvica razredov A–G in trajektorija iz trajektorija.json.
+ */
+import { pageUrl } from '../../i18n/routes';
+import { loadData, type Trajektorija } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const t = loadData<Trajektorija>('trajektorija').kwh_m2;
+// Drobna trajektorija (SVG ob gradnji): os let 2020–2050, vrednosti 100–300 (ilustracija; točne vrednosti so v grafu).
+const W = 280, H = 84, P = 6;
+const x = (y: number) => P + ((y - 2020) / 30) * (W - 2 * P);
+const TOP = 20; // prostor za oznako izhodišča
+const yv = (v: number) => H - P - ((v - 100) / 200) * (H - P - TOP);
+const path = t.years.map((y, i) => `${i ? 'L' : 'M'}${x(y).toFixed(1)},${yv(t.nps[i]).toFixed(1)}`).join(' ');
+const area = `${path} L${x(2050)},${H - P} L${x(2020)},${H - P} Z`;
+const classes = ['A1', 'B1', 'C', 'D', 'E', 'F', 'G'];
+---
+<div class="vstopi">
+  <article class="vstop">
+    <div class="vstop-vis vis-cls" aria-hidden="true">
+      {classes.map((c, i) => <span style={`background:var(--cls-${c});height:${18 + i * 7}px`}><b>{'ABCDEFG'[i]}</b></span>)}
+    </div>
+    <p class="vstop-kicker">Za lastnike in občane</p>
+    <h2><a href={pageUrl('lastniki')}>Kaj načrt pomeni za vašo stavbo</a></h2>
+    <ul>
+      <li>Ali moram prenoviti hišo ali stanovanje?</li>
+      <li>Kaj pomenijo energijski razredi od A do G</li>
+      <li>Spodbude in opuščanje kotlov na olje in plin</li>
+      <li>Brezplačno svetovanje ENSVET in Eko sklad</li>
+    </ul>
+    <span class="vstop-cta" aria-hidden="true">Preberite odgovore →</span>
+  </article>
+
+  <article class="vstop">
+    <div class="vstop-vis vis-traj" aria-hidden="true">
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
+        <path d={area} fill="var(--s-s2)" opacity=".12" />
+        <path d={path} fill="none" stroke="var(--s-s2)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+      </svg>
+      <span class="traj-l">{nf(t.nps[0])}</span><span class="traj-r">{nf(t.nps[t.nps.length - 1])} kWh/(m²·a)</span>
+    </div>
+    <p class="vstop-kicker">Strokovne podlage</p>
+    <h2><a href={pageUrl('strokovne-podlage')}>Analize, na katerih temelji načrt</a></h2>
+    <ul>
+      <li>Stavbni fond po kategorijah in zemljevid po občinah</li>
+      <li>Scenariji prenove in primerjava strategij S0–S2</li>
+      <li>Prehodi stavb med energijskimi razredi do leta 2050</li>
+      <li>Trajektorija, kazalniki in podatki za prenos (CSV)</li>
+    </ul>
+    <span class="vstop-cta" aria-hidden="true">Odprite strokovne podlage →</span>
+  </article>
+</div>
+
+<style>
+  .vstopi { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.2rem; margin: -2.4rem 0 2rem; position: relative; z-index: 1; }
+  .vstop { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 1.5rem 1.6rem 1.4rem; box-shadow: 0 10px 30px rgba(20, 30, 20, .08); transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease; display: flex; flex-direction: column; }
+  .vstop:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(20, 30, 20, .13); border-color: var(--green); }
+  .vstop:focus-within { border-color: var(--green); box-shadow: 0 0 0 3px var(--greenbg); }
+  .vstop-kicker { font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin: 0 0 .35rem; }
+  .vstop h2 { font-size: 1.45rem; margin: 0 0 .7rem; }
+  .vstop h2 a { color: var(--ink); text-decoration: none; }
+  /* Cela kartica je klikljiva (povezava v naslovu se raztegne čez kartico). */
+  .vstop h2 a::after { content: ''; position: absolute; inset: 0; border-radius: 16px; }
+  .vstop h2 a:focus-visible { outline: none; }
+  .vstop ul { list-style: none; padding: 0; margin: 0 0 1rem; color: var(--ink2); font-size: .95rem; }
+  .vstop li { padding-left: 1.3rem; position: relative; margin-bottom: .35rem; }
+  .vstop li::before { content: ''; position: absolute; left: 0; top: .55em; width: .5rem; height: .5rem; border-radius: 2px; background: var(--green2); }
+  .vstop-cta { margin-top: auto; font-weight: 700; color: var(--green); }
+  .vstop-vis { height: 84px; margin-bottom: 1rem; }
+  .vis-cls { display: flex; align-items: flex-end; gap: 4px; }
+  .vis-cls span { flex: 1; border-radius: 4px 4px 2px 2px; display: grid; place-items: start center; padding-top: 3px; }
+  .vis-cls b { font-size: .72rem; color: #fff; text-shadow: 0 1px 1px rgba(0,0,0,.35); }
+  .vis-traj { position: relative; }
+  .vis-traj svg { width: 100%; height: 100%; display: block; }
+  .traj-l, .traj-r { position: absolute; font-size: .75rem; font-weight: 700; color: var(--ink2); }
+  .traj-l { left: 0; top: 0; } .traj-r { right: 0; bottom: 4px; }
+  @media (max-width: 560px) { .vstopi { margin-top: -1.6rem; } .vstop { padding: 1.2rem 1.2rem 1.1rem; } }
+  @media (prefers-reduced-motion: reduce) { .vstop { transition: none; } .vstop:hover { transform: none; } }
+</style>
