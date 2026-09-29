@@ -8,7 +8,7 @@
    "Meje občin in statističnih regij: GURS, Register prostorskih enot (CC BY 4.0), poenostavljene"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "Seštevki po občinah in regijah. Izpuščenih je 74 stavb brez leta gradnje, zato se seštevki ujemajo z osnutkom NPS 2050. Kategorije z manj kot 5 stavbami v občini niso objavljene (377 celic). Površina v tisoč m² uporabne površine; delež pred 1981 = delež uporabne površine stavb, zgrajenih pred letom 1981."
+  "note": "Seštevki po občinah in regijah. Izpuščenih je 74 stavb brez leta gradnje, zato se seštevki ujemajo z osnutkom NPS 2050. Kategorije z manj kot 10 stavbami v občini niso objavljene (673 celic). Površina v tisoč m² uporabne površine; delež pred 1981 = delež uporabne površine stavb, zgrajenih pred letom 1981."
  },
  "categories": [
   {
@@ -765,10 +765,7 @@
      "b": 65,
      "a": 13.6
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 7.3
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 77,
@@ -778,10 +775,7 @@
      "b": 28,
      "a": 2.5
     },
-    "SPORT": {
-     "b": 5,
-     "a": 5.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 122,
      "a": 24.9
@@ -811,14 +805,8 @@
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 5,
-     "a": 1.1
-    },
-    "PRODAJA": {
-     "b": 8,
-     "a": 2.4
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 26,
@@ -847,10 +835,7 @@
      "b": 49,
      "a": 13.7
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 4.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 57,
@@ -898,10 +883,7 @@
      "b": 22,
      "a": 4.4
     },
-    "SPORT": {
-     "b": 6,
-     "a": 2.1
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 90,
      "a": 18.7
@@ -929,10 +911,7 @@
      "b": 39,
      "a": 11.1
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 13.0
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 27,
@@ -942,10 +921,7 @@
      "b": 24,
      "a": 15.5
     },
-    "SPORT": {
-     "b": 5,
-     "a": 1.0
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 60,
      "a": 13.6
@@ -1012,31 +988,19 @@
      "b": 1352,
      "a": 146.0
     },
-    "BLOKI": {
-     "b": 8,
-     "a": 3.3
-    },
+    "BLOKI": null,
     "PISARNE": {
      "b": 13,
      "a": 2.0
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 5.4
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 8,
-     "a": 2.6
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 11,
      "a": 1.1
     },
-    "SPORT": {
-     "b": 9,
-     "a": 1.0
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 28,
      "a": 4.5
@@ -1111,10 +1075,7 @@
      "b": 48,
      "a": 38.8
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 9.7
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 35,
@@ -1124,10 +1085,7 @@
      "b": 22,
      "a": 4.1
     },
-    "SPORT": {
-     "b": 7,
-     "a": 4.7
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 67,
      "a": 49.8
@@ -1168,10 +1126,7 @@
      "b": 37,
      "a": 16.3
     },
-    "SPORT": {
-     "b": 8,
-     "a": 8.6
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 121,
      "a": 21.0
@@ -1199,10 +1154,7 @@
      "b": 31,
      "a": 6.2
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 5.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 13,
@@ -1240,23 +1192,14 @@
      "b": 15,
      "a": 3.6
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 5.4
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 12,
      "a": 3.1
     },
-    "PRODAJA": {
-     "b": 5,
-     "a": 1.1
-    },
-    "SPORT": {
-     "b": 5,
-     "a": 2.4
-    },
+    "PRODAJA": null,
+    "SPORT": null,
     "DRUGO": {
      "b": 35,
      "a": 6.3
@@ -1284,10 +1227,7 @@
      "b": 26,
      "a": 3.9
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 4.8
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 10,
@@ -1329,10 +1269,7 @@
      "b": 25,
      "a": 32.5
     },
-    "BOLNICA": {
-     "b": 7,
-     "a": 5.0
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 53,
      "a": 12.5
@@ -1361,23 +1298,14 @@
      "b": 1071,
      "a": 98.8
     },
-    "BLOKI": {
-     "b": 6,
-     "a": 1.7
-    },
-    "PISARNE": {
-     "b": 6,
-     "a": 2.0
-    },
+    "BLOKI": null,
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 7,
-     "a": 1.4
-    },
+    "HOTELI": null,
     "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
@@ -1416,10 +1344,7 @@
      "b": 17,
      "a": 4.8
     },
-    "PRODAJA": {
-     "b": 9,
-     "a": 1.5
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 78,
@@ -1448,10 +1373,7 @@
      "b": 12,
      "a": 2.2
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 6.5
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": null,
     "PRODAJA": {
@@ -1486,10 +1408,7 @@
      "b": 12,
      "a": 2.6
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 7.0
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 15,
@@ -1499,10 +1418,7 @@
      "b": 10,
      "a": 3.2
     },
-    "SPORT": {
-     "b": 6,
-     "a": 8.4
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 55,
      "a": 14.1
@@ -1530,22 +1446,13 @@
      "b": 20,
      "a": 16.3
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 7.3
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 5,
-     "a": 1.1
-    },
-    "PRODAJA": {
-     "b": 9,
-     "a": 2.0
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 37,
@@ -1617,23 +1524,14 @@
      "b": 19,
      "a": 7.5
     },
-    "PISARNE": {
-     "b": 5,
-     "a": 2.4
-    },
+    "PISARNE": null,
     "IZOBRAZ": {
      "b": 12,
      "a": 10.8
     },
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 5,
-     "a": 1.1
-    },
-    "PRODAJA": {
-     "b": 7,
-     "a": 0.8
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 23,
@@ -1675,10 +1573,7 @@
      "b": 24,
      "a": 14.8
     },
-    "SPORT": {
-     "b": 6,
-     "a": 8.6
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 71,
      "a": 14.8
@@ -1706,10 +1601,7 @@
      "b": 14,
      "a": 2.3
     },
-    "IZOBRAZ": {
-     "b": 9,
-     "a": 6.7
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 12,
@@ -1790,18 +1682,12 @@
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 6,
-     "a": 3.2
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 10,
      "a": 4.0
     },
-    "SPORT": {
-     "b": 8,
-     "a": 5.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 34,
      "a": 6.5
@@ -1829,10 +1715,7 @@
      "b": 78,
      "a": 29.2
     },
-    "IZOBRAZ": {
-     "b": 9,
-     "a": 9.9
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 42,
@@ -1842,10 +1725,7 @@
      "b": 51,
      "a": 21.7
     },
-    "SPORT": {
-     "b": 6,
-     "a": 4.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 90,
      "a": 30.1
@@ -1873,19 +1753,10 @@
      "b": 10,
      "a": 2.3
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 3.0
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 8,
-     "a": 2.3
-    },
-    "PRODAJA": {
-     "b": 5,
-     "a": 2.2
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 30,
@@ -1906,28 +1777,16 @@
      "b": 1044,
      "a": 94.6
     },
-    "BLOKI": {
-     "b": 9,
-     "a": 5.8
-    },
+    "BLOKI": null,
     "PISARNE": {
      "b": 11,
      "a": 1.8
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 7,
-     "a": 1.9
-    },
-    "PRODAJA": {
-     "b": 8,
-     "a": 0.6
-    },
-    "SPORT": {
-     "b": 8,
-     "a": 0.9
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": null,
     "DRUGO": {
      "b": 43,
      "a": 7.4
@@ -1959,10 +1818,7 @@
      "b": 20,
      "a": 20.9
     },
-    "BOLNICA": {
-     "b": 6,
-     "a": 2.5
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 17,
      "a": 7.1
@@ -1994,27 +1850,15 @@
      "b": 730,
      "a": 65.2
     },
-    "BLOKI": {
-     "b": 6,
-     "a": 2.5
-    },
-    "PISARNE": {
-     "b": 8,
-     "a": 1.2
-    },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 3.0
-    },
+    "BLOKI": null,
+    "PISARNE": null,
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 8,
-     "a": 0.6
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 28,
@@ -2043,15 +1887,9 @@
      "b": 47,
      "a": 20.9
     },
-    "IZOBRAZ": {
-     "b": 7,
-     "a": 7.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 8,
-     "a": 3.9
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 41,
      "a": 7.7
@@ -2091,10 +1929,7 @@
      "b": 22,
      "a": 25.7
     },
-    "BOLNICA": {
-     "b": 6,
-     "a": 12.1
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 25,
      "a": 6.1
@@ -2103,10 +1938,7 @@
      "b": 36,
      "a": 14.7
     },
-    "SPORT": {
-     "b": 7,
-     "a": 7.0
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 94,
      "a": 26.9
@@ -2226,10 +2058,7 @@
      "b": 16,
      "a": 24.8
     },
-    "BOLNICA": {
-     "b": 6,
-     "a": 21.7
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 51,
      "a": 29.6
@@ -2238,10 +2067,7 @@
      "b": 50,
      "a": 19.3
     },
-    "SPORT": {
-     "b": 9,
-     "a": 6.3
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 54,
      "a": 13.9
@@ -2261,21 +2087,12 @@
      "b": 1058,
      "a": 95.0
     },
-    "BLOKI": {
-     "b": 8,
-     "a": 6.4
-    },
+    "BLOKI": null,
     "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 7,
-     "a": 1.0
-    },
-    "PRODAJA": {
-     "b": 9,
-     "a": 1.7
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 23,
@@ -2304,10 +2121,7 @@
      "b": 37,
      "a": 7.3
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 9.0
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 14,
@@ -2317,10 +2131,7 @@
      "b": 10,
      "a": 1.8
     },
-    "SPORT": {
-     "b": 7,
-     "a": 3.7
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 88,
      "a": 11.5
@@ -2433,15 +2244,9 @@
      "b": 20,
      "a": 7.0
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 4.0
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 8,
-     "a": 1.8
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 22,
      "a": 3.5
@@ -2521,10 +2326,7 @@
      "b": 15,
      "a": 6.2
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 7.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
@@ -2578,10 +2380,7 @@
      "b": 54,
      "a": 35.4
     },
-    "SPORT": {
-     "b": 6,
-     "a": 1.9
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 48,
      "a": 16.5
@@ -2622,10 +2421,7 @@
      "b": 44,
      "a": 25.4
     },
-    "SPORT": {
-     "b": 9,
-     "a": 7.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 99,
      "a": 19.5
@@ -2659,10 +2455,7 @@
      "b": 10,
      "a": 3.0
     },
-    "PRODAJA": {
-     "b": 7,
-     "a": 1.8
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 41,
@@ -2704,10 +2497,7 @@
      "b": 37,
      "a": 21.7
     },
-    "SPORT": {
-     "b": 5,
-     "a": 5.8
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 75,
      "a": 16.5
@@ -2731,10 +2521,7 @@
      "b": 10,
      "a": 6.3
     },
-    "PISARNE": {
-     "b": 7,
-     "a": 1.2
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": null,
@@ -2763,10 +2550,7 @@
      "b": 14,
      "a": 3.5
     },
-    "PISARNE": {
-     "b": 7,
-     "a": 0.7
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
@@ -2808,19 +2592,13 @@
      "b": 12,
      "a": 1.9
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 4.8
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 13,
      "a": 2.3
     },
-    "PRODAJA": {
-     "b": 9,
-     "a": 4.6
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 36,
@@ -2849,15 +2627,9 @@
      "b": 48,
      "a": 28.5
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 9.5
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 9,
-     "a": 1.1
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 24,
      "a": 13.4
@@ -2895,10 +2667,7 @@
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 8,
-     "a": 1.6
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 10,
      "a": 2.3
@@ -2936,18 +2705,9 @@
      "a": 6.6
     },
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 9,
-     "a": 8.7
-    },
-    "PRODAJA": {
-     "b": 6,
-     "a": 5.9
-    },
-    "SPORT": {
-     "b": 9,
-     "a": 3.1
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": null,
     "DRUGO": {
      "b": 49,
      "a": 7.5
@@ -2971,16 +2731,10 @@
      "b": 19,
      "a": 10.3
     },
-    "PISARNE": {
-     "b": 6,
-     "a": 1.0
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 8,
-     "a": 2.3
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 21,
      "a": 5.9
@@ -3144,20 +2898,11 @@
      "a": 64.3
     },
     "BLOKI": null,
-    "PISARNE": {
-     "b": 9,
-     "a": 1.7
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 5,
-     "a": 2.5
-    },
-    "PRODAJA": {
-     "b": 6,
-     "a": 4.0
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 10,
@@ -3233,14 +2978,8 @@
      "b": 44,
      "a": 18.7
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 9.6
-    },
-    "BOLNICA": {
-     "b": 5,
-     "a": 1.2
-    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
     "HOTELI": {
      "b": 17,
      "a": 4.9
@@ -3249,10 +2988,7 @@
      "b": 27,
      "a": 7.7
     },
-    "SPORT": {
-     "b": 6,
-     "a": 1.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 35,
      "a": 11.5
@@ -3280,10 +3016,7 @@
      "b": 14,
      "a": 2.9
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 5.3
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
@@ -3328,10 +3061,7 @@
      "b": 23,
      "a": 33.8
     },
-    "BOLNICA": {
-     "b": 5,
-     "a": 4.6
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 50,
      "a": 20.8
@@ -3340,10 +3070,7 @@
      "b": 66,
      "a": 46.5
     },
-    "SPORT": {
-     "b": 5,
-     "a": 4.7
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 158,
      "a": 74.3
@@ -3371,10 +3098,7 @@
      "b": 16,
      "a": 3.0
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 6.5
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 14,
@@ -3416,10 +3140,7 @@
      "b": 12,
      "a": 9.6
     },
-    "BOLNICA": {
-     "b": 5,
-     "a": 1.6
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 10,
      "a": 2.7
@@ -3428,10 +3149,7 @@
      "b": 31,
      "a": 9.5
     },
-    "SPORT": {
-     "b": 6,
-     "a": 3.9
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 39,
      "a": 9.3
@@ -3459,14 +3177,8 @@
      "b": 20,
      "a": 13.2
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 10.2
-    },
-    "BOLNICA": {
-     "b": 6,
-     "a": 0.9
-    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
     "HOTELI": {
      "b": 22,
      "a": 17.9
@@ -3506,10 +3218,7 @@
      "b": 40,
      "a": 11.7
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 7.5
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 13,
@@ -3551,10 +3260,7 @@
      "b": 32,
      "a": 38.8
     },
-    "BOLNICA": {
-     "b": 6,
-     "a": 7.1
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 63,
      "a": 29.5
@@ -3563,10 +3269,7 @@
      "b": 74,
      "a": 46.5
     },
-    "SPORT": {
-     "b": 6,
-     "a": 3.5
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 122,
      "a": 29.5
@@ -3676,10 +3379,7 @@
      "b": 12,
      "a": 2.3
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 4.8
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
@@ -3709,27 +3409,18 @@
      "b": 1181,
      "a": 124.3
     },
-    "BLOKI": {
-     "b": 9,
-     "a": 2.5
-    },
+    "BLOKI": null,
     "PISARNE": {
      "b": 12,
      "a": 1.8
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 3.8
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 16,
      "a": 4.9
     },
-    "PRODAJA": {
-     "b": 9,
-     "a": 2.7
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 51,
@@ -3771,10 +3462,7 @@
      "b": 56,
      "a": 42.7
     },
-    "SPORT": {
-     "b": 9,
-     "a": 6.3
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 63,
      "a": 18.6
@@ -3815,10 +3503,7 @@
      "b": 19,
      "a": 8.4
     },
-    "SPORT": {
-     "b": 5,
-     "a": 5.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 27,
      "a": 6.7
@@ -3848,10 +3533,7 @@
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 9,
-     "a": 2.4
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 10,
      "a": 2.7
@@ -3897,10 +3579,7 @@
      "b": 57,
      "a": 26.5
     },
-    "SPORT": {
-     "b": 8,
-     "a": 7.5
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 155,
      "a": 26.3
@@ -3932,10 +3611,7 @@
      "b": 20,
      "a": 15.2
     },
-    "BOLNICA": {
-     "b": 6,
-     "a": 5.1
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 58,
      "a": 28.2
@@ -4073,10 +3749,7 @@
      "b": 18,
      "a": 18.4
     },
-    "BOLNICA": {
-     "b": 7,
-     "a": 2.9
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 29,
      "a": 12.0
@@ -4085,10 +3758,7 @@
      "b": 81,
      "a": 26.8
     },
-    "SPORT": {
-     "b": 8,
-     "a": 4.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 62,
      "a": 15.8
@@ -4116,26 +3786,17 @@
      "b": 10,
      "a": 1.8
     },
-    "IZOBRAZ": {
-     "b": 7,
-     "a": 6.2
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 9,
-     "a": 1.7
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 11,
      "a": 3.8
     },
-    "SPORT": {
-     "b": 9,
-     "a": 0.9
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 24,
      "a": 4.5
@@ -4155,20 +3816,14 @@
      "b": 1246,
      "a": 111.1
     },
-    "BLOKI": {
-     "b": 9,
-     "a": 2.5
-    },
+    "BLOKI": null,
     "PISARNE": {
      "b": 16,
      "a": 2.0
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 8,
-     "a": 1.5
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 18,
      "a": 3.9
@@ -4201,10 +3856,7 @@
      "b": 45,
      "a": 33.9
     },
-    "IZOBRAZ": {
-     "b": 7,
-     "a": 6.8
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 20,
@@ -4214,10 +3866,7 @@
      "b": 21,
      "a": 20.4
     },
-    "SPORT": {
-     "b": 8,
-     "a": 8.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 38,
      "a": 10.2
@@ -4289,10 +3938,7 @@
      "b": 36,
      "a": 15.8
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 7.8
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 15,
@@ -4334,10 +3980,7 @@
      "b": 20,
      "a": 22.7
     },
-    "BOLNICA": {
-     "b": 7,
-     "a": 4.8
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 37,
      "a": 8.1
@@ -4346,10 +3989,7 @@
      "b": 55,
      "a": 30.9
     },
-    "SPORT": {
-     "b": 9,
-     "a": 5.6
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 135,
      "a": 22.7
@@ -4373,19 +4013,13 @@
      "b": 13,
      "a": 3.6
     },
-    "PISARNE": {
-     "b": 7,
-     "a": 1.7
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 5,
-     "a": 2.2
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 12,
      "a": 4.0
@@ -4425,10 +4059,7 @@
      "b": 34,
      "a": 41.6
     },
-    "BOLNICA": {
-     "b": 7,
-     "a": 3.8
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 49,
      "a": 16.5
@@ -4509,10 +4140,7 @@
      "b": 38,
      "a": 16.9
     },
-    "IZOBRAZ": {
-     "b": 9,
-     "a": 11.8
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 10,
@@ -4522,10 +4150,7 @@
      "b": 41,
      "a": 15.7
     },
-    "SPORT": {
-     "b": 7,
-     "a": 4.0
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 75,
      "a": 17.2
@@ -4588,14 +4213,8 @@
      "b": 39,
      "a": 31.7
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 12.1
-    },
-    "BOLNICA": {
-     "b": 7,
-     "a": 9.5
-    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
     "HOTELI": {
      "b": 22,
      "a": 17.2
@@ -4635,19 +4254,13 @@
      "b": 24,
      "a": 7.6
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 8.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 7,
-     "a": 1.0
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 21,
@@ -4721,10 +4334,7 @@
      "b": 20,
      "a": 22.2
     },
-    "BOLNICA": {
-     "b": 7,
-     "a": 8.5
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 18,
      "a": 3.7
@@ -4818,10 +4428,7 @@
      "b": 64,
      "a": 19.8
     },
-    "SPORT": {
-     "b": 7,
-     "a": 1.9
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 100,
      "a": 20.8
@@ -4849,19 +4456,10 @@
      "b": 11,
      "a": 3.6
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 3.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 7,
-     "a": 1.3
-    },
-    "PRODAJA": {
-     "b": 9,
-     "a": 3.1
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 24,
@@ -4894,10 +4492,7 @@
      "b": 37,
      "a": 77.9
     },
-    "BOLNICA": {
-     "b": 6,
-     "a": 12.9
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 35,
      "a": 17.5
@@ -4933,19 +4528,10 @@
      "b": 15,
      "a": 3.9
     },
-    "PISARNE": {
-     "b": 8,
-     "a": 1.3
-    },
-    "IZOBRAZ": {
-     "b": 9,
-     "a": 6.5
-    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 6,
-     "a": 1.3
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 22,
      "a": 3.6
@@ -4981,10 +4567,7 @@
      "b": 44,
      "a": 9.0
     },
-    "IZOBRAZ": {
-     "b": 9,
-     "a": 16.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 14,
@@ -4994,10 +4577,7 @@
      "b": 22,
      "a": 7.9
     },
-    "SPORT": {
-     "b": 5,
-     "a": 2.5
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 80,
      "a": 34.5
@@ -5030,14 +4610,8 @@
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 9,
-     "a": 1.6
-    },
-    "PRODAJA": {
-     "b": 8,
-     "a": 1.4
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 31,
@@ -5070,10 +4644,7 @@
      "b": 14,
      "a": 18.9
     },
-    "BOLNICA": {
-     "b": 7,
-     "a": 3.3
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 28,
      "a": 6.6
@@ -5082,10 +4653,7 @@
      "b": 58,
      "a": 23.9
     },
-    "SPORT": {
-     "b": 8,
-     "a": 3.1
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 138,
      "a": 40.7
@@ -5198,23 +4766,11 @@
      "b": 28,
      "a": 10.0
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 8.2
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 6,
-     "a": 1.5
-    },
-    "PRODAJA": {
-     "b": 9,
-     "a": 4.5
-    },
-    "SPORT": {
-     "b": 6,
-     "a": 4.4
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": null,
     "DRUGO": {
      "b": 23,
      "a": 9.1
@@ -5242,10 +4798,7 @@
      "b": 71,
      "a": 16.2
     },
-    "IZOBRAZ": {
-     "b": 9,
-     "a": 4.3
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 37,
@@ -5255,10 +4808,7 @@
      "b": 33,
      "a": 16.1
     },
-    "SPORT": {
-     "b": 7,
-     "a": 3.1
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 82,
      "a": 9.9
@@ -5290,10 +4840,7 @@
      "b": 20,
      "a": 20.2
     },
-    "BOLNICA": {
-     "b": 9,
-     "a": 4.3
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 35,
      "a": 11.2
@@ -5302,10 +4849,7 @@
      "b": 64,
      "a": 29.6
     },
-    "SPORT": {
-     "b": 8,
-     "a": 4.8
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 223,
      "a": 41.9
@@ -5337,10 +4881,7 @@
      "b": 15,
      "a": 35.4
     },
-    "BOLNICA": {
-     "b": 9,
-     "a": 15.1
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 28,
      "a": 6.3
@@ -5349,10 +4890,7 @@
      "b": 56,
      "a": 40.2
     },
-    "SPORT": {
-     "b": 9,
-     "a": 14.1
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 71,
      "a": 26.4
@@ -5460,14 +4998,8 @@
      "b": 219,
      "a": 20.9
     },
-    "BLOKI": {
-     "b": 5,
-     "a": 2.3
-    },
-    "PISARNE": {
-     "b": 5,
-     "a": 1.1
-    },
+    "BLOKI": null,
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
@@ -5479,10 +5011,7 @@
      "a": 0.0
     },
     "SPORT": null,
-    "DRUGO": {
-     "b": 7,
-     "a": 1.2
-    }
+    "DRUGO": null
    }
   },
   "110200000110277683": {
@@ -5516,10 +5045,7 @@
      "b": 22,
      "a": 3.9
     },
-    "SPORT": {
-     "b": 5,
-     "a": 1.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 64,
      "a": 11.1
@@ -5641,10 +5167,7 @@
      "b": 62,
      "a": 8.5
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 6.2
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
@@ -5680,24 +5203,15 @@
      "b": 619,
      "a": 59.1
     },
-    "BLOKI": {
-     "b": 7,
-     "a": 4.4
-    },
+    "BLOKI": null,
     "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 6,
-     "a": 1.5
-    },
-    "PRODAJA": {
-     "b": 6,
-     "a": 0.6
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 24,
@@ -5730,10 +5244,7 @@
      "b": 17,
      "a": 18.4
     },
-    "BOLNICA": {
-     "b": 5,
-     "a": 3.6
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 31,
      "a": 39.3
@@ -5777,10 +5288,7 @@
      "b": 26,
      "a": 17.6
     },
-    "BOLNICA": {
-     "b": 5,
-     "a": 1.8
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 46,
      "a": 17.4
@@ -5911,19 +5419,10 @@
      "b": 26,
      "a": 14.4
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 5.8
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 9,
-     "a": 2.3
-    },
-    "PRODAJA": {
-     "b": 7,
-     "a": 1.0
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": {
      "b": 0,
      "a": 0.0
@@ -5955,10 +5454,7 @@
      "b": 26,
      "a": 8.3
     },
-    "IZOBRAZ": {
-     "b": 7,
-     "a": 7.2
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 12,
@@ -6056,10 +5552,7 @@
      "b": 32,
      "a": 13.4
     },
-    "SPORT": {
-     "b": 6,
-     "a": 5.0
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 77,
      "a": 17.1
@@ -6087,10 +5580,7 @@
      "b": 58,
      "a": 23.3
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 12.6
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 24,
@@ -6172,10 +5662,7 @@
      "b": 29,
      "a": 8.4
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 7.4
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 19,
@@ -6185,10 +5672,7 @@
      "b": 17,
      "a": 11.5
     },
-    "SPORT": {
-     "b": 5,
-     "a": 3.6
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 55,
      "a": 7.7
@@ -6216,10 +5700,7 @@
      "b": 32,
      "a": 9.5
     },
-    "IZOBRAZ": {
-     "b": 9,
-     "a": 8.9
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
@@ -6304,10 +5785,7 @@
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 9,
-     "a": 6.3
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 33,
@@ -6376,10 +5854,7 @@
      "a": 19.2
     },
     "BLOKI": null,
-    "PISARNE": {
-     "b": 5,
-     "a": 4.3
-    },
+    "PISARNE": null,
     "IZOBRAZ": {
      "b": 0,
      "a": 0.0
@@ -6425,10 +5900,7 @@
      "b": 27,
      "a": 34.6
     },
-    "BOLNICA": {
-     "b": 6,
-     "a": 5.5
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 133,
      "a": 176.8
@@ -6468,10 +5940,7 @@
      "b": 35,
      "a": 12.3
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 11.5
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 17,
@@ -6509,10 +5978,7 @@
      "b": 15,
      "a": 4.0
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 4.3
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": null,
     "PRODAJA": {
@@ -6594,10 +6060,7 @@
      "b": 32,
      "a": 15.1
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 7.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 29,
@@ -6638,10 +6101,7 @@
      "b": 20,
      "a": 6.1
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 6.5
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 10,
@@ -6679,15 +6139,9 @@
      "b": 19,
      "a": 7.2
     },
-    "IZOBRAZ": {
-     "b": 7,
-     "a": 7.7
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 5,
-     "a": 2.7
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 10,
      "a": 0.9
@@ -6716,17 +6170,11 @@
      "b": 19,
      "a": 9.3
     },
-    "PISARNE": {
-     "b": 6,
-     "a": 0.5
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 9,
-     "a": 2.5
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 27,
@@ -6759,14 +6207,8 @@
      "b": 10,
      "a": 18.2
     },
-    "BOLNICA": {
-     "b": 8,
-     "a": 12.8
-    },
-    "HOTELI": {
-     "b": 9,
-     "a": 2.1
-    },
+    "BOLNICA": null,
+    "HOTELI": null,
     "PRODAJA": {
      "b": 21,
      "a": 10.8
@@ -6802,14 +6244,8 @@
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 5,
-     "a": 2.1
-    },
-    "SPORT": {
-     "b": 5,
-     "a": 0.8
-    },
+    "PRODAJA": null,
+    "SPORT": null,
     "DRUGO": {
      "b": 24,
      "a": 5.9
@@ -6829,24 +6265,15 @@
      "b": 808,
      "a": 55.2
     },
-    "BLOKI": {
-     "b": 5,
-     "a": 1.5
-    },
-    "PISARNE": {
-     "b": 8,
-     "a": 2.2
-    },
+    "BLOKI": null,
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 5,
-     "a": 1.9
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 11,
@@ -6875,23 +6302,14 @@
      "b": 32,
      "a": 8.4
     },
-    "IZOBRAZ": {
-     "b": 9,
-     "a": 7.2
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 22,
      "a": 7.4
     },
-    "PRODAJA": {
-     "b": 7,
-     "a": 2.5
-    },
-    "SPORT": {
-     "b": 6,
-     "a": 4.0
-    },
+    "PRODAJA": null,
+    "SPORT": null,
     "DRUGO": {
      "b": 56,
      "a": 9.6
@@ -6915,26 +6333,14 @@
      "b": 33,
      "a": 17.9
     },
-    "PISARNE": {
-     "b": 8,
-     "a": 1.4
-    },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 3.5
-    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 8,
-     "a": 3.0
-    },
-    "PRODAJA": {
-     "b": 7,
-     "a": 1.3
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 11,
@@ -6959,10 +6365,7 @@
      "b": 10,
      "a": 2.2
     },
-    "PISARNE": {
-     "b": 6,
-     "a": 0.7
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
@@ -6997,19 +6400,13 @@
      "b": 16,
      "a": 6.6
     },
-    "PISARNE": {
-     "b": 9,
-     "a": 1.8
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 8,
-     "a": 2.2
-    },
+    "HOTELI": null,
     "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
@@ -7039,10 +6436,7 @@
      "b": 19,
      "a": 6.0
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 9.5
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 12,
@@ -7075,24 +6469,12 @@
      "b": 744,
      "a": 71.0
     },
-    "BLOKI": {
-     "b": 6,
-     "a": 2.6
-    },
-    "PISARNE": {
-     "b": 7,
-     "a": 0.9
-    },
+    "BLOKI": null,
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 9,
-     "a": 2.2
-    },
-    "PRODAJA": {
-     "b": 6,
-     "a": 1.1
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 27,
@@ -7117,25 +6499,16 @@
      "b": 10,
      "a": 3.8
     },
-    "PISARNE": {
-     "b": 9,
-     "a": 1.9
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 10,
      "a": 4.6
     },
-    "PRODAJA": {
-     "b": 8,
-     "a": 1.8
-    },
+    "PRODAJA": null,
     "SPORT": null,
-    "DRUGO": {
-     "b": 9,
-     "a": 1.7
-    }
+    "DRUGO": null
    }
   },
   "110200000214276912": {
@@ -7164,10 +6537,7 @@
      "b": 0,
      "a": 0.0
     },
-    "DRUGO": {
-     "b": 8,
-     "a": 1.3
-    }
+    "DRUGO": null
    }
   },
   "110200000214277050": {
@@ -7187,20 +6557,11 @@
      "b": 33,
      "a": 13.1
     },
-    "PISARNE": {
-     "b": 7,
-     "a": 1.3
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 9,
-     "a": 17.3
-    },
-    "PRODAJA": {
-     "b": 7,
-     "a": 0.8
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 18,
@@ -7221,14 +6582,8 @@
      "b": 565,
      "a": 51.0
     },
-    "BLOKI": {
-     "b": 8,
-     "a": 2.9
-    },
-    "PISARNE": {
-     "b": 8,
-     "a": 1.6
-    },
+    "BLOKI": null,
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
@@ -7238,10 +6593,7 @@
      "b": 10,
      "a": 1.2
     },
-    "PRODAJA": {
-     "b": 8,
-     "a": 1.2
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 22,
@@ -7276,10 +6628,7 @@
      "b": 22,
      "a": 19.4
     },
-    "PRODAJA": {
-     "b": 8,
-     "a": 2.0
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 83,
@@ -7300,14 +6649,8 @@
      "b": 876,
      "a": 80.7
     },
-    "BLOKI": {
-     "b": 8,
-     "a": 4.1
-    },
-    "PISARNE": {
-     "b": 5,
-     "a": 1.3
-    },
+    "BLOKI": null,
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
@@ -7353,10 +6696,7 @@
      "b": 11,
      "a": 3.6
     },
-    "SPORT": {
-     "b": 6,
-     "a": 2.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 25,
      "a": 5.6
@@ -7397,10 +6737,7 @@
      "b": 56,
      "a": 36.7
     },
-    "SPORT": {
-     "b": 9,
-     "a": 6.8
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 59,
      "a": 26.7
@@ -7459,14 +6796,8 @@
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 5,
-     "a": 1.0
-    },
-    "PRODAJA": {
-     "b": 5,
-     "a": 1.3
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 24,
@@ -7491,10 +6822,7 @@
      "b": 17,
      "a": 6.0
     },
-    "PISARNE": {
-     "b": 7,
-     "a": 0.5
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
@@ -7533,10 +6861,7 @@
      "b": 52,
      "a": 37.9
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 6.0
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
@@ -7549,10 +6874,7 @@
      "b": 26,
      "a": 7.4
     },
-    "SPORT": {
-     "b": 5,
-     "a": 3.3
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 15,
      "a": 4.3
@@ -7573,10 +6895,7 @@
      "a": 46.3
     },
     "BLOKI": null,
-    "PISARNE": {
-     "b": 8,
-     "a": 1.0
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
@@ -7693,14 +7012,8 @@
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 5,
-     "a": 2.1
-    },
-    "PRODAJA": {
-     "b": 5,
-     "a": 2.1
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 24,
@@ -7725,26 +7038,14 @@
      "b": 29,
      "a": 10.3
     },
-    "PISARNE": {
-     "b": 5,
-     "a": 0.8
-    },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 4.7
-    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 7,
-     "a": 1.1
-    },
-    "PRODAJA": {
-     "b": 9,
-     "a": 3.4
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 26,
@@ -7765,24 +7066,15 @@
      "b": 1077,
      "a": 76.6
     },
-    "BLOKI": {
-     "b": 9,
-     "a": 3.1
-    },
+    "BLOKI": null,
     "PISARNE": {
      "b": 12,
      "a": 6.6
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 7,
-     "a": 1.6
-    },
-    "PRODAJA": {
-     "b": 7,
-     "a": 4.1
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 10,
@@ -7881,10 +7173,7 @@
      "b": 18,
      "a": 3.5
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 7.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 10,
@@ -7915,24 +7204,15 @@
      "a": 26.5
     },
     "BLOKI": null,
-    "PISARNE": {
-     "b": 9,
-     "a": 1.2
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 9,
-     "a": 5.4
-    },
+    "HOTELI": null,
     "PRODAJA": null,
-    "SPORT": {
-     "b": 5,
-     "a": 1.0
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 26,
      "a": 5.6
@@ -7964,10 +7244,7 @@
      "b": 10,
      "a": 20.6
     },
-    "BOLNICA": {
-     "b": 7,
-     "a": 32.9
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 13,
      "a": 4.6
@@ -7996,10 +7273,7 @@
      "b": 658,
      "a": 68.4
     },
-    "BLOKI": {
-     "b": 9,
-     "a": 3.6
-    },
+    "BLOKI": null,
     "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
@@ -8067,10 +7341,7 @@
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 9,
-     "a": 2.5
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 42,
      "a": 21.2
@@ -8099,14 +7370,8 @@
      "b": 12,
      "a": 4.2
     },
-    "PISARNE": {
-     "b": 6,
-     "a": 0.5
-    },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 5.2
-    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
@@ -8115,10 +7380,7 @@
      "b": 13,
      "a": 6.8
     },
-    "PRODAJA": {
-     "b": 5,
-     "a": 0.7
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 15,
@@ -8150,10 +7412,7 @@
      "b": 0,
      "a": 0.0
     },
-    "PRODAJA": {
-     "b": 8,
-     "a": 0.9
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 12,
@@ -8182,10 +7441,7 @@
      "b": 12,
      "a": 3.2
     },
-    "IZOBRAZ": {
-     "b": 8,
-     "a": 7.6
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 17,
@@ -8228,18 +7484,12 @@
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 8,
-     "a": 1.8
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 14,
      "a": 3.4
     },
-    "SPORT": {
-     "b": 7,
-     "a": 3.2
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 27,
      "a": 5.2
@@ -8267,10 +7517,7 @@
      "b": 29,
      "a": 4.8
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 6.1
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 13,
@@ -8308,10 +7555,7 @@
      "b": 31,
      "a": 11.9
     },
-    "IZOBRAZ": {
-     "b": 9,
-     "a": 7.0
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 10,
@@ -8352,10 +7596,7 @@
      "b": 29,
      "a": 9.2
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 7.5
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 22,
@@ -8365,10 +7606,7 @@
      "b": 31,
      "a": 20.4
     },
-    "SPORT": {
-     "b": 6,
-     "a": 5.3
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 37,
      "a": 9.4
@@ -8398,14 +7636,8 @@
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 9,
-     "a": 4.7
-    },
-    "PRODAJA": {
-     "b": 5,
-     "a": 0.3
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": {
      "b": 0,
      "a": 0.0
@@ -8440,10 +7672,7 @@
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 6,
-     "a": 2.0
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 20,
@@ -8478,10 +7707,7 @@
      "b": 11,
      "a": 3.7
     },
-    "PRODAJA": {
-     "b": 5,
-     "a": 0.4
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 11,
@@ -8535,10 +7761,7 @@
      "a": 56.1
     },
     "BLOKI": null,
-    "PISARNE": {
-     "b": 5,
-     "a": 1.2
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
@@ -8579,14 +7802,8 @@
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 9,
-     "a": 3.9
-    },
-    "PRODAJA": {
-     "b": 6,
-     "a": 2.9
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 36,
@@ -8624,10 +7841,7 @@
      "b": 12,
      "a": 3.2
     },
-    "PRODAJA": {
-     "b": 6,
-     "a": 1.1
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 36,
@@ -8660,10 +7874,7 @@
      "b": 23,
      "a": 33.6
     },
-    "BOLNICA": {
-     "b": 6,
-     "a": 3.2
-    },
+    "BOLNICA": null,
     "HOTELI": {
      "b": 44,
      "a": 12.4
@@ -8703,18 +7914,12 @@
      "b": 11,
      "a": 2.6
     },
-    "IZOBRAZ": {
-     "b": 7,
-     "a": 7.8
-    },
+    "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 7,
-     "a": 1.9
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 12,
      "a": 2.2
@@ -8739,10 +7944,7 @@
      "b": 733,
      "a": 73.0
     },
-    "BLOKI": {
-     "b": 9,
-     "a": 3.6
-    },
+    "BLOKI": null,
     "PISARNE": {
      "b": 19,
      "a": 4.5
@@ -8753,10 +7955,7 @@
      "a": 0.0
     },
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 6,
-     "a": 2.1
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 16,
@@ -8790,10 +7989,7 @@
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 6,
-     "a": 1.1
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 10,
      "a": 2.3
@@ -8831,19 +8027,10 @@
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 7,
-     "a": 1.9
-    },
-    "PRODAJA": {
-     "b": 6,
-     "a": 1.1
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
-    "DRUGO": {
-     "b": 9,
-     "a": 2.4
-    }
+    "DRUGO": null
    }
   },
   "110200000214336757": {
@@ -8859,17 +8046,11 @@
      "b": 875,
      "a": 78.0
     },
-    "BLOKI": {
-     "b": 8,
-     "a": 3.0
-    },
+    "BLOKI": null,
     "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 5,
-     "a": 0.6
-    },
+    "HOTELI": null,
     "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
@@ -8895,20 +8076,11 @@
      "b": 21,
      "a": 12.8
     },
-    "PISARNE": {
-     "b": 9,
-     "a": 2.3
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 8,
-     "a": 13.4
-    },
-    "PRODAJA": {
-     "b": 7,
-     "a": 0.4
-    },
+    "HOTELI": null,
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 35,
@@ -8937,19 +8109,13 @@
      "b": 15,
      "a": 3.3
     },
-    "IZOBRAZ": {
-     "b": 6,
-     "a": 7.0
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 10,
      "a": 2.0
     },
-    "PRODAJA": {
-     "b": 8,
-     "a": 1.9
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 29,
@@ -8974,19 +8140,13 @@
      "b": 10,
      "a": 2.5
     },
-    "PISARNE": {
-     "b": 6,
-     "a": 1.4
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
      "a": 0.0
     },
-    "HOTELI": {
-     "b": 7,
-     "a": 2.1
-    },
+    "HOTELI": null,
     "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
@@ -9012,20 +8172,14 @@
      "b": 14,
      "a": 4.9
     },
-    "PISARNE": {
-     "b": 8,
-     "a": 3.1
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
      "b": 15,
      "a": 4.0
     },
-    "PRODAJA": {
-     "b": 9,
-     "a": 2.5
-    },
+    "PRODAJA": null,
     "SPORT": {
      "b": 0,
      "a": 0.0
@@ -9049,10 +8203,7 @@
      "b": 962,
      "a": 76.8
     },
-    "BLOKI": {
-     "b": 5,
-     "a": 1.3
-    },
+    "BLOKI": null,
     "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
@@ -9088,10 +8239,7 @@
     },
     "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 6,
-     "a": 0.9
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 10,
      "a": 2.6
@@ -9124,15 +8272,9 @@
      "b": 24,
      "a": 4.5
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 4.2
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 9,
-     "a": 1.8
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 13,
      "a": 5.4
@@ -9165,23 +8307,14 @@
      "b": 29,
      "a": 7.0
     },
-    "IZOBRAZ": {
-     "b": 5,
-     "a": 4.5
-    },
+    "IZOBRAZ": null,
     "BOLNICA": null,
-    "HOTELI": {
-     "b": 6,
-     "a": 3.7
-    },
+    "HOTELI": null,
     "PRODAJA": {
      "b": 13,
      "a": 2.8
     },
-    "SPORT": {
-     "b": 5,
-     "a": 3.1
-    },
+    "SPORT": null,
     "DRUGO": {
      "b": 24,
      "a": 4.5
@@ -9205,10 +8338,7 @@
      "b": 41,
      "a": 12.2
     },
-    "PISARNE": {
-     "b": 7,
-     "a": 1.0
-    },
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
      "b": 0,
@@ -9253,15 +8383,9 @@
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 8,
-     "a": 1.6
-    },
+    "PRODAJA": null,
     "SPORT": null,
-    "DRUGO": {
-     "b": 9,
-     "a": 1.6
-    }
+    "DRUGO": null
    }
   },
   "110200000240634886": {
@@ -9277,14 +8401,8 @@
      "b": 762,
      "a": 86.6
     },
-    "BLOKI": {
-     "b": 8,
-     "a": 3.0
-    },
-    "PISARNE": {
-     "b": 7,
-     "a": 0.4
-    },
+    "BLOKI": null,
+    "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": null,
     "HOTELI": {
@@ -9312,10 +8430,7 @@
      "b": 806,
      "a": 90.4
     },
-    "BLOKI": {
-     "b": 8,
-     "a": 4.4
-    },
+    "BLOKI": null,
     "PISARNE": null,
     "IZOBRAZ": null,
     "BOLNICA": {
@@ -9323,10 +8438,7 @@
      "a": 0.0
     },
     "HOTELI": null,
-    "PRODAJA": {
-     "b": 7,
-     "a": 0.9
-    },
+    "PRODAJA": null,
     "SPORT": null,
     "DRUGO": {
      "b": 12,

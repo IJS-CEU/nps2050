@@ -3,6 +3,7 @@
 # Na drugem računalniku povozi korena z okoljskima spremenljivkama NPS_ROOT in GREENRENOV8_ROOT.
 
 [roots]
+baze = "P:/1 IJS/Baze"  # omrežni disk IJS
 nps = "C:/pot/do/mape/2025 NPS"
 greenrenov8 = "C:/pot/do/mape/2024 LIFE23-CET-GreenRenoV8"
 
@@ -26,3 +27,11 @@ kataster_obdobje = { root = "nps", path = "5 Primarni razredi/Kataster_fond_po_o
 grafikoni = { root = "nps", path = "Grafikoni.xlsx" }
 # Model RenRates: 5-letne serije za primerjavo strategij S0–S2 (poglavje 4.1.1).
 renrates = { root = "greenrenov8", path = "WP3 - Scenarios/T.3.1 Rates/Claude code - the method/Results/SI/RenRates_SI_NPS_scenariji.xlsx" }
+
+# Registri na omrežnem disku P: (samo za agregate po občinah; nič na ravni stavbe se ne objavi).
+deli_stavb = { root = "baze", path = "GURS/KN_SLO_STAVBE_SLO_deli_stavb_20260830.csv" }
+ei_stanje = { root = "baze", path = "Energetske izkaznice/Izkaznice 20260928/EI_stanje_na_dan_20260928.csv" }
+ei_energenti = { root = "baze", path = "Energetske izkaznice/Izkaznice 20260928/EI_izkaznice_energenti.csv" }
+es_matrika = { root = "baze", path = "Eko sklad/0 Presek/Matrika_Ukrepov.xlsx" }
+es_2025 = { root = "baze", path = "Eko sklad/2025/IJS_2025_REPORT_posodobljen_VIB_2026-07-29.xlsx" }
+toplotna_karta = { root = "baze", path = "TK_2020/TK_ogr2020.gpkg" }

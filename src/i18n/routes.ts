@@ -3,6 +3,7 @@ export const pages = [
   { id: 'domov', slug: '' },
   { id: 'kaj-je-nps', slug: 'kaj-je-nps-2050' },
   { id: 'lastniki', slug: 'za-lastnike' },
+  { id: 'obcine', slug: 'moja-obcina' },
   { id: 'strokovne-podlage', slug: 'strokovne-podlage' },
   { id: 'ukrepi', slug: 'ukrepi-in-financiranje' },
   { id: 'javna-obravnava', slug: 'javna-obravnava' },

@@ -1,0 +1,165 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "Kataster nepremičnin GURS, stavbe in deli stavb, 30. 8. 2026 (razvrstitev v kategorije EPBD kot v osnutku NPS 2050)",
+   "Register energetskih izkaznic, veljavne izkaznice na dan 28. 9. 2026",
+   "Eko sklad: podprte naložbe po stavbah do leta 2025",
+   "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Samo agregati; celice z manj kot 10 stavbami niso objavljene (null). Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+ },
+ "sifra": 61,
+ "eid": "110200000110278491",
+ "name": "Ljubljana",
+ "region": "8",
+ "region_name": "Osrednjeslovenska",
+ "buildings": 42314,
+ "area_k_m2": 15960.4,
+ "segments": {
+  "hise": {
+   "buildings": 32222,
+   "area_k_m2": 4096.4,
+   "ei_buildings_pct": 10.8,
+   "ei_area_pct": 12.2,
+   "ei_calc": 3087,
+   "classes_pct": {
+    "A": 4.9,
+    "B": 38.7,
+    "C": 24.3,
+    "D": 14.4,
+    "E": 7.6,
+    "F": 4.1,
+    "G": 5.9
+   },
+   "class_groups_pct": null
+  },
+  "bloki": {
+   "buildings": 6192,
+   "area_k_m2": 6408.4,
+   "ei_buildings_pct": 60.6,
+   "ei_area_pct": 84.5,
+   "ei_calc": 3491,
+   "classes_pct": {
+    "A": 3.1,
+    "B": 16.5,
+    "C": 26.5,
+    "D": 20.8,
+    "E": 13.4,
+    "F": 7.7,
+    "G": 12.0
+   },
+   "class_groups_pct": null
+  },
+  "javne": {
+   "buildings": 1081,
+   "area_k_m2": 1957.8,
+   "ei_buildings_pct": 46.7,
+   "ei_area_pct": 66.8,
+   "ei_calc": 221,
+   "classes_pct": {
+    "A": 12.2,
+    "B": 27.1,
+    "C": 20.8,
+    "D": 15.8,
+    "E": 9.5,
+    "F": 7.2,
+    "G": 7.2
+   },
+   "class_groups_pct": null
+  },
+  "zasebne": {
+   "buildings": 2819,
+   "area_k_m2": 3497.7,
+   "ei_buildings_pct": 26.9,
+   "ei_area_pct": 58.6,
+   "ei_calc": 412,
+   "classes_pct": {
+    "A": 16.3,
+    "B": 25.7,
+    "C": 19.4,
+    "D": 14.8,
+    "E": 10.4,
+    "F": 5.1,
+    "G": 8.3
+   },
+   "class_groups_pct": null
+  }
+ },
+ "res_period_area_pct": {
+  "do 1945": 16.5,
+  "1946–1970": 25.8,
+  "1971–1980": 19.3,
+  "1981–1990": 12.8,
+  "1991–2002": 7.5,
+  "2003–2010": 7.9,
+  "2011–2020": 4.8,
+  "po 2020": 5.4
+ },
+ "res_above43_pct": 27.4,
+ "nres_above_meps30_pct": 8.2,
+ "nres_above_meps33_pct": 16.4,
+ "nres_ei_calc": 633,
+ "es_res": {
+  "ovoj": {
+   "b": 2608,
+   "pct": 6.8
+  },
+  "okna": {
+   "b": 2179,
+   "pct": 5.7
+  },
+  "tc": {
+   "b": 2146,
+   "pct": 5.6
+  },
+  "biomasa": {
+   "b": 330,
+   "pct": 0.9
+  },
+  "pv": {
+   "b": 1224,
+   "pct": 3.2
+  },
+  "prezr": {
+   "b": 3284,
+   "pct": 8.5
+  }
+ },
+ "es_res_any_pct": 23.2,
+ "obnova_res_pct": 60.8,
+ "obnova_res_since2000_pct": 42.0,
+ "public_by_cat": {
+  "PISARNE": {
+   "b": 152,
+   "a": 308.9
+  },
+  "IZOBRAZ": {
+   "b": 435,
+   "a": 823.2
+  },
+  "BOLNICA": {
+   "b": 97,
+   "a": 294.5
+  },
+  "HOTELI": {
+   "b": 0,
+   "a": null
+  },
+  "PRODAJA": {
+   "b": 0,
+   "a": null
+  },
+  "SPORT": {
+   "b": 149,
+   "a": 255.8
+  },
+  "DRUGO": {
+   "b": 248,
+   "a": 275.5
+  }
+ }
+}

@@ -5,7 +5,7 @@ from .context import Context, write_csv, write_json
 from .draft import row
 from .numbers import num
 
-MIN_CELL = 5  # celice z manj kot 5 stavbami se ne objavijo (odločitev 23. 9. 2026)
+MIN_CELL = 10  # celice z manj kot 10 stavbami se ne objavijo (odločitev 29. 9. 2026, prej 5)
 
 # id (kot v katastru), ime na strani, segment, vzorec prve celice v preglednicah osnutka
 CATS = [

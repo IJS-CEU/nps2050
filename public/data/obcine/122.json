@@ -1,0 +1,141 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "Kataster nepremičnin GURS, stavbe in deli stavb, 30. 8. 2026 (razvrstitev v kategorije EPBD kot v osnutku NPS 2050)",
+   "Register energetskih izkaznic, veljavne izkaznice na dan 28. 9. 2026",
+   "Eko sklad: podprte naložbe po stavbah do leta 2025",
+   "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Samo agregati; celice z manj kot 10 stavbami niso objavljene (null). Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+ },
+ "sifra": 122,
+ "eid": "110200000110274821",
+ "name": "Škofja Loka",
+ "region": "9",
+ "region_name": "Gorenjska",
+ "buildings": 5501,
+ "area_k_m2": 1031.7,
+ "segments": {
+  "hise": {
+   "buildings": 4829,
+   "area_k_m2": 624.5,
+   "ei_buildings_pct": 5.3,
+   "ei_area_pct": 5.7,
+   "ei_calc": 222,
+   "classes_pct": null,
+   "class_groups_pct": {
+    "A–C": 63.5,
+    "D–E": 23.0,
+    "F–G": 13.5
+   }
+  },
+  "bloki": {
+   "buildings": 270,
+   "area_k_m2": 202.6,
+   "ei_buildings_pct": 56.3,
+   "ei_area_pct": 80.4,
+   "ei_calc": 147,
+   "classes_pct": null,
+   "class_groups_pct": {
+    "A–C": 49.0,
+    "D–E": 32.7,
+    "F–G": 18.4
+   }
+  },
+  "javne": {
+   "buildings": 109,
+   "area_k_m2": 78.4,
+   "ei_buildings_pct": 33.9,
+   "ei_area_pct": 54.9,
+   "ei_calc": 14,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "zasebne": {
+   "buildings": 293,
+   "area_k_m2": 126.2,
+   "ei_buildings_pct": 11.3,
+   "ei_area_pct": 33.2,
+   "ei_calc": 19,
+   "classes_pct": null,
+   "class_groups_pct": null
+  }
+ },
+ "res_period_area_pct": {
+  "do 1945": 15.2,
+  "1946–1970": 19.4,
+  "1971–1980": 20.8,
+  "1981–1990": 17.3,
+  "1991–2002": 9.4,
+  "2003–2010": 7.3,
+  "2011–2020": 6.7,
+  "po 2020": 3.8
+ },
+ "res_above43_pct": 25.7,
+ "nres_above_meps30_pct": null,
+ "nres_above_meps33_pct": null,
+ "nres_ei_calc": 33,
+ "es_res": {
+  "ovoj": {
+   "b": 267,
+   "pct": 5.2
+  },
+  "okna": {
+   "b": 336,
+   "pct": 6.6
+  },
+  "tc": {
+   "b": 587,
+   "pct": 11.5
+  },
+  "biomasa": {
+   "b": 353,
+   "pct": 6.9
+  },
+  "pv": {
+   "b": 319,
+   "pct": 6.3
+  },
+  "prezr": {
+   "b": 315,
+   "pct": 6.2
+  }
+ },
+ "es_res_any_pct": 31.6,
+ "obnova_res_pct": 49.0,
+ "obnova_res_since2000_pct": 28.6,
+ "public_by_cat": {
+  "PISARNE": {
+   "b": 12,
+   "a": 8.6
+  },
+  "IZOBRAZ": {
+   "b": 34,
+   "a": 41.6
+  },
+  "BOLNICA": {
+   "b": null,
+   "a": null
+  },
+  "HOTELI": {
+   "b": 0,
+   "a": null
+  },
+  "PRODAJA": {
+   "b": 0,
+   "a": null
+  },
+  "SPORT": {
+   "b": 13,
+   "a": 7.2
+  },
+  "DRUGO": {
+   "b": 43,
+   "a": 17.1
+  }
+ }
+}

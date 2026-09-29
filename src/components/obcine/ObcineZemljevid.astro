@@ -1,0 +1,115 @@
+---
+/**
+ * Moja občina: zemljevid občin, obarvan po izbranem kazalniku (obcine_index.json). Klik na občino odpre njeno stran.
+ * Enakovredna preglednica z iskanjem je v ObcineSeznam.astro pod zemljevidom.
+ */
+import ChartFigure from '../charts/ChartFigure.astro';
+import Seg from '../charts/Seg.astro';
+import { loadData, type ObcineIndex } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const d = loadData<ObcineIndex>('obcine_index');
+---
+<ChartFigure
+  id="graf-obcine"
+  title="Stavbe po občinah"
+  subtitle="Izberite kazalnik; klik na občino odpre njeno stran"
+  file="nps2050-obcine"
+  csv={[{ file: 'obcine.csv', label: 'CSV (vse občine)' }]}
+  ariaLabel={`Zemljevid 212 občin, obarvan po izbranem kazalniku. Privzeto: delež stanovanjske površine z veljavno energetsko izkaznico (Slovenija ${nf(d.si.ei_area_res_pct, 1)} %). Vse vrednosti so v preglednici občin pod zemljevidom.`}
+  height={460}
+>
+  <Fragment slot="controls">
+    <Seg name="ob-mera" legend="Kazalnik" options={[
+      { value: 'ei_area_res_pct', label: 'Pokritost z izkaznicami' },
+      { value: 'pre1981_res_area_pct', label: 'Zgrajeno pred 1981' },
+      { value: 'es_res_any_pct', label: 'Ukrepi Eko sklada' },
+      { value: 'obnova_res_pct', label: 'Vpisane obnove' },
+    ]} />
+  </Fragment>
+  <Fragment slot="caption">
+    <p id="ob-cap">Vsi kazalniki veljajo za stanovanjske stavbe (enostanovanjske hiše in večstanovanjske stavbe). Barve so razdeljene v pet razredov s podobnim številom občin.</p>
+    <p>Viri: kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (podprte naložbe do 2025); meje: GURS RPE (CC BY 4.0).</p>
+  </Fragment>
+  <Fragment slot="table">
+    <p>Preglednica vseh občin z iskanjem je pod zemljevidom.</p>
+  </Fragment>
+</ChartFigure>
+
+<script>
+  import { base, choice, echarts, mount, nf, tipRow, tipTitle, type Tokens } from '../../scripts/charts/core';
+  import type { ObcineIndex, ObIndexRow } from '../../lib/data';
+
+  const METRIC: Record<string, { label: string; si: (d: ObcineIndex) => number | null; cap: string }> = {
+    ei_area_res_pct: { label: 'Stanovanjska površina z veljavno izkaznico', si: (d) => d.si.ei_area_res_pct, cap: 'Delež uporabne površine stanovanjskih stavb, ki imajo vsaj eno veljavno energetsko izkaznico.' },
+    pre1981_res_area_pct: { label: 'Stanovanjska površina, zgrajena pred 1981', si: (d) => d.si.pre1981_res_area_pct, cap: 'Delež uporabne površine stanovanjskih stavb, zgrajenih pred prvimi toplotnimi predpisi (1981).' },
+    es_res_any_pct: { label: 'Stanovanjske stavbe z ukrepom Eko sklada', si: (d) => d.si.es_res_any_pct, cap: 'Delež stanovanjskih stavb z vsaj eno naložbo, ki jo je podprl Eko sklad (izolacija, okna, ogrevanje, sončna elektrarna, prezračevanje).' },
+    obnova_res_pct: { label: 'Stanovanjske stavbe z vpisano obnovo', si: (d) => d.si.obnova_res_pct, cap: 'Delež stanovanjskih stavb, pri katerih je v katastru vpisano leto obnove strehe, fasade ali oken.' },
+  };
+
+  const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+  const get = async (f: string) => { const r = await fetch(`${b}data/${f}`); if (!r.ok) throw new Error(f); return r.json(); };
+
+  function breaks(vals: number[]): number[] {
+    const s = [...vals].sort((x, y) => x - y);
+    const q = (p: number) => s[Math.min(s.length - 1, Math.floor(p * s.length))];
+    return [...new Set([0.2, 0.4, 0.6, 0.8].map((p) => Math.round(q(p))))];
+  }
+
+  async function init(fig: HTMLElement) {
+    const [d, geo] = await Promise.all([get('obcine_index.json'), get('zemljevid_obcine.geojson')]) as [ObcineIndex, any];
+    echarts.registerMap('nps-obcine-ob', geo);
+    const byName: Record<string, ObIndexRow> = Object.fromEntries(d.municipalities.map((m) => [m.name, m]));
+    let metric = 'ei_area_res_pct';
+    const cap = fig.querySelector<HTMLElement>('#ob-cap')!;
+    const capBase = cap.textContent!;
+
+    const render = (t: Tokens) => {
+      const o = base(t) as Record<string, any>;
+      const cs = getComputedStyle(document.documentElement);
+      const ramp = [1, 2, 3, 4, 5].map((i) => cs.getPropertyValue(`--map-${i}`).trim());
+      const vals = d.municipalities.map((m) => (m as any)[metric]).filter((v: number | null) => v !== null) as number[];
+      const br = breaks(vals);
+      const edges = [Math.floor(Math.min(...vals)), ...br, Math.ceil(Math.max(...vals))];
+      const pieces = edges.slice(0, -1).map((lo, i) => ({
+        min: lo, max: edges[i + 1], color: ramp[Math.round((i * (ramp.length - 1)) / Math.max(1, edges.length - 2))],
+        label: i === 0 ? `do ${nf(edges[1])} %` : i === edges.length - 2 ? `nad ${nf(lo)} %` : `${nf(lo)}–${nf(edges[i + 1])} %`,
+      }));
+      const si = METRIC[metric].si(d);
+      return {
+        ...o,
+        legend: { show: false },
+        tooltip: {
+          ...o.tooltip, trigger: 'item',
+          formatter: (p: any) => {
+            const m = byName[p.name]; if (!m) return '';
+            const v = (m as any)[metric];
+            return tipTitle(m.name) + tipRow(p.color || t.muted, METRIC[metric].label, v === null ? 'premalo podatkov' : `${nf(v, 1)} %`, 'rect')
+              + `<div style="opacity:.75;margin-top:2px">Slovenija: ${nf(si, 1)} % · klik odpre stran občine</div>`;
+          },
+        },
+        visualMap: {
+          type: 'piecewise', pieces, orient: t.narrow ? 'vertical' : 'horizontal', left: 0, ...(t.narrow ? { top: 262 } : { bottom: 0 }), itemWidth: 14, itemHeight: 10, itemGap: 10,
+          textStyle: { color: t.ink2, fontFamily: t.font, fontSize: 11 }, selectedMode: false, outOfRange: { color: t.grid },
+        },
+        series: [{
+          type: 'map', map: 'nps-obcine-ob', aspectScale: 0.72, roam: false, showLegendSymbol: false, selectedMode: false,
+          layoutCenter: ['50%', t.narrow ? '31%' : '45%'],
+          layoutSize: Math.round(Math.min(t.width * 0.96, (t.narrow ? 290 : 400) * 1.54)),
+          itemStyle: { borderColor: t.panel, borderWidth: 0.5 },
+          emphasis: { label: { show: false }, itemStyle: { areaColor: t.s.ref, borderColor: t.ink, borderWidth: 1.5 } },
+          label: { show: false },
+          data: d.municipalities.map((m) => ({ name: m.name, value: (m as any)[metric] ?? undefined })),
+        }],
+      };
+    };
+
+    const mo = mount(fig, render);
+    mo.chart.on('click', (p: any) => { const m = byName[p.name]; if (m) location.href = `${b}obcina/${m.sifra}/`; });
+    choice(fig, 'ob-mera', (v) => { metric = v; cap.textContent = `${METRIC[v].cap} ${capBase}`; mo.redraw(); });
+    cap.textContent = `${METRIC[metric].cap} ${capBase}`;
+  }
+
+  const fig = document.getElementById('graf-obcine');
+  if (fig) init(fig).catch((e) => console.error('graf občine:', e));
+</script>

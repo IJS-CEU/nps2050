@@ -100,3 +100,26 @@ export interface Revscina {
   by_type_2024: { name: string; pct: number }[];
   investments_2030: { households: number; cumulative_gwh: number };
 }
+
+export interface ObSegment { buildings: number | null; area_k_m2: number | null; ei_buildings_pct: number | null; ei_area_pct: number | null; ei_calc: number | null; classes_pct: Record<string, number> | null; class_groups_pct: Record<string, number> | null }
+export interface ObArea {
+  buildings: number; area_k_m2: number;
+  segments: Record<string, ObSegment>;
+  res_period_area_pct: Record<string, number | null>;
+  res_above43_pct: number | null; nres_above_meps30_pct: number | null; nres_above_meps33_pct: number | null; nres_ei_calc: number | null;
+  es_res: Record<string, { b: number | null; pct: number | null }>; es_res_any_pct: number | null;
+  obnova_res_pct: number | null; obnova_res_since2000_pct: number | null;
+  public_by_cat: Record<string, { b: number | null; a: number | null }>;
+}
+export interface ObIndexRow {
+  sifra: number; eid: string; name: string; region: string; buildings: number; area_k_m2: number;
+  ei_area_res_pct: number | null; hise_ei_pct: number | null; res_above43_pct: number | null; es_res_any_pct: number | null;
+  obnova_res_pct: number | null; pre1981_res_area_pct: number | null;
+}
+export interface ObcineIndex {
+  meta: Meta; min_cell: number; classes: string[]; class_groups: string[]; periods: string[];
+  segments: { id: string; name: string }[]; es_groups: { id: string; name: string }[]; categories: { id: string; name: string }[];
+  si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number };
+  municipalities: ObIndexRow[];
+}
+export interface Obcina extends ObArea { meta: Meta; sifra: number; eid: string; name: string; region: string; region_name: string }

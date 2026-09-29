@@ -8,7 +8,7 @@
    "Kontrola: Kataster_fond_po_obdobju_2026.xlsx (kataster nepremičnin GURS)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "Javne stavbe so določene po pretežni dejanski rabi, ne po lastništvu. Uporabna površina po katastru vključuje tudi neogrevane površine; ogrevana površina v scenariju NPS 2050 je manjša. Pragovi v kWh/(m²·a) primarne energije. Celice z manj kot 5 stavbami so izpuščene (null)."
+  "note": "Javne stavbe so določene po pretežni dejanski rabi, ne po lastništvu. Uporabna površina po katastru vključuje tudi neogrevane površine; ogrevana površina v scenariju NPS 2050 je manjša. Pragovi v kWh/(m²·a) primarne energije. Celice z manj kot 10 stavbami so izpuščene (null)."
  },
  "periods": [
   "do 1945",

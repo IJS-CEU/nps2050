@@ -1,0 +1,24 @@
+---
+page: obcine
+title: 'Moja občina'
+description: 'Stavbni fond, energetske izkaznice, energijski razredi in prenove, ki jih je podprl Eko sklad, za vsako od 212 slovenskih občin.'
+lead: 'Kaj pomeni prenova stavb za vašo občino? Izberite občino na zemljevidu ali v preglednici in poglejte, kaj o njenih stavbah pravijo registri.'
+---
+import ObcineZemljevid from '../../components/obcine/ObcineZemljevid.astro';
+import ObcineSeznam from '../../components/obcine/ObcineSeznam.astro';
+
+{/* Vir: CLAUDE.md §10.1. Kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (do 2025); meje razredov in pragovi NPS_v39, pogl. 3 in 4.7. Številke bere cevovod data/npsdata/obcine.py. */}
+
+<ObcineZemljevid />
+
+<ObcineSeznam />
+
+## Kaj je na strani občine
+
+- **Stavbe po segmentih:** enostanovanjske hiše, večstanovanjske stavbe, javne stavbe in stavbe zasebnega storitvenega sektorja, s številom, površino in deležem z veljavno energetsko izkaznico.
+- **Obdobje gradnje:** koliko stanovanjske površine je nastalo pred prvimi toplotnimi predpisi leta 1981.
+- **Energijski razredi:** razvrstitev stavb z računsko izkaznico po novi lestvici NPS 2050.
+- **Najslabše stavbe:** delež stavb z izkaznico nad pragom 43 % najmanj učinkovitih in nad pragovi minimalnih standardov za nestanovanjske stavbe.
+- **Prenove:** ukrepi, ki jih je podprl Eko sklad, in obnove, vpisane v kataster.
+
+Vse je primerjano s Slovenijo. Objavljeni so samo seštevki. Celice z manj kot 10 stavbami niso prikazane, podatki o posameznih stavbah in lastnikih se ne objavijo.

@@ -1,0 +1,137 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "Kataster nepremičnin GURS, stavbe in deli stavb, 30. 8. 2026 (razvrstitev v kategorije EPBD kot v osnutku NPS 2050)",
+   "Register energetskih izkaznic, veljavne izkaznice na dan 28. 9. 2026",
+   "Eko sklad: podprte naložbe po stavbah do leta 2025",
+   "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Samo agregati; celice z manj kot 10 stavbami niso objavljene (null). Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+ },
+ "sifra": 92,
+ "eid": "110200000110272023",
+ "name": "Podčetrtek",
+ "region": "4",
+ "region_name": "Savinjska",
+ "buildings": 1895,
+ "area_k_m2": 243.6,
+ "segments": {
+  "hise": {
+   "buildings": 1678,
+   "area_k_m2": 147.0,
+   "ei_buildings_pct": 4.1,
+   "ei_area_pct": 4.5,
+   "ei_calc": 61,
+   "classes_pct": null,
+   "class_groups_pct": {
+    "A–C": 39.3,
+    "D–E": 29.5,
+    "F–G": 31.1
+   }
+  },
+  "bloki": {
+   "buildings": 44,
+   "area_k_m2": 21.0,
+   "ei_buildings_pct": 25.0,
+   "ei_area_pct": 49.5,
+   "ei_calc": 11,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "javne": {
+   "buildings": 32,
+   "area_k_m2": 18.7,
+   "ei_buildings_pct": null,
+   "ei_area_pct": null,
+   "ei_calc": null,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "zasebne": {
+   "buildings": 141,
+   "area_k_m2": 56.9,
+   "ei_buildings_pct": null,
+   "ei_area_pct": null,
+   "ei_calc": null,
+   "classes_pct": null,
+   "class_groups_pct": null
+  }
+ },
+ "res_period_area_pct": {
+  "do 1945": 12.2,
+  "1946–1970": 11.6,
+  "1971–1980": 31.0,
+  "1981–1990": 15.9,
+  "1991–2002": 11.8,
+  "2003–2010": 8.3,
+  "2011–2020": 5.8,
+  "po 2020": 3.4
+ },
+ "res_above43_pct": 52.8,
+ "nres_above_meps30_pct": null,
+ "nres_above_meps33_pct": null,
+ "nres_ei_calc": null,
+ "es_res": {
+  "ovoj": {
+   "b": 27,
+   "pct": 1.6
+  },
+  "okna": {
+   "b": 13,
+   "pct": 0.8
+  },
+  "tc": {
+   "b": 116,
+   "pct": 6.7
+  },
+  "biomasa": {
+   "b": 52,
+   "pct": 3.0
+  },
+  "pv": {
+   "b": 100,
+   "pct": 5.8
+  },
+  "prezr": {
+   "b": 50,
+   "pct": 2.9
+  }
+ },
+ "es_res_any_pct": 15.2,
+ "obnova_res_pct": 42.8,
+ "obnova_res_since2000_pct": 25.7,
+ "public_by_cat": {
+  "PISARNE": {
+   "b": null,
+   "a": null
+  },
+  "IZOBRAZ": {
+   "b": null,
+   "a": null
+  },
+  "BOLNICA": {
+   "b": 0,
+   "a": null
+  },
+  "HOTELI": {
+   "b": 0,
+   "a": null
+  },
+  "PRODAJA": {
+   "b": 0,
+   "a": null
+  },
+  "SPORT": {
+   "b": null,
+   "a": null
+  },
+  "DRUGO": {
+   "b": 19,
+   "a": 8.7
+  }
+ }
+}

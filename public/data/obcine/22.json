@@ -1,0 +1,133 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "Kataster nepremičnin GURS, stavbe in deli stavb, 30. 8. 2026 (razvrstitev v kategorije EPBD kot v osnutku NPS 2050)",
+   "Register energetskih izkaznic, veljavne izkaznice na dan 28. 9. 2026",
+   "Eko sklad: podprte naložbe po stavbah do leta 2025",
+   "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Samo agregati; celice z manj kot 10 stavbami niso objavljene (null). Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+ },
+ "sifra": 22,
+ "eid": "110200000110267536",
+ "name": "Dol pri Ljubljani",
+ "region": "8",
+ "region_name": "Osrednjeslovenska",
+ "buildings": 1877,
+ "area_k_m2": 277.1,
+ "segments": {
+  "hise": {
+   "buildings": 1742,
+   "area_k_m2": 208.1,
+   "ei_buildings_pct": 6.4,
+   "ei_area_pct": 7.4,
+   "ei_calc": 104,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "bloki": {
+   "buildings": 55,
+   "area_k_m2": 32.7,
+   "ei_buildings_pct": 52.7,
+   "ei_area_pct": 71.9,
+   "ei_calc": 23,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "javne": {
+   "buildings": 24,
+   "area_k_m2": 9.9,
+   "ei_buildings_pct": 0.0,
+   "ei_area_pct": 0.0,
+   "ei_calc": 0,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "zasebne": {
+   "buildings": 56,
+   "area_k_m2": 26.4,
+   "ei_buildings_pct": null,
+   "ei_area_pct": null,
+   "ei_calc": null,
+   "classes_pct": null,
+   "class_groups_pct": null
+  }
+ },
+ "res_period_area_pct": {
+  "do 1945": 8.7,
+  "1946–1970": 13.9,
+  "1971–1980": 12.9,
+  "1981–1990": 14.5,
+  "1991–2002": 11.0,
+  "2003–2010": 21.1,
+  "2011–2020": 10.9,
+  "po 2020": 7.0
+ },
+ "res_above43_pct": 11.0,
+ "nres_above_meps30_pct": null,
+ "nres_above_meps33_pct": null,
+ "nres_ei_calc": null,
+ "es_res": {
+  "ovoj": {
+   "b": 38,
+   "pct": 2.1
+  },
+  "okna": {
+   "b": 36,
+   "pct": 2.0
+  },
+  "tc": {
+   "b": 247,
+   "pct": 13.7
+  },
+  "biomasa": {
+   "b": 54,
+   "pct": 3.0
+  },
+  "pv": {
+   "b": 94,
+   "pct": 5.2
+  },
+  "prezr": {
+   "b": 81,
+   "pct": 4.5
+  }
+ },
+ "es_res_any_pct": 23.9,
+ "obnova_res_pct": 36.7,
+ "obnova_res_since2000_pct": 24.4,
+ "public_by_cat": {
+  "PISARNE": {
+   "b": null,
+   "a": null
+  },
+  "IZOBRAZ": {
+   "b": null,
+   "a": null
+  },
+  "BOLNICA": {
+   "b": 0,
+   "a": null
+  },
+  "HOTELI": {
+   "b": 0,
+   "a": null
+  },
+  "PRODAJA": {
+   "b": 0,
+   "a": null
+  },
+  "SPORT": {
+   "b": null,
+   "a": null
+  },
+  "DRUGO": {
+   "b": 14,
+   "a": 2.1
+  }
+ }
+}

@@ -1,0 +1,133 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "Kataster nepremičnin GURS, stavbe in deli stavb, 30. 8. 2026 (razvrstitev v kategorije EPBD kot v osnutku NPS 2050)",
+   "Register energetskih izkaznic, veljavne izkaznice na dan 28. 9. 2026",
+   "Eko sklad: podprte naložbe po stavbah do leta 2025",
+   "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Samo agregati; celice z manj kot 10 stavbami niso objavljene (null). Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+ },
+ "sifra": 186,
+ "eid": "110200000214279692",
+ "name": "Trzin",
+ "region": "8",
+ "region_name": "Osrednjeslovenska",
+ "buildings": 1200,
+ "area_k_m2": 265.2,
+ "segments": {
+  "hise": {
+   "buildings": 947,
+   "area_k_m2": 125.2,
+   "ei_buildings_pct": 7.8,
+   "ei_area_pct": 8.5,
+   "ei_calc": 66,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "bloki": {
+   "buildings": 62,
+   "area_k_m2": 33.3,
+   "ei_buildings_pct": 56.5,
+   "ei_area_pct": 77.3,
+   "ei_calc": 34,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "javne": {
+   "buildings": 11,
+   "area_k_m2": 10.4,
+   "ei_buildings_pct": null,
+   "ei_area_pct": null,
+   "ei_calc": null,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "zasebne": {
+   "buildings": 180,
+   "area_k_m2": 96.3,
+   "ei_buildings_pct": 27.2,
+   "ei_area_pct": 46.5,
+   "ei_calc": 32,
+   "classes_pct": null,
+   "class_groups_pct": null
+  }
+ },
+ "res_period_area_pct": {
+  "do 1945": 6.0,
+  "1946–1970": 8.2,
+  "1971–1980": 26.3,
+  "1981–1990": 19.2,
+  "1991–2002": 22.2,
+  "2003–2010": 11.0,
+  "2011–2020": 5.2,
+  "po 2020": 1.7
+ },
+ "res_above43_pct": 10.0,
+ "nres_above_meps30_pct": null,
+ "nres_above_meps33_pct": null,
+ "nres_ei_calc": 34,
+ "es_res": {
+  "ovoj": {
+   "b": 40,
+   "pct": 4.0
+  },
+  "okna": {
+   "b": 42,
+   "pct": 4.2
+  },
+  "tc": {
+   "b": 106,
+   "pct": 10.5
+  },
+  "biomasa": {
+   "b": 17,
+   "pct": 1.7
+  },
+  "pv": {
+   "b": 43,
+   "pct": 4.3
+  },
+  "prezr": {
+   "b": 78,
+   "pct": 7.7
+  }
+ },
+ "es_res_any_pct": 24.1,
+ "obnova_res_pct": 46.9,
+ "obnova_res_since2000_pct": 33.7,
+ "public_by_cat": {
+  "PISARNE": {
+   "b": null,
+   "a": null
+  },
+  "IZOBRAZ": {
+   "b": null,
+   "a": null
+  },
+  "BOLNICA": {
+   "b": 0,
+   "a": null
+  },
+  "HOTELI": {
+   "b": 0,
+   "a": null
+  },
+  "PRODAJA": {
+   "b": 0,
+   "a": null
+  },
+  "SPORT": {
+   "b": null,
+   "a": null
+  },
+  "DRUGO": {
+   "b": null,
+   "a": null
+  }
+ }
+}

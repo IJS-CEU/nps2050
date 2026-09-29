@@ -1,0 +1,92 @@
+---
+/** Preglednica vseh 212 občin z iskanjem in razvrščanjem (enakovredna zemljevidu; brez JS je to navadna preglednica s povezavami). */
+import { withBase } from '../../i18n/routes';
+import { loadData, type ObcineIndex } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const d = loadData<ObcineIndex>('obcine_index');
+const rows = [...d.municipalities].sort((a, b) => a.name.localeCompare(b.name, 'sl'));
+const cols: { k: keyof (typeof rows)[number]; label: string; pct?: boolean }[] = [
+  { k: 'buildings', label: 'Stavbe' },
+  { k: 'ei_area_res_pct', label: 'Z izkaznico', pct: true },
+  { k: 'pre1981_res_area_pct', label: 'Pred 1981', pct: true },
+  { k: 'es_res_any_pct', label: 'Z ukrepom Eko sklada', pct: true },
+  { k: 'obnova_res_pct', label: 'Vpisana obnova', pct: true },
+];
+const cell = (v: unknown, pct?: boolean) => (v === null || v === undefined ? '–' : pct ? `${nf(v as number, 1)} %` : nf(v as number));
+---
+<section class="obs" aria-labelledby="obs-t">
+  <h2 id="obs-t">Vse občine</h2>
+  <p class="obs-exp">Deleži veljajo za stanovanjske stavbe: <b>z izkaznico</b> – delež površine z veljavno energetsko izkaznico; <b>pred 1981</b> – delež površine, zgrajene pred letom 1981; <b>z ukrepom Eko sklada</b> – delež stavb z vsaj eno podprto naložbo; <b>vpisana obnova</b> – delež stavb z vpisanim letom obnove strehe, fasade ali oken.</p>
+  <label class="obs-q js-only"><span>Poišči občino</span><input type="search" id="obs-q" placeholder="npr. Kranj" autocomplete="off" /></label>
+  <p class="obs-n" id="obs-n" aria-live="polite"></p>
+  <div class="tblwrap" tabindex="0" role="region" aria-labelledby="obs-t">
+    <table id="obs-t-tbl">
+      <thead>
+        <tr>
+          <th scope="col" aria-sort="ascending"><button type="button" class="obs-sort" data-k="name">Občina</button></th>
+          {cols.map((c) => <th scope="col" class="num"><button type="button" class="obs-sort" data-k={c.k}>{c.label}</button></th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((m) => (
+          <tr data-name={m.name.toLowerCase()} data-v={JSON.stringify(Object.fromEntries(cols.map((c) => [c.k, m[c.k]])))}>
+            <th scope="row"><a href={withBase(`obcina/${m.sifra}/`)}>{m.name}</a></th>
+            {cols.map((c) => <td class="num">{cell(m[c.k], c.pct)}</td>)}
+          </tr>
+        ))}
+      </tbody>
+      <tfoot>
+        <tr><th scope="row">Slovenija</th><td class="num">{nf(d.si.buildings)}</td><td class="num">{nf(d.si.ei_area_res_pct, 1)} %</td><td class="num">{nf(d.si.pre1981_res_area_pct, 1)} %</td><td class="num">{nf(d.si.es_res_any_pct, 1)} %</td><td class="num">{nf(d.si.obnova_res_pct, 1)} %</td></tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
+<style>
+  .obs { margin: 2rem 0; }
+  .obs-q { display: grid; gap: .25rem; font-size: .8rem; font-weight: 700; color: var(--ink2); max-width: 20rem; }
+  .obs-q input { font: inherit; font-size: .95rem; font-weight: 500; padding: .45rem .6rem; border: 1px solid var(--ink2); border-radius: 8px; background: var(--panel); color: var(--ink); }
+  .obs-exp { font-size: .85rem; color: var(--ink2); max-width: 80ch; }
+  .obs-n { font-size: .85rem; color: var(--ink2); margin: .5rem 0; }
+  .obs .tblwrap { max-height: 32rem; overflow: auto; }
+  .obs table { font-size: .86rem; }
+  .obs thead th { position: sticky; top: 0; background: var(--panel); z-index: 1; }
+  .obs-sort { font: inherit; font-weight: 700; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: inherit; text-transform: inherit; letter-spacing: inherit; }
+  .obs-sort:hover { color: var(--green); }
+  .obs th[aria-sort='ascending'] .obs-sort::after { content: ' ↑'; }
+  .obs th[aria-sort='descending'] .obs-sort::after { content: ' ↓'; }
+  .obs tfoot th, .obs tfoot td { font-weight: 800; border-top: 2px solid var(--ink2); }
+</style>
+
+<script>
+  const tbl = document.getElementById('obs-t-tbl') as HTMLTableElement | null;
+  const q = document.getElementById('obs-q') as HTMLInputElement | null;
+  if (tbl && q) {
+    const body = tbl.tBodies[0];
+    const rows = [...body.rows];
+    const n = document.getElementById('obs-n')!;
+    const upd = () => {
+      const s = q.value.trim().toLowerCase();
+      let k = 0;
+      rows.forEach((r) => { const ok = !s || r.dataset.name!.includes(s); r.hidden = !ok; if (ok) k++; });
+      n.textContent = s ? `Zadetkov: ${k}` : `${rows.length} občin`;
+    };
+    q.addEventListener('input', upd);
+    upd();
+    tbl.querySelectorAll<HTMLButtonElement>('.obs-sort').forEach((btn) => btn.addEventListener('click', () => {
+      const th = btn.closest('th')!;
+      const dir = th.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+      tbl.querySelectorAll('thead th').forEach((x) => x.removeAttribute('aria-sort'));
+      th.setAttribute('aria-sort', dir);
+      const key = btn.dataset.k!;
+      const val = (r: HTMLTableRowElement) => (key === 'name' ? r.dataset.name! : (JSON.parse(r.dataset.v!)[key] ?? -1));
+      rows.sort((a, b) => {
+        const x = val(a), y = val(b);
+        const c = typeof x === 'string' ? x.localeCompare(y as string, 'sl') : (x as number) - (y as number);
+        return dir === 'ascending' ? c : -c;
+      });
+      body.append(...rows);
+    }));
+  }
+</script>

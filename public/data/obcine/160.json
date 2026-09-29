@@ -1,0 +1,141 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "Kataster nepremičnin GURS, stavbe in deli stavb, 30. 8. 2026 (razvrstitev v kategorije EPBD kot v osnutku NPS 2050)",
+   "Register energetskih izkaznic, veljavne izkaznice na dan 28. 9. 2026",
+   "Eko sklad: podprte naložbe po stavbah do leta 2025",
+   "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Samo agregati; celice z manj kot 10 stavbami niso objavljene (null). Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+ },
+ "sifra": 160,
+ "eid": "110200000214277563",
+ "name": "Hoče-Slivnica",
+ "region": "2",
+ "region_name": "Podravska",
+ "buildings": 4358,
+ "area_k_m2": 662.6,
+ "segments": {
+  "hise": {
+   "buildings": 3942,
+   "area_k_m2": 460.8,
+   "ei_buildings_pct": 10.1,
+   "ei_area_pct": 11.2,
+   "ei_calc": 365,
+   "classes_pct": {
+    "A": 4.1,
+    "B": 37.3,
+    "C": 18.9,
+    "D": 12.9,
+    "E": 12.6,
+    "F": 4.9,
+    "G": 9.3
+   },
+   "class_groups_pct": null
+  },
+  "bloki": {
+   "buildings": 132,
+   "area_k_m2": 56.6,
+   "ei_buildings_pct": 40.2,
+   "ei_area_pct": 64.4,
+   "ei_calc": 50,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "javne": {
+   "buildings": 65,
+   "area_k_m2": 50.8,
+   "ei_buildings_pct": 27.7,
+   "ei_area_pct": 43.1,
+   "ei_calc": null,
+   "classes_pct": null,
+   "class_groups_pct": null
+  },
+  "zasebne": {
+   "buildings": 219,
+   "area_k_m2": 94.4,
+   "ei_buildings_pct": 12.3,
+   "ei_area_pct": 41.4,
+   "ei_calc": 17,
+   "classes_pct": null,
+   "class_groups_pct": null
+  }
+ },
+ "res_period_area_pct": {
+  "do 1945": 10.9,
+  "1946–1970": 19.7,
+  "1971–1980": 17.0,
+  "1981–1990": 13.3,
+  "1991–2002": 10.0,
+  "2003–2010": 13.9,
+  "2011–2020": 8.5,
+  "po 2020": 6.7
+ },
+ "res_above43_pct": 29.9,
+ "nres_above_meps30_pct": null,
+ "nres_above_meps33_pct": null,
+ "nres_ei_calc": 22,
+ "es_res": {
+  "ovoj": {
+   "b": 133,
+   "pct": 3.3
+  },
+  "okna": {
+   "b": 42,
+   "pct": 1.0
+  },
+  "tc": {
+   "b": 590,
+   "pct": 14.5
+  },
+  "biomasa": {
+   "b": 102,
+   "pct": 2.5
+  },
+  "pv": {
+   "b": 201,
+   "pct": 4.9
+  },
+  "prezr": {
+   "b": 167,
+   "pct": 4.1
+  }
+ },
+ "es_res_any_pct": 24.1,
+ "obnova_res_pct": 48.4,
+ "obnova_res_since2000_pct": 33.3,
+ "public_by_cat": {
+  "PISARNE": {
+   "b": 0,
+   "a": null
+  },
+  "IZOBRAZ": {
+   "b": 29,
+   "a": 22.9
+  },
+  "BOLNICA": {
+   "b": null,
+   "a": null
+  },
+  "HOTELI": {
+   "b": 0,
+   "a": null
+  },
+  "PRODAJA": {
+   "b": 0,
+   "a": null
+  },
+  "SPORT": {
+   "b": null,
+   "a": null
+  },
+  "DRUGO": {
+   "b": 23,
+   "a": 17.7
+  }
+ }
+}
