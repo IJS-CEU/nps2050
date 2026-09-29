@@ -22,8 +22,8 @@ const si = ix.si;
 const md = loadData<ObcineModel>('obcine_model');
 const mo = md.municipalities[String(sifra)];
 const ms = md.si;
-const CAR_COL: Record<string, string> = { el: '#2A6FC9', amb: '#6FA8DC', gas: '#C4661A', elko: '#5B4636', bio: '#86A11C', dh: '#7B5CC4' };
-const CAR_LT = new Set(['el', 'elko', 'dh']); // bela pisava na temnih barvah
+const CAR_COL: Record<string, string> = { el: '#2A6FC9', amb: '#6FA8DC', gas: '#A4520E', elko: '#5B4636', bio: '#86A11C', dh: '#7B5CC4' };
+const CAR_LT = new Set(['el', 'gas', 'elko', 'dh']); // bela pisava na temnih barvah
 const tkTxt = mo.tk_factor === undefined || Math.abs(mo.tk_factor - 1) < 0.03 ? 'se s toplotno karto dobro ujema'
   : mo.tk_factor > 1 ? `ima po toplotni karti za ${nf(100 * (mo.tk_factor - 1), 0)} % višjo potrebo po toploti, kot bi jo dali sami arhetipi`
   : `ima po toplotni karti za ${nf(100 * (1 - mo.tk_factor), 0)} % nižjo potrebo po toploti, kot bi jo dali sami arhetipi`;
