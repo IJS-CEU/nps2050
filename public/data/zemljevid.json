@@ -1,0 +1,9449 @@
+{
+ "meta": {
+  "draft": "NPS_v38",
+  "draft_date": "2026-09-22",
+  "generated": "2026-09-29",
+  "sources": [
+   "Kataster nepremičnin GURS (stavbe, razvrščene v kategorije EPBD, 2026)",
+   "Meje občin in statističnih regij: GURS, Register prostorskih enot (CC BY 4.0), poenostavljene"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Seštevki po občinah in regijah. Izpuščenih je 74 stavb brez leta gradnje, zato se seštevki ujemajo z osnutkom NPS 2050. Kategorije z manj kot 5 stavbami v občini niso objavljene (377 celic). Površina v tisoč m² uporabne površine; delež pred 1981 = delež uporabne površine stavb, zgrajenih pred letom 1981."
+ },
+ "categories": [
+  {
+   "id": "HISA",
+   "name": "Enostanovanjske hiše",
+   "segment": "stanovanjske"
+  },
+  {
+   "id": "BLOKI",
+   "name": "Večstanovanjske stavbe",
+   "segment": "stanovanjske"
+  },
+  {
+   "id": "PISARNE",
+   "name": "Pisarne",
+   "segment": "nestanovanjske"
+  },
+  {
+   "id": "IZOBRAZ",
+   "name": "Izobraževanje",
+   "segment": "nestanovanjske"
+  },
+  {
+   "id": "BOLNICA",
+   "name": "Zdravstvo",
+   "segment": "nestanovanjske"
+  },
+  {
+   "id": "HOTELI",
+   "name": "Hoteli in gostinstvo",
+   "segment": "nestanovanjske"
+  },
+  {
+   "id": "PRODAJA",
+   "name": "Trgovine",
+   "segment": "nestanovanjske"
+  },
+  {
+   "id": "SPORT",
+   "name": "Šport",
+   "segment": "nestanovanjske"
+  },
+  {
+   "id": "DRUGO",
+   "name": "Drugo",
+   "segment": "nestanovanjske"
+  }
+ ],
+ "regions": {
+  "1": {
+   "name": "Pomurska",
+   "buildings": 44929,
+   "area_k_m2": 5989.7,
+   "res_area_k_m2": 4669.5,
+   "nonres_area_k_m2": 1320.2,
+   "pre1981_area_pct": 54.9,
+   "cats": {
+    "HISA": {
+     "b": 40644,
+     "a": 4122.6
+    },
+    "BLOKI": {
+     "b": 796,
+     "a": 546.9
+    },
+    "PISARNE": {
+     "b": 754,
+     "a": 271.1
+    },
+    "IZOBRAZ": {
+     "b": 187,
+     "a": 175.3
+    },
+    "BOLNICA": {
+     "b": 62,
+     "a": 52.1
+    },
+    "HOTELI": {
+     "b": 515,
+     "a": 189.6
+    },
+    "PRODAJA": {
+     "b": 537,
+     "a": 265.1
+    },
+    "SPORT": {
+     "b": 177,
+     "a": 83.7
+    },
+    "DRUGO": {
+     "b": 1257,
+     "a": 283.4
+    }
+   }
+  },
+  "2": {
+   "name": "Podravska",
+   "buildings": 99783,
+   "area_k_m2": 16448.0,
+   "res_area_k_m2": 12934.9,
+   "nonres_area_k_m2": 3513.1,
+   "pre1981_area_pct": 52.0,
+   "cats": {
+    "HISA": {
+     "b": 89387,
+     "a": 9529.8
+    },
+    "BLOKI": {
+     "b": 3981,
+     "a": 3405.2
+    },
+    "PISARNE": {
+     "b": 1868,
+     "a": 926.8
+    },
+    "IZOBRAZ": {
+     "b": 516,
+     "a": 634.9
+    },
+    "BOLNICA": {
+     "b": 165,
+     "a": 169.4
+    },
+    "HOTELI": {
+     "b": 794,
+     "a": 284.5
+    },
+    "PRODAJA": {
+     "b": 1190,
+     "a": 758.1
+    },
+    "SPORT": {
+     "b": 262,
+     "a": 198.7
+    },
+    "DRUGO": {
+     "b": 1620,
+     "a": 540.7
+    }
+   }
+  },
+  "3": {
+   "name": "Koroška",
+   "buildings": 19457,
+   "area_k_m2": 3355.1,
+   "res_area_k_m2": 2651.8,
+   "nonres_area_k_m2": 703.3,
+   "pre1981_area_pct": 55.9,
+   "cats": {
+    "HISA": {
+     "b": 16692,
+     "a": 1977.2
+    },
+    "BLOKI": {
+     "b": 1164,
+     "a": 674.5
+    },
+    "PISARNE": {
+     "b": 428,
+     "a": 177.9
+    },
+    "IZOBRAZ": {
+     "b": 110,
+     "a": 126.5
+    },
+    "BOLNICA": {
+     "b": 33,
+     "a": 36.2
+    },
+    "HOTELI": {
+     "b": 163,
+     "a": 64.1
+    },
+    "PRODAJA": {
+     "b": 220,
+     "a": 124.3
+    },
+    "SPORT": {
+     "b": 56,
+     "a": 43.8
+    },
+    "DRUGO": {
+     "b": 591,
+     "a": 130.4
+    }
+   }
+  },
+  "4": {
+   "name": "Savinjska",
+   "buildings": 76853,
+   "area_k_m2": 12166.2,
+   "res_area_k_m2": 9356.1,
+   "nonres_area_k_m2": 2810.0,
+   "pre1981_area_pct": 55.3,
+   "cats": {
+    "HISA": {
+     "b": 68818,
+     "a": 7136.0
+    },
+    "BLOKI": {
+     "b": 2773,
+     "a": 2220.2
+    },
+    "PISARNE": {
+     "b": 1446,
+     "a": 721.1
+    },
+    "IZOBRAZ": {
+     "b": 322,
+     "a": 446.4
+    },
+    "BOLNICA": {
+     "b": 93,
+     "a": 103.8
+    },
+    "HOTELI": {
+     "b": 535,
+     "a": 307.3
+    },
+    "PRODAJA": {
+     "b": 891,
+     "a": 589.7
+    },
+    "SPORT": {
+     "b": 175,
+     "a": 140.4
+    },
+    "DRUGO": {
+     "b": 1800,
+     "a": 501.4
+    }
+   }
+  },
+  "5": {
+   "name": "Zasavska",
+   "buildings": 13558,
+   "area_k_m2": 2341.4,
+   "res_area_k_m2": 1918.0,
+   "nonres_area_k_m2": 423.3,
+   "pre1981_area_pct": 62.5,
+   "cats": {
+    "HISA": {
+     "b": 11719,
+     "a": 1266.8
+    },
+    "BLOKI": {
+     "b": 868,
+     "a": 651.2
+    },
+    "PISARNE": {
+     "b": 255,
+     "a": 104.7
+    },
+    "IZOBRAZ": {
+     "b": 75,
+     "a": 77.7
+    },
+    "BOLNICA": {
+     "b": 13,
+     "a": 17.4
+    },
+    "HOTELI": {
+     "b": 62,
+     "a": 17.2
+    },
+    "PRODAJA": {
+     "b": 204,
+     "a": 86.8
+    },
+    "SPORT": {
+     "b": 48,
+     "a": 37.4
+    },
+    "DRUGO": {
+     "b": 314,
+     "a": 82.2
+    }
+   }
+  },
+  "6": {
+   "name": "Posavska",
+   "buildings": 28614,
+   "area_k_m2": 3813.8,
+   "res_area_k_m2": 2945.1,
+   "nonres_area_k_m2": 868.7,
+   "pre1981_area_pct": 56.1,
+   "cats": {
+    "HISA": {
+     "b": 25919,
+     "a": 2541.5
+    },
+    "BLOKI": {
+     "b": 672,
+     "a": 403.6
+    },
+    "PISARNE": {
+     "b": 454,
+     "a": 196.7
+    },
+    "IZOBRAZ": {
+     "b": 93,
+     "a": 132.9
+    },
+    "BOLNICA": {
+     "b": 44,
+     "a": 30.4
+    },
+    "HOTELI": {
+     "b": 216,
+     "a": 88.0
+    },
+    "PRODAJA": {
+     "b": 306,
+     "a": 178.4
+    },
+    "SPORT": {
+     "b": 43,
+     "a": 47.3
+    },
+    "DRUGO": {
+     "b": 867,
+     "a": 195.0
+    }
+   }
+  },
+  "7": {
+   "name": "Jugovzhodna Slovenija",
+   "buildings": 51234,
+   "area_k_m2": 7147.9,
+   "res_area_k_m2": 5655.4,
+   "nonres_area_k_m2": 1492.5,
+   "pre1981_area_pct": 53.3,
+   "cats": {
+    "HISA": {
+     "b": 46358,
+     "a": 4822.2
+    },
+    "BLOKI": {
+     "b": 1412,
+     "a": 833.2
+    },
+    "PISARNE": {
+     "b": 850,
+     "a": 380.8
+    },
+    "IZOBRAZ": {
+     "b": 194,
+     "a": 268.8
+    },
+    "BOLNICA": {
+     "b": 53,
+     "a": 45.5
+    },
+    "HOTELI": {
+     "b": 370,
+     "a": 134.0
+    },
+    "PRODAJA": {
+     "b": 517,
+     "a": 299.7
+    },
+    "SPORT": {
+     "b": 68,
+     "a": 67.3
+    },
+    "DRUGO": {
+     "b": 1412,
+     "a": 296.4
+    }
+   }
+  },
+  "8": {
+   "name": "Osrednjeslovenska",
+   "buildings": 117261,
+   "area_k_m2": 27405.6,
+   "res_area_k_m2": 20221.3,
+   "nonres_area_k_m2": 7184.3,
+   "pre1981_area_pct": 52.7,
+   "cats": {
+    "HISA": {
+     "b": 100516,
+     "a": 12254.4
+    },
+    "BLOKI": {
+     "b": 8862,
+     "a": 7966.9
+    },
+    "PISARNE": {
+     "b": 2628,
+     "a": 2812.6
+    },
+    "IZOBRAZ": {
+     "b": 712,
+     "a": 1167.9
+    },
+    "BOLNICA": {
+     "b": 163,
+     "a": 336.6
+    },
+    "HOTELI": {
+     "b": 756,
+     "a": 341.8
+    },
+    "PRODAJA": {
+     "b": 1292,
+     "a": 1294.9
+    },
+    "SPORT": {
+     "b": 271,
+     "a": 347.9
+    },
+    "DRUGO": {
+     "b": 2061,
+     "a": 882.4
+    }
+   }
+  },
+  "9": {
+   "name": "Gorenjska",
+   "buildings": 53862,
+   "area_k_m2": 9912.0,
+   "res_area_k_m2": 7760.8,
+   "nonres_area_k_m2": 2151.2,
+   "pre1981_area_pct": 58.0,
+   "cats": {
+    "HISA": {
+     "b": 46593,
+     "a": 5715.0
+    },
+    "BLOKI": {
+     "b": 3233,
+     "a": 2045.8
+    },
+    "PISARNE": {
+     "b": 1023,
+     "a": 528.7
+    },
+    "IZOBRAZ": {
+     "b": 240,
+     "a": 318.8
+    },
+    "BOLNICA": {
+     "b": 67,
+     "a": 77.7
+    },
+    "HOTELI": {
+     "b": 647,
+     "a": 314.4
+    },
+    "PRODAJA": {
+     "b": 558,
+     "a": 368.7
+    },
+    "SPORT": {
+     "b": 153,
+     "a": 129.9
+    },
+    "DRUGO": {
+     "b": 1348,
+     "a": 413.0
+    }
+   }
+  },
+  "10": {
+   "name": "Primorsko-notranjska",
+   "buildings": 17111,
+   "area_k_m2": 2767.1,
+   "res_area_k_m2": 2162.0,
+   "nonres_area_k_m2": 605.1,
+   "pre1981_area_pct": 59.7,
+   "cats": {
+    "HISA": {
+     "b": 14922,
+     "a": 1719.9
+    },
+    "BLOKI": {
+     "b": 724,
+     "a": 442.1
+    },
+    "PISARNE": {
+     "b": 335,
+     "a": 152.7
+    },
+    "IZOBRAZ": {
+     "b": 75,
+     "a": 90.3
+    },
+    "BOLNICA": {
+     "b": 17,
+     "a": 13.4
+    },
+    "HOTELI": {
+     "b": 143,
+     "a": 48.8
+    },
+    "PRODAJA": {
+     "b": 200,
+     "a": 99.7
+    },
+    "SPORT": {
+     "b": 25,
+     "a": 21.1
+    },
+    "DRUGO": {
+     "b": 670,
+     "a": 179.1
+    }
+   }
+  },
+  "11": {
+   "name": "Goriška",
+   "buildings": 40235,
+   "area_k_m2": 6447.3,
+   "res_area_k_m2": 4986.8,
+   "nonres_area_k_m2": 1460.5,
+   "pre1981_area_pct": 62.5,
+   "cats": {
+    "HISA": {
+     "b": 35300,
+     "a": 3992.9
+    },
+    "BLOKI": {
+     "b": 1523,
+     "a": 994.0
+    },
+    "PISARNE": {
+     "b": 920,
+     "a": 377.3
+    },
+    "IZOBRAZ": {
+     "b": 206,
+     "a": 232.3
+    },
+    "BOLNICA": {
+     "b": 47,
+     "a": 70.6
+    },
+    "HOTELI": {
+     "b": 384,
+     "a": 159.7
+    },
+    "PRODAJA": {
+     "b": 498,
+     "a": 246.9
+    },
+    "SPORT": {
+     "b": 99,
+     "a": 75.0
+    },
+    "DRUGO": {
+     "b": 1258,
+     "a": 298.7
+    }
+   }
+  },
+  "12": {
+   "name": "Obalno-kraška",
+   "buildings": 34468,
+   "area_k_m2": 6467.3,
+   "res_area_k_m2": 4905.4,
+   "nonres_area_k_m2": 1561.9,
+   "pre1981_area_pct": 55.9,
+   "cats": {
+    "HISA": {
+     "b": 28211,
+     "a": 3239.1
+    },
+    "BLOKI": {
+     "b": 3324,
+     "a": 1666.2
+    },
+    "PISARNE": {
+     "b": 878,
+     "a": 442.2
+    },
+    "IZOBRAZ": {
+     "b": 154,
+     "a": 180.0
+    },
+    "BOLNICA": {
+     "b": 37,
+     "a": 51.4
+    },
+    "HOTELI": {
+     "b": 440,
+     "a": 314.5
+    },
+    "PRODAJA": {
+     "b": 454,
+     "a": 266.6
+    },
+    "SPORT": {
+     "b": 88,
+     "a": 76.8
+    },
+    "DRUGO": {
+     "b": 882,
+     "a": 230.3
+    }
+   }
+  }
+ },
+ "municipalities": {
+  "110200000110265167": {
+   "name": "Ajdovščina",
+   "region": "11",
+   "buildings": 6493,
+   "area_k_m2": 994.9,
+   "res_area_k_m2": 799.8,
+   "nonres_area_k_m2": 195.1,
+   "pre1981_area_pct": 54.8,
+   "cats": {
+    "HISA": {
+     "b": 5816,
+     "a": 676.0
+    },
+    "BLOKI": {
+     "b": 212,
+     "a": 123.8
+    },
+    "PISARNE": {
+     "b": 138,
+     "a": 58.3
+    },
+    "IZOBRAZ": {
+     "b": 37,
+     "a": 44.4
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 34,
+     "a": 8.8
+    },
+    "PRODAJA": {
+     "b": 72,
+     "a": 29.4
+    },
+    "SPORT": {
+     "b": 19,
+     "a": 13.8
+    },
+    "DRUGO": {
+     "b": 162,
+     "a": 38.4
+    }
+   }
+  },
+  "110200000110265241": {
+   "name": "Beltinci",
+   "region": "1",
+   "buildings": 2886,
+   "area_k_m2": 356.6,
+   "res_area_k_m2": 312.5,
+   "nonres_area_k_m2": 44.1,
+   "pre1981_area_pct": 55.6,
+   "cats": {
+    "HISA": {
+     "b": 2707,
+     "a": 299.2
+    },
+    "BLOKI": {
+     "b": 26,
+     "a": 13.3
+    },
+    "PISARNE": {
+     "b": 37,
+     "a": 8.3
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "a": 4.9
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 24,
+     "a": 5.4
+    },
+    "PRODAJA": {
+     "b": 27,
+     "a": 11.4
+    },
+    "SPORT": {
+     "b": 10,
+     "a": 3.1
+    },
+    "DRUGO": {
+     "b": 44,
+     "a": 10.1
+    }
+   }
+  },
+  "110200000110265324": {
+   "name": "Bled",
+   "region": "9",
+   "buildings": 2920,
+   "area_k_m2": 577.7,
+   "res_area_k_m2": 402.0,
+   "nonres_area_k_m2": 175.7,
+   "pre1981_area_pct": 63.7,
+   "cats": {
+    "HISA": {
+     "b": 2415,
+     "a": 317.6
+    },
+    "BLOKI": {
+     "b": 203,
+     "a": 84.4
+    },
+    "PISARNE": {
+     "b": 34,
+     "a": 15.3
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "a": 14.7
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 96,
+     "a": 75.9
+    },
+    "PRODAJA": {
+     "b": 26,
+     "a": 14.0
+    },
+    "SPORT": {
+     "b": 14,
+     "a": 13.7
+    },
+    "DRUGO": {
+     "b": 117,
+     "a": 39.2
+    }
+   }
+  },
+  "110200000110265597": {
+   "name": "Bohinj",
+   "region": "9",
+   "buildings": 2761,
+   "area_k_m2": 375.1,
+   "res_area_k_m2": 283.8,
+   "nonres_area_k_m2": 91.4,
+   "pre1981_area_pct": 63.5,
+   "cats": {
+    "HISA": {
+     "b": 2321,
+     "a": 229.6
+    },
+    "BLOKI": {
+     "b": 136,
+     "a": 54.2
+    },
+    "PISARNE": {
+     "b": 65,
+     "a": 13.6
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 7.3
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 77,
+     "a": 36.5
+    },
+    "PRODAJA": {
+     "b": 28,
+     "a": 2.5
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 5.2
+    },
+    "DRUGO": {
+     "b": 122,
+     "a": 24.9
+    }
+   }
+  },
+  "110200000110265670": {
+   "name": "Borovnica",
+   "region": "8",
+   "buildings": 1116,
+   "area_k_m2": 174.2,
+   "res_area_k_m2": 156.2,
+   "nonres_area_k_m2": 18.0,
+   "pre1981_area_pct": 56.1,
+   "cats": {
+    "HISA": {
+     "b": 1010,
+     "a": 122.7
+    },
+    "BLOKI": {
+     "b": 50,
+     "a": 33.5
+    },
+    "PISARNE": {
+     "b": 11,
+     "a": 2.5
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 5,
+     "a": 1.1
+    },
+    "PRODAJA": {
+     "b": 8,
+     "a": 2.4
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 26,
+     "a": 6.4
+    }
+   }
+  },
+  "110200000110265753": {
+   "name": "Bovec",
+   "region": "11",
+   "buildings": 2024,
+   "area_k_m2": 273.9,
+   "res_area_k_m2": 196.5,
+   "nonres_area_k_m2": 77.4,
+   "pre1981_area_pct": 60.1,
+   "cats": {
+    "HISA": {
+     "b": 1667,
+     "a": 153.7
+    },
+    "BLOKI": {
+     "b": 106,
+     "a": 42.9
+    },
+    "PISARNE": {
+     "b": 49,
+     "a": 13.7
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 4.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 57,
+     "a": 28.5
+    },
+    "PRODAJA": {
+     "b": 35,
+     "a": 8.6
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 99,
+     "a": 19.1
+    }
+   }
+  },
+  "110200000110265837": {
+   "name": "Brda",
+   "region": "11",
+   "buildings": 2302,
+   "area_k_m2": 321.7,
+   "res_area_k_m2": 268.6,
+   "nonres_area_k_m2": 53.1,
+   "pre1981_area_pct": 62.5,
+   "cats": {
+    "HISA": {
+     "b": 2057,
+     "a": 253.3
+    },
+    "BLOKI": {
+     "b": 46,
+     "a": 15.3
+    },
+    "PISARNE": {
+     "b": 26,
+     "a": 5.5
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 51,
+     "a": 17.1
+    },
+    "PRODAJA": {
+     "b": 22,
+     "a": 4.4
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 2.1
+    },
+    "DRUGO": {
+     "b": 90,
+     "a": 18.7
+    }
+   }
+  },
+  "110200000110265910": {
+   "name": "Brezovica",
+   "region": "8",
+   "buildings": 4092,
+   "area_k_m2": 563.8,
+   "res_area_k_m2": 501.6,
+   "nonres_area_k_m2": 62.2,
+   "pre1981_area_pct": 41.8,
+   "cats": {
+    "HISA": {
+     "b": 3798,
+     "a": 462.2
+    },
+    "BLOKI": {
+     "b": 128,
+     "a": 39.4
+    },
+    "PISARNE": {
+     "b": 39,
+     "a": 11.1
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 13.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 27,
+     "a": 5.4
+    },
+    "PRODAJA": {
+     "b": 24,
+     "a": 15.5
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 1.0
+    },
+    "DRUGO": {
+     "b": 60,
+     "a": 13.6
+    }
+   }
+  },
+  "110200000110266058": {
+   "name": "Brežice",
+   "region": "6",
+   "buildings": 9909,
+   "area_k_m2": 1362.8,
+   "res_area_k_m2": 1001.4,
+   "nonres_area_k_m2": 361.4,
+   "pre1981_area_pct": 54.1,
+   "cats": {
+    "HISA": {
+     "b": 8813,
+     "a": 877.0
+    },
+    "BLOKI": {
+     "b": 211,
+     "a": 124.4
+    },
+    "PISARNE": {
+     "b": 174,
+     "a": 73.3
+    },
+    "IZOBRAZ": {
+     "b": 21,
+     "a": 35.4
+    },
+    "BOLNICA": {
+     "b": 23,
+     "a": 12.0
+    },
+    "HOTELI": {
+     "b": 92,
+     "a": 51.5
+    },
+    "PRODAJA": {
+     "b": 113,
+     "a": 74.1
+    },
+    "SPORT": {
+     "b": 17,
+     "a": 27.8
+    },
+    "DRUGO": {
+     "b": 445,
+     "a": 87.3
+    }
+   }
+  },
+  "110200000110266132": {
+   "name": "Tišina",
+   "region": "1",
+   "buildings": 1436,
+   "area_k_m2": 166.3,
+   "res_area_k_m2": 149.4,
+   "nonres_area_k_m2": 16.9,
+   "pre1981_area_pct": 62.5,
+   "cats": {
+    "HISA": {
+     "b": 1352,
+     "a": 146.0
+    },
+    "BLOKI": {
+     "b": 8,
+     "a": 3.3
+    },
+    "PISARNE": {
+     "b": 13,
+     "a": 2.0
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 5.4
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 8,
+     "a": 2.6
+    },
+    "PRODAJA": {
+     "b": 11,
+     "a": 1.1
+    },
+    "SPORT": {
+     "b": 9,
+     "a": 1.0
+    },
+    "DRUGO": {
+     "b": 28,
+     "a": 4.5
+    }
+   }
+  },
+  "110200000110266215": {
+   "name": "Celje",
+   "region": "4",
+   "buildings": 9831,
+   "area_k_m2": 2525.4,
+   "res_area_k_m2": 1656.4,
+   "nonres_area_k_m2": 868.9,
+   "pre1981_area_pct": 61.2,
+   "cats": {
+    "HISA": {
+     "b": 7983,
+     "a": 865.1
+    },
+    "BLOKI": {
+     "b": 836,
+     "a": 791.3
+    },
+    "PISARNE": {
+     "b": 381,
+     "a": 302.8
+    },
+    "IZOBRAZ": {
+     "b": 61,
+     "a": 110.6
+    },
+    "BOLNICA": {
+     "b": 20,
+     "a": 36.2
+    },
+    "HOTELI": {
+     "b": 62,
+     "a": 24.5
+    },
+    "PRODAJA": {
+     "b": 225,
+     "a": 210.7
+    },
+    "SPORT": {
+     "b": 27,
+     "a": 42.2
+    },
+    "DRUGO": {
+     "b": 236,
+     "a": 141.8
+    }
+   }
+  },
+  "110200000110266306": {
+   "name": "Cerklje na Gorenjskem",
+   "region": "9",
+   "buildings": 2699,
+   "area_k_m2": 448.7,
+   "res_area_k_m2": 325.1,
+   "nonres_area_k_m2": 123.6,
+   "pre1981_area_pct": 43.7,
+   "cats": {
+    "HISA": {
+     "b": 2467,
+     "a": 298.9
+    },
+    "BLOKI": {
+     "b": 44,
+     "a": 26.3
+    },
+    "PISARNE": {
+     "b": 48,
+     "a": 38.8
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 9.7
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 35,
+     "a": 15.6
+    },
+    "PRODAJA": {
+     "b": 22,
+     "a": 4.1
+    },
+    "SPORT": {
+     "b": 7,
+     "a": 4.7
+    },
+    "DRUGO": {
+     "b": 67,
+     "a": 49.8
+    }
+   }
+  },
+  "110200000110266488": {
+   "name": "Cerknica",
+   "region": "10",
+   "buildings": 3853,
+   "area_k_m2": 563.9,
+   "res_area_k_m2": 468.9,
+   "nonres_area_k_m2": 94.9,
+   "pre1981_area_pct": 55.4,
+   "cats": {
+    "HISA": {
+     "b": 3475,
+     "a": 406.8
+    },
+    "BLOKI": {
+     "b": 112,
+     "a": 62.2
+    },
+    "PISARNE": {
+     "b": 55,
+     "a": 22.0
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "a": 17.3
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 24,
+     "a": 6.8
+    },
+    "PRODAJA": {
+     "b": 37,
+     "a": 16.3
+    },
+    "SPORT": {
+     "b": 8,
+     "a": 8.6
+    },
+    "DRUGO": {
+     "b": 121,
+     "a": 21.0
+    }
+   }
+  },
+  "110200000110266561": {
+   "name": "Cerkno",
+   "region": "11",
+   "buildings": 1832,
+   "area_k_m2": 236.8,
+   "res_area_k_m2": 202.1,
+   "nonres_area_k_m2": 34.7,
+   "pre1981_area_pct": 64.0,
+   "cats": {
+    "HISA": {
+     "b": 1660,
+     "a": 182.5
+    },
+    "BLOKI": {
+     "b": 35,
+     "a": 19.6
+    },
+    "PISARNE": {
+     "b": 31,
+     "a": 6.2
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 5.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 13,
+     "a": 8.5
+    },
+    "PRODAJA": {
+     "b": 16,
+     "a": 1.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 64,
+     "a": 10.9
+    }
+   }
+  },
+  "110200000110266645": {
+   "name": "Črenšovci",
+   "region": "1",
+   "buildings": 1519,
+   "area_k_m2": 188.0,
+   "res_area_k_m2": 165.4,
+   "nonres_area_k_m2": 22.6,
+   "pre1981_area_pct": 55.5,
+   "cats": {
+    "HISA": {
+     "b": 1427,
+     "a": 160.9
+    },
+    "BLOKI": {
+     "b": 12,
+     "a": 4.5
+    },
+    "PISARNE": {
+     "b": 15,
+     "a": 3.6
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 5.4
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 12,
+     "a": 3.1
+    },
+    "PRODAJA": {
+     "b": 5,
+     "a": 1.1
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 2.4
+    },
+    "DRUGO": {
+     "b": 35,
+     "a": 6.3
+    }
+   }
+  },
+  "110200000110266728": {
+   "name": "Črna na Koroškem",
+   "region": "3",
+   "buildings": 877,
+   "area_k_m2": 143.4,
+   "res_area_k_m2": 120.4,
+   "nonres_area_k_m2": 23.0,
+   "pre1981_area_pct": 65.7,
+   "cats": {
+    "HISA": {
+     "b": 655,
+     "a": 73.0
+    },
+    "BLOKI": {
+     "b": 107,
+     "a": 47.4
+    },
+    "PISARNE": {
+     "b": 26,
+     "a": 3.9
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 4.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 2.4
+    },
+    "PRODAJA": {
+     "b": 11,
+     "a": 1.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 56,
+     "a": 8.4
+    }
+   }
+  },
+  "110200000110266991": {
+   "name": "Črnomelj",
+   "region": "7",
+   "buildings": 5487,
+   "area_k_m2": 687.9,
+   "res_area_k_m2": 558.9,
+   "nonres_area_k_m2": 129.0,
+   "pre1981_area_pct": 57.5,
+   "cats": {
+    "HISA": {
+     "b": 4962,
+     "a": 487.3
+    },
+    "BLOKI": {
+     "b": 127,
+     "a": 71.6
+    },
+    "PISARNE": {
+     "b": 77,
+     "a": 26.3
+    },
+    "IZOBRAZ": {
+     "b": 25,
+     "a": 32.5
+    },
+    "BOLNICA": {
+     "b": 7,
+     "a": 5.0
+    },
+    "HOTELI": {
+     "b": 53,
+     "a": 12.5
+    },
+    "PRODAJA": {
+     "b": 79,
+     "a": 26.2
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 153,
+     "a": 23.6
+    }
+   }
+  },
+  "110200000110267023": {
+   "name": "Destrnik",
+   "region": "2",
+   "buildings": 1109,
+   "area_k_m2": 111.6,
+   "res_area_k_m2": 100.5,
+   "nonres_area_k_m2": 11.1,
+   "pre1981_area_pct": 40.2,
+   "cats": {
+    "HISA": {
+     "b": 1071,
+     "a": 98.8
+    },
+    "BLOKI": {
+     "b": 6,
+     "a": 1.7
+    },
+    "PISARNE": {
+     "b": 6,
+     "a": 2.0
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 7,
+     "a": 1.4
+    },
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 14,
+     "a": 2.6
+    }
+   }
+  },
+  "110200000110267296": {
+   "name": "Divača",
+   "region": "12",
+   "buildings": 1634,
+   "area_k_m2": 244.4,
+   "res_area_k_m2": 204.3,
+   "nonres_area_k_m2": 40.1,
+   "pre1981_area_pct": 56.3,
+   "cats": {
+    "HISA": {
+     "b": 1414,
+     "a": 167.8
+    },
+    "BLOKI": {
+     "b": 50,
+     "a": 36.5
+    },
+    "PISARNE": {
+     "b": 49,
+     "a": 11.4
+    },
+    "IZOBRAZ": {
+     "b": 11,
+     "a": 8.4
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 17,
+     "a": 4.8
+    },
+    "PRODAJA": {
+     "b": 9,
+     "a": 1.5
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 78,
+     "a": 13.3
+    }
+   }
+  },
+  "110200000110267379": {
+   "name": "Dobrepolje",
+   "region": "8",
+   "buildings": 1480,
+   "area_k_m2": 181.7,
+   "res_area_k_m2": 158.7,
+   "nonres_area_k_m2": 23.0,
+   "pre1981_area_pct": 47.2,
+   "cats": {
+    "HISA": {
+     "b": 1381,
+     "a": 150.6
+    },
+    "BLOKI": {
+     "b": 32,
+     "a": 8.1
+    },
+    "PISARNE": {
+     "b": 12,
+     "a": 2.2
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 6.5
+    },
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 11,
+     "a": 3.5
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 31,
+     "a": 7.2
+    }
+   }
+  },
+  "110200000110267452": {
+   "name": "Dobrova-Polhov Gradec",
+   "region": "8",
+   "buildings": 2694,
+   "area_k_m2": 347.9,
+   "res_area_k_m2": 309.4,
+   "nonres_area_k_m2": 38.5,
+   "pre1981_area_pct": 48.7,
+   "cats": {
+    "HISA": {
+     "b": 2541,
+     "a": 297.5
+    },
+    "BLOKI": {
+     "b": 48,
+     "a": 11.9
+    },
+    "PISARNE": {
+     "b": 12,
+     "a": 2.6
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 7.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 15,
+     "a": 2.9
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 3.2
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 8.4
+    },
+    "DRUGO": {
+     "b": 55,
+     "a": 14.1
+    }
+   }
+  },
+  "110200000110267536": {
+   "name": "Dol pri Ljubljani",
+   "region": "8",
+   "buildings": 1877,
+   "area_k_m2": 277.1,
+   "res_area_k_m2": 240.8,
+   "nonres_area_k_m2": 36.4,
+   "pre1981_area_pct": 39.1,
+   "cats": {
+    "HISA": {
+     "b": 1742,
+     "a": 208.1
+    },
+    "BLOKI": {
+     "b": 55,
+     "a": 32.7
+    },
+    "PISARNE": {
+     "b": 20,
+     "a": 16.3
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 7.3
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 5,
+     "a": 1.1
+    },
+    "PRODAJA": {
+     "b": 9,
+     "a": 2.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 37,
+     "a": 9.4
+    }
+   }
+  },
+  "110200000110267619": {
+   "name": "Domžale",
+   "region": "8",
+   "buildings": 8648,
+   "area_k_m2": 1621.1,
+   "res_area_k_m2": 1361.3,
+   "nonres_area_k_m2": 259.8,
+   "pre1981_area_pct": 48.2,
+   "cats": {
+    "HISA": {
+     "b": 7750,
+     "a": 1024.7
+    },
+    "BLOKI": {
+     "b": 446,
+     "a": 336.6
+    },
+    "PISARNE": {
+     "b": 167,
+     "a": 75.6
+    },
+    "IZOBRAZ": {
+     "b": 42,
+     "a": 62.3
+    },
+    "BOLNICA": {
+     "b": 11,
+     "a": 6.3
+    },
+    "HOTELI": {
+     "b": 46,
+     "a": 17.8
+    },
+    "PRODAJA": {
+     "b": 81,
+     "a": 60.2
+    },
+    "SPORT": {
+     "b": 20,
+     "a": 16.8
+    },
+    "DRUGO": {
+     "b": 85,
+     "a": 20.9
+    }
+   }
+  },
+  "110200000110267700": {
+   "name": "Dornava",
+   "region": "2",
+   "buildings": 1097,
+   "area_k_m2": 133.3,
+   "res_area_k_m2": 109.5,
+   "nonres_area_k_m2": 23.9,
+   "pre1981_area_pct": 47.5,
+   "cats": {
+    "HISA": {
+     "b": 1023,
+     "a": 101.9
+    },
+    "BLOKI": {
+     "b": 19,
+     "a": 7.5
+    },
+    "PISARNE": {
+     "b": 5,
+     "a": 2.4
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "a": 10.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 5,
+     "a": 1.1
+    },
+    "PRODAJA": {
+     "b": 7,
+     "a": 0.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 23,
+     "a": 8.4
+    }
+   }
+  },
+  "110200000110267882": {
+   "name": "Dravograd",
+   "region": "3",
+   "buildings": 2560,
+   "area_k_m2": 420.7,
+   "res_area_k_m2": 331.9,
+   "nonres_area_k_m2": 88.8,
+   "pre1981_area_pct": 55.1,
+   "cats": {
+    "HISA": {
+     "b": 2245,
+     "a": 266.0
+    },
+    "BLOKI": {
+     "b": 123,
+     "a": 65.9
+    },
+    "PISARNE": {
+     "b": 58,
+     "a": 29.2
+    },
+    "IZOBRAZ": {
+     "b": 16,
+     "a": 11.6
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 14,
+     "a": 8.0
+    },
+    "PRODAJA": {
+     "b": 24,
+     "a": 14.8
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 8.6
+    },
+    "DRUGO": {
+     "b": 71,
+     "a": 14.8
+    }
+   }
+  },
+  "110200000110267965": {
+   "name": "Duplek",
+   "region": "2",
+   "buildings": 2521,
+   "area_k_m2": 313.0,
+   "res_area_k_m2": 286.3,
+   "nonres_area_k_m2": 26.7,
+   "pre1981_area_pct": 45.4,
+   "cats": {
+    "HISA": {
+     "b": 2423,
+     "a": 271.4
+    },
+    "BLOKI": {
+     "b": 24,
+     "a": 14.9
+    },
+    "PISARNE": {
+     "b": 14,
+     "a": 2.3
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "a": 6.7
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 12,
+     "a": 2.1
+    },
+    "PRODAJA": {
+     "b": 12,
+     "a": 7.5
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 23,
+     "a": 5.6
+    }
+   }
+  },
+  "110200000110268005": {
+   "name": "Gorenja vas-Poljane",
+   "region": "9",
+   "buildings": 2569,
+   "area_k_m2": 347.3,
+   "res_area_k_m2": 301.9,
+   "nonres_area_k_m2": 45.4,
+   "pre1981_area_pct": 50.1,
+   "cats": {
+    "HISA": {
+     "b": 2397,
+     "a": 285.5
+    },
+    "BLOKI": {
+     "b": 41,
+     "a": 16.4
+    },
+    "PISARNE": {
+     "b": 19,
+     "a": 5.4
+    },
+    "IZOBRAZ": {
+     "b": 11,
+     "a": 11.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 19,
+     "a": 6.1
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 3.7
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 67,
+     "a": 15.3
+    }
+   }
+  },
+  "110200000110268187": {
+   "name": "Gorišnica",
+   "region": "2",
+   "buildings": 1464,
+   "area_k_m2": 189.3,
+   "res_area_k_m2": 161.8,
+   "nonres_area_k_m2": 27.5,
+   "pre1981_area_pct": 45.7,
+   "cats": {
+    "HISA": {
+     "b": 1373,
+     "a": 151.5
+    },
+    "BLOKI": {
+     "b": 19,
+     "a": 10.3
+    },
+    "PISARNE": {
+     "b": 11,
+     "a": 4.0
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 6,
+     "a": 3.2
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 4.0
+    },
+    "SPORT": {
+     "b": 8,
+     "a": 5.2
+    },
+    "DRUGO": {
+     "b": 34,
+     "a": 6.5
+    }
+   }
+  },
+  "110200000110268260": {
+   "name": "Gornja Radgona",
+   "region": "1",
+   "buildings": 3023,
+   "area_k_m2": 448.9,
+   "res_area_k_m2": 342.0,
+   "nonres_area_k_m2": 106.9,
+   "pre1981_area_pct": 53.5,
+   "cats": {
+    "HISA": {
+     "b": 2659,
+     "a": 273.5
+    },
+    "BLOKI": {
+     "b": 85,
+     "a": 68.5
+    },
+    "PISARNE": {
+     "b": 78,
+     "a": 29.2
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "a": 9.9
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 42,
+     "a": 9.7
+    },
+    "PRODAJA": {
+     "b": 51,
+     "a": 21.7
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 4.2
+    },
+    "DRUGO": {
+     "b": 90,
+     "a": 30.1
+    }
+   }
+  },
+  "110200000110268344": {
+   "name": "Gornji Grad",
+   "region": "4",
+   "buildings": 935,
+   "area_k_m2": 127.8,
+   "res_area_k_m2": 111.6,
+   "nonres_area_k_m2": 16.2,
+   "pre1981_area_pct": 66.8,
+   "cats": {
+    "HISA": {
+     "b": 856,
+     "a": 100.5
+    },
+    "BLOKI": {
+     "b": 16,
+     "a": 11.1
+    },
+    "PISARNE": {
+     "b": 10,
+     "a": 2.3
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 3.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 8,
+     "a": 2.3
+    },
+    "PRODAJA": {
+     "b": 5,
+     "a": 2.2
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 30,
+     "a": 6.0
+    }
+   }
+  },
+  "110200000110268427": {
+   "name": "Gornji Petrovci",
+   "region": "1",
+   "buildings": 1134,
+   "area_k_m2": 114.6,
+   "res_area_k_m2": 100.5,
+   "nonres_area_k_m2": 14.1,
+   "pre1981_area_pct": 64.5,
+   "cats": {
+    "HISA": {
+     "b": 1044,
+     "a": 94.6
+    },
+    "BLOKI": {
+     "b": 9,
+     "a": 5.8
+    },
+    "PISARNE": {
+     "b": 11,
+     "a": 1.8
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 7,
+     "a": 1.9
+    },
+    "PRODAJA": {
+     "b": 8,
+     "a": 0.6
+    },
+    "SPORT": {
+     "b": 8,
+     "a": 0.9
+    },
+    "DRUGO": {
+     "b": 43,
+     "a": 7.4
+    }
+   }
+  },
+  "110200000110268690": {
+   "name": "Grosuplje",
+   "region": "8",
+   "buildings": 5687,
+   "area_k_m2": 865.1,
+   "res_area_k_m2": 745.8,
+   "nonres_area_k_m2": 119.3,
+   "pre1981_area_pct": 40.1,
+   "cats": {
+    "HISA": {
+     "b": 5185,
+     "a": 614.3
+    },
+    "BLOKI": {
+     "b": 215,
+     "a": 131.5
+    },
+    "PISARNE": {
+     "b": 92,
+     "a": 42.9
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "a": 20.9
+    },
+    "BOLNICA": {
+     "b": 6,
+     "a": 2.5
+    },
+    "HOTELI": {
+     "b": 17,
+     "a": 7.1
+    },
+    "PRODAJA": {
+     "b": 46,
+     "a": 20.0
+    },
+    "SPORT": {
+     "b": 10,
+     "a": 6.0
+    },
+    "DRUGO": {
+     "b": 96,
+     "a": 19.9
+    }
+   }
+  },
+  "110200000110268773": {
+   "name": "Šalovci",
+   "region": "1",
+   "buildings": 794,
+   "area_k_m2": 78.0,
+   "res_area_k_m2": 67.7,
+   "nonres_area_k_m2": 10.3,
+   "pre1981_area_pct": 70.1,
+   "cats": {
+    "HISA": {
+     "b": 730,
+     "a": 65.2
+    },
+    "BLOKI": {
+     "b": 6,
+     "a": 2.5
+    },
+    "PISARNE": {
+     "b": 8,
+     "a": 1.2
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 3.0
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 8,
+     "a": 0.6
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 28,
+     "a": 4.4
+    }
+   }
+  },
+  "110200000110268856": {
+   "name": "Hrastnik",
+   "region": "5",
+   "buildings": 2052,
+   "area_k_m2": 350.2,
+   "res_area_k_m2": 289.2,
+   "nonres_area_k_m2": 60.9,
+   "pre1981_area_pct": 66.1,
+   "cats": {
+    "HISA": {
+     "b": 1734,
+     "a": 174.5
+    },
+    "BLOKI": {
+     "b": 151,
+     "a": 114.7
+    },
+    "PISARNE": {
+     "b": 47,
+     "a": 20.9
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "a": 7.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 8,
+     "a": 3.9
+    },
+    "PRODAJA": {
+     "b": 41,
+     "a": 7.7
+    },
+    "SPORT": {
+     "b": 16,
+     "a": 6.9
+    },
+    "DRUGO": {
+     "b": 47,
+     "a": 12.2
+    }
+   }
+  },
+  "110200000110268930": {
+   "name": "Idrija",
+   "region": "11",
+   "buildings": 3212,
+   "area_k_m2": 581.8,
+   "res_area_k_m2": 450.2,
+   "nonres_area_k_m2": 131.6,
+   "pre1981_area_pct": 65.4,
+   "cats": {
+    "HISA": {
+     "b": 2705,
+     "a": 307.0
+    },
+    "BLOKI": {
+     "b": 226,
+     "a": 143.1
+    },
+    "PISARNE": {
+     "b": 91,
+     "a": 39.2
+    },
+    "IZOBRAZ": {
+     "b": 22,
+     "a": 25.7
+    },
+    "BOLNICA": {
+     "b": 6,
+     "a": 12.1
+    },
+    "HOTELI": {
+     "b": 25,
+     "a": 6.1
+    },
+    "PRODAJA": {
+     "b": 36,
+     "a": 14.7
+    },
+    "SPORT": {
+     "b": 7,
+     "a": 7.0
+    },
+    "DRUGO": {
+     "b": 94,
+     "a": 26.9
+    }
+   }
+  },
+  "110200000110269078": {
+   "name": "Ig",
+   "region": "8",
+   "buildings": 2705,
+   "area_k_m2": 340.6,
+   "res_area_k_m2": 295.7,
+   "nonres_area_k_m2": 44.9,
+   "pre1981_area_pct": 37.5,
+   "cats": {
+    "HISA": {
+     "b": 2523,
+     "a": 271.9
+    },
+    "BLOKI": {
+     "b": 59,
+     "a": 23.9
+    },
+    "PISARNE": {
+     "b": 28,
+     "a": 8.1
+    },
+    "IZOBRAZ": {
+     "b": 13,
+     "a": 11.6
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 2.4
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 4.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 60,
+     "a": 15.5
+    }
+   }
+  },
+  "110200000110269151": {
+   "name": "Ivančna Gorica",
+   "region": "8",
+   "buildings": 6394,
+   "area_k_m2": 763.4,
+   "res_area_k_m2": 650.6,
+   "nonres_area_k_m2": 112.8,
+   "pre1981_area_pct": 44.1,
+   "cats": {
+    "HISA": {
+     "b": 5950,
+     "a": 602.6
+    },
+    "BLOKI": {
+     "b": 123,
+     "a": 48.0
+    },
+    "PISARNE": {
+     "b": 51,
+     "a": 15.0
+    },
+    "IZOBRAZ": {
+     "b": 23,
+     "a": 28.5
+    },
+    "BOLNICA": {
+     "b": 10,
+     "a": 4.8
+    },
+    "HOTELI": {
+     "b": 34,
+     "a": 8.9
+    },
+    "PRODAJA": {
+     "b": 55,
+     "a": 23.3
+    },
+    "SPORT": {
+     "b": 11,
+     "a": 3.9
+    },
+    "DRUGO": {
+     "b": 137,
+     "a": 28.5
+    }
+   }
+  },
+  "110200000110269235": {
+   "name": "Izola",
+   "region": "12",
+   "buildings": 3376,
+   "area_k_m2": 798.6,
+   "res_area_k_m2": 653.8,
+   "nonres_area_k_m2": 144.7,
+   "pre1981_area_pct": 50.7,
+   "cats": {
+    "HISA": {
+     "b": 2385,
+     "a": 285.2
+    },
+    "BLOKI": {
+     "b": 716,
+     "a": 368.6
+    },
+    "PISARNE": {
+     "b": 89,
+     "a": 29.3
+    },
+    "IZOBRAZ": {
+     "b": 16,
+     "a": 24.8
+    },
+    "BOLNICA": {
+     "b": 6,
+     "a": 21.7
+    },
+    "HOTELI": {
+     "b": 51,
+     "a": 29.6
+    },
+    "PRODAJA": {
+     "b": 50,
+     "a": 19.3
+    },
+    "SPORT": {
+     "b": 9,
+     "a": 6.3
+    },
+    "DRUGO": {
+     "b": 54,
+     "a": 13.9
+    }
+   }
+  },
+  "110200000110269318": {
+   "name": "Juršinci",
+   "region": "2",
+   "buildings": 1112,
+   "area_k_m2": 110.3,
+   "res_area_k_m2": 101.5,
+   "nonres_area_k_m2": 8.8,
+   "pre1981_area_pct": 39.5,
+   "cats": {
+    "HISA": {
+     "b": 1058,
+     "a": 95.0
+    },
+    "BLOKI": {
+     "b": 8,
+     "a": 6.4
+    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 7,
+     "a": 1.0
+    },
+    "PRODAJA": {
+     "b": 9,
+     "a": 1.7
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 23,
+     "a": 2.3
+    }
+   }
+  },
+  "110200000110269409": {
+   "name": "Kanal",
+   "region": "11",
+   "buildings": 2183,
+   "area_k_m2": 280.3,
+   "res_area_k_m2": 244.1,
+   "nonres_area_k_m2": 36.2,
+   "pre1981_area_pct": 80.6,
+   "cats": {
+    "HISA": {
+     "b": 1944,
+     "a": 204.7
+    },
+    "BLOKI": {
+     "b": 74,
+     "a": 39.4
+    },
+    "PISARNE": {
+     "b": 37,
+     "a": 7.3
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 9.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 14,
+     "a": 2.8
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 1.8
+    },
+    "SPORT": {
+     "b": 7,
+     "a": 3.7
+    },
+    "DRUGO": {
+     "b": 88,
+     "a": 11.5
+    }
+   }
+  },
+  "110200000110269581": {
+   "name": "Kobarid",
+   "region": "11",
+   "buildings": 2072,
+   "area_k_m2": 237.9,
+   "res_area_k_m2": 197.9,
+   "nonres_area_k_m2": 40.0,
+   "pre1981_area_pct": 77.8,
+   "cats": {
+    "HISA": {
+     "b": 1818,
+     "a": 181.8
+    },
+    "BLOKI": {
+     "b": 46,
+     "a": 16.1
+    },
+    "PISARNE": {
+     "b": 31,
+     "a": 4.1
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "a": 4.2
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 23,
+     "a": 7.5
+    },
+    "PRODAJA": {
+     "b": 30,
+     "a": 4.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 110,
+     "a": 19.0
+    }
+   }
+  },
+  "110200000110269664": {
+   "name": "Kočevje",
+   "region": "7",
+   "buildings": 4414,
+   "area_k_m2": 704.1,
+   "res_area_k_m2": 557.6,
+   "nonres_area_k_m2": 146.6,
+   "pre1981_area_pct": 60.6,
+   "cats": {
+    "HISA": {
+     "b": 3726,
+     "a": 409.6
+    },
+    "BLOKI": {
+     "b": 264,
+     "a": 148.0
+    },
+    "PISARNE": {
+     "b": 124,
+     "a": 41.3
+    },
+    "IZOBRAZ": {
+     "b": 26,
+     "a": 27.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 39,
+     "a": 10.0
+    },
+    "PRODAJA": {
+     "b": 68,
+     "a": 26.0
+    },
+    "SPORT": {
+     "b": 16,
+     "a": 11.4
+    },
+    "DRUGO": {
+     "b": 147,
+     "a": 26.6
+    }
+   }
+  },
+  "110200000110269748": {
+   "name": "Kozje",
+   "region": "4",
+   "buildings": 1457,
+   "area_k_m2": 157.4,
+   "res_area_k_m2": 129.7,
+   "nonres_area_k_m2": 27.7,
+   "pre1981_area_pct": 66.1,
+   "cats": {
+    "HISA": {
+     "b": 1331,
+     "a": 120.0
+    },
+    "BLOKI": {
+     "b": 17,
+     "a": 9.8
+    },
+    "PISARNE": {
+     "b": 20,
+     "a": 7.0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 4.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 8,
+     "a": 1.8
+    },
+    "PRODAJA": {
+     "b": 22,
+     "a": 3.5
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 49,
+     "a": 10.0
+    }
+   }
+  },
+  "110200000110269821": {
+   "name": "Krško",
+   "region": "6",
+   "buildings": 8765,
+   "area_k_m2": 1253.2,
+   "res_area_k_m2": 951.6,
+   "nonres_area_k_m2": 301.6,
+   "pre1981_area_pct": 57.6,
+   "cats": {
+    "HISA": {
+     "b": 7934,
+     "a": 796.0
+    },
+    "BLOKI": {
+     "b": 249,
+     "a": 155.6
+    },
+    "PISARNE": {
+     "b": 173,
+     "a": 82.4
+    },
+    "IZOBRAZ": {
+     "b": 38,
+     "a": 54.7
+    },
+    "BOLNICA": {
+     "b": 14,
+     "a": 10.4
+    },
+    "HOTELI": {
+     "b": 64,
+     "a": 20.2
+    },
+    "PRODAJA": {
+     "b": 99,
+     "a": 66.3
+    },
+    "SPORT": {
+     "b": 15,
+     "a": 10.1
+    },
+    "DRUGO": {
+     "b": 179,
+     "a": 57.5
+    }
+   }
+  },
+  "110200000110270084": {
+   "name": "Kungota",
+   "region": "2",
+   "buildings": 1999,
+   "area_k_m2": 257.4,
+   "res_area_k_m2": 226.6,
+   "nonres_area_k_m2": 30.8,
+   "pre1981_area_pct": 41.3,
+   "cats": {
+    "HISA": {
+     "b": 1870,
+     "a": 209.9
+    },
+    "BLOKI": {
+     "b": 50,
+     "a": 16.7
+    },
+    "PISARNE": {
+     "b": 15,
+     "a": 6.2
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 7.1
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 24,
+     "a": 6.3
+    },
+    "PRODAJA": {
+     "b": 12,
+     "a": 4.5
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 21,
+     "a": 4.6
+    }
+   }
+  },
+  "110200000110270167": {
+   "name": "Lenart",
+   "region": "2",
+   "buildings": 2720,
+   "area_k_m2": 445.9,
+   "res_area_k_m2": 352.2,
+   "nonres_area_k_m2": 93.8,
+   "pre1981_area_pct": 37.7,
+   "cats": {
+    "HISA": {
+     "b": 2417,
+     "a": 272.5
+    },
+    "BLOKI": {
+     "b": 90,
+     "a": 79.7
+    },
+    "PISARNE": {
+     "b": 59,
+     "a": 15.9
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "a": 13.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 23,
+     "a": 8.5
+    },
+    "PRODAJA": {
+     "b": 54,
+     "a": 35.4
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 1.9
+    },
+    "DRUGO": {
+     "b": 48,
+     "a": 16.5
+    }
+   }
+  },
+  "110200000110270241": {
+   "name": "Litija",
+   "region": "5",
+   "buildings": 4639,
+   "area_k_m2": 656.2,
+   "res_area_k_m2": 554.6,
+   "nonres_area_k_m2": 101.6,
+   "pre1981_area_pct": 51.3,
+   "cats": {
+    "HISA": {
+     "b": 4245,
+     "a": 445.9
+    },
+    "BLOKI": {
+     "b": 149,
+     "a": 108.7
+    },
+    "PISARNE": {
+     "b": 50,
+     "a": 18.2
+    },
+    "IZOBRAZ": {
+     "b": 27,
+     "a": 25.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 12,
+     "a": 2.3
+    },
+    "PRODAJA": {
+     "b": 44,
+     "a": 25.4
+    },
+    "SPORT": {
+     "b": 9,
+     "a": 7.2
+    },
+    "DRUGO": {
+     "b": 99,
+     "a": 19.5
+    }
+   }
+  },
+  "110200000110270324": {
+   "name": "Ljubno",
+   "region": "4",
+   "buildings": 1048,
+   "area_k_m2": 133.1,
+   "res_area_k_m2": 106.3,
+   "nonres_area_k_m2": 26.8,
+   "pre1981_area_pct": 64.9,
+   "cats": {
+    "HISA": {
+     "b": 948,
+     "a": 100.8
+    },
+    "BLOKI": {
+     "b": 12,
+     "a": 5.4
+    },
+    "PISARNE": {
+     "b": 23,
+     "a": 7.2
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 3.0
+    },
+    "PRODAJA": {
+     "b": 7,
+     "a": 1.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 41,
+     "a": 5.4
+    }
+   }
+  },
+  "110200000110270597": {
+   "name": "Logatec",
+   "region": "8",
+   "buildings": 3817,
+   "area_k_m2": 639.1,
+   "res_area_k_m2": 529.5,
+   "nonres_area_k_m2": 109.6,
+   "pre1981_area_pct": 43.8,
+   "cats": {
+    "HISA": {
+     "b": 3390,
+     "a": 414.4
+    },
+    "BLOKI": {
+     "b": 201,
+     "a": 115.1
+    },
+    "PISARNE": {
+     "b": 67,
+     "a": 37.3
+    },
+    "IZOBRAZ": {
+     "b": 22,
+     "a": 20.6
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 17,
+     "a": 5.1
+    },
+    "PRODAJA": {
+     "b": 37,
+     "a": 21.7
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 5.8
+    },
+    "DRUGO": {
+     "b": 75,
+     "a": 16.5
+    }
+   }
+  },
+  "110200000110270670": {
+   "name": "Loški Potok",
+   "region": "7",
+   "buildings": 846,
+   "area_k_m2": 97.8,
+   "res_area_k_m2": 85.2,
+   "nonres_area_k_m2": 12.6,
+   "pre1981_area_pct": 65.3,
+   "cats": {
+    "HISA": {
+     "b": 788,
+     "a": 78.9
+    },
+    "BLOKI": {
+     "b": 10,
+     "a": 6.3
+    },
+    "PISARNE": {
+     "b": 7,
+     "a": 1.2
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 31,
+     "a": 6.4
+    }
+   }
+  },
+  "110200000110270753": {
+   "name": "Luče",
+   "region": "4",
+   "buildings": 605,
+   "area_k_m2": 71.3,
+   "res_area_k_m2": 61.9,
+   "nonres_area_k_m2": 9.4,
+   "pre1981_area_pct": 67.3,
+   "cats": {
+    "HISA": {
+     "b": 550,
+     "a": 58.4
+    },
+    "BLOKI": {
+     "b": 14,
+     "a": 3.5
+    },
+    "PISARNE": {
+     "b": 7,
+     "a": 0.7
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 11,
+     "a": 2.8
+    },
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 17,
+     "a": 3.0
+    }
+   }
+  },
+  "110200000110270837": {
+   "name": "Majšperk",
+   "region": "2",
+   "buildings": 1778,
+   "area_k_m2": 183.1,
+   "res_area_k_m2": 158.7,
+   "nonres_area_k_m2": 24.5,
+   "pre1981_area_pct": 46.1,
+   "cats": {
+    "HISA": {
+     "b": 1676,
+     "a": 146.8
+    },
+    "BLOKI": {
+     "b": 22,
+     "a": 11.9
+    },
+    "PISARNE": {
+     "b": 12,
+     "a": 1.9
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 4.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 13,
+     "a": 2.3
+    },
+    "PRODAJA": {
+     "b": 9,
+     "a": 4.6
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 36,
+     "a": 8.3
+    }
+   }
+  },
+  "110200000110270910": {
+   "name": "Mengeš",
+   "region": "8",
+   "buildings": 2050,
+   "area_k_m2": 379.3,
+   "res_area_k_m2": 312.0,
+   "nonres_area_k_m2": 67.2,
+   "pre1981_area_pct": 46.1,
+   "cats": {
+    "HISA": {
+     "b": 1821,
+     "a": 238.7
+    },
+    "BLOKI": {
+     "b": 103,
+     "a": 73.4
+    },
+    "PISARNE": {
+     "b": 48,
+     "a": 28.5
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 9.5
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 9,
+     "a": 1.1
+    },
+    "PRODAJA": {
+     "b": 24,
+     "a": 13.4
+    },
+    "SPORT": {
+     "b": 10,
+     "a": 7.1
+    },
+    "DRUGO": {
+     "b": 28,
+     "a": 6.7
+    }
+   }
+  },
+  "110200000110271058": {
+   "name": "Mežica",
+   "region": "3",
+   "buildings": 773,
+   "area_k_m2": 148.1,
+   "res_area_k_m2": 127.4,
+   "nonres_area_k_m2": 20.8,
+   "pre1981_area_pct": 66.9,
+   "cats": {
+    "HISA": {
+     "b": 619,
+     "a": 75.4
+    },
+    "BLOKI": {
+     "b": 93,
+     "a": 52.0
+    },
+    "PISARNE": {
+     "b": 16,
+     "a": 6.1
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 8,
+     "a": 1.6
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 2.3
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 20,
+     "a": 4.6
+    }
+   }
+  },
+  "110200000110271132": {
+   "name": "Mislinja",
+   "region": "3",
+   "buildings": 1556,
+   "area_k_m2": 201.8,
+   "res_area_k_m2": 166.2,
+   "nonres_area_k_m2": 35.6,
+   "pre1981_area_pct": 48.5,
+   "cats": {
+    "HISA": {
+     "b": 1398,
+     "a": 147.3
+    },
+    "BLOKI": {
+     "b": 59,
+     "a": 18.9
+    },
+    "PISARNE": {
+     "b": 15,
+     "a": 3.7
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "a": 6.6
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 9,
+     "a": 8.7
+    },
+    "PRODAJA": {
+     "b": 6,
+     "a": 5.9
+    },
+    "SPORT": {
+     "b": 9,
+     "a": 3.1
+    },
+    "DRUGO": {
+     "b": 49,
+     "a": 7.5
+    }
+   }
+  },
+  "110200000110271215": {
+   "name": "Moravče",
+   "region": "8",
+   "buildings": 1850,
+   "area_k_m2": 236.4,
+   "res_area_k_m2": 210.3,
+   "nonres_area_k_m2": 26.1,
+   "pre1981_area_pct": 46.1,
+   "cats": {
+    "HISA": {
+     "b": 1755,
+     "a": 200.0
+    },
+    "BLOKI": {
+     "b": 19,
+     "a": 10.3
+    },
+    "PISARNE": {
+     "b": 6,
+     "a": 1.0
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 8,
+     "a": 2.3
+    },
+    "PRODAJA": {
+     "b": 21,
+     "a": 5.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 35,
+     "a": 9.4
+    }
+   }
+  },
+  "110200000110271306": {
+   "name": "Moravske Toplice",
+   "region": "1",
+   "buildings": 3270,
+   "area_k_m2": 430.2,
+   "res_area_k_m2": 302.0,
+   "nonres_area_k_m2": 128.2,
+   "pre1981_area_pct": 45.5,
+   "cats": {
+    "HISA": {
+     "b": 2901,
+     "a": 277.3
+    },
+    "BLOKI": {
+     "b": 45,
+     "a": 24.7
+    },
+    "PISARNE": {
+     "b": 15,
+     "a": 3.7
+    },
+    "IZOBRAZ": {
+     "b": 14,
+     "a": 7.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 96,
+     "a": 55.7
+    },
+    "PRODAJA": {
+     "b": 20,
+     "a": 3.2
+    },
+    "SPORT": {
+     "b": 12,
+     "a": 11.9
+    },
+    "DRUGO": {
+     "b": 164,
+     "a": 45.5
+    }
+   }
+  },
+  "110200000110271488": {
+   "name": "Murska Sobota",
+   "region": "1",
+   "buildings": 5435,
+   "area_k_m2": 1143.7,
+   "res_area_k_m2": 735.3,
+   "nonres_area_k_m2": 408.4,
+   "pre1981_area_pct": 53.4,
+   "cats": {
+    "HISA": {
+     "b": 4611,
+     "a": 526.7
+    },
+    "BLOKI": {
+     "b": 196,
+     "a": 208.6
+    },
+    "PISARNE": {
+     "b": 185,
+     "a": 103.3
+    },
+    "IZOBRAZ": {
+     "b": 34,
+     "a": 43.0
+    },
+    "BOLNICA": {
+     "b": 21,
+     "a": 39.7
+    },
+    "HOTELI": {
+     "b": 68,
+     "a": 23.3
+    },
+    "PRODAJA": {
+     "b": 143,
+     "a": 134.3
+    },
+    "SPORT": {
+     "b": 36,
+     "a": 13.9
+    },
+    "DRUGO": {
+     "b": 141,
+     "a": 50.8
+    }
+   }
+  },
+  "110200000110271561": {
+   "name": "Nova Gorica",
+   "region": "11",
+   "buildings": 8304,
+   "area_k_m2": 1711.0,
+   "res_area_k_m2": 1233.3,
+   "nonres_area_k_m2": 477.7,
+   "pre1981_area_pct": 59.8,
+   "cats": {
+    "HISA": {
+     "b": 7163,
+     "a": 843.0
+    },
+    "BLOKI": {
+     "b": 374,
+     "a": 390.3
+    },
+    "PISARNE": {
+     "b": 242,
+     "a": 138.8
+    },
+    "IZOBRAZ": {
+     "b": 58,
+     "a": 62.3
+    },
+    "BOLNICA": {
+     "b": 15,
+     "a": 12.8
+    },
+    "HOTELI": {
+     "b": 73,
+     "a": 41.4
+    },
+    "PRODAJA": {
+     "b": 133,
+     "a": 116.7
+    },
+    "SPORT": {
+     "b": 22,
+     "a": 29.1
+    },
+    "DRUGO": {
+     "b": 224,
+     "a": 76.6
+    }
+   }
+  },
+  "110200000110271645": {
+   "name": "Odranci",
+   "region": "1",
+   "buildings": 547,
+   "area_k_m2": 78.3,
+   "res_area_k_m2": 65.2,
+   "nonres_area_k_m2": 13.1,
+   "pre1981_area_pct": 54.4,
+   "cats": {
+    "HISA": {
+     "b": 505,
+     "a": 64.3
+    },
+    "BLOKI": null,
+    "PISARNE": {
+     "b": 9,
+     "a": 1.7
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 5,
+     "a": 2.5
+    },
+    "PRODAJA": {
+     "b": 6,
+     "a": 4.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 10,
+     "a": 1.6
+    }
+   }
+  },
+  "110200000110271728": {
+   "name": "Ormož",
+   "region": "2",
+   "buildings": 4933,
+   "area_k_m2": 581.2,
+   "res_area_k_m2": 462.3,
+   "nonres_area_k_m2": 118.9,
+   "pre1981_area_pct": 54.5,
+   "cats": {
+    "HISA": {
+     "b": 4507,
+     "a": 413.2
+    },
+    "BLOKI": {
+     "b": 88,
+     "a": 49.1
+    },
+    "PISARNE": {
+     "b": 85,
+     "a": 24.7
+    },
+    "IZOBRAZ": {
+     "b": 15,
+     "a": 18.5
+    },
+    "BOLNICA": {
+     "b": 11,
+     "a": 5.2
+    },
+    "HOTELI": {
+     "b": 49,
+     "a": 15.1
+    },
+    "PRODAJA": {
+     "b": 56,
+     "a": 24.5
+    },
+    "SPORT": {
+     "b": 12,
+     "a": 8.2
+    },
+    "DRUGO": {
+     "b": 110,
+     "a": 22.7
+    }
+   }
+  },
+  "110200000110271991": {
+   "name": "Pesnica",
+   "region": "2",
+   "buildings": 2912,
+   "area_k_m2": 384.8,
+   "res_area_k_m2": 329.9,
+   "nonres_area_k_m2": 54.9,
+   "pre1981_area_pct": 45.3,
+   "cats": {
+    "HISA": {
+     "b": 2717,
+     "a": 300.7
+    },
+    "BLOKI": {
+     "b": 53,
+     "a": 29.2
+    },
+    "PISARNE": {
+     "b": 44,
+     "a": 18.7
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 9.6
+    },
+    "BOLNICA": {
+     "b": 5,
+     "a": 1.2
+    },
+    "HOTELI": {
+     "b": 17,
+     "a": 4.9
+    },
+    "PRODAJA": {
+     "b": 27,
+     "a": 7.7
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 1.2
+    },
+    "DRUGO": {
+     "b": 35,
+     "a": 11.5
+    }
+   }
+  },
+  "110200000110272023": {
+   "name": "Podčetrtek",
+   "region": "4",
+   "buildings": 1895,
+   "area_k_m2": 243.6,
+   "res_area_k_m2": 168.0,
+   "nonres_area_k_m2": 75.6,
+   "pre1981_area_pct": 50.2,
+   "cats": {
+    "HISA": {
+     "b": 1678,
+     "a": 147.0
+    },
+    "BLOKI": {
+     "b": 44,
+     "a": 21.0
+    },
+    "PISARNE": {
+     "b": 14,
+     "a": 2.9
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 5.3
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 27,
+     "a": 33.4
+    },
+    "PRODAJA": {
+     "b": 47,
+     "a": 12.2
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 77,
+     "a": 17.8
+    }
+   }
+  },
+  "110200000110272296": {
+   "name": "Postojna",
+   "region": "10",
+   "buildings": 3905,
+   "area_k_m2": 872.7,
+   "res_area_k_m2": 623.8,
+   "nonres_area_k_m2": 248.9,
+   "pre1981_area_pct": 54.5,
+   "cats": {
+    "HISA": {
+     "b": 3157,
+     "a": 394.8
+    },
+    "BLOKI": {
+     "b": 329,
+     "a": 229.0
+    },
+    "PISARNE": {
+     "b": 112,
+     "a": 64.2
+    },
+    "IZOBRAZ": {
+     "b": 23,
+     "a": 33.8
+    },
+    "BOLNICA": {
+     "b": 5,
+     "a": 4.6
+    },
+    "HOTELI": {
+     "b": 50,
+     "a": 20.8
+    },
+    "PRODAJA": {
+     "b": 66,
+     "a": 46.5
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 4.7
+    },
+    "DRUGO": {
+     "b": 158,
+     "a": 74.3
+    }
+   }
+  },
+  "110200000110272379": {
+   "name": "Preddvor",
+   "region": "9",
+   "buildings": 1311,
+   "area_k_m2": 183.9,
+   "res_area_k_m2": 160.5,
+   "nonres_area_k_m2": 23.4,
+   "pre1981_area_pct": 51.3,
+   "cats": {
+    "HISA": {
+     "b": 1212,
+     "a": 145.4
+    },
+    "BLOKI": {
+     "b": 25,
+     "a": 15.1
+    },
+    "PISARNE": {
+     "b": 16,
+     "a": 3.0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 6.5
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 14,
+     "a": 6.1
+    },
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 35,
+     "a": 7.2
+    }
+   }
+  },
+  "110200000110272452": {
+   "name": "Rače-Fram",
+   "region": "2",
+   "buildings": 2972,
+   "area_k_m2": 395.0,
+   "res_area_k_m2": 346.1,
+   "nonres_area_k_m2": 49.0,
+   "pre1981_area_pct": 40.5,
+   "cats": {
+    "HISA": {
+     "b": 2783,
+     "a": 320.4
+    },
+    "BLOKI": {
+     "b": 51,
+     "a": 25.7
+    },
+    "PISARNE": {
+     "b": 35,
+     "a": 12.3
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "a": 9.6
+    },
+    "BOLNICA": {
+     "b": 5,
+     "a": 1.6
+    },
+    "HOTELI": {
+     "b": 10,
+     "a": 2.7
+    },
+    "PRODAJA": {
+     "b": 31,
+     "a": 9.5
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 3.9
+    },
+    "DRUGO": {
+     "b": 39,
+     "a": 9.3
+    }
+   }
+  },
+  "110200000110272536": {
+   "name": "Radenci",
+   "region": "1",
+   "buildings": 1959,
+   "area_k_m2": 280.5,
+   "res_area_k_m2": 214.5,
+   "nonres_area_k_m2": 66.1,
+   "pre1981_area_pct": 56.8,
+   "cats": {
+    "HISA": {
+     "b": 1792,
+     "a": 179.9
+    },
+    "BLOKI": {
+     "b": 57,
+     "a": 34.6
+    },
+    "PISARNE": {
+     "b": 20,
+     "a": 13.2
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 10.2
+    },
+    "BOLNICA": {
+     "b": 6,
+     "a": 0.9
+    },
+    "HOTELI": {
+     "b": 22,
+     "a": 17.9
+    },
+    "PRODAJA": {
+     "b": 16,
+     "a": 7.5
+    },
+    "SPORT": {
+     "b": 10,
+     "a": 9.8
+    },
+    "DRUGO": {
+     "b": 31,
+     "a": 6.5
+    }
+   }
+  },
+  "110200000110272619": {
+   "name": "Radlje ob Dravi",
+   "region": "3",
+   "buildings": 1816,
+   "area_k_m2": 291.7,
+   "res_area_k_m2": 233.9,
+   "nonres_area_k_m2": 57.8,
+   "pre1981_area_pct": 55.3,
+   "cats": {
+    "HISA": {
+     "b": 1578,
+     "a": 184.2
+    },
+    "BLOKI": {
+     "b": 91,
+     "a": 49.6
+    },
+    "PISARNE": {
+     "b": 40,
+     "a": 11.7
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 7.5
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 13,
+     "a": 4.5
+    },
+    "PRODAJA": {
+     "b": 28,
+     "a": 15.4
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 50,
+     "a": 13.4
+    }
+   }
+  },
+  "110200000110272700": {
+   "name": "Radovljica",
+   "region": "9",
+   "buildings": 5182,
+   "area_k_m2": 933.3,
+   "res_area_k_m2": 740.4,
+   "nonres_area_k_m2": 192.9,
+   "pre1981_area_pct": 58.2,
+   "cats": {
+    "HISA": {
+     "b": 4467,
+     "a": 560.9
+    },
+    "BLOKI": {
+     "b": 317,
+     "a": 179.5
+    },
+    "PISARNE": {
+     "b": 95,
+     "a": 38.0
+    },
+    "IZOBRAZ": {
+     "b": 32,
+     "a": 38.8
+    },
+    "BOLNICA": {
+     "b": 6,
+     "a": 7.1
+    },
+    "HOTELI": {
+     "b": 63,
+     "a": 29.5
+    },
+    "PRODAJA": {
+     "b": 74,
+     "a": 46.5
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 3.5
+    },
+    "DRUGO": {
+     "b": 122,
+     "a": 29.5
+    }
+   }
+  },
+  "110200000110272882": {
+   "name": "Ravne na Koroškem",
+   "region": "3",
+   "buildings": 2262,
+   "area_k_m2": 526.6,
+   "res_area_k_m2": 395.4,
+   "nonres_area_k_m2": 131.2,
+   "pre1981_area_pct": 58.8,
+   "cats": {
+    "HISA": {
+     "b": 1811,
+     "a": 223.5
+    },
+    "BLOKI": {
+     "b": 218,
+     "a": 171.9
+    },
+    "PISARNE": {
+     "b": 91,
+     "a": 48.1
+    },
+    "IZOBRAZ": {
+     "b": 14,
+     "a": 27.3
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 31,
+     "a": 8.8
+    },
+    "PRODAJA": {
+     "b": 27,
+     "a": 18.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 63,
+     "a": 17.8
+    }
+   }
+  },
+  "110200000110272965": {
+   "name": "Ribnica",
+   "region": "7",
+   "buildings": 2975,
+   "area_k_m2": 448.0,
+   "res_area_k_m2": 365.1,
+   "nonres_area_k_m2": 82.9,
+   "pre1981_area_pct": 57.0,
+   "cats": {
+    "HISA": {
+     "b": 2658,
+     "a": 309.8
+    },
+    "BLOKI": {
+     "b": 81,
+     "a": 55.3
+    },
+    "PISARNE": {
+     "b": 76,
+     "a": 29.0
+    },
+    "IZOBRAZ": {
+     "b": 11,
+     "a": 9.4
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 26,
+     "a": 6.9
+    },
+    "PRODAJA": {
+     "b": 42,
+     "a": 16.2
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 76,
+     "a": 15.7
+    }
+   }
+  },
+  "110200000110273005": {
+   "name": "Rogatec",
+   "region": "4",
+   "buildings": 1038,
+   "area_k_m2": 126.2,
+   "res_area_k_m2": 104.1,
+   "nonres_area_k_m2": 22.1,
+   "pre1981_area_pct": 60.5,
+   "cats": {
+    "HISA": {
+     "b": 917,
+     "a": 87.2
+    },
+    "BLOKI": {
+     "b": 41,
+     "a": 16.9
+    },
+    "PISARNE": {
+     "b": 12,
+     "a": 2.3
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 4.8
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 10,
+     "a": 3.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 49,
+     "a": 7.7
+    }
+   }
+  },
+  "110200000110273187": {
+   "name": "Rogašovci",
+   "region": "1",
+   "buildings": 1287,
+   "area_k_m2": 149.2,
+   "res_area_k_m2": 126.9,
+   "nonres_area_k_m2": 22.3,
+   "pre1981_area_pct": 52.7,
+   "cats": {
+    "HISA": {
+     "b": 1181,
+     "a": 124.3
+    },
+    "BLOKI": {
+     "b": 9,
+     "a": 2.5
+    },
+    "PISARNE": {
+     "b": 12,
+     "a": 1.8
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 3.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 16,
+     "a": 4.9
+    },
+    "PRODAJA": {
+     "b": 9,
+     "a": 2.7
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 51,
+     "a": 7.5
+    }
+   }
+  },
+  "110200000110273260": {
+   "name": "Rogaška Slatina",
+   "region": "4",
+   "buildings": 3800,
+   "area_k_m2": 602.7,
+   "res_area_k_m2": 434.1,
+   "nonres_area_k_m2": 168.6,
+   "pre1981_area_pct": 52.5,
+   "cats": {
+    "HISA": {
+     "b": 3405,
+     "a": 361.6
+    },
+    "BLOKI": {
+     "b": 132,
+     "a": 72.4
+    },
+    "PISARNE": {
+     "b": 58,
+     "a": 27.5
+    },
+    "IZOBRAZ": {
+     "b": 17,
+     "a": 14.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 59,
+     "a": 58.2
+    },
+    "PRODAJA": {
+     "b": 56,
+     "a": 42.7
+    },
+    "SPORT": {
+     "b": 9,
+     "a": 6.3
+    },
+    "DRUGO": {
+     "b": 63,
+     "a": 18.6
+    }
+   }
+  },
+  "110200000110273344": {
+   "name": "Ruše",
+   "region": "2",
+   "buildings": 1950,
+   "area_k_m2": 326.8,
+   "res_area_k_m2": 267.7,
+   "nonres_area_k_m2": 59.1,
+   "pre1981_area_pct": 54.3,
+   "cats": {
+    "HISA": {
+     "b": 1672,
+     "a": 187.7
+    },
+    "BLOKI": {
+     "b": 134,
+     "a": 80.0
+    },
+    "PISARNE": {
+     "b": 56,
+     "a": 18.0
+    },
+    "IZOBRAZ": {
+     "b": 14,
+     "a": 9.9
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 21,
+     "a": 10.5
+    },
+    "PRODAJA": {
+     "b": 19,
+     "a": 8.4
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 5.2
+    },
+    "DRUGO": {
+     "b": 27,
+     "a": 6.7
+    }
+   }
+  },
+  "110200000110273427": {
+   "name": "Semič",
+   "region": "7",
+   "buildings": 1752,
+   "area_k_m2": 187.4,
+   "res_area_k_m2": 162.7,
+   "nonres_area_k_m2": 24.7,
+   "pre1981_area_pct": 55.7,
+   "cats": {
+    "HISA": {
+     "b": 1613,
+     "a": 151.5
+    },
+    "BLOKI": {
+     "b": 27,
+     "a": 11.2
+    },
+    "PISARNE": {
+     "b": 18,
+     "a": 2.7
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 9,
+     "a": 2.4
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 2.7
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 68,
+     "a": 10.1
+    }
+   }
+  },
+  "110200000110273690": {
+   "name": "Sevnica",
+   "region": "6",
+   "buildings": 6738,
+   "area_k_m2": 817.5,
+   "res_area_k_m2": 685.5,
+   "nonres_area_k_m2": 132.0,
+   "pre1981_area_pct": 53.5,
+   "cats": {
+    "HISA": {
+     "b": 6251,
+     "a": 598.2
+    },
+    "BLOKI": {
+     "b": 137,
+     "a": 87.4
+    },
+    "PISARNE": {
+     "b": 73,
+     "a": 31.0
+    },
+    "IZOBRAZ": {
+     "b": 22,
+     "a": 27.2
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 31,
+     "a": 8.9
+    },
+    "PRODAJA": {
+     "b": 57,
+     "a": 26.5
+    },
+    "SPORT": {
+     "b": 8,
+     "a": 7.5
+    },
+    "DRUGO": {
+     "b": 155,
+     "a": 26.3
+    }
+   }
+  },
+  "110200000110273773": {
+   "name": "Sežana",
+   "region": "12",
+   "buildings": 4594,
+   "area_k_m2": 802.1,
+   "res_area_k_m2": 605.4,
+   "nonres_area_k_m2": 196.7,
+   "pre1981_area_pct": 57.7,
+   "cats": {
+    "HISA": {
+     "b": 3942,
+     "a": 483.0
+    },
+    "BLOKI": {
+     "b": 171,
+     "a": 122.5
+    },
+    "PISARNE": {
+     "b": 177,
+     "a": 64.7
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "a": 15.2
+    },
+    "BOLNICA": {
+     "b": 6,
+     "a": 5.1
+    },
+    "HOTELI": {
+     "b": 58,
+     "a": 28.2
+    },
+    "PRODAJA": {
+     "b": 75,
+     "a": 34.1
+    },
+    "SPORT": {
+     "b": 14,
+     "a": 14.3
+    },
+    "DRUGO": {
+     "b": 131,
+     "a": 35.1
+    }
+   }
+  },
+  "110200000110273856": {
+   "name": "Slovenj Gradec",
+   "region": "3",
+   "buildings": 4719,
+   "area_k_m2": 870.8,
+   "res_area_k_m2": 659.4,
+   "nonres_area_k_m2": 211.4,
+   "pre1981_area_pct": 51.8,
+   "cats": {
+    "HISA": {
+     "b": 4174,
+     "a": 518.0
+    },
+    "BLOKI": {
+     "b": 205,
+     "a": 141.4
+    },
+    "PISARNE": {
+     "b": 90,
+     "a": 49.6
+    },
+    "IZOBRAZ": {
+     "b": 27,
+     "a": 39.6
+    },
+    "BOLNICA": {
+     "b": 13,
+     "a": 22.9
+    },
+    "HOTELI": {
+     "b": 29,
+     "a": 15.2
+    },
+    "PRODAJA": {
+     "b": 53,
+     "a": 37.3
+    },
+    "SPORT": {
+     "b": 11,
+     "a": 12.7
+    },
+    "DRUGO": {
+     "b": 117,
+     "a": 34.2
+    }
+   }
+  },
+  "110200000110273930": {
+   "name": "Slovenska Bistrica",
+   "region": "2",
+   "buildings": 9044,
+   "area_k_m2": 1231.9,
+   "res_area_k_m2": 1000.8,
+   "nonres_area_k_m2": 231.1,
+   "pre1981_area_pct": 46.3,
+   "cats": {
+    "HISA": {
+     "b": 8239,
+     "a": 850.7
+    },
+    "BLOKI": {
+     "b": 255,
+     "a": 150.1
+    },
+    "PISARNE": {
+     "b": 150,
+     "a": 55.6
+    },
+    "IZOBRAZ": {
+     "b": 34,
+     "a": 36.3
+    },
+    "BOLNICA": {
+     "b": 12,
+     "a": 5.7
+    },
+    "HOTELI": {
+     "b": 74,
+     "a": 20.1
+    },
+    "PRODAJA": {
+     "b": 97,
+     "a": 51.9
+    },
+    "SPORT": {
+     "b": 17,
+     "a": 13.7
+    },
+    "DRUGO": {
+     "b": 166,
+     "a": 47.8
+    }
+   }
+  },
+  "110200000110274078": {
+   "name": "Slovenske Konjice",
+   "region": "4",
+   "buildings": 4783,
+   "area_k_m2": 671.1,
+   "res_area_k_m2": 556.2,
+   "nonres_area_k_m2": 114.8,
+   "pre1981_area_pct": 48.0,
+   "cats": {
+    "HISA": {
+     "b": 4308,
+     "a": 448.9
+    },
+    "BLOKI": {
+     "b": 164,
+     "a": 107.4
+    },
+    "PISARNE": {
+     "b": 106,
+     "a": 34.7
+    },
+    "IZOBRAZ": {
+     "b": 18,
+     "a": 18.4
+    },
+    "BOLNICA": {
+     "b": 7,
+     "a": 2.9
+    },
+    "HOTELI": {
+     "b": 29,
+     "a": 12.0
+    },
+    "PRODAJA": {
+     "b": 81,
+     "a": 26.8
+    },
+    "SPORT": {
+     "b": 8,
+     "a": 4.2
+    },
+    "DRUGO": {
+     "b": 62,
+     "a": 15.8
+    }
+   }
+  },
+  "110200000110274151": {
+   "name": "Starše",
+   "region": "2",
+   "buildings": 1506,
+   "area_k_m2": 193.3,
+   "res_area_k_m2": 174.3,
+   "nonres_area_k_m2": 19.0,
+   "pre1981_area_pct": 50.4,
+   "cats": {
+    "HISA": {
+     "b": 1418,
+     "a": 165.8
+    },
+    "BLOKI": {
+     "b": 18,
+     "a": 8.5
+    },
+    "PISARNE": {
+     "b": 10,
+     "a": 1.8
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "a": 6.2
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 9,
+     "a": 1.7
+    },
+    "PRODAJA": {
+     "b": 11,
+     "a": 3.8
+    },
+    "SPORT": {
+     "b": 9,
+     "a": 0.9
+    },
+    "DRUGO": {
+     "b": 24,
+     "a": 4.5
+    }
+   }
+  },
+  "110200000110274235": {
+   "name": "Sveti Jurij ob Ščavnici",
+   "region": "1",
+   "buildings": 1357,
+   "area_k_m2": 133.6,
+   "res_area_k_m2": 113.6,
+   "nonres_area_k_m2": 20.0,
+   "pre1981_area_pct": 49.6,
+   "cats": {
+    "HISA": {
+     "b": 1246,
+     "a": 111.1
+    },
+    "BLOKI": {
+     "b": 9,
+     "a": 2.5
+    },
+    "PISARNE": {
+     "b": 16,
+     "a": 2.0
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 8,
+     "a": 1.5
+    },
+    "PRODAJA": {
+     "b": 18,
+     "a": 3.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 53,
+     "a": 7.9
+    }
+   }
+  },
+  "110200000110274318": {
+   "name": "Šenčur",
+   "region": "9",
+   "buildings": 2600,
+   "area_k_m2": 424.6,
+   "res_area_k_m2": 339.6,
+   "nonres_area_k_m2": 85.0,
+   "pre1981_area_pct": 42.1,
+   "cats": {
+    "HISA": {
+     "b": 2389,
+     "a": 307.3
+    },
+    "BLOKI": {
+     "b": 71,
+     "a": 32.3
+    },
+    "PISARNE": {
+     "b": 45,
+     "a": 33.9
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "a": 6.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 20,
+     "a": 5.2
+    },
+    "PRODAJA": {
+     "b": 21,
+     "a": 20.4
+    },
+    "SPORT": {
+     "b": 8,
+     "a": 8.2
+    },
+    "DRUGO": {
+     "b": 38,
+     "a": 10.2
+    }
+   }
+  },
+  "110200000110274409": {
+   "name": "Šentilj",
+   "region": "2",
+   "buildings": 2924,
+   "area_k_m2": 411.4,
+   "res_area_k_m2": 345.4,
+   "nonres_area_k_m2": 66.1,
+   "pre1981_area_pct": 47.7,
+   "cats": {
+    "HISA": {
+     "b": 2703,
+     "a": 305.6
+    },
+    "BLOKI": {
+     "b": 72,
+     "a": 39.8
+    },
+    "PISARNE": {
+     "b": 43,
+     "a": 14.4
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "a": 10.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 19,
+     "a": 6.5
+    },
+    "PRODAJA": {
+     "b": 35,
+     "a": 13.6
+    },
+    "SPORT": {
+     "b": 10,
+     "a": 5.3
+    },
+    "DRUGO": {
+     "b": 29,
+     "a": 15.6
+    }
+   }
+  },
+  "110200000110274581": {
+   "name": "Šentjernej",
+   "region": "7",
+   "buildings": 2673,
+   "area_k_m2": 327.3,
+   "res_area_k_m2": 275.2,
+   "nonres_area_k_m2": 52.1,
+   "pre1981_area_pct": 48.5,
+   "cats": {
+    "HISA": {
+     "b": 2489,
+     "a": 259.0
+    },
+    "BLOKI": {
+     "b": 32,
+     "a": 16.1
+    },
+    "PISARNE": {
+     "b": 36,
+     "a": 15.8
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 7.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 15,
+     "a": 3.7
+    },
+    "PRODAJA": {
+     "b": 22,
+     "a": 8.6
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 68,
+     "a": 13.0
+    }
+   }
+  },
+  "110200000110274664": {
+   "name": "Šentjur",
+   "region": "4",
+   "buildings": 7336,
+   "area_k_m2": 823.3,
+   "res_area_k_m2": 703.3,
+   "nonres_area_k_m2": 120.0,
+   "pre1981_area_pct": 51.3,
+   "cats": {
+    "HISA": {
+     "b": 6895,
+     "a": 643.8
+    },
+    "BLOKI": {
+     "b": 99,
+     "a": 59.5
+    },
+    "PISARNE": {
+     "b": 79,
+     "a": 25.3
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "a": 22.7
+    },
+    "BOLNICA": {
+     "b": 7,
+     "a": 4.8
+    },
+    "HOTELI": {
+     "b": 37,
+     "a": 8.1
+    },
+    "PRODAJA": {
+     "b": 55,
+     "a": 30.9
+    },
+    "SPORT": {
+     "b": 9,
+     "a": 5.6
+    },
+    "DRUGO": {
+     "b": 135,
+     "a": 22.7
+    }
+   }
+  },
+  "110200000110274748": {
+   "name": "Škocjan",
+   "region": "7",
+   "buildings": 1491,
+   "area_k_m2": 155.0,
+   "res_area_k_m2": 134.5,
+   "nonres_area_k_m2": 20.5,
+   "pre1981_area_pct": 51.9,
+   "cats": {
+    "HISA": {
+     "b": 1403,
+     "a": 130.9
+    },
+    "BLOKI": {
+     "b": 13,
+     "a": 3.6
+    },
+    "PISARNE": {
+     "b": 7,
+     "a": 1.7
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 5,
+     "a": 2.2
+    },
+    "PRODAJA": {
+     "b": 12,
+     "a": 4.0
+    },
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 49,
+     "a": 7.0
+    }
+   }
+  },
+  "110200000110274821": {
+   "name": "Škofja Loka",
+   "region": "9",
+   "buildings": 5501,
+   "area_k_m2": 1031.7,
+   "res_area_k_m2": 827.1,
+   "nonres_area_k_m2": 204.6,
+   "pre1981_area_pct": 56.1,
+   "cats": {
+    "HISA": {
+     "b": 4829,
+     "a": 624.5
+    },
+    "BLOKI": {
+     "b": 270,
+     "a": 202.6
+    },
+    "PISARNE": {
+     "b": 112,
+     "a": 60.1
+    },
+    "IZOBRAZ": {
+     "b": 34,
+     "a": 41.6
+    },
+    "BOLNICA": {
+     "b": 7,
+     "a": 3.8
+    },
+    "HOTELI": {
+     "b": 49,
+     "a": 16.5
+    },
+    "PRODAJA": {
+     "b": 61,
+     "a": 39.2
+    },
+    "SPORT": {
+     "b": 13,
+     "a": 7.2
+    },
+    "DRUGO": {
+     "b": 126,
+     "a": 36.1
+    }
+   }
+  },
+  "110200000110275042": {
+   "name": "Škofljica",
+   "region": "8",
+   "buildings": 3154,
+   "area_k_m2": 494.8,
+   "res_area_k_m2": 436.5,
+   "nonres_area_k_m2": 58.4,
+   "pre1981_area_pct": 31.1,
+   "cats": {
+    "HISA": {
+     "b": 2894,
+     "a": 350.7
+    },
+    "BLOKI": {
+     "b": 150,
+     "a": 85.8
+    },
+    "PISARNE": {
+     "b": 29,
+     "a": 17.2
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "a": 19.3
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 12,
+     "a": 3.2
+    },
+    "PRODAJA": {
+     "b": 19,
+     "a": 4.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 37,
+     "a": 11.3
+    }
+   }
+  },
+  "110200000110275125": {
+   "name": "Šmarje pri Jelšah",
+   "region": "4",
+   "buildings": 4221,
+   "area_k_m2": 473.4,
+   "res_area_k_m2": 404.4,
+   "nonres_area_k_m2": 69.0,
+   "pre1981_area_pct": 57.5,
+   "cats": {
+    "HISA": {
+     "b": 3975,
+     "a": 368.2
+    },
+    "BLOKI": {
+     "b": 63,
+     "a": 36.2
+    },
+    "PISARNE": {
+     "b": 38,
+     "a": 16.9
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "a": 11.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 1.7
+    },
+    "PRODAJA": {
+     "b": 41,
+     "a": 15.7
+    },
+    "SPORT": {
+     "b": 7,
+     "a": 4.0
+    },
+    "DRUGO": {
+     "b": 75,
+     "a": 17.2
+    }
+   }
+  },
+  "110200000110275398": {
+   "name": "Šmartno ob Paki",
+   "region": "4",
+   "buildings": 1194,
+   "area_k_m2": 144.0,
+   "res_area_k_m2": 128.5,
+   "nonres_area_k_m2": 15.5,
+   "pre1981_area_pct": 50.6,
+   "cats": {
+    "HISA": {
+     "b": 1118,
+     "a": 118.7
+    },
+    "BLOKI": {
+     "b": 16,
+     "a": 9.8
+    },
+    "PISARNE": {
+     "b": 13,
+     "a": 3.1
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 34,
+     "a": 4.5
+    }
+   }
+  },
+  "110200000110275471": {
+   "name": "Šoštanj",
+   "region": "4",
+   "buildings": 2384,
+   "area_k_m2": 414.8,
+   "res_area_k_m2": 313.2,
+   "nonres_area_k_m2": 101.6,
+   "pre1981_area_pct": 53.2,
+   "cats": {
+    "HISA": {
+     "b": 2117,
+     "a": 245.7
+    },
+    "BLOKI": {
+     "b": 108,
+     "a": 67.4
+    },
+    "PISARNE": {
+     "b": 39,
+     "a": 31.7
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 12.1
+    },
+    "BOLNICA": {
+     "b": 7,
+     "a": 9.5
+    },
+    "HOTELI": {
+     "b": 22,
+     "a": 17.2
+    },
+    "PRODAJA": {
+     "b": 12,
+     "a": 6.5
+    },
+    "SPORT": {
+     "b": 11,
+     "a": 5.5
+    },
+    "DRUGO": {
+     "b": 62,
+     "a": 19.1
+    }
+   }
+  },
+  "110200000110275554": {
+   "name": "Štore",
+   "region": "4",
+   "buildings": 1169,
+   "area_k_m2": 166.0,
+   "res_area_k_m2": 139.7,
+   "nonres_area_k_m2": 26.3,
+   "pre1981_area_pct": 60.3,
+   "cats": {
+    "HISA": {
+     "b": 1041,
+     "a": 97.8
+    },
+    "BLOKI": {
+     "b": 65,
+     "a": 41.8
+    },
+    "PISARNE": {
+     "b": 24,
+     "a": 7.6
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 8.1
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 7,
+     "a": 1.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 21,
+     "a": 5.9
+    }
+   }
+  },
+  "110200000110275638": {
+   "name": "Tolmin",
+   "region": "11",
+   "buildings": 4446,
+   "area_k_m2": 624.4,
+   "res_area_k_m2": 498.3,
+   "nonres_area_k_m2": 126.1,
+   "pre1981_area_pct": 75.5,
+   "cats": {
+    "HISA": {
+     "b": 3934,
+     "a": 413.0
+    },
+    "BLOKI": {
+     "b": 163,
+     "a": 85.3
+    },
+    "PISARNE": {
+     "b": 72,
+     "a": 28.6
+    },
+    "IZOBRAZ": {
+     "b": 18,
+     "a": 26.9
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 47,
+     "a": 23.1
+    },
+    "PRODAJA": {
+     "b": 49,
+     "a": 19.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 156,
+     "a": 25.3
+    }
+   }
+  },
+  "110200000110275711": {
+   "name": "Trbovlje",
+   "region": "5",
+   "buildings": 2781,
+   "area_k_m2": 662.2,
+   "res_area_k_m2": 519.6,
+   "nonres_area_k_m2": 142.6,
+   "pre1981_area_pct": 70.2,
+   "cats": {
+    "HISA": {
+     "b": 2128,
+     "a": 234.1
+    },
+    "BLOKI": {
+     "b": 376,
+     "a": 285.5
+    },
+    "PISARNE": {
+     "b": 86,
+     "a": 35.2
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "a": 22.2
+    },
+    "BOLNICA": {
+     "b": 7,
+     "a": 8.5
+    },
+    "HOTELI": {
+     "b": 18,
+     "a": 3.7
+    },
+    "PRODAJA": {
+     "b": 74,
+     "a": 37.6
+    },
+    "SPORT": {
+     "b": 12,
+     "a": 12.9
+    },
+    "DRUGO": {
+     "b": 60,
+     "a": 22.4
+    }
+   }
+  },
+  "110200000110275802": {
+   "name": "Trebnje",
+   "region": "7",
+   "buildings": 4845,
+   "area_k_m2": 632.4,
+   "res_area_k_m2": 536.0,
+   "nonres_area_k_m2": 96.4,
+   "pre1981_area_pct": 42.4,
+   "cats": {
+    "HISA": {
+     "b": 4443,
+     "a": 473.5
+    },
+    "BLOKI": {
+     "b": 126,
+     "a": 62.5
+    },
+    "PISARNE": {
+     "b": 72,
+     "a": 21.3
+    },
+    "IZOBRAZ": {
+     "b": 13,
+     "a": 20.9
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 24,
+     "a": 7.5
+    },
+    "PRODAJA": {
+     "b": 48,
+     "a": 23.5
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 115,
+     "a": 20.1
+    }
+   }
+  },
+  "110200000110275984": {
+   "name": "Tržič",
+   "region": "9",
+   "buildings": 3551,
+   "area_k_m2": 596.7,
+   "res_area_k_m2": 506.9,
+   "nonres_area_k_m2": 89.8,
+   "pre1981_area_pct": 65.1,
+   "cats": {
+    "HISA": {
+     "b": 3001,
+     "a": 350.7
+    },
+    "BLOKI": {
+     "b": 295,
+     "a": 156.2
+    },
+    "PISARNE": {
+     "b": 53,
+     "a": 23.1
+    },
+    "IZOBRAZ": {
+     "b": 11,
+     "a": 18.4
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 17,
+     "a": 3.7
+    },
+    "PRODAJA": {
+     "b": 64,
+     "a": 19.8
+    },
+    "SPORT": {
+     "b": 7,
+     "a": 1.9
+    },
+    "DRUGO": {
+     "b": 100,
+     "a": 20.8
+    }
+   }
+  },
+  "110200000110276016": {
+   "name": "Turnišče",
+   "region": "1",
+   "buildings": 1118,
+   "area_k_m2": 137.7,
+   "res_area_k_m2": 120.6,
+   "nonres_area_k_m2": 17.1,
+   "pre1981_area_pct": 57.7,
+   "cats": {
+    "HISA": {
+     "b": 1043,
+     "a": 114.7
+    },
+    "BLOKI": {
+     "b": 14,
+     "a": 5.9
+    },
+    "PISARNE": {
+     "b": 11,
+     "a": 3.6
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 3.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 7,
+     "a": 1.3
+    },
+    "PRODAJA": {
+     "b": 9,
+     "a": 3.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 24,
+     "a": 4.4
+    }
+   }
+  },
+  "110200000110276107": {
+   "name": "Velenje",
+   "region": "4",
+   "buildings": 5028,
+   "area_k_m2": 1371.3,
+   "res_area_k_m2": 1023.9,
+   "nonres_area_k_m2": 347.4,
+   "pre1981_area_pct": 54.7,
+   "cats": {
+    "HISA": {
+     "b": 4370,
+     "a": 540.3
+    },
+    "BLOKI": {
+     "b": 305,
+     "a": 483.6
+    },
+    "PISARNE": {
+     "b": 107,
+     "a": 72.3
+    },
+    "IZOBRAZ": {
+     "b": 37,
+     "a": 77.9
+    },
+    "BOLNICA": {
+     "b": 6,
+     "a": 12.9
+    },
+    "HOTELI": {
+     "b": 35,
+     "a": 17.5
+    },
+    "PRODAJA": {
+     "b": 58,
+     "a": 100.1
+    },
+    "SPORT": {
+     "b": 17,
+     "a": 22.0
+    },
+    "DRUGO": {
+     "b": 93,
+     "a": 44.8
+    }
+   }
+  },
+  "110200000110276289": {
+   "name": "Velike Lašče",
+   "region": "8",
+   "buildings": 1988,
+   "area_k_m2": 219.6,
+   "res_area_k_m2": 196.5,
+   "nonres_area_k_m2": 23.1,
+   "pre1981_area_pct": 49.7,
+   "cats": {
+    "HISA": {
+     "b": 1884,
+     "a": 192.7
+    },
+    "BLOKI": {
+     "b": 15,
+     "a": 3.9
+    },
+    "PISARNE": {
+     "b": 8,
+     "a": 1.3
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "a": 6.5
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 6,
+     "a": 1.3
+    },
+    "PRODAJA": {
+     "b": 22,
+     "a": 3.6
+    },
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 42,
+     "a": 9.3
+    }
+   }
+  },
+  "110200000110276362": {
+   "name": "Vipava",
+   "region": "11",
+   "buildings": 2048,
+   "area_k_m2": 330.3,
+   "res_area_k_m2": 251.5,
+   "nonres_area_k_m2": 78.8,
+   "pre1981_area_pct": 57.9,
+   "cats": {
+    "HISA": {
+     "b": 1804,
+     "a": 212.8
+    },
+    "BLOKI": {
+     "b": 68,
+     "a": 38.7
+    },
+    "PISARNE": {
+     "b": 44,
+     "a": 9.0
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "a": 16.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 14,
+     "a": 3.9
+    },
+    "PRODAJA": {
+     "b": 22,
+     "a": 7.9
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 2.5
+    },
+    "DRUGO": {
+     "b": 80,
+     "a": 34.5
+    }
+   }
+  },
+  "110200000110276446": {
+   "name": "Vodice",
+   "region": "8",
+   "buildings": 1662,
+   "area_k_m2": 239.7,
+   "res_area_k_m2": 218.7,
+   "nonres_area_k_m2": 21.1,
+   "pre1981_area_pct": 41.4,
+   "cats": {
+    "HISA": {
+     "b": 1572,
+     "a": 212.7
+    },
+    "BLOKI": {
+     "b": 19,
+     "a": 6.0
+    },
+    "PISARNE": {
+     "b": 17,
+     "a": 3.5
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 9,
+     "a": 1.6
+    },
+    "PRODAJA": {
+     "b": 8,
+     "a": 1.4
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 31,
+     "a": 8.2
+    }
+   }
+  },
+  "110200000110276529": {
+   "name": "Vrhnika",
+   "region": "8",
+   "buildings": 4658,
+   "area_k_m2": 758.1,
+   "res_area_k_m2": 628.5,
+   "nonres_area_k_m2": 129.6,
+   "pre1981_area_pct": 50.6,
+   "cats": {
+    "HISA": {
+     "b": 4111,
+     "a": 487.7
+    },
+    "BLOKI": {
+     "b": 217,
+     "a": 140.8
+    },
+    "PISARNE": {
+     "b": 77,
+     "a": 33.1
+    },
+    "IZOBRAZ": {
+     "b": 14,
+     "a": 18.9
+    },
+    "BOLNICA": {
+     "b": 7,
+     "a": 3.3
+    },
+    "HOTELI": {
+     "b": 28,
+     "a": 6.6
+    },
+    "PRODAJA": {
+     "b": 58,
+     "a": 23.9
+    },
+    "SPORT": {
+     "b": 8,
+     "a": 3.1
+    },
+    "DRUGO": {
+     "b": 138,
+     "a": 40.7
+    }
+   }
+  },
+  "110200000110276792": {
+   "name": "Zagorje ob Savi",
+   "region": "5",
+   "buildings": 4086,
+   "area_k_m2": 672.9,
+   "res_area_k_m2": 554.7,
+   "nonres_area_k_m2": 118.2,
+   "pre1981_area_pct": 63.9,
+   "cats": {
+    "HISA": {
+     "b": 3612,
+     "a": 412.3
+    },
+    "BLOKI": {
+     "b": 192,
+     "a": 142.4
+    },
+    "PISARNE": {
+     "b": 72,
+     "a": 30.4
+    },
+    "IZOBRAZ": {
+     "b": 21,
+     "a": 23.4
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 24,
+     "a": 7.3
+    },
+    "PRODAJA": {
+     "b": 45,
+     "a": 16.0
+    },
+    "SPORT": {
+     "b": 11,
+     "a": 10.3
+    },
+    "DRUGO": {
+     "b": 108,
+     "a": 28.0
+    }
+   }
+  },
+  "110200000110276875": {
+   "name": "Zreče",
+   "region": "4",
+   "buildings": 2149,
+   "area_k_m2": 323.7,
+   "res_area_k_m2": 241.4,
+   "nonres_area_k_m2": 82.3,
+   "pre1981_area_pct": 44.8,
+   "cats": {
+    "HISA": {
+     "b": 1886,
+     "a": 199.4
+    },
+    "BLOKI": {
+     "b": 72,
+     "a": 42.0
+    },
+    "PISARNE": {
+     "b": 48,
+     "a": 18.2
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "a": 11.2
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 29,
+     "a": 21.7
+    },
+    "PRODAJA": {
+     "b": 20,
+     "a": 8.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 74,
+     "a": 12.2
+    }
+   }
+  },
+  "110200000110276958": {
+   "name": "Žiri",
+   "region": "9",
+   "buildings": 1564,
+   "area_k_m2": 233.4,
+   "res_area_k_m2": 195.0,
+   "nonres_area_k_m2": 38.5,
+   "pre1981_area_pct": 59.3,
+   "cats": {
+    "HISA": {
+     "b": 1446,
+     "a": 173.1
+    },
+    "BLOKI": {
+     "b": 38,
+     "a": 21.9
+    },
+    "PISARNE": {
+     "b": 28,
+     "a": 10.0
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 8.2
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 6,
+     "a": 1.5
+    },
+    "PRODAJA": {
+     "b": 9,
+     "a": 4.5
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 4.4
+    },
+    "DRUGO": {
+     "b": 23,
+     "a": 9.1
+    }
+   }
+  },
+  "110200000110277097": {
+   "name": "Hrpelje-Kozina",
+   "region": "12",
+   "buildings": 2135,
+   "area_k_m2": 307.7,
+   "res_area_k_m2": 244.4,
+   "nonres_area_k_m2": 63.3,
+   "pre1981_area_pct": 50.7,
+   "cats": {
+    "HISA": {
+     "b": 1815,
+     "a": 203.7
+    },
+    "BLOKI": {
+     "b": 79,
+     "a": 40.7
+    },
+    "PISARNE": {
+     "b": 71,
+     "a": 16.2
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "a": 4.3
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 37,
+     "a": 12.8
+    },
+    "PRODAJA": {
+     "b": 33,
+     "a": 16.1
+    },
+    "SPORT": {
+     "b": 7,
+     "a": 3.1
+    },
+    "DRUGO": {
+     "b": 82,
+     "a": 9.9
+    }
+   }
+  },
+  "110200000110277170": {
+   "name": "Ilirska Bistrica",
+   "region": "10",
+   "buildings": 5063,
+   "area_k_m2": 731.1,
+   "res_area_k_m2": 581.2,
+   "nonres_area_k_m2": 149.9,
+   "pre1981_area_pct": 67.0,
+   "cats": {
+    "HISA": {
+     "b": 4440,
+     "a": 491.4
+    },
+    "BLOKI": {
+     "b": 166,
+     "a": 89.7
+    },
+    "PISARNE": {
+     "b": 98,
+     "a": 37.9
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "a": 20.2
+    },
+    "BOLNICA": {
+     "b": 9,
+     "a": 4.3
+    },
+    "HOTELI": {
+     "b": 35,
+     "a": 11.2
+    },
+    "PRODAJA": {
+     "b": 64,
+     "a": 29.6
+    },
+    "SPORT": {
+     "b": 8,
+     "a": 4.8
+    },
+    "DRUGO": {
+     "b": 223,
+     "a": 41.9
+    }
+   }
+  },
+  "110200000110277253": {
+   "name": "Jesenice",
+   "region": "9",
+   "buildings": 3148,
+   "area_k_m2": 812.1,
+   "res_area_k_m2": 617.5,
+   "nonres_area_k_m2": 194.5,
+   "pre1981_area_pct": 72.3,
+   "cats": {
+    "HISA": {
+     "b": 2393,
+     "a": 271.5
+    },
+    "BLOKI": {
+     "b": 456,
+     "a": 346.0
+    },
+    "PISARNE": {
+     "b": 111,
+     "a": 57.3
+    },
+    "IZOBRAZ": {
+     "b": 15,
+     "a": 35.4
+    },
+    "BOLNICA": {
+     "b": 9,
+     "a": 15.1
+    },
+    "HOTELI": {
+     "b": 28,
+     "a": 6.3
+    },
+    "PRODAJA": {
+     "b": 56,
+     "a": 40.2
+    },
+    "SPORT": {
+     "b": 9,
+     "a": 14.1
+    },
+    "DRUGO": {
+     "b": 71,
+     "a": 26.4
+    }
+   }
+  },
+  "110200000110277337": {
+   "name": "Kamnik",
+   "region": "8",
+   "buildings": 7064,
+   "area_k_m2": 1235.0,
+   "res_area_k_m2": 1012.4,
+   "nonres_area_k_m2": 222.5,
+   "pre1981_area_pct": 56.8,
+   "cats": {
+    "HISA": {
+     "b": 6231,
+     "a": 750.5
+    },
+    "BLOKI": {
+     "b": 357,
+     "a": 262.0
+    },
+    "PISARNE": {
+     "b": 127,
+     "a": 46.5
+    },
+    "IZOBRAZ": {
+     "b": 35,
+     "a": 41.7
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 60,
+     "a": 34.5
+    },
+    "PRODAJA": {
+     "b": 68,
+     "a": 44.2
+    },
+    "SPORT": {
+     "b": 11,
+     "a": 9.7
+    },
+    "DRUGO": {
+     "b": 173,
+     "a": 41.6
+    }
+   }
+  },
+  "110200000110277410": {
+   "name": "Kidričevo",
+   "region": "2",
+   "buildings": 2074,
+   "area_k_m2": 309.6,
+   "res_area_k_m2": 249.0,
+   "nonres_area_k_m2": 60.6,
+   "pre1981_area_pct": 49.4,
+   "cats": {
+    "HISA": {
+     "b": 1862,
+     "a": 208.1
+    },
+    "BLOKI": {
+     "b": 62,
+     "a": 40.9
+    },
+    "PISARNE": {
+     "b": 40,
+     "a": 16.9
+    },
+    "IZOBRAZ": {
+     "b": 13,
+     "a": 9.4
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 11,
+     "a": 3.2
+    },
+    "PRODAJA": {
+     "b": 27,
+     "a": 7.0
+    },
+    "SPORT": {
+     "b": 13,
+     "a": 14.3
+    },
+    "DRUGO": {
+     "b": 45,
+     "a": 9.7
+    }
+   }
+  },
+  "110200000110277501": {
+   "name": "Kobilje",
+   "region": "1",
+   "buildings": 240,
+   "area_k_m2": 26.8,
+   "res_area_k_m2": 23.2,
+   "nonres_area_k_m2": 3.6,
+   "pre1981_area_pct": 53.6,
+   "cats": {
+    "HISA": {
+     "b": 219,
+     "a": 20.9
+    },
+    "BLOKI": {
+     "b": 5,
+     "a": 2.3
+    },
+    "PISARNE": {
+     "b": 5,
+     "a": 1.1
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 7,
+     "a": 1.2
+    }
+   }
+  },
+  "110200000110277683": {
+   "name": "Komen",
+   "region": "12",
+   "buildings": 1893,
+   "area_k_m2": 223.1,
+   "res_area_k_m2": 194.2,
+   "nonres_area_k_m2": 28.9,
+   "pre1981_area_pct": 66.6,
+   "cats": {
+    "HISA": {
+     "b": 1716,
+     "a": 185.5
+    },
+    "BLOKI": {
+     "b": 30,
+     "a": 8.7
+    },
+    "PISARNE": {
+     "b": 31,
+     "a": 4.3
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 20,
+     "a": 4.1
+    },
+    "PRODAJA": {
+     "b": 22,
+     "a": 3.9
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 1.2
+    },
+    "DRUGO": {
+     "b": 64,
+     "a": 11.1
+    }
+   }
+  },
+  "110200000110277766": {
+   "name": "Koper",
+   "region": "12",
+   "buildings": 14529,
+   "area_k_m2": 2696.1,
+   "res_area_k_m2": 2038.1,
+   "nonres_area_k_m2": 658.0,
+   "pre1981_area_pct": 53.4,
+   "cats": {
+    "HISA": {
+     "b": 12368,
+     "a": 1367.6
+    },
+    "BLOKI": {
+     "b": 1168,
+     "a": 670.5
+    },
+    "PISARNE": {
+     "b": 337,
+     "a": 254.3
+    },
+    "IZOBRAZ": {
+     "b": 64,
+     "a": 85.0
+    },
+    "BOLNICA": {
+     "b": 12,
+     "a": 9.3
+    },
+    "HOTELI": {
+     "b": 97,
+     "a": 39.3
+    },
+    "PRODAJA": {
+     "b": 199,
+     "a": 161.9
+    },
+    "SPORT": {
+     "b": 30,
+     "a": 35.7
+    },
+    "DRUGO": {
+     "b": 254,
+     "a": 72.6
+    }
+   }
+  },
+  "110200000110277840": {
+   "name": "Kranj",
+   "region": "9",
+   "buildings": 11281,
+   "area_k_m2": 2547.8,
+   "res_area_k_m2": 1927.6,
+   "nonres_area_k_m2": 620.2,
+   "pre1981_area_pct": 58.1,
+   "cats": {
+    "HISA": {
+     "b": 9644,
+     "a": 1212.1
+    },
+    "BLOKI": {
+     "b": 878,
+     "a": 715.4
+    },
+    "PISARNE": {
+     "b": 226,
+     "a": 185.0
+    },
+    "IZOBRAZ": {
+     "b": 64,
+     "a": 82.9
+    },
+    "BOLNICA": {
+     "b": 25,
+     "a": 38.2
+    },
+    "HOTELI": {
+     "b": 76,
+     "a": 23.7
+    },
+    "PRODAJA": {
+     "b": 134,
+     "a": 158.4
+    },
+    "SPORT": {
+     "b": 49,
+     "a": 41.0
+    },
+    "DRUGO": {
+     "b": 185,
+     "a": 90.9
+    }
+   }
+  },
+  "110200000110277923": {
+   "name": "Kranjska Gora",
+   "region": "9",
+   "buildings": 2364,
+   "area_k_m2": 463.5,
+   "res_area_k_m2": 342.1,
+   "nonres_area_k_m2": 121.4,
+   "pre1981_area_pct": 52.3,
+   "cats": {
+    "HISA": {
+     "b": 1828,
+     "a": 218.2
+    },
+    "BLOKI": {
+     "b": 265,
+     "a": 124.0
+    },
+    "PISARNE": {
+     "b": 62,
+     "a": 8.5
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 6.2
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 79,
+     "a": 63.0
+    },
+    "PRODAJA": {
+     "b": 17,
+     "a": 3.3
+    },
+    "SPORT": {
+     "b": 13,
+     "a": 16.9
+    },
+    "DRUGO": {
+     "b": 95,
+     "a": 23.6
+    }
+   }
+  },
+  "110200000110278061": {
+   "name": "Kuzma",
+   "region": "1",
+   "buildings": 667,
+   "area_k_m2": 72.3,
+   "res_area_k_m2": 63.5,
+   "nonres_area_k_m2": 8.8,
+   "pre1981_area_pct": 49.9,
+   "cats": {
+    "HISA": {
+     "b": 619,
+     "a": 59.1
+    },
+    "BLOKI": {
+     "b": 7,
+     "a": 4.4
+    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 6,
+     "a": 1.5
+    },
+    "PRODAJA": {
+     "b": 6,
+     "a": 0.6
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 24,
+     "a": 3.9
+    }
+   }
+  },
+  "110200000110278145": {
+   "name": "Laško",
+   "region": "4",
+   "buildings": 4750,
+   "area_k_m2": 599.8,
+   "res_area_k_m2": 475.5,
+   "nonres_area_k_m2": 124.4,
+   "pre1981_area_pct": 58.6,
+   "cats": {
+    "HISA": {
+     "b": 4349,
+     "a": 404.1
+    },
+    "BLOKI": {
+     "b": 138,
+     "a": 71.3
+    },
+    "PISARNE": {
+     "b": 62,
+     "a": 18.8
+    },
+    "IZOBRAZ": {
+     "b": 17,
+     "a": 18.4
+    },
+    "BOLNICA": {
+     "b": 5,
+     "a": 3.6
+    },
+    "HOTELI": {
+     "b": 31,
+     "a": 39.3
+    },
+    "PRODAJA": {
+     "b": 28,
+     "a": 9.9
+    },
+    "SPORT": {
+     "b": 10,
+     "a": 8.5
+    },
+    "DRUGO": {
+     "b": 110,
+     "a": 25.9
+    }
+   }
+  },
+  "110200000110278228": {
+   "name": "Lendava",
+   "region": "1",
+   "buildings": 4420,
+   "area_k_m2": 558.4,
+   "res_area_k_m2": 419.5,
+   "nonres_area_k_m2": 138.8,
+   "pre1981_area_pct": 59.2,
+   "cats": {
+    "HISA": {
+     "b": 3948,
+     "a": 368.0
+    },
+    "BLOKI": {
+     "b": 80,
+     "a": 51.5
+    },
+    "PISARNE": {
+     "b": 117,
+     "a": 37.8
+    },
+    "IZOBRAZ": {
+     "b": 26,
+     "a": 17.6
+    },
+    "BOLNICA": {
+     "b": 5,
+     "a": 1.8
+    },
+    "HOTELI": {
+     "b": 46,
+     "a": 17.4
+    },
+    "PRODAJA": {
+     "b": 77,
+     "a": 31.8
+    },
+    "SPORT": {
+     "b": 21,
+     "a": 10.7
+    },
+    "DRUGO": {
+     "b": 100,
+     "a": 21.7
+    }
+   }
+  },
+  "110200000110278491": {
+   "name": "Ljubljana",
+   "region": "8",
+   "buildings": 42312,
+   "area_k_m2": 15959.1,
+   "res_area_k_m2": 10503.6,
+   "nonres_area_k_m2": 5455.5,
+   "pre1981_area_pct": 57.5,
+   "cats": {
+    "HISA": {
+     "b": 32220,
+     "a": 4096.1
+    },
+    "BLOKI": {
+     "b": 6191,
+     "a": 6407.5
+    },
+    "PISARNE": {
+     "b": 1521,
+     "a": 2325.9
+    },
+    "IZOBRAZ": {
+     "b": 438,
+     "a": 828.5
+    },
+    "BOLNICA": {
+     "b": 102,
+     "a": 296.4
+    },
+    "HOTELI": {
+     "b": 362,
+     "a": 209.9
+    },
+    "PRODAJA": {
+     "b": 643,
+     "a": 991.0
+    },
+    "SPORT": {
+     "b": 150,
+     "a": 257.8
+    },
+    "DRUGO": {
+     "b": 685,
+     "a": 546.0
+    }
+   }
+  },
+  "110200000110278574": {
+   "name": "Ljutomer",
+   "region": "1",
+   "buildings": 4356,
+   "area_k_m2": 554.3,
+   "res_area_k_m2": 439.6,
+   "nonres_area_k_m2": 114.7,
+   "pre1981_area_pct": 56.5,
+   "cats": {
+    "HISA": {
+     "b": 3907,
+     "a": 374.7
+    },
+    "BLOKI": {
+     "b": 120,
+     "a": 64.9
+    },
+    "PISARNE": {
+     "b": 88,
+     "a": 27.2
+    },
+    "IZOBRAZ": {
+     "b": 17,
+     "a": 17.9
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 42,
+     "a": 14.3
+    },
+    "PRODAJA": {
+     "b": 60,
+     "a": 23.8
+    },
+    "SPORT": {
+     "b": 11,
+     "a": 11.5
+    },
+    "DRUGO": {
+     "b": 107,
+     "a": 17.6
+    }
+   }
+  },
+  "110200000110278657": {
+   "name": "Loška dolina",
+   "region": "10",
+   "buildings": 1313,
+   "area_k_m2": 167.4,
+   "res_area_k_m2": 135.9,
+   "nonres_area_k_m2": 31.5,
+   "pre1981_area_pct": 72.1,
+   "cats": {
+    "HISA": {
+     "b": 1178,
+     "a": 123.0
+    },
+    "BLOKI": {
+     "b": 29,
+     "a": 12.9
+    },
+    "PISARNE": {
+     "b": 26,
+     "a": 14.4
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 5.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 9,
+     "a": 2.3
+    },
+    "PRODAJA": {
+     "b": 7,
+     "a": 1.0
+    },
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 57,
+     "a": 7.4
+    }
+   }
+  },
+  "110200000110278731": {
+   "name": "Lukovica",
+   "region": "8",
+   "buildings": 1925,
+   "area_k_m2": 255.3,
+   "res_area_k_m2": 222.8,
+   "nonres_area_k_m2": 32.5,
+   "pre1981_area_pct": 43.4,
+   "cats": {
+    "HISA": {
+     "b": 1796,
+     "a": 212.7
+    },
+    "BLOKI": {
+     "b": 30,
+     "a": 10.2
+    },
+    "PISARNE": {
+     "b": 26,
+     "a": 8.3
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "a": 7.2
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 12,
+     "a": 4.6
+    },
+    "PRODAJA": {
+     "b": 13,
+     "a": 3.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 36,
+     "a": 5.7
+    }
+   }
+  },
+  "110200000110278814": {
+   "name": "Maribor",
+   "region": "2",
+   "buildings": 20625,
+   "area_k_m2": 6044.6,
+   "res_area_k_m2": 4264.7,
+   "nonres_area_k_m2": 1779.9,
+   "pre1981_area_pct": 58.5,
+   "cats": {
+    "HISA": {
+     "b": 16345,
+     "a": 1925.6
+    },
+    "BLOKI": {
+     "b": 2168,
+     "a": 2339.1
+    },
+    "PISARNE": {
+     "b": 766,
+     "a": 553.6
+    },
+    "IZOBRAZ": {
+     "b": 201,
+     "a": 318.0
+    },
+    "BOLNICA": {
+     "b": 74,
+     "a": 120.3
+    },
+    "HOTELI": {
+     "b": 239,
+     "a": 108.0
+    },
+    "PRODAJA": {
+     "b": 426,
+     "a": 388.7
+    },
+    "SPORT": {
+     "b": 77,
+     "a": 88.9
+    },
+    "DRUGO": {
+     "b": 329,
+     "a": 202.3
+    }
+   }
+  },
+  "110200000110278905": {
+   "name": "Medvode",
+   "region": "8",
+   "buildings": 4937,
+   "area_k_m2": 753.5,
+   "res_area_k_m2": 664.9,
+   "nonres_area_k_m2": 88.6,
+   "pre1981_area_pct": 49.0,
+   "cats": {
+    "HISA": {
+     "b": 4530,
+     "a": 573.9
+    },
+    "BLOKI": {
+     "b": 177,
+     "a": 91.0
+    },
+    "PISARNE": {
+     "b": 59,
+     "a": 20.5
+    },
+    "IZOBRAZ": {
+     "b": 17,
+     "a": 16.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 37,
+     "a": 14.1
+    },
+    "PRODAJA": {
+     "b": 32,
+     "a": 13.4
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 5.0
+    },
+    "DRUGO": {
+     "b": 77,
+     "a": 17.1
+    }
+   }
+  },
+  "110200000110279036": {
+   "name": "Metlika",
+   "region": "7",
+   "buildings": 3179,
+   "area_k_m2": 403.3,
+   "res_area_k_m2": 322.4,
+   "nonres_area_k_m2": 80.9,
+   "pre1981_area_pct": 61.4,
+   "cats": {
+    "HISA": {
+     "b": 2902,
+     "a": 288.7
+    },
+    "BLOKI": {
+     "b": 60,
+     "a": 33.7
+    },
+    "PISARNE": {
+     "b": 58,
+     "a": 23.3
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 12.6
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 24,
+     "a": 5.8
+    },
+    "PRODAJA": {
+     "b": 39,
+     "a": 15.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 87,
+     "a": 20.9
+    }
+   }
+  },
+  "110200000110279119": {
+   "name": "Miren-Kostanjevica",
+   "region": "11",
+   "buildings": 1880,
+   "area_k_m2": 248.9,
+   "res_area_k_m2": 215.7,
+   "nonres_area_k_m2": 33.2,
+   "pre1981_area_pct": 61.6,
+   "cats": {
+    "HISA": {
+     "b": 1697,
+     "a": 196.7
+    },
+    "BLOKI": {
+     "b": 45,
+     "a": 19.1
+    },
+    "PISARNE": {
+     "b": 44,
+     "a": 10.1
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "a": 4.6
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 14,
+     "a": 3.8
+    },
+    "PRODAJA": {
+     "b": 16,
+     "a": 3.0
+    },
+    "SPORT": {
+     "b": 12,
+     "a": 3.0
+    },
+    "DRUGO": {
+     "b": 40,
+     "a": 8.0
+    }
+   }
+  },
+  "110200000110279200": {
+   "name": "Mozirje",
+   "region": "4",
+   "buildings": 1502,
+   "area_k_m2": 222.7,
+   "res_area_k_m2": 174.9,
+   "nonres_area_k_m2": 47.8,
+   "pre1981_area_pct": 49.8,
+   "cats": {
+    "HISA": {
+     "b": 1325,
+     "a": 149.6
+    },
+    "BLOKI": {
+     "b": 44,
+     "a": 25.4
+    },
+    "PISARNE": {
+     "b": 29,
+     "a": 8.4
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 7.4
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 19,
+     "a": 8.3
+    },
+    "PRODAJA": {
+     "b": 17,
+     "a": 11.5
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 3.6
+    },
+    "DRUGO": {
+     "b": 55,
+     "a": 7.7
+    }
+   }
+  },
+  "110200000110279382": {
+   "name": "Muta",
+   "region": "3",
+   "buildings": 1017,
+   "area_k_m2": 154.7,
+   "res_area_k_m2": 127.0,
+   "nonres_area_k_m2": 27.7,
+   "pre1981_area_pct": 48.3,
+   "cats": {
+    "HISA": {
+     "b": 876,
+     "a": 104.7
+    },
+    "BLOKI": {
+     "b": 49,
+     "a": 22.3
+    },
+    "PISARNE": {
+     "b": 32,
+     "a": 9.5
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "a": 8.9
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 12,
+     "a": 2.9
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 2.5
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 27,
+     "a": 3.7
+    }
+   }
+  },
+  "110200000110279465": {
+   "name": "Naklo",
+   "region": "9",
+   "buildings": 1661,
+   "area_k_m2": 267.4,
+   "res_area_k_m2": 208.6,
+   "nonres_area_k_m2": 58.8,
+   "pre1981_area_pct": 47.9,
+   "cats": {
+    "HISA": {
+     "b": 1503,
+     "a": 197.9
+    },
+    "BLOKI": {
+     "b": 34,
+     "a": 10.7
+    },
+    "PISARNE": {
+     "b": 42,
+     "a": 19.6
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "a": 14.8
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 13,
+     "a": 6.8
+    },
+    "PRODAJA": {
+     "b": 14,
+     "a": 7.4
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 38,
+     "a": 7.5
+    }
+   }
+  },
+  "110200000110279549": {
+   "name": "Nazarje",
+   "region": "4",
+   "buildings": 854,
+   "area_k_m2": 131.0,
+   "res_area_k_m2": 99.3,
+   "nonres_area_k_m2": 31.6,
+   "pre1981_area_pct": 59.3,
+   "cats": {
+    "HISA": {
+     "b": 757,
+     "a": 84.7
+    },
+    "BLOKI": {
+     "b": 24,
+     "a": 14.6
+    },
+    "PISARNE": {
+     "b": 19,
+     "a": 8.6
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 9,
+     "a": 6.3
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 33,
+     "a": 8.3
+    }
+   }
+  },
+  "110200000110279622": {
+   "name": "Novo mesto",
+   "region": "7",
+   "buildings": 10134,
+   "area_k_m2": 1963.3,
+   "res_area_k_m2": 1350.3,
+   "nonres_area_k_m2": 613.1,
+   "pre1981_area_pct": 51.4,
+   "cats": {
+    "HISA": {
+     "b": 8903,
+     "a": 1010.9
+    },
+    "BLOKI": {
+     "b": 469,
+     "a": 339.4
+    },
+    "PISARNE": {
+     "b": 231,
+     "a": 175.4
+    },
+    "IZOBRAZ": {
+     "b": 70,
+     "a": 97.3
+    },
+    "BOLNICA": {
+     "b": 22,
+     "a": 25.9
+    },
+    "HOTELI": {
+     "b": 91,
+     "a": 35.6
+    },
+    "PRODAJA": {
+     "b": 121,
+     "a": 156.7
+    },
+    "SPORT": {
+     "b": 21,
+     "a": 37.0
+    },
+    "DRUGO": {
+     "b": 206,
+     "a": 85.1
+    }
+   }
+  },
+  "110200000110279895": {
+   "name": "Osilnica",
+   "region": "7",
+   "buildings": 253,
+   "area_k_m2": 27.1,
+   "res_area_k_m2": 20.2,
+   "nonres_area_k_m2": 7.0,
+   "pre1981_area_pct": 60.6,
+   "cats": {
+    "HISA": {
+     "b": 231,
+     "a": 19.2
+    },
+    "BLOKI": null,
+    "PISARNE": {
+     "b": 5,
+     "a": 4.3
+    },
+    "IZOBRAZ": {
+     "b": 0,
+     "a": 0.0
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 10,
+     "a": 0.9
+    }
+   }
+  },
+  "110200000110279978": {
+   "name": "Piran",
+   "region": "12",
+   "buildings": 5434,
+   "area_k_m2": 1198.6,
+   "res_area_k_m2": 828.0,
+   "nonres_area_k_m2": 370.6,
+   "pre1981_area_pct": 65.0,
+   "cats": {
+    "HISA": {
+     "b": 3975,
+     "a": 474.0
+    },
+    "BLOKI": {
+     "b": 959,
+     "a": 354.0
+    },
+    "PISARNE": {
+     "b": 94,
+     "a": 56.1
+    },
+    "IZOBRAZ": {
+     "b": 27,
+     "a": 34.6
+    },
+    "BOLNICA": {
+     "b": 6,
+     "a": 5.5
+    },
+    "HOTELI": {
+     "b": 133,
+     "a": 176.8
+    },
+    "PRODAJA": {
+     "b": 55,
+     "a": 27.1
+    },
+    "SPORT": {
+     "b": 15,
+     "a": 14.1
+    },
+    "DRUGO": {
+     "b": 170,
+     "a": 56.6
+    }
+   }
+  },
+  "110200000110280042": {
+   "name": "Pivka",
+   "region": "10",
+   "buildings": 2173,
+   "area_k_m2": 338.5,
+   "res_area_k_m2": 271.0,
+   "nonres_area_k_m2": 67.5,
+   "pre1981_area_pct": 59.8,
+   "cats": {
+    "HISA": {
+     "b": 1931,
+     "a": 229.2
+    },
+    "BLOKI": {
+     "b": 72,
+     "a": 41.7
+    },
+    "PISARNE": {
+     "b": 35,
+     "a": 12.3
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 11.5
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 17,
+     "a": 5.4
+    },
+    "PRODAJA": {
+     "b": 22,
+     "a": 5.7
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 88,
+     "a": 30.5
+    }
+   }
+  },
+  "110200000110280125": {
+   "name": "Podvelka",
+   "region": "3",
+   "buildings": 861,
+   "area_k_m2": 107.5,
+   "res_area_k_m2": 89.0,
+   "nonres_area_k_m2": 18.5,
+   "pre1981_area_pct": 63.9,
+   "cats": {
+    "HISA": {
+     "b": 739,
+     "a": 73.7
+    },
+    "BLOKI": {
+     "b": 37,
+     "a": 15.2
+    },
+    "PISARNE": {
+     "b": 15,
+     "a": 4.0
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 4.3
+    },
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 10,
+     "a": 3.2
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 47,
+     "a": 6.1
+    }
+   }
+  },
+  "110200000110280398": {
+   "name": "Ptuj",
+   "region": "2",
+   "buildings": 6892,
+   "area_k_m2": 1292.7,
+   "res_area_k_m2": 937.2,
+   "nonres_area_k_m2": 355.5,
+   "pre1981_area_pct": 54.9,
+   "cats": {
+    "HISA": {
+     "b": 5918,
+     "a": 661.6
+    },
+    "BLOKI": {
+     "b": 346,
+     "a": 275.6
+    },
+    "PISARNE": {
+     "b": 187,
+     "a": 91.0
+    },
+    "IZOBRAZ": {
+     "b": 47,
+     "a": 50.1
+    },
+    "BOLNICA": {
+     "b": 26,
+     "a": 24.6
+    },
+    "HOTELI": {
+     "b": 72,
+     "a": 27.4
+    },
+    "PRODAJA": {
+     "b": 114,
+     "a": 100.9
+    },
+    "SPORT": {
+     "b": 22,
+     "a": 14.2
+    },
+    "DRUGO": {
+     "b": 160,
+     "a": 47.3
+    }
+   }
+  },
+  "110200000110280471": {
+   "name": "Puconci",
+   "region": "1",
+   "buildings": 2639,
+   "area_k_m2": 289.1,
+   "res_area_k_m2": 238.9,
+   "nonres_area_k_m2": 50.1,
+   "pre1981_area_pct": 53.1,
+   "cats": {
+    "HISA": {
+     "b": 2452,
+     "a": 235.6
+    },
+    "BLOKI": {
+     "b": 13,
+     "a": 3.3
+    },
+    "PISARNE": {
+     "b": 32,
+     "a": 15.1
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 7.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 29,
+     "a": 6.5
+    },
+    "PRODAJA": {
+     "b": 16,
+     "a": 3.9
+    },
+    "SPORT": {
+     "b": 12,
+     "a": 3.8
+    },
+    "DRUGO": {
+     "b": 75,
+     "a": 12.9
+    }
+   }
+  },
+  "110200000110280554": {
+   "name": "Radeče",
+   "region": "6",
+   "buildings": 1488,
+   "area_k_m2": 191.4,
+   "res_area_k_m2": 154.1,
+   "nonres_area_k_m2": 37.4,
+   "pre1981_area_pct": 65.0,
+   "cats": {
+    "HISA": {
+     "b": 1338,
+     "a": 124.9
+    },
+    "BLOKI": {
+     "b": 51,
+     "a": 29.1
+    },
+    "PISARNE": {
+     "b": 20,
+     "a": 6.1
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 6.5
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 2.7
+    },
+    "PRODAJA": {
+     "b": 18,
+     "a": 7.6
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 41,
+     "a": 10.7
+    }
+   }
+  },
+  "110200000110280638": {
+   "name": "Videm",
+   "region": "2",
+   "buildings": 2653,
+   "area_k_m2": 242.3,
+   "res_area_k_m2": 217.9,
+   "nonres_area_k_m2": 24.5,
+   "pre1981_area_pct": 46.1,
+   "cats": {
+    "HISA": {
+     "b": 2554,
+     "a": 210.5
+    },
+    "BLOKI": {
+     "b": 21,
+     "a": 7.3
+    },
+    "PISARNE": {
+     "b": 19,
+     "a": 7.2
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "a": 7.7
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 5,
+     "a": 2.7
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 0.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 33,
+     "a": 4.0
+    }
+   }
+  },
+  "110200000110280711": {
+   "name": "Vitanje",
+   "region": "4",
+   "buildings": 792,
+   "area_k_m2": 93.4,
+   "res_area_k_m2": 81.0,
+   "nonres_area_k_m2": 12.4,
+   "pre1981_area_pct": 54.0,
+   "cats": {
+    "HISA": {
+     "b": 722,
+     "a": 71.7
+    },
+    "BLOKI": {
+     "b": 19,
+     "a": 9.3
+    },
+    "PISARNE": {
+     "b": 6,
+     "a": 0.5
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 9,
+     "a": 2.5
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 27,
+     "a": 4.5
+    }
+   }
+  },
+  "110200000110280802": {
+   "name": "Vojnik",
+   "region": "4",
+   "buildings": 3418,
+   "area_k_m2": 425.0,
+   "res_area_k_m2": 355.1,
+   "nonres_area_k_m2": 69.8,
+   "pre1981_area_pct": 48.4,
+   "cats": {
+    "HISA": {
+     "b": 3214,
+     "a": 318.1
+    },
+    "BLOKI": {
+     "b": 65,
+     "a": 37.1
+    },
+    "PISARNE": {
+     "b": 36,
+     "a": 12.6
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "a": 18.2
+    },
+    "BOLNICA": {
+     "b": 8,
+     "a": 12.8
+    },
+    "HOTELI": {
+     "b": 9,
+     "a": 2.1
+    },
+    "PRODAJA": {
+     "b": 21,
+     "a": 10.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 51,
+     "a": 11.7
+    }
+   }
+  },
+  "110200000110280984": {
+   "name": "Vuzenica",
+   "region": "3",
+   "buildings": 859,
+   "area_k_m2": 118.6,
+   "res_area_k_m2": 102.0,
+   "nonres_area_k_m2": 16.6,
+   "pre1981_area_pct": 64.3,
+   "cats": {
+    "HISA": {
+     "b": 773,
+     "a": 89.3
+    },
+    "BLOKI": {
+     "b": 31,
+     "a": 12.7
+    },
+    "PISARNE": {
+     "b": 13,
+     "a": 2.6
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 5,
+     "a": 2.1
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 0.8
+    },
+    "DRUGO": {
+     "b": 24,
+     "a": 5.9
+    }
+   }
+  },
+  "110200000110281016": {
+   "name": "Zavrč",
+   "region": "2",
+   "buildings": 840,
+   "area_k_m2": 67.6,
+   "res_area_k_m2": 56.7,
+   "nonres_area_k_m2": 10.8,
+   "pre1981_area_pct": 52.3,
+   "cats": {
+    "HISA": {
+     "b": 808,
+     "a": 55.2
+    },
+    "BLOKI": {
+     "b": 5,
+     "a": 1.5
+    },
+    "PISARNE": {
+     "b": 8,
+     "a": 2.2
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 5,
+     "a": 1.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 11,
+     "a": 2.6
+    }
+   }
+  },
+  "110200000110281289": {
+   "name": "Železniki",
+   "region": "9",
+   "buildings": 1869,
+   "area_k_m2": 280.8,
+   "res_area_k_m2": 241.0,
+   "nonres_area_k_m2": 39.8,
+   "pre1981_area_pct": 58.0,
+   "cats": {
+    "HISA": {
+     "b": 1687,
+     "a": 213.1
+    },
+    "BLOKI": {
+     "b": 49,
+     "a": 27.9
+    },
+    "PISARNE": {
+     "b": 32,
+     "a": 8.4
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "a": 7.2
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 22,
+     "a": 7.4
+    },
+    "PRODAJA": {
+     "b": 7,
+     "a": 2.5
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 4.0
+    },
+    "DRUGO": {
+     "b": 56,
+     "a": 9.6
+    }
+   }
+  },
+  "110200000214276243": {
+   "name": "Benedikt",
+   "region": "2",
+   "buildings": 923,
+   "area_k_m2": 122.7,
+   "res_area_k_m2": 110.3,
+   "nonres_area_k_m2": 12.4,
+   "pre1981_area_pct": 32.5,
+   "cats": {
+    "HISA": {
+     "b": 849,
+     "a": 92.4
+    },
+    "BLOKI": {
+     "b": 33,
+     "a": 17.9
+    },
+    "PISARNE": {
+     "b": 8,
+     "a": 1.4
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 3.5
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 8,
+     "a": 3.0
+    },
+    "PRODAJA": {
+     "b": 7,
+     "a": 1.3
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 11,
+     "a": 1.9
+    }
+   }
+  },
+  "110200000214276326": {
+   "name": "Bistrica ob Sotli",
+   "region": "6",
+   "buildings": 648,
+   "area_k_m2": 65.5,
+   "res_area_k_m2": 54.7,
+   "nonres_area_k_m2": 10.9,
+   "pre1981_area_pct": 67.8,
+   "cats": {
+    "HISA": {
+     "b": 598,
+     "a": 52.5
+    },
+    "BLOKI": {
+     "b": 10,
+     "a": 2.2
+    },
+    "PISARNE": {
+     "b": 6,
+     "a": 0.7
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 10,
+     "a": 1.5
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 17,
+     "a": 3.5
+    }
+   }
+  },
+  "110200000214276599": {
+   "name": "Bloke",
+   "region": "10",
+   "buildings": 804,
+   "area_k_m2": 93.6,
+   "res_area_k_m2": 81.3,
+   "nonres_area_k_m2": 12.3,
+   "pre1981_area_pct": 55.0,
+   "cats": {
+    "HISA": {
+     "b": 741,
+     "a": 74.7
+    },
+    "BLOKI": {
+     "b": 16,
+     "a": 6.6
+    },
+    "PISARNE": {
+     "b": 9,
+     "a": 1.8
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 8,
+     "a": 2.2
+    },
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 23,
+     "a": 4.1
+    }
+   }
+  },
+  "110200000214276672": {
+   "name": "Braslovče",
+   "region": "4",
+   "buildings": 2212,
+   "area_k_m2": 270.8,
+   "res_area_k_m2": 237.2,
+   "nonres_area_k_m2": 33.6,
+   "pre1981_area_pct": 49.5,
+   "cats": {
+    "HISA": {
+     "b": 2070,
+     "a": 223.8
+    },
+    "BLOKI": {
+     "b": 32,
+     "a": 13.4
+    },
+    "PISARNE": {
+     "b": 19,
+     "a": 6.0
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 9.5
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 12,
+     "a": 2.6
+    },
+    "PRODAJA": {
+     "b": 15,
+     "a": 2.9
+    },
+    "SPORT": {
+     "b": 11,
+     "a": 1.2
+    },
+    "DRUGO": {
+     "b": 44,
+     "a": 10.4
+    }
+   }
+  },
+  "110200000214276755": {
+   "name": "Cankova",
+   "region": "1",
+   "buildings": 807,
+   "area_k_m2": 86.8,
+   "res_area_k_m2": 73.6,
+   "nonres_area_k_m2": 13.2,
+   "pre1981_area_pct": 60.0,
+   "cats": {
+    "HISA": {
+     "b": 744,
+     "a": 71.0
+    },
+    "BLOKI": {
+     "b": 6,
+     "a": 2.6
+    },
+    "PISARNE": {
+     "b": 7,
+     "a": 0.9
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 9,
+     "a": 2.2
+    },
+    "PRODAJA": {
+     "b": 6,
+     "a": 1.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 27,
+     "a": 6.0
+    }
+   }
+  },
+  "110200000214276839": {
+   "name": "Cerkvenjak",
+   "region": "2",
+   "buildings": 882,
+   "area_k_m2": 99.3,
+   "res_area_k_m2": 86.5,
+   "nonres_area_k_m2": 12.9,
+   "pre1981_area_pct": 43.0,
+   "cats": {
+    "HISA": {
+     "b": 832,
+     "a": 82.7
+    },
+    "BLOKI": {
+     "b": 10,
+     "a": 3.8
+    },
+    "PISARNE": {
+     "b": 9,
+     "a": 1.9
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 4.6
+    },
+    "PRODAJA": {
+     "b": 8,
+     "a": 1.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 9,
+     "a": 1.7
+    }
+   }
+  },
+  "110200000214276912": {
+   "name": "Dobje",
+   "region": "4",
+   "buildings": 415,
+   "area_k_m2": 41.4,
+   "res_area_k_m2": 36.0,
+   "nonres_area_k_m2": 5.3,
+   "pre1981_area_pct": 55.3,
+   "cats": {
+    "HISA": {
+     "b": 397,
+     "a": 35.5
+    },
+    "BLOKI": null,
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 8,
+     "a": 1.3
+    }
+   }
+  },
+  "110200000214277050": {
+   "name": "Dobrna",
+   "region": "4",
+   "buildings": 792,
+   "area_k_m2": 115.5,
+   "res_area_k_m2": 84.2,
+   "nonres_area_k_m2": 31.4,
+   "pre1981_area_pct": 56.8,
+   "cats": {
+    "HISA": {
+     "b": 711,
+     "a": 71.0
+    },
+    "BLOKI": {
+     "b": 33,
+     "a": 13.1
+    },
+    "PISARNE": {
+     "b": 7,
+     "a": 1.3
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 9,
+     "a": 17.3
+    },
+    "PRODAJA": {
+     "b": 7,
+     "a": 0.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 18,
+     "a": 2.9
+    }
+   }
+  },
+  "110200000214277134": {
+   "name": "Dobrovnik",
+   "region": "1",
+   "buildings": 627,
+   "area_k_m2": 64.2,
+   "res_area_k_m2": 53.9,
+   "nonres_area_k_m2": 10.3,
+   "pre1981_area_pct": 57.5,
+   "cats": {
+    "HISA": {
+     "b": 565,
+     "a": 51.0
+    },
+    "BLOKI": {
+     "b": 8,
+     "a": 2.9
+    },
+    "PISARNE": {
+     "b": 8,
+     "a": 1.6
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 10,
+     "a": 1.2
+    },
+    "PRODAJA": {
+     "b": 8,
+     "a": 1.2
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 22,
+     "a": 4.1
+    }
+   }
+  },
+  "110200000214277217": {
+   "name": "Dolenjske Toplice",
+   "region": "7",
+   "buildings": 1517,
+   "area_k_m2": 190.6,
+   "res_area_k_m2": 153.7,
+   "nonres_area_k_m2": 36.9,
+   "pre1981_area_pct": 54.5,
+   "cats": {
+    "HISA": {
+     "b": 1359,
+     "a": 144.8
+    },
+    "BLOKI": {
+     "b": 28,
+     "a": 8.9
+    },
+    "PISARNE": {
+     "b": 12,
+     "a": 3.3
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 22,
+     "a": 19.4
+    },
+    "PRODAJA": {
+     "b": 8,
+     "a": 2.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 83,
+     "a": 7.6
+    }
+   }
+  },
+  "110200000214277308": {
+   "name": "Grad",
+   "region": "1",
+   "buildings": 941,
+   "area_k_m2": 98.2,
+   "res_area_k_m2": 84.7,
+   "nonres_area_k_m2": 13.5,
+   "pre1981_area_pct": 60.8,
+   "cats": {
+    "HISA": {
+     "b": 876,
+     "a": 80.7
+    },
+    "BLOKI": {
+     "b": 8,
+     "a": 4.1
+    },
+    "PISARNE": {
+     "b": 5,
+     "a": 1.3
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 13,
+     "a": 2.8
+    },
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 30,
+     "a": 5.2
+    }
+   }
+  },
+  "110200000214277480": {
+   "name": "Hajdina",
+   "region": "2",
+   "buildings": 1450,
+   "area_k_m2": 179.7,
+   "res_area_k_m2": 157.0,
+   "nonres_area_k_m2": 22.7,
+   "pre1981_area_pct": 48.1,
+   "cats": {
+    "HISA": {
+     "b": 1345,
+     "a": 147.3
+    },
+    "BLOKI": {
+     "b": 21,
+     "a": 9.7
+    },
+    "PISARNE": {
+     "b": 28,
+     "a": 4.6
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 12,
+     "a": 4.5
+    },
+    "PRODAJA": {
+     "b": 11,
+     "a": 3.6
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 2.2
+    },
+    "DRUGO": {
+     "b": 25,
+     "a": 5.6
+    }
+   }
+  },
+  "110200000214277563": {
+   "name": "Hoče-Slivnica",
+   "region": "2",
+   "buildings": 4358,
+   "area_k_m2": 662.6,
+   "res_area_k_m2": 517.4,
+   "nonres_area_k_m2": 145.2,
+   "pre1981_area_pct": 45.5,
+   "cats": {
+    "HISA": {
+     "b": 3942,
+     "a": 460.8
+    },
+    "BLOKI": {
+     "b": 132,
+     "a": 56.6
+    },
+    "PISARNE": {
+     "b": 84,
+     "a": 28.8
+    },
+    "IZOBRAZ": {
+     "b": 29,
+     "a": 22.9
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 43,
+     "a": 19.9
+    },
+    "PRODAJA": {
+     "b": 56,
+     "a": 36.7
+    },
+    "SPORT": {
+     "b": 9,
+     "a": 6.8
+    },
+    "DRUGO": {
+     "b": 59,
+     "a": 26.7
+    }
+   }
+  },
+  "110200000214277647": {
+   "name": "Hodoš",
+   "region": "1",
+   "buildings": 155,
+   "area_k_m2": 19.0,
+   "res_area_k_m2": 14.8,
+   "nonres_area_k_m2": 4.2,
+   "pre1981_area_pct": 54.0,
+   "cats": {
+    "HISA": {
+     "b": 130,
+     "a": 12.5
+    },
+    "BLOKI": null,
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 13,
+     "a": 2.7
+    }
+   }
+  },
+  "110200000214277720": {
+   "name": "Horjul",
+   "region": "8",
+   "buildings": 984,
+   "area_k_m2": 137.1,
+   "res_area_k_m2": 113.2,
+   "nonres_area_k_m2": 23.9,
+   "pre1981_area_pct": 52.8,
+   "cats": {
+    "HISA": {
+     "b": 912,
+     "a": 109.5
+    },
+    "BLOKI": {
+     "b": 16,
+     "a": 3.7
+    },
+    "PISARNE": {
+     "b": 16,
+     "a": 8.4
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 5,
+     "a": 1.0
+    },
+    "PRODAJA": {
+     "b": 5,
+     "a": 1.3
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 24,
+     "a": 3.9
+    }
+   }
+  },
+  "110200000214277993": {
+   "name": "Jezersko",
+   "region": "9",
+   "buildings": 348,
+   "area_k_m2": 45.4,
+   "res_area_k_m2": 35.5,
+   "nonres_area_k_m2": 10.0,
+   "pre1981_area_pct": 68.1,
+   "cats": {
+    "HISA": {
+     "b": 281,
+     "a": 29.5
+    },
+    "BLOKI": {
+     "b": 17,
+     "a": 6.0
+    },
+    "PISARNE": {
+     "b": 7,
+     "a": 0.5
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 10,
+     "a": 4.8
+    },
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 29,
+     "a": 3.7
+    }
+   }
+  },
+  "110200000214278025": {
+   "name": "Komenda",
+   "region": "8",
+   "buildings": 1834,
+   "area_k_m2": 313.8,
+   "res_area_k_m2": 250.7,
+   "nonres_area_k_m2": 63.1,
+   "pre1981_area_pct": 40.6,
+   "cats": {
+    "HISA": {
+     "b": 1653,
+     "a": 220.7
+    },
+    "BLOKI": {
+     "b": 68,
+     "a": 30.0
+    },
+    "PISARNE": {
+     "b": 52,
+     "a": 37.9
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 6.0
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 10,
+     "a": 4.1
+    },
+    "PRODAJA": {
+     "b": 26,
+     "a": 7.4
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 3.3
+    },
+    "DRUGO": {
+     "b": 15,
+     "a": 4.3
+    }
+   }
+  },
+  "110200000214278298": {
+   "name": "Kostel",
+   "region": "7",
+   "buildings": 659,
+   "area_k_m2": 55.1,
+   "res_area_k_m2": 47.1,
+   "nonres_area_k_m2": 8.1,
+   "pre1981_area_pct": 59.9,
+   "cats": {
+    "HISA": {
+     "b": 618,
+     "a": 46.3
+    },
+    "BLOKI": null,
+    "PISARNE": {
+     "b": 8,
+     "a": 1.0
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 23,
+     "a": 3.4
+    }
+   }
+  },
+  "110200000214278371": {
+   "name": "Križevci",
+   "region": "1",
+   "buildings": 1294,
+   "area_k_m2": 155.8,
+   "res_area_k_m2": 135.4,
+   "nonres_area_k_m2": 20.4,
+   "pre1981_area_pct": 55.3,
+   "cats": {
+    "HISA": {
+     "b": 1193,
+     "a": 124.2
+    },
+    "BLOKI": {
+     "b": 19,
+     "a": 11.3
+    },
+    "PISARNE": {
+     "b": 20,
+     "a": 4.5
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 2.9
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 3.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 36,
+     "a": 5.1
+    }
+   }
+  },
+  "110200000214278454": {
+   "name": "Lovrenc na Pohorju",
+   "region": "2",
+   "buildings": 1001,
+   "area_k_m2": 124.9,
+   "res_area_k_m2": 111.9,
+   "nonres_area_k_m2": 13.0,
+   "pre1981_area_pct": 66.1,
+   "cats": {
+    "HISA": {
+     "b": 905,
+     "a": 96.4
+    },
+    "BLOKI": {
+     "b": 42,
+     "a": 15.5
+    },
+    "PISARNE": {
+     "b": 11,
+     "a": 2.2
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 13,
+     "a": 1.7
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 19,
+     "a": 3.7
+    }
+   }
+  },
+  "110200000214278538": {
+   "name": "Mirna Peč",
+   "region": "7",
+   "buildings": 1282,
+   "area_k_m2": 144.5,
+   "res_area_k_m2": 122.4,
+   "nonres_area_k_m2": 22.1,
+   "pre1981_area_pct": 38.5,
+   "cats": {
+    "HISA": {
+     "b": 1220,
+     "a": 119.9
+    },
+    "BLOKI": {
+     "b": 11,
+     "a": 2.6
+    },
+    "PISARNE": {
+     "b": 13,
+     "a": 7.1
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 5,
+     "a": 2.1
+    },
+    "PRODAJA": {
+     "b": 5,
+     "a": 2.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 24,
+     "a": 3.0
+    }
+   }
+  },
+  "110200000214278611": {
+   "name": "Oplotnica",
+   "region": "2",
+   "buildings": 1453,
+   "area_k_m2": 164.7,
+   "res_area_k_m2": 147.3,
+   "nonres_area_k_m2": 17.4,
+   "pre1981_area_pct": 49.3,
+   "cats": {
+    "HISA": {
+     "b": 1368,
+     "a": 137.0
+    },
+    "BLOKI": {
+     "b": 29,
+     "a": 10.3
+    },
+    "PISARNE": {
+     "b": 5,
+     "a": 0.8
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 4.7
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 7,
+     "a": 1.1
+    },
+    "PRODAJA": {
+     "b": 9,
+     "a": 3.4
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 26,
+     "a": 5.1
+    }
+   }
+  },
+  "110200000214278702": {
+   "name": "Podlehnik",
+   "region": "2",
+   "buildings": 1127,
+   "area_k_m2": 98.6,
+   "res_area_k_m2": 79.7,
+   "nonres_area_k_m2": 18.9,
+   "pre1981_area_pct": 45.3,
+   "cats": {
+    "HISA": {
+     "b": 1077,
+     "a": 76.6
+    },
+    "BLOKI": {
+     "b": 9,
+     "a": 3.1
+    },
+    "PISARNE": {
+     "b": 12,
+     "a": 6.6
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 7,
+     "a": 1.6
+    },
+    "PRODAJA": {
+     "b": 7,
+     "a": 4.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 10,
+     "a": 2.4
+    }
+   }
+  },
+  "110200000214278884": {
+   "name": "Prebold",
+   "region": "4",
+   "buildings": 1542,
+   "area_k_m2": 220.5,
+   "res_area_k_m2": 184.8,
+   "nonres_area_k_m2": 35.7,
+   "pre1981_area_pct": 55.6,
+   "cats": {
+    "HISA": {
+     "b": 1402,
+     "a": 146.2
+    },
+    "BLOKI": {
+     "b": 54,
+     "a": 38.6
+    },
+    "PISARNE": {
+     "b": 27,
+     "a": 9.8
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 13,
+     "a": 9.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 33,
+     "a": 7.5
+    }
+   }
+  },
+  "110200000214278967": {
+   "name": "Razkrižje",
+   "region": "1",
+   "buildings": 495,
+   "area_k_m2": 48.2,
+   "res_area_k_m2": 42.9,
+   "nonres_area_k_m2": 5.2,
+   "pre1981_area_pct": 60.9,
+   "cats": {
+    "HISA": {
+     "b": 464,
+     "a": 42.0
+    },
+    "BLOKI": null,
+    "PISARNE": {
+     "b": 10,
+     "a": 0.5
+    },
+    "IZOBRAZ": {
+     "b": 0,
+     "a": 0.0
+    },
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 10,
+     "a": 3.7
+    }
+   }
+  },
+  "110200000214279007": {
+   "name": "Selnica ob Dravi",
+   "region": "2",
+   "buildings": 1612,
+   "area_k_m2": 204.9,
+   "res_area_k_m2": 177.4,
+   "nonres_area_k_m2": 27.5,
+   "pre1981_area_pct": 55.2,
+   "cats": {
+    "HISA": {
+     "b": 1496,
+     "a": 164.5
+    },
+    "BLOKI": {
+     "b": 34,
+     "a": 12.9
+    },
+    "PISARNE": {
+     "b": 18,
+     "a": 3.5
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 7.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 2.6
+    },
+    "PRODAJA": {
+     "b": 16,
+     "a": 6.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 28,
+     "a": 8.0
+    }
+   }
+  },
+  "110200000214279189": {
+   "name": "Solčava",
+   "region": "4",
+   "buildings": 270,
+   "area_k_m2": 41.2,
+   "res_area_k_m2": 27.5,
+   "nonres_area_k_m2": 13.8,
+   "pre1981_area_pct": 52.9,
+   "cats": {
+    "HISA": {
+     "b": 215,
+     "a": 26.5
+    },
+    "BLOKI": null,
+    "PISARNE": {
+     "b": 9,
+     "a": 1.2
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 9,
+     "a": 5.4
+    },
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 5,
+     "a": 1.0
+    },
+    "DRUGO": {
+     "b": 26,
+     "a": 5.6
+    }
+   }
+  },
+  "110200000214279262": {
+   "name": "Šempeter-Vrtojba",
+   "region": "11",
+   "buildings": 1885,
+   "area_k_m2": 398.5,
+   "res_area_k_m2": 247.7,
+   "nonres_area_k_m2": 150.7,
+   "pre1981_area_pct": 53.4,
+   "cats": {
+    "HISA": {
+     "b": 1600,
+     "a": 198.1
+    },
+    "BLOKI": {
+     "b": 94,
+     "a": 49.7
+    },
+    "PISARNE": {
+     "b": 86,
+     "a": 49.6
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "a": 20.6
+    },
+    "BOLNICA": {
+     "b": 7,
+     "a": 32.9
+    },
+    "HOTELI": {
+     "b": 13,
+     "a": 4.6
+    },
+    "PRODAJA": {
+     "b": 44,
+     "a": 32.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 27,
+     "a": 5.1
+    }
+   }
+  },
+  "110200000214279346": {
+   "name": "Tabor",
+   "region": "4",
+   "buildings": 695,
+   "area_k_m2": 78.5,
+   "res_area_k_m2": 72.0,
+   "nonres_area_k_m2": 6.6,
+   "pre1981_area_pct": 44.9,
+   "cats": {
+    "HISA": {
+     "b": 658,
+     "a": 68.4
+    },
+    "BLOKI": {
+     "b": 9,
+     "a": 3.6
+    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 15,
+     "a": 1.6
+    }
+   }
+  },
+  "110200000214279429": {
+   "name": "Trnovska vas",
+   "region": "2",
+   "buildings": 527,
+   "area_k_m2": 54.3,
+   "res_area_k_m2": 48.0,
+   "nonres_area_k_m2": 6.3,
+   "pre1981_area_pct": 37.3,
+   "cats": {
+    "HISA": {
+     "b": 502,
+     "a": 46.5
+    },
+    "BLOKI": null,
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 12,
+     "a": 2.0
+    }
+   }
+  },
+  "110200000214279692": {
+   "name": "Trzin",
+   "region": "8",
+   "buildings": 1199,
+   "area_k_m2": 265.0,
+   "res_area_k_m2": 158.4,
+   "nonres_area_k_m2": 106.7,
+   "pre1981_area_pct": 27.5,
+   "cats": {
+    "HISA": {
+     "b": 947,
+     "a": 125.2
+    },
+    "BLOKI": {
+     "b": 61,
+     "a": 33.2
+    },
+    "PISARNE": {
+     "b": 110,
+     "a": 59.0
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 9,
+     "a": 2.5
+    },
+    "PRODAJA": {
+     "b": 42,
+     "a": 21.2
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 26,
+     "a": 15.1
+    }
+   }
+  },
+  "110200000214279775": {
+   "name": "Veržej",
+   "region": "1",
+   "buildings": 553,
+   "area_k_m2": 76.4,
+   "res_area_k_m2": 59.6,
+   "nonres_area_k_m2": 16.8,
+   "pre1981_area_pct": 51.8,
+   "cats": {
+    "HISA": {
+     "b": 494,
+     "a": 55.4
+    },
+    "BLOKI": {
+     "b": 12,
+     "a": 4.2
+    },
+    "PISARNE": {
+     "b": 6,
+     "a": 0.5
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 5.2
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 13,
+     "a": 6.8
+    },
+    "PRODAJA": {
+     "b": 5,
+     "a": 0.7
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 15,
+     "a": 2.9
+    }
+   }
+  },
+  "110200000214279858": {
+   "name": "Žetale",
+   "region": "2",
+   "buildings": 605,
+   "area_k_m2": 53.7,
+   "res_area_k_m2": 46.9,
+   "nonres_area_k_m2": 6.8,
+   "pre1981_area_pct": 44.2,
+   "cats": {
+    "HISA": {
+     "b": 576,
+     "a": 46.5
+    },
+    "BLOKI": null,
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 0,
+     "a": 0.0
+    },
+    "PRODAJA": {
+     "b": 8,
+     "a": 0.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 12,
+     "a": 2.1
+    }
+   }
+  },
+  "110200000214279932": {
+   "name": "Žužemberk",
+   "region": "7",
+   "buildings": 2223,
+   "area_k_m2": 231.8,
+   "res_area_k_m2": 200.7,
+   "nonres_area_k_m2": 31.1,
+   "pre1981_area_pct": 54.4,
+   "cats": {
+    "HISA": {
+     "b": 2084,
+     "a": 193.6
+    },
+    "BLOKI": {
+     "b": 20,
+     "a": 7.2
+    },
+    "PISARNE": {
+     "b": 12,
+     "a": 3.2
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "a": 7.6
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 17,
+     "a": 3.7
+    },
+    "PRODAJA": {
+     "b": 13,
+     "a": 3.8
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 65,
+     "a": 11.0
+    }
+   }
+  },
+  "110200000214280195": {
+   "name": "Markovci",
+   "region": "2",
+   "buildings": 1449,
+   "area_k_m2": 183.7,
+   "res_area_k_m2": 158.7,
+   "nonres_area_k_m2": 25.0,
+   "pre1981_area_pct": 47.4,
+   "cats": {
+    "HISA": {
+     "b": 1349,
+     "a": 152.4
+    },
+    "BLOKI": {
+     "b": 17,
+     "a": 6.3
+    },
+    "PISARNE": {
+     "b": 23,
+     "a": 5.4
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 8,
+     "a": 1.8
+    },
+    "PRODAJA": {
+     "b": 14,
+     "a": 3.4
+    },
+    "SPORT": {
+     "b": 7,
+     "a": 3.2
+    },
+    "DRUGO": {
+     "b": 27,
+     "a": 5.2
+    }
+   }
+  },
+  "110200000214280278": {
+   "name": "Miklavž na Dravskem polju",
+   "region": "2",
+   "buildings": 2329,
+   "area_k_m2": 312.0,
+   "res_area_k_m2": 289.7,
+   "nonres_area_k_m2": 22.3,
+   "pre1981_area_pct": 49.1,
+   "cats": {
+    "HISA": {
+     "b": 2209,
+     "a": 273.4
+    },
+    "BLOKI": {
+     "b": 27,
+     "a": 16.3
+    },
+    "PISARNE": {
+     "b": 29,
+     "a": 4.8
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 6.1
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 13,
+     "a": 2.8
+    },
+    "PRODAJA": {
+     "b": 21,
+     "a": 5.3
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 21,
+     "a": 2.7
+    }
+   }
+  },
+  "110200000214280351": {
+   "name": "Polzela",
+   "region": "4",
+   "buildings": 2181,
+   "area_k_m2": 305.9,
+   "res_area_k_m2": 255.7,
+   "nonres_area_k_m2": 50.1,
+   "pre1981_area_pct": 43.7,
+   "cats": {
+    "HISA": {
+     "b": 2006,
+     "a": 220.8
+    },
+    "BLOKI": {
+     "b": 44,
+     "a": 35.0
+    },
+    "PISARNE": {
+     "b": 31,
+     "a": 11.9
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "a": 7.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 2.1
+    },
+    "PRODAJA": {
+     "b": 16,
+     "a": 11.0
+    },
+    "SPORT": {
+     "b": 11,
+     "a": 8.1
+    },
+    "DRUGO": {
+     "b": 52,
+     "a": 8.9
+    }
+   }
+  },
+  "110200000214280435": {
+   "name": "Prevalje",
+   "region": "3",
+   "buildings": 1654,
+   "area_k_m2": 308.5,
+   "res_area_k_m2": 248.4,
+   "nonres_area_k_m2": 60.1,
+   "pre1981_area_pct": 56.7,
+   "cats": {
+    "HISA": {
+     "b": 1388,
+     "a": 177.3
+    },
+    "BLOKI": {
+     "b": 132,
+     "a": 71.1
+    },
+    "PISARNE": {
+     "b": 29,
+     "a": 9.2
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 7.5
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 22,
+     "a": 6.4
+    },
+    "PRODAJA": {
+     "b": 31,
+     "a": 20.4
+    },
+    "SPORT": {
+     "b": 6,
+     "a": 5.3
+    },
+    "DRUGO": {
+     "b": 37,
+     "a": 9.4
+    }
+   }
+  },
+  "110200000214280518": {
+   "name": "Ribnica na Pohorju",
+   "region": "3",
+   "buildings": 503,
+   "area_k_m2": 62.7,
+   "res_area_k_m2": 50.9,
+   "nonres_area_k_m2": 11.7,
+   "pre1981_area_pct": 58.2,
+   "cats": {
+    "HISA": {
+     "b": 436,
+     "a": 44.9
+    },
+    "BLOKI": {
+     "b": 19,
+     "a": 6.1
+    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 9,
+     "a": 4.7
+    },
+    "PRODAJA": {
+     "b": 5,
+     "a": 0.3
+    },
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 30,
+     "a": 4.5
+    }
+   }
+  },
+  "110200000214280609": {
+   "name": "Sodražica",
+   "region": "7",
+   "buildings": 937,
+   "area_k_m2": 118.0,
+   "res_area_k_m2": 102.0,
+   "nonres_area_k_m2": 16.1,
+   "pre1981_area_pct": 63.3,
+   "cats": {
+    "HISA": {
+     "b": 878,
+     "a": 97.1
+    },
+    "BLOKI": {
+     "b": 10,
+     "a": 4.8
+    },
+    "PISARNE": {
+     "b": 14,
+     "a": 3.8
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 6,
+     "a": 2.0
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 20,
+     "a": 4.1
+    }
+   }
+  },
+  "110200000214280781": {
+   "name": "Sveta Ana",
+   "region": "2",
+   "buildings": 894,
+   "area_k_m2": 116.0,
+   "res_area_k_m2": 104.2,
+   "nonres_area_k_m2": 11.8,
+   "pre1981_area_pct": 42.3,
+   "cats": {
+    "HISA": {
+     "b": 842,
+     "a": 96.9
+    },
+    "BLOKI": {
+     "b": 14,
+     "a": 7.4
+    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 11,
+     "a": 3.7
+    },
+    "PRODAJA": {
+     "b": 5,
+     "a": 0.4
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 11,
+     "a": 2.4
+    }
+   }
+  },
+  "110200000214280864": {
+   "name": "Sveti Andraž v Slov. goricah",
+   "region": "2",
+   "buildings": 450,
+   "area_k_m2": 48.2,
+   "res_area_k_m2": 42.4,
+   "nonres_area_k_m2": 5.8,
+   "pre1981_area_pct": 47.3,
+   "cats": {
+    "HISA": {
+     "b": 431,
+     "a": 42.2
+    },
+    "BLOKI": null,
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 12,
+     "a": 1.9
+    }
+   }
+  },
+  "110200000214280948": {
+   "name": "Velika Polana",
+   "region": "1",
+   "buildings": 543,
+   "area_k_m2": 68.9,
+   "res_area_k_m2": 59.8,
+   "nonres_area_k_m2": 9.2,
+   "pre1981_area_pct": 51.4,
+   "cats": {
+    "HISA": {
+     "b": 507,
+     "a": 56.1
+    },
+    "BLOKI": null,
+    "PISARNE": {
+     "b": 5,
+     "a": 1.2
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 20,
+     "a": 3.8
+    }
+   }
+  },
+  "110200000214281086": {
+   "name": "Vransko",
+   "region": "4",
+   "buildings": 972,
+   "area_k_m2": 129.8,
+   "res_area_k_m2": 105.6,
+   "nonres_area_k_m2": 24.2,
+   "pre1981_area_pct": 52.4,
+   "cats": {
+    "HISA": {
+     "b": 873,
+     "a": 91.1
+    },
+    "BLOKI": {
+     "b": 27,
+     "a": 14.5
+    },
+    "PISARNE": {
+     "b": 14,
+     "a": 3.1
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 9,
+     "a": 3.9
+    },
+    "PRODAJA": {
+     "b": 6,
+     "a": 2.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 36,
+     "a": 5.4
+    }
+   }
+  },
+  "110200000214281169": {
+   "name": "Žirovnica",
+   "region": "9",
+   "buildings": 1485,
+   "area_k_m2": 211.2,
+   "res_area_k_m2": 187.0,
+   "nonres_area_k_m2": 24.2,
+   "pre1981_area_pct": 58.4,
+   "cats": {
+    "HISA": {
+     "b": 1351,
+     "a": 172.1
+    },
+    "BLOKI": {
+     "b": 53,
+     "a": 14.9
+    },
+    "PISARNE": {
+     "b": 21,
+     "a": 7.2
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 12,
+     "a": 3.2
+    },
+    "PRODAJA": {
+     "b": 6,
+     "a": 1.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 36,
+     "a": 5.5
+    }
+   }
+  },
+  "110200000214281243": {
+   "name": "Žalec",
+   "region": "4",
+   "buildings": 6760,
+   "area_k_m2": 1014.7,
+   "res_area_k_m2": 794.9,
+   "nonres_area_k_m2": 219.7,
+   "pre1981_area_pct": 57.1,
+   "cats": {
+    "HISA": {
+     "b": 5979,
+     "a": 634.5
+    },
+    "BLOKI": {
+     "b": 269,
+     "a": 160.4
+    },
+    "PISARNE": {
+     "b": 196,
+     "a": 74.6
+    },
+    "IZOBRAZ": {
+     "b": 23,
+     "a": 33.6
+    },
+    "BOLNICA": {
+     "b": 6,
+     "a": 3.2
+    },
+    "HOTELI": {
+     "b": 44,
+     "a": 12.4
+    },
+    "PRODAJA": {
+     "b": 88,
+     "a": 51.4
+    },
+    "SPORT": {
+     "b": 11,
+     "a": 1.3
+    },
+    "DRUGO": {
+     "b": 144,
+     "a": 43.3
+    }
+   }
+  },
+  "110200000214282647": {
+   "name": "Šmartno pri Litiji",
+   "region": "8",
+   "buildings": 1964,
+   "area_k_m2": 217.4,
+   "res_area_k_m2": 193.0,
+   "nonres_area_k_m2": 24.4,
+   "pre1981_area_pct": 51.7,
+   "cats": {
+    "HISA": {
+     "b": 1832,
+     "a": 174.3
+    },
+    "BLOKI": {
+     "b": 49,
+     "a": 18.6
+    },
+    "PISARNE": {
+     "b": 11,
+     "a": 2.6
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "a": 7.8
+    },
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 7,
+     "a": 1.9
+    },
+    "PRODAJA": {
+     "b": 12,
+     "a": 2.2
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 43,
+     "a": 9.4
+    }
+   }
+  },
+  "110200000214336328": {
+   "name": "Središče ob Dravi",
+   "region": "2",
+   "buildings": 789,
+   "area_k_m2": 89.7,
+   "res_area_k_m2": 76.6,
+   "nonres_area_k_m2": 13.2,
+   "pre1981_area_pct": 66.3,
+   "cats": {
+    "HISA": {
+     "b": 733,
+     "a": 73.0
+    },
+    "BLOKI": {
+     "b": 9,
+     "a": 3.6
+    },
+    "PISARNE": {
+     "b": 19,
+     "a": 4.5
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 6,
+     "a": 2.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 16,
+     "a": 3.1
+    }
+   }
+  },
+  "110200000214336591": {
+   "name": "Straža",
+   "region": "7",
+   "buildings": 1314,
+   "area_k_m2": 163.8,
+   "res_area_k_m2": 146.5,
+   "nonres_area_k_m2": 17.3,
+   "pre1981_area_pct": 56.1,
+   "cats": {
+    "HISA": {
+     "b": 1220,
+     "a": 132.3
+    },
+    "BLOKI": {
+     "b": 34,
+     "a": 14.2
+    },
+    "PISARNE": {
+     "b": 23,
+     "a": 6.1
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 6,
+     "a": 1.1
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 2.3
+    },
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 20,
+     "a": 3.4
+    }
+   }
+  },
+  "110200000214336674": {
+   "name": "Sveta Trojica v Slovenskih goricah",
+   "region": "2",
+   "buildings": 886,
+   "area_k_m2": 111.0,
+   "res_area_k_m2": 103.5,
+   "nonres_area_k_m2": 7.5,
+   "pre1981_area_pct": 46.3,
+   "cats": {
+    "HISA": {
+     "b": 848,
+     "a": 100.6
+    },
+    "BLOKI": {
+     "b": 10,
+     "a": 2.9
+    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 7,
+     "a": 1.9
+    },
+    "PRODAJA": {
+     "b": 6,
+     "a": 1.1
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 9,
+     "a": 2.4
+    }
+   }
+  },
+  "110200000214336757": {
+   "name": "Sveti Tomaž",
+   "region": "2",
+   "buildings": 908,
+   "area_k_m2": 88.5,
+   "res_area_k_m2": 81.0,
+   "nonres_area_k_m2": 7.5,
+   "pre1981_area_pct": 51.5,
+   "cats": {
+    "HISA": {
+     "b": 875,
+     "a": 78.0
+    },
+    "BLOKI": {
+     "b": 8,
+     "a": 3.0
+    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 5,
+     "a": 0.6
+    },
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 12,
+     "a": 2.9
+    }
+   }
+  },
+  "110200000214336831": {
+   "name": "Šmarješke Toplice",
+   "region": "7",
+   "buildings": 1530,
+   "area_k_m2": 174.7,
+   "res_area_k_m2": 148.6,
+   "nonres_area_k_m2": 26.2,
+   "pre1981_area_pct": 39.9,
+   "cats": {
+    "HISA": {
+     "b": 1444,
+     "a": 135.7
+    },
+    "BLOKI": {
+     "b": 21,
+     "a": 12.8
+    },
+    "PISARNE": {
+     "b": 9,
+     "a": 2.3
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 8,
+     "a": 13.4
+    },
+    "PRODAJA": {
+     "b": 7,
+     "a": 0.4
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 35,
+     "a": 5.8
+    }
+   }
+  },
+  "110200000214364379": {
+   "name": "Apače",
+   "region": "1",
+   "buildings": 1427,
+   "area_k_m2": 165.8,
+   "res_area_k_m2": 144.3,
+   "nonres_area_k_m2": 21.5,
+   "pre1981_area_pct": 50.8,
+   "cats": {
+    "HISA": {
+     "b": 1328,
+     "a": 133.5
+    },
+    "BLOKI": {
+     "b": 28,
+     "a": 10.9
+    },
+    "PISARNE": {
+     "b": 15,
+     "a": 3.3
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "a": 7.0
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 10,
+     "a": 2.0
+    },
+    "PRODAJA": {
+     "b": 8,
+     "a": 1.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 29,
+     "a": 5.4
+    }
+   }
+  },
+  "110200000214364452": {
+   "name": "Cirkulane",
+   "region": "2",
+   "buildings": 1550,
+   "area_k_m2": 119.1,
+   "res_area_k_m2": 101.8,
+   "nonres_area_k_m2": 17.4,
+   "pre1981_area_pct": 52.3,
+   "cats": {
+    "HISA": {
+     "b": 1500,
+     "a": 99.2
+    },
+    "BLOKI": {
+     "b": 10,
+     "a": 2.5
+    },
+    "PISARNE": {
+     "b": 6,
+     "a": 1.4
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 7,
+     "a": 2.1
+    },
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 19,
+     "a": 8.5
+    }
+   }
+  },
+  "110200000214364536": {
+   "name": "Kostanjevica na Krki",
+   "region": "6",
+   "buildings": 1066,
+   "area_k_m2": 123.3,
+   "res_area_k_m2": 97.9,
+   "nonres_area_k_m2": 25.5,
+   "pre1981_area_pct": 59.9,
+   "cats": {
+    "HISA": {
+     "b": 985,
+     "a": 92.9
+    },
+    "BLOKI": {
+     "b": 14,
+     "a": 4.9
+    },
+    "PISARNE": {
+     "b": 8,
+     "a": 3.1
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 15,
+     "a": 4.0
+    },
+    "PRODAJA": {
+     "b": 9,
+     "a": 2.5
+    },
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 30,
+     "a": 9.7
+    }
+   }
+  },
+  "110200000214364619": {
+   "name": "Makole",
+   "region": "2",
+   "buildings": 996,
+   "area_k_m2": 90.3,
+   "res_area_k_m2": 78.1,
+   "nonres_area_k_m2": 12.1,
+   "pre1981_area_pct": 53.5,
+   "cats": {
+    "HISA": {
+     "b": 962,
+     "a": 76.8
+    },
+    "BLOKI": {
+     "b": 5,
+     "a": 1.3
+    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 13,
+     "a": 6.3
+    }
+   }
+  },
+  "110200000214364700": {
+   "name": "Mokronog-Trebelno",
+   "region": "7",
+   "buildings": 1441,
+   "area_k_m2": 156.2,
+   "res_area_k_m2": 137.0,
+   "nonres_area_k_m2": 19.2,
+   "pre1981_area_pct": 53.7,
+   "cats": {
+    "HISA": {
+     "b": 1339,
+     "a": 130.3
+    },
+    "BLOKI": {
+     "b": 24,
+     "a": 6.7
+    },
+    "PISARNE": {
+     "b": 12,
+     "a": 2.0
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 6,
+     "a": 0.9
+    },
+    "PRODAJA": {
+     "b": 10,
+     "a": 2.6
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 44,
+     "a": 7.4
+    }
+   }
+  },
+  "110200000214364882": {
+   "name": "Poljčane",
+   "region": "2",
+   "buildings": 1628,
+   "area_k_m2": 196.5,
+   "res_area_k_m2": 173.1,
+   "nonres_area_k_m2": 23.4,
+   "pre1981_area_pct": 57.3,
+   "cats": {
+    "HISA": {
+     "b": 1503,
+     "a": 143.1
+    },
+    "BLOKI": {
+     "b": 44,
+     "a": 29.9
+    },
+    "PISARNE": {
+     "b": 24,
+     "a": 4.5
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 4.2
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 9,
+     "a": 1.8
+    },
+    "PRODAJA": {
+     "b": 13,
+     "a": 5.4
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 27,
+     "a": 5.7
+    }
+   }
+  },
+  "110200000240634530": {
+   "name": "Renče-Vogrsko",
+   "region": "11",
+   "buildings": 1554,
+   "area_k_m2": 207.0,
+   "res_area_k_m2": 180.9,
+   "nonres_area_k_m2": 26.0,
+   "pre1981_area_pct": 59.1,
+   "cats": {
+    "HISA": {
+     "b": 1435,
+     "a": 170.3
+    },
+    "BLOKI": {
+     "b": 34,
+     "a": 10.7
+    },
+    "PISARNE": {
+     "b": 29,
+     "a": 7.0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "a": 4.5
+    },
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 6,
+     "a": 3.7
+    },
+    "PRODAJA": {
+     "b": 13,
+     "a": 2.8
+    },
+    "SPORT": {
+     "b": 5,
+     "a": 3.1
+    },
+    "DRUGO": {
+     "b": 24,
+     "a": 4.5
+    }
+   }
+  },
+  "110200000240634613": {
+   "name": "Gorje",
+   "region": "9",
+   "buildings": 1048,
+   "area_k_m2": 131.2,
+   "res_area_k_m2": 119.4,
+   "nonres_area_k_m2": 11.9,
+   "pre1981_area_pct": 72.2,
+   "cats": {
+    "HISA": {
+     "b": 962,
+     "a": 107.2
+    },
+    "BLOKI": {
+     "b": 41,
+     "a": 12.2
+    },
+    "PISARNE": {
+     "b": 7,
+     "a": 1.0
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": {
+     "b": 11,
+     "a": 2.6
+    },
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 21,
+     "a": 4.0
+    }
+   }
+  },
+  "110200000240634704": {
+   "name": "Log-Dragomer",
+   "region": "8",
+   "buildings": 1170,
+   "area_k_m2": 167.4,
+   "res_area_k_m2": 150.2,
+   "nonres_area_k_m2": 17.2,
+   "pre1981_area_pct": 53.4,
+   "cats": {
+    "HISA": {
+     "b": 1088,
+     "a": 140.2
+    },
+    "BLOKI": {
+     "b": 33,
+     "a": 10.0
+    },
+    "PISARNE": {
+     "b": 22,
+     "a": 5.5
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 8,
+     "a": 1.6
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 9,
+     "a": 1.6
+    }
+   }
+  },
+  "110200000240634886": {
+   "name": "Rečica ob Savinji",
+   "region": "4",
+   "buildings": 825,
+   "area_k_m2": 100.9,
+   "res_area_k_m2": 89.6,
+   "nonres_area_k_m2": 11.4,
+   "pre1981_area_pct": 55.3,
+   "cats": {
+    "HISA": {
+     "b": 762,
+     "a": 86.6
+    },
+    "BLOKI": {
+     "b": 8,
+     "a": 3.0
+    },
+    "PISARNE": {
+     "b": 7,
+     "a": 0.4
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 11,
+     "a": 1.9
+    },
+    "PRODAJA": null,
+    "SPORT": null,
+    "DRUGO": {
+     "b": 30,
+     "a": 4.2
+    }
+   }
+  },
+  "110200000240634969": {
+   "name": "Sveti Jurij v Slovenskih goricah",
+   "region": "2",
+   "buildings": 841,
+   "area_k_m2": 102.3,
+   "res_area_k_m2": 94.8,
+   "nonres_area_k_m2": 7.5,
+   "pre1981_area_pct": 41.2,
+   "cats": {
+    "HISA": {
+     "b": 806,
+     "a": 90.4
+    },
+    "BLOKI": {
+     "b": 8,
+     "a": 4.4
+    },
+    "PISARNE": null,
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 7,
+     "a": 0.9
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 12,
+     "a": 1.8
+    }
+   }
+  },
+  "110200000240635008": {
+   "name": "Šentrupert",
+   "region": "7",
+   "buildings": 1223,
+   "area_k_m2": 143.7,
+   "res_area_k_m2": 113.2,
+   "nonres_area_k_m2": 30.5,
+   "pre1981_area_pct": 51.2,
+   "cats": {
+    "HISA": {
+     "b": 1106,
+     "a": 108.8
+    },
+    "BLOKI": {
+     "b": 17,
+     "a": 4.5
+    },
+    "PISARNE": {
+     "b": 21,
+     "a": 6.5
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": {
+     "b": 0,
+     "a": 0.0
+    },
+    "HOTELI": null,
+    "PRODAJA": null,
+    "SPORT": {
+     "b": 0,
+     "a": 0.0
+    },
+    "DRUGO": {
+     "b": 69,
+     "a": 18.1
+    }
+   }
+  },
+  "110200000240635180": {
+   "name": "Mirna",
+   "region": "7",
+   "buildings": 1059,
+   "area_k_m2": 135.7,
+   "res_area_k_m2": 116.2,
+   "nonres_area_k_m2": 19.4,
+   "pre1981_area_pct": 52.0,
+   "cats": {
+    "HISA": {
+     "b": 972,
+     "a": 94.0
+    },
+    "BLOKI": {
+     "b": 33,
+     "a": 22.2
+    },
+    "PISARNE": {
+     "b": 15,
+     "a": 3.4
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": null,
+    "PRODAJA": {
+     "b": 10,
+     "a": 3.6
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 19,
+     "a": 3.3
+    }
+   }
+  },
+  "110200000240635263": {
+   "name": "Ankaran",
+   "region": "12",
+   "buildings": 873,
+   "area_k_m2": 196.7,
+   "res_area_k_m2": 137.1,
+   "nonres_area_k_m2": 59.6,
+   "pre1981_area_pct": 45.2,
+   "cats": {
+    "HISA": {
+     "b": 596,
+     "a": 72.4
+    },
+    "BLOKI": {
+     "b": 151,
+     "a": 64.8
+    },
+    "PISARNE": {
+     "b": 30,
+     "a": 6.1
+    },
+    "IZOBRAZ": null,
+    "BOLNICA": null,
+    "HOTELI": {
+     "b": 27,
+     "a": 19.0
+    },
+    "PRODAJA": {
+     "b": 11,
+     "a": 2.7
+    },
+    "SPORT": null,
+    "DRUGO": {
+     "b": 49,
+     "a": 18.0
+    }
+   }
+  }
+ }
+}

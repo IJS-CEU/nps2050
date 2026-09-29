@@ -9,6 +9,7 @@
   --s-enodruzinske: #1F7A57; --s-vecstanovanjske: #86A11C; --s-javne: #2A6FC9; --s-zasebne: #C4661A;
   --s-s0: #C4661A; --s-s1: #7B5CC4; --s-s2: #1F7A57; --s-info: #87918C; --s-ref: #8F5A08;
   --chart-grid: #E6EAE4; --chart-axis: #C9D0C8; --chart-muted: #69756F;
+  --map-1: #84C49F; --map-2: #58A87C; --map-3: #378B60; --map-4: #226D49; --map-5: #124F33;
   --logo-filter: none; --show-light: inline; --show-dark: none;
   --font-serif: 'Source Serif 4 Variable', Georgia, serif;
   --font-sans: 'Manrope Variable', system-ui, sans-serif;
@@ -23,6 +24,7 @@
     --s-enodruzinske: #23855F; --s-vecstanovanjske: #8AA10A; --s-javne: #4A86DB; --s-zasebne: #C8732F;
     --s-s0: #C8732F; --s-s1: #9179DE; --s-s2: #2E9A70; --s-info: #7F8B85; --s-ref: #E4A94A;
     --chart-grid: #26312C; --chart-axis: #3A4842; --chart-muted: #93A09A;
+    --map-1: #2E6B4E; --map-2: #3E8A65; --map-3: #56A87E; --map-4: #7DC49D; --map-5: #AEDDC1;
     --logo-filter: invert(1); --show-light: none; --show-dark: inline;
   }
 }
@@ -35,6 +37,7 @@
   --s-enodruzinske: #23855F; --s-vecstanovanjske: #8AA10A; --s-javne: #4A86DB; --s-zasebne: #C8732F;
   --s-s0: #C8732F; --s-s1: #9179DE; --s-s2: #2E9A70; --s-info: #7F8B85; --s-ref: #E4A94A;
   --chart-grid: #26312C; --chart-axis: #3A4842; --chart-muted: #93A09A;
+  --map-1: #2E6B4E; --map-2: #3E8A65; --map-3: #56A87E; --map-4: #7DC49D; --map-5: #AEDDC1;
   --logo-filter: invert(1); --show-light: none; --show-dark: inline;
 }
 

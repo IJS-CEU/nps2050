@@ -6,6 +6,10 @@
 nps = "C:/pot/do/mape/2025 NPS"
 greenrenov8 = "C:/pot/do/mape/2024 LIFE23-CET-GreenRenoV8"
 
+# Meje občin in statističnih regij (GURS, Register prostorskih enot, OGC API; CC BY 4.0), prenesene v data/raw/geo/
+# z:  .../wfs-si-gurs-rpe/ogc/features/collections/SI.GURS.RPE:OBCINE/items?f=application/geo%2Bjson&limit=1000
+geo = "data/raw/geo"
+
 [draft]
 # Besedilo načrta: vedno najvišja številka NPS_vNN.docx v korenu `nps`
 # (delovne kopije z dodatki v imenu in podmape se ne upoštevajo).
@@ -13,6 +17,10 @@ root = "nps"
 pattern = '^NPS_v(\d+)\.docx$'
 
 [files]
+# Kataster po stavbah (samo za zemljevid: agregati po občinah in regijah, surovi podatki se ne objavijo).
+kataster_stavbe = { root = "nps", path = "5 Primarni razredi/Kataster_stavbe_EPBD_2026.csv.gz" }
+obcine = { root = "geo", path = "OBCINE.geojson" }
+regije = { root = "geo", path = "STATISTICNE_REGIJE.geojson" }
 # Kontrolni viri: z njimi cevovod preveri vrednosti, prebrane iz osnutka.
 kataster_obdobje = { root = "nps", path = "5 Primarni razredi/Kataster_fond_po_obdobju_2026.xlsx" }
 grafikoni = { root = "nps", path = "Grafikoni.xlsx" }

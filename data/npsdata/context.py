@@ -25,6 +25,7 @@ class Context:
             raise FileNotFoundError('manjka data/sources.toml – kopiraj data/sources.example.toml in vpiši poti do virov')
         cfg = tomllib.loads(path.read_text(encoding='utf-8'))
         self.roots = {k: Path(os.environ.get(ENV_ROOTS.get(k, ''), v)) for k, v in cfg['roots'].items()}
+        self.roots = {k: (p if p.is_absolute() else REPO / p) for k, p in self.roots.items()}
         self.files = {k: self.roots[v['root']] / v['path'] for k, v in cfg['files'].items()}
         for k, p in self.files.items():
             if not p.exists():

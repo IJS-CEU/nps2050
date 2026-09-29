@@ -3,13 +3,13 @@
  * ponovni izris ob menjavi teme, nalaganje JSON pod `base` ter prenos PNG in SVG.
  */
 import * as echarts from 'echarts/core';
-import { BarChart, LineChart, SankeyChart, ScatterChart } from 'echarts/charts';
-import { GraphicComponent, GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
+import { BarChart, LineChart, MapChart, SankeyChart, ScatterChart } from 'echarts/charts';
+import { GraphicComponent, GridComponent, LegendComponent, TooltipComponent, VisualMapComponent } from 'echarts/components';
 import { LabelLayout } from 'echarts/features';
 import { SVGRenderer } from 'echarts/renderers';
 import { esc, nf } from '../../lib/format';
 
-echarts.use([BarChart, LineChart, SankeyChart, ScatterChart, GraphicComponent, GridComponent, LegendComponent, TooltipComponent, LabelLayout, SVGRenderer]);
+echarts.use([BarChart, LineChart, MapChart, SankeyChart, ScatterChart, GraphicComponent, GridComponent, LegendComponent, TooltipComponent, VisualMapComponent, LabelLayout, SVGRenderer]);
 
 export { echarts, esc, nf };
 export type Option = echarts.EChartsCoreOption;

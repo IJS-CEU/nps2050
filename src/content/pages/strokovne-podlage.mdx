@@ -9,6 +9,7 @@ import StavbniFond from '../../components/charts/StavbniFond.astro';
 import Scenariji from '../../components/charts/Scenariji.astro';
 import Kazalniki from '../../components/charts/Kazalniki.astro';
 import Sankey from '../../components/charts/Sankey.astro';
+import Zemljevid from '../../components/charts/Zemljevid.astro';
 import { withBase } from '../../i18n/routes';
 
 {/* Grafi berejo public/data/*.json iz podatkovnega cevovoda (data/build_all.py). */}
@@ -22,6 +23,14 @@ Po katastru nepremičnin (30. 8. 2026) ima Slovenija 597.365 stavb s 104,3 mio m
 Več kot polovica površine je bila zgrajena pred letom 1981, torej pred prvimi toplotnimi predpisi. Največji še neprenovljeni del so stanovanjske stavbe iz obdobja 1946–1980. Nestanovanjske stavbe so razvrščene v kategorije EPBD po pretežni dejanski rabi v katastru.
 
 <StavbniFond />
+
+### Po regijah in občinah
+
+{/* Vir: kataster nepremičnin GURS (2026), razvrstitev v kategorije EPBD kot v NPS_v38, pogl. 2.2.5; meje GURS RPE. */}
+
+Stavbni fond po statističnih regijah in občinah. Delež površine, zgrajene pred letom 1981, kaže, kje je največ stavb, zgrajenih pred prvimi toplotnimi predpisi.
+
+<Zemljevid />
 
 ## Scenariji
 

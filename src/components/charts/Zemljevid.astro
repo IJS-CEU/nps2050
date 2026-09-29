@@ -1,0 +1,204 @@
+---
+/**
+ * Graf 6: stavbni fond po statističnih regijah in občinah (kataster nepremičnin, meje GURS RPE).
+ * Seštevki iz cevovoda (data/npsdata/zemljevid.py); celice z manj kot 5 stavbami niso objavljene.
+ */
+import ChartFigure from './ChartFigure.astro';
+import Seg from './Seg.astro';
+import { loadData, type Zemljevid } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const d = loadData<Zemljevid>('zemljevid');
+const regions = Object.entries(d.regions).sort((a, b) => a[1].name.localeCompare(b[1].name, 'sl'));
+const munis = Object.entries(d.municipalities).sort((a, b) => a[1].name.localeCompare(b[1].name, 'sl'));
+const top = [...regions].sort((a, b) => b[1].buildings - a[1].buildings)[0][1];
+---
+<ChartFigure
+  id="graf-zemljevid"
+  title="Stavbni fond po regijah in občinah"
+  subtitle="Kataster nepremičnin 2026: število stavb, uporabna površina in delež površine, zgrajene pred letom 1981"
+  file="nps2050-zemljevid"
+  csv={[{ file: 'zemljevid_regije.csv', label: 'CSV (regije)' }, { file: 'zemljevid_obcine.csv', label: 'CSV (občine)' }]}
+  ariaLabel={`Zemljevid stavbnega fonda po statističnih regijah in občinah. Največ stavb ima regija ${top.name} (${nf(top.buildings)}). Vrednosti za vse regije in občine so v preglednici.`}
+  height={460}
+>
+  <Fragment slot="controls">
+    <Seg name="zm-raven" legend="Raven" options={[{ value: 'regije', label: 'Regije' }, { value: 'obcine', label: 'Občine' }]} />
+    <Seg name="zm-mera" legend="Kazalnik" options={[
+      { value: 'buildings', label: 'Število stavb' },
+      { value: 'area_k_m2', label: 'Površina' },
+      { value: 'pre1981_area_pct', label: 'Delež pred 1981' },
+    ]} />
+    <label class="zm-pick js-only"><span class="ctl-label">Podrobnosti:</span> <select id="zm-select" aria-controls="zm-detail"></select></label>
+  </Fragment>
+  <Fragment slot="after">
+    <section class="zm-detail js-only" id="zm-detail" aria-live="polite"></section>
+  </Fragment>
+  <Fragment slot="caption">
+    <p>Barve so razdeljene v pet razredov s podobnim številom enot. Število stavb in površina sta odvisna od velikosti območja; za primerjavo stanja je primernejši delež površine, zgrajene pred letom 1981, pred prvimi toplotnimi predpisi. Kategorije z manj kot 5 stavbami v občini niso prikazane.</p>
+    <p>Vir: kataster nepremičnin GURS (2026), razvrstitev v kategorije EPBD po osnutku NPS 2050; meje: GURS, Register prostorskih enot (CC BY 4.0).</p>
+  </Fragment>
+  <Fragment slot="table">
+    <table>
+      <caption style="text-align:left;font-weight:700">Statistične regije</caption>
+      <thead><tr><th scope="col">Regija</th><th scope="col" class="num">Stavbe</th><th scope="col" class="num">Površina [tisoč m²]</th><th scope="col" class="num">Delež površine pred 1981</th></tr></thead>
+      <tbody>{regions.map(([, r]) => <tr><th scope="row">{r.name}</th><td class="num">{nf(r.buildings)}</td><td class="num">{nf(r.area_k_m2, 0)}</td><td class="num">{nf(r.pre1981_area_pct, 1)} %</td></tr>)}</tbody>
+    </table>
+    <table>
+      <caption style="text-align:left;font-weight:700">Občine</caption>
+      <thead><tr><th scope="col">Občina</th><th scope="col">Regija</th><th scope="col" class="num">Stavbe</th><th scope="col" class="num">Površina [tisoč m²]</th><th scope="col" class="num">Delež površine pred 1981</th></tr></thead>
+      <tbody>{munis.map(([, m]) => <tr><th scope="row">{m.name}</th><td>{d.regions[m.region!].name}</td><td class="num">{nf(m.buildings)}</td><td class="num">{nf(m.area_k_m2, 0)}</td><td class="num">{nf(m.pre1981_area_pct, 1)} %</td></tr>)}</tbody>
+    </table>
+  </Fragment>
+</ChartFigure>
+
+<style is:global>
+  .zm-pick select { font: inherit; font-size: .85rem; padding: .25rem .4rem; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); color: var(--ink); max-width: 16rem; }
+  .zm-detail { margin-top: .8rem; border-top: 1px solid var(--line); padding-top: .9rem; }
+  .zm-detail h4 { font-family: var(--font-serif); font-size: 1.1rem; margin: 0 0 .2rem; }
+  .zm-detail .sub { color: var(--ink2); font-size: .85rem; margin: 0 0 .6rem; }
+  .zm-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 1rem 2rem; align-items: start; }
+  .zm-grid .fd-facts { align-content: start; }
+  @media (max-width: 760px) { .zm-grid { grid-template-columns: 1fr; } }
+  .zm-detail table { font-size: .85rem; }
+</style>
+
+<script>
+  import { base, choice, echarts, esc, mount, nf, tipRow, tipTitle, type Tokens } from '../../scripts/charts/core';
+  import type { Area, Zemljevid } from '../../lib/data';
+
+  const METRIC: Record<string, { label: string; fmt: (v: number) => string }> = {
+    buildings: { label: 'Število stavb', fmt: (v) => nf(v) },
+    area_k_m2: { label: 'Uporabna površina', fmt: (v) => `${nf(v, 0)} tisoč m²` },
+    pre1981_area_pct: { label: 'Delež površine, zgrajene pred 1981', fmt: (v) => `${nf(v, 1)} %` },
+  };
+
+  async function get(file: string) {
+    const b = import.meta.env.BASE_URL;
+    const r = await fetch(`${b.endsWith('/') ? b : b + '/'}data/${file}`);
+    if (!r.ok) throw new Error(`${file}: ${r.status}`);
+    return r.json();
+  }
+
+  /** Meje petih razredov po kvantilih, zaokrožene na dve značilni mesti. */
+  function breaks(vals: number[]): number[] {
+    const s = [...vals].sort((a, b) => a - b);
+    const q = (p: number) => s[Math.min(s.length - 1, Math.floor(p * s.length))];
+    const nice = (v: number) => { if (v === 0) return 0; const e = Math.pow(10, Math.floor(Math.log10(Math.abs(v))) - 1); return Math.round(v / e) * e; };
+    return [...new Set([0.2, 0.4, 0.6, 0.8].map((p) => nice(q(p))))];
+  }
+
+  function el<K extends keyof HTMLElementTagNameMap>(tag: K, text?: string, cls?: string) {
+    const e = document.createElement(tag);
+    if (text !== undefined) e.textContent = text;
+    if (cls) e.className = cls;
+    return e;
+  }
+
+  async function init(fig: HTMLElement) {
+    const [d, gR, gO] = await Promise.all([get('zemljevid.json'), get('zemljevid_regije.geojson'), get('zemljevid_obcine.geojson')]) as [Zemljevid, any, any];
+    echarts.registerMap('nps-regije', gR);
+    echarts.registerMap('nps-obcine', gO);
+    let level = 'regije', metric = 'buildings', selected: string | null = null;
+    const units = () => (level === 'regije' ? d.regions : d.municipalities);
+    const byName = () => Object.fromEntries(Object.entries(units()).map(([id, a]) => [a.name, id]));
+
+    const render = (t: Tokens) => {
+      const o = base(t) as Record<string, any>;
+      const cs = getComputedStyle(document.documentElement);
+      const ramp = [1, 2, 3, 4, 5].map((i) => cs.getPropertyValue(`--map-${i}`).trim());
+      const U = units();
+      const vals = Object.values(U).map((a) => (a as any)[metric] as number);
+      const b = breaks(vals);
+      const fmt = METRIC[metric].fmt;
+      const edges = [Math.min(...vals), ...b, Math.max(...vals)];
+      const pieces = edges.slice(0, -1).map((lo, i) => ({
+        min: lo, max: edges[i + 1], color: ramp[Math.round((i * (ramp.length - 1)) / Math.max(1, edges.length - 2))],
+        label: i === 0 ? `do ${fmt(edges[1])}` : i === edges.length - 2 ? `nad ${fmt(lo)}` : `${fmt(lo)} – ${fmt(edges[i + 1])}`,
+      }));
+      return {
+        ...o,
+        legend: { show: false },
+        tooltip: {
+          ...o.tooltip, trigger: 'item',
+          formatter: (p: any) => {
+            const id = byName()[p.name]; if (!id) return '';
+            const a = U[id] as Area;
+            return tipTitle(a.name) + (a.region ? `<div style="opacity:.75;margin:-2px 0 4px">Regija: ${esc(d.regions[a.region].name)}</div>` : '')
+              + tipRow(p.color, METRIC[metric].label, fmt((a as any)[metric]), 'rect');
+          },
+        },
+        visualMap: {
+          type: 'piecewise', pieces, orient: t.narrow ? 'vertical' : 'horizontal', left: 0, bottom: 0, itemWidth: 14, itemHeight: 10, itemGap: 10,
+          textStyle: { color: t.ink2, fontFamily: t.font, fontSize: 11 }, selectedMode: false,
+        },
+        series: [{
+          type: 'map', map: level === 'regije' ? 'nps-regije' : 'nps-obcine', aspectScale: 0.72, roam: false, showLegendSymbol: false,
+          top: 8, bottom: t.narrow ? 120 : 40, left: 0, right: 0,
+          itemStyle: { borderColor: t.panel, borderWidth: level === 'regije' ? 1.2 : 0.5 },
+          // Izbira in lebdenje: jantarna barva označb strani (na tem grafu ne nosi vrednosti) in temna obroba.
+          emphasis: { label: { color: t.ink }, itemStyle: { areaColor: t.s.ref, borderColor: t.ink, borderWidth: 1.5 } },
+          select: { label: { color: t.ink }, itemStyle: { areaColor: t.s.ref, borderColor: t.ink, borderWidth: 2 } },
+          selectedMode: 'single',
+          label: { show: level === 'regije' && !t.narrow, color: t.ink, fontSize: 10, fontWeight: 600, fontFamily: t.font, textBorderColor: t.panel, textBorderWidth: 3 },
+          data: Object.values(U).map((a) => ({ name: (a as Area).name, value: (a as any)[metric], selected: selected !== null && units()[selected]?.name === (a as Area).name })),
+        }],
+      };
+    };
+
+    const m = mount(fig, render);
+    const sel = fig.querySelector<HTMLSelectElement>('#zm-select')!;
+    const panel = fig.querySelector<HTMLElement>('#zm-detail')!;
+
+    const fillSelect = () => {
+      sel.replaceChildren(el('option', level === 'regije' ? '– izberite regijo –' : '– izberite občino –'));
+      (sel.options[0] as HTMLOptionElement).value = '';
+      Object.entries(units()).sort((a, b) => a[1].name.localeCompare(b[1].name, 'sl')).forEach(([id, a]) => {
+        const op = el('option', a.name); op.value = id; sel.append(op);
+      });
+      sel.value = selected ?? '';
+    };
+
+    const show = (id: string | null) => {
+      selected = id;
+      sel.value = id ?? '';
+      panel.replaceChildren();
+      m.redraw();
+      if (!id) return;
+      const a = units()[id] as Area;
+      panel.append(el('h4', a.name));
+      if (a.region) panel.append(el('p', `Regija: ${d.regions[a.region].name}`, 'sub'));
+      const grid = el('div', undefined, 'zm-grid');
+      const dl = el('dl', undefined, 'fd-facts');
+      const fact = (k: string, v: string) => dl.append(el('dt', k), el('dd', v));
+      fact('Število stavb', nf(a.buildings));
+      fact('Uporabna površina', `${nf(a.area_k_m2, 0)} tisoč m²`);
+      fact('od tega stanovanjske', `${nf(a.res_area_k_m2, 0)} tisoč m²`);
+      fact('od tega nestanovanjske', `${nf(a.nonres_area_k_m2, 0)} tisoč m²`);
+      fact('Delež površine pred 1981', `${nf(a.pre1981_area_pct, 1)} %`);
+      const tbl = el('table');
+      const cap = el('caption', 'Po kategorijah EPBD'); cap.style.textAlign = 'left'; cap.style.fontWeight = '700';
+      const hr = el('tr'); ['Kategorija', 'Stavbe', 'Površina [tisoč m²]'].forEach((h, i) => { const th = el('th', h, i ? 'num' : ''); th.setAttribute('scope', 'col'); hr.append(th); });
+      const thead = el('thead'); thead.append(hr);
+      const tbody = el('tbody');
+      for (const c of d.categories) {
+        const v = a.cats[c.id];
+        const tr = el('tr'); const th = el('th', c.name); th.setAttribute('scope', 'row'); tr.append(th);
+        tr.append(el('td', v ? nf(v.b) : (v === null ? 'manj kot 5' : '0'), 'num'), el('td', v ? nf(v.a, 1) : '–', 'num'));
+        tbody.append(tr);
+      }
+      tbl.append(cap, thead, tbody);
+      grid.append(dl, tbl);
+      panel.append(grid);
+    };
+
+    fillSelect();
+    sel.addEventListener('change', () => show(sel.value || null));
+    m.chart.on('click', (p: any) => { const id = byName()[p.name]; if (id) show(id); });
+    choice(fig, 'zm-raven', (v) => { level = v; selected = null; fillSelect(); show(null); });
+    choice(fig, 'zm-mera', (v) => { metric = v; m.redraw(); });
+  }
+
+  const fig = document.getElementById('graf-zemljevid');
+  if (fig) init(fig).catch((e) => console.error('graf zemljevid:', e));
+</script>

@@ -67,3 +67,12 @@ export interface SankeyType {
   totals: Record<string, number>;
 }
 export interface Sankey { meta: Meta; classes: string[]; types: Record<string, SankeyType> }
+
+export interface Area {
+  name: string; region?: string; buildings: number; area_k_m2: number; res_area_k_m2: number; nonres_area_k_m2: number;
+  pre1981_area_pct: number | null; cats: Record<string, { b: number; a: number } | null>;
+}
+export interface Zemljevid {
+  meta: Meta; categories: { id: string; name: string; segment: string }[];
+  regions: Record<string, Area>; municipalities: Record<string, Area>;
+}
