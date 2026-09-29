@@ -1,7 +1,7 @@
 ---
 /**
  * Graf 6: stavbni fond po statističnih regijah in občinah (kataster nepremičnin, meje GURS RPE).
- * Seštevki iz cevovoda (data/npsdata/zemljevid.py); celice z manj kot 10 stavbami niso objavljene.
+ * Seštevki iz cevovoda (data/npsdata/zemljevid.py).
  */
 import ChartFigure from './ChartFigure.astro';
 import Seg from './Seg.astro';
@@ -35,7 +35,7 @@ const top = [...regions].sort((a, b) => b[1].buildings - a[1].buildings)[0][1];
     <section class="zm-detail js-only" id="zm-detail" aria-live="polite"></section>
   </Fragment>
   <Fragment slot="caption">
-    <p>Barve so razdeljene v pet razredov s podobnim številom enot. Število stavb in površina sta odvisna od velikosti območja; za primerjavo stanja je primernejši delež površine, zgrajene pred letom 1981, pred prvimi toplotnimi predpisi. Kategorije z manj kot 10 stavbami v občini niso prikazane.</p>
+    <p>Barve so razdeljene v pet razredov s podobnim številom enot. Število stavb in površina sta odvisna od velikosti območja; za primerjavo stanja je primernejši delež površine, zgrajene pred letom 1981, pred prvimi toplotnimi predpisi. </p>
     <p>Vir: kataster nepremičnin GURS (2026), razvrstitev v kategorije EPBD po osnutku NPS 2050; meje: GURS, Register prostorskih enot (CC BY 4.0).</p>
   </Fragment>
   <Fragment slot="table">

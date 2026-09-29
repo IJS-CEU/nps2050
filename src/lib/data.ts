@@ -108,7 +108,7 @@ export interface ObArea {
   res_period_area_pct: Record<string, number | null>;
   res_above43_pct: number | null; nres_above_meps30_pct: number | null; nres_above_meps33_pct: number | null; nres_ei_calc: number | null;
   es_res: Record<string, { b: number | null; pct: number | null }>; es_res_any_pct: number | null;
-  obnova_res_pct: number | null; obnova_res_since2000_pct: number | null;
+  obnova_res_pct: number | null; obnova_res_since2010_pct: number | null; res_ei_calc: number;
   public_by_cat: Record<string, { b: number | null; a: number | null }>;
 }
 export interface ObIndexRow {
@@ -118,7 +118,7 @@ export interface ObIndexRow {
   model_fe_kwh_m2: number; model_above43_pct: number;
 }
 export interface ObcineIndex {
-  meta: Meta; min_cell: number; classes: string[]; class_groups: string[]; periods: string[];
+  meta: Meta; min_cell: number; min_ei: number; classes: string[]; class_groups: string[]; periods: string[];
   segments: { id: string; name: string }[]; es_groups: { id: string; name: string }[]; categories: { id: string; name: string }[];
   si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number; model_fe_kwh_m2: number; model_above43_pct: number };
   municipalities: ObIndexRow[];

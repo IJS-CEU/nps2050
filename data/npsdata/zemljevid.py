@@ -114,7 +114,7 @@ def build(ctx: Context) -> dict:
             ['Kataster nepremičnin GURS (stavbe, razvrščene v kategorije EPBD, 2026)',
              'Meje občin in statističnih regij: GURS, Register prostorskih enot (CC BY 4.0), poenostavljene'],
             note=f'Seštevki po občinah in regijah. Izpuščenih je {no_year} stavb brez leta gradnje, zato se seštevki ujemajo '
-                 f'z osnutkom NPS 2050. Kategorije z manj kot {MIN_CELL} stavbami v občini niso objavljene ({suppressed} celic). '
+                 f'z osnutkom NPS 2050. '
                  f'Površina v tisoč m² uporabne površine; delež pred {PRE} = delež uporabne površine stavb, zgrajenih pred letom {PRE}.'),
         'categories': [{'id': c, 'name': n, 'segment': CAT_SEG[c]} for c, n in CAT_NAME.items()],
         'regions': regions_out,

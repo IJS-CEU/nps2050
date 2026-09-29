@@ -5,7 +5,9 @@ from .context import Context, write_csv, write_json
 from .draft import row
 from .numbers import num
 
-MIN_CELL = 10  # celice z manj kot 10 stavbami se ne objavijo (odločitev 29. 9. 2026, prej 5)
+MIN_CELL = 1  # brez skrivanja majhnih celic: kataster in register izkaznic sta javna (odločitev 29. 9. 2026)
+# Najmanjše število izkaznic za prikaz deleža med stavbami z izkaznico (statistična zanesljivost, ne zasebnost).
+MIN_EI = 10
 
 # id (kot v katastru), ime na strani, segment, vzorec prve celice v preglednicah osnutka
 CATS = [
@@ -101,7 +103,7 @@ def build(ctx: Context) -> dict:
              'Kontrola: Kataster_fond_po_obdobju_2026.xlsx (kataster nepremičnin GURS)'],
             note='Javne stavbe so določene po pretežni dejanski rabi, ne po lastništvu. Uporabna površina po katastru vključuje '
                  'tudi neogrevane površine; ogrevana površina v scenariju NPS 2050 je manjša. Pragovi v kWh/(m²·a) primarne energije. '
-                 f'Celice z manj kot {MIN_CELL} stavbami so izpuščene (null).'),
+                 ''),
         'periods': periods,
         'segments': seg,
         'categories': cats,

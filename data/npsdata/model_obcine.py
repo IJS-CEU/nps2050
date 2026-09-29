@@ -40,6 +40,7 @@ FP = {'el': 2.5, 'amb': 1.0, 'gas': 1.1, 'elko': 1.1, 'bio': 1.2, 'dh': 1.23}
 KWH_PER_KTOE = 11.63e6
 # Različice uskladitve s toplotno karto (spodnja in zgornja meja faktorja občine); osrednja je druga.
 EI_WEIGHT = 0.85
+RENOV_FROM = 2010
 VARIANTS = {'brez': (1.0, 1.0), 'osrednja': (0.8, 1.25), 'mocna': (0.6, 1.6)}
 
 
@@ -155,9 +156,11 @@ def run(ctx: Context, df: pd.DataFrame, rr: dict, fond: dict, tk: pd.Series | No
 
     # 1–2: izhodišče in dokazi v računskem prostoru
     y = lambda c: pd.to_numeric(res[c], errors='coerce')
-    env = (res.es_ovoj.notna() | (y('obnova_fasada') >= 1995) | (y('obnova_streha') >= 1995)).to_numpy()
-    win = (res.es_okna.notna() | (y('obnova_okna') >= 1995)).to_numpy()
-    sysn = (res.es_tc.notna() | res.es_biomasa.notna() | (y('obnova_instal') >= 2005)).to_numpy()
+    # Obnove iz katastra štejejo kot energetske le od leta 2010 (prej vpisi pogosto pomenijo le barvanje fasade,
+    # menjavo kritine ipd.; odločitev Gašperja 29. 9. 2026).
+    env = (res.es_ovoj.notna() | (y('obnova_fasada') >= RENOV_FROM) | (y('obnova_streha') >= RENOV_FROM)).to_numpy()
+    win = (res.es_okna.notna() | (y('obnova_okna') >= RENOV_FROM)).to_numpy()
+    sysn = (res.es_tc.notna() | res.es_biomasa.notna() | (y('obnova_instal') >= RENOV_FROM)).to_numpy()
     flag = env * 4 + win * 2 + sysn
     known = res.ei_razred.notna().to_numpy()
     kc = res.ei_razred.map({c: i for i, c in enumerate(HC)}).fillna(-1).astype(int).to_numpy()

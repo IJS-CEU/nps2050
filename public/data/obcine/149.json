@@ -10,7 +10,7 @@
    "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "Samo agregati; celice z manj kot 10 stavbami niso objavljene (null). Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+  "note": "Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsaj 10 izkaznicah. Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
  },
  "sifra": 149,
  "eid": "110200000214276326",
@@ -26,23 +26,31 @@
    "ei_buildings_pct": 3.0,
    "ei_area_pct": 3.7,
    "ei_calc": 16,
-   "classes_pct": null,
+   "classes_pct": {
+    "A": 6.2,
+    "B": 12.5,
+    "C": 12.5,
+    "D": 6.2,
+    "E": 12.5,
+    "F": 12.5,
+    "G": 37.5
+   },
    "class_groups_pct": null
   },
   "bloki": {
    "buildings": 10,
    "area_k_m2": 2.2,
-   "ei_buildings_pct": null,
-   "ei_area_pct": null,
-   "ei_calc": null,
+   "ei_buildings_pct": 70.0,
+   "ei_area_pct": 66.8,
+   "ei_calc": 6,
    "classes_pct": null,
    "class_groups_pct": null
   },
   "javne": {
    "buildings": 13,
    "area_k_m2": 6.9,
-   "ei_buildings_pct": null,
-   "ei_area_pct": null,
+   "ei_buildings_pct": 23.1,
+   "ei_area_pct": 64.6,
    "ei_calc": 0,
    "classes_pct": null,
    "class_groups_pct": null
@@ -65,49 +73,50 @@
   "1991–2002": 9.1,
   "2003–2010": 6.9,
   "2011–2020": 3.7,
-  "po 2020": null
+  "po 2020": 1.4
  },
- "res_above43_pct": null,
+ "res_above43_pct": 63.6,
+ "res_ei_calc": 22,
  "nres_above_meps30_pct": null,
  "nres_above_meps33_pct": null,
  "nres_ei_calc": 0,
  "es_res": {
   "ovoj": {
-   "b": null,
-   "pct": null
+   "b": 6,
+   "pct": 1.0
   },
   "okna": {
-   "b": null,
-   "pct": null
+   "b": 2,
+   "pct": 0.3
   },
   "tc": {
    "b": 35,
    "pct": 5.8
   },
   "biomasa": {
-   "b": null,
-   "pct": null
+   "b": 9,
+   "pct": 1.5
   },
   "pv": {
    "b": 33,
    "pct": 5.4
   },
   "prezr": {
-   "b": null,
-   "pct": null
+   "b": 7,
+   "pct": 1.2
   }
  },
  "es_res_any_pct": 12.0,
  "obnova_res_pct": 47.7,
- "obnova_res_since2000_pct": 27.0,
+ "obnova_res_since2010_pct": 5.1,
  "public_by_cat": {
   "PISARNE": {
-   "b": null,
-   "a": null
+   "b": 5,
+   "a": 0.7
   },
   "IZOBRAZ": {
-   "b": null,
-   "a": null
+   "b": 2,
+   "a": 4.3
   },
   "BOLNICA": {
    "b": 0,
@@ -122,12 +131,12 @@
    "a": null
   },
   "SPORT": {
-   "b": null,
-   "a": null
+   "b": 1,
+   "a": 0.1
   },
   "DRUGO": {
-   "b": null,
-   "a": null
+   "b": 5,
+   "a": 1.8
   }
  }
 }

@@ -22,7 +22,7 @@ import { withBase } from '../../i18n/routes';
 - **Najslabše stavbe:** delež stavb z izkaznico nad pragom 43 % najmanj učinkovitih in nad pragovi minimalnih standardov za nestanovanjske stavbe.
 - **Prenove:** ukrepi, ki jih je podprl Eko sklad, in obnove, vpisane v kataster.
 
-Vse je primerjano s Slovenijo. Objavljeni so samo seštevki. Celice z manj kot 10 stavbami niso prikazane, podatki o posameznih stavbah in lastnikih se ne objavijo.
+Vse je primerjano s Slovenijo. Objavljeni so samo seštevki, podatki o posameznih stavbah in lastnikih se ne objavijo. Deleži med stavbami z izkaznico so prikazani, kadar je izkaznic vsaj 10.
 
 <h2 id="metoda">Kako je izračunana ocena rabe energije</h2>
 
@@ -31,7 +31,7 @@ Vse je primerjano s Slovenijo. Objavljeni so samo seštevki. Celice z manj kot 1
 Izkaznico ima le vsaka dvanajsta stanovanjska stavba, veliko prenov pa se izvede brez spodbude Eko sklada. Zato raba energije po občinah ni izmerjena, ampak ocenjena z modelom. Model je zgrajen tako, da se vsota za vso Slovenijo točno ujema z energetsko bilanco in z osnutkom NPS 2050.
 
 1. **Vsaka stavba iz katastra dobi tipično stavbo** (arhetip) iz modela RenRates, s katerim so izračunani scenariji načrta: enostanovanjska hiša ali blok ter obdobje gradnje. Arhetip pove, kako so take stavbe v Sloveniji razporejene po razredih toplotnih potreb.
-2. **Znani podatki popravijo tipično sliko.** Stavba z izkaznico ima znan razred. Pri drugih stavbah se verjetnost boljših razredov poveča, če je Eko sklad podprl izolacijo, nova okna ali novo ogrevanje, ali če je v katastru vpisana obnova strehe, fasade ali oken. Kako močno, je ocenjeno na stavbah, ki imajo izkaznico.
+2. **Znani podatki popravijo tipično sliko.** Stavba z izkaznico ima znan razred. Pri drugih stavbah se verjetnost boljših razredov poveča, če je Eko sklad podprl izolacijo, nova okna ali novo ogrevanje, ali če je v katastru vpisana obnova strehe, fasade ali oken od leta 2010 (starejši vpisi pogosto pomenijo le barvanje ali menjavo kritine). Kako močno, je ocenjeno na stavbah, ki imajo izkaznico.
 3. **Uskladitev s Slovenijo.** Za vsak arhetip se razporeditev po razredih uskladi s kalibriranim modelom RenRates, ki se ujema z bilanco (33,5 PJ končne energije stanovanjskih stavb).
 4. **Uskladitev med občinami s toplotno karto.** Toplotna karta za leto 2020 kaže potrebo po toploti za ogrevanje v mreži 100 × 100 m. Kjer toplotna karta nakazuje višjo ali nižjo potrebo, kot bi jo dali sami arhetipi, se razporeditev stavb brez izkaznice nagne v to smer, največ za četrtino. Državna vsota ostane enaka.
 5. **Energenti.** Kjer so znani (izkaznica, toplotna črpalka ali kotel na biomaso iz Eko sklada), se upoštevajo. Daljinska toplota se pripiše le občinam, kjer jo potrjujejo izkaznice. Vsote po energentih se uskladijo s preglednico v osnutku NPS 2050.

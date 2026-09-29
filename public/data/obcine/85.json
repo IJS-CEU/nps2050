@@ -10,7 +10,7 @@
    "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "Samo agregati; celice z manj kot 10 stavbami niso objavljene (null). Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+  "note": "Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsaj 10 izkaznicah. Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
  },
  "sifra": 85,
  "eid": "110200000110279622",
@@ -60,7 +60,15 @@
    "ei_buildings_pct": 32.3,
    "ei_area_pct": 53.4,
    "ei_calc": 19,
-   "classes_pct": null,
+   "classes_pct": {
+    "A": 36.8,
+    "B": 21.1,
+    "C": 21.1,
+    "D": 5.3,
+    "E": 10.5,
+    "F": 0.0,
+    "G": 5.3
+   },
    "class_groups_pct": null
   },
   "zasebne": {
@@ -69,7 +77,15 @@
    "ei_buildings_pct": 18.8,
    "ei_area_pct": 40.1,
    "ei_calc": 54,
-   "classes_pct": null,
+   "classes_pct": {
+    "A": 22.2,
+    "B": 20.4,
+    "C": 22.2,
+    "D": 9.3,
+    "E": 3.7,
+    "F": 11.1,
+    "G": 11.1
+   },
    "class_groups_pct": null
   }
  },
@@ -84,7 +100,8 @@
   "po 2020": 5.6
  },
  "res_above43_pct": 33.1,
- "nres_above_meps30_pct": null,
+ "res_ei_calc": 650,
+ "nres_above_meps30_pct": 9.6,
  "nres_above_meps33_pct": 21.9,
  "nres_ei_calc": 73,
  "es_res": {
@@ -115,7 +132,7 @@
  },
  "es_res_any_pct": 25.6,
  "obnova_res_pct": 53.6,
- "obnova_res_since2000_pct": 34.9,
+ "obnova_res_since2010_pct": 10.9,
  "public_by_cat": {
   "PISARNE": {
    "b": 27,

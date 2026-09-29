@@ -1,7 +1,7 @@
 ---
 /**
  * Stran občine (CLAUDE.md §10.1): izmerjeni kazalniki iz public/data/obcine/<sifra>.json in primerjava s Slovenijo.
- * Vse izrisano ob gradnji (brez JS). Samo agregati; celice z manj kot 10 stavbami so skrite.
+ * Vse izrisano ob gradnji (brez JS). Samo agregati.
  */
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -99,7 +99,7 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
       </div>
     ))}
     <ul class="ob-leg" aria-hidden="true">{ix.periods.map((p, i) => <li><i class={`ob-p ob-p${i}`}></i>{p}</li>)}</ul>
-    <p class="note">Deleži uporabne površine stanovanjskih stavb po obdobju gradnje. Stavbe pred letom 1981 so nastale pred prvimi toplotnimi predpisi. Obdobja z manj kot {MIN} stavbami niso prikazana.</p>
+    <p class="note">Deleži uporabne površine stanovanjskih stavb po obdobju gradnje. Stavbe pred letom 1981 so nastale pred prvimi toplotnimi predpisi. </p>
 
     <h2>Energijski razredi stanovanjskih stavb z izkaznico</h2>
     <p>Razred je določen iz primarne energije v računski energetski izkaznici po mejah razredov iz osnutka NPS 2050, posebej za hiše in bloke. Izkaznice imajo predvsem stavbe, ki so bile prodane ali oddane, zato razvrstitev ni nujno reprezentativna za vse stavbe v občini.</p>
@@ -116,7 +116,7 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
             </div>
           ))}
           {cb.grouped && <p class="note">Razredi so združeni v tri skupine, ker ima posamezen razred v občini manj kot {MIN} stavb z izkaznico.</p>}
-        </> : <p class="note">Premalo stavb z računsko izkaznico za prikaz ({cb.n === null ? few : nf(cb.n)}).</p>}
+        </> : <p class="note">Premalo izkaznic za zanesljivo razvrstitev (izkaznic: {nf(cb.n ?? 0)}).</p>}
       </div>
     ))}
 
@@ -129,7 +129,7 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
       ].map((c) => (
         <div class="ob-cmp-r">
           <p class="ob-cmp-l">{c.label}</p>
-          {c.v === null ? <p class="note">Premalo stavb z izkaznico za prikaz.</p> : (
+          {c.v === null ? <p class="note">Premalo izkaznic za zanesljiv delež.</p> : (
             <div class="ob-pair" role="img" aria-label={`Občina ${nf(c.v, 1)} %, Slovenija ${nf(c.s, 1)} %`}>
               <span class="lab">Občina</span><span class="trk"><i class="o" style={`width:${c.v}%`}></i></span><b>{nf(c.v, 1)} %</b>
               <span class="lab">Slovenija</span><span class="trk"><i class="s" style={`width:${c.s}%`}></i></span><b>{nf(c.s, 1)} %</b>
@@ -162,7 +162,7 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
     <div class="ob-cmp">
       {[
         cmp('Stanovanjske stavbe z vpisanim letom obnove strehe, fasade ali oken', o.obnova_res_pct, si.obnova_res_pct),
-        cmp('… od tega obnova leta 2000 ali pozneje', o.obnova_res_since2000_pct, si.obnova_res_since2000_pct),
+        cmp('… od tega obnova leta 2010 ali pozneje', o.obnova_res_since2010_pct, si.obnova_res_since2010_pct),
       ].map((c) => (
         <div class="ob-cmp-r">
           <p class="ob-cmp-l">{c.label}</p>
@@ -175,7 +175,7 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
         </div>
       ))}
     </div>
-    <p class="note">Leto obnove vpiše lastnik ali geodet ob spremembi v katastru. Vpis ne pove, ali je bila obnova energetska.</p>
+    <p class="note">Leto obnove vpiše lastnik ali geodet ob spremembi v katastru. Vpis ne pove, ali je bila obnova energetska; starejši vpisi pogosto pomenijo le barvanje fasade ali menjavo kritine. V oceni modela zato štejejo le obnove od leta 2010.</p>
 
 
     <section class="ob-model" aria-labelledby="ob-model-t">
@@ -225,7 +225,7 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
       <p><strong>Podatki za prenos:</strong> <a href={withBase(`data/obcine/${o.sifra}.json`)} download>JSON (občina {o.name})</a> · <a href={withBase('data/csv/obcine.csv')} download>CSV (vse občine)</a>. Licenca CC BY 4.0.</p>
       <p>Kaj načrt pomeni za posamezno stavbo: <a href={pageUrl('preveri')}>Preverite svojo stavbo</a>. Stavbni fond vse Slovenije: <a href={pageUrl('strokovne-podlage')}>Strokovne podlage</a>.</p>
     </div>
-    <p class="note">Viri: kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (podprte naložbe do 2025), meje razredov in pragovi iz osnutka NPS 2050. Objavljeni so samo seštevki; celice z manj kot {MIN} stavbami niso prikazane. Podatki o posameznih stavbah se ne objavijo.</p>
+    <p class="note">Viri: kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (podprte naložbe do 2025), meje razredov in pragovi iz osnutka NPS 2050. Objavljeni so samo seštevki, podatki o posameznih stavbah se ne objavijo. Deleži med stavbami z izkaznico so prikazani pri vsaj {ix.min_ei} izkaznicah.</p>
   </div>
 </Base>
 

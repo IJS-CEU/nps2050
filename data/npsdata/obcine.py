@@ -11,7 +11,7 @@ import pandas as pd
 
 from .context import OUT, Context, write_csv, write_json
 from .stavbe import ES_GROUPS, PERIODS, build_table
-from .stavbni_fond import CATS, MIN_CELL
+from .stavbni_fond import CATS, MIN_CELL, MIN_EI
 
 # Priklop na daljinsko ogrevanje ima v podatkih Eko sklada le okoli 60 stanovanjskih stavb, zato se ne prikazuje.
 ES_SHOW = [k for k in ES_GROUPS if k != 'daljinsko']
@@ -67,10 +67,10 @@ def _segment(g: pd.DataFrame) -> dict:
     cnt = {k: int((c.cls == k).sum()) for k in CLS}
     # razvrstitev le pri vsaj MIN_CELL izkaznicah in če ima vsak zaseden razred vsaj MIN_CELL stavb
     # (sicer bi se skrito število izračunalo iz ostalih razredov)
-    ok = len(c) >= MIN_CELL and all(v == 0 or v >= MIN_CELL for v in cnt.values())
+    ok = len(c) >= MIN_EI
     # sicer združeno v tri skupine (A–C, D–E, F–G), če so te dovolj velike
     gcnt = {g: sum(cnt[k] for k in ks) for g, ks in GROUPS.items()}
-    ok_g = not ok and len(c) >= MIN_CELL and all(v == 0 or v >= MIN_CELL for v in gcnt.values())
+    ok_g = False
     d = {
         'buildings': _n(n),
         'area_k_m2': round(a / 1e3, 1) if n >= MIN_CELL else None,
@@ -94,16 +94,17 @@ def _area(g: pd.DataFrame) -> dict:
         'segments': {s: _segment(g[g.seg == s]) for s, _ in SEGS},
         'res_period_area_pct': {p: _pct(res.loc[res.period == p, 'm2'].sum(), res.m2.sum(), len(res), int((res.period == p).sum())) for p in PERIODS},
         # Delež stanovanjskih stavb z izkaznico nad pragom 43 % (vzorec izkaznic – informativno)
-        'res_above43_pct': _pct(rc.above43.sum(), len(rc), len(rc), int(rc.above43.sum())),
-        'nres_above_meps30_pct': _pct(nc.above_meps30.sum(), len(nc), len(nc), int(nc.above_meps30.sum())),
-        'nres_above_meps33_pct': _pct(nc.above_meps33.sum(), len(nc), len(nc), int(nc.above_meps33.sum())),
+        'res_above43_pct': round(100 * rc.above43.mean(), 1) if len(rc) >= MIN_EI else None,
+        'res_ei_calc': int(len(rc)),
+        'nres_above_meps30_pct': round(100 * nc.above_meps30.mean(), 1) if len(nc) >= MIN_EI else None,
+        'nres_above_meps33_pct': round(100 * nc.above_meps33.mean(), 1) if len(nc) >= MIN_EI else None,
         'nres_ei_calc': _n(len(nc)),
         # Eko sklad: stanovanjske stavbe z vsaj enim podprtim ukrepom posamezne vrste (vsa leta do 2025)
         'es_res': {k: {'b': _n(int(res[f'es_{k}'].notna().sum())), 'pct': _pct(res[f'es_{k}'].notna().sum(), len(res), len(res), int(res[f'es_{k}'].notna().sum()))} for k in ES_SHOW},
         'es_res_any_pct': _pct((q := res[[f'es_{k}' for k in ES_GROUPS]].notna().any(axis=1).sum()), len(res), len(res), int(q)),
         # Kataster: vpisano leto obnove strehe, fasade ali oken
         'obnova_res_pct': _pct(res.obnova_any.sum(), len(res), len(res), int(res.obnova_any.sum())),
-        'obnova_res_since2000_pct': _pct((q2 := (res[['obnova_streha', 'obnova_fasada', 'obnova_okna']] >= 2000).any(axis=1).sum()), len(res), len(res), int(q2)),
+        'obnova_res_since2010_pct': _pct((q2 := (res[['obnova_streha', 'obnova_fasada', 'obnova_okna']] >= 2010).any(axis=1).sum()), len(res), len(res), int(q2)),
         # 10.5: javne stavbe po vrsti stavbe (agregat, brez seznama)
         'public_by_cat': {cid: ({'b': _n(int((m := g[(g.seg == 'javne') & (g.cat == cid)]).shape[0])), 'a': round(m.m2.sum() / 1e3, 1) if len(m) >= MIN_CELL else None})
                           for cid, *_ in CATS[2:]},
@@ -166,7 +167,7 @@ def build(ctx: Context) -> dict:
     res_all = df[df.seg.isin(['hise', 'bloki'])]
     data = {
         'meta': ctx.meta(_sources(), note=_NOTE),
-        'min_cell': MIN_CELL, 'classes': CLS, 'class_groups': list(GROUPS), 'periods': PERIODS,
+        'min_cell': MIN_CELL, 'min_ei': MIN_EI, 'classes': CLS, 'class_groups': list(GROUPS), 'periods': PERIODS,
         'segments': [{'id': s, 'name': n} for s, n in SEGS],
         'es_groups': [{'id': k, 'name': ES_NAMES[k]} for k in ES_SHOW],
         'categories': [{'id': c[0], 'name': c[1]} for c in CATS],
@@ -190,6 +191,6 @@ def _sources():
             'Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050']
 
 
-_NOTE = (f'Samo agregati; celice z manj kot {MIN_CELL} stavbami niso objavljene (null). Razredi A–G so določeni iz primarne energije '
+_NOTE = (f'Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsaj {MIN_EI} izkaznicah. Razredi A–G so določeni iz primarne energije '
          'računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). '
          'Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom.')
