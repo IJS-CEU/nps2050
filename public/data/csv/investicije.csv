@@ -1,0 +1,21 @@
+﻿segment;kazalnik;2026;2027;2028;2029;2030;2031-2035;2036-2040;2041-2045;2046-2050
+Stavbe javnega sektorja;needs;108;109;109;110;111;600;668;744;831
+Stavbe javnega sektorja;leveraged;233;209;29;20;14;;;;
+Stavbe javnega sektorja;grants;101;90;13;8;6;;;;
+Stavbe javnega sektorja;private;132;119;17;11;8;;;;
+Stavbe javnega sektorja;gap;124;101;-80;-90;-96;;;;
+Stavbe zasebnega storitvenega sektorja;needs;190;191;192;194;195;1030;1129;1231;1296
+Stavbe zasebnega storitvenega sektorja;leveraged;75;81;93;98;110;;;;
+Stavbe zasebnega storitvenega sektorja;grants;18;18;20;18;20;;;;
+Stavbe zasebnega storitvenega sektorja;private;57;63;73;80;90;;;;
+Stavbe zasebnega storitvenega sektorja;gap;-115;-110;-99;-96;-86;;;;
+Stanovanjske stavbe;needs;507;508;515;511;523;2049;1963;1770;1801
+Stanovanjske stavbe;leveraged;328;401;376;395;443;;;;
+Stanovanjske stavbe;grants;67;82;68;67;74;;;;
+Stanovanjske stavbe;private;260;319;308;328;369;;;;
+Stanovanjske stavbe;gap;-180;-107;-139;-116;-80;;;;
+Energetska revščina;needs;11;26;41;46;49;78;;;
+Energetska revščina;leveraged;13;33;46;49;48;78;;;
+Energetska revščina;grants;13;33;46;49;48;78;;;
+Energetska revščina;private;;;;;;;;;
+Energetska revščina;gap;2;7;5;3;0;;;;

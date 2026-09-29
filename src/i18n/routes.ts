@@ -4,6 +4,7 @@ export const pages = [
   { id: 'kaj-je-nps', slug: 'kaj-je-nps-2050' },
   { id: 'lastniki', slug: 'za-lastnike' },
   { id: 'strokovne-podlage', slug: 'strokovne-podlage' },
+  { id: 'ukrepi', slug: 'ukrepi-in-financiranje' },
   { id: 'javna-obravnava', slug: 'javna-obravnava' },
   { id: 'dokumenti', slug: 'dokumenti' },
   // Podstrani zunaj glavne navigacije

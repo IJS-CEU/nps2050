@@ -1,0 +1,2010 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "NPS_v39: pogl. 6 (preglednice »Pregled vsebin …«, »Pregled obstoječih ukrepov …«, »Pregled novih ukrepov …«, »Novi ukrepi za izpolnitev zahtev EPBD (N1–N20)«, »Časovni načrt opuščanja kotlov …«), pogl. 7 (»Investicijske potrebe …«, »Viri financiranja … 2031–2050«)"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Novi ukrepi N1–N20 so v osnutku predlog za odločanje; roki in nosilci se uskladijo ob posodobitvi NEPN. Investicije v mio EUR; obdobja od 2031 dalje so petletne vsote."
+ },
+ "areas": {
+  "MEPS": {
+   "name": "Minimalni energetski standardi",
+   "content": "Pragovi za nestanovanjske stavbe (16 %, 26 %, 2040, 2050) / Identifikacija, spremljanje, sankcije / Izjeme in utemeljitve / Podpora lastnikom stavb / upravljanje in odgovornosti (governance), / povezavo z evidencami / EPC / podatkovnimi bazami."
+  },
+  "TPS": {
+   "name": "Trajektorija prenove stanovanjskega fonda",
+   "content": "Mejniki PEU 2030/2035 / 43 % najšibše učinkovitih stanovanj / Zmanjševanje povprečne rabe primarne energije fonda, / Letne prenove (št., površina, globina)"
+  },
+  "GP": {
+   "name": "Spodbujanje globoke prenove",
+   "content": "Faze prenove (staged deep renovation) / Renovacijski potni listi / Povezava faz prenove s finančnimi instrumenti"
+  },
+  "ER": {
+   "name": "Ukrepi za ranljive skupine in energetsko revščino",
+   "content": "Finančni programi / Tehnična pomoč / Dostopnost cenovno ugodnih rešitev / Prednostna obravnava energijsko najmanj učinkovitih stavb ranljivih gospodinjstev"
+  },
+  "OSS": {
+   "name": "Pisarne »vse na enem mestu«",
+   "content": "Nacionalna mreža, dostopnost / Nabor storitev / Modeli upravljanja / Integracija z lokalmimi/regionalnimi ravnmi"
+  },
+  "OH": {
+   "name": "Razogljičenje ogrevanja in hlajenja",
+   "content": "Izstop iz fosilnih goriv do 2040 / Daljinsko ogrevanje in hlajenje / Toplotne črpalke, geotermija, solarno / Regulativni ukrepi za opuščanje fosilnih goriv"
+  },
+  "KG": {
+   "name": "Gradbeni odpadki in krožno gospodarstvo",
+   "content": "Preprečevanje nastajanja / Ponovna uporaba in recikliranje CDW / Zmanjšanje vgrajenega ogljika življenjski cikel stavb (WLC, GWP) / povezava z gradbenimi proizvodi in digitalnimi dnevniki stavb"
+  },
+  "OVE": {
+   "name": "Spodbujanje OVE in sončne energije",
+   "content": "Solarni PV/solar termal / Zahteve za nove in obstoječe stavbe / Inovativne integracije (BIPV)"
+  },
+  "PTE": {
+   "name": "Pametne tehnologije in elektromobilnost",
+   "content": "SRI – Smart Readiness Indicator / Polnilna infrastruktura v stavbah / interoperabilnost in povezava z omrežjem"
+  },
+  "TO": {
+   "name": "Naslavljanje tržnih ovir in vrzeli znanj",
+   "content": "Permitting / Dostop do financiranja / Usposabljanja in certificiranje / administrativna poenostavitev in digitalizacija postopkov"
+  },
+  "DOD": {
+   "name": "Dodatne vsebine (opcijsko)",
+   "content": "Odpornost na podnebne spremembe / Požarna varnost / Seizmična odpornost / Odstranjevanje nevarnih snovi / Notranje okolje"
+  }
+ },
+ "kinds": [
+  {
+   "id": "predpis",
+   "name": "Predpisi"
+  },
+  {
+   "id": "finance",
+   "name": "Finančne spodbude in instrumenti"
+  },
+  {
+   "id": "svetovanje",
+   "name": "Svetovanje, obveščanje, usposabljanje"
+  },
+  {
+   "id": "organizacija",
+   "name": "Organizacija, načrtovanje, pilotni projekti"
+  },
+  {
+   "id": "spremljanje",
+   "name": "Spremljanje, metodologija, podatki"
+  }
+ ],
+ "measures": [
+  {
+   "id": "M19.1",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Spremembe in dopolnitve predpisov za energetsko učinkovitost stavb",
+   "areas": [
+    "MEPS",
+    "TPS",
+    "GP",
+    "OH",
+    "OVE"
+   ],
+   "activities": [
+    {
+     "kind": "predpis",
+     "resp": "MNVP, MzIE",
+     "text": "Posodobitev pravilnika o učinkoviti rabi energije v stavbah (PURES) v skladu z Direktivo o energetski učinkovitosti stavb (EPBD). Podrobnosti ureja DSEPS.",
+     "deadline": "2026",
+     "kpi": "Priprava predpisa",
+     "target": "2026: sprejetje PURES"
+    },
+    {
+     "kind": "predpis",
+     "resp": "MKGP, MzIE",
+     "text": "Priprava zakonske podlage za trajnostno rabo energije v stavbah in objektih, namenjenih kmetijstvu. / Opredelijo se tipi namenov rabe prostorov, ki so namenjeni kmetijstvu, pripravi se popis teh stavb, objektov in virov energije za delovanje tehničnih sistemov, določijo se kazalniki za stalno spremljanje učinkovitosti rabe ter načrt za zamenjavo tehnologij na fosilna goriva. / Podrobnosti ureja DSEPS.",
+     "deadline": "2027",
+     "kpi": "Priprava predpisa",
+     "target": "2027: sprejetje predpisa"
+    }
+   ],
+   "kinds": [
+    "predpis"
+   ],
+   "responsible": [
+    "MKGP",
+    "MNVP",
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "M19.2",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Prenova stavb kulturne dediščine in drugih posebnih skupin stavb",
+   "areas": [
+    "MEPS",
+    "TPS",
+    "GP",
+    "OH",
+    "OVE"
+   ],
+   "activities": [
+    {
+     "kind": "predpis",
+     "resp": "MK, MzIE, MKRR",
+     "text": "Pripravijo se Smernice za usmerjeno financiranje celovitih prenov stavb kulturne dediščine. / Opravijo se analize potrebnega dodatnega oziroma prilagojenega financiranja celovitih prenov stavb kulturne dediščine. To zajema: / analizo izvedenih energetskih prenov iz vidika energijskih prihrankov, investicije, finančne konstrukcije in podobno, / pripravo meril za določanje upravičenih stroškov za energetsko prenovo teh skupin stavb in njihovo vključevanje v vse podporne instrumente, / zagotovitev financiranja v okviru kohezije, prilagojeno tem ciljnim skupinam (na primer tudi v ločenih razpisih oziroma pozivih) ter Podnebnega sklada. / Vzpostavitev informacijske točke za celovito prenovo stavb kulturne dediščine (energetska in snovna učinkovitost) (MK)",
+     "deadline": "2025",
+     "kpi": "Priprava poročila / Posodobitev meril za financiranje",
+     "target": "2025: priprava poročila / 2026: integracija meril v javne razpise za energetsko prenovo stavb"
+    },
+    {
+     "kind": "predpis",
+     "resp": "MK, MzIE, MKRR",
+     "text": "Posodobijo se Smernice za prenovo stavb kulturne dediščine in v skladu s tem se pri energetski prenovi stavb kulturne dediščine smiselno upoštevajo ukrepi iz DSEPS za izboljšanje energetske učinkovitosti in rezultati CRP, ki je v pripravi (metodologija in usmeritve za umeščanje fotonapetostnih naprav na objekte v območjih naselbinske dediščine in drugo.",
+     "deadline": "2025",
+     "kpi": "Posodobljene smernice",
+     "target": "2025: priprava smernic / 2026: sprejetje smernic"
+    }
+   ],
+   "kinds": [
+    "predpis"
+   ],
+   "responsible": [
+    "MK",
+    "MKRR",
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M19.3",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Energetsko pogodbeništvo (EPO)",
+   "areas": [
+    "GP",
+    "OSS",
+    "TO"
+   ],
+   "activities": [
+    {
+     "kind": "sklop instrumentov: ekonomski (finančni) instrumenti in drugo",
+     "resp": "MzIE, MKRR, MSP, / Eko sklad, SID banka",
+     "text": "Nadaljevanje razvoja in implementacije obstoječih finančnih instrumentov in modelov financiranja: / oblikovanje ustreznih finančnih instrumentov za ponudnike storitev EPO (garancije, poplačilo investicije po računih za storitev energetske učinkovitosti, financiranje s kombinacijo nepovratnih in zasebnih sredstev oziroma finančnih instrumentov, vključno s financiranjem tehnične priprave projektov, zagotovitvijo ugodnega kreditiranje, izvedba EPO v okviru javnega naročanja), / podpreti razvoj EPO s primernimi podpornimi ukrepi, na primer usposabljanje, dodatna strokovna in tehnična pomoč pri pripravi projektov, program zagotavljanja kakovosti projektov EPO, priprava orodij za vrednotenje projektov EPO in tako dalje, / razširiti instrument iz javnega sektorja na druge sektorje, zlasti stanovanjskega, / vzpostaviti mehanizem za spodbujanje nastanka podjetij za energetske storitve, s posebno pozornostjo za mala in srednja podjetja (SID banka in drugi). / Ukrep se izvaja usklajeno z DSEPS.",
+     "deadline": "2026",
+     "kpi": "Pripravljeni finančni instrumenti / Izvedba razpisov z novimi finančnimi instrumenti",
+     "target": "2025: poročilo o finančnih instrumentih / 2026: objavljen pilotni razpis"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "organizacija"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MKRR",
+    "MSP",
+    "MzIE",
+    "SID banka"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "M19.4",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Prehod na celovite prenove stavb",
+   "areas": [
+    "MEPS",
+    "GP",
+    "TPS",
+    "OVE",
+    "TO",
+    "OH",
+    "ER"
+   ],
+   "activities": [
+    {
+     "kind": "predpis",
+     "resp": "MzIE, MNVP, MSP, Eko sklad,",
+     "text": "Vzpostavitev ustreznega regulatornega okolja za trajnostno vrednotenje stavb (vzpostavitev sistema, shema certificiranja, usposabljanje, vzdrževanje sistema, financiranje). / Ukrep se izvaja usklajeno z DSEPS.",
+     "deadline": "2026",
+     "kpi": "Sprejetje zakonodaje, potrebne za trajnostno vrednotenje stavb",
+     "target": "2025: osnutek / 2026: sprejetje"
+    },
+    {
+     "kind": "drugo (študija)",
+     "resp": "MzIE, MNVP, MSP, Eko sklad,",
+     "text": "Priprava podlag za spodbujanje in financiranje trajnostne prenove (ki poleg energetske prenove upoštevajo tudi vse druge pomembne kriterije prenove stavb: potresna in požarna varnost, problematika radona, vgradnja lesa in drugih trajnostnih materialov in podobno).",
+     "deadline": "2026",
+     "kpi": "Študija",
+     "target": "2024: razpis za izvedbo študije / 2026: zaključek študije in sprejetje potrebnih nadaljnjih korakov"
+    },
+    {
+     "kind": "drugo (pilotni projekt)",
+     "resp": "MzIE, MNVP, MSP, Eko sklad,",
+     "text": "Izvesti vzorčne projekte celovite prenove javnih stavb.",
+     "deadline": "2026",
+     "kpi": "Pilotni projekt",
+     "target": "2026: zaključek pilotnega projekta"
+    },
+    {
+     "kind": "drugo (študija)",
+     "resp": "MzIE, MNVP, MSP, Eko sklad,",
+     "text": "Priprava načrta za trajnostno prenovo stavb, ki se osredotoča na celovito prenovo stavbe in upošteva vse vidike prenove (energijski, potresni, kulturne dediščine in drugo). / Načrt je pripravljen ločeno za stanovanjski in nestanovanjski sektor in zajema analizo tehničnega potenciala za prenovo v obziru doseganja zavezujočih podnebnih ciljev.",
+     "deadline": "2026",
+     "kpi": "Priprava strokovnih podlag",
+     "target": "2024: objava razpisa za nalogo / 2026: zaključek naloge"
+    },
+    {
+     "kind": "predpis",
+     "resp": "MzIE, MNVP, MSP, Eko sklad,",
+     "text": "Uveljavitev izkaznice stavbe v skladu z zahtevami EPBD. / Podrobnosti ureja DSEPS.",
+     "deadline": "2027",
+     "kpi": "Priprava strokovnih podlag / Priprava predpisa",
+     "target": "2025: zaključek naloge / 2027: sprejetje predpisa"
+    },
+    {
+     "kind": "drugo (študija)",
+     "resp": "MzIE, MNVP, MSP, Eko sklad,",
+     "text": "Priprava načrta za financiranje celovite prenove stavb, ki naslavlja finančni vidik celovite prenove ter išče dodatne vire financiranja ter predlaga nove finančne instrumente. / Ukrep se izvaja usklajeno z DSEPS.",
+     "deadline": "2027",
+     "kpi": "Priprava strokovnih podlag",
+     "target": "2025: objava razpisa za nalogo / 2027: zaključek naloge"
+    },
+    {
+     "kind": "predpis",
+     "resp": "MzIE, MNVP, MSP, Eko sklad,",
+     "text": "Priprava predpisa na področju celovite prenove stavb, ki bo sistemsko naslavljal problem in bo temeljil na predhodnih strokovnih podlagah.",
+     "deadline": "2029",
+     "kpi": "Priprava predpisa",
+     "target": "2029: sprejetje predpisa"
+    }
+   ],
+   "kinds": [
+    "organizacija",
+    "predpis"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MNVP",
+    "MSP",
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "M19.5",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Finančne spodbude za energetsko učinkovitost in rabo OVE v stanovanjskih stavbah",
+   "areas": [
+    "MEPS",
+    "GP",
+    "TPS",
+    "OVE",
+    "TO",
+    "OH",
+    "ER"
+   ],
+   "activities": [
+    {
+     "kind": "načrtovanje",
+     "resp": "MzIE, Eko sklad",
+     "text": "Priprava finančnega načrta spodbujanja ukrepov v gospodinjstvih, vključno z določitvijo virov financiranja, spodbujevalnih mehanizmov in ukrepov za odstranjevanje ključnih ovir ter organizacijo spodbujanja in zagotavljanjem pomoči po načelu vse na enem mestu. / Preuči se možnost spodbujanja postopne celovite prenove ter sprememba dodeljevanja nepovratnih sredstev glede na specifike posameznega gospodinjstva (premoženjski status idr.). / Podrobnosti ureja DSEPS.",
+     "deadline": "2026",
+     "kpi": "Sprememba dodeljevanja nepovratnih sredstev gospodinjstvom v eno- in dvostanovanjskih stavbah",
+     "target": "2025: priprava finančnega načrta / 2026: objava javnega poziva s posodobljenimi merili"
+    },
+    {
+     "kind": "ekonomski",
+     "resp": "MzIE, Eko sklad",
+     "text": "Zagotovitev spodbud za pripravo projektov v stanovanjskem sektorju (s spodbujanjem za prijave na razpise tehnične pomoči institucij EU ali z domačo shemo), pri čemer je pod drobnogledom dodatno spodbujanje prenov večstanovanjskih stavb.",
+     "deadline": "2025",
+     "kpi": "Zagotovitev spodbud za pripravo projektov",
+     "target": "2025: prijava na razpise tehnične pomoči"
+    },
+    {
+     "kind": "demonstracijski projekti",
+     "resp": "MzIE, Eko sklad",
+     "text": "Izvedba demonstracijskih projektov; v tem okviru čim hitreje začeti z izvedbo projektov celovite energetske obnove večstanovanjskih stavb po merilih skoraj ničenergijske prenove, predvidenih za sofinanciranje v okviru OP EKP.",
+     "deadline": "2026",
+     "kpi": "Izvedba demonstracijskih projektov",
+     "target": "2024: pilotni pozivi / 2026: zaključek pilotov"
+    },
+    {
+     "kind": "ekonomski",
+     "resp": "Eko sklad",
+     "text": "Razvoj instrumentov finančnih spodbud za izvedbo naložb v energetsko učinkovitost, znižanje končne rabe energije in v oskrbo z OVE v skladu z DSEPS.",
+     "deadline": "2026",
+     "kpi": "Priprava finančnih instrumentov",
+     "target": "2025: začetek priprav / 2026: objava poziva z novimi instrumenti"
+    },
+    {
+     "kind": "organizacijski ukrepi",
+     "resp": "Eko sklad, MzIE",
+     "text": "V okviru delovanja Eko sklada: / zagotoviti čim bolj enakomerno in usmerjeno izvajanje načrtovanih ukrepov v primernem obsegu, / poenostaviti administrativne postopke pri dodeljevanju spodbud, tudi z digitalizacijo delovanja, / ugotoviti druge ovire za povečanje izvajanja ukrepov v gospodinjstvih (na primer višina spodbude) in pripraviti odziv nanje, / analizirati potenciale za ukrepe glede URE in OVE, dosegljive s spodbujevalnimi mehanizmi v tem sektorju, / v sodelovanju z MzIE razviti in pripraviti nove finančne instrumente za stanovanjski sektor, / ciljno usmerjanje spodbud glede na določena območja prednostne rabe energije in energentov (na primer individualne spodbude za ogrevanje na OVE se ne delijo na območjih SDOH), / skupaj z lokalnimi energetskimi agencijami (LEA) in ENSVET razvijati nove poslovne modele za celovito prenovo stanovanjskih stavb na primer celovita prenova sosesk, / skupaj z Borzenom zagotoviti usklajeno in ciljno usmerjeno ozaveščanje in informiranje o URE in rabi OVE v gospodinjstvih.",
+     "deadline": "Vsako leto",
+     "kpi": "Izpopolnjevanje delovanja",
+     "target": "Vsako leto v sklopu priprave letnega poročila"
+    },
+    {
+     "kind": "načrtovanje",
+     "resp": "Eko sklad, MzIE",
+     "text": "Zagotovitev, da se spodbude Eko sklada bolj ciljno usmerjajo tudi v doseganje ciljnega deleža OVE, in s tem zagotovitev dodatne proizvodnje toplote in hladu iz OVE v stanovanjskem sektorju v skladu s cilji OVE. / Podrobnosti ureja DSEPS.",
+     "deadline": "2025",
+     "kpi": "Usmerjeno spodbujanje naložb",
+     "target": "2024: začetek analize / 2025: javna objava / 2025: implementacija v obliki prilagojenega javnega poziva"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "organizacija"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": true
+  },
+  {
+   "id": "M19.6",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Instrumenti za financiranje prenove stavb z več lastniki",
+   "areas": [
+    "MEPS",
+    "GP",
+    "TPS",
+    "OVE",
+    "TO",
+    "OH",
+    "ER"
+   ],
+   "activities": [
+    {
+     "kind": "ekonomski, predpisi",
+     "resp": "Eko sklad, MzIE, MKRR, MSP",
+     "text": "Nadaljevanje in nadgradnja izvajanja instrumenta (tudi v okviru projekta LIFE IP Care4Climate): / oblikovati in sprejeti zakonodajni okvir za izvajanje instrumenta, / preučiti in oblikovati ukrepe na podlagi Resolucije o nacionalnem stanovanjskem programu za spodbuditev celovite prenove večstanovanjskih stavb, / zagotoviti dodatna nepovratna finančna sredstva v kombinaciji različnih finančnih instrumentov za izvedbo celovitih prenov stavb. / Preučiti in implementirati v praksi v obliki javnih pozivov nove načine financiranja prenov večstanovanjskih stavb v obliki garancijskih shem in podobno. / Ukrep bo bolj podrobno obravnavala DSEPS.",
+     "deadline": "2026",
+     "kpi": "Spodbujanje prenov večstanovanjskih stavb",
+     "target": "2024: objava javnega razpisa za študijo oblikovanja novih finančnih instrumentov za prenove večstanovanjskih stavb / 2026: objava javnih pozivov Eko sklada za finančne spodbude"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "predpis"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MKRR",
+    "MSP",
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "M19.7",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Obvezna delitev in obračun stroškov za toploto v večstanovanjskih stavbah",
+   "areas": [
+    "MEPS",
+    "TO"
+   ],
+   "activities": [
+    {
+     "kind": "predpis",
+     "resp": "MzIE / MSP",
+     "text": "Nadaljevanje izvajanja instrumenta / V letu 2025 se preveri, ali so potrebne posodobitve, in v skladu z ugotovitvami se izpeljejo ustrezni postopki.",
+     "deadline": "2025",
+     "kpi": "Preveritev posodobitve Pravilnika",
+     "target": "2025: poročilo o preverbi"
+    }
+   ],
+   "kinds": [
+    "predpis"
+   ],
+   "responsible": [
+    "MSP",
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M19.8",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Energetsko svetovalna mreža – ENSVET",
+   "areas": [
+    "OSS"
+   ],
+   "activities": [
+    {
+     "kind": "informiranje in ozaveščanje",
+     "resp": "MzIE, Eko sklad",
+     "text": "Nadaljevanje in nadgradnja izvajanja instrumenta. / Razvoj instrumenta v obsegu iz DSEPS in okrepitev delovanja mreže ENSVET, vključno s širitvijo svetovanja za podjetja.",
+     "deadline": "2027",
+     "kpi": "Delovanje svetovalne mreže",
+     "target": "2027: 15.000 aktivnosti v letnem poročilu Eko sklada"
+    }
+   ],
+   "kinds": [
+    "svetovanje"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MzIE"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "M19.9",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Sheme povratnih sredstev za energetsko učinkovitost v gospodinjstvih: posojila Eko sklada in spodbude drugih ponudnikov zelenih posojil za stanovanjski sektor",
+   "areas": [
+    "MEPS",
+    "GP"
+   ],
+   "activities": [
+    {
+     "kind": "ekonomski",
+     "resp": "Eko sklad, MzIE",
+     "text": "Nadaljevanje izvajanja instrumenta in / Vzpostavitev novih finančnih instrumentov. Podrobnosti ureja DSEPS. / Glej tudi ukrep Napaka! Vira sklicevanja ni bilo mogoče najti..",
+     "deadline": "2025",
+     "kpi": "Posodobitev predpisa",
+     "target": "2025: sprejetje predpisa"
+    }
+   ],
+   "kinds": [
+    "finance"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M19.10",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Delitev spodbud med lastnike in najemnike",
+   "areas": [
+    "GP"
+   ],
+   "activities": [
+    {
+     "kind": "spodbude",
+     "resp": "MzIE, MSP",
+     "text": "Preučitev mogočih rešitev za vzpostavitev instrumenta v stanovanjskem, javnem in storitvenem sektorju.",
+     "deadline": "2025",
+     "kpi": "Priprava strokovnih podlag",
+     "target": "2025"
+    }
+   ],
+   "kinds": [
+    "finance"
+   ],
+   "responsible": [
+    "MSP",
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M19.11",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Vzpostavitev garancijske sheme in pridobitev evropskih sredstev",
+   "areas": [
+    "TPS",
+    "OH"
+   ],
+   "activities": [
+    {
+     "kind": "ekonomski",
+     "resp": "Eko sklad, MzIE, MKRR",
+     "text": "Oblikovanje garancijske sheme v sodelovanju s finančnimi institucijami v Sloveniji in EU (EIB) in pridobitev finančnih virov za implementacijo garancijske sheme v kombinaciji z obstoječimi finančnimi instrumenti. / Zagotovitev izvajanja instrumenta v sodelovanju s finančnimi institucijami (in pridobitev evropskih sredstev (v sodelovanju z EIB). / Podrobnosti ureja DSEPS.",
+     "deadline": "2025",
+     "kpi": "Priprava garancijske sheme za celovite prenove v stanovanjskem sektorju / Posodobitev predpisa / Izvajanje finančnega instrumenta",
+     "target": "2024: priprava ex ante ocene finančnega instrumenta / 2025: sprejetje predpisa / 2026: pridobitev evropskih sredstev in razpis za finančnega posrednika / 2027: razpis za pridobitev finančnih sredstev"
+    }
+   ],
+   "kinds": [
+    "finance"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MKRR",
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M19.12",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Upravljanje z energijo v javnem sektorju",
+   "areas": [
+    "TPS",
+    "OH",
+    "OSS",
+    "OVE",
+    "KG",
+    "PTE",
+    "DOD"
+   ],
+   "activities": [
+    {
+     "kind": "drugo (spremljanje, poročanje in podporne aktivnosti)",
+     "resp": "MzIE, MJU, MP, vsa ministrstva",
+     "text": "Priprava strokovne podlage za Dolgoročno energetsko in podnebno strategijo javnega sektorja s programom upravljanja z energijo v javnem sektorju. / Podrobnosti ureja DSEPS.",
+     "deadline": "2026",
+     "kpi": "Strokovna podlaga",
+     "target": "2026: zaključek naloge"
+    },
+    {
+     "kind": "predpis",
+     "resp": "MzIE, MJU, MP, vsa ministrstva",
+     "text": "Zaključki strokovne podlage se prenesejo v posodobljeno uredbo, ki tudi zagotovi sistemsko zagotavljanje sredstev za namen delovanja sistema za upravljanje z energijo v javnem sektorju.",
+     "deadline": "2027",
+     "kpi": "Posodobitev predpisa",
+     "target": "2027: sprejetje predpisa"
+    },
+    {
+     "kind": "podporna aktivnost, finančne spodbude",
+     "resp": "MzIE, MJU, MP, vsa ministrstva",
+     "text": "Vpeljava nove storitve RE-CO – Pregled in optimizacija delovanja že vzpostavljenih stavbnih sistemov, njihovih obratovalnih in vzdrževalnih postopkov ter medsebojnega vpliva z uporabniki stavbe s ciljem znižanja stroškov in rabe energije ter izboljšanja bivalnega ugodja.",
+     "deadline": "2026",
+     "kpi": "Vpeljana shema in subvencije za izvedbo",
+     "target": "Najmanj deset izvedenih projektov v letu 2026"
+    },
+    {
+     "kind": "pilotni projekt",
+     "resp": "MzIE, MJU, MP, vsa ministrstva",
+     "text": "Izboljšanje upravljanja z energijo v stavbah v državni lasti s pomočjo energetskega vodenja. / Namen projekta je opremiti javne zgradbe v upravljanju MJU s sistemi za spremljanje in beleženje rabe energije. Omogočeno bo spremljanje po vrsti in namenu rabe. Poudarek je na energiji, ki je potrebna za ogrevanje, hlajenje, prezračevanje, razsvetljavo in pripravo tople vode v stavbah.",
+     "deadline": "2026",
+     "kpi": "Poročilo",
+     "target": "2026: zaključek projekta"
+    },
+    {
+     "kind": "Ozaveščanje in informiranje",
+     "resp": "MzIE, MJU, MP, vsa ministrstva",
+     "text": "Tehnična in strokovna podpora JS o pomenu poročanja o podatkih stavb, večjih od 250m2 uporabne površine: / o tehničnih stavbnih sistemih in stanju stavbe, / o rabi letne energije za ogrevanje, hlajenje, električno energijo in toplo vodo, / o načrtovanih in izvedenih ukrepih na področju OVE in URE. / Podatki se zapisujejo v nacionalno aplikacijo za upravljanje z energijo v javnem sektorju – energetsko knjigovodstvo, ki je namenjena zavezancem (OJS in ŠJS) ter energetskim menedžerjem.",
+     "deadline": "2025",
+     "kpi": "Kampanja",
+     "target": "Popis vseh javnih stavb do 11. oktobra 2025"
+    },
+    {
+     "kind": "načrtovanje",
+     "resp": "MzIE, MJU, MP, vsa ministrstva",
+     "text": "Urediti pravno razmerje med ministrstvom, pristojnim za energijo, in lokalnimi energetskimi organizacijami, kot imajo to urejeno regionalne razvojne agencije z ministrstvom na področju regionalnega razvoja, ter zagotoviti finančne vire za upravljanje z energijo v stavbah ŠJS in spodbujanje celovitih prenov stavb širšega javnega sektorja.",
+     "deadline": "2027",
+     "kpi": "Posodobitev predpisa",
+     "target": "2027: sprejetje predpisa in financiranja po predpisu"
+    },
+    {
+     "kind": "drugo (organizacijski)",
+     "resp": "MzIE, MJU, MP, vsa ministrstva",
+     "text": "Zapolnitev vrzeli v organiziranosti in zagotovitev ustreznih človeških (energetski upravljavci/ke) in finančnih virov za izvajanje upravljanja z energijo v stavbah OJS in spodbujanja trajnostnih prenov stavb ožjega javnega sektorja. / Podrobnosti ureja DSEPS.",
+     "deadline": "2028",
+     "kpi": "Ustanovitev energetske pisarne OJS",
+     "target": "2024: zagotovitev kadrov in financiranja skozi predpis"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "organizacija",
+    "predpis",
+    "spremljanje",
+    "svetovanje"
+   ],
+   "responsible": [
+    "MJU",
+    "MP",
+    "MzIE",
+    "vsa ministrstva"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M19.13",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Sheme povratnih sredstev za energetsko učinkovitost v javnem sektorju",
+   "areas": [
+    "TPS",
+    "OH"
+   ],
+   "activities": [
+    {
+     "kind": "ekonomski",
+     "resp": "MzIE, MJU, Eko sklad",
+     "text": "Nadaljevanje in nadgradnja izvajanja instrumenta: / izboljšati spremljanje učinkov naložb, ki prejmejo kredite (Eko sklad in drugo) za zmanjšanje rabe energije in emisij TGP, ter povečanje proizvodnje energije iz OVE. / Zagotovitev sistemskega finančnega vira se preuči v DSEPS. / Glej tudi ukrep Napaka! Vira sklicevanja ni bilo mogoče najti..",
+     "deadline": "2025",
+     "kpi": "Usmerjeno spodbujanje naložb",
+     "target": "2024: začetek analize / 2026: implementacija"
+    }
+   ],
+   "kinds": [
+    "finance"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MJU",
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M19.14",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Nepovratne investicijske finančne spodbude za energetsko sanacijo stavb v javnem sektorju, usmerjene v povečanje deleža projektov izvedenih z energetskim pogodbeništvom",
+   "areas": [
+    "OH",
+    "TPS"
+   ],
+   "activities": [
+    {
+     "kind": "ekonomski (finančne spodbude)",
+     "resp": "MzIE",
+     "text": "Zagotoviti stalnost nepovratnih sredstev za spodbujanje naložb energetske prenove javnih stavb in v tem okviru z ustreznim načrtovanjem javnih razpisov oziroma povabil čim bolj enakomerno in predvidljivo dinamiko izvajanja naložb, med katere spada tudi napredno upravljanje sistemov v stavbah in na njih.",
+     "deadline": "vsako leto",
+     "kpi": "Stalnost financiranja",
+     "target": "Aktualni razpisi"
+    },
+    {
+     "kind": "ekonomski (finančne spodbude)",
+     "resp": "MzIE",
+     "text": "Spodbuditi pripravo projektov v okviru pridobljenih in dodatnih sredstev mednarodne tehnične pomoči ELENA za energetsko prenovo stavb ožjega in širšega javnega sektorja. / (Glej tudi Napaka! Vira sklicevanja ni bilo mogoče najti. in Napaka! Vira sklicevanja ni bilo mogoče najti..)",
+     "deadline": "2026",
+     "kpi": "Zagotovitev finančne pomoči za pripravo projektov",
+     "target": "2026: prijava na razpis ELENA"
+    },
+    {
+     "kind": "usposabljanje",
+     "resp": "MzIE",
+     "text": "Okrepiti aktivnosti na področju izobraževanja in usposabljanja vseh vključenih v pripravo in izvedbo projektov energetske prenove stavb.",
+     "deadline": "2027",
+     "kpi": "Izobraževanje",
+     "target": "2024‒2027: 200 udeležencev na izobraževanjih v okviru organizacije PP-EPS"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "svetovanje"
+   ],
+   "responsible": [
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": true
+  },
+  {
+   "id": "M19.15",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Zagotavljanje kakovosti projektov energetske prenove stavb",
+   "areas": [
+    "TPS",
+    "GP"
+   ],
+   "activities": [
+    {
+     "kind": "sklop instrumentov",
+     "resp": "MzIE",
+     "text": "Zagotovitev nadgradnje sistema zagotavljanja kakovosti energetske prenove stavb v okviru strukturiranega procesa sodelovanja deležnikov, certificiranje izvajalcev in procesov, izobraževanje oziroma usposabljanje deležnikov v skladu z DSEPS.",
+     "deadline": "2024",
+     "kpi": "Opredelitev ukrepa v prenovi DSEPS",
+     "target": ""
+    }
+   ],
+   "kinds": [
+    "organizacija"
+   ],
+   "responsible": [
+    "MzIE"
+   ],
+   "first_deadline": 2024,
+   "recurring": false
+  },
+  {
+   "id": "M19.16",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Projektna pisarna za celovito prenovo javnih stavb",
+   "areas": [
+    "TPS",
+    "OSS"
+   ],
+   "activities": [
+    {
+     "kind": "drugo (organizacijski ukrep)",
+     "resp": "MzIE",
+     "text": "Zagotovitev ustreznih človeških in finančnih virov za izvajanje dodatnih nalog pisarne. / To obsega tudi krepitev priprave projektov celovite prenove javnih stavb, in sicer tako s pripravo sheme, v okviru katere bodo na voljo spodbude za pripravo projektov, kakor tudi z ozaveščanjem in usposabljanjem oseb, odgovornih za celovito prenovo na vseh ravneh za pripravo in izvedbo projektov v stavbah javnega sektorja (gradbeno in energetsko). / Ukrep se izvaja usklajeno z DSEPS.",
+     "deadline": "2026",
+     "kpi": "Krepitev delovanja pisarne",
+     "target": "2025: načrt dodatnega delovanja PP-EPS / 2025: zagotovitev dodatnega financiranja PP-EPS po predpisu / 2026: vsaj osem zaposlenih v PP-EPS"
+    },
+    {
+     "kind": "drugo (organizacijski ukrep)",
+     "resp": "MzIE",
+     "text": "Spodbude v okviru razpisov/povabil OP EKP bolj ciljno usmerjati tudi v doseganje ciljnega deleža OVE in s tem zagotoviti dodatno proizvodnjo toplote iz OVE v javnem sektorju v skladu s cilji glede OVE.",
+     "deadline": "2025",
+     "kpi": "Sprememba javnih razpisov",
+     "target": "2025: objavljeni javni razpisi imajo več poudarka na OVE"
+    }
+   ],
+   "kinds": [
+    "organizacija"
+   ],
+   "responsible": [
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M19.17",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Program opuščanja rabe fosilnih goriv v stavbah",
+   "areas": [
+    "OH"
+   ],
+   "activities": [
+    {
+     "kind": "načrtovanje",
+     "resp": "MzIE",
+     "text": "Na podlagi NEPN in prednostnih usmeritev glede virov in tehnologij ogrevanja in hlajenja v skladu z veljavno zakonodajo se pripravi program opuščanja uporabe fosilnih goriv do leta 2050 za potrebe različnih deležnikov oziroma tipologij stavb. / Program vsebuje načrt, kako se bodo usmeritve prenesle v zakonodajo za implementacijo, vrste spodbud na državni in lokalni ravni ter način izvajanja, da se do leta 2050 razogljiči stavbni fond. / Poudarek bo tudi na javnem sektorju, ki mora v skladu s 5. členom EED izboljšati energetsko učinkovitost stavb tudi z zamenjavo starih in neučinkovitih grelnikov.",
+     "deadline": "2025",
+     "kpi": "Program",
+     "target": "2025: sprejetje programa"
+    },
+    {
+     "kind": "načrtovanje, predpisi",
+     "resp": "MzIE",
+     "text": "Spodbujanje opuščanja rabe fosilnih goriv v stavbah s programiranjem skrajnih rokov in ukrepov, vezanih na prepoved prodaje in vgradnje kotlov na fosilna goriva. Glej tudi ukrep Napaka! Vira sklicevanja ni bilo mogoče najti.. / Ukrep se izvede v skladu z DSEPS, ki ureja podrobnosti, ter razvojem SDOH (spodbude se ne usmerjajo na območja oskrbe z daljinsko toploto oziroma se na teh območjih spodbujajo priklopi na SDOH).",
+     "deadline": "",
+     "kpi": "",
+     "target": ""
+    },
+    {
+     "kind": "ekonomski (finančne spodbude)",
+     "resp": "MzIE, Eko sklad",
+     "text": "Okrepitev nepovratnih investicijskih spodbud in vzpostavitev dodatnih finančnih instrumentov za zamenjavo sistemov ogrevanja, ki uporabljajo fosilna goriva, z učinkovitimi in trajnostnimi alternativami (na primer SDO, ali individualne rešitve na OVE). / Uveljavitev pozitivne diskriminacije za dostop do virov za potrošnike z nizkimi dohodki in energetsko revne.",
+     "deadline": "2026",
+     "kpi": "Krepitev obstoječih spodbud 2024 / Začetek veljavnosti pozitivne diskriminacije 2026 / Vzpostavitev dodatnih finančnih instrumentov 2026",
+     "target": ""
+    }
+   ],
+   "kinds": [
+    "finance",
+    "organizacija",
+    "predpis"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M19.18",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Vodenje davčne in okoljske politike za podporo opuščanja rabe fosilnih goriv",
+   "areas": [
+    "OH"
+   ],
+   "activities": [
+    {
+     "kind": "sklop in instrumentov (davčni in okoljski)",
+     "resp": "MF, MzIE",
+     "text": "Določanje višine dajatve na emisije CO2 in zneskov trošarin za fosilne vire do leta 2030 za ogrevanje (ELKO, UNP, ZP) z namenom pospešitve prehoda na OVE. Ukrep se izvaja v okviru ukrepov Napaka! Vira sklicevanja ni bilo mogoče najti. in Napaka! Vira sklicevanja ni bilo mogoče najti..",
+     "deadline": "",
+     "kpi": "",
+     "target": ""
+    }
+   ],
+   "kinds": [
+    "finance",
+    "organizacija"
+   ],
+   "responsible": [
+    "MF",
+    "MzIE"
+   ],
+   "first_deadline": null,
+   "recurring": false
+  },
+  {
+   "id": "M19.19",
+   "group": "nepn",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Informacijski sistem za zbiranje podatkov o energetskih lastnostih stavb",
+   "areas": [
+    "TPS"
+   ],
+   "activities": [
+    {
+     "kind": "Razvoj, nadgradnja in vzdrževanje",
+     "resp": "MzIE / MJU, MDP",
+     "text": "Informacijski sistem je sestavljen iz: / podsistema za izdelavo in izdajo ter vodenje registra energetskih izkaznic, / podsistema za izdelavo in vodenje registra poročil pregledov klimatskih sistemov, / podsistema za upravljanje z energijo v javnem sektorju – energetsko knjigovodstvo, / podsistema za administracijo sistema in upravljanje registrov, / registra neodvisnih strokovnjakov za energetske izkaznice, / registra izdajateljev energetskih izkaznic, / registra neodvisnih strokovnjakov za preglede klimatskih sistemov, / registra izdajateljev poročil klimatskih sistemov, / registra upravljavcev, ki poročajo o energetskem knjigovodstvu. / Informacijski sistem za zbiranje podatkov o energetskih lastnostih stavb se bo v skladu s potrebami evropske in nacionalne zakonodaje razvijal, nadgrajeval in vzdrževal. / Ukrep se uskladi z DSEPS.",
+     "deadline": "2026",
+     "kpi": "Delovanje informacijskega sistema ter povezovanje z ukrepom M16.4b",
+     "target": "(Prestavljeno v ukrep M16.4b)"
+    }
+   ],
+   "kinds": [
+    "spremljanje"
+   ],
+   "responsible": [
+    "MDP",
+    "MJU",
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "M20.1",
+   "group": "nepn_novi",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Projektna pisarna za celovito prenovo stanovanjskih stavb (PP-TPSS)",
+   "areas": [
+    "TPS",
+    "OH",
+    "OVE",
+    "DOD"
+   ],
+   "activities": [
+    {
+     "kind": "drugo (organizacijski ukrep)",
+     "resp": "MzIE, MNVP",
+     "text": "Zagotovitev ustreznih človeških in finančnih virov za izvajanje nalog pisarne v okviru finančnih instrumentov za celovite prenove stanovanjskih stavb, vključno s pridobitvijo evropskih sredstev (ELENA, garancijski sklad). / To obsega predvsem krepitev obsega in kakovosti priprave projektov celovitih in trajnostnih prenov stavb (ureditev vse na enem mestu) in podporo izvajanju finančnih instrumentov celovite, prenove večstanovanjskih ter eno-/dvodružinskih stavb. / Podrobnosti ureja DSEPS.",
+     "deadline": "2026",
+     "kpi": "Vzpostavljena projektna pisarna / Začetek izvajanja aktivnosti",
+     "target": "2024: oblikovanje PP-EPSS, 2024‒2025: vsaj deset zaposlenih in zagotovitev financiranja priprave projektov, 2026: pripravljeni prvi projekti"
+    }
+   ],
+   "kinds": [
+    "organizacija"
+   ],
+   "responsible": [
+    "MNVP",
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "M20.2",
+   "group": "nepn_novi",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Aktivne stavbe",
+   "areas": [
+    "PTE"
+   ],
+   "activities": [
+    {
+     "kind": "strokovne podlage, spodbude",
+     "resp": "MzIE",
+     "text": "Priprava rešitev in ukrepov za učinkovit nadzor energije na stavbah in učinkovito integracijo obnovljivih virov energije za potrebe prilagajanja proizvodnje in porabe, izboljšanja energetske in stroškovne učinkovitosti sistema ter varnosti oskrbe. / Ukrep se uskladi z zahtevami direktive EPBD. Podrobnosti ureja DSEPS.",
+     "deadline": "2025",
+     "kpi": "Sprejetje zahtev direktive EPBD in priprava spodbud",
+     "target": ""
+    }
+   ],
+   "kinds": [
+    "finance",
+    "organizacija"
+   ],
+   "responsible": [
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "M20.3",
+   "group": "nepn_novi",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Celovita prenova stanovanj v javni lasti",
+   "areas": [
+    "TPS",
+    "OVE",
+    "OH"
+   ],
+   "activities": [
+    {
+     "kind": "načrtovanje",
+     "resp": "MSP, MzIE, MNVP",
+     "text": "Izvedba celostnega popisa stanovanj v javni lasti z vidika kakovosti bivanja, potresne varnosti, energetske učinkovitosti in potencialov ter primernosti za prenovo in energetsko nadgradnjo (umeščanje OVE) stavbnega fonda. Dodatno se pripravi tudi študija prilagajanja stavb na trajnostno mobilnost z načrtom drugačne rabe prostorov za mirujoči promet.",
+     "deadline": "2026",
+     "kpi": "Priprava strokovnih podlag",
+     "target": "2026: zaključek naloge in priprava zaključkov za nadaljnje aktivnosti"
+    },
+    {
+     "kind": "načrtovanje",
+     "resp": "MSP, MzIE, MNVP",
+     "text": "Priprava strategije celostne prenove javnega stanovanjskega fonda kot posebnega dela Nacionalnega stanovanjskega programa, ki vključuje: / izboljšanje energetske učinkovitosti, / umeščanje OVE na lastnih ali tujih objektih, / preveritev potenciala uveljavljanja energetskih skupnosti, / opredelitev ciljev, časovnice, izvajalske strukture, / predvidevanje ključnih instrumentov za uresničevanje strategije (ključnega pomena je sistem financiranja).",
+     "deadline": "2027",
+     "kpi": "Priprava strategije",
+     "target": "Sprejeta strategija"
+    },
+    {
+     "kind": "sklop instrumentov",
+     "resp": "MSP, MzIE, SSRS, občine, Eko Sklad",
+     "text": "Izvajanje strategije, ki vključuje: / stabilno in predvidljivo financiranje celostne prenove, / sodelovanje med deležniki, informiranje, / krepitev zmožnosti lastnikov javnega fonda za celostno prenovo.",
+     "deadline": "2027‒2035",
+     "kpi": "Izvajane strategije",
+     "target": "Celostna prenova do leta 2035"
+    }
+   ],
+   "kinds": [
+    "organizacija"
+   ],
+   "responsible": [
+    "Eko Sklad",
+    "MNVP",
+    "MSP",
+    "MzIE",
+    "SSRS",
+    "občine"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "M20.4",
+   "group": "nepn_novi",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Prenova DSEPS",
+   "areas": [
+    "TPS"
+   ],
+   "activities": [
+    {
+     "kind": "predpis",
+     "resp": "MzIE",
+     "text": "Sprejetje Dolgoročne strategije za energetsko prenovo stavb do leta 2050, ki bo obravnavala še druge, nove ukrepe, ki se dodatno štejejo tudi k NEPN in izhajajo predvsem iz obveznosti prenovljene Direktive o energetski učinkovitosti stavb. DSEPS se navezuje tudi na druge vidike prenove stavb kot je podnebna odpornost.",
+     "deadline": "2026",
+     "kpi": "Prenos zahtev Direktive o energetski učinkovitosti stavb",
+     "target": "2026: prenos zahtev"
+    }
+   ],
+   "kinds": [
+    "predpis"
+   ],
+   "responsible": [
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "M20.5",
+   "group": "nepn_novi",
+   "group_label": "Ukrepi NEPN 2024",
+   "name": "Sprejetje akcijskega načrta ukrepov za prenovo javnih stavb",
+   "areas": [
+    "TPS"
+   ],
+   "activities": [
+    {
+     "kind": "finančni",
+     "resp": "MzIE, MF, MJU",
+     "text": "V okviru NOO je predvidena vzpostavitev akcijskega načrta za prenovo javnih stavb, ki ga potrdi in objavi MzIE in vsebuje vsaj analizo stavbnega fonda, analizo potreb v javnem sektorju in upoštevanje zagotavljanja kontinuitete storitev med prenovo stavb in konkretne korake pri prenovi stavb, vključno z opredelitvijo možnih virov financiranja. (Poleg nosilcev priprave vključeni drugi upravljalci oziroma akterji.) / Ena od teh možnosti je tudi predvidena vzpostavitev sistemskega javnega finančnega vira za financiranje energetskih prenov stavb ožjega (in morda širšega) sektorja država. / Zagotovitev sistemskega finančnega vira se preuči v DSEPS v skladu z ukrepom M19.13.",
+     "deadline": "2025",
+     "kpi": "Akcijski načrt",
+     "target": "Sprejet akcijski načrt"
+    }
+   ],
+   "kinds": [
+    "finance"
+   ],
+   "responsible": [
+    "MF",
+    "MJU",
+    "MzIE"
+   ],
+   "first_deadline": 2025,
+   "recurring": false
+  },
+  {
+   "id": "N1",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Stopnjevanje spodbud glede na izhodiščni energijski razred: višja stopnja nepovratnih sredstev za stanovanjske stavbe v razredih E–G oziroma nad pragom 43 %, vezana na doseženi razred po prenovi (najmanj C), nižja za razrede A–D",
+   "areas": [
+    "TPS",
+    "GP",
+    "ER"
+   ],
+   "activities": [
+    {
+     "kind": "finančna spodbuda",
+     "resp": "MzIE, Eko sklad",
+     "text": "Dopolnitev meril javnih pozivov (Eko sklad, PEKP, Podnebni sklad) s stopnjevanimi deleži sofinanciranja in s pogojem primerjave energetskih izkaznic pred prenovo in po njej (čl. 17(14)(c) EPBD)",
+     "deadline": "2027",
+     "kpi": "delež nepovratnih sredstev, dodeljenih stavbam nad pragom 43 %, doseženi razred po prenovi",
+     "target": "2027: stopnjevani deleži v vseh pozivih (osnova 30 % priznanih stroškov, +10 o. t. razred E, +20 o. t. razreda F in G, +10 o. t. celovitost, +5 o. t. koraki po izkazu o prenovi, skupaj največ 70 %, Preglednica 26) / 2050: delež površine v razredih F in G 1,5–1,9 % (scenarij ciljanja, poglavje 4.1.1)"
+    }
+   ],
+   "kinds": [
+    "finance"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MzIE"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N2",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Programi prenove območij večstanovanjskih stavb iz obdobja 1946–1980 (soseske, četrti) s skupnim zmanjšanjem primarne energije na ravni programa",
+   "areas": [
+    "TPS",
+    "GP",
+    "OH"
+   ],
+   "activities": [
+    {
+     "kind": "organizacijski ukrep, finančna spodbuda",
+     "resp": "MzIE, projektni pisarni (M19.16, M20.1), občine, upravniki",
+     "text": "Priprava in izvedba območnih programov prenove za ciljni fond 11.600 večstanovanjskih stavb z 9,7 mio m² uporabne površine (čl. 17(16) EPBD)",
+     "deadline": "2027–2035",
+     "kpi": "število območnih programov, prenovljena površina v programih, zmanjšanje primarne energije na ravni programa",
+     "target": "2027: metodologija in prvi program / 2030–2035: ≥ 30 % zmanjšanje primarne energije na ravni vsakega programa, obseg se določi ob posodobitvi NEPN (M20.4)"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "organizacija"
+   ],
+   "responsible": [
+    "M20.1)",
+    "MzIE",
+    "občine",
+    "projektni pisarni (M19.16",
+    "upravniki"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N3",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Aktivno obveščanje lastnikov stavb nad pragom energijske učinkovitosti (register energetskih izkaznic in kataster nepremičnin, svetovanje ENSVET)",
+   "areas": [
+    "TPS",
+    "MEPS",
+    "OSS"
+   ],
+   "activities": [
+    {
+     "kind": "informativni ukrep",
+     "resp": "MzIE, Eko sklad (ENSVET)",
+     "text": "Identifikacija stavb nad pragom iz poglavij 4.7.1.1 in 4.7.2.1 ter pisno obvestilo lastnikom s ponudbo svetovanja (M19.8), informacijo o spodbudah in — za nestanovanjske stavbe — rokom po čl. 9(1) EPBD",
+     "deadline": "2027",
+     "kpi": "delež obveščenih lastnikov stavb nad pragom, število svetovanj, ki sledijo obvestilu",
+     "target": "2027: obveščeni vsi lastniki stavb nad pragom, evidentirani v registru (100 %) / letno: ponovitev za novo identificirane stavbe"
+    }
+   ],
+   "kinds": [
+    "svetovanje"
+   ],
+   "responsible": [
+    "Eko sklad (ENSVET)",
+    "MzIE"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N4",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Kazalnik spremljanja ciljanosti prenov: delež letno prenovljene površine, ki odpade na stavbe nad pragom 43 %",
+   "areas": [
+    "TPS"
+   ],
+   "activities": [
+    {
+     "kind": "spremljanje in poročanje",
+     "resp": "MzIE",
+     "text": "Uvedba kazalnika v sistem spremljanja iz poglavja 2 in letno poročanje skupaj s kazalniki stopnje prenove",
+     "deadline": "letno",
+     "kpi": "delež letno prenovljene površine v stavbah nad pragom [%]",
+     "target": "2030: ≥ 70 % / 2040 in 2050: ohranjanje ≥ 70 % do izpolnitve pravila 55 % (čl. 9(2) EPBD)"
+    }
+   ],
+   "kinds": [
+    "spremljanje"
+   ],
+   "responsible": [
+    "MzIE"
+   ],
+   "first_deadline": null,
+   "recurring": true
+  },
+  {
+   "id": "N5",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Nacionalna metodologija in podatkovna baza za izračun potenciala globalnega segrevanja (GWP) v življenjskem ciklu stavb, vgrajena v energetsko izkaznico",
+   "areas": [
+    "DOD",
+    "KG"
+   ],
+   "activities": [
+    {
+     "kind": "predpis, metodologija",
+     "resp": "MzIE, MNVP, ZAG",
+     "text": "Priprava metodologije po Prilogi III EPBD in SIST EN 15978, vzpostavitev nacionalne baze okoljskih deklaracij proizvodov (EPD) s privzetimi vrednostmi in nadgradnja programske opreme za izkaznice (M19.19)",
+     "deadline": "2027",
+     "kpi": "metodologija sprejeta, število EPD v bazi, delež novih stavb z izračunanim GWP",
+     "target": "2027: sprejeta metodologija in vzpostavljena baza EPD / 1. 1. 2028: GWP v izkaznici za nove stavbe nad 1.000 m² / 1. 1. 2030: GWP v izkaznici za vse nove stavbe"
+    }
+   ],
+   "kinds": [
+    "predpis",
+    "spremljanje"
+   ],
+   "responsible": [
+    "MNVP",
+    "MzIE",
+    "ZAG"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N6",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Časovni načrt mejnih vrednosti GWP za nove stavbe po letu 2030 z izhodiščnimi vrednostmi po tipologijah",
+   "areas": [
+    "DOD"
+   ],
+   "activities": [
+    {
+     "kind": "predpis, načrt",
+     "resp": "MzIE, MNVP",
+     "text": "Objava in priglasitev časovnega načrta po čl. 7(5) EPBD. Določitev izhodišča na vzorcu najmanj 30 novih stavb z gradbenim dovoljenjem v letih 2026–2027 po metodologiji N5",
+     "deadline": "1. 1. 2027 (načrt), 2028 (izhodišča)",
+     "kpi": "objavljen in priglašen časovni načrt, izhodiščne vrednosti GWP [kg CO₂ ekv/(m²·leto), 50-letna referenčna doba]",
+     "target": "1. 1. 2027: objavljen in EK priglašen časovni načrt / 2028: izhodiščne vrednosti po tipologijah. Ciljne vrednosti za 2030, 2040 in 2050 se določijo v prvi posodobitvi NPS 2050"
+    }
+   ],
+   "kinds": [
+    "predpis"
+   ],
+   "responsible": [
+    "MNVP",
+    "MzIE"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N7",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Merila za nizkoogljične in obnovljive gradbene materiale ter vgrajeni les v spodbudah in javnih naročilih, s poročanjem odvzemov ogljika",
+   "areas": [
+    "DOD",
+    "KG",
+    "OVE"
+   ],
+   "activities": [
+    {
+     "kind": "finančna spodbuda, javno naročanje",
+     "resp": "MzIE, MGTŠ",
+     "text": "Vključitev vgradnje lesa in materialov z EPD kot dodatnega merila v javne pozive za celovito energetsko prenovo in kot zahteve v zelenem javnem naročanju (N15). Poročanje shranjenega ogljika kot odvzema po čl. 7(6) EPBD",
+     "deadline": "2027",
+     "kpi": "delež sofinanciranih projektov z materiali z EPD, količina ogljika, shranjenega v vgrajenem lesu",
+     "target": "2027: merilo v vseh pozivih za celovito energetsko prenovo / 2028: zahteva v Uredbi o zelenem javnem naročanju / letno: poročanje odvzemov po čl. 7(6)"
+    }
+   ],
+   "kinds": [
+    "finance"
+   ],
+   "responsible": [
+    "MGTŠ",
+    "MzIE"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N8",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Pilotni program serijske (industrializirane) prenove večstanovanjskih stavb s predizdelanimi fasadnimi in strešnimi elementi",
+   "areas": [
+    "GP",
+    "OVE",
+    "DOD"
+   ],
+   "activities": [
+    {
+     "kind": "pilotni projekt, finančna spodbuda",
+     "resp": "MzIE, projektna pisarna (M20.1)",
+     "text": "Izbor in prenova 10–20 tipskih stavb iz obdobja 1960–1980 s predizdelanimi elementi z vgrajenimi okni, prezračevanjem in fotonapetostnimi moduli. Merjenje stroškov, časa izvedbe in doseženih prihrankov. Financiranje iz Podnebnega sklada in PEKP",
+     "deadline": "2027–2029",
+     "kpi": "število prenovljenih stavb, stroški [€/m²], trajanje izvedbe [dni], doseženi razred in prihranek",
+     "target": "2029: 10–20 stavb prenovljenih do razreda B ali na raven brezemisijske stavbe. Dokumentirani stroški in časi izvedbe kot podlaga za N9"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "organizacija"
+   ],
+   "responsible": [
+    "MzIE",
+    "projektna pisarna (M20.1)"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N9",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Tipski projekti in katalog rešitev za najpogostejše tipologije stavb, uporabni brez individualnega projektiranja",
+   "areas": [
+    "GP"
+   ],
+   "activities": [
+    {
+     "kind": "tehnična podpora",
+     "resp": "MzIE, ZAG",
+     "text": "Priprava tipskih projektov in tehničnih specifikacij na podlagi pilotov N8, vključno s postopkom digitalnega zajema geometrije stavbe",
+     "deadline": "2029",
+     "kpi": "število tipskih rešitev, število prenov, izvedenih po tipski rešitvi",
+     "target": "2029: katalog za najpogostejše tipologije večstanovanjskih stavb in enostanovanjskih hiš iz obdobja 1946–1980"
+    }
+   ],
+   "kinds": [
+    "svetovanje"
+   ],
+   "responsible": [
+    "MzIE",
+    "ZAG"
+   ],
+   "first_deadline": 2029,
+   "recurring": false
+  },
+  {
+   "id": "N10",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Podpora proizvodnji predizdelanih elementov in usposabljanju izvajalcev za montažo",
+   "areas": [
+    "TO"
+   ],
+   "activities": [
+    {
+     "kind": "finančna spodbuda, usposabljanje",
+     "resp": "MGTŠ (v okviru M3.3, M17.1)",
+     "text": "Sofinanciranje proizvodnih linij za predizdelane lesene fasadne elemente in programov usposabljanja monterjev",
+     "deadline": "2027–2030",
+     "kpi": "letna proizvodna zmogljivost [m² fasadnih elementov/leto], število usposobljenih monterjev",
+     "target": "zmogljivost se določi ob posodobitvi NEPN (M20.4), skladno s potrebnim obsegom prenov iz poglavja 4.1 in zmogljivostmi iz poglavja 7.2"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "svetovanje"
+   ],
+   "responsible": [
+    "M17.1)",
+    "MGTŠ (v okviru M3.3"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N11",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Instrument za prenovo oddajanih stanovanj z omejitvijo zvišanja najemnine po prenovi",
+   "areas": [
+    "ER",
+    "TPS",
+    "GP"
+   ],
+   "activities": [
+    {
+     "kind": "finančna spodbuda",
+     "resp": "MSP, MzIE, Eko sklad",
+     "text": "Vzpostavitev nepovratnih sredstev in ugodnih posojil za lastnike oddajanih stanovanj, pogojenih z registrirano najemno pogodbo, doseženim razredom po prenovi in omejitvijo zvišanja najemnine na del prihranka pri stroških energije (čl. 17(19) EPBD). Izhodišče M19.10",
+     "deadline": "2027",
+     "kpi": "število prenovljenih najemnih stanovanj, doseženi razred, sprememba »tople najemnine«",
+     "target": "2027: instrument vzpostavljen / od 2027: »topla najemnina« po prenovi nespremenjena ali nižja v vseh sofinanciranih primerih"
+    }
+   ],
+   "kinds": [
+    "finance"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MSP",
+    "MzIE"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N12",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Ločeno spremljanje zasebnih najemnih stanovanj nad pragom 43 % in preučitev minimalnega energijskega razreda za oddajanje",
+   "areas": [
+    "TPS",
+    "ER"
+   ],
+   "activities": [
+    {
+     "kind": "spremljanje, predpis (preučitev)",
+     "resp": "MSP, MzIE",
+     "text": "Ločeno evidentiranje najemnih stanovanj nad pragom v registru izkaznic. Ob prenovi najemniške zakonodaje preučitev postopne uvedbe minimalnega razreda za oddajanje, povezane z N11",
+     "deadline": "2028",
+     "kpi": "delež zasebnih najemnih stanovanj v prenovah glede na njihov delež v fondu",
+     "target": "2028: delež v prenovah sorazmeren deležu v fondu (čl. 9(2) EPBD) / 2030: odločitev o minimalnem razredu za oddajanje (predlog: najmanj razred E)"
+    }
+   ],
+   "kinds": [
+    "predpis",
+    "spremljanje"
+   ],
+   "responsible": [
+    "MSP",
+    "MzIE"
+   ],
+   "first_deadline": 2028,
+   "recurring": false
+  },
+  {
+   "id": "N13",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Zaščitni ukrepi za ranljiva gospodinjstva pri prenovi najemnih stanovanj: pomoč pri najemnini in spremljanje izselitev",
+   "areas": [
+    "ER"
+   ],
+   "activities": [
+    {
+     "kind": "socialni ukrep, spremljanje",
+     "resp": "MzIE, MDDSZ",
+     "text": "Vključitev pomoči pri najemnini za ranljiva gospodinjstva v prenovljenih stanovanjih in spremljanja izselitev po prenovi v Akcijski načrt za zmanjševanje energetske revščine (čl. 17(17) EPBD)",
+     "deadline": "2026",
+     "kpi": "število gospodinjstev s pomočjo pri najemnini, število izselitev po prenovi",
+     "target": "2026: ukrep vključen v Akcijski načrt (2027–2029) / letno: poročanje o izselitvah po prenovi"
+    }
+   ],
+   "kinds": [
+    "organizacija",
+    "spremljanje"
+   ],
+   "responsible": [
+    "MDDSZ",
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "N14",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Letni seznam najslabših javnih stavb (razred G in nad pragovi minimalnih standardov) s prednostno prenovo",
+   "areas": [
+    "MEPS",
+    "GP"
+   ],
+   "activities": [
+    {
+     "kind": "spremljanje, organizacijski ukrep",
+     "resp": "MzIE, MJU, upravljavci stavb",
+     "text": "Letna priprava in objava seznama iz energetskega knjigovodstva (M19.12), registra izkaznic in katastra, po upravljavcih. Prednostna uvrstitev teh stavb v akcijski načrt M20.5 in razpise M19.14",
+     "deadline": "2026, nato letno",
+     "kpi": "število javnih stavb nad pragovi, delež prenov iz seznama",
+     "target": "2030: nobena javna stavba nad 16-odstotnim pragom / 2033: nobena javna stavba nad 26-odstotnim pragom"
+    }
+   ],
+   "kinds": [
+    "organizacija",
+    "spremljanje"
+   ],
+   "responsible": [
+    "MJU",
+    "MzIE",
+    "upravljavci stavb"
+   ],
+   "first_deadline": 2026,
+   "recurring": true
+  },
+  {
+   "id": "N15",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Dopolnitev Uredbe o zelenem javnem naročanju za stavbe: brezemisijske nove javne stavbe, minimalna raven celovitih energetskih prenov, GWP in zahteve pri najemu",
+   "areas": [
+    "MEPS",
+    "GP",
+    "DOD"
+   ],
+   "activities": [
+    {
+     "kind": "predpis, javno naročanje",
+     "resp": "MzIE, MJU",
+     "text": "Dopolnitev uredbe z zahtevami: nove javne stavbe brezemisijske od 2028 (čl. 7 EPBD), celovite energetske prenove najmanj razred B ali −60 % primarne energije (čl. 17(16)), izračun GWP (N5), najem prostorov najmanj razred C (čl. 6(5) EED)",
+     "deadline": "2027",
+     "kpi": "sprejeta uredba, delež javnih naročil z zahtevami, delež najemov v razredu C ali višjem",
+     "target": "2027: sprejeta dopolnjena uredba / 2028: vse nove javne stavbe brezemisijske / od 2028: vse celovite energetske prenove javnih stavb razred B ali −60 % PE"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "predpis"
+   ],
+   "responsible": [
+    "MJU",
+    "MzIE"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N16",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Enotna metodologija za izpolnjevanje obveznosti prenove 3 % površine stavb javnih organov z letnim poročanjem po upravljavcih",
+   "areas": [
+    "MEPS",
+    "GP"
+   ],
+   "activities": [
+    {
+     "kind": "metodologija, poročanje",
+     "resp": "MzIE, MJU",
+     "text": "Priprava enotne metodologije po čl. 6 EED, vezane na seznam N14 in kazalnike iz poglavja 1.1, z letnim poročanjem po ministrstvih, javnih zavodih in občinah",
+     "deadline": "2026",
+     "kpi": "delež letno prenovljene tlorisne površine stavb javnih organov [%]",
+     "target": "izhodišče 2024: 2,0 % / 2027 in naprej: 3,0 % letno (čl. 6 EED)"
+    }
+   ],
+   "kinds": [
+    "spremljanje"
+   ],
+   "responsible": [
+    "MJU",
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "N17",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Krožnost gradnje in prenove: obvezen predrušitveni pregled, načrt ravnanja z gradbenimi odpadki in pogojevanje spodbud z deležem predelanih materialov",
+   "areas": [
+    "KG",
+    "DOD"
+   ],
+   "activities": [
+    {
+     "kind": "predpis, finančna spodbuda",
+     "resp": "MzIE, MNVP, ARSO",
+     "text": "Uvedba predrušitvenega pregleda in načrta ravnanja z odpadki za rušitve in celovite energetske prenove nad 500 m² po protokolu EU, z ločevanjem in evidenco tokov (beton, opeka, les, kovine, izolacija, azbest) v evidenci ARSO. Pogojevanje spodbud Eko sklada in meril zelenega javnega naročanja (N15) z deležem ponovno uporabljenih ali recikliranih materialov in proizvodi z EPD",
+     "deadline": "2027",
+     "kpi": "delež predelanih gradbenih odpadkov iz prenov. Število predrušitvenih pregledov. Delež javnih prenov z dokumentirano krožnostjo",
+     "target": "2028: ≥ 70 % predelave gradbenih odpadkov iz prenov, dokumentirana krožnost pri vseh javnih prenovah"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "predpis"
+   ],
+   "responsible": [
+    "ARSO",
+    "MNVP",
+    "MzIE"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N18",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Mreža točk »vse na enem mestu« in enotna digitalna platforma za prenovo stavb",
+   "areas": [
+    "OSS",
+    "ER"
+   ],
+   "activities": [
+    {
+     "kind": "organizacijski ukrep, tehnična podpora",
+     "resp": "MzIE, Eko sklad (ENSVET), lokalne energetske agencije, regionalne razvojne agencije",
+     "text": "Vzpostavitev mreže s tehničnim, upravnim in finančnim svetovanjem, pomočjo pri izkazu o prenovi, prijavah na spodbude in organizaciji prenov večlastniških stavb ter posebno obravnavo energetsko revnih gospodinjstev (povezava z N3 in N11). Digitalna platforma združi register izkaznic, kataster in spodbude",
+     "deadline": "2027",
+     "kpi": "število točk, število svetovanj, delež svetovanj, ki vodijo v prenovo",
+     "target": "2027: najmanj 1 točka na 80.000 prebivalcev, tj. najmanj 12 regionalnih točk s približno 27 lokacijami. Delujoča digitalna platforma"
+    }
+   ],
+   "kinds": [
+    "organizacija",
+    "svetovanje"
+   ],
+   "responsible": [
+    "Eko sklad (ENSVET)",
+    "MzIE",
+    "lokalne energetske agencije",
+    "regionalne razvojne agencije"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  },
+  {
+   "id": "N19",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Prenos zahtev za sisteme za avtomatizacijo in nadzor stavb, indikator pripravljenosti na pametne sisteme (SRI) in polnilno infrastrukturo v nacionalne predpise",
+   "areas": [
+    "PTE"
+   ],
+   "activities": [
+    {
+     "kind": "predpis",
+     "resp": "MzIE",
+     "text": "Prenos čl. 13(9)–(10), 14 in 15 EPBD v ZURE-1 in gradbene predpise. Uvedba prostovoljne ocene SRI najprej za javne stavbe. Povezava z registrom pregledov sistemov (poglavje 9)",
+     "deadline": "2026–2029",
+     "kpi": "delež nestanovanjskih stavb nad 70 kW s sistemi za avtomatizacijo in nadzor. Število polnilnih mest v stavbah. Število stavb z oceno SRI",
+     "target": "2027: polnilna mesta v obstoječih nestanovanjskih stavbah z več kot 20 parkirnimi mesti / 2029: sistemi za avtomatizacijo in nadzor v vseh nestanovanjskih stavbah nad 70 kW"
+    }
+   ],
+   "kinds": [
+    "predpis"
+   ],
+   "responsible": [
+    "MzIE"
+   ],
+   "first_deadline": 2026,
+   "recurring": false
+  },
+  {
+   "id": "N20",
+   "group": "nps",
+   "group_label": "Novi ukrepi NPS 2050",
+   "name": "Stavbe kulturne dediščine: sorazmerne zahteve po kategorijah varstva, skupno dovoljevanje prenove in sončne elektrarne, katalogi združljivih ukrepov in povišane spodbude",
+   "areas": [
+    "MEPS",
+    "GP",
+    "OVE",
+    "DOD"
+   ],
+   "activities": [
+    {
+     "kind": "predpis, tehnična podpora, finančna spodbuda",
+     "resp": "MK, ZVKDS, MzIE, Eko sklad, MKRR",
+     "text": "Vgradnja stopnjevanih zahtev po kategorijah varstva v predpis o minimalnih standardih. Obravnava prenove ovoja, zamenjave ogrevalnega sistema in sončne elektrarne kot enega paketa z enim soglasjem ZVKDS. Uveljavitev smernic CRP V5-2358 z uredbo po ZVKD-1 in dopolnitev s katalogi združljivih ukrepov. Povezava registra izkaznic z registrom dediščine",
+     "deadline": "2027",
+     "kpi": "delež varovanih stavb z izkazom o prenovi. Število skupnih soglasij (prenova in sončna elektrarna). Povprečni razred varovanih javnih stavb. Delež izvzetih stavb po čl. 9(6)(b)",
+     "target": "2027: uredba, katalogi in skupno dovoljevanje / 2040: registrirana stavbna in naselbinska dediščina najmanj razred D / 2050: najmanj razred C, spomeniki izvzeti z obveznostjo enakovrednega izboljšanja"
+    }
+   ],
+   "kinds": [
+    "finance",
+    "predpis",
+    "svetovanje"
+   ],
+   "responsible": [
+    "Eko sklad",
+    "MK",
+    "MKRR",
+    "MzIE",
+    "ZVKDS"
+   ],
+   "first_deadline": 2027,
+   "recurring": false
+  }
+ ],
+ "boilers": [
+  {
+   "when": "2023 (velja)",
+   "milestone": "Prepoved projektiranja, vgradnje in prodaje kotlov na kurilno olje in premog v vseh stavbah. Prepoved kotlov na fosilna goriva v novih eno- in dvostanovanjskih stavbah",
+   "basis": "Zakon o spodbujanju rabe obnovljivih virov energije (od 1. 1. 2023). M19.17",
+   "effect": "ustavitev rasti oljnega fonda, zamenjava ≈ 170 tisoč oljnih in UNP kotlov do 2040 (scenarij NEPN)"
+  },
+  {
+   "when": "2025 (velja)",
+   "milestone": "Konec finančnih spodbud za samostojne kotle na fosilna goriva. Prepoved projektiranja in vgradnje kotlov na zemeljski plin in UNP v stanovanjskih stavbah z vlogo za gradbeno dovoljenje od 1. 1. 2025",
+   "basis": "člen 17(15) EPBD, razpisi Eko sklada. Energetski zakon (EZ-2)",
+   "effect": "spodbude samo za toplotne črpalke, biomaso, daljinsko ogrevanje, hibridne sisteme na OVE. Nove stanovanjske stavbe brez fosilnih kotlov"
+  },
+  {
+   "when": "2027",
+   "milestone": "Namenska poraba prihodkov ETS2 za zamenjavo kotlov pri ranljivih gospodinjstvih (najmanj 50 % spodbude), energetsko svetovanje ENSVET ob vsakem pregledu sistema",
+   "basis": "M19.17, Socialni načrt za podnebje, ETS2",
+   "effect": "socialno vzdržna dinamika 15–16 tisoč zamenjav na leto"
+  },
+  {
+   "when": "2028",
+   "milestone": "Nove javne stavbe brezemisijske (brez fosilnih kotlov)",
+   "basis": "člen 7 EPBD",
+   "effect": "javni sektor kot zgled"
+  },
+  {
+   "when": "2030",
+   "milestone": "Razširitev prepovedi vgradnje kotlov na zemeljski plin in UNP na nove nestanovanjske stavbe in na celovite energetske prenove. Obvezen prehod na OVE ali daljinsko ogrevanje na območjih SDOH",
+   "basis": "člena 7 in 8 EPBD, M19.17, ZURE-1 (predlog)",
+   "effect": "vsi novi sistemi brez fosilnih goriv"
+  },
+  {
+   "when": "2030",
+   "milestone": "Vse nestanovanjske stavbe pod 16-odstotnim pragom minimalnih standardov (poglavje 4.7.2)",
+   "basis": "člen 9(1) EPBD",
+   "effect": "prenova ≈ 6.600 stavb vključuje zamenjavo sistemov"
+  },
+  {
+   "when": "2033",
+   "milestone": "Postopno zviševanje dajatve na CO₂ in trošarin za ELKO, UNP in zemeljski plin za ogrevanje (M19.18) do ravni, ki izenači stroške z OVE",
+   "basis": "M19.18, ETS2 cena",
+   "effect": "ekonomski signal za preostale uporabnike"
+  },
+  {
+   "when": "2035",
+   "milestone": "Pregled napredka in odločitev o obvezni zamenjavi kotlov na kurilno olje, starejših od 20 let, ob posodobitvi NEPN",
+   "basis": "M19.17, posodobitev NEPN",
+   "effect": "tekoča goriva v stavbah 2035 ≈ 51 ktoe (24 % ravni 2020) po scenariju NEPN"
+  },
+  {
+   "when": "2040",
+   "milestone": "Preostali kotli na fosilna goriva po scenariju NEPN. Preostali plinski sistemi postopoma na certificirane obnovljive pline (biometan, vodik) v skladu s SDOH in razvojem plinskega omrežja",
+   "basis": "NEPN 2024 (100 % obnovljivih plinov 2050), M19.17",
+   "effect": "tekoča goriva ≈ 29 ktoe (14 % ravni 2020). Fosilni plin ≈ 40 ktoe (32 %). Obnovljivi plini 17 ktoe (30 %). Popolna opustitev do 2050"
+  }
+ ],
+ "investments": {
+  "periods": [
+   "2026",
+   "2027",
+   "2028",
+   "2029",
+   "2030",
+   "2031-2035",
+   "2036-2040",
+   "2041-2045",
+   "2046-2050"
+  ],
+  "segments": {
+   "Stavbe javnega sektorja": {
+    "needs": [
+     108,
+     109,
+     109,
+     110,
+     111,
+     600,
+     668,
+     744,
+     831
+    ],
+    "leveraged": [
+     233,
+     209,
+     29,
+     20,
+     14,
+     null,
+     null,
+     null,
+     null
+    ],
+    "grants": [
+     101,
+     90,
+     13,
+     8,
+     6,
+     null,
+     null,
+     null,
+     null
+    ],
+    "private": [
+     132,
+     119,
+     17,
+     11,
+     8,
+     null,
+     null,
+     null,
+     null
+    ],
+    "gap": [
+     124,
+     101,
+     -80,
+     -90,
+     -96,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "Stavbe zasebnega storitvenega sektorja": {
+    "needs": [
+     190,
+     191,
+     192,
+     194,
+     195,
+     1030,
+     1129,
+     1231,
+     1296
+    ],
+    "leveraged": [
+     75,
+     81,
+     93,
+     98,
+     110,
+     null,
+     null,
+     null,
+     null
+    ],
+    "grants": [
+     18,
+     18,
+     20,
+     18,
+     20,
+     null,
+     null,
+     null,
+     null
+    ],
+    "private": [
+     57,
+     63,
+     73,
+     80,
+     90,
+     null,
+     null,
+     null,
+     null
+    ],
+    "gap": [
+     -115,
+     -110,
+     -99,
+     -96,
+     -86,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "Stanovanjske stavbe": {
+    "needs": [
+     507,
+     508,
+     515,
+     511,
+     523,
+     2049,
+     1963,
+     1770,
+     1801
+    ],
+    "leveraged": [
+     328,
+     401,
+     376,
+     395,
+     443,
+     null,
+     null,
+     null,
+     null
+    ],
+    "grants": [
+     67,
+     82,
+     68,
+     67,
+     74,
+     null,
+     null,
+     null,
+     null
+    ],
+    "private": [
+     260,
+     319,
+     308,
+     328,
+     369,
+     null,
+     null,
+     null,
+     null
+    ],
+    "gap": [
+     -180,
+     -107,
+     -139,
+     -116,
+     -80,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "Energetska revščina": {
+    "needs": [
+     11,
+     26,
+     41,
+     46,
+     49,
+     78,
+     null,
+     null,
+     null
+    ],
+    "leveraged": [
+     13,
+     33,
+     46,
+     49,
+     48,
+     78,
+     null,
+     null,
+     null
+    ],
+    "grants": [
+     13,
+     33,
+     46,
+     49,
+     48,
+     78,
+     null,
+     null,
+     null
+    ],
+    "private": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "gap": [
+     2,
+     7,
+     5,
+     3,
+     0,
+     null,
+     null,
+     null,
+     null
+    ]
+   }
+  },
+  "total_2026_2030": 4073,
+  "total_2026_2050": 19185,
+  "gap_2026_2030": 1169
+ },
+ "sources": [
+  {
+   "source": "Prispevek za učinkovito rabo energije (Eko sklad)",
+   "period": "trajno",
+   "amount": "≈ 75 mio €/leto (raven 2026–2030: 375 mio €) → ≈ 1,5 mrd € 2031–2050",
+   "purpose": "nepovratne spodbude gospodinjstvom, storitvam, javnemu sektorju, subvencionirana posojila"
+  },
+  {
+   "source": "Podnebni sklad (prihodki ETS1)",
+   "period": "trajno",
+   "amount": "≈ 35–40 mio €/leto za stavbe (program 2025–2028: 147 mio €) → ≈ 0,7 mrd €",
+   "purpose": "javne stavbe, stanovanjske stavbe, energetska revščina"
+  },
+  {
+   "source": "Prihodki iz ETS2 (stavbe in promet)",
+   "period": "od 2027",
+   "amount": "obseg se še določa",
+   "purpose": "sistemski novi vir za celovite energetske prenove in zamenjavo kotlov, predlog: namenska proračunska postavka za NPS"
+  },
+  {
+   "source": "Socialni sklad za podnebje",
+   "period": "2026–2032",
+   "amount": "239,5 mio € za stavbe (179,6 EU + 59,9 nacionalno)",
+   "purpose": "energetsko revna in ranljiva gospodinjstva"
+  },
+  {
+   "source": "Kohezijska politika 2028–2034",
+   "period": "2028–2034",
+   "amount": "obseg se še določa",
+   "purpose": "javne stavbe, storitve, energetska revščina"
+  },
+  {
+   "source": "Modernizacijski sklad",
+   "period": "do 2030 (+)",
+   "amount": "obseg se še določa",
+   "purpose": "javne stavbe, daljinsko ogrevanje, OVE na stavbah"
+  },
+  {
+   "source": "Državni proračun in proračuni občin",
+   "period": "trajno",
+   "amount": "sofinanciranje EU projektov, javne stavbe ≈ 49 % naložb",
+   "purpose": "javne stavbe, projektna pisarna, upravljanje z energijo"
+  },
+  {
+   "source": "Energetsko pogodbeništvo (ESCO)",
+   "period": "trajno",
+   "amount": "≈ 51 % naložb v javne stavbe (≈ 1,5 mrd € 2031–2050)",
+   "purpose": "javne stavbe, večje storitvene stavbe"
+  },
+  {
+   "source": "EIB, ELENA, InvestEU, Evropski načrt za dostopna stanovanja",
+   "period": "trajno",
+   "amount": "projektno, 2012–2023: 264 mio € nepovratnih za 454 mio € naložb",
+   "purpose": "priprava projektov, posojila, garancije"
+  },
+  {
+   "source": "Garancijska shema in zelena posojila (SID, Eko sklad, banke)",
+   "period": "od 2027",
+   "amount": "vzvod 4 : 1 na javna sredstva",
+   "purpose": "gospodinjstva, storitve, večlastniške stavbe"
+  },
+  {
+   "source": "Lastna sredstva in hipotekarna posojila lastnikov",
+   "period": "trajno",
+   "amount": "preostanek potreb (≈ 60–75 %)",
+   "purpose": "stanovanjske in zasebne storitvene stavbe"
+  }
+ ]
+}

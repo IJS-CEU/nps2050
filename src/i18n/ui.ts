@@ -2,11 +2,13 @@ import type { PageId } from './routes';
 
 /** Glavna navigacija (podstrani, kot sta Preveri stavbo in Za medije, v njej niso). */
 export const nav: Partial<Record<PageId, string>> = {
+  // Krajše oznake v navigaciji (naslovi strani ostanejo celi), da gre šest rubrik v eno vrstico.
   'kaj-je-nps': 'Kaj je NPS 2050',
-  lastniki: 'Za lastnike in občane',
+  lastniki: 'Za lastnike',
   'strokovne-podlage': 'Strokovne podlage',
+  ukrepi: 'Ukrepi in financiranje',
   'javna-obravnava': 'Javna obravnava',
-  dokumenti: 'Dokumenti in viri',
+  dokumenti: 'Dokumenti',
 };
 
 export const ui = {

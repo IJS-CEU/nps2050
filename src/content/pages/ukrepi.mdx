@@ -1,0 +1,65 @@
+---
+page: ukrepi
+title: 'Ukrepi in financiranje'
+description: 'S čim bo država dosegla cilje NPS 2050: 24 ukrepov NEPN 2024 in 20 novih ukrepov, časovni načrt opuščanja kotlov na fosilna goriva ter investicijske potrebe in viri financiranja.'
+lead: 'Cilji sami ne prenovijo nobene stavbe. Tu je pregled, s katerimi ukrepi jih bo država dosegla, do kdaj in koliko to stane.'
+---
+import UkrepiPregled from '../../components/UkrepiPregled.astro';
+import Kotli from '../../components/Kotli.astro';
+import Financiranje from '../../components/charts/Financiranje.astro';
+import ViriFinanciranja from '../../components/ViriFinanciranja.astro';
+import { pageUrl } from '../../i18n/routes';
+
+## Kaj so ukrepi in zakaj so v načrtu
+
+{/* Vir: NPS_v39, pogl. 6 (uvod, 6.1, 6.2) in pogl. 1 (pravna podlaga, člen 3 EPBD). */}
+
+Ukrepi so orodja, s katerimi država spodbuja in usmerja prenovo stavb: predpisi, finančne spodbude in posojila, svetovanje in obveščanje, organizacijski ukrepi ter spremljanje napredka. EPBD v členu 3 zahteva, da nacionalni načrt prenove vsebuje pregled obstoječih in načrtovanih politik in ukrepov.
+
+NPS 2050 gradi na **24 ukrepih iz NEPN 2024**, ki se nanašajo na stavbe, in jih povezuje s področji, ki jih zahteva EPBD. Ocena prvega osnutka, ki jo je pripravilo Skupno raziskovalno središče EK (JRC), je pokazala, da nekatera področja niso pokrita. Zato načrt dodaja **20 novih ukrepov (N1–N20)**, zapisanih po enaki strukturi – z nosilcem, rokom, kazalnikom in ciljno vrednostjo –, da jih je mogoče prenesti v posodobitev NEPN. Novi ukrepi so v osnutku predlog za odločanje.
+
+## Od cilja do ukrepa
+
+{/* Vir: NPS_v39, pogl. 4.7.1, 4.7.2, 6.1.6, 6.2 (novi ukrepi N1–N20 in njihova utemeljitev). */}
+
+<div class="tblwrap" tabindex="0" role="region" aria-label="Od cilja do ukrepa">
+
+| Cilj | Ključni ukrepi |
+| --- | --- |
+| Prenova 43 % energetsko najmanj učinkovitih stanovanjskih stavb | N1 stopnjevane spodbude glede na izhodiščni razred · N2 območni programi za bloke iz obdobja 1946–1980 · N3 obveščanje lastnikov stavb nad pragom · N4 spremljanje ciljanosti prenov |
+| Minimalni standardi za nestanovanjske stavbe (2030, 2033) | N14 letni seznam najslabših javnih stavb · N15 zeleno javno naročanje · N16 metodologija za prenovo 3 % javnih stavb · N20 sorazmerne zahteve za kulturno dediščino |
+| Opuščanje kotlov na fosilna goriva do leta 2040 | veljavne prepovedi vgradnje · program opuščanja fosilnih goriv (M19.17) · dajatev na CO₂ (M19.18) · prihodki ETS2 za zamenjavo kotlov |
+| Celovite energetske prenove namesto posameznih ukrepov | izkaz o prenovi stavbe (M19.4) · N1 dodatek za celovitost · N8–N10 serijska prenova s predizdelanimi elementi |
+| Manj energetske revščine in zaščita najemnikov | N11 instrument za prenovo oddajanih stanovanj · N12 spremljanje najemnih stanovanj · N13 pomoč pri najemnini |
+| Svetovanje lastnikom | ENSVET (M19.8) · N18 mreža točk »vse na enem mestu« |
+| Manj izpustov v celotni življenjski dobi stavb | N5–N7 metodologija in mejne vrednosti GWP, nizkoogljični materiali · N17 krožnost gradnje |
+
+</div>
+
+## Pregled vseh ukrepov
+
+Izberite področje, vrsto ukrepa ali rok, ali poiščite nosilca ali ključno besedo. Posamezen ukrep odprete s klikom.
+
+<UkrepiPregled />
+
+## Opuščanje kotlov na fosilna goriva
+
+{/* Vir: NPS_v39, pogl. 6.1.6 (preglednica časovnega načrta opuščanja kotlov). */}
+
+Časovni načrt povezuje veljavne prepovedi, cenovne signale in spodbude. Obstoječih kotlov načrt ne prepoveduje; njihovo zamenjavo spodbuja, leta 2035 pa se preveri napredek. Za lastnike je kratek povzetek v rubriki <a href={pageUrl('lastniki')}>Za lastnike</a>.
+
+<Kotli />
+
+## Financiranje
+
+{/* Vir: NPS_v39, povzetek in pogl. 7.1 (investicijske potrebe, viri po letu 2030, vrzel 2026–2030). */}
+
+Investicijske potrebe za energetsko prenovo stavb znašajo **4,07 mrd € v obdobju 2026–2030** in približno **19 mrd € do leta 2050**. Ob obstoječih virih v obdobju 2026–2030 ostaja nepokritih 1,17 mrd €, največ pri stanovanjskih stavbah in stavbah zasebnega storitvenega sektorja. To ne pomeni manjkajočih javnih sredstev, ampak naložbe, za katere finančni instrument še ni določen – na primer energetsko pogodbeništvo, zelena posojila in garancijska shema.
+
+Za nepovratni delež 16 do 25 % naložb je po letu 2030 potrebnih 120 do 190 mio € javnih sredstev na leto.
+
+<Financiranje />
+
+### Viri financiranja po letu 2030
+
+<ViriFinanciranja />

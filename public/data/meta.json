@@ -1,9 +1,9 @@
 {
- "draft": "NPS_v38",
- "draft_date": "2026-09-22",
+ "draft": "NPS_v39",
+ "draft_date": "2026-09-29",
  "generated": "2026-09-29",
  "sources": [
-  "NPS_v38.docx",
+  "NPS_v39.docx",
   "Kataster_stavbe_EPBD_2026.csv.gz",
   "OBCINE.geojson",
   "STATISTICNE_REGIJE.geojson",
@@ -18,7 +18,8 @@
   "scenariji",
   "kazalniki",
   "sankey",
-  "zemljevid"
+  "zemljevid",
+  "ukrepi"
  ],
- "checks": 563
+ "checks": 662
 }

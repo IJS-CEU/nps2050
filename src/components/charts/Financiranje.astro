@@ -1,0 +1,86 @@
+---
+/** Investicijske potrebe za energetsko prenovo po segmentih in obdobjih 2026–2050 (pogl. 7.1). */
+import ChartFigure from './ChartFigure.astro';
+import { loadData, type Ukrepi } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const d = loadData<Ukrepi>('ukrepi');
+const inv = d.investments;
+const SEG = ['Stanovanjske stavbe', 'Stavbe javnega sektorja', 'Stavbe zasebnega storitvenega sektorja'];
+const sum = (a: (number | null)[]) => a.reduce<number>((s, v) => s + (v ?? 0), 0);
+const first5 = (s: string, k: string) => sum((inv.segments[s][k] ?? []).slice(0, 5));
+const ep = inv.segments['Energetska revščina'];
+---
+<ChartFigure
+  id="graf-financiranje"
+  title="Investicijske potrebe za energetsko prenovo stavb"
+  subtitle="Po segmentih in petletnih obdobjih, 2026–2050, mio € (stalne cene)"
+  file="nps2050-investicije"
+  csv={[{ file: 'investicije.csv', label: 'CSV' }]}
+  ariaLabel={`Investicijske potrebe: ${nf(inv.total_2026_2030 / 1000, 2)} mrd € v obdobju 2026–2030 in približno ${nf(inv.total_2026_2050 / 1000, 1)} mrd € do leta 2050; največji del odpade na stanovanjske stavbe.`}
+  height={380}
+>
+  <Fragment slot="caption">
+    <p>Upoštevan je le del naložb, ki je neposredno povezan z energetsko-podnebnimi cilji (ne celotni stroški prenove). Posebni programi za energetsko revna gospodinjstva so prikazani ločeno v preglednici.</p>
+    <p>Vir: osnutek NPS 2050, poglavje 7.1.</p>
+  </Fragment>
+  <Fragment slot="table">
+    <table>
+      <caption style="text-align:left;font-weight:700">Investicijske potrebe po obdobjih [mio €]</caption>
+      <thead><tr><th scope="col">Segment</th><th scope="col" class="num">2026–2030</th>{inv.periods.slice(5).map((p) => <th scope="col" class="num">{p}</th>)}</tr></thead>
+      <tbody>
+        {SEG.map((s) => <tr><th scope="row">{s}</th><td class="num">{nf(first5(s, 'needs'))}</td>{inv.segments[s].needs.slice(5).map((v) => <td class="num">{nf(v)}</td>)}</tr>)}
+        {ep && <tr><th scope="row">Energetska revščina (posebni programi)</th><td class="num">{nf(sum(ep.needs.slice(0, 5)))}</td>{ep.needs.slice(5).map((v) => <td class="num">{v ? nf(v) : '–'}</td>)}</tr>}
+      </tbody>
+    </table>
+    <table>
+      <caption style="text-align:left;font-weight:700">Obdobje 2026–2030: potrebe, spodbujene naložbe in nepokrito [mio €]</caption>
+      <thead><tr><th scope="col">Segment</th><th scope="col" class="num">Potrebe</th><th scope="col" class="num">Spodbujene naložbe</th><th scope="col" class="num">od tega nepovratna sredstva</th><th scope="col" class="num">Nepokrito</th></tr></thead>
+      <tbody>
+        {SEG.map((s) => <tr><th scope="row">{s}</th><td class="num">{nf(first5(s, 'needs'))}</td><td class="num">{nf(first5(s, 'leveraged'))}</td><td class="num">{nf(first5(s, 'grants'))}</td><td class="num">{nf(Math.max(0, -first5(s, 'gap')))}</td></tr>)}
+      </tbody>
+    </table>
+  </Fragment>
+</ChartFigure>
+
+<script>
+  import { base, loadJson, mount, nf, tipRow, tipTitle, valueAxis, yearAxis, type Tokens } from '../../scripts/charts/core';
+  import type { Ukrepi } from '../../lib/data';
+
+  const SEG: [string, string, string][] = [
+    ['Stanovanjske stavbe', 'Stanovanjske stavbe', 'enodruzinske'],
+    ['Stavbe javnega sektorja', 'Javne stavbe', 'javne'],
+    ['Stavbe zasebnega storitvenega sektorja', 'Zasebne storitvene stavbe', 'zasebne'],
+  ];
+
+  async function init(fig: HTMLElement) {
+    const d = await loadJson<Ukrepi>('ukrepi');
+    const inv = d.investments;
+    const periods = ['2026–2030', ...inv.periods.slice(5).map((p) => p.replace('-', '–'))];
+    const val = (s: string) => {
+      const a = inv.segments[s].needs;
+      return [a.slice(0, 5).reduce<number>((x, v) => x + (v ?? 0), 0), ...a.slice(5).map((v) => v ?? 0)];
+    };
+    const render = (t: Tokens) => {
+      const o = base(t) as Record<string, any>;
+      const data = SEG.map(([k]) => val(k));
+      const totals = periods.map((_, i) => data.reduce((s, r) => s + r[i], 0));
+      return {
+        ...o,
+        legend: { ...o.legend, data: SEG.map((x) => x[1]) },
+        tooltip: { ...o.tooltip, trigger: 'axis', axisPointer: { type: 'shadow', shadowStyle: { color: t.grid, opacity: 0.5 } },
+          formatter: (ps: any[]) => tipTitle(periods[ps[0].dataIndex]) + SEG.map(([, n, c], i) => tipRow(t.s[c], n, `${nf(data[i][ps[0].dataIndex])} mio €`, 'rect')).join('') + tipRow(t.ink, 'Skupaj', `${nf(totals[ps[0].dataIndex])} mio €`, 'rect') },
+        xAxis: yearAxis(t, { type: 'category', data: periods }),
+        yAxis: valueAxis(t, { min: 0, name: 'mio €' }),
+        series: SEG.map(([, n, c], i) => ({
+          name: n, type: 'bar', stack: 'inv', barWidth: '46%', barMaxWidth: 70, color: t.s[c], data: data[i],
+          itemStyle: { borderColor: t.panel, borderWidth: 1, borderRadius: i === SEG.length - 1 ? [4, 4, 0, 0] : 0 },
+          label: i === SEG.length - 1 ? { show: true, position: 'top', color: t.ink, fontWeight: 700, fontSize: 11, formatter: (q: any) => nf(totals[q.dataIndex]) } : { show: false },
+        })),
+      };
+    };
+    mount(fig, render);
+  }
+  const fig = document.getElementById('graf-financiranje');
+  if (fig) init(fig).catch((e) => console.error('graf financiranje:', e));
+</script>

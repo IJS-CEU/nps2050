@@ -12,7 +12,9 @@ W_T = qn('w:t')
 def _text(el) -> str:
     # Vse w:t pod elementom, tudi v hiperpovezavah, poljih in vstavljenih spremembah (w:ins);
     # izbrisano besedilo je v w:delText in se ne bere. paragraph.text bi del besedila izpustil.
-    return ''.join(t.text or '' for t in el.iter(W_T)).strip()
+    txt = ''.join(t.text or '' for t in el.iter(W_T)).strip()
+    # Wordov samodejni popravek spremeni oznake točk »(c)« in »(r)« v © in ® (npr. »čl. 17(14)©«) – vrnemo izvirnik.
+    return txt.replace('©', '(c)').replace('®', '(r)')
 
 
 class Draft:

@@ -1,0 +1,16 @@
+---
+/** Viri financiranja energetske prenove 2031–2050 (preglednica 56 v osnutku; interne opombe nadomeščene). */
+import { loadData, type Ukrepi } from '../lib/data';
+const d = loadData<Ukrepi>('ukrepi');
+---
+<div class="tblwrap" tabindex="0" role="region" aria-label="Viri financiranja 2031–2050">
+  <table class="viri">
+    <caption class="visually-hidden">Viri financiranja energetske prenove stavb 2031–2050 (indikativno)</caption>
+    <thead><tr><th scope="col">Vir</th><th scope="col">Obdobje</th><th scope="col">Indikativni obseg za stavbe</th><th scope="col">Namen</th></tr></thead>
+    <tbody>{d.sources.map((s) => <tr><th scope="row">{s.source}</th><td>{s.period}</td><td>{s.amount}</td><td>{s.purpose}</td></tr>)}</tbody>
+  </table>
+</div>
+<style>
+  .viri { font-size: .85rem; margin: .6rem 0 1.4rem; }
+  .viri td, .viri th { min-width: 8rem; }
+</style>

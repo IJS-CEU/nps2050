@@ -1,0 +1,118 @@
+---
+/**
+ * Pregledovalnik 44 ukrepov (NEPN 2024 in N1–N20). Kartice se izrišejo ob gradnji (berljivo in iskljivo brez JS),
+ * filtri po področju, vrsti, skupini in roku ter iskanje delujejo v brskalniku.
+ */
+import { withBase } from '../i18n/routes';
+import { loadData, type Ukrepi } from '../lib/data';
+
+const d = loadData<Ukrepi>('ukrepi');
+const kindName = Object.fromEntries(d.kinds.map((k) => [k.id, k.name]));
+const bucket = (y: number | null, rec: boolean) => (y === null ? (rec ? 'letno' : 'brez') : y <= 2026 ? 'do2026' : y <= 2029 ? '2027-2029' : 'od2030');
+---
+<section class="up" id="pregled-ukrepov" aria-labelledby="up-t">
+  <h3 id="up-t" class="visually-hidden">Pregled ukrepov</h3>
+  <div class="up-filters js-only" role="search" aria-label="Filtri ukrepov">
+    <label><span>Iskanje</span><input type="search" id="up-q" placeholder="npr. Eko sklad, najemniki, kotli" /></label>
+    <label><span>Področje</span>
+      <select id="up-area"><option value="">vsa področja</option>{Object.entries(d.areas).map(([k, a]) => <option value={k}>{a.name}</option>)}</select>
+    </label>
+    <label><span>Vrsta ukrepa</span>
+      <select id="up-kind"><option value="">vse vrste</option>{d.kinds.map((k) => <option value={k.id}>{k.name}</option>)}</select>
+    </label>
+    <label><span>Skupina</span>
+      <select id="up-group"><option value="">vsi ukrepi</option><option value="nepn">ukrepi NEPN 2024</option><option value="nps">novi ukrepi NPS 2050 (N1–N20)</option></select>
+    </label>
+    <label><span>Prvi rok</span>
+      <select id="up-dl"><option value="">vsi roki</option><option value="do2026">do 2026</option><option value="2027-2029">2027–2029</option><option value="od2030">2030 in pozneje</option><option value="letno">letno</option></select>
+    </label>
+  </div>
+  <p class="up-count" id="up-count" aria-live="polite">Prikazanih je vseh {d.measures.length} ukrepov.</p>
+
+  <div class="up-list">
+    {d.measures.map((m) => (
+      <details class="up-m" data-areas={m.areas.join(' ')} data-kinds={m.kinds.join(' ')} data-group={m.group === 'nps' ? 'nps' : 'nepn'}
+               data-dl={bucket(m.first_deadline, m.recurring)} data-text={`${m.id} ${m.name} ${m.responsible.join(' ')} ${m.activities.map((a) => a.text).join(' ')}`.toLowerCase()}>
+        <summary>
+          <span class={`up-id ${m.group === 'nps' ? 'is-new' : ''}`}>{m.id}</span>
+          <span class="up-name">{m.name}</span>
+          <span class="up-meta">
+            {m.areas.map((a) => <abbr class="up-area" title={d.areas[a]?.name}>{a}</abbr>)}
+            {m.first_deadline && <span class="up-dl">od {m.first_deadline}</span>}
+          </span>
+        </summary>
+        <div class="up-body">
+          <p class="up-sub">{m.group_label}{m.group === 'nps' ? ' – predlog za odločanje, roki in nosilci se uskladijo ob posodobitvi NEPN' : ''} · {m.kinds.map((k) => kindName[k]).join(', ')}</p>
+          <ol class="up-acts">
+            {m.activities.map((a) => (
+              <li>
+                <p>{a.text}</p>
+                <dl>
+                  {a.resp && <><dt>Nosilci</dt><dd>{a.resp}</dd></>}
+                  {a.deadline && <><dt>Rok</dt><dd>{a.deadline}</dd></>}
+                  {a.kpi && <><dt>Kazalnik</dt><dd>{a.kpi}</dd></>}
+                  {a.target && <><dt>Ciljna vrednost</dt><dd>{a.target}</dd></>}
+                </dl>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </details>
+    ))}
+  </div>
+  <p class="note">Področja EPBD: {Object.entries(d.areas).map(([k, a], i) => <>{i > 0 && ' · '}<b>{k}</b> {a.name.toLowerCase()}</>)}.</p>
+  <div class="chart-tools"><span class="lbl">Prenesi:</span><a class="tool" href={withBase('data/csv/ukrepi.csv')} download>CSV (vsi ukrepi in aktivnosti)</a></div>
+</section>
+
+<style>
+  .up { margin: 1rem 0 2rem; }
+  .up-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: .6rem .8rem; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.1rem; }
+  .up-filters label { display: grid; gap: .25rem; font-size: .78rem; font-weight: 700; color: var(--ink2); }
+  .up-filters input, .up-filters select { font: inherit; font-size: .9rem; font-weight: 500; padding: .4rem .5rem; border: 1px solid var(--ink2); border-radius: 6px; background: var(--bg); color: var(--ink); width: 100%; }
+  .up-count { font-size: .88rem; color: var(--ink2); margin: .8rem 0 .5rem; }
+  .up-list { display: grid; gap: .5rem; }
+  .up-m { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  .up-m[open] { border-color: var(--green); }
+  .up-m summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: auto 1fr; gap: .2rem .8rem; padding: .75rem 1rem; align-items: start; }
+  .up-m summary::-webkit-details-marker { display: none; }
+  .up-id { font-weight: 800; font-size: .82rem; background: var(--panel2); color: var(--ink2); border-radius: 6px; padding: .15rem .45rem; min-width: 3.4rem; text-align: center; font-variant-numeric: tabular-nums; }
+  .up-id.is-new { background: var(--greenbg); color: var(--green); }
+  .up-name { font-weight: 600; line-height: 1.35; }
+  .up-meta { grid-column: 2; display: flex; flex-wrap: wrap; gap: .3rem; align-items: center; }
+  .up-area { font-size: .7rem; font-weight: 700; text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 0 .45rem; color: var(--ink2); }
+  .up-dl { font-size: .75rem; color: var(--ink2); margin-left: .2rem; }
+  .up-body { padding: 0 1rem 1rem 1rem; border-top: 1px solid var(--line); }
+  .up-sub { font-size: .8rem; color: var(--ink2); margin: .7rem 0 .4rem; max-width: none; }
+  .up-acts { margin: 0; padding-left: 1.2rem; max-width: none; }
+  .up-acts li { margin-bottom: .8rem; }
+  .up-acts p { margin: 0 0 .3rem; font-size: .92rem; max-width: 80ch; }
+  .up-acts dl { display: grid; grid-template-columns: auto 1fr; gap: .15rem .8rem; font-size: .84rem; margin: 0; }
+  .up-acts dt { color: var(--ink2); font-weight: 700; }
+  .up-acts dd { margin: 0; }
+  .up-m[hidden] { display: none; }
+</style>
+
+<script>
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T | null;
+  const q = $<HTMLInputElement>('up-q');
+  if (q) {
+    const area = $<HTMLSelectElement>('up-area')!, kind = $<HTMLSelectElement>('up-kind')!, group = $<HTMLSelectElement>('up-group')!, dl = $<HTMLSelectElement>('up-dl')!;
+    const count = $('up-count')!;
+    const items = [...document.querySelectorAll<HTMLDetailsElement>('.up-m')];
+    const apply = () => {
+      const s = q.value.trim().toLowerCase();
+      let n = 0;
+      for (const it of items) {
+        const ok = (!area.value || it.dataset.areas!.split(' ').includes(area.value))
+          && (!kind.value || it.dataset.kinds!.split(' ').includes(kind.value))
+          && (!group.value || it.dataset.group === group.value)
+          && (!dl.value || it.dataset.dl === dl.value)
+          && (!s || it.dataset.text!.includes(s));
+        it.hidden = !ok;
+        if (ok) n++;
+      }
+      count.textContent = n === items.length ? `Prikazanih je vseh ${n} ukrepov.` : `Prikazanih je ${n} od ${items.length} ukrepov.`;
+    };
+    [q, area, kind, group, dl].forEach((e) => e.addEventListener('input', apply));
+  }
+</script>

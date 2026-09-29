@@ -1,11 +1,11 @@
 {
  "meta": {
-  "draft": "NPS_v38",
-  "draft_date": "2026-09-22",
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
   "generated": "2026-09-29",
   "sources": [
-   "NPS_v38: preglednica »Nacionalna trajektorija prenove stanovanjskega fonda« (pogl. 4.7.1)",
-   "NPS_v38: preglednica »Primarna raba energije v stavbah po scenariju NPS 2050« (pogl. 4.3)"
+   "NPS_v39: preglednica »Nacionalna trajektorija prenove stanovanjskega fonda« (pogl. 4.7.1)",
+   "NPS_v39: preglednica »Primarna raba energije v stavbah po scenariju NPS 2050« (pogl. 4.3)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
   "note": "kwh_m2: stanovanjski fond, fiksni faktorji primarne energije (PURES 2021). ktoe: vse stavbe v obsegu EPBD; total pri faktorjih, veljavnih v posameznem letu (DU-OVE), total_fixed pri faktorjih 2025."

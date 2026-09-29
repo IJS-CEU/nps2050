@@ -76,3 +76,16 @@ export interface Zemljevid {
   meta: Meta; categories: { id: string; name: string; segment: string }[];
   regions: Record<string, Area>; municipalities: Record<string, Area>;
 }
+
+export interface Activity { kind: string; resp: string; text: string; deadline: string; kpi: string; target: string }
+export interface Measure {
+  id: string; group: 'nepn' | 'nepn_novi' | 'nps'; group_label: string; name: string; areas: string[];
+  activities: Activity[]; kinds: string[]; responsible: string[]; first_deadline: number | null; recurring: boolean;
+}
+export interface Ukrepi {
+  meta: Meta; areas: Record<string, { name: string; content: string }>; kinds: { id: string; name: string }[];
+  measures: Measure[];
+  boilers: { when: string; milestone: string; basis: string; effect: string }[];
+  investments: { periods: string[]; segments: Record<string, Record<string, (number | null)[]>>; total_2026_2030: number; total_2026_2050: number; gap_2026_2030: number };
+  sources: { source: string; period: string; amount: string; purpose: string }[];
+}
