@@ -7,7 +7,8 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import Base from '../../layouts/Base.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
-import { loadData, type Obcina, type ObcineIndex, type ObcineModel } from '../../lib/data';
+import Stolpci from '../../components/Stolpci.astro';
+import { loadData, type ObSkupine, type Obcina, type ObcineIndex, type ObcineModel } from '../../lib/data';
 import { nf } from '../../lib/format';
 
 export function getStaticPaths() {
@@ -62,6 +63,31 @@ const clsBlocks = ['hise', 'bloki'].map((sid) => {
 });
 const va = mo.vse, vs = ms.vse;
 const ci = mo.cilji!;
+const pot = mo.pot!;
+const PY = ['2023', '2030', '2040', '2050'];
+const potSi = ms.pot;
+const red = (a: number, b: number) => Math.round(100 * (b / a - 1));
+// Primerjava s podobnimi občinami
+const sk = loadData<ObSkupine>('obcine_skupine');
+const me = sk.municipalities[String(sifra)];
+const grpName = sk.groups.find((g) => g.id === me.group)!.name;
+const byS = Object.fromEntries(ix.municipalities.map((r) => [String(r.sifra), r]));
+const nb = me.neighbours.map((n) => byS[String(n)]).filter(Boolean);
+const grp = ix.municipalities.filter((r) => sk.municipalities[String(r.sifra)].group === me.group);
+const mean = (xs: (number | null)[]) => { const v = xs.filter((x): x is number => x !== null && x !== undefined); return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null; };
+const median = (xs: (number | null)[]) => { const v = xs.filter((x): x is number => x !== null && x !== undefined).sort((a, b) => a - b); return v.length ? (v.length % 2 ? v[(v.length - 1) / 2] : (v[v.length / 2 - 1] + v[v.length / 2]) / 2) : null; };
+const PEER: [keyof typeof row, string, number, string][] = [
+  ['k_res_fe_mwh_preb', 'Raba končne energije v stanovanjskih stavbah na prebivalca', 1, ' MWh'],
+  ['k_fe_mwh_preb', 'Raba končne energije v vseh stavbah na prebivalca', 1, ' MWh'],
+  ['k_tgp_t_preb', 'Emisije TGP iz stavb na prebivalca', 2, ' t'],
+  ['k_ove_pct', 'Delež obnovljivih virov v rabi energije v stavbah', 0, ' %'],
+  ['model_fe_kwh_m2', 'Raba končne energije v stanovanjskih stavbah na m²', 0, ' kWh/m²'],
+  ['pre1981_res_area_pct', 'Stanovanjska površina, zgrajena pred 1981', 0, ' %'],
+  ['ei_area_res_pct', 'Stanovanjska površina z energetsko izkaznico', 0, ' %'],
+  ['es_res_any_pct', 'Stanovanjske stavbe z ukrepom Eko sklada', 0, ' %'],
+];
+const peerRows = PEER.map(([k, l, d, u]) => ({ l, d, u, o: row[k] as number | null, n: mean(nb.map((r) => r[k] as number | null)), g: median(grp.map((r) => r[k] as number | null)), s: si[k as keyof typeof si] as unknown as number | null }));
+const rank = [...grp].sort((a, b) => a.k_res_fe_mwh_preb - b.k_res_fe_mwh_preb).findIndex((r) => String(r.sifra) === String(sifra)) + 1;
 const SEGN: [string, string][] = [['hise', 'enostanovanjske hiše'], ['bloki', 'večstanovanjske stavbe'], ['javne', 'javne stavbe'], ['zasebne', 'zasebne storitvene stavbe']];
 const cmpTile = (v: number | null, si: number | null, dec: number, unit: string, label: string) => ({ v: v === null ? '–' : nf(v, dec), unit, l: `${label} (Slovenija ${si === null ? '–' : nf(si, dec)}${unit.trim() === '%' ? ' %' : ''})` });
 const vTiles = [
@@ -191,6 +217,39 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
 
 
 
+
+
+    <section class="ob-cilji ob-pot" aria-labelledby="ob-pot-t">
+      <p class="ob-model-k">NPS 2050 v občini · pot do leta 2050</p>
+      <h2 id="ob-pot-t">Pot občine do leta 2050 po scenariju NPS 2050</h2>
+      <p>Če bi se stavbe v občini prenavljale enako kot v scenariju NPS 2050 za vso državo, bi se raba končne energije v stavbah do leta 2050 zmanjšala za <strong>{-red(pot['2023'].fe_gwh, pot['2050'].fe_gwh)} %</strong> (Slovenija {-red(potSi['2023'].fe_gwh, potSi['2050'].fe_gwh)} %), emisije pa za {-red(pot['2023'].tgp_kt, pot['2050'].tgp_kt)} %. Občine z več starimi in slabo izoliranimi stavbami imajo večji potencial zmanjšanja.</p>
+      <div class="ob-pot-grid">
+        <Stolpci id="st-pot-fe" title="Raba končne energije v stavbah, GWh na leto" labels={PY} series={[{ name: 'raba končne energije', values: PY.map((y) => pot[y].fe_gwh), color: '#1F7A57' }]} />
+        <Stolpci id="st-pot-tgp" title="Emisije TGP iz stavb, kt CO₂ ekv. na leto" labels={PY} series={[{ name: 'emisije', values: PY.map((y) => pot[y].tgp_kt), color: '#8F5A08' }]} />
+      </div>
+      <div class="tblwrap" tabindex="0" role="region" aria-label="Pot do leta 2050">
+        <table>
+          <thead><tr><th scope="col">Kazalnik</th>{PY.map((y) => <th scope="col" class="num">{y}</th>)}</tr></thead>
+          <tbody>
+            <tr><th scope="row">Delež obnovljivih virov [%]</th>{PY.map((y) => <td class="num">{nf(pot[y].ove_pct, 0)}</td>)}</tr>
+            <tr><th scope="row">Delež kurilnega olja in plina [%]</th>{PY.map((y) => <td class="num">{nf(pot[y].fossil_pct, 0)}</td>)}</tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Ponazoritev: prehodi med energijskimi razredi po scenariju NPS 2050 (model RenRates) so uporabljeni za vsako stavbo v občini; vsota za državo po vrstah stavb sledi osnutku, emisije in delež obnovljivih virov pa se za državo ujemajo z osnutkom v vsakem letu. Leto 2023 je izhodišče.</p>
+    </section>
+
+    <section class="ob-peer" aria-labelledby="ob-peer-t">
+      <h2 id="ob-peer-t">Primerjava s sosednjimi in podobnimi občinami</h2>
+      <p>Občina {o.name} spada med <strong>{grpName}</strong> ({grp.length} občin). Po rabi energije v stanovanjskih stavbah na prebivalca je {rank}. od {grp.length} (1 = najnižja raba).</p>
+      <div class="tblwrap" tabindex="0" role="region" aria-label="Primerjava s podobnimi občinami">
+        <table>
+          <thead><tr><th scope="col">Kazalnik</th><th scope="col" class="num">Občina</th><th scope="col" class="num">Sosednje občine (povprečje)</th><th scope="col" class="num">{grpName} (mediana)</th><th scope="col" class="num">Slovenija</th></tr></thead>
+          <tbody>{peerRows.map((r) => <tr><th scope="row">{r.l}</th><td class="num"><b>{r.o === null ? '–' : nf(r.o, r.d) + r.u}</b></td><td class="num">{r.n === null ? '–' : nf(r.n, r.d) + r.u}</td><td class="num">{r.g === null ? '–' : nf(r.g, r.d) + r.u}</td><td class="num">{r.s === null ? '–' : nf(r.s, r.d) + r.u}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <p class="note">Sosednje občine: {nb.map((r, i) => <>{i > 0 && ', '}<a href={withBase(`obcina/${r.sifra}/`)}>{r.name}</a></>)}. Skupine: mestne občine; turistične občine (površina hotelov in gostinstva na prebivalca vsaj trikrat nad državnim povprečjem); druge po gostoti poselitve (gosto nad 150, srednje 60–150, redko pod 60 prebivalcev na km², SURS 2026). Kazalniki z rabo energije, emisijami in obnovljivimi viri so ocena modela.</p>
+    </section>
 
     <section class="ob-cilji" aria-labelledby="ob-cilji-t">
       <p class="ob-model-k">NPS 2050 v občini · ponazoritev</p>
@@ -332,6 +391,9 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
   .ob-lek .btn { display: inline-block; margin: .4rem .4rem 0 0; }
   .ob-model { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--s-s1); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 2rem 0; }
   .ob-model h2 { margin-top: .2rem; }
+  .ob-pot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+  @media (max-width: 700px) { .ob-pot-grid { grid-template-columns: 1fr; } }
+  .ob-peer { margin: 2rem 0; }
   .ob-cilji { background: var(--greenbg); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 2rem 0; }
   .ob-cilji h2 { margin-top: .2rem; }
   .ob-cilji .ob-model-k { color: var(--green); }

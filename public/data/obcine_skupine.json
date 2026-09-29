@@ -1,0 +1,2623 @@
+{
+ "groups": [
+  {
+   "id": "mestne",
+   "name": "mestne občine",
+   "n": 12
+  },
+  {
+   "id": "turisticne",
+   "name": "turistične občine",
+   "n": 19
+  },
+  {
+   "id": "goste",
+   "name": "gosto poseljene občine",
+   "n": 32
+  },
+  {
+   "id": "srednje",
+   "name": "srednje poseljene občine",
+   "n": 89
+  },
+  {
+   "id": "redke",
+   "name": "redko poseljene občine",
+   "n": 60
+  }
+ ],
+ "municipalities": {
+  "1": {
+   "group": "srednje",
+   "neighbours": [
+    36,
+    49,
+    64,
+    84,
+    94,
+    136
+   ],
+   "density": 81.4,
+   "hotel_m2_preb": 0.44
+  },
+  "2": {
+   "group": "srednje",
+   "neighbours": [
+    15,
+    63,
+    78,
+    80,
+    86,
+    132,
+    188
+   ],
+   "density": 129.6,
+   "hotel_m2_preb": 0.67
+  },
+  "3": {
+   "group": "turisticne",
+   "neighbours": [
+    4,
+    41,
+    102,
+    192,
+    207
+   ],
+   "density": 111.9,
+   "hotel_m2_preb": 9.36
+  },
+  "4": {
+   "group": "turisticne",
+   "neighbours": [
+    3,
+    6,
+    46,
+    52,
+    53,
+    102,
+    128,
+    146,
+    207
+   ],
+   "density": 15.6,
+   "hotel_m2_preb": 6.99
+  },
+  "5": {
+   "group": "srednje",
+   "neighbours": [
+    8,
+    13,
+    140
+   ],
+   "density": 110.8,
+   "hotel_m2_preb": 0.23
+  },
+  "6": {
+   "group": "turisticne",
+   "neighbours": [
+    4,
+    46,
+    53
+   ],
+   "density": 8.3,
+   "hotel_m2_preb": 9.34
+  },
+  "7": {
+   "group": "srednje",
+   "neighbours": [
+    44,
+    84
+   ],
+   "density": 77.3,
+   "hotel_m2_preb": 3.08
+  },
+  "8": {
+   "group": "srednje",
+   "neighbours": [
+    5,
+    13,
+    21,
+    37,
+    61,
+    134,
+    140,
+    208
+   ],
+   "density": 144.8,
+   "hotel_m2_preb": 0.41
+  },
+  "9": {
+   "group": "srednje",
+   "neighbours": [
+    51,
+    54,
+    149
+   ],
+   "density": 91.1,
+   "hotel_m2_preb": 2.11
+  },
+  "10": {
+   "group": "srednje",
+   "neighbours": [
+    80,
+    97,
+    100,
+    152
+   ],
+   "density": 100.7,
+   "hotel_m2_preb": 0.66
+  },
+  "11": {
+   "group": "mestne",
+   "neighbours": [
+    57,
+    120,
+    127,
+    139,
+    155,
+    190
+   ],
+   "density": 524.7,
+   "hotel_m2_preb": 0.49
+  },
+  "12": {
+   "group": "srednje",
+   "neighbours": [
+    43,
+    95,
+    117,
+    138,
+    164
+   ],
+   "density": 102.9,
+   "hotel_m2_preb": 1.94
+  },
+  "13": {
+   "group": "redke",
+   "neighbours": [
+    5,
+    8,
+    37,
+    64,
+    65,
+    91,
+    94,
+    134,
+    140,
+    150
+   ],
+   "density": 49.4,
+   "hotel_m2_preb": 0.57
+  },
+  "14": {
+   "group": "redke",
+   "neighbours": [
+    27,
+    36,
+    128,
+    146,
+    147
+   ],
+   "density": 33.8,
+   "hotel_m2_preb": 1.92
+  },
+  "15": {
+   "group": "srednje",
+   "neighbours": [
+    2,
+    59,
+    63,
+    86,
+    132,
+    176,
+    187
+   ],
+   "density": 115,
+   "hotel_m2_preb": 0.81
+  },
+  "16": {
+   "group": "redke",
+   "neighbours": [
+    62,
+    67,
+    74,
+    103,
+    112,
+    126,
+    175,
+    180
+   ],
+   "density": 19.3,
+   "hotel_m2_preb": 0.8
+  },
+  "17": {
+   "group": "redke",
+   "neighbours": [
+    48,
+    73,
+    109
+   ],
+   "density": 41.7,
+   "hotel_m2_preb": 0.88
+  },
+  "18": {
+   "group": "srednje",
+   "neighbours": [
+    42,
+    58,
+    96,
+    182,
+    185
+   ],
+   "density": 79.6,
+   "hotel_m2_preb": 0.5
+  },
+  "19": {
+   "group": "redke",
+   "neighbours": [
+    35,
+    38,
+    91,
+    94,
+    111,
+    136
+   ],
+   "density": 31.7,
+   "hotel_m2_preb": 1.05
+  },
+  "20": {
+   "group": "redke",
+   "neighbours": [
+    32,
+    39,
+    48,
+    104,
+    134,
+    193
+   ],
+   "density": 38.2,
+   "hotel_m2_preb": 0.26
+  },
+  "21": {
+   "group": "srednje",
+   "neighbours": [
+    8,
+    27,
+    61,
+    64,
+    71,
+    122,
+    140,
+    162,
+    208
+   ],
+   "density": 68.6,
+   "hotel_m2_preb": 0.36
+  },
+  "22": {
+   "group": "goste",
+   "neighbours": [
+    23,
+    60,
+    61,
+    77
+   ],
+   "density": 193.2,
+   "hotel_m2_preb": 0.18
+  },
+  "23": {
+   "group": "goste",
+   "neighbours": [
+    22,
+    43,
+    61,
+    68,
+    72,
+    77,
+    186
+   ],
+   "density": 530.3,
+   "hotel_m2_preb": 0.46
+  },
+  "24": {
+   "group": "srednje",
+   "neighbours": [
+    28,
+    42,
+    87,
+    96,
+    168,
+    205
+   ],
+   "density": 102.6,
+   "hotel_m2_preb": 0.38
+  },
+  "25": {
+   "group": "srednje",
+   "neighbours": [
+    81,
+    103,
+    112,
+    141
+   ],
+   "density": 83.6,
+   "hotel_m2_preb": 0.91
+  },
+  "26": {
+   "group": "goste",
+   "neighbours": [
+    58,
+    70,
+    96,
+    115
+   ],
+   "density": 177.5,
+   "hotel_m2_preb": 0.3
+  },
+  "27": {
+   "group": "redke",
+   "neighbours": [
+    14,
+    21,
+    36,
+    64,
+    122,
+    146,
+    147
+   ],
+   "density": 50.5,
+   "hotel_m2_preb": 0.79
+  },
+  "28": {
+   "group": "srednje",
+   "neighbours": [
+    24,
+    87,
+    143,
+    168,
+    196
+   ],
+   "density": 144.6,
+   "hotel_m2_preb": 0.75
+  },
+  "29": {
+   "group": "srednje",
+   "neighbours": [
+    100,
+    116,
+    148,
+    153,
+    181,
+    195,
+    204
+   ],
+   "density": 114.7,
+   "hotel_m2_preb": 1.13
+  },
+  "30": {
+   "group": "redke",
+   "neighbours": [
+    43,
+    62,
+    67,
+    83,
+    209
+   ],
+   "density": 28.1,
+   "hotel_m2_preb": 0.89
+  },
+  "31": {
+   "group": "redke",
+   "neighbours": [
+    33,
+    56,
+    78,
+    97,
+    158
+   ],
+   "density": 28.7,
+   "hotel_m2_preb": 0.98
+  },
+  "32": {
+   "group": "goste",
+   "neighbours": [
+    20,
+    39,
+    61,
+    123,
+    134
+   ],
+   "density": 166.4,
+   "hotel_m2_preb": 0.32
+  },
+  "33": {
+   "group": "redke",
+   "neighbours": [
+    31,
+    78,
+    161
+   ],
+   "density": 23.1,
+   "hotel_m2_preb": 0.58
+  },
+  "34": {
+   "group": "srednje",
+   "neighbours": [
+    57,
+    99,
+    129,
+    190
+   ],
+   "density": 149.6,
+   "hotel_m2_preb": 0.44
+  },
+  "36": {
+   "group": "redke",
+   "neighbours": [
+    1,
+    14,
+    27,
+    64,
+    84,
+    128,
+    147
+   ],
+   "density": 39.1,
+   "hotel_m2_preb": 0.53
+  },
+  "37": {
+   "group": "srednje",
+   "neighbours": [
+    8,
+    13,
+    61,
+    123,
+    134
+   ],
+   "density": 80.9,
+   "hotel_m2_preb": 0.31
+  },
+  "39": {
+   "group": "srednje",
+   "neighbours": [
+    20,
+    32,
+    61,
+    130,
+    193,
+    194
+   ],
+   "density": 80.5,
+   "hotel_m2_preb": 0.49
+  },
+  "40": {
+   "group": "goste",
+   "neighbours": [
+    50,
+    90
+   ],
+   "density": 576.4,
+   "hotel_m2_preb": 1.8
+  },
+  "42": {
+   "group": "srednje",
+   "neighbours": [
+    18,
+    24,
+    63,
+    96,
+    116,
+    182,
+    205
+   ],
+   "density": 68.7,
+   "hotel_m2_preb": 0.42
+  },
+  "44": {
+   "group": "redke",
+   "neighbours": [
+    7,
+    84,
+    128
+   ],
+   "density": 34.5,
+   "hotel_m2_preb": 0.55
+  },
+  "46": {
+   "group": "redke",
+   "neighbours": [
+    4,
+    6,
+    128
+   ],
+   "density": 20.6,
+   "hotel_m2_preb": 1.88
+  },
+  "48": {
+   "group": "redke",
+   "neighbours": [
+    17,
+    20,
+    66,
+    88,
+    104,
+    109,
+    157,
+    165,
+    193
+   ],
+   "density": 28.1,
+   "hotel_m2_preb": 0.64
+  },
+  "51": {
+   "group": "redke",
+   "neighbours": [
+    9,
+    54,
+    92,
+    120,
+    149
+   ],
+   "density": 33.4,
+   "hotel_m2_preb": 0.6
+  },
+  "54": {
+   "group": "mestne",
+   "neighbours": [
+    9,
+    51,
+    110,
+    119,
+    120,
+    121,
+    197
+   ],
+   "density": 91.5,
+   "hotel_m2_preb": 0.77
+  },
+  "55": {
+   "group": "srednje",
+   "neighbours": [
+    70,
+    89,
+    118
+   ],
+   "density": 102.5,
+   "hotel_m2_preb": 1.27
+  },
+  "58": {
+   "group": "srednje",
+   "neighbours": [
+    18,
+    26,
+    70,
+    89,
+    96,
+    148,
+    181,
+    185,
+    204,
+    210
+   ],
+   "density": 139.7,
+   "hotel_m2_preb": 0.98
+  },
+  "60": {
+   "group": "srednje",
+   "neighbours": [
+    22,
+    61,
+    77,
+    99,
+    110,
+    130,
+    142,
+    194,
+    211,
+    212
+   ],
+   "density": 71.8,
+   "hotel_m2_preb": 0.15
+  },
+  "62": {
+   "group": "redke",
+   "neighbours": [
+    16,
+    30,
+    67,
+    79,
+    126,
+    209
+   ],
+   "density": 31.3,
+   "hotel_m2_preb": 1.2
+  },
+  "64": {
+   "group": "srednje",
+   "neighbours": [
+    1,
+    13,
+    21,
+    27,
+    36,
+    94,
+    140,
+    147
+   ],
+   "density": 87.4,
+   "hotel_m2_preb": 0.34
+  },
+  "66": {
+   "group": "redke",
+   "neighbours": [
+    48,
+    65,
+    88,
+    104,
+    150,
+    179
+   ],
+   "density": 13.7,
+   "hotel_m2_preb": 0.3
+  },
+  "67": {
+   "group": "redke",
+   "neighbours": [
+    16,
+    30,
+    43,
+    62,
+    180
+   ],
+   "density": 12.7,
+   "hotel_m2_preb": 2.03
+  },
+  "69": {
+   "group": "redke",
+   "neighbours": [
+    45,
+    106,
+    107,
+    113,
+    135,
+    191,
+    198
+   ],
+   "density": 55,
+   "hotel_m2_preb": 0.57
+  },
+  "72": {
+   "group": "goste",
+   "neighbours": [
+    23,
+    43,
+    61,
+    138,
+    164,
+    186
+   ],
+   "density": 392.3,
+   "hotel_m2_preb": 0.13
+  },
+  "74": {
+   "group": "srednje",
+   "neighbours": [
+    16,
+    175
+   ],
+   "density": 133.6,
+   "hotel_m2_preb": 0.46
+  },
+  "76": {
+   "group": "redke",
+   "neighbours": [
+    112,
+    133,
+    137,
+    144,
+    155,
+    167,
+    177
+   ],
+   "density": 40.1,
+   "hotel_m2_preb": 1.94
+  },
+  "77": {
+   "group": "srednje",
+   "neighbours": [
+    22,
+    23,
+    60,
+    68,
+    142
+   ],
+   "density": 92.5,
+   "hotel_m2_preb": 0.4
+  },
+  "78": {
+   "group": "turisticne",
+   "neighbours": [
+    2,
+    31,
+    33,
+    47,
+    80,
+    97,
+    132,
+    156
+   ],
+   "density": 41.3,
+   "hotel_m2_preb": 9.33
+  },
+  "80": {
+   "group": "mestne",
+   "neighbours": [
+    2,
+    10,
+    78,
+    97,
+    100,
+    166,
+    188
+   ],
+   "density": 284.6,
+   "hotel_m2_preb": 1.27
+  },
+  "84": {
+   "group": "mestne",
+   "neighbours": [
+    1,
+    7,
+    36,
+    44,
+    49,
+    75,
+    128,
+    183,
+    201
+   ],
+   "density": 113.7,
+   "hotel_m2_preb": 1.3
+  },
+  "86": {
+   "group": "goste",
+   "neighbours": [
+    2,
+    15
+   ],
+   "density": 232.3,
+   "hotel_m2_preb": 1.56
+  },
+  "87": {
+   "group": "srednje",
+   "neighbours": [
+    24,
+    28,
+    63,
+    202,
+    205
+   ],
+   "density": 83.2,
+   "hotel_m2_preb": 1.28
+  },
+  "89": {
+   "group": "srednje",
+   "neighbours": [
+    55,
+    58,
+    70,
+    118,
+    210
+   ],
+   "density": 103.8,
+   "hotel_m2_preb": 0.62
+  },
+  "92": {
+   "group": "turisticne",
+   "neighbours": [
+    51,
+    106,
+    120,
+    124,
+    149
+   ],
+   "density": 61,
+   "hotel_m2_preb": 9.02
+  },
+  "94": {
+   "group": "srednje",
+   "neighbours": [
+    1,
+    13,
+    19,
+    64,
+    91,
+    136
+   ],
+   "density": 63.7,
+   "hotel_m2_preb": 1.21
+  },
+  "95": {
+   "group": "redke",
+   "neighbours": [
+    12,
+    43,
+    52,
+    117,
+    131,
+    163
+   ],
+   "density": 45.4,
+   "hotel_m2_preb": 1.55
+  },
+  "98": {
+   "group": "goste",
+   "neighbours": [
+    45,
+    113,
+    115,
+    160
+   ],
+   "density": 163,
+   "hotel_m2_preb": 0.33
+  },
+  "100": {
+   "group": "turisticne",
+   "neighbours": [
+    10,
+    29,
+    80,
+    116,
+    166
+   ],
+   "density": 148.2,
+   "hotel_m2_preb": 3.54
+  },
+  "101": {
+   "group": "srednje",
+   "neighbours": [
+    81,
+    93,
+    141,
+    177
+   ],
+   "density": 66.3,
+   "hotel_m2_preb": 0.72
+  },
+  "102": {
+   "group": "goste",
+   "neighbours": [
+    3,
+    4,
+    52,
+    82,
+    131,
+    192
+   ],
+   "density": 163.1,
+   "hotel_m2_preb": 1.53
+  },
+  "103": {
+   "group": "goste",
+   "neighbours": [
+    16,
+    25,
+    112,
+    175
+   ],
+   "density": 176.2,
+   "hotel_m2_preb": 0.79
+  },
+  "104": {
+   "group": "srednje",
+   "neighbours": [
+    20,
+    48,
+    66,
+    134,
+    179
+   ],
+   "density": 63.9,
+   "hotel_m2_preb": 0.7
+  },
+  "107": {
+   "group": "srednje",
+   "neighbours": [
+    69,
+    106,
+    191
+   ],
+   "density": 78,
+   "hotel_m2_preb": 0.27
+  },
+  "105": {
+   "group": "srednje",
+   "neighbours": [
+    56,
+    97,
+    152,
+    158
+   ],
+   "density": 75.3,
+   "hotel_m2_preb": 1.63
+  },
+  "106": {
+   "group": "turisticne",
+   "neighbours": [
+    69,
+    92,
+    107,
+    124,
+    198,
+    200
+   ],
+   "density": 163.6,
+   "hotel_m2_preb": 4.98
+  },
+  "108": {
+   "group": "srednje",
+   "neighbours": [
+    70,
+    113,
+    160,
+    167,
+    178
+   ],
+   "density": 117.8,
+   "hotel_m2_preb": 1.47
+  },
+  "109": {
+   "group": "redke",
+   "neighbours": [
+    17,
+    48,
+    73,
+    85,
+    157
+   ],
+   "density": 25.8,
+   "hotel_m2_preb": 0.64
+  },
+  "110": {
+   "group": "srednje",
+   "neighbours": [
+    54,
+    57,
+    60,
+    99,
+    120,
+    121,
+    199,
+    211
+   ],
+   "density": 64.7,
+   "hotel_m2_preb": 0.5
+  },
+  "111": {
+   "group": "srednje",
+   "neighbours": [
+    19,
+    35,
+    49,
+    136
+   ],
+   "density": 62.9,
+   "hotel_m2_preb": 2.06
+  },
+  "112": {
+   "group": "mestne",
+   "neighbours": [
+    16,
+    25,
+    76,
+    103,
+    126,
+    133,
+    141,
+    177
+   ],
+   "density": 98.3,
+   "hotel_m2_preb": 0.89
+  },
+  "113": {
+   "group": "srednje",
+   "neighbours": [
+    45,
+    69,
+    98,
+    108,
+    114,
+    144,
+    160,
+    167,
+    171,
+    198,
+    200
+   ],
+   "density": 101.3,
+   "hotel_m2_preb": 0.76
+  },
+  "114": {
+   "group": "goste",
+   "neighbours": [
+    113,
+    120,
+    124,
+    139,
+    144,
+    171,
+    200
+   ],
+   "density": 159,
+   "hotel_m2_preb": 0.77
+  },
+  "115": {
+   "group": "srednje",
+   "neighbours": [
+    26,
+    45,
+    70,
+    96,
+    98,
+    159,
+    160,
+    169
+   ],
+   "density": 120.1,
+   "hotel_m2_preb": 0.42
+  },
+  "116": {
+   "group": "redke",
+   "neighbours": [
+    29,
+    42,
+    63,
+    100,
+    153,
+    166,
+    182
+   ],
+   "density": 54.5,
+   "hotel_m2_preb": 0.53
+  },
+  "117": {
+   "group": "goste",
+   "neighbours": [
+    12,
+    52,
+    71,
+    95,
+    138
+   ],
+   "density": 224.4,
+   "hotel_m2_preb": 0.58
+  },
+  "118": {
+   "group": "srednje",
+   "neighbours": [
+    55,
+    89,
+    181,
+    195,
+    210
+   ],
+   "density": 128.8,
+   "hotel_m2_preb": 0.78
+  },
+  "119": {
+   "group": "srednje",
+   "neighbours": [
+    54,
+    85,
+    121,
+    197,
+    206
+   ],
+   "density": 77.5,
+   "hotel_m2_preb": 0.5
+  },
+  "120": {
+   "group": "srednje",
+   "neighbours": [
+    11,
+    51,
+    54,
+    57,
+    92,
+    110,
+    114,
+    124,
+    127,
+    139,
+    154
+   ],
+   "density": 88.9,
+   "hotel_m2_preb": 0.41
+  },
+  "121": {
+   "group": "redke",
+   "neighbours": [
+    54,
+    110,
+    119,
+    199,
+    206
+   ],
+   "density": 58.4,
+   "hotel_m2_preb": 0.64
+  },
+  "122": {
+   "group": "goste",
+   "neighbours": [
+    21,
+    27,
+    52,
+    71,
+    146
+   ],
+   "density": 163.3,
+   "hotel_m2_preb": 0.69
+  },
+  "123": {
+   "group": "goste",
+   "neighbours": [
+    32,
+    37,
+    61,
+    134
+   ],
+   "density": 279.8,
+   "hotel_m2_preb": 0.26
+  },
+  "124": {
+   "group": "srednje",
+   "neighbours": [
+    92,
+    106,
+    114,
+    120,
+    200
+   ],
+   "density": 98.2,
+   "hotel_m2_preb": 0.16
+  },
+  "125": {
+   "group": "goste",
+   "neighbours": [
+    79,
+    126,
+    151,
+    173
+   ],
+   "density": 189.8,
+   "hotel_m2_preb": 0.17
+  },
+  "126": {
+   "group": "srednje",
+   "neighbours": [
+    16,
+    62,
+    79,
+    112,
+    125,
+    133,
+    173
+   ],
+   "density": 94.1,
+   "hotel_m2_preb": 1.91
+  },
+  "127": {
+   "group": "goste",
+   "neighbours": [
+    11,
+    57,
+    120
+   ],
+   "density": 161.5,
+   "hotel_m2_preb": 0.05
+  },
+  "128": {
+   "group": "redke",
+   "neighbours": [
+    4,
+    14,
+    36,
+    44,
+    46,
+    84,
+    146
+   ],
+   "density": 27.9,
+   "hotel_m2_preb": 2.17
+  },
+  "129": {
+   "group": "goste",
+   "neighbours": [
+    34,
+    99,
+    142,
+    174,
+    184,
+    190
+   ],
+   "density": 274,
+   "hotel_m2_preb": 0.23
+  },
+  "130": {
+   "group": "srednje",
+   "neighbours": [
+    39,
+    60,
+    170,
+    193,
+    194,
+    199,
+    212
+   ],
+   "density": 84.8,
+   "hotel_m2_preb": 0.54
+  },
+  "131": {
+   "group": "srednje",
+   "neighbours": [
+    52,
+    82,
+    95,
+    102,
+    163,
+    192
+   ],
+   "density": 96.8,
+   "hotel_m2_preb": 0.25
+  },
+  "132": {
+   "group": "srednje",
+   "neighbours": [
+    2,
+    15,
+    59,
+    78,
+    156,
+    187
+   ],
+   "density": 128.7,
+   "hotel_m2_preb": 0.41
+  },
+  "133": {
+   "group": "mestne",
+   "neighbours": [
+    76,
+    112,
+    126,
+    155,
+    173,
+    190
+   ],
+   "density": 402.8,
+   "hotel_m2_preb": 0.52
+  },
+  "134": {
+   "group": "redke",
+   "neighbours": [
+    8,
+    13,
+    20,
+    32,
+    37,
+    104,
+    123,
+    150,
+    179
+   ],
+   "density": 44,
+   "hotel_m2_preb": 0.29
+  },
+  "136": {
+   "group": "redke",
+   "neighbours": [
+    1,
+    19,
+    49,
+    94,
+    111
+   ],
+   "density": 54.7,
+   "hotel_m2_preb": 0.66
+  },
+  "138": {
+   "group": "goste",
+   "neighbours": [
+    12,
+    61,
+    71,
+    72,
+    117,
+    164
+   ],
+   "density": 168.8,
+   "hotel_m2_preb": 0.31
+  },
+  "140": {
+   "group": "goste",
+   "neighbours": [
+    5,
+    8,
+    13,
+    21,
+    64,
+    162,
+    208
+   ],
+   "density": 158.2,
+   "hotel_m2_preb": 0.36
+  },
+  "142": {
+   "group": "srednje",
+   "neighbours": [
+    43,
+    60,
+    68,
+    77,
+    99,
+    129,
+    184,
+    189
+   ],
+   "density": 111.1,
+   "hotel_m2_preb": 0.45
+  },
+  "144": {
+   "group": "turisticne",
+   "neighbours": [
+    76,
+    113,
+    114,
+    137,
+    139,
+    167,
+    171
+   ],
+   "density": 99.4,
+   "hotel_m2_preb": 3.25
+  },
+  "147": {
+   "group": "srednje",
+   "neighbours": [
+    14,
+    27,
+    36,
+    64
+   ],
+   "density": 104.8,
+   "hotel_m2_preb": 0.3
+  },
+  "35": {
+   "group": "redke",
+   "neighbours": [
+    19,
+    38,
+    50,
+    111
+   ],
+   "density": 28,
+   "hotel_m2_preb": 2.35
+  },
+  "38": {
+   "group": "redke",
+   "neighbours": [
+    19,
+    35,
+    65,
+    91
+   ],
+   "density": 27.4,
+   "hotel_m2_preb": 0.85
+  },
+  "41": {
+   "group": "goste",
+   "neighbours": [
+    3,
+    53,
+    192,
+    207
+   ],
+   "density": 286.8,
+   "hotel_m2_preb": 0.29
+  },
+  "43": {
+   "group": "srednje",
+   "neighbours": [
+    12,
+    23,
+    30,
+    67,
+    68,
+    72,
+    83,
+    95,
+    142,
+    163,
+    164,
+    180,
+    189
+   ],
+   "density": 112.3,
+   "hotel_m2_preb": 1.16
+  },
+  "45": {
+   "group": "srednje",
+   "neighbours": [
+    69,
+    98,
+    113,
+    115,
+    135,
+    159
+   ],
+   "density": 92.5,
+   "hotel_m2_preb": 0.49
+  },
+  "47": {
+   "group": "redke",
+   "neighbours": [
+    78,
+    156
+   ],
+   "density": 25.4,
+   "hotel_m2_preb": 0.43
+  },
+  "49": {
+   "group": "redke",
+   "neighbours": [
+    1,
+    75,
+    84,
+    111,
+    136
+   ],
+   "density": 33.9,
+   "hotel_m2_preb": 1.17
+  },
+  "50": {
+   "group": "mestne",
+   "neighbours": [
+    35,
+    40,
+    90,
+    213
+   ],
+   "density": 180.6,
+   "hotel_m2_preb": 0.72
+  },
+  "52": {
+   "group": "mestne",
+   "neighbours": [
+    4,
+    71,
+    82,
+    95,
+    102,
+    117,
+    122,
+    131,
+    146,
+    163
+   ],
+   "density": 381,
+   "hotel_m2_preb": 0.41
+  },
+  "53": {
+   "group": "turisticne",
+   "neighbours": [
+    4,
+    6,
+    41,
+    207
+   ],
+   "density": 20.1,
+   "hotel_m2_preb": 12.24
+  },
+  "56": {
+   "group": "srednje",
+   "neighbours": [
+    31,
+    105,
+    158
+   ],
+   "density": 72.8,
+   "hotel_m2_preb": 0.88
+  },
+  "57": {
+   "group": "srednje",
+   "neighbours": [
+    11,
+    34,
+    99,
+    110,
+    120,
+    127,
+    154,
+    190
+   ],
+   "density": 65.9,
+   "hotel_m2_preb": 3.02
+  },
+  "59": {
+   "group": "srednje",
+   "neighbours": [
+    15,
+    132,
+    156,
+    187
+   ],
+   "density": 83.3,
+   "hotel_m2_preb": 1.73
+  },
+  "61": {
+   "group": "mestne",
+   "neighbours": [
+    8,
+    21,
+    22,
+    23,
+    32,
+    37,
+    39,
+    60,
+    71,
+    72,
+    123,
+    138,
+    186,
+    194
+   ],
+   "density": 1101.2,
+   "hotel_m2_preb": 0.69
+  },
+  "63": {
+   "group": "srednje",
+   "neighbours": [
+    2,
+    15,
+    42,
+    87,
+    116,
+    166,
+    176,
+    188,
+    205
+   ],
+   "density": 101.3,
+   "hotel_m2_preb": 1.32
+  },
+  "65": {
+   "group": "redke",
+   "neighbours": [
+    13,
+    38,
+    66,
+    91,
+    150
+   ],
+   "density": 21,
+   "hotel_m2_preb": 0.67
+  },
+  "68": {
+   "group": "srednje",
+   "neighbours": [
+    23,
+    43,
+    77,
+    142
+   ],
+   "density": 82.8,
+   "hotel_m2_preb": 0.74
+  },
+  "70": {
+   "group": "mestne",
+   "neighbours": [
+    26,
+    55,
+    58,
+    89,
+    108,
+    115,
+    160,
+    169,
+    178
+   ],
+   "density": 778.8,
+   "hotel_m2_preb": 0.94
+  },
+  "71": {
+   "group": "goste",
+   "neighbours": [
+    21,
+    52,
+    61,
+    117,
+    122,
+    138
+   ],
+   "density": 226.4,
+   "hotel_m2_preb": 0.8
+  },
+  "73": {
+   "group": "srednje",
+   "neighbours": [
+    17,
+    85,
+    109
+   ],
+   "density": 78.7,
+   "hotel_m2_preb": 0.67
+  },
+  "75": {
+   "group": "srednje",
+   "neighbours": [
+    49,
+    84,
+    183,
+    201
+   ],
+   "density": 80.8,
+   "hotel_m2_preb": 0.74
+  },
+  "79": {
+   "group": "srednje",
+   "neighbours": [
+    62,
+    83,
+    125,
+    126,
+    151,
+    209
+   ],
+   "density": 83,
+   "hotel_m2_preb": 1.88
+  },
+  "81": {
+   "group": "srednje",
+   "neighbours": [
+    25,
+    101,
+    141
+   ],
+   "density": 85.5,
+   "hotel_m2_preb": 0.87
+  },
+  "82": {
+   "group": "goste",
+   "neighbours": [
+    52,
+    102,
+    131
+   ],
+   "density": 194.5,
+   "hotel_m2_preb": 1.23
+  },
+  "83": {
+   "group": "srednje",
+   "neighbours": [
+    30,
+    43,
+    79,
+    151,
+    189,
+    209
+   ],
+   "density": 61.5,
+   "hotel_m2_preb": 0.29
+  },
+  "85": {
+   "group": "mestne",
+   "neighbours": [
+    73,
+    109,
+    119,
+    157,
+    170,
+    199,
+    203,
+    206
+   ],
+   "density": 164.1,
+   "hotel_m2_preb": 0.92
+  },
+  "88": {
+   "group": "turisticne",
+   "neighbours": [
+    48,
+    66,
+    165
+   ],
+   "density": 9,
+   "hotel_m2_preb": 4.06
+  },
+  "90": {
+   "group": "turisticne",
+   "neighbours": [
+    40,
+    50
+   ],
+   "density": 418.5,
+   "hotel_m2_preb": 9.71
+  },
+  "91": {
+   "group": "redke",
+   "neighbours": [
+    13,
+    19,
+    38,
+    65,
+    94
+   ],
+   "density": 27.6,
+   "hotel_m2_preb": 0.87
+  },
+  "93": {
+   "group": "redke",
+   "neighbours": [
+    101,
+    167,
+    177,
+    178
+   ],
+   "density": 21.6,
+   "hotel_m2_preb": 0.27
+  },
+  "96": {
+   "group": "mestne",
+   "neighbours": [
+    18,
+    24,
+    26,
+    42,
+    58,
+    115,
+    135,
+    159,
+    168
+   ],
+   "density": 358.9,
+   "hotel_m2_preb": 1.15
+  },
+  "97": {
+   "group": "redke",
+   "neighbours": [
+    10,
+    31,
+    78,
+    80,
+    105,
+    152,
+    158
+   ],
+   "density": 53.7,
+   "hotel_m2_preb": 1.12
+  },
+  "99": {
+   "group": "srednje",
+   "neighbours": [
+    34,
+    57,
+    60,
+    110,
+    129,
+    142
+   ],
+   "density": 77.8,
+   "hotel_m2_preb": 0.67
+  },
+  "135": {
+   "group": "srednje",
+   "neighbours": [
+    45,
+    69,
+    96,
+    159,
+    168,
+    172,
+    191,
+    196
+   ],
+   "density": 70.1,
+   "hotel_m2_preb": 0.48
+  },
+  "137": {
+   "group": "redke",
+   "neighbours": [
+    76,
+    139,
+    144,
+    155
+   ],
+   "density": 37.1,
+   "hotel_m2_preb": 0.77
+  },
+  "139": {
+   "group": "srednje",
+   "neighbours": [
+    11,
+    114,
+    120,
+    137,
+    144,
+    155
+   ],
+   "density": 124.3,
+   "hotel_m2_preb": 0.23
+  },
+  "141": {
+   "group": "redke",
+   "neighbours": [
+    25,
+    81,
+    101,
+    112,
+    177
+   ],
+   "density": 51.8,
+   "hotel_m2_preb": 0.11
+  },
+  "143": {
+   "group": "srednje",
+   "neighbours": [
+    28,
+    196
+   ],
+   "density": 75.5,
+   "hotel_m2_preb": 0.22
+  },
+  "146": {
+   "group": "redke",
+   "neighbours": [
+    4,
+    14,
+    27,
+    52,
+    122,
+    128
+   ],
+   "density": 40.5,
+   "hotel_m2_preb": 1.12
+  },
+  "148": {
+   "group": "srednje",
+   "neighbours": [
+    29,
+    58,
+    181,
+    204
+   ],
+   "density": 112.9,
+   "hotel_m2_preb": 1.09
+  },
+  "149": {
+   "group": "redke",
+   "neighbours": [
+    9,
+    51,
+    92
+   ],
+   "density": 42.8,
+   "hotel_m2_preb": 0.58
+  },
+  "150": {
+   "group": "redke",
+   "neighbours": [
+    13,
+    65,
+    66,
+    134,
+    179
+   ],
+   "density": 20.8,
+   "hotel_m2_preb": 1.39
+  },
+  "151": {
+   "group": "srednje",
+   "neighbours": [
+    79,
+    83,
+    125,
+    173,
+    174,
+    184,
+    189
+   ],
+   "density": 107.4,
+   "hotel_m2_preb": 0.44
+  },
+  "152": {
+   "group": "redke",
+   "neighbours": [
+    10,
+    97,
+    105
+   ],
+   "density": 57.2,
+   "hotel_m2_preb": 1.23
+  },
+  "153": {
+   "group": "srednje",
+   "neighbours": [
+    29,
+    116,
+    182,
+    204
+   ],
+   "density": 91.9,
+   "hotel_m2_preb": 2.05
+  },
+  "154": {
+   "group": "redke",
+   "neighbours": [
+    57,
+    120
+   ],
+   "density": 55.2,
+   "hotel_m2_preb": 0.63
+  },
+  "155": {
+   "group": "turisticne",
+   "neighbours": [
+    11,
+    76,
+    133,
+    137,
+    139,
+    190
+   ],
+   "density": 74.1,
+   "hotel_m2_preb": 7.36
+  },
+  "156": {
+   "group": "redke",
+   "neighbours": [
+    47,
+    59,
+    78,
+    132
+   ],
+   "density": 39.1,
+   "hotel_m2_preb": 0.98
+  },
+  "157": {
+   "group": "turisticne",
+   "neighbours": [
+    48,
+    85,
+    109,
+    193,
+    203
+   ],
+   "density": 33.3,
+   "hotel_m2_preb": 5.29
+  },
+  "158": {
+   "group": "redke",
+   "neighbours": [
+    31,
+    56,
+    97,
+    105
+   ],
+   "density": 52.6,
+   "hotel_m2_preb": 1.42
+  },
+  "159": {
+   "group": "goste",
+   "neighbours": [
+    45,
+    96,
+    115,
+    135
+   ],
+   "density": 187.8,
+   "hotel_m2_preb": 1.1
+  },
+  "160": {
+   "group": "goste",
+   "neighbours": [
+    70,
+    98,
+    108,
+    113,
+    115,
+    169
+   ],
+   "density": 224.6,
+   "hotel_m2_preb": 1.65
+  },
+  "161": {
+   "group": "redke",
+   "neighbours": [
+    33
+   ],
+   "density": 18.5,
+   "hotel_m2_preb": 0.97
+  },
+  "162": {
+   "group": "srednje",
+   "neighbours": [
+    21,
+    140,
+    208
+   ],
+   "density": 95.1,
+   "hotel_m2_preb": 0.34
+  },
+  "163": {
+   "group": "turisticne",
+   "neighbours": [
+    43,
+    52,
+    95,
+    131,
+    180
+   ],
+   "density": 9.9,
+   "hotel_m2_preb": 7.11
+  },
+  "164": {
+   "group": "goste",
+   "neighbours": [
+    12,
+    43,
+    72,
+    138
+   ],
+   "density": 282.8,
+   "hotel_m2_preb": 0.61
+  },
+  "165": {
+   "group": "redke",
+   "neighbours": [
+    48,
+    88
+   ],
+   "density": 10.8,
+   "hotel_m2_preb": 2.25
+  },
+  "166": {
+   "group": "srednje",
+   "neighbours": [
+    63,
+    80,
+    100,
+    116,
+    188
+   ],
+   "density": 76.3,
+   "hotel_m2_preb": 0.81
+  },
+  "167": {
+   "group": "redke",
+   "neighbours": [
+    76,
+    93,
+    108,
+    113,
+    144,
+    177,
+    178
+   ],
+   "density": 35.4,
+   "hotel_m2_preb": 0.07
+  },
+  "170": {
+   "group": "srednje",
+   "neighbours": [
+    85,
+    130,
+    193,
+    199,
+    203
+   ],
+   "density": 67.4,
+   "hotel_m2_preb": 0.64
+  },
+  "171": {
+   "group": "srednje",
+   "neighbours": [
+    113,
+    114,
+    144
+   ],
+   "density": 126.5,
+   "hotel_m2_preb": 0.26
+  },
+  "172": {
+   "group": "redke",
+   "neighbours": [
+    135,
+    191
+   ],
+   "density": 39.7,
+   "hotel_m2_preb": 0.87
+  },
+  "174": {
+   "group": "srednje",
+   "neighbours": [
+    129,
+    151,
+    173,
+    184,
+    190
+   ],
+   "density": 131.1,
+   "hotel_m2_preb": 0.48
+  },
+  "176": {
+   "group": "srednje",
+   "neighbours": [
+    15,
+    63
+   ],
+   "density": 124.7,
+   "hotel_m2_preb": 0.64
+  },
+  "178": {
+   "group": "srednje",
+   "neighbours": [
+    70,
+    93,
+    108,
+    167
+   ],
+   "density": 67.6,
+   "hotel_m2_preb": 0.59
+  },
+  "180": {
+   "group": "turisticne",
+   "neighbours": [
+    16,
+    43,
+    67,
+    163
+   ],
+   "density": 4.8,
+   "hotel_m2_preb": 10.92
+  },
+  "183": {
+   "group": "goste",
+   "neighbours": [
+    75,
+    84,
+    201
+   ],
+   "density": 430.8,
+   "hotel_m2_preb": 0.71
+  },
+  "184": {
+   "group": "redke",
+   "neighbours": [
+    129,
+    142,
+    151,
+    174,
+    189
+   ],
+   "density": 52.8,
+   "hotel_m2_preb": 0.39
+  },
+  "185": {
+   "group": "srednje",
+   "neighbours": [
+    18,
+    58,
+    182,
+    204
+   ],
+   "density": 61.1,
+   "hotel_m2_preb": 0.74
+  },
+  "186": {
+   "group": "goste",
+   "neighbours": [
+    23,
+    61,
+    72
+   ],
+   "density": 464,
+   "hotel_m2_preb": 0.64
+  },
+  "188": {
+   "group": "turisticne",
+   "neighbours": [
+    2,
+    63,
+    80,
+    166
+   ],
+   "density": 113.2,
+   "hotel_m2_preb": 4.98
+  },
+  "191": {
+   "group": "redke",
+   "neighbours": [
+    69,
+    107,
+    135,
+    172
+   ],
+   "density": 34.1,
+   "hotel_m2_preb": 0.0
+  },
+  "193": {
+   "group": "redke",
+   "neighbours": [
+    20,
+    39,
+    48,
+    130,
+    157,
+    170,
+    203
+   ],
+   "density": 28.7,
+   "hotel_m2_preb": 0.78
+  },
+  "168": {
+   "group": "srednje",
+   "neighbours": [
+    24,
+    28,
+    96,
+    135,
+    196
+   ],
+   "density": 135.9,
+   "hotel_m2_preb": 0.43
+  },
+  "169": {
+   "group": "goste",
+   "neighbours": [
+    70,
+    115,
+    160
+   ],
+   "density": 583.7,
+   "hotel_m2_preb": 0.38
+  },
+  "173": {
+   "group": "goste",
+   "neighbours": [
+    125,
+    126,
+    133,
+    151,
+    174,
+    190
+   ],
+   "density": 199.3,
+   "hotel_m2_preb": 0.31
+  },
+  "175": {
+   "group": "srednje",
+   "neighbours": [
+    16,
+    74,
+    103
+   ],
+   "density": 114.8,
+   "hotel_m2_preb": 0.96
+  },
+  "177": {
+   "group": "turisticne",
+   "neighbours": [
+    76,
+    93,
+    101,
+    112,
+    141,
+    167
+   ],
+   "density": 18,
+   "hotel_m2_preb": 4.4
+  },
+  "179": {
+   "group": "redke",
+   "neighbours": [
+    66,
+    104,
+    134,
+    150
+   ],
+   "density": 47.7,
+   "hotel_m2_preb": 0.21
+  },
+  "181": {
+   "group": "srednje",
+   "neighbours": [
+    29,
+    58,
+    118,
+    148,
+    195,
+    210
+   ],
+   "density": 63.1,
+   "hotel_m2_preb": 1.58
+  },
+  "182": {
+   "group": "srednje",
+   "neighbours": [
+    18,
+    42,
+    116,
+    153,
+    185,
+    204
+   ],
+   "density": 67.5,
+   "hotel_m2_preb": 0.53
+  },
+  "187": {
+   "group": "srednje",
+   "neighbours": [
+    15,
+    59,
+    132
+   ],
+   "density": 73.8,
+   "hotel_m2_preb": 0.26
+  },
+  "189": {
+   "group": "redke",
+   "neighbours": [
+    43,
+    83,
+    142,
+    151,
+    184
+   ],
+   "density": 52.5,
+   "hotel_m2_preb": 1.38
+  },
+  "192": {
+   "group": "srednje",
+   "neighbours": [
+    3,
+    41,
+    102,
+    131
+   ],
+   "density": 106.2,
+   "hotel_m2_preb": 0.72
+  },
+  "190": {
+   "group": "goste",
+   "neighbours": [
+    11,
+    34,
+    57,
+    129,
+    133,
+    155,
+    173,
+    174
+   ],
+   "density": 185.6,
+   "hotel_m2_preb": 0.57
+  },
+  "194": {
+   "group": "srednje",
+   "neighbours": [
+    39,
+    60,
+    61,
+    130
+   ],
+   "density": 61.7,
+   "hotel_m2_preb": 0.32
+  },
+  "202": {
+   "group": "redke",
+   "neighbours": [
+    87
+   ],
+   "density": 55.7,
+   "hotel_m2_preb": 0.25
+  },
+  "203": {
+   "group": "srednje",
+   "neighbours": [
+    85,
+    157,
+    170,
+    193
+   ],
+   "density": 139.5,
+   "hotel_m2_preb": 0.27
+  },
+  "204": {
+   "group": "srednje",
+   "neighbours": [
+    29,
+    58,
+    148,
+    153,
+    182,
+    185
+   ],
+   "density": 88.7,
+   "hotel_m2_preb": 0.81
+  },
+  "205": {
+   "group": "redke",
+   "neighbours": [
+    24,
+    42,
+    63,
+    87
+   ],
+   "density": 51.9,
+   "hotel_m2_preb": 0.33
+  },
+  "206": {
+   "group": "turisticne",
+   "neighbours": [
+    85,
+    119,
+    121,
+    199
+   ],
+   "density": 105.5,
+   "hotel_m2_preb": 3.73
+  },
+  "195": {
+   "group": "srednje",
+   "neighbours": [
+    29,
+    118,
+    181
+   ],
+   "density": 66.7,
+   "hotel_m2_preb": 0.55
+  },
+  "196": {
+   "group": "srednje",
+   "neighbours": [
+    28,
+    135,
+    143,
+    168
+   ],
+   "density": 73.4,
+   "hotel_m2_preb": 0.89
+  },
+  "197": {
+   "group": "redke",
+   "neighbours": [
+    54,
+    119
+   ],
+   "density": 41.6,
+   "hotel_m2_preb": 1.64
+  },
+  "198": {
+   "group": "redke",
+   "neighbours": [
+    69,
+    106,
+    113,
+    200
+   ],
+   "density": 55.6,
+   "hotel_m2_preb": 0.26
+  },
+  "199": {
+   "group": "redke",
+   "neighbours": [
+    85,
+    110,
+    121,
+    130,
+    170,
+    206,
+    211,
+    212
+   ],
+   "density": 45.2,
+   "hotel_m2_preb": 0.26
+  },
+  "200": {
+   "group": "srednje",
+   "neighbours": [
+    106,
+    113,
+    114,
+    124,
+    198
+   ],
+   "density": 115,
+   "hotel_m2_preb": 0.41
+  },
+  "201": {
+   "group": "goste",
+   "neighbours": [
+    75,
+    84,
+    183
+   ],
+   "density": 150.1,
+   "hotel_m2_preb": 0.83
+  },
+  "207": {
+   "group": "redke",
+   "neighbours": [
+    3,
+    4,
+    41,
+    53
+   ],
+   "density": 23.5,
+   "hotel_m2_preb": 0.94
+  },
+  "208": {
+   "group": "goste",
+   "neighbours": [
+    8,
+    21,
+    140,
+    162
+   ],
+   "density": 352.1,
+   "hotel_m2_preb": 0.09
+  },
+  "209": {
+   "group": "srednje",
+   "neighbours": [
+    30,
+    62,
+    79,
+    83
+   ],
+   "density": 76.3,
+   "hotel_m2_preb": 0.83
+  },
+  "210": {
+   "group": "srednje",
+   "neighbours": [
+    58,
+    89,
+    118,
+    181
+   ],
+   "density": 72.8,
+   "hotel_m2_preb": 0.21
+  },
+  "211": {
+   "group": "redke",
+   "neighbours": [
+    60,
+    110,
+    199,
+    212
+   ],
+   "density": 59.4,
+   "hotel_m2_preb": 0.61
+  },
+  "212": {
+   "group": "srednje",
+   "neighbours": [
+    60,
+    130,
+    199,
+    211
+   ],
+   "density": 92.6,
+   "hotel_m2_preb": 0.45
+  },
+  "213": {
+   "group": "turisticne",
+   "neighbours": [
+    50
+   ],
+   "density": 427.2,
+   "hotel_m2_preb": 5.5
+  }
+ }
+}

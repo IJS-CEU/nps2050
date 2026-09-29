@@ -137,7 +137,9 @@ export interface ObModelArea {
   carriers_pct: Record<string, number>; nps_pct: Record<string, number>; above43_area_pct: number; known_pct: number; tk_factor?: number; name?: string;
   vse: ObVse;
   cilji?: ObCilji;
+  pot?: Record<string, { fe_gwh: number; fe_res_gwh: number; tgp_kt: number; ove_pct: number | null; fossil_pct: number | null }>;
 }
+export interface ObSkupine { groups: { id: string; name: string; n: number }[]; municipalities: Record<string, { group: string; neighbours: number[]; density: number; hotel_m2_preb: number }> }
 export interface ObCilji {
   prenova_m2_leto: Record<string, { '2026_2030': number; '2031_2040': number }>;
   prenova_skupaj_m2_leto: { '2026_2030': number; '2031_2040': number };
@@ -150,4 +152,4 @@ export interface ObVse {
   ove_pct: { res: number | null; nres: number | null; total: number | null }; fe_mwh_preb: { res: number; total: number }; tgp_t_preb: { res: number; total: number };
   nres_kwh_m2: number | null; nres_measured_area_pct: number | null; dh_ove_pct: number | null;
 }
-export interface ObcineModel { meta: Meta; carriers: { id: string; name: string }[]; classes: string[]; si: ObModelArea; municipalities: Record<string, ObModelArea> }
+export interface ObcineModel { meta: Meta; carriers: { id: string; name: string }[]; classes: string[]; si: ObModelArea & { pot: Record<string, { fe_gwh: number; tgp_kt: number }> }; municipalities: Record<string, ObModelArea> }

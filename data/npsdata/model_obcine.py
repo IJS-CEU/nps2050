@@ -29,7 +29,7 @@ from shapely.geometry import shape
 from .context import OUT, Context, write_csv, write_json
 from .draft import row
 from .numbers import num
-from . import cilji_obcin, kazalniki_obcin, model_nres
+from . import cilji_obcin, kazalniki_obcin, model_nres, projekcija_obcin, skupine_obcin
 from .context import DATA_DIR
 from .meritve import build_measured
 from .stavbe import CARRIERS, HEAT_CLASSES, build_table
@@ -324,7 +324,7 @@ def run(ctx: Context, df: pd.DataFrame, rr: dict, fond: dict, tk: pd.Series | No
         out[f'c_{c}'] = C[:, i]
     for i, k in enumerate(NPS):
         out[f'n_{k}'] = nps_share[:, i] * res.m2.to_numpy()
-    return {'buildings': out, 'factor': factor0, 'target_c': target_c, 'dh_m': dh_m}
+    return {'buildings': out, 'factor': factor0, 'target_c': target_c, 'dh_m': dh_m, 'Pe': Pe, 'arch': arch, 'w': w, 'cat': res.cat.to_numpy()}
 
 
 def build(ctx: Context) -> dict:
@@ -382,6 +382,17 @@ def build(ctx: Context) -> dict:
     ci = cilji_obcin.build(ctx, df, c, nres, muni, {'si': ixj['si'], 'm': {r['sifra']: json.loads((OUT / 'obcine' / f"{r['sifra']}.json").read_text(encoding='utf-8')) for r in ixj['municipalities']}})
     for sfx, v in ci.items():
         out[sfx]['cilji'] = v
+    pj = projekcija_obcin.build(ctx, rr, runs['osrednja'], nres, {'sdh': kz['_sdh'], 's_bar': kz['_s_bar']}, muni)
+    fos = (pd.concat([c[['obcina', 'c_gas', 'c_elko', 'fe']], nres[['obcina', 'c_gas', 'c_elko', 'fe']]]).groupby('obcina').sum())
+    for sfx, v in pj.items():
+        vse = out[sfx]['vse']
+        eid = next(e for e, (s_, _) in muni.items() if str(s_) == sfx)
+        f = fos.loc[eid]
+        # izhodišče 2023 enako kot v bloku »vse« (ista umeritev), fosilna goriva iz izhodiščnih energentov
+        v['2023'] = {'fe_gwh': vse['fe_gwh']['total'], 'fe_res_gwh': vse['fe_gwh']['res'], 'tgp_kt': vse['tgp_kt']['total'], 'ove_pct': vse['ove_pct']['total'],
+                     'fossil_pct': round(100 * (f.c_gas + f.c_elko) / f.fe, 1)}
+        out[sfx]['pot'] = v
+    si_pot = {y: {'fe_gwh': round(sum(v[y]['fe_gwh'] for v in pj.values()), 1), 'tgp_kt': round(sum(v[y]['tgp_kt'] for v in pj.values()), 1)} for y in ('2023', '2030', '2040', '2050')}
     data = {
         'meta': ctx.meta([
             'Model RenRates (arhetipi, razporeditev po razredih toplotnih potreb, specifična končna energija, kalibracija λ na bilanco 2024)',
@@ -399,10 +410,11 @@ def build(ctx: Context) -> dict:
         'carriers': [{'id': 'el', 'name': 'električna energija'}, {'id': 'amb', 'name': 'toplota okolice in sončna energija'}, {'id': 'gas', 'name': 'plin (zemeljski, UNP)'},
                      {'id': 'elko', 'name': 'kurilno olje'}, {'id': 'bio', 'name': 'lesna biomasa'}, {'id': 'dh', 'name': 'daljinska toplota'}],
         'classes': NPS,
-        'si': {**agg(c, lo, hi), 'vse': kz['si']},
+        'si': {**agg(c, lo, hi), 'vse': kz['si'], 'pot': si_pot},
         'pop_period': kz['pop_period'],
         'municipalities': out,
     }
+    skupine_obcin.build(ctx, df)
     write_json('obcine_model', data)
     # Za zemljevid: modelska kazalnika dodamo v kazalo občin.
     ix = json.loads((OUT / 'obcine_index.json').read_text(encoding='utf-8'))

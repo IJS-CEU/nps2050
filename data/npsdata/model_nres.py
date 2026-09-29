@@ -126,4 +126,5 @@ def run(ctx, df: pd.DataFrame, meas: pd.DataFrame, rr: dict, dh_m: set) -> pd.Da
     for i, c in enumerate(CARRIERS):
         out[f'c_{c}'] = C[:, i]
     out['fe'] = C.sum(1)
+    out.attrs['Pe'], out.attrs['arch'], out.attrs['w'] = Pe, arch, w
     return out

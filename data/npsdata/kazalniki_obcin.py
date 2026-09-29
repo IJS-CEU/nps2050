@@ -112,4 +112,4 @@ def build(ctx, res: pd.DataFrame, nres: pd.DataFrame, muni: dict, pop_path) -> d
     si['s_el_pct'] = round(100 * res_out['res']['s_el'], 1)
     si['dh_ove_pct'] = round(100 * s_bar, 1)
     ctx.check(abs(si['tgp_kt']['total'] - (tgp_t['res'] + tgp_t['nres']) / 1e6) < 1, f'kazalniki: emisije vseh stavb {si["tgp_kt"]["total"]} kt = osnutek')
-    return {'si': si, 'municipalities': out, 'pop_period': pop.get('polletje')}
+    return {'si': si, 'municipalities': out, 'pop_period': pop.get('polletje'), '_sdh': sdh, '_s_bar': s_bar}
