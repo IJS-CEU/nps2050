@@ -29,7 +29,7 @@ const bucket = (y: number | null, rec: boolean) => (y === null ? (rec ? 'letno' 
   </div>
   <p class="up-count" id="up-count" aria-live="polite">Prikazanih je vseh {d.measures.length} ukrepov.</p>
 
-  <div class="up-list">
+  <div class="up-list" id="up-list">
     {d.measures.map((m) => (
       <details class="up-m" data-areas={m.areas.join(' ')} data-kinds={m.kinds.join(' ')} data-group={m.group === 'nps' ? 'nps' : 'nepn'}
                data-dl={bucket(m.first_deadline, m.recurring)} data-text={`${m.id} ${m.name} ${m.responsible.join(' ')} ${m.activities.map((a) => a.text).join(' ')}`.toLowerCase()}>
@@ -60,6 +60,7 @@ const bucket = (y: number | null, rec: boolean) => (y === null ? (rec ? 'letno' 
       </details>
     ))}
   </div>
+  <button type="button" class="up-more js-only" id="up-more" aria-controls="up-list" aria-expanded="false"></button>
   <p class="note">Področja EPBD: {Object.entries(d.areas).map(([k, a], i) => <>{i > 0 && ' · '}<b>{k}</b> {a.name.toLowerCase()}</>)}.</p>
   <div class="chart-tools"><span class="lbl">Prenesi:</span><a class="tool" href={withBase('data/csv/ukrepi.csv')} download>CSV (vsi ukrepi in aktivnosti)</a></div>
 </section>
@@ -73,11 +74,15 @@ const bucket = (y: number | null, rec: boolean) => (y === null ? (rec ? 'letno' 
   .up-list { display: grid; gap: .5rem; }
   .up-m { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
   .up-m[open] { border-color: var(--green); }
-  .up-m summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: auto 1fr; gap: .2rem .8rem; padding: .75rem 1rem; align-items: start; }
+  .up-m summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: auto 1fr; gap: .15rem .8rem; padding: .55rem .9rem; align-items: start; }
   .up-m summary::-webkit-details-marker { display: none; }
   .up-id { font-weight: 800; font-size: .82rem; background: var(--panel2); color: var(--ink2); border-radius: 6px; padding: .15rem .45rem; min-width: 3.4rem; text-align: center; font-variant-numeric: tabular-nums; }
   .up-id.is-new { background: var(--greenbg); color: var(--green); }
-  .up-name { font-weight: 600; line-height: 1.35; }
+  .up-name { font-weight: 600; line-height: 1.3; font-size: .93rem; }
+  .up-list { gap: .35rem !important; }
+  .up-more { margin: .7rem 0 1rem; font: inherit; font-weight: 700; font-size: .9rem; color: var(--green); background: var(--panel); border: 1px solid var(--green); border-radius: 8px; padding: .45rem 1rem; cursor: pointer; }
+  .up-more:hover { background: var(--greenbg); }
+  .up-more[hidden] { display: none; }
   .up-meta { grid-column: 2; display: flex; flex-wrap: wrap; gap: .3rem; align-items: center; }
   .up-area { font-size: .7rem; font-weight: 700; text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 0 .45rem; color: var(--ink2); }
   .up-dl { font-size: .75rem; color: var(--ink2); margin-left: .2rem; }
@@ -98,21 +103,39 @@ const bucket = (y: number | null, rec: boolean) => (y === null ? (rec ? 'letno' 
   if (q) {
     const area = $<HTMLSelectElement>('up-area')!, kind = $<HTMLSelectElement>('up-kind')!, group = $<HTMLSelectElement>('up-group')!, dl = $<HTMLSelectElement>('up-dl')!;
     const count = $('up-count')!;
+    const more = $<HTMLButtonElement>('up-more')!;
     const items = [...document.querySelectorAll<HTMLDetailsElement>('.up-m')];
+    const PREVIEW = 6; // brez filtrov se privzeto pokaže le prvih nekaj ukrepov
+    let expanded = false;
     const apply = () => {
       const s = q.value.trim().toLowerCase();
-      let n = 0;
+      const filtered = Boolean(s || area.value || kind.value || group.value || dl.value);
+      let n = 0, shown = 0;
       for (const it of items) {
         const ok = (!area.value || it.dataset.areas!.split(' ').includes(area.value))
           && (!kind.value || it.dataset.kinds!.split(' ').includes(kind.value))
           && (!group.value || it.dataset.group === group.value)
           && (!dl.value || it.dataset.dl === dl.value)
           && (!s || it.dataset.text!.includes(s));
-        it.hidden = !ok;
         if (ok) n++;
+        const visible = ok && (filtered || expanded || n <= PREVIEW);
+        it.hidden = !visible;
+        if (visible) shown++;
       }
-      count.textContent = n === items.length ? `Prikazanih je vseh ${n} ukrepov.` : `Prikazanih je ${n} od ${items.length} ukrepov.`;
+      const all = n === items.length;
+      count.textContent = filtered
+        ? `Zadetkov: ${n} od ${items.length} ukrepov.`
+        : shown < n ? `Prikazanih je prvih ${shown} od ${n} ukrepov.` : `Prikazanih je vseh ${n} ukrepov.`;
+      more.hidden = filtered || !all;
+      more.textContent = expanded ? 'Skrči seznam' : `Prikaži vseh ${items.length} ukrepov`;
+      more.setAttribute('aria-expanded', String(expanded));
     };
+    more.addEventListener('click', () => {
+      expanded = !expanded;
+      apply();
+      if (!expanded) document.getElementById('pregled-ukrepov')?.scrollIntoView({ block: 'start' });
+    });
+    apply();
     [q, area, kind, group, dl].forEach((e) => e.addEventListener('input', apply));
   }
 </script>
