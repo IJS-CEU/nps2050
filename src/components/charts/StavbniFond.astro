@@ -116,7 +116,9 @@ const s = d.segments;
         data: cats.map((c) => {
           const v = fn(c);
           return v === null ? null : {
-            value: v, itemStyle: { ...gap, borderRadius: typeof radius === 'function' ? radius(c) : radius, opacity: c.id === selected ? 1 : 0.55 },
+            // Izbrana kategorija: temna obroba (ne bledenje ostalih, da ostanejo barve in izvoz slike nespremenjeni).
+            value: v, itemStyle: { ...gap, borderRadius: typeof radius === 'function' ? radius(c) : radius,
+              ...(c.id === selected ? { borderColor: t.ink, borderWidth: 1.5 } : {}) },
           };
         }),
         emphasis: { focus: 'none', itemStyle: { opacity: 1 } },

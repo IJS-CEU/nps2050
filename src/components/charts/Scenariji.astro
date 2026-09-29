@@ -109,13 +109,14 @@ const fe = n.indicators.koncna_energija.values.skupaj;
         const dot = (c: string) => ({ color: c, borderColor: t.panel, borderWidth: 2 });
         // Črte se leta 2050 zbližajo (76–78 %), zato brez napisov ob koncu – vrednosti so v opisu in preglednici.
         const line = (name: string, color: string, vals: number[], width = 2) => ({
-          name, type: 'line', data: vals, color, lineStyle: { width }, symbol: 'circle', symbolSize: 8, itemStyle: dot(color),
+          name, type: 'line', data: n.years.map((y, i) => [y, vals[i]]), color, lineStyle: { width }, symbol: 'circle', symbolSize: 8, itemStyle: dot(color),
         });
         return {
           ...o,
           legend: { ...o.legend, data: [...parts.map((s) => sectorName[s]), 'Stavbe skupaj'] },
           tooltip: { ...o.tooltip, trigger: 'axis', axisPointer: { type: 'line', lineStyle: { color: t.axis } }, formatter: (ps: any[]) => tip(ps[0].dataIndex) },
-          xAxis: yearAxis(t, { type: 'category', data: years, boundaryGap: false }),
+          // Leta so neenakomerno razmaknjena (2023, 2030, 2040, 2050), zato časovna os v pravem merilu.
+          xAxis: yearAxis(t, { type: 'value', min: n.years[0], max: n.years[n.years.length - 1], interval: 5 }),
           yAxis: valueAxis(t, { min: 0, max: 100, name: '%' }),
           series: [...parts.map((s) => line(sectorName[s], t.s[SECTOR_COLOR[s]], I.values[s])), line('Stavbe skupaj', t.ink, total)],
         };
@@ -149,16 +150,17 @@ const fe = n.indicators.koncna_energija.values.skupaj;
           ...o.tooltip, trigger: 'axis', axisPointer: { type: 'line', lineStyle: { color: t.axis } },
           formatter: (ps: any[]) => tipTitle(years[ps[0].dataIndex]) + scen.map((s) => tipRow(t.s[s.id.toLowerCase()], s.name, nf(S[s.id][ps[0].dataIndex], meta.dec) + meta.unit)).join(''),
         },
-        xAxis: yearAxis(t, { type: 'category', data: years, boundaryGap: false }),
+        // Časovna os v pravem merilu (indeks končne energije ima leta 2025, 2030, 2040, 2050).
+        xAxis: yearAxis(t, { type: 'value', min: S.years[0], max: S.years[S.years.length - 1], interval: 5 }),
         yAxis: valueAxis(t, { min: 0, name: ser === 'worst_fg_share_pct' ? '%' : '2025 = 100' }),
         series: scen.map((s) => {
           const c = t.s[s.id.toLowerCase()];
           return {
-            name: s.name, type: 'line', data: S[s.id], color: c, lineStyle: { width: 2 },
+            name: s.name, type: 'line', data: S.years.map((y, i) => [y, S[s.id][i]]), color: c, lineStyle: { width: 2 },
             symbol: SCEN_SYMBOL[s.id], symbolSize: s.id === 'S1' ? 11 : 9, itemStyle: { color: c, borderColor: t.panel, borderWidth: 2 },
             z: s.id === 'S2' ? 4 : 3,
             // Oznaka na koncu črte: ime scenarija (sekundarno kodiranje poleg barve in oblike točke).
-            endLabel: { show: true, distance: 8, color: t.ink2, fontSize: 11, formatter: (q: any) => `${s.id} ${nf(q.value, meta.dec)}${meta.unit}` },
+            endLabel: { show: true, distance: 8, color: t.ink2, fontSize: 11, formatter: (q: any) => `${s.id} ${nf(q.value[1], meta.dec)}${meta.unit}` },
             labelLayout: { moveOverlap: 'shiftY' },
           };
         }),

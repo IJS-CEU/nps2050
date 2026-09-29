@@ -1,5 +1,5 @@
 ---
-import { withBase } from '../i18n/routes';
+import { pageUrl, withBase } from '../i18n/routes';
 import { ui as t } from '../i18n/ui';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
@@ -23,6 +23,7 @@ if (existsSync(metaPath)) {
     <div>
       <p>{t.footerBy}</p>
       {draftDate && <p class="ver">{t.footerVersion} {draftDate}.</p>}
+      <p class="ver"><a href={pageUrl('mediji')}>Za medije</a> · <a href={pageUrl('preveri')}>Preverite svojo stavbo</a> · Podatki: CC BY 4.0</p>
     </div>
     <div class="logos">
       <img class="ijs" src={withBase('logos/ijs.png')} alt={t.logoIjs} width="173" height="28" />

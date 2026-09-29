@@ -81,3 +81,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .doc span { color: var(--ink2); font-size: .85rem; }
 .note { font-size: .85rem; color: var(--ink2); }
 .prose .card { margin: 1rem 0; max-width: 72ch; }
+.media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.media-grid figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: .6rem; }
+.media-grid img { display: block; width: 100%; height: auto; border-radius: 4px; background: #fff; }
+.media-grid figcaption { font-size: .85rem; color: var(--ink2); margin-top: .4rem; }

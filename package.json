@@ -10,7 +10,8 @@
     "astro": "astro",
     "data": "python data/build_all.py",
     "test:a11y": "node tests/a11y.mjs http://localhost:4321/",
-    "test:snap": "node tests/snap.mjs http://localhost:4321/"
+    "test:snap": "node tests/snap.mjs http://localhost:4321/",
+    "media": "node tests/media.mjs http://localhost:4321/"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

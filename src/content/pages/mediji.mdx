@@ -1,0 +1,47 @@
+---
+page: mediji
+title: 'Za medije'
+description: 'Ključne številke NPS 2050, grafi za prosto uporabo z navedbo vira in kontakt za novinarje.'
+lead: 'Ključne številke, grafi za prosto uporabo in kontakt. Vse gradivo je iz osnutka NPS 2050 in se lahko do sprejema načrta še spremeni.'
+---
+import Tiles from '../../components/Tiles.astro';
+import { pageUrl, withBase } from '../../i18n/routes';
+
+## NPS 2050 na kratko
+
+{/* Vir: NPS_v38, povzetek. */}
+
+- Nacionalni načrt prenove stavb do leta 2050 (NPS 2050) je dokument Ministrstva za infrastrukturo in energetiko. Slovenija ga mora Evropski komisiji predložiti do 31. decembra 2026.
+- Načrt določa, kako se do leta 2050 prenovi stavbni fond: stanovanjske stavbe, javne stavbe in stavbe zasebnega storitvenega sektorja.
+- Raba končne energije v stavbah naj bi se do leta 2050 zmanjšala za skoraj tretjino, emisije toplogrednih plinov pa za 90 %.
+- Za to je treba vsako leto prenoviti približno 2 % površine stavb, prednostno energetsko najslabše stavbe in celovito.
+- Za stanovanjske stavbe načrt ne določa obvezne prenove posamezne stavbe. Za nestanovanjske stavbe uvaja minimalne standarde energetske učinkovitosti z roki 2030 in 2033.
+- Strokovne podlage za načrt pripravlja Center za energetsko učinkovitost Instituta »Jožef Stefan« (IJS CEU).
+
+## Ključne številke
+
+<Tiles />
+
+## Grafi za prenos
+
+Grafi so v visoki ločljivosti (PNG), z naslovom in virom. Vsi drugi grafi so na voljo za prenos v obliki PNG, SVG in CSV na strani <a href={pageUrl('strokovne-podlage')}>Strokovne podlage</a>.
+
+<div class="media-grid">
+  <figure><a href={withBase('mediji/nps2050-trajektorija.png')} download><img src={withBase('mediji/nps2050-trajektorija.png')} alt="Graf: trajektorija rabe primarne energije stanovanjskih stavb, s 269 kWh/(m²·a) leta 2020 na 164 kWh/(m²·a) leta 2050, z najvišjimi vrednostmi po EPBD za leti 2030 in 2035." loading="lazy" /></a><figcaption>Trajektorija rabe primarne energije stanovanjskih stavb</figcaption></figure>
+  <figure><a href={withBase('mediji/nps2050-stavbni-fond.png')} download><img src={withBase('mediji/nps2050-stavbni-fond.png')} alt="Graf: uporabna površina stavbnega fonda po kategorijah EPBD; največ je enostanovanjskih hiš (58,3 mio m²) in večstanovanjskih stavb (21,9 mio m²)." loading="lazy" /></a><figcaption>Stavbni fond po kategorijah</figcaption></figure>
+  <figure><a href={withBase('mediji/nps2050-koncna-energija.png')} download><img src={withBase('mediji/nps2050-koncna-energija.png')} alt="Graf: končna raba energije v stavbah po sektorjih, s 1.149 ktoe leta 2023 na 792 ktoe leta 2050." loading="lazy" /></a><figcaption>Končna raba energije v stavbah po sektorjih</figcaption></figure>
+  <figure><a href={withBase('mediji/nps2050-primerjava-strategij.png')} download><img src={withBase('mediji/nps2050-primerjava-strategij.png')} alt="Graf: primerjava strategij spodbujanja prenov; končna energija leta 2050 v indeksu (2025 = 100): S0 79, S1 63, S2 58." loading="lazy" /></a><figcaption>Primerjava strategij spodbujanja prenov S0–S2</figcaption></figure>
+</div>
+
+## Navedba vira
+
+Grafi in podatki so objavljeni pod licenco <a href="https://creativecommons.org/licenses/by/4.0/deed.sl">CC BY 4.0</a>. Uporabite jih lahko prosto, z navedbo vira:
+
+<p class="card"><strong>Vir: IJS CEU, strokovne podlage NPS 2050 (osnutek, 2026).</strong></p>
+
+## Kontakt
+
+<div class="docs">
+  <div class="doc"><b>Strokovne podlage (IJS CEU)</b><span>Gašper Stegnar, Center za energetsko učinkovitost, Institut »Jožef Stefan«<br /><span class="fill">[e-naslov – dopolni]</span></span></div>
+  <div class="doc"><b>NPS 2050 in javna obravnava</b><span>Ministrstvo za infrastrukturo in energetiko<br /><a href="mailto:gp.mzie@gov.si">{'gp.mzie@gov.si'}</a></span></div>
+</div>
