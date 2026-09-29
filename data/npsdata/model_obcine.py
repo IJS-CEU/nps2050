@@ -29,6 +29,9 @@ from shapely.geometry import shape
 from .context import OUT, Context, write_csv, write_json
 from .draft import row
 from .numbers import num
+from . import kazalniki_obcin, model_nres
+from .context import DATA_DIR
+from .meritve import build_measured
 from .stavbe import CARRIERS, HEAT_CLASSES, build_table
 
 HC = HEAT_CLASSES
@@ -50,9 +53,11 @@ def load_renrates(ctx: Context) -> dict:
     cal = list(wb['1_Calib'].iter_rows(values_only=True))
     inp = list(wb['1_Inputs'].iter_rows(values_only=True))
     lam = float(cal[4][1])
-    arch = {}
+    lam_s = float(cal[5][1])
+    arch, arch_all = {}, {}
     for i in range(30):
         r = inp[10 + i]
+        arch_all[int(r[0])] = {'name': r[1], 'typ': r[2], 'stock': float(r[3] or 0), 'base': np.array(cal[9 + i][4:13], float), 'final': np.array(r[4:13], float)}
         if r[2] not in ('SFH', 'MFH'):
             continue
         arch[int(r[0])] = {'name': r[1], 'typ': r[2], 'stock': float(r[3] or 0),
@@ -67,9 +72,16 @@ def load_renrates(ctx: Context) -> dict:
     for j in range(1, 9):
         T[j, j], T[j, j - 1] = 1 - lam, lam
     T3 = np.linalg.matrix_power(T, 3)
+    Ts = np.zeros((9, 9))
+    Ts[0, 0] = 1
+    for j in range(1, 9):
+        Ts[j, j], Ts[j, j - 1] = 1 - lam_s, lam_s
+    T3s = np.linalg.matrix_power(Ts, 3)
     for a, d in arch.items():
         ctx.check(np.abs(d['base'] @ T3 - d['final']).max() < 1e-6, f'model: operator λ reproducira kalibracijo RenRates ({d["name"]})')
-    return {'lam': lam, 'arch': arch, 'fe': fe, 'T3': T3}
+    ok_s = all(np.abs(d['base'] @ T3s - d['final']).max() < 1e-6 for d in arch_all.values() if d['typ'] not in ('SFH', 'MFH') and d['stock'] > 0)
+    ctx.check(ok_s, 'model: operator λ za storitve reproducira kalibracijo RenRates (vsi nestanovanjski arhetipi)')
+    return {'lam': lam, 'arch': arch, 'arch_all': arch_all, 'fe': fe, 'T3': T3, 'T3s': T3s}
 
 
 def archetype(df: pd.DataFrame) -> pd.Series:
@@ -295,7 +307,7 @@ def run(ctx: Context, df: pd.DataFrame, rr: dict, fond: dict, tk: pd.Series | No
         out[f'c_{c}'] = C[:, i]
     for i, k in enumerate(NPS):
         out[f'n_{k}'] = nps_share[:, i] * res.m2.to_numpy()
-    return {'buildings': out, 'factor': factor0, 'target_c': target_c}
+    return {'buildings': out, 'factor': factor0, 'target_c': target_c, 'dh_m': dh_m}
 
 
 def build(ctx: Context) -> dict:
@@ -305,6 +317,8 @@ def build(ctx: Context) -> dict:
     tk = heat_map_by_municipality(ctx)
     runs = {k: run(ctx, df, rr, fond, tk, clip) for k, clip in VARIANTS.items()}
     c = runs['osrednja']['buildings']
+    meas = build_measured(ctx, df)
+    nres = model_nres.run(ctx, df, meas, rr, runs['osrednja']['dh_m'])
 
     # Kontrole
     fe_ktoe = c.fe.sum() / KWH_PER_KTOE
@@ -344,29 +358,48 @@ def build(ctx: Context) -> dict:
     for eid, g in c.groupby('obcina'):
         s, name = muni[eid]
         out[str(s)] = {'name': name, 'tk_factor': round(float(runs['osrednja']['factor'].get(eid, 1.0)), 3), **agg(g, gl.get_group(eid), gh.get_group(eid))}
+    kz = kazalniki_obcin.build(ctx, c, nres, muni, DATA_DIR / 'raw' / 'prebivalci.json')
+    for sfx, v in kz['municipalities'].items():
+        out[sfx]['vse'] = v
     data = {
         'meta': ctx.meta([
             'Model RenRates (arhetipi, razporeditev po razredih toplotnih potreb, specifična končna energija, kalibracija λ na bilanco 2024)',
             'Kataster nepremičnin GURS 2026, register energetskih izkaznic 28. 9. 2026, Eko sklad do 2025',
             'Toplotna karta potrebne toplote za ogrevanje 2020 (mreža 100 m, vse stavbe)',
-            f'{ctx.draft.name}: preglednice končne in primarne rabe po segmentih ter po energentih (stanovanjske stavbe, 2023)'],
+            f'{ctx.draft.name}: preglednice končne in primarne rabe po segmentih ter po energentih, emisij in OVE (2023)',
+            'Energetsko knjigovodstvo javnega sektorja (poročila za leto 2025) in merjene energetske izkaznice',
+            'AGEN-RS: Energetsko učinkoviti distribucijski sistemi toplote in hladu v letu 2025 (delež OVE po sistemih)',
+            'SURS: prebivalstvo po občinah, 1. 1. 2026'],
             note='Ocena modela, ne meritev. Stanovanjske stavbe. Končna in primarna raba sta usklajeni z bilanco (država), po občinah pa razdeljeni '
                  'po stavbah glede na arhetip, izkaznice, podprte ukrepe, vpisane obnove in toplotno karto. Razpon: različice uskladitve s toplotno karto. '
-                 'Razredi NPS in delež nad pragom 43 % so ocenjeni iz računskih razredov izkaznic (površina).'),
+                 'Razredi NPS in delež nad pragom 43 % so ocenjeni iz računskih razredov izkaznic (površina). '
+                 'Blok »vse«: stanovanjske in nestanovanjske stavbe (javne in zasebne storitvene), emisije TGP in delež OVE, umerjeni na osnutek; '
+                 'nestanovanjske stavbe z izmerjeno rabo iz energetskega knjigovodstva ali merjenih izkaznic, druge z modelom.'),
         'carriers': [{'id': 'el', 'name': 'električna energija'}, {'id': 'amb', 'name': 'toplota okolice in sončna energija'}, {'id': 'gas', 'name': 'plin (zemeljski, UNP)'},
                      {'id': 'elko', 'name': 'kurilno olje'}, {'id': 'bio', 'name': 'lesna biomasa'}, {'id': 'dh', 'name': 'daljinska toplota'}],
         'classes': NPS,
-        'si': agg(c, lo, hi),
+        'si': {**agg(c, lo, hi), 'vse': kz['si']},
+        'pop_period': kz['pop_period'],
         'municipalities': out,
     }
     write_json('obcine_model', data)
     # Za zemljevid: modelska kazalnika dodamo v kazalo občin.
     ix = json.loads((OUT / 'obcine_index.json').read_text(encoding='utf-8'))
+    def idx_fields(v):
+        a = v['vse']
+        return {'model_fe_kwh_m2': v['fe_kwh_m2'], 'model_above43_pct': v['above43_area_pct'],
+                'k_fe_mwh_preb': a['fe_mwh_preb']['total'], 'k_res_fe_mwh_preb': a['fe_mwh_preb']['res'], 'k_tgp_t_preb': a['tgp_t_preb']['total'],
+                'k_ove_pct': a['ove_pct']['total'], 'k_nres_kwh_m2': a['nres_kwh_m2'], 'pop': a['pop']}
     for r in ix['municipalities']:
-        v = out[str(r['sifra'])]
-        r['model_fe_kwh_m2'], r['model_above43_pct'] = v['fe_kwh_m2'], v['above43_area_pct']
-    ix['si']['model_fe_kwh_m2'], ix['si']['model_above43_pct'] = data['si']['fe_kwh_m2'], data['si']['above43_area_pct']
+        r.update(idx_fields(out[str(r['sifra'])]))
+    ix['si'].update(idx_fields(data['si']))
     write_json('obcine_index', ix)
+    write_csv('obcine_kazalniki', ['občina', 'šifra', 'prebivalci', 'končna energija vseh stavb [GWh]', 'stanovanjske [GWh]', 'nestanovanjske [GWh]',
+                                   'končna energija na prebivalca [MWh]', 'stanovanjske na prebivalca [MWh]', 'emisije TGP [kt CO2 ekv]', 'emisije na prebivalca [t]',
+                                   'delež OVE [%]', 'nestanovanjske [kWh/m²]', 'nestanovanjska površina z izmerjeno rabo [%]'],
+              [[v['name'], s, v['vse']['pop'], v['vse']['fe_gwh']['total'], v['vse']['fe_gwh']['res'], v['vse']['fe_gwh']['nres'], v['vse']['fe_mwh_preb']['total'],
+                v['vse']['fe_mwh_preb']['res'], v['vse']['tgp_kt']['total'], v['vse']['tgp_t_preb']['total'], v['vse']['ove_pct']['total'], v['vse']['nres_kwh_m2'],
+                v['vse']['nres_measured_area_pct']] for s, v in sorted(out.items(), key=lambda x: x[1]['name'])])
     write_csv('obcine_model', ['občina', 'šifra', 'končna raba [GWh]', 'razpon od', 'razpon do', 'končna raba [kWh/m²]', 'primarna raba [GWh]',
                                'primarna raba [kWh/m²]', 'površina nad pragom 43 % [%]'] + [f'energent {cc} [%]' for cc in CARRIERS] + [f'razred {k} [% površine]' for k in NPS],
               [[v['name'], s, v['fe_gwh'], v['fe_gwh_lo'], v['fe_gwh_hi'], v['fe_kwh_m2'], v['pe_gwh'], v['pe_kwh_m2'], v['above43_area_pct']]

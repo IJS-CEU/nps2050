@@ -4,7 +4,6 @@
  * Enakovredna preglednica z iskanjem je v ObcineSeznam.astro pod zemljevidom.
  */
 import ChartFigure from '../charts/ChartFigure.astro';
-import Seg from '../charts/Seg.astro';
 import { loadData, type ObcineIndex } from '../../lib/data';
 import { nf } from '../../lib/format';
 
@@ -15,34 +14,57 @@ const d = loadData<ObcineIndex>('obcine_index');
   title="Stavbe po občinah"
   subtitle="Izberite kazalnik; klik na občino odpre njeno stran"
   file="nps2050-obcine"
-  csv={[{ file: 'obcine.csv', label: 'CSV (vse občine)' }]}
-  ariaLabel={`Zemljevid 212 občin, obarvan po izbranem kazalniku. Privzeto: delež stanovanjske površine z veljavno energetsko izkaznico (Slovenija ${nf(d.si.ei_area_res_pct, 1)} %). Vse vrednosti so v preglednici občin pod zemljevidom.`}
+  csv={[{ file: 'obcine_kazalniki.csv', label: 'CSV (kazalniki)' }, { file: 'obcine.csv', label: 'CSV (registri)' }]}
+  ariaLabel={`Zemljevid 212 občin, obarvan po izbranem kazalniku. Privzeto: ocenjena končna energija vseh stavb na prebivalca (Slovenija ${nf(d.si.k_fe_mwh_preb, 1)} MWh). Vse vrednosti so v preglednici občin pod zemljevidom.`}
   height={460}
 >
   <Fragment slot="controls">
-    <Seg name="ob-mera" legend="Kazalnik" options={[
-      { value: 'ei_area_res_pct', label: 'Pokritost z izkaznicami' },
-      { value: 'pre1981_res_area_pct', label: 'Zgrajeno pred 1981' },
-      { value: 'es_res_any_pct', label: 'Ukrepi Eko sklada' },
-      { value: 'obnova_res_pct', label: 'Vpisane obnove' },
-      { value: 'model_fe_kwh_m2', label: 'Ocena: raba na m²' },
-      { value: 'model_above43_pct', label: 'Ocena: nad pragom 43 %' },
-    ]} />
+    <label class="ob-sel"><span class="ctl-label">Kazalnik</span>
+      <select id="ob-mera">
+        <optgroup label="Vse stavbe – primerjava občin (ocena)">
+          <option value="k_fe_mwh_preb">Končna energija na prebivalca</option>
+          <option value="k_tgp_t_preb">Emisije TGP na prebivalca</option>
+          <option value="k_ove_pct">Delež obnovljivih virov</option>
+          <option value="k_res_fe_mwh_preb">Stanovanjske stavbe: energija na prebivalca</option>
+          <option value="k_nres_kwh_m2">Nestanovanjske stavbe: energija na m²</option>
+        </optgroup>
+        <optgroup label="Stanovanjske stavbe – ocena modela">
+          <option value="model_fe_kwh_m2">Končna energija na m²</option>
+          <option value="model_above43_pct">Površina nad pragom 43 %</option>
+        </optgroup>
+        <optgroup label="Stanovanjske stavbe – registri">
+          <option value="ei_area_res_pct">Pokritost z izkaznicami</option>
+          <option value="pre1981_res_area_pct">Zgrajeno pred 1981</option>
+          <option value="es_res_any_pct">Ukrepi Eko sklada</option>
+          <option value="obnova_res_pct">Vpisane obnove</option>
+        </optgroup>
+      </select>
+    </label>
   </Fragment>
   <Fragment slot="caption">
-    <p id="ob-cap">Vsi kazalniki veljajo za stanovanjske stavbe (enostanovanjske hiše in večstanovanjske stavbe). Barve so razdeljene v pet razredov s podobnim številom občin. Kazalnika z oznako »Ocena« sta izračunana z modelom (metoda je opisana spodaj).</p>
-    <p>Viri: kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (podprte naložbe do 2025); meje: GURS RPE (CC BY 4.0).</p>
+    <p id="ob-cap">Barve so razdeljene v pet razredov s podobnim številom občin. Kazalniki z oceno so izračunani z modelom (metoda je opisana spodaj).</p>
+    <p>Viri: kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (do 2025), energetsko knjigovodstvo javnega sektorja (2025), AGEN-RS (daljinska toplota 2025), SURS (prebivalci 1. 1. 2026), model RenRates in osnutek NPS 2050; meje: GURS RPE (CC BY 4.0).</p>
   </Fragment>
   <Fragment slot="table">
     <p>Preglednica vseh občin z iskanjem je pod zemljevidom.</p>
   </Fragment>
 </ChartFigure>
 
+<style>
+  .ob-sel { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+  .ob-sel select { font: inherit; font-size: .9rem; padding: .35rem .5rem; border: 1px solid var(--ink2); border-radius: 6px; background: var(--panel); color: var(--ink); max-width: 100%; }
+</style>
+
 <script>
-  import { base, choice, echarts, mount, nf, tipRow, tipTitle, type Tokens } from '../../scripts/charts/core';
+  import { base, echarts, mount, nf, tipRow, tipTitle, type Tokens } from '../../scripts/charts/core';
   import type { ObcineIndex, ObIndexRow } from '../../lib/data';
 
-  const METRIC: Record<string, { label: string; si: (d: ObcineIndex) => number | null; cap: string; unit?: string }> = {
+  const METRIC: Record<string, { label: string; si: (d: ObcineIndex) => number | null; cap: string; unit?: string; dec?: number }> = {
+    k_fe_mwh_preb: { label: 'Končna energija vseh stavb na prebivalca', si: (d) => d.si.k_fe_mwh_preb, unit: ' MWh', dec: 1, cap: 'Ocena: letna končna energija vseh stavb (stanovanjskih, javnih in zasebnih storitvenih) na prebivalca. Občine s središči, bolnišnicami, šolami in turizmom imajo več nestanovanjskih stavb, ki služijo tudi prebivalcem drugih občin.' },
+    k_tgp_t_preb: { label: 'Emisije TGP vseh stavb na prebivalca', si: (d) => d.si.k_tgp_t_preb, unit: ' t CO₂ ekv.', dec: 2, cap: 'Ocena: letne emisije toplogrednih plinov iz stavb (neposredne in posredne) na prebivalca, umerjene na osnutek NPS 2050. Veljajo ista opozorila o središčih.' },
+    k_ove_pct: { label: 'Delež OVE v rabi energije stavb', si: (d) => d.si.k_ove_pct, cap: 'Ocena: delež obnovljivih virov v končni energiji vseh stavb (lesna biomasa, toplota okolice, sončna energija ter obnovljivi del elektrike in daljinske toplote).' },
+    k_res_fe_mwh_preb: { label: 'Končna energija stanovanjskih stavb na prebivalca', si: (d) => d.si.k_res_fe_mwh_preb, unit: ' MWh', dec: 1, cap: 'Ocena: letna končna energija stanovanjskih stavb na prebivalca. Najbolj primerljiv kazalnik med občinami.' },
+    k_nres_kwh_m2: { label: 'Končna energija nestanovanjskih stavb na m²', si: (d) => d.si.k_nres_kwh_m2, unit: ' kWh/m²', cap: 'Ocena: letna končna energija javnih in zasebnih storitvenih stavb na m² uporabne površine; kjer je na voljo, iz energetskega knjigovodstva ali merjenih izkaznic.' },
     ei_area_res_pct: { label: 'Stanovanjska površina z veljavno izkaznico', si: (d) => d.si.ei_area_res_pct, cap: 'Delež uporabne površine stanovanjskih stavb, ki imajo vsaj eno veljavno energetsko izkaznico.' },
     pre1981_res_area_pct: { label: 'Stanovanjska površina, zgrajena pred 1981', si: (d) => d.si.pre1981_res_area_pct, cap: 'Delež uporabne površine stanovanjskih stavb, zgrajenih pred prvimi toplotnimi predpisi (1981).' },
     es_res_any_pct: { label: 'Stanovanjske stavbe z ukrepom Eko sklada', si: (d) => d.si.es_res_any_pct, cap: 'Delež stanovanjskih stavb z vsaj eno naložbo, ki jo je podprl Eko sklad (izolacija, okna, ogrevanje, sončna elektrarna, prezračevanje).' },
@@ -54,17 +76,18 @@ const d = loadData<ObcineIndex>('obcine_index');
   const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   const get = async (f: string) => { const r = await fetch(`${b}data/${f}`); if (!r.ok) throw new Error(f); return r.json(); };
 
-  function breaks(vals: number[]): number[] {
+  function breaks(vals: number[], dec: number): number[] {
     const s = [...vals].sort((x, y) => x - y);
     const q = (p: number) => s[Math.min(s.length - 1, Math.floor(p * s.length))];
-    return [...new Set([0.2, 0.4, 0.6, 0.8].map((p) => Math.round(q(p))))];
+    const f = 10 ** dec;
+    return [...new Set([0.2, 0.4, 0.6, 0.8].map((p) => Math.round(q(p) * f) / f))];
   }
 
   async function init(fig: HTMLElement) {
     const [d, geo] = await Promise.all([get('obcine_index.json'), get('zemljevid_obcine.geojson')]) as [ObcineIndex, any];
     echarts.registerMap('nps-obcine-ob', geo);
     const byName: Record<string, ObIndexRow> = Object.fromEntries(d.municipalities.map((m) => [m.name, m]));
-    let metric = 'ei_area_res_pct';
+    let metric = 'k_fe_mwh_preb';
     const cap = fig.querySelector<HTMLElement>('#ob-cap')!;
     const capBase = cap.textContent!;
 
@@ -73,16 +96,18 @@ const d = loadData<ObcineIndex>('obcine_index');
       const cs = getComputedStyle(document.documentElement);
       const ramp = [1, 2, 3, 4, 5].map((i) => cs.getPropertyValue(`--map-${i}`).trim());
       const U = METRIC[metric].unit ?? ' %';
+      const D = METRIC[metric].dec ?? 0;
       const vals = d.municipalities.map((m) => (m as any)[metric]).filter((v: number | null) => v !== null) as number[];
-      const br = breaks(vals);
-      const edges = [Math.floor(Math.min(...vals)), ...br, Math.ceil(Math.max(...vals))];
+      const br = breaks(vals, D);
+      const f = 10 ** D;
+      const edges = [Math.floor(Math.min(...vals) * f) / f, ...br, Math.ceil(Math.max(...vals) * f) / f];
       const pieces = edges.slice(0, -1).map((lo, i) => ({
         min: lo, max: edges[i + 1], color: ramp[Math.round((i * (ramp.length - 1)) / Math.max(1, edges.length - 2))],
-        label: i === 0 ? `do ${nf(edges[1])}${U}` : i === edges.length - 2 ? `nad ${nf(lo)}${U}` : `${nf(lo)}–${nf(edges[i + 1])}${U}`,
+        label: i === 0 ? `do ${nf(edges[1], D)}${U}` : i === edges.length - 2 ? `nad ${nf(lo, D)}${U}` : `${nf(lo, D)}–${nf(edges[i + 1], D)}${U}`,
       }));
       const si = METRIC[metric].si(d);
       const u = METRIC[metric].unit ?? ' %';
-      const dec = u === ' %' ? 1 : 0;
+      const dec = METRIC[metric].dec ?? (u === ' %' ? 1 : 0);
       return {
         ...o,
         legend: { show: false },
@@ -113,7 +138,8 @@ const d = loadData<ObcineIndex>('obcine_index');
 
     const mo = mount(fig, render);
     mo.chart.on('click', (p: any) => { const m = byName[p.name]; if (m) location.href = `${b}obcina/${m.sifra}/`; });
-    choice(fig, 'ob-mera', (v) => { metric = v; cap.textContent = `${METRIC[v].cap} ${capBase}`; mo.redraw(); });
+    const sel = fig.querySelector<HTMLSelectElement>('#ob-mera')!;
+    sel.addEventListener('change', () => { metric = sel.value; cap.textContent = `${METRIC[metric].cap} ${capBase}`; mo.redraw(); });
     cap.textContent = `${METRIC[metric].cap} ${capBase}`;
   }
 

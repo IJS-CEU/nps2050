@@ -6,18 +6,20 @@ import { nf } from '../../lib/format';
 
 const d = loadData<ObcineIndex>('obcine_index');
 const rows = [...d.municipalities].sort((a, b) => a.name.localeCompare(b.name, 'sl'));
-const cols: { k: keyof (typeof rows)[number]; label: string; pct?: boolean }[] = [
+const cols: { k: keyof (typeof rows)[number]; label: string; pct?: boolean; dec?: number }[] = [
   { k: 'buildings', label: 'Stavbe' },
+  { k: 'k_fe_mwh_preb', label: 'MWh na preb.', dec: 1 },
+  { k: 'k_ove_pct', label: 'OVE', pct: true },
   { k: 'ei_area_res_pct', label: 'Z izkaznico', pct: true },
   { k: 'pre1981_res_area_pct', label: 'Pred 1981', pct: true },
   { k: 'es_res_any_pct', label: 'Z ukrepom Eko sklada', pct: true },
   { k: 'obnova_res_pct', label: 'Vpisana obnova', pct: true },
 ];
-const cell = (v: unknown, pct?: boolean) => (v === null || v === undefined ? '–' : pct ? `${nf(v as number, 1)} %` : nf(v as number));
+const cell = (v: unknown, pct?: boolean, dec?: number) => (v === null || v === undefined ? '–' : pct ? `${nf(v as number, 1)} %` : nf(v as number, dec));
 ---
 <section class="obs" aria-labelledby="obs-t">
   <h2 id="obs-t">Vse občine</h2>
-  <p class="obs-exp">Deleži veljajo za stanovanjske stavbe: <b>z izkaznico</b> – delež površine z veljavno energetsko izkaznico; <b>pred 1981</b> – delež površine, zgrajene pred letom 1981; <b>z ukrepom Eko sklada</b> – delež stavb z vsaj eno podprto naložbo; <b>vpisana obnova</b> – delež stavb z vpisanim letom obnove strehe, fasade ali oken.</p>
+  <p class="obs-exp"><b>MWh na preb.</b> in <b>OVE</b> sta ocena za vse stavbe (končna energija na prebivalca, delež obnovljivih virov). Drugi deleži veljajo za stanovanjske stavbe: <b>z izkaznico</b> – delež površine z veljavno energetsko izkaznico; <b>pred 1981</b> – delež površine, zgrajene pred letom 1981; <b>z ukrepom Eko sklada</b> – delež stavb z vsaj eno podprto naložbo; <b>vpisana obnova</b> – delež stavb z vpisanim letom obnove strehe, fasade ali oken.</p>
   <label class="obs-q js-only"><span>Poišči občino</span><input type="search" id="obs-q" placeholder="npr. Kranj" autocomplete="off" /></label>
   <p class="obs-n" id="obs-n" aria-live="polite"></p>
   <div class="tblwrap" tabindex="0" role="region" aria-labelledby="obs-t">
@@ -32,12 +34,12 @@ const cell = (v: unknown, pct?: boolean) => (v === null || v === undefined ? '�
         {rows.map((m) => (
           <tr data-name={m.name.toLowerCase()} data-v={JSON.stringify(Object.fromEntries(cols.map((c) => [c.k, m[c.k]])))}>
             <th scope="row"><a href={withBase(`obcina/${m.sifra}/`)}>{m.name}</a></th>
-            {cols.map((c) => <td class="num">{cell(m[c.k], c.pct)}</td>)}
+            {cols.map((c) => <td class="num">{cell(m[c.k], c.pct, c.dec)}</td>)}
           </tr>
         ))}
       </tbody>
       <tfoot>
-        <tr><th scope="row">Slovenija</th><td class="num">{nf(d.si.buildings)}</td><td class="num">{nf(d.si.ei_area_res_pct, 1)} %</td><td class="num">{nf(d.si.pre1981_res_area_pct, 1)} %</td><td class="num">{nf(d.si.es_res_any_pct, 1)} %</td><td class="num">{nf(d.si.obnova_res_pct, 1)} %</td></tr>
+        <tr><th scope="row">Slovenija</th><td class="num">{nf(d.si.buildings)}</td><td class="num">{nf(d.si.k_fe_mwh_preb, 1)}</td><td class="num">{nf(d.si.k_ove_pct, 1)} %</td><td class="num">{nf(d.si.ei_area_res_pct, 1)} %</td><td class="num">{nf(d.si.pre1981_res_area_pct, 1)} %</td><td class="num">{nf(d.si.es_res_any_pct, 1)} %</td><td class="num">{nf(d.si.obnova_res_pct, 1)} %</td></tr>
       </tfoot>
     </table>
   </div>

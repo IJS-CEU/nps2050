@@ -15,7 +15,9 @@
   "EI_izkaznice_energenti.csv",
   "Matrika_Ukrepov.xlsx",
   "IJS_2025_REPORT_posodobljen_VIB_2026-07-29.xlsx",
-  "TK_ogr2020.gpkg"
+  "TK_ogr2020.gpkg",
+  "KN_SLO_STAVBE_SLO_stavbe_20260830.zip",
+  "EK_porocanja.csv"
  ],
  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
  "datasets": [
@@ -31,5 +33,5 @@
   "obcine",
   "obcine_model"
  ],
- "checks": 717
+ "checks": 728
 }

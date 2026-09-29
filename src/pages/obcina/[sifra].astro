@@ -60,6 +60,16 @@ const clsBlocks = ['hise', 'bloki'].map((sid) => {
     rows: own ? [{ lab: 'Občina', c: own, n: g.ei_calc ?? 0 }, { lab: 'Slovenija', c: grouped ? groupSi(gs.classes_pct!) : gs.classes_pct!, n: gs.ei_calc ?? 0 }] : null,
   };
 });
+const va = mo.vse, vs = ms.vse;
+const cmpTile = (v: number | null, si: number | null, dec: number, unit: string, label: string) => ({ v: v === null ? '–' : nf(v, dec), unit, l: `${label} (Slovenija ${si === null ? '–' : nf(si, dec)}${unit.trim() === '%' ? ' %' : ''})` });
+const vTiles = [
+  cmpTile(va.fe_mwh_preb.total, vs.fe_mwh_preb.total, 1, ' MWh', 'končne energije vseh stavb na prebivalca na leto'),
+  cmpTile(va.tgp_t_preb.total, vs.tgp_t_preb.total, 2, ' t', 'emisij TGP iz stavb na prebivalca na leto'),
+  cmpTile(va.ove_pct.total, vs.ove_pct.total, 0, ' %', 'energije stavb iz obnovljivih virov'),
+  cmpTile(va.fe_mwh_preb.res, vs.fe_mwh_preb.res, 1, ' MWh', 'končne energije stanovanjskih stavb na prebivalca'),
+];
+const resShare = va.fe_gwh.total ? (100 * va.fe_gwh.res) / va.fe_gwh.total : 0;
+const resShareSi = (100 * vs.fe_gwh.res) / vs.fe_gwh.total;
 const carRows = [{ lab: 'Občina', c: mo.carriers_pct }, { lab: 'Slovenija', c: ms.carriers_pct }];
 const npsRows = [{ lab: 'Občina', c: mo.nps_pct }, { lab: 'Slovenija', c: ms.nps_pct }];
 const title = `Občina ${o.name}`;
@@ -177,6 +187,28 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
     </div>
     <p class="note">Leto obnove vpiše lastnik ali geodet ob spremembi v katastru. Vpis ne pove, ali je bila obnova energetska; starejši vpisi pogosto pomenijo le barvanje fasade ali menjavo kritine. V oceni modela zato štejejo le obnove od leta 2010.</p>
 
+
+
+    <section class="ob-model ob-vse" aria-labelledby="ob-vse-t">
+      <p class="ob-model-k">Ocena modela · vse stavbe</p>
+      <h2 id="ob-vse-t">Energija, emisije in obnovljivi viri v občini</h2>
+      <p>Stanovanjske, javne in zasebne storitvene stavbe skupaj, na prebivalca ({nf(va.pop)} prebivalcev, 1. 1. 2026). Vsota za Slovenijo se ujema z osnutkom NPS 2050 (končna energija, emisije in delež obnovljivih virov za izhodiščno leto 2023).</p>
+      <div class="tiles ob-tiles">
+        {vTiles.map((t) => <div class="tile"><div class="v">{t.v}<small>{t.unit}</small></div><div class="l">{t.l}</div></div>)}
+      </div>
+      <h3>Stanovanjske in nestanovanjske stavbe</h3>
+      {[{ lab: 'Občina', r: resShare, fe: va.fe_gwh }, { lab: 'Slovenija', r: resShareSi, fe: vs.fe_gwh }].map((x) => (
+        <div class="ob-stack">
+          <span class="ob-stack-l">{x.lab}<small>{nf(x.fe.total, 0)} GWh</small></span>
+          <div class="ob-bar" role="img" aria-label={`${x.lab}: stanovanjske stavbe ${nf(x.r, 0)} %, nestanovanjske ${nf(100 - x.r, 0)} % končne energije`}>
+            <span class="ob-c lt" style={`width:${x.r}%;background:#1F7A57`}>{x.r >= 12 && <b>stanovanjske {nf(x.r, 0)} %</b>}</span>
+            <span class="ob-c lt" style={`width:${100 - x.r}%;background:#2A6FC9`}>{100 - x.r >= 12 && <b>nestanovanjske {nf(100 - x.r, 0)} %</b>}</span>
+          </div>
+        </div>
+      ))}
+      <p class="note">Nestanovanjske stavbe porabijo {va.nres_kwh_m2 === null ? '–' : nf(va.nres_kwh_m2)} kWh/m² (Slovenija {nf(vs.nres_kwh_m2 ?? 0)}); za {va.nres_measured_area_pct === null ? '–' : nf(va.nres_measured_area_pct, 0)} % njihove površine je raba izmerjena (energetsko knjigovodstvo javnega sektorja 2025 ali merjena izkaznica), za druge ocenjena z modelom.{va.dh_ove_pct !== null && ` Daljinska toplota v občini je iz obnovljivih virov ${nf(va.dh_ove_pct, 0)} % (AGEN-RS, 2025).`}</p>
+      <p class="note"><strong>Pri primerjavi na prebivalca pazite:</strong> bolnišnice, srednje šole, trgovski centri in hoteli služijo tudi prebivalcem drugih občin in turistom. Zato imajo središča in turistične občine več energije na prebivalca, ne da bi bile njihove stavbe slabše. Podobno počitniška stanovanja in hiše (vikendi) nimajo stalnih prebivalcev, zato je v turističnih občinah višja tudi raba stanovanjskih stavb na prebivalca.</p>
+    </section>
 
     <section class="ob-model" aria-labelledby="ob-model-t">
       <p class="ob-model-k">Ocena modela</p>

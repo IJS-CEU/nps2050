@@ -7,10 +7,13 @@
    "Model RenRates (arhetipi, razporeditev po razredih toplotnih potreb, specifična končna energija, kalibracija λ na bilanco 2024)",
    "Kataster nepremičnin GURS 2026, register energetskih izkaznic 28. 9. 2026, Eko sklad do 2025",
    "Toplotna karta potrebne toplote za ogrevanje 2020 (mreža 100 m, vse stavbe)",
-   "NPS_v39: preglednice končne in primarne rabe po segmentih ter po energentih (stanovanjske stavbe, 2023)"
+   "NPS_v39: preglednice končne in primarne rabe po segmentih ter po energentih, emisij in OVE (2023)",
+   "Energetsko knjigovodstvo javnega sektorja (poročila za leto 2025) in merjene energetske izkaznice",
+   "AGEN-RS: Energetsko učinkoviti distribucijski sistemi toplote in hladu v letu 2025 (delež OVE po sistemih)",
+   "SURS: prebivalstvo po občinah, 1. 1. 2026"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "Ocena modela, ne meritev. Stanovanjske stavbe. Končna in primarna raba sta usklajeni z bilanco (država), po občinah pa razdeljeni po stavbah glede na arhetip, izkaznice, podprte ukrepe, vpisane obnove in toplotno karto. Razpon: različice uskladitve s toplotno karto. Razredi NPS in delež nad pragom 43 % so ocenjeni iz računskih razredov izkaznic (površina)."
+  "note": "Ocena modela, ne meritev. Stanovanjske stavbe. Končna in primarna raba sta usklajeni z bilanco (država), po občinah pa razdeljeni po stavbah glede na arhetip, izkaznice, podprte ukrepe, vpisane obnove in toplotno karto. Razpon: različice uskladitve s toplotno karto. Razredi NPS in delež nad pragom 43 % so ocenjeni iz računskih razredov izkaznic (površina). Blok »vse«: stanovanjske in nestanovanjske stavbe (javne in zasebne storitvene), emisije TGP in delež OVE, umerjeni na osnutek; nestanovanjske stavbe z izmerjeno rabo iz energetskega knjigovodstva ali merjenih izkaznic, druge z modelom."
  },
  "carriers": [
   {
@@ -72,8 +75,42 @@
    "G": 14.3
   },
   "above43_area_pct": 37.9,
-  "known_pct": 8.2
+  "known_pct": 8.2,
+  "vse": {
+   "pop": 2135107,
+   "fe_gwh": {
+    "res": 9316.7,
+    "nres": 3896.1,
+    "total": 13212.7
+   },
+   "tgp_kt": {
+    "res": 1308.9,
+    "nres": 832.9,
+    "total": 2141.8
+   },
+   "ove_pct": {
+    "res": 60.0,
+    "nres": 33.0,
+    "total": 52.0
+   },
+   "fe_mwh_preb": {
+    "res": 4.36,
+    "total": 6.19
+   },
+   "tgp_t_preb": {
+    "res": 0.61,
+    "total": 1.0
+   },
+   "nres_kwh_m2": 162,
+   "nres_measured_area_pct": 27.8,
+   "dh_ove_pct": 20.4,
+   "s_el_pct": {
+    "res": 30.9,
+    "nres": 46.1
+   }
+  }
  },
+ "pop_period": "2026H1",
  "municipalities": {
   "1": {
    "name": "Ajdovščina",
@@ -102,7 +139,36 @@
     "G": 13.4
    },
    "above43_area_pct": 37.8,
-   "known_pct": 5.8
+   "known_pct": 5.8,
+   "vse": {
+    "pop": 19977,
+    "fe_gwh": {
+     "res": 95.4,
+     "nres": 22.1,
+     "total": 117.5
+    },
+    "tgp_kt": {
+     "res": 11.99,
+     "nres": 4.9,
+     "total": 16.9
+    },
+    "ove_pct": {
+     "res": 65.2,
+     "nres": 30.0,
+     "total": 58.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.78,
+     "total": 5.88
+    },
+    "tgp_t_preb": {
+     "res": 0.6,
+     "total": 0.85
+    },
+    "nres_kwh_m2": 113,
+    "nres_measured_area_pct": 26.9,
+    "dh_ove_pct": 100.0
+   }
   },
   "2": {
    "name": "Beltinci",
@@ -131,7 +197,36 @@
     "G": 12.2
    },
    "above43_area_pct": 36.7,
-   "known_pct": 7.3
+   "known_pct": 7.3,
+   "vse": {
+    "pop": 8078,
+    "fe_gwh": {
+     "res": 42.9,
+     "nres": 7.5,
+     "total": 50.4
+    },
+    "tgp_kt": {
+     "res": 5.07,
+     "nres": 1.66,
+     "total": 6.73
+    },
+    "ove_pct": {
+     "res": 68.4,
+     "nres": 26.2,
+     "total": 62.1
+    },
+    "fe_mwh_preb": {
+     "res": 5.31,
+     "total": 6.24
+    },
+    "tgp_t_preb": {
+     "res": 0.63,
+     "total": 0.83
+    },
+    "nres_kwh_m2": 171,
+    "nres_measured_area_pct": 16.3,
+    "dh_ove_pct": null
+   }
   },
   "3": {
    "name": "Bled",
@@ -160,7 +255,36 @@
     "G": 15.6
    },
    "above43_area_pct": 41.4,
-   "known_pct": 8.0
+   "known_pct": 8.0,
+   "vse": {
+    "pop": 8103,
+    "fe_gwh": {
+     "res": 48.9,
+     "nres": 46.1,
+     "total": 95.0
+    },
+    "tgp_kt": {
+     "res": 6.62,
+     "nres": 10.31,
+     "total": 16.92
+    },
+    "ove_pct": {
+     "res": 61.4,
+     "nres": 25.1,
+     "total": 43.8
+    },
+    "fe_mwh_preb": {
+     "res": 6.03,
+     "total": 11.73
+    },
+    "tgp_t_preb": {
+     "res": 0.82,
+     "total": 2.09
+    },
+    "nres_kwh_m2": 262,
+    "nres_measured_area_pct": 16.8,
+    "dh_ove_pct": 0.0
+   }
   },
   "4": {
    "name": "Bohinj",
@@ -189,7 +313,36 @@
     "G": 16.3
    },
    "above43_area_pct": 43.0,
-   "known_pct": 5.9
+   "known_pct": 5.9,
+   "vse": {
+    "pop": 5216,
+    "fe_gwh": {
+     "res": 35.2,
+     "nres": 18.9,
+     "total": 54.0
+    },
+    "tgp_kt": {
+     "res": 4.59,
+     "nres": 4.08,
+     "total": 8.67
+    },
+    "ove_pct": {
+     "res": 63.8,
+     "nres": 29.3,
+     "total": 51.8
+    },
+    "fe_mwh_preb": {
+     "res": 6.74,
+     "total": 10.36
+    },
+    "tgp_t_preb": {
+     "res": 0.88,
+     "total": 1.66
+    },
+    "nres_kwh_m2": 207,
+    "nres_measured_area_pct": 9.0,
+    "dh_ove_pct": 100.0
+   }
   },
   "5": {
    "name": "Borovnica",
@@ -218,7 +371,36 @@
     "G": 14.5
    },
    "above43_area_pct": 39.2,
-   "known_pct": 8.3
+   "known_pct": 8.3,
+   "vse": {
+    "pop": 4688,
+    "fe_gwh": {
+     "res": 18.9,
+     "nres": 2.7,
+     "total": 21.6
+    },
+    "tgp_kt": {
+     "res": 2.48,
+     "nres": 0.59,
+     "total": 3.07
+    },
+    "ove_pct": {
+     "res": 64.5,
+     "nres": 31.5,
+     "total": 60.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.03,
+     "total": 4.6
+    },
+    "tgp_t_preb": {
+     "res": 0.53,
+     "total": 0.65
+    },
+    "nres_kwh_m2": 148,
+    "nres_measured_area_pct": 21.3,
+    "dh_ove_pct": null
+   }
   },
   "6": {
    "name": "Bovec",
@@ -247,7 +429,36 @@
     "G": 16.8
    },
    "above43_area_pct": 44.0,
-   "known_pct": 6.3
+   "known_pct": 6.3,
+   "vse": {
+    "pop": 3052,
+    "fe_gwh": {
+     "res": 23.4,
+     "nres": 13.4,
+     "total": 36.8
+    },
+    "tgp_kt": {
+     "res": 3.13,
+     "nres": 2.87,
+     "total": 6.0
+    },
+    "ove_pct": {
+     "res": 62.5,
+     "nres": 30.5,
+     "total": 50.8
+    },
+    "fe_mwh_preb": {
+     "res": 7.66,
+     "total": 12.05
+    },
+    "tgp_t_preb": {
+     "res": 1.03,
+     "total": 1.97
+    },
+    "nres_kwh_m2": 173,
+    "nres_measured_area_pct": 11.5,
+    "dh_ove_pct": 100.0
+   }
   },
   "7": {
    "name": "Brda",
@@ -276,7 +487,36 @@
     "G": 14.4
    },
    "above43_area_pct": 41.0,
-   "known_pct": 3.8
+   "known_pct": 3.8,
+   "vse": {
+    "pop": 5564,
+    "fe_gwh": {
+     "res": 35.7,
+     "nres": 9.0,
+     "total": 44.7
+    },
+    "tgp_kt": {
+     "res": 4.28,
+     "nres": 1.98,
+     "total": 6.26
+    },
+    "ove_pct": {
+     "res": 67.4,
+     "nres": 28.2,
+     "total": 59.5
+    },
+    "fe_mwh_preb": {
+     "res": 6.42,
+     "total": 8.03
+    },
+    "tgp_t_preb": {
+     "res": 0.77,
+     "total": 1.13
+    },
+    "nres_kwh_m2": 170,
+    "nres_measured_area_pct": 13.6,
+    "dh_ove_pct": null
+   }
   },
   "8": {
    "name": "Brezovica",
@@ -305,7 +545,36 @@
     "G": 7.5
    },
    "above43_area_pct": 26.0,
-   "known_pct": 8.6
+   "known_pct": 8.6,
+   "vse": {
+    "pop": 13202,
+    "fe_gwh": {
+     "res": 58.4,
+     "nres": 9.9,
+     "total": 68.3
+    },
+    "tgp_kt": {
+     "res": 7.35,
+     "nres": 2.21,
+     "total": 9.56
+    },
+    "ove_pct": {
+     "res": 65.6,
+     "nres": 30.4,
+     "total": 60.5
+    },
+    "fe_mwh_preb": {
+     "res": 4.43,
+     "total": 5.18
+    },
+    "tgp_t_preb": {
+     "res": 0.56,
+     "total": 0.72
+    },
+    "nres_kwh_m2": 159,
+    "nres_measured_area_pct": 12.1,
+    "dh_ove_pct": null
+   }
   },
   "9": {
    "name": "Brežice",
@@ -334,7 +603,36 @@
     "G": 12.9
    },
    "above43_area_pct": 37.0,
-   "known_pct": 6.8
+   "known_pct": 6.8,
+   "vse": {
+    "pop": 24412,
+    "fe_gwh": {
+     "res": 129.6,
+     "nres": 65.2,
+     "total": 194.9
+    },
+    "tgp_kt": {
+     "res": 17.19,
+     "nres": 13.5,
+     "total": 30.69
+    },
+    "ove_pct": {
+     "res": 63.2,
+     "nres": 35.0,
+     "total": 53.8
+    },
+    "fe_mwh_preb": {
+     "res": 5.31,
+     "total": 7.98
+    },
+    "tgp_t_preb": {
+     "res": 0.7,
+     "total": 1.26
+    },
+    "nres_kwh_m2": 180,
+    "nres_measured_area_pct": 18.6,
+    "dh_ove_pct": null
+   }
   },
   "10": {
    "name": "Tišina",
@@ -363,7 +661,36 @@
     "G": 12.9
    },
    "above43_area_pct": 38.1,
-   "known_pct": 3.7
+   "known_pct": 3.7,
+   "vse": {
+    "pop": 3908,
+    "fe_gwh": {
+     "res": 21.0,
+     "nres": 3.1,
+     "total": 24.1
+    },
+    "tgp_kt": {
+     "res": 2.45,
+     "nres": 0.69,
+     "total": 3.14
+    },
+    "ove_pct": {
+     "res": 69.3,
+     "nres": 29.7,
+     "total": 64.2
+    },
+    "fe_mwh_preb": {
+     "res": 5.37,
+     "total": 6.16
+    },
+    "tgp_t_preb": {
+     "res": 0.63,
+     "total": 0.8
+    },
+    "nres_kwh_m2": 184,
+    "nres_measured_area_pct": 5.6,
+    "dh_ove_pct": null
+   }
   },
   "11": {
    "name": "Celje",
@@ -392,7 +719,36 @@
     "G": 21.2
    },
    "above43_area_pct": 47.3,
-   "known_pct": 11.9
+   "known_pct": 11.9,
+   "vse": {
+    "pop": 49802,
+    "fe_gwh": {
+     "res": 187.6,
+     "nres": 145.7,
+     "total": 333.3
+    },
+    "tgp_kt": {
+     "res": 28.7,
+     "nres": 29.51,
+     "total": 58.21
+    },
+    "ove_pct": {
+     "res": 54.2,
+     "nres": 37.3,
+     "total": 46.8
+    },
+    "fe_mwh_preb": {
+     "res": 3.77,
+     "total": 6.69
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 1.17
+    },
+    "nres_kwh_m2": 168,
+    "nres_measured_area_pct": 31.8,
+    "dh_ove_pct": 38.7
+   }
   },
   "12": {
    "name": "Cerklje na Gorenjskem",
@@ -421,7 +777,36 @@
     "G": 3.5
    },
    "above43_area_pct": 15.7,
-   "known_pct": 4.7
+   "known_pct": 4.7,
+   "vse": {
+    "pop": 8029,
+    "fe_gwh": {
+     "res": 30.3,
+     "nres": 17.7,
+     "total": 48.0
+    },
+    "tgp_kt": {
+     "res": 3.79,
+     "nres": 3.78,
+     "total": 7.57
+    },
+    "ove_pct": {
+     "res": 66.1,
+     "nres": 30.9,
+     "total": 53.2
+    },
+    "fe_mwh_preb": {
+     "res": 3.78,
+     "total": 5.98
+    },
+    "tgp_t_preb": {
+     "res": 0.47,
+     "total": 0.94
+    },
+    "nres_kwh_m2": 143,
+    "nres_measured_area_pct": 30.5,
+    "dh_ove_pct": null
+   }
   },
   "13": {
    "name": "Cerknica",
@@ -450,7 +835,36 @@
     "G": 12.8
    },
    "above43_area_pct": 36.8,
-   "known_pct": 6.4
+   "known_pct": 6.4,
+   "vse": {
+    "pop": 11899,
+    "fe_gwh": {
+     "res": 57.8,
+     "nres": 13.8,
+     "total": 71.6
+    },
+    "tgp_kt": {
+     "res": 7.1,
+     "nres": 3.08,
+     "total": 10.18
+    },
+    "ove_pct": {
+     "res": 66.7,
+     "nres": 30.5,
+     "total": 59.8
+    },
+    "fe_mwh_preb": {
+     "res": 4.86,
+     "total": 6.02
+    },
+    "tgp_t_preb": {
+     "res": 0.6,
+     "total": 0.86
+    },
+    "nres_kwh_m2": 145,
+    "nres_measured_area_pct": 6.4,
+    "dh_ove_pct": null
+   }
   },
   "14": {
    "name": "Cerkno",
@@ -479,7 +893,36 @@
     "G": 18.7
    },
    "above43_area_pct": 48.4,
-   "known_pct": 3.1
+   "known_pct": 3.1,
+   "vse": {
+    "pop": 4445,
+    "fe_gwh": {
+     "res": 28.0,
+     "nres": 6.3,
+     "total": 34.4
+    },
+    "tgp_kt": {
+     "res": 3.34,
+     "nres": 1.4,
+     "total": 4.73
+    },
+    "ove_pct": {
+     "res": 67.5,
+     "nres": 27.0,
+     "total": 60.1
+    },
+    "fe_mwh_preb": {
+     "res": 6.31,
+     "total": 7.74
+    },
+    "tgp_t_preb": {
+     "res": 0.75,
+     "total": 1.06
+    },
+    "nres_kwh_m2": 183,
+    "nres_measured_area_pct": 17.8,
+    "dh_ove_pct": null
+   }
   },
   "15": {
    "name": "Črenšovci",
@@ -508,7 +951,36 @@
     "G": 10.6
    },
    "above43_area_pct": 33.7,
-   "known_pct": 4.0
+   "known_pct": 4.0,
+   "vse": {
+    "pop": 3870,
+    "fe_gwh": {
+     "res": 22.8,
+     "nres": 3.9,
+     "total": 26.8
+    },
+    "tgp_kt": {
+     "res": 2.67,
+     "nres": 0.86,
+     "total": 3.53
+    },
+    "ove_pct": {
+     "res": 69.2,
+     "nres": 29.7,
+     "total": 63.4
+    },
+    "fe_mwh_preb": {
+     "res": 5.9,
+     "total": 6.91
+    },
+    "tgp_t_preb": {
+     "res": 0.69,
+     "total": 0.91
+    },
+    "nres_kwh_m2": 174,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "16": {
    "name": "Črna na Koroškem",
@@ -537,7 +1009,36 @@
     "G": 22.4
    },
    "above43_area_pct": 50.0,
-   "known_pct": 11.0
+   "known_pct": 11.0,
+   "vse": {
+    "pop": 3001,
+    "fe_gwh": {
+     "res": 13.8,
+     "nres": 3.2,
+     "total": 17.1
+    },
+    "tgp_kt": {
+     "res": 2.11,
+     "nres": 0.73,
+     "total": 2.84
+    },
+    "ove_pct": {
+     "res": 55.4,
+     "nres": 26.7,
+     "total": 49.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.61,
+     "total": 5.69
+    },
+    "tgp_t_preb": {
+     "res": 0.7,
+     "total": 0.95
+    },
+    "nres_kwh_m2": 140,
+    "nres_measured_area_pct": 31.2,
+    "dh_ove_pct": 0.0
+   }
   },
   "17": {
    "name": "Črnomelj",
@@ -566,7 +1067,36 @@
     "G": 14.6
    },
    "above43_area_pct": 40.3,
-   "known_pct": 4.6
+   "known_pct": 4.6,
+   "vse": {
+    "pop": 14170,
+    "fe_gwh": {
+     "res": 74.4,
+     "nres": 20.8,
+     "total": 95.2
+    },
+    "tgp_kt": {
+     "res": 8.03,
+     "nres": 3.68,
+     "total": 11.71
+    },
+    "ove_pct": {
+     "res": 71.3,
+     "nres": 49.0,
+     "total": 66.4
+    },
+    "fe_mwh_preb": {
+     "res": 5.25,
+     "total": 6.72
+    },
+    "tgp_t_preb": {
+     "res": 0.57,
+     "total": 0.83
+    },
+    "nres_kwh_m2": 161,
+    "nres_measured_area_pct": 4.5,
+    "dh_ove_pct": 99.8
+   }
   },
   "18": {
    "name": "Destrnik",
@@ -595,7 +1125,36 @@
     "G": 7.7
    },
    "above43_area_pct": 26.8,
-   "known_pct": 4.5
+   "known_pct": 4.5,
+   "vse": {
+    "pop": 2737,
+    "fe_gwh": {
+     "res": 12.4,
+     "nres": 1.5,
+     "total": 14.0
+    },
+    "tgp_kt": {
+     "res": 1.51,
+     "nres": 0.34,
+     "total": 1.85
+    },
+    "ove_pct": {
+     "res": 67.3,
+     "nres": 28.4,
+     "total": 63.0
+    },
+    "fe_mwh_preb": {
+     "res": 4.54,
+     "total": 5.1
+    },
+    "tgp_t_preb": {
+     "res": 0.55,
+     "total": 0.68
+    },
+    "nres_kwh_m2": 139,
+    "nres_measured_area_pct": 53.7,
+    "dh_ove_pct": null
+   }
   },
   "19": {
    "name": "Divača",
@@ -624,7 +1183,36 @@
     "G": 12.0
    },
    "above43_area_pct": 34.4,
-   "known_pct": 6.8
+   "known_pct": 6.8,
+   "vse": {
+    "pop": 4604,
+    "fe_gwh": {
+     "res": 22.2,
+     "nres": 5.9,
+     "total": 28.1
+    },
+    "tgp_kt": {
+     "res": 2.9,
+     "nres": 1.3,
+     "total": 4.2
+    },
+    "ove_pct": {
+     "res": 64.0,
+     "nres": 31.7,
+     "total": 57.3
+    },
+    "fe_mwh_preb": {
+     "res": 4.83,
+     "total": 6.1
+    },
+    "tgp_t_preb": {
+     "res": 0.63,
+     "total": 0.91
+    },
+    "nres_kwh_m2": 146,
+    "nres_measured_area_pct": 31.6,
+    "dh_ove_pct": null
+   }
   },
   "20": {
    "name": "Dobrepolje",
@@ -653,7 +1241,36 @@
     "G": 11.6
    },
    "above43_area_pct": 35.2,
-   "known_pct": 5.6
+   "known_pct": 5.6,
+   "vse": {
+    "pop": 3946,
+    "fe_gwh": {
+     "res": 21.1,
+     "nres": 3.5,
+     "total": 24.6
+    },
+    "tgp_kt": {
+     "res": 2.57,
+     "nres": 0.77,
+     "total": 3.33
+    },
+    "ove_pct": {
+     "res": 67.0,
+     "nres": 31.4,
+     "total": 62.0
+    },
+    "fe_mwh_preb": {
+     "res": 5.36,
+     "total": 6.23
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 0.84
+    },
+    "nres_kwh_m2": 150,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "21": {
    "name": "Dobrova-Polhov Gradec",
@@ -682,7 +1299,36 @@
     "G": 9.5
    },
    "above43_area_pct": 30.7,
-   "known_pct": 5.3
+   "known_pct": 5.3,
+   "vse": {
+    "pop": 8068,
+    "fe_gwh": {
+     "res": 39.4,
+     "nres": 5.1,
+     "total": 44.5
+    },
+    "tgp_kt": {
+     "res": 4.74,
+     "nres": 1.14,
+     "total": 5.88
+    },
+    "ove_pct": {
+     "res": 67.6,
+     "nres": 29.6,
+     "total": 63.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.88,
+     "total": 5.52
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.73
+    },
+    "nres_kwh_m2": 133,
+    "nres_measured_area_pct": 22.5,
+    "dh_ove_pct": null
+   }
   },
   "22": {
    "name": "Dol pri Ljubljani",
@@ -711,7 +1357,36 @@
     "G": 7.2
    },
    "above43_area_pct": 24.9,
-   "known_pct": 7.8
+   "known_pct": 7.8,
+   "vse": {
+    "pop": 6438,
+    "fe_gwh": {
+     "res": 27.4,
+     "nres": 4.6,
+     "total": 32.0
+    },
+    "tgp_kt": {
+     "res": 3.48,
+     "nres": 1.03,
+     "total": 4.51
+    },
+    "ove_pct": {
+     "res": 64.9,
+     "nres": 31.3,
+     "total": 60.0
+    },
+    "fe_mwh_preb": {
+     "res": 4.26,
+     "total": 4.97
+    },
+    "tgp_t_preb": {
+     "res": 0.54,
+     "total": 0.7
+    },
+    "nres_kwh_m2": 127,
+    "nres_measured_area_pct": 0.5,
+    "dh_ove_pct": null
+   }
   },
   "23": {
    "name": "Domžale",
@@ -740,7 +1415,36 @@
     "G": 12.2
    },
    "above43_area_pct": 35.0,
-   "known_pct": 10.2
+   "known_pct": 10.2,
+   "vse": {
+    "pop": 38326,
+    "fe_gwh": {
+     "res": 161.0,
+     "nres": 39.3,
+     "total": 200.3
+    },
+    "tgp_kt": {
+     "res": 23.23,
+     "nres": 8.24,
+     "total": 31.47
+    },
+    "ove_pct": {
+     "res": 58.4,
+     "nres": 36.8,
+     "total": 54.1
+    },
+    "fe_mwh_preb": {
+     "res": 4.2,
+     "total": 5.23
+    },
+    "tgp_t_preb": {
+     "res": 0.61,
+     "total": 0.82
+    },
+    "nres_kwh_m2": 151,
+    "nres_measured_area_pct": 11.2,
+    "dh_ove_pct": null
+   }
   },
   "24": {
    "name": "Dornava",
@@ -769,7 +1473,36 @@
     "G": 11.4
    },
    "above43_area_pct": 34.6,
-   "known_pct": 3.3
+   "known_pct": 3.3,
+   "vse": {
+    "pop": 2915,
+    "fe_gwh": {
+     "res": 15.1,
+     "nres": 4.3,
+     "total": 19.4
+    },
+    "tgp_kt": {
+     "res": 1.8,
+     "nres": 1.07,
+     "total": 2.87
+    },
+    "ove_pct": {
+     "res": 68.0,
+     "nres": 20.9,
+     "total": 57.5
+    },
+    "fe_mwh_preb": {
+     "res": 5.18,
+     "total": 6.66
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.98
+    },
+    "nres_kwh_m2": 181,
+    "nres_measured_area_pct": 53.3,
+    "dh_ove_pct": null
+   }
   },
   "25": {
    "name": "Dravograd",
@@ -798,7 +1531,36 @@
     "G": 12.1
    },
    "above43_area_pct": 33.9,
-   "known_pct": 8.2
+   "known_pct": 8.2,
+   "vse": {
+    "pop": 8773,
+    "fe_gwh": {
+     "res": 38.9,
+     "nres": 12.6,
+     "total": 51.5
+    },
+    "tgp_kt": {
+     "res": 5.5,
+     "nres": 2.7,
+     "total": 8.21
+    },
+    "ove_pct": {
+     "res": 60.5,
+     "nres": 30.4,
+     "total": 53.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.43,
+     "total": 5.87
+    },
+    "tgp_t_preb": {
+     "res": 0.63,
+     "total": 0.94
+    },
+    "nres_kwh_m2": 142,
+    "nres_measured_area_pct": 23.0,
+    "dh_ove_pct": 0.0
+   }
   },
   "26": {
    "name": "Duplek",
@@ -827,7 +1589,36 @@
     "G": 8.9
    },
    "above43_area_pct": 29.6,
-   "known_pct": 6.6
+   "known_pct": 6.6,
+   "vse": {
+    "pop": 7067,
+    "fe_gwh": {
+     "res": 35.8,
+     "nres": 3.1,
+     "total": 38.9
+    },
+    "tgp_kt": {
+     "res": 4.4,
+     "nres": 0.7,
+     "total": 5.1
+    },
+    "ove_pct": {
+     "res": 66.8,
+     "nres": 32.8,
+     "total": 64.1
+    },
+    "fe_mwh_preb": {
+     "res": 5.07,
+     "total": 5.51
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.72
+    },
+    "nres_kwh_m2": 115,
+    "nres_measured_area_pct": 35.6,
+    "dh_ove_pct": null
+   }
   },
   "27": {
    "name": "Gorenja vas-Poljane",
@@ -856,7 +1647,36 @@
     "G": 11.1
    },
    "above43_area_pct": 34.2,
-   "known_pct": 2.8
+   "known_pct": 2.8,
+   "vse": {
+    "pop": 7739,
+    "fe_gwh": {
+     "res": 38.4,
+     "nres": 6.6,
+     "total": 45.0
+    },
+    "tgp_kt": {
+     "res": 4.41,
+     "nres": 1.48,
+     "total": 5.89
+    },
+    "ove_pct": {
+     "res": 69.6,
+     "nres": 30.7,
+     "total": 63.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.97,
+     "total": 5.82
+    },
+    "tgp_t_preb": {
+     "res": 0.57,
+     "total": 0.76
+    },
+    "nres_kwh_m2": 145,
+    "nres_measured_area_pct": 33.1,
+    "dh_ove_pct": null
+   }
   },
   "28": {
    "name": "Gorišnica",
@@ -885,7 +1705,36 @@
     "G": 6.9
    },
    "above43_area_pct": 25.2,
-   "known_pct": 3.4
+   "known_pct": 3.4,
+   "vse": {
+    "pop": 4212,
+    "fe_gwh": {
+     "res": 18.5,
+     "nres": 3.6,
+     "total": 22.1
+    },
+    "tgp_kt": {
+     "res": 2.23,
+     "nres": 0.79,
+     "total": 3.02
+    },
+    "ove_pct": {
+     "res": 67.5,
+     "nres": 26.5,
+     "total": 60.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.39,
+     "total": 5.24
+    },
+    "tgp_t_preb": {
+     "res": 0.53,
+     "total": 0.72
+    },
+    "nres_kwh_m2": 129,
+    "nres_measured_area_pct": 33.9,
+    "dh_ove_pct": null
+   }
   },
   "29": {
    "name": "Gornja Radgona",
@@ -914,7 +1763,36 @@
     "G": 12.6
    },
    "above43_area_pct": 36.4,
-   "known_pct": 7.0
+   "known_pct": 7.0,
+   "vse": {
+    "pop": 8555,
+    "fe_gwh": {
+     "res": 41.9,
+     "nres": 16.4,
+     "total": 58.3
+    },
+    "tgp_kt": {
+     "res": 5.49,
+     "nres": 3.63,
+     "total": 9.12
+    },
+    "ove_pct": {
+     "res": 63.3,
+     "nres": 30.4,
+     "total": 54.1
+    },
+    "fe_mwh_preb": {
+     "res": 4.9,
+     "total": 6.82
+    },
+    "tgp_t_preb": {
+     "res": 0.64,
+     "total": 1.07
+    },
+    "nres_kwh_m2": 154,
+    "nres_measured_area_pct": 20.1,
+    "dh_ove_pct": null
+   }
   },
   "30": {
    "name": "Gornji Grad",
@@ -943,7 +1821,36 @@
     "G": 20.5
    },
    "above43_area_pct": 51.3,
-   "known_pct": 5.0
+   "known_pct": 5.0,
+   "vse": {
+    "pop": 2534,
+    "fe_gwh": {
+     "res": 15.4,
+     "nres": 2.7,
+     "total": 18.2
+    },
+    "tgp_kt": {
+     "res": 1.8,
+     "nres": 0.54,
+     "total": 2.35
+    },
+    "ove_pct": {
+     "res": 67.9,
+     "nres": 36.9,
+     "total": 63.2
+    },
+    "fe_mwh_preb": {
+     "res": 6.1,
+     "total": 7.18
+    },
+    "tgp_t_preb": {
+     "res": 0.71,
+     "total": 0.93
+    },
+    "nres_kwh_m2": 169,
+    "nres_measured_area_pct": 25.7,
+    "dh_ove_pct": 100.0
+   }
   },
   "31": {
    "name": "Gornji Petrovci",
@@ -972,7 +1879,36 @@
     "G": 17.6
    },
    "above43_area_pct": 46.7,
-   "known_pct": 3.3
+   "known_pct": 3.3,
+   "vse": {
+    "pop": 1918,
+    "fe_gwh": {
+     "res": 14.1,
+     "nres": 2.3,
+     "total": 16.4
+    },
+    "tgp_kt": {
+     "res": 1.66,
+     "nres": 0.52,
+     "total": 2.18
+    },
+    "ove_pct": {
+     "res": 68.2,
+     "nres": 27.3,
+     "total": 62.4
+    },
+    "fe_mwh_preb": {
+     "res": 7.33,
+     "total": 8.54
+    },
+    "tgp_t_preb": {
+     "res": 0.87,
+     "total": 1.14
+    },
+    "nres_kwh_m2": 164,
+    "nres_measured_area_pct": 2.4,
+    "dh_ove_pct": null
+   }
   },
   "32": {
    "name": "Grosuplje",
@@ -1001,7 +1937,36 @@
     "G": 8.6
    },
    "above43_area_pct": 28.3,
-   "known_pct": 9.0
+   "known_pct": 9.0,
+   "vse": {
+    "pop": 22276,
+    "fe_gwh": {
+     "res": 86.4,
+     "nres": 16.4,
+     "total": 102.8
+    },
+    "tgp_kt": {
+     "res": 12.46,
+     "nres": 3.71,
+     "total": 16.17
+    },
+    "ove_pct": {
+     "res": 59.6,
+     "nres": 30.9,
+     "total": 55.0
+    },
+    "fe_mwh_preb": {
+     "res": 3.88,
+     "total": 4.61
+    },
+    "tgp_t_preb": {
+     "res": 0.56,
+     "total": 0.73
+    },
+    "nres_kwh_m2": 137,
+    "nres_measured_area_pct": 34.4,
+    "dh_ove_pct": 0.0
+   }
   },
   "33": {
    "name": "Šalovci",
@@ -1030,7 +1995,36 @@
     "G": 19.0
    },
    "above43_area_pct": 49.8,
-   "known_pct": 4.6
+   "known_pct": 4.6,
+   "vse": {
+    "pop": 1342,
+    "fe_gwh": {
+     "res": 9.7,
+     "nres": 1.7,
+     "total": 11.4
+    },
+    "tgp_kt": {
+     "res": 1.13,
+     "nres": 0.38,
+     "total": 1.51
+    },
+    "ove_pct": {
+     "res": 68.9,
+     "nres": 29.3,
+     "total": 63.0
+    },
+    "fe_mwh_preb": {
+     "res": 7.22,
+     "total": 8.47
+    },
+    "tgp_t_preb": {
+     "res": 0.84,
+     "total": 1.12
+    },
+    "nres_kwh_m2": 164,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "34": {
    "name": "Hrastnik",
@@ -1059,7 +2053,36 @@
     "G": 24.1
    },
    "above43_area_pct": 53.4,
-   "known_pct": 10.9
+   "known_pct": 10.9,
+   "vse": {
+    "pop": 8755,
+    "fe_gwh": {
+     "res": 35.2,
+     "nres": 8.8,
+     "total": 44.0
+    },
+    "tgp_kt": {
+     "res": 5.4,
+     "nres": 1.85,
+     "total": 7.25
+    },
+    "ove_pct": {
+     "res": 55.3,
+     "nres": 33.8,
+     "total": 50.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.02,
+     "total": 5.02
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.83
+    },
+    "nres_kwh_m2": 145,
+    "nres_measured_area_pct": 27.9,
+    "dh_ove_pct": 22.1
+   }
   },
   "36": {
    "name": "Idrija",
@@ -1088,7 +2111,36 @@
     "G": 19.5
    },
    "above43_area_pct": 46.9,
-   "known_pct": 7.5
+   "known_pct": 7.5,
+   "vse": {
+    "pop": 11482,
+    "fe_gwh": {
+     "res": 53.4,
+     "nres": 19.1,
+     "total": 72.5
+    },
+    "tgp_kt": {
+     "res": 7.08,
+     "nres": 4.21,
+     "total": 11.28
+    },
+    "ove_pct": {
+     "res": 62.7,
+     "nres": 26.8,
+     "total": 53.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.65,
+     "total": 6.31
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.98
+    },
+    "nres_kwh_m2": 145,
+    "nres_measured_area_pct": 34.9,
+    "dh_ove_pct": 18.9
+   }
   },
   "37": {
    "name": "Ig",
@@ -1117,7 +2169,36 @@
     "G": 6.3
    },
    "above43_area_pct": 22.9,
-   "known_pct": 8.4
+   "known_pct": 8.4,
+   "vse": {
+    "pop": 7974,
+    "fe_gwh": {
+     "res": 33.2,
+     "nres": 7.7,
+     "total": 40.9
+    },
+    "tgp_kt": {
+     "res": 4.21,
+     "nres": 1.65,
+     "total": 5.86
+    },
+    "ove_pct": {
+     "res": 65.3,
+     "nres": 27.8,
+     "total": 58.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.17,
+     "total": 5.13
+    },
+    "tgp_t_preb": {
+     "res": 0.53,
+     "total": 0.74
+    },
+    "nres_kwh_m2": 171,
+    "nres_measured_area_pct": 12.0,
+    "dh_ove_pct": null
+   }
   },
   "39": {
    "name": "Ivančna Gorica",
@@ -1146,7 +2227,36 @@
     "G": 9.0
    },
    "above43_area_pct": 29.3,
-   "known_pct": 6.0
+   "known_pct": 6.0,
+   "vse": {
+    "pop": 18272,
+    "fe_gwh": {
+     "res": 79.6,
+     "nres": 17.0,
+     "total": 96.5
+    },
+    "tgp_kt": {
+     "res": 9.77,
+     "nres": 3.8,
+     "total": 13.57
+    },
+    "ove_pct": {
+     "res": 66.9,
+     "nres": 30.3,
+     "total": 60.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.35,
+     "total": 5.28
+    },
+    "tgp_t_preb": {
+     "res": 0.53,
+     "total": 0.74
+    },
+    "nres_kwh_m2": 150,
+    "nres_measured_area_pct": 3.3,
+    "dh_ove_pct": 100.0
+   }
   },
   "40": {
    "name": "Izola",
@@ -1175,7 +2285,36 @@
     "G": 18.3
    },
    "above43_area_pct": 42.6,
-   "known_pct": 16.1
+   "known_pct": 16.1,
+   "vse": {
+    "pop": 16447,
+    "fe_gwh": {
+     "res": 65.1,
+     "nres": 33.7,
+     "total": 98.8
+    },
+    "tgp_kt": {
+     "res": 10.65,
+     "nres": 7.06,
+     "total": 17.71
+    },
+    "ove_pct": {
+     "res": 51.1,
+     "nres": 32.7,
+     "total": 44.8
+    },
+    "fe_mwh_preb": {
+     "res": 3.96,
+     "total": 6.01
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 1.08
+    },
+    "nres_kwh_m2": 233,
+    "nres_measured_area_pct": 23.0,
+    "dh_ove_pct": null
+   }
   },
   "42": {
    "name": "Juršinci",
@@ -1204,7 +2343,36 @@
     "G": 7.4
    },
    "above43_area_pct": 26.4,
-   "known_pct": 3.3
+   "known_pct": 3.3,
+   "vse": {
+    "pop": 2486,
+    "fe_gwh": {
+     "res": 12.6,
+     "nres": 1.3,
+     "total": 13.8
+    },
+    "tgp_kt": {
+     "res": 1.48,
+     "nres": 0.28,
+     "total": 1.76
+    },
+    "ove_pct": {
+     "res": 68.8,
+     "nres": 31.2,
+     "total": 65.3
+    },
+    "fe_mwh_preb": {
+     "res": 5.05,
+     "total": 5.56
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.71
+    },
+    "nres_kwh_m2": 143,
+    "nres_measured_area_pct": 11.7,
+    "dh_ove_pct": null
+   }
   },
   "44": {
    "name": "Kanal",
@@ -1233,7 +2401,36 @@
     "G": 26.1
    },
    "above43_area_pct": 58.9,
-   "known_pct": 6.0
+   "known_pct": 6.0,
+   "vse": {
+    "pop": 5047,
+    "fe_gwh": {
+     "res": 32.8,
+     "nres": 4.6,
+     "total": 37.4
+    },
+    "tgp_kt": {
+     "res": 4.06,
+     "nres": 1.08,
+     "total": 5.14
+    },
+    "ove_pct": {
+     "res": 65.4,
+     "nres": 25.5,
+     "total": 60.5
+    },
+    "fe_mwh_preb": {
+     "res": 6.51,
+     "total": 7.42
+    },
+    "tgp_t_preb": {
+     "res": 0.8,
+     "total": 1.02
+    },
+    "nres_kwh_m2": 127,
+    "nres_measured_area_pct": 26.6,
+    "dh_ove_pct": null
+   }
   },
   "46": {
    "name": "Kobarid",
@@ -1262,7 +2459,36 @@
     "G": 19.8
    },
    "above43_area_pct": 50.1,
-   "known_pct": 4.9
+   "known_pct": 4.9,
+   "vse": {
+    "pop": 3964,
+    "fe_gwh": {
+     "res": 28.8,
+     "nres": 7.4,
+     "total": 36.2
+    },
+    "tgp_kt": {
+     "res": 3.38,
+     "nres": 1.56,
+     "total": 4.94
+    },
+    "ove_pct": {
+     "res": 68.1,
+     "nres": 32.3,
+     "total": 60.8
+    },
+    "fe_mwh_preb": {
+     "res": 7.26,
+     "total": 9.13
+    },
+    "tgp_t_preb": {
+     "res": 0.85,
+     "total": 1.25
+    },
+    "nres_kwh_m2": 186,
+    "nres_measured_area_pct": 22.2,
+    "dh_ove_pct": 100.0
+   }
   },
   "48": {
    "name": "Kočevje",
@@ -1291,7 +2517,36 @@
     "G": 16.1
    },
    "above43_area_pct": 41.1,
-   "known_pct": 10.3
+   "known_pct": 10.3,
+   "vse": {
+    "pop": 15595,
+    "fe_gwh": {
+     "res": 67.6,
+     "nres": 19.8,
+     "total": 87.4
+    },
+    "tgp_kt": {
+     "res": 7.01,
+     "nres": 3.0,
+     "total": 10.01
+    },
+    "ove_pct": {
+     "res": 72.6,
+     "nres": 56.9,
+     "total": 69.1
+    },
+    "fe_mwh_preb": {
+     "res": 4.34,
+     "total": 5.6
+    },
+    "tgp_t_preb": {
+     "res": 0.45,
+     "total": 0.64
+    },
+    "nres_kwh_m2": 135,
+    "nres_measured_area_pct": 33.5,
+    "dh_ove_pct": 98.2
+   }
   },
   "51": {
    "name": "Kozje",
@@ -1320,7 +2575,36 @@
     "G": 14.5
    },
    "above43_area_pct": 40.6,
-   "known_pct": 3.2
+   "known_pct": 3.2,
+   "vse": {
+    "pop": 2996,
+    "fe_gwh": {
+     "res": 17.2,
+     "nres": 3.6,
+     "total": 20.8
+    },
+    "tgp_kt": {
+     "res": 2.07,
+     "nres": 0.74,
+     "total": 2.81
+    },
+    "ove_pct": {
+     "res": 67.4,
+     "nres": 35.9,
+     "total": 62.0
+    },
+    "fe_mwh_preb": {
+     "res": 5.75,
+     "total": 6.96
+    },
+    "tgp_t_preb": {
+     "res": 0.69,
+     "total": 0.94
+    },
+    "nres_kwh_m2": 130,
+    "nres_measured_area_pct": 14.9,
+    "dh_ove_pct": 100.0
+   }
   },
   "54": {
    "name": "Krško",
@@ -1349,7 +2633,36 @@
     "G": 13.5
    },
    "above43_area_pct": 38.1,
-   "known_pct": 5.1
+   "known_pct": 5.1,
+   "vse": {
+    "pop": 26210,
+    "fe_gwh": {
+     "res": 122.3,
+     "nres": 40.6,
+     "total": 162.9
+    },
+    "tgp_kt": {
+     "res": 17.15,
+     "nres": 8.61,
+     "total": 25.76
+    },
+    "ove_pct": {
+     "res": 60.6,
+     "nres": 32.2,
+     "total": 53.5
+    },
+    "fe_mwh_preb": {
+     "res": 4.67,
+     "total": 6.22
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 0.98
+    },
+    "nres_kwh_m2": 134,
+    "nres_measured_area_pct": 32.0,
+    "dh_ove_pct": 0.0
+   }
   },
   "55": {
    "name": "Kungota",
@@ -1378,7 +2691,36 @@
     "G": 8.5
    },
    "above43_area_pct": 27.9,
-   "known_pct": 7.6
+   "known_pct": 7.6,
+   "vse": {
+    "pop": 5018,
+    "fe_gwh": {
+     "res": 26.7,
+     "nres": 3.7,
+     "total": 30.4
+    },
+    "tgp_kt": {
+     "res": 3.31,
+     "nres": 0.82,
+     "total": 4.13
+    },
+    "ove_pct": {
+     "res": 66.5,
+     "nres": 30.4,
+     "total": 62.1
+    },
+    "fe_mwh_preb": {
+     "res": 5.32,
+     "total": 6.06
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 0.82
+    },
+    "nres_kwh_m2": 121,
+    "nres_measured_area_pct": 23.1,
+    "dh_ove_pct": null
+   }
   },
   "58": {
    "name": "Lenart",
@@ -1407,7 +2749,36 @@
     "G": 9.5
    },
    "above43_area_pct": 30.0,
-   "known_pct": 8.3
+   "known_pct": 8.3,
+   "vse": {
+    "pop": 8674,
+    "fe_gwh": {
+     "res": 39.1,
+     "nres": 12.7,
+     "total": 51.8
+    },
+    "tgp_kt": {
+     "res": 4.43,
+     "nres": 2.1,
+     "total": 6.52
+    },
+    "ove_pct": {
+     "res": 69.2,
+     "nres": 52.8,
+     "total": 65.1
+    },
+    "fe_mwh_preb": {
+     "res": 4.51,
+     "total": 5.97
+    },
+    "tgp_t_preb": {
+     "res": 0.51,
+     "total": 0.75
+    },
+    "nres_kwh_m2": 135,
+    "nres_measured_area_pct": 9.7,
+    "dh_ove_pct": 99.6
+   }
   },
   "60": {
    "name": "Litija",
@@ -1436,7 +2807,36 @@
     "G": 12.1
    },
    "above43_area_pct": 35.0,
-   "known_pct": 6.4
+   "known_pct": 6.4,
+   "vse": {
+    "pop": 15890,
+    "fe_gwh": {
+     "res": 66.7,
+     "nres": 12.5,
+     "total": 79.2
+    },
+    "tgp_kt": {
+     "res": 9.35,
+     "nres": 2.75,
+     "total": 12.1
+    },
+    "ove_pct": {
+     "res": 61.0,
+     "nres": 32.9,
+     "total": 56.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.2,
+     "total": 4.98
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.76
+    },
+    "nres_kwh_m2": 123,
+    "nres_measured_area_pct": 32.2,
+    "dh_ove_pct": 0.0
+   }
   },
   "62": {
    "name": "Ljubno",
@@ -1465,7 +2865,36 @@
     "G": 16.3
    },
    "above43_area_pct": 44.4,
-   "known_pct": 2.9
+   "known_pct": 2.9,
+   "vse": {
+    "pop": 2476,
+    "fe_gwh": {
+     "res": 14.4,
+     "nres": 4.6,
+     "total": 19.1
+    },
+    "tgp_kt": {
+     "res": 1.64,
+     "nres": 1.05,
+     "total": 2.69
+    },
+    "ove_pct": {
+     "res": 69.6,
+     "nres": 28.8,
+     "total": 59.7
+    },
+    "fe_mwh_preb": {
+     "res": 5.83,
+     "total": 7.71
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 1.09
+    },
+    "nres_kwh_m2": 174,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "64": {
    "name": "Logatec",
@@ -1494,7 +2923,36 @@
     "G": 10.4
    },
    "above43_area_pct": 31.2,
-   "known_pct": 9.0
+   "known_pct": 9.0,
+   "vse": {
+    "pop": 15129,
+    "fe_gwh": {
+     "res": 58.6,
+     "nres": 17.7,
+     "total": 76.3
+    },
+    "tgp_kt": {
+     "res": 7.58,
+     "nres": 4.1,
+     "total": 11.68
+    },
+    "ove_pct": {
+     "res": 63.8,
+     "nres": 22.0,
+     "total": 54.1
+    },
+    "fe_mwh_preb": {
+     "res": 3.88,
+     "total": 5.05
+    },
+    "tgp_t_preb": {
+     "res": 0.5,
+     "total": 0.77
+    },
+    "nres_kwh_m2": 161,
+    "nres_measured_area_pct": 39.1,
+    "dh_ove_pct": null
+   }
   },
   "66": {
    "name": "Loški Potok",
@@ -1523,7 +2981,36 @@
     "G": 16.0
    },
    "above43_area_pct": 44.1,
-   "known_pct": 4.3
+   "known_pct": 4.3,
+   "vse": {
+    "pop": 1839,
+    "fe_gwh": {
+     "res": 11.2,
+     "nres": 1.9,
+     "total": 13.1
+    },
+    "tgp_kt": {
+     "res": 1.28,
+     "nres": 0.42,
+     "total": 1.7
+    },
+    "ove_pct": {
+     "res": 68.9,
+     "nres": 30.3,
+     "total": 63.3
+    },
+    "fe_mwh_preb": {
+     "res": 6.09,
+     "total": 7.11
+    },
+    "tgp_t_preb": {
+     "res": 0.7,
+     "total": 0.93
+    },
+    "nres_kwh_m2": 149,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": 100.0
+   }
   },
   "67": {
    "name": "Luče",
@@ -1552,7 +3039,36 @@
     "G": 19.3
    },
    "above43_area_pct": 49.9,
-   "known_pct": 2.8
+   "known_pct": 2.8,
+   "vse": {
+    "pop": 1396,
+    "fe_gwh": {
+     "res": 8.9,
+     "nres": 1.9,
+     "total": 10.9
+    },
+    "tgp_kt": {
+     "res": 0.94,
+     "nres": 0.43,
+     "total": 1.37
+    },
+    "ove_pct": {
+     "res": 72.7,
+     "nres": 27.7,
+     "total": 64.7
+    },
+    "fe_mwh_preb": {
+     "res": 6.41,
+     "total": 7.79
+    },
+    "tgp_t_preb": {
+     "res": 0.67,
+     "total": 0.98
+    },
+    "nres_kwh_m2": 205,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": 100.0
+   }
   },
   "69": {
    "name": "Majšperk",
@@ -1581,7 +3097,36 @@
     "G": 11.9
    },
    "above43_area_pct": 35.3,
-   "known_pct": 3.6
+   "known_pct": 3.6,
+   "vse": {
+    "pop": 4009,
+    "fe_gwh": {
+     "res": 20.5,
+     "nres": 3.4,
+     "total": 23.9
+    },
+    "tgp_kt": {
+     "res": 2.49,
+     "nres": 0.7,
+     "total": 3.19
+    },
+    "ove_pct": {
+     "res": 67.3,
+     "nres": 36.4,
+     "total": 63.0
+    },
+    "fe_mwh_preb": {
+     "res": 5.12,
+     "total": 5.96
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.8
+    },
+    "nres_kwh_m2": 138,
+    "nres_measured_area_pct": 40.0,
+    "dh_ove_pct": null
+   }
   },
   "72": {
    "name": "Mengeš",
@@ -1610,7 +3155,36 @@
     "G": 11.0
    },
    "above43_area_pct": 32.7,
-   "known_pct": 8.4
+   "known_pct": 8.4,
+   "vse": {
+    "pop": 8812,
+    "fe_gwh": {
+     "res": 35.1,
+     "nres": 7.7,
+     "total": 42.8
+    },
+    "tgp_kt": {
+     "res": 4.83,
+     "nres": 1.61,
+     "total": 6.44
+    },
+    "ove_pct": {
+     "res": 61.1,
+     "nres": 36.3,
+     "total": 56.6
+    },
+    "fe_mwh_preb": {
+     "res": 3.98,
+     "total": 4.85
+    },
+    "tgp_t_preb": {
+     "res": 0.55,
+     "total": 0.73
+    },
+    "nres_kwh_m2": 114,
+    "nres_measured_area_pct": 3.7,
+    "dh_ove_pct": null
+   }
   },
   "74": {
    "name": "Mežica",
@@ -1639,7 +3213,36 @@
     "G": 20.4
    },
    "above43_area_pct": 46.9,
-   "known_pct": 14.6
+   "known_pct": 14.6,
+   "vse": {
+    "pop": 3536,
+    "fe_gwh": {
+     "res": 15.0,
+     "nres": 3.1,
+     "total": 18.1
+    },
+    "tgp_kt": {
+     "res": 2.43,
+     "nres": 0.68,
+     "total": 3.12
+    },
+    "ove_pct": {
+     "res": 52.6,
+     "nres": 32.1,
+     "total": 49.1
+    },
+    "fe_mwh_preb": {
+     "res": 4.23,
+     "total": 5.11
+    },
+    "tgp_t_preb": {
+     "res": 0.69,
+     "total": 0.88
+    },
+    "nres_kwh_m2": 150,
+    "nres_measured_area_pct": 7.0,
+    "dh_ove_pct": 0.0
+   }
   },
   "76": {
    "name": "Mislinja",
@@ -1668,7 +3271,36 @@
     "G": 10.1
    },
    "above43_area_pct": 31.7,
-   "known_pct": 4.1
+   "known_pct": 4.1,
+   "vse": {
+    "pop": 4489,
+    "fe_gwh": {
+     "res": 20.1,
+     "nres": 4.5,
+     "total": 24.5
+    },
+    "tgp_kt": {
+     "res": 2.39,
+     "nres": 1.0,
+     "total": 3.39
+    },
+    "ove_pct": {
+     "res": 68.1,
+     "nres": 28.7,
+     "total": 60.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.47,
+     "total": 5.46
+    },
+    "tgp_t_preb": {
+     "res": 0.53,
+     "total": 0.75
+    },
+    "nres_kwh_m2": 125,
+    "nres_measured_area_pct": 19.5,
+    "dh_ove_pct": null
+   }
   },
   "77": {
    "name": "Moravče",
@@ -1697,7 +3329,36 @@
     "G": 8.8
    },
    "above43_area_pct": 29.3,
-   "known_pct": 5.3
+   "known_pct": 5.3,
+   "vse": {
+    "pop": 5683,
+    "fe_gwh": {
+     "res": 26.7,
+     "nres": 3.8,
+     "total": 30.5
+    },
+    "tgp_kt": {
+     "res": 3.14,
+     "nres": 0.81,
+     "total": 3.96
+    },
+    "ove_pct": {
+     "res": 68.8,
+     "nres": 33.3,
+     "total": 64.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.7,
+     "total": 5.37
+    },
+    "tgp_t_preb": {
+     "res": 0.55,
+     "total": 0.7
+    },
+    "nres_kwh_m2": 145,
+    "nres_measured_area_pct": 8.1,
+    "dh_ove_pct": 100.0
+   }
   },
   "78": {
    "name": "Moravske Toplice",
@@ -1726,7 +3387,36 @@
     "G": 8.8
    },
    "above43_area_pct": 29.9,
-   "known_pct": 5.7
+   "known_pct": 5.7,
+   "vse": {
+    "pop": 5967,
+    "fe_gwh": {
+     "res": 35.8,
+     "nres": 31.7,
+     "total": 67.5
+    },
+    "tgp_kt": {
+     "res": 4.35,
+     "nres": 6.85,
+     "total": 11.21
+    },
+    "ove_pct": {
+     "res": 67.2,
+     "nres": 27.2,
+     "total": 48.4
+    },
+    "fe_mwh_preb": {
+     "res": 6.0,
+     "total": 11.31
+    },
+    "tgp_t_preb": {
+     "res": 0.73,
+     "total": 1.88
+    },
+    "nres_kwh_m2": 247,
+    "nres_measured_area_pct": 0.6,
+    "dh_ove_pct": null
+   }
   },
   "80": {
    "name": "Murska Sobota",
@@ -1755,7 +3445,36 @@
     "G": 16.3
    },
    "above43_area_pct": 42.4,
-   "known_pct": 8.3
+   "known_pct": 8.3,
+   "vse": {
+    "pop": 18317,
+    "fe_gwh": {
+     "res": 94.7,
+     "nres": 77.6,
+     "total": 172.3
+    },
+    "tgp_kt": {
+     "res": 14.0,
+     "nres": 16.55,
+     "total": 30.55
+    },
+    "ove_pct": {
+     "res": 58.0,
+     "nres": 32.4,
+     "total": 46.5
+    },
+    "fe_mwh_preb": {
+     "res": 5.17,
+     "total": 9.41
+    },
+    "tgp_t_preb": {
+     "res": 0.76,
+     "total": 1.67
+    },
+    "nres_kwh_m2": 190,
+    "nres_measured_area_pct": 27.7,
+    "dh_ove_pct": 0.0
+   }
   },
   "84": {
    "name": "Nova Gorica",
@@ -1784,7 +3503,36 @@
     "G": 16.7
    },
    "above43_area_pct": 42.7,
-   "known_pct": 8.0
+   "known_pct": 8.0,
+   "vse": {
+    "pop": 31781,
+    "fe_gwh": {
+     "res": 141.9,
+     "nres": 79.7,
+     "total": 221.6
+    },
+    "tgp_kt": {
+     "res": 21.31,
+     "nres": 16.71,
+     "total": 38.01
+    },
+    "ove_pct": {
+     "res": 56.4,
+     "nres": 36.3,
+     "total": 49.1
+    },
+    "fe_mwh_preb": {
+     "res": 4.46,
+     "total": 6.97
+    },
+    "tgp_t_preb": {
+     "res": 0.67,
+     "total": 1.2
+    },
+    "nres_kwh_m2": 167,
+    "nres_measured_area_pct": 33.5,
+    "dh_ove_pct": 8.8
+   }
   },
   "86": {
    "name": "Odranci",
@@ -1813,7 +3561,36 @@
     "G": 8.8
    },
    "above43_area_pct": 29.8,
-   "known_pct": 2.8
+   "known_pct": 2.8,
+   "vse": {
+    "pop": 1609,
+    "fe_gwh": {
+     "res": 8.7,
+     "nres": 2.0,
+     "total": 10.6
+    },
+    "tgp_kt": {
+     "res": 0.99,
+     "nres": 0.43,
+     "total": 1.42
+    },
+    "ove_pct": {
+     "res": 70.0,
+     "nres": 30.6,
+     "total": 62.7
+    },
+    "fe_mwh_preb": {
+     "res": 5.38,
+     "total": 6.59
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.88
+    },
+    "nres_kwh_m2": 149,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "87": {
    "name": "Ormož",
@@ -1842,7 +3619,36 @@
     "G": 12.1
    },
    "above43_area_pct": 35.7,
-   "known_pct": 4.6
+   "known_pct": 4.6,
+   "vse": {
+    "pop": 11792,
+    "fe_gwh": {
+     "res": 58.4,
+     "nres": 19.2,
+     "total": 77.6
+    },
+    "tgp_kt": {
+     "res": 7.32,
+     "nres": 4.21,
+     "total": 11.53
+    },
+    "ove_pct": {
+     "res": 65.6,
+     "nres": 29.8,
+     "total": 56.8
+    },
+    "fe_mwh_preb": {
+     "res": 4.95,
+     "total": 6.58
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.98
+    },
+    "nres_kwh_m2": 162,
+    "nres_measured_area_pct": 20.9,
+    "dh_ove_pct": null
+   }
   },
   "89": {
    "name": "Pesnica",
@@ -1871,7 +3677,36 @@
     "G": 8.7
    },
    "above43_area_pct": 28.8,
-   "known_pct": 5.6
+   "known_pct": 5.6,
+   "vse": {
+    "pop": 7879,
+    "fe_gwh": {
+     "res": 39.1,
+     "nres": 8.1,
+     "total": 47.2
+    },
+    "tgp_kt": {
+     "res": 4.86,
+     "nres": 1.8,
+     "total": 6.66
+    },
+    "ove_pct": {
+     "res": 66.3,
+     "nres": 30.8,
+     "total": 60.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.96,
+     "total": 5.98
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.85
+    },
+    "nres_kwh_m2": 147,
+    "nres_measured_area_pct": 14.4,
+    "dh_ove_pct": null
+   }
   },
   "92": {
    "name": "Podčetrtek",
@@ -1900,7 +3735,36 @@
     "G": 8.7
    },
    "above43_area_pct": 28.5,
-   "known_pct": 4.6
+   "known_pct": 4.6,
+   "vse": {
+    "pop": 3699,
+    "fe_gwh": {
+     "res": 20.1,
+     "nres": 14.3,
+     "total": 34.5
+    },
+    "tgp_kt": {
+     "res": 2.48,
+     "nres": 3.1,
+     "total": 5.57
+    },
+    "ove_pct": {
+     "res": 66.6,
+     "nres": 29.6,
+     "total": 51.2
+    },
+    "fe_mwh_preb": {
+     "res": 5.44,
+     "total": 9.32
+    },
+    "tgp_t_preb": {
+     "res": 0.67,
+     "total": 1.51
+    },
+    "nres_kwh_m2": 190,
+    "nres_measured_area_pct": 8.3,
+    "dh_ove_pct": null
+   }
   },
   "94": {
    "name": "Postojna",
@@ -1929,7 +3793,36 @@
     "G": 13.5
    },
    "above43_area_pct": 35.4,
-   "known_pct": 10.0
+   "known_pct": 10.0,
+   "vse": {
+    "pop": 17192,
+    "fe_gwh": {
+     "res": 62.3,
+     "nres": 37.5,
+     "total": 99.8
+    },
+    "tgp_kt": {
+     "res": 7.26,
+     "nres": 6.05,
+     "total": 13.32
+    },
+    "ove_pct": {
+     "res": 67.8,
+     "nres": 53.8,
+     "total": 62.5
+    },
+    "fe_mwh_preb": {
+     "res": 3.62,
+     "total": 5.8
+    },
+    "tgp_t_preb": {
+     "res": 0.42,
+     "total": 0.77
+    },
+    "nres_kwh_m2": 151,
+    "nres_measured_area_pct": 23.5,
+    "dh_ove_pct": 100.0
+   }
   },
   "95": {
    "name": "Preddvor",
@@ -1958,7 +3851,36 @@
     "G": 8.8
    },
    "above43_area_pct": 28.5,
-   "known_pct": 6.5
+   "known_pct": 6.5,
+   "vse": {
+    "pop": 3946,
+    "fe_gwh": {
+     "res": 18.9,
+     "nres": 4.0,
+     "total": 22.9
+    },
+    "tgp_kt": {
+     "res": 2.27,
+     "nres": 0.89,
+     "total": 3.15
+    },
+    "ove_pct": {
+     "res": 68.0,
+     "nres": 29.4,
+     "total": 61.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.79,
+     "total": 5.81
+    },
+    "tgp_t_preb": {
+     "res": 0.57,
+     "total": 0.8
+    },
+    "nres_kwh_m2": 173,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": 98.3
+   }
   },
   "98": {
    "name": "Rače-Fram",
@@ -1987,7 +3909,36 @@
     "G": 7.1
    },
    "above43_area_pct": 24.8,
-   "known_pct": 12.2
+   "known_pct": 12.2,
+   "vse": {
+    "pop": 8363,
+    "fe_gwh": {
+     "res": 39.5,
+     "nres": 5.5,
+     "total": 44.9
+    },
+    "tgp_kt": {
+     "res": 4.87,
+     "nres": 1.22,
+     "total": 6.1
+    },
+    "ove_pct": {
+     "res": 66.6,
+     "nres": 31.3,
+     "total": 62.3
+    },
+    "fe_mwh_preb": {
+     "res": 4.72,
+     "total": 5.37
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 0.73
+    },
+    "nres_kwh_m2": 111,
+    "nres_measured_area_pct": 27.9,
+    "dh_ove_pct": null
+   }
   },
   "100": {
    "name": "Radenci",
@@ -2016,7 +3967,36 @@
     "G": 11.0
    },
    "above43_area_pct": 32.9,
-   "known_pct": 7.1
+   "known_pct": 7.1,
+   "vse": {
+    "pop": 5064,
+    "fe_gwh": {
+     "res": 25.9,
+     "nres": 13.4,
+     "total": 39.3
+    },
+    "tgp_kt": {
+     "res": 3.36,
+     "nres": 2.95,
+     "total": 6.31
+    },
+    "ove_pct": {
+     "res": 64.4,
+     "nres": 27.9,
+     "total": 52.0
+    },
+    "fe_mwh_preb": {
+     "res": 5.11,
+     "total": 7.76
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 1.25
+    },
+    "nres_kwh_m2": 203,
+    "nres_measured_area_pct": 9.5,
+    "dh_ove_pct": null
+   }
   },
   "101": {
    "name": "Radlje ob Dravi",
@@ -2045,7 +4025,36 @@
     "G": 11.8
    },
    "above43_area_pct": 34.0,
-   "known_pct": 6.2
+   "known_pct": 6.2,
+   "vse": {
+    "pop": 6229,
+    "fe_gwh": {
+     "res": 27.2,
+     "nres": 7.9,
+     "total": 35.1
+    },
+    "tgp_kt": {
+     "res": 3.38,
+     "nres": 1.68,
+     "total": 5.06
+    },
+    "ove_pct": {
+     "res": 66.5,
+     "nres": 35.3,
+     "total": 59.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.36,
+     "total": 5.64
+    },
+    "tgp_t_preb": {
+     "res": 0.54,
+     "total": 0.81
+    },
+    "nres_kwh_m2": 137,
+    "nres_measured_area_pct": 14.2,
+    "dh_ove_pct": 100.0
+   }
   },
   "102": {
    "name": "Radovljica",
@@ -2074,7 +4083,36 @@
     "G": 15.0
    },
    "above43_area_pct": 40.1,
-   "known_pct": 8.0
+   "known_pct": 8.0,
+   "vse": {
+    "pop": 19359,
+    "fe_gwh": {
+     "res": 89.2,
+     "nres": 32.0,
+     "total": 121.3
+    },
+    "tgp_kt": {
+     "res": 12.07,
+     "nres": 7.05,
+     "total": 19.12
+    },
+    "ove_pct": {
+     "res": 61.3,
+     "nres": 28.9,
+     "total": 52.8
+    },
+    "fe_mwh_preb": {
+     "res": 4.61,
+     "total": 6.26
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.99
+    },
+    "nres_kwh_m2": 166,
+    "nres_measured_area_pct": 21.6,
+    "dh_ove_pct": null
+   }
   },
   "103": {
    "name": "Ravne na Koroškem",
@@ -2103,7 +4141,36 @@
     "G": 15.5
    },
    "above43_area_pct": 39.8,
-   "known_pct": 13.9
+   "known_pct": 13.9,
+   "vse": {
+    "pop": 11179,
+    "fe_gwh": {
+     "res": 43.8,
+     "nres": 17.3,
+     "total": 61.0
+    },
+    "tgp_kt": {
+     "res": 7.37,
+     "nres": 3.86,
+     "total": 11.24
+    },
+    "ove_pct": {
+     "res": 50.9,
+     "nres": 28.7,
+     "total": 44.6
+    },
+    "fe_mwh_preb": {
+     "res": 3.92,
+     "total": 5.46
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 1.01
+    },
+    "nres_kwh_m2": 132,
+    "nres_measured_area_pct": 32.1,
+    "dh_ove_pct": 0.0
+   }
   },
   "104": {
    "name": "Ribnica",
@@ -2132,7 +4199,36 @@
     "G": 15.9
    },
    "above43_area_pct": 42.5,
-   "known_pct": 4.5
+   "known_pct": 4.5,
+   "vse": {
+    "pop": 9825,
+    "fe_gwh": {
+     "res": 48.4,
+     "nres": 12.6,
+     "total": 61.0
+    },
+    "tgp_kt": {
+     "res": 5.09,
+     "nres": 2.09,
+     "total": 7.18
+    },
+    "ove_pct": {
+     "res": 71.9,
+     "nres": 51.5,
+     "total": 67.7
+    },
+    "fe_mwh_preb": {
+     "res": 4.92,
+     "total": 6.21
+    },
+    "tgp_t_preb": {
+     "res": 0.52,
+     "total": 0.73
+    },
+    "nres_kwh_m2": 152,
+    "nres_measured_area_pct": 28.1,
+    "dh_ove_pct": 99.2
+   }
   },
   "107": {
    "name": "Rogatec",
@@ -2161,7 +4257,36 @@
     "G": 13.5
    },
    "above43_area_pct": 38.1,
-   "known_pct": 5.4
+   "known_pct": 5.4,
+   "vse": {
+    "pop": 3081,
+    "fe_gwh": {
+     "res": 12.5,
+     "nres": 2.9,
+     "total": 15.4
+    },
+    "tgp_kt": {
+     "res": 1.63,
+     "nres": 0.64,
+     "total": 2.27
+    },
+    "ove_pct": {
+     "res": 62.9,
+     "nres": 24.4,
+     "total": 55.7
+    },
+    "fe_mwh_preb": {
+     "res": 4.06,
+     "total": 5.0
+    },
+    "tgp_t_preb": {
+     "res": 0.53,
+     "total": 0.74
+    },
+    "nres_kwh_m2": 130,
+    "nres_measured_area_pct": 51.4,
+    "dh_ove_pct": null
+   }
   },
   "105": {
    "name": "Rogašovci",
@@ -2190,7 +4315,36 @@
     "G": 10.0
    },
    "above43_area_pct": 32.4,
-   "known_pct": 3.4
+   "known_pct": 3.4,
+   "vse": {
+    "pop": 3027,
+    "fe_gwh": {
+     "res": 17.0,
+     "nres": 4.1,
+     "total": 21.1
+    },
+    "tgp_kt": {
+     "res": 1.97,
+     "nres": 0.9,
+     "total": 2.88
+    },
+    "ove_pct": {
+     "res": 69.3,
+     "nres": 29.4,
+     "total": 61.5
+    },
+    "fe_mwh_preb": {
+     "res": 5.61,
+     "total": 6.97
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 0.95
+    },
+    "nres_kwh_m2": 185,
+    "nres_measured_area_pct": 1.2,
+    "dh_ove_pct": null
+   }
   },
   "106": {
    "name": "Rogaška Slatina",
@@ -2219,7 +4373,36 @@
     "G": 10.4
    },
    "above43_area_pct": 31.4,
-   "known_pct": 5.0
+   "known_pct": 5.0,
+   "vse": {
+    "pop": 11679,
+    "fe_gwh": {
+     "res": 51.5,
+     "nres": 34.0,
+     "total": 85.5
+    },
+    "tgp_kt": {
+     "res": 6.64,
+     "nres": 7.43,
+     "total": 14.08
+    },
+    "ove_pct": {
+     "res": 63.8,
+     "nres": 27.4,
+     "total": 49.3
+    },
+    "fe_mwh_preb": {
+     "res": 4.41,
+     "total": 7.32
+    },
+    "tgp_t_preb": {
+     "res": 0.57,
+     "total": 1.21
+    },
+    "nres_kwh_m2": 202,
+    "nres_measured_area_pct": 19.9,
+    "dh_ove_pct": null
+   }
   },
   "108": {
    "name": "Ruše",
@@ -2248,7 +4431,36 @@
     "G": 13.8
    },
    "above43_area_pct": 37.0,
-   "known_pct": 11.5
+   "known_pct": 11.5,
+   "vse": {
+    "pop": 7157,
+    "fe_gwh": {
+     "res": 31.4,
+     "nres": 10.4,
+     "total": 41.8
+    },
+    "tgp_kt": {
+     "res": 4.37,
+     "nres": 2.26,
+     "total": 6.63
+    },
+    "ove_pct": {
+     "res": 59.9,
+     "nres": 29.9,
+     "total": 52.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.38,
+     "total": 5.84
+    },
+    "tgp_t_preb": {
+     "res": 0.61,
+     "total": 0.93
+    },
+    "nres_kwh_m2": 177,
+    "nres_measured_area_pct": 23.5,
+    "dh_ove_pct": null
+   }
   },
   "109": {
    "name": "Semič",
@@ -2277,7 +4489,36 @@
     "G": 12.0
    },
    "above43_area_pct": 36.0,
-   "known_pct": 4.6
+   "known_pct": 4.6,
+   "vse": {
+    "pop": 3780,
+    "fe_gwh": {
+     "res": 21.5,
+     "nres": 3.6,
+     "total": 25.0
+    },
+    "tgp_kt": {
+     "res": 2.51,
+     "nres": 0.66,
+     "total": 3.16
+    },
+    "ove_pct": {
+     "res": 68.9,
+     "nres": 41.3,
+     "total": 64.9
+    },
+    "fe_mwh_preb": {
+     "res": 5.68,
+     "total": 6.62
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 0.84
+    },
+    "nres_kwh_m2": 144,
+    "nres_measured_area_pct": 34.0,
+    "dh_ove_pct": 100.0
+   }
   },
   "110": {
    "name": "Sevnica",
@@ -2306,7 +4547,36 @@
     "G": 13.4
    },
    "above43_area_pct": 38.2,
-   "known_pct": 4.6
+   "known_pct": 4.6,
+   "vse": {
+    "pop": 17602,
+    "fe_gwh": {
+     "res": 89.6,
+     "nres": 19.8,
+     "total": 109.4
+    },
+    "tgp_kt": {
+     "res": 11.2,
+     "nres": 4.38,
+     "total": 15.58
+    },
+    "ove_pct": {
+     "res": 65.5,
+     "nres": 27.8,
+     "total": 58.7
+    },
+    "fe_mwh_preb": {
+     "res": 5.09,
+     "total": 6.22
+    },
+    "tgp_t_preb": {
+     "res": 0.64,
+     "total": 0.89
+    },
+    "nres_kwh_m2": 150,
+    "nres_measured_area_pct": 30.7,
+    "dh_ove_pct": null
+   }
   },
   "111": {
    "name": "Sežana",
@@ -2335,7 +4605,36 @@
     "G": 13.0
    },
    "above43_area_pct": 36.7,
-   "known_pct": 7.3
+   "known_pct": 7.3,
+   "vse": {
+    "pop": 13669,
+    "fe_gwh": {
+     "res": 70.1,
+     "nres": 31.4,
+     "total": 101.5
+    },
+    "tgp_kt": {
+     "res": 9.37,
+     "nres": 6.94,
+     "total": 16.31
+    },
+    "ove_pct": {
+     "res": 62.4,
+     "nres": 28.9,
+     "total": 52.0
+    },
+    "fe_mwh_preb": {
+     "res": 5.13,
+     "total": 7.42
+    },
+    "tgp_t_preb": {
+     "res": 0.69,
+     "total": 1.19
+    },
+    "nres_kwh_m2": 159,
+    "nres_measured_area_pct": 20.3,
+    "dh_ove_pct": null
+   }
   },
   "112": {
    "name": "Slovenj Gradec",
@@ -2364,7 +4663,36 @@
     "G": 10.0
    },
    "above43_area_pct": 30.8,
-   "known_pct": 6.3
+   "known_pct": 6.3,
+   "vse": {
+    "pop": 17063,
+    "fe_gwh": {
+     "res": 73.8,
+     "nres": 32.9,
+     "total": 106.6
+    },
+    "tgp_kt": {
+     "res": 8.55,
+     "nres": 5.85,
+     "total": 14.4
+    },
+    "ove_pct": {
+     "res": 68.4,
+     "nres": 46.9,
+     "total": 61.8
+    },
+    "fe_mwh_preb": {
+     "res": 4.32,
+     "total": 6.25
+    },
+    "tgp_t_preb": {
+     "res": 0.5,
+     "total": 0.84
+    },
+    "nres_kwh_m2": 155,
+    "nres_measured_area_pct": 29.7,
+    "dh_ove_pct": 80.2
+   }
   },
   "113": {
    "name": "Slovenska Bistrica",
@@ -2393,7 +4721,36 @@
     "G": 9.9
    },
    "above43_area_pct": 30.7,
-   "known_pct": 7.1
+   "known_pct": 7.1,
+   "vse": {
+    "pop": 26363,
+    "fe_gwh": {
+     "res": 119.1,
+     "nres": 35.1,
+     "total": 154.2
+    },
+    "tgp_kt": {
+     "res": 15.32,
+     "nres": 7.66,
+     "total": 22.98
+    },
+    "ove_pct": {
+     "res": 64.3,
+     "nres": 30.8,
+     "total": 56.7
+    },
+    "fe_mwh_preb": {
+     "res": 4.52,
+     "total": 5.85
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 0.87
+    },
+    "nres_kwh_m2": 151,
+    "nres_measured_area_pct": 11.3,
+    "dh_ove_pct": null
+   }
   },
   "114": {
    "name": "Slovenske Konjice",
@@ -2422,7 +4779,36 @@
     "G": 10.6
    },
    "above43_area_pct": 32.1,
-   "known_pct": 6.1
+   "known_pct": 6.1,
+   "vse": {
+    "pop": 15534,
+    "fe_gwh": {
+     "res": 65.3,
+     "nres": 20.0,
+     "total": 85.2
+    },
+    "tgp_kt": {
+     "res": 7.45,
+     "nres": 3.54,
+     "total": 10.99
+    },
+    "ove_pct": {
+     "res": 68.9,
+     "nres": 47.4,
+     "total": 63.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.2,
+     "total": 5.49
+    },
+    "tgp_t_preb": {
+     "res": 0.48,
+     "total": 0.71
+    },
+    "nres_kwh_m2": 174,
+    "nres_measured_area_pct": 15.4,
+    "dh_ove_pct": 90.0
+   }
   },
   "115": {
    "name": "Starše",
@@ -2451,7 +4837,36 @@
     "G": 9.1
    },
    "above43_area_pct": 30.0,
-   "known_pct": 5.0
+   "known_pct": 5.0,
+   "vse": {
+    "pop": 4111,
+    "fe_gwh": {
+     "res": 21.9,
+     "nres": 2.4,
+     "total": 24.3
+    },
+    "tgp_kt": {
+     "res": 2.62,
+     "nres": 0.53,
+     "total": 3.15
+    },
+    "ove_pct": {
+     "res": 68.2,
+     "nres": 31.5,
+     "total": 64.6
+    },
+    "fe_mwh_preb": {
+     "res": 5.32,
+     "total": 5.9
+    },
+    "tgp_t_preb": {
+     "res": 0.64,
+     "total": 0.77
+    },
+    "nres_kwh_m2": 125,
+    "nres_measured_area_pct": 32.0,
+    "dh_ove_pct": null
+   }
   },
   "116": {
    "name": "Sveti Jurij ob Ščavnici",
@@ -2480,7 +4895,36 @@
     "G": 11.2
    },
    "above43_area_pct": 34.7,
-   "known_pct": 4.0
+   "known_pct": 4.0,
+   "vse": {
+    "pop": 2795,
+    "fe_gwh": {
+     "res": 15.2,
+     "nres": 2.5,
+     "total": 17.7
+    },
+    "tgp_kt": {
+     "res": 1.8,
+     "nres": 0.56,
+     "total": 2.36
+    },
+    "ove_pct": {
+     "res": 68.3,
+     "nres": 31.7,
+     "total": 63.2
+    },
+    "fe_mwh_preb": {
+     "res": 5.45,
+     "total": 6.34
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 0.84
+    },
+    "nres_kwh_m2": 125,
+    "nres_measured_area_pct": 3.4,
+    "dh_ove_pct": null
+   }
   },
   "117": {
    "name": "Šenčur",
@@ -2509,7 +4953,36 @@
     "G": 7.8
    },
    "above43_area_pct": 26.7,
-   "known_pct": 4.8
+   "known_pct": 4.8,
+   "vse": {
+    "pop": 9041,
+    "fe_gwh": {
+     "res": 38.3,
+     "nres": 10.5,
+     "total": 48.8
+    },
+    "tgp_kt": {
+     "res": 4.71,
+     "nres": 2.3,
+     "total": 7.01
+    },
+    "ove_pct": {
+     "res": 66.7,
+     "nres": 29.4,
+     "total": 58.7
+    },
+    "fe_mwh_preb": {
+     "res": 4.23,
+     "total": 5.4
+    },
+    "tgp_t_preb": {
+     "res": 0.52,
+     "total": 0.78
+    },
+    "nres_kwh_m2": 124,
+    "nres_measured_area_pct": 29.1,
+    "dh_ove_pct": null
+   }
   },
   "118": {
    "name": "Šentilj",
@@ -2538,7 +5011,36 @@
     "G": 10.0
    },
    "above43_area_pct": 30.9,
-   "known_pct": 9.4
+   "known_pct": 9.4,
+   "vse": {
+    "pop": 8371,
+    "fe_gwh": {
+     "res": 41.6,
+     "nres": 9.3,
+     "total": 51.0
+    },
+    "tgp_kt": {
+     "res": 5.78,
+     "nres": 2.06,
+     "total": 7.85
+    },
+    "ove_pct": {
+     "res": 61.4,
+     "nres": 28.6,
+     "total": 55.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.97,
+     "total": 6.09
+    },
+    "tgp_t_preb": {
+     "res": 0.69,
+     "total": 0.94
+    },
+    "nres_kwh_m2": 141,
+    "nres_measured_area_pct": 32.7,
+    "dh_ove_pct": 0.0
+   }
   },
   "119": {
    "name": "Šentjernej",
@@ -2567,7 +5069,36 @@
     "G": 8.1
    },
    "above43_area_pct": 27.6,
-   "known_pct": 5.3
+   "known_pct": 5.3,
+   "vse": {
+    "pop": 7446,
+    "fe_gwh": {
+     "res": 33.5,
+     "nres": 6.2,
+     "total": 39.7
+    },
+    "tgp_kt": {
+     "res": 3.97,
+     "nres": 1.39,
+     "total": 5.35
+    },
+    "ove_pct": {
+     "res": 68.4,
+     "nres": 31.2,
+     "total": 62.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.5,
+     "total": 5.34
+    },
+    "tgp_t_preb": {
+     "res": 0.53,
+     "total": 0.72
+    },
+    "nres_kwh_m2": 120,
+    "nres_measured_area_pct": 26.0,
+    "dh_ove_pct": null
+   }
   },
   "120": {
    "name": "Šentjur",
@@ -2596,7 +5127,36 @@
     "G": 10.6
    },
    "above43_area_pct": 32.7,
-   "known_pct": 4.1
+   "known_pct": 4.1,
+   "vse": {
+    "pop": 19757,
+    "fe_gwh": {
+     "res": 90.8,
+     "nres": 19.6,
+     "total": 110.4
+    },
+    "tgp_kt": {
+     "res": 11.11,
+     "nres": 4.23,
+     "total": 15.34
+    },
+    "ove_pct": {
+     "res": 66.7,
+     "nres": 33.0,
+     "total": 60.7
+    },
+    "fe_mwh_preb": {
+     "res": 4.6,
+     "total": 5.59
+    },
+    "tgp_t_preb": {
+     "res": 0.56,
+     "total": 0.78
+    },
+    "nres_kwh_m2": 163,
+    "nres_measured_area_pct": 4.0,
+    "dh_ove_pct": null
+   }
   },
   "121": {
    "name": "Škocjan",
@@ -2625,7 +5185,36 @@
     "G": 9.0
    },
    "above43_area_pct": 30.0,
-   "known_pct": 4.2
+   "known_pct": 4.2,
+   "vse": {
+    "pop": 3531,
+    "fe_gwh": {
+     "res": 16.8,
+     "nres": 2.5,
+     "total": 19.3
+    },
+    "tgp_kt": {
+     "res": 1.96,
+     "nres": 0.52,
+     "total": 2.49
+    },
+    "ove_pct": {
+     "res": 68.7,
+     "nres": 34.4,
+     "total": 64.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.74,
+     "total": 5.46
+    },
+    "tgp_t_preb": {
+     "res": 0.56,
+     "total": 0.7
+    },
+    "nres_kwh_m2": 123,
+    "nres_measured_area_pct": 33.2,
+    "dh_ove_pct": null
+   }
   },
   "122": {
    "name": "Škofja Loka",
@@ -2654,7 +5243,36 @@
     "G": 11.7
    },
    "above43_area_pct": 33.7,
-   "known_pct": 7.9
+   "known_pct": 7.9,
+   "vse": {
+    "pop": 23850,
+    "fe_gwh": {
+     "res": 93.7,
+     "nres": 29.9,
+     "total": 123.5
+    },
+    "tgp_kt": {
+     "res": 12.98,
+     "nres": 6.32,
+     "total": 19.3
+    },
+    "ove_pct": {
+     "res": 60.9,
+     "nres": 31.1,
+     "total": 53.7
+    },
+    "fe_mwh_preb": {
+     "res": 3.93,
+     "total": 5.18
+    },
+    "tgp_t_preb": {
+     "res": 0.54,
+     "total": 0.81
+    },
+    "nres_kwh_m2": 146,
+    "nres_measured_area_pct": 35.9,
+    "dh_ove_pct": null
+   }
   },
   "123": {
    "name": "Škofljica",
@@ -2683,7 +5301,36 @@
     "G": 6.6
    },
    "above43_area_pct": 23.5,
-   "known_pct": 10.4
+   "known_pct": 10.4,
+   "vse": {
+    "pop": 12199,
+    "fe_gwh": {
+     "res": 46.5,
+     "nres": 7.5,
+     "total": 54.0
+    },
+    "tgp_kt": {
+     "res": 6.25,
+     "nres": 1.65,
+     "total": 7.9
+    },
+    "ove_pct": {
+     "res": 61.8,
+     "nres": 33.7,
+     "total": 57.9
+    },
+    "fe_mwh_preb": {
+     "res": 3.81,
+     "total": 4.42
+    },
+    "tgp_t_preb": {
+     "res": 0.51,
+     "total": 0.65
+    },
+    "nres_kwh_m2": 129,
+    "nres_measured_area_pct": 3.0,
+    "dh_ove_pct": null
+   }
   },
   "124": {
    "name": "Šmarje pri Jelšah",
@@ -2712,7 +5359,36 @@
     "G": 9.9
    },
    "above43_area_pct": 31.2,
-   "known_pct": 4.2
+   "known_pct": 4.2,
+   "vse": {
+    "pop": 10575,
+    "fe_gwh": {
+     "res": 51.4,
+     "nres": 8.3,
+     "total": 59.7
+    },
+    "tgp_kt": {
+     "res": 6.15,
+     "nres": 1.82,
+     "total": 7.97
+    },
+    "ove_pct": {
+     "res": 68.0,
+     "nres": 32.9,
+     "total": 63.1
+    },
+    "fe_mwh_preb": {
+     "res": 4.86,
+     "total": 5.64
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 0.75
+    },
+    "nres_kwh_m2": 120,
+    "nres_measured_area_pct": 29.0,
+    "dh_ove_pct": null
+   }
   },
   "125": {
    "name": "Šmartno ob Paki",
@@ -2741,7 +5417,36 @@
     "G": 10.2
    },
    "above43_area_pct": 31.2,
-   "known_pct": 5.3
+   "known_pct": 5.3,
+   "vse": {
+    "pop": 3436,
+    "fe_gwh": {
+     "res": 15.9,
+     "nres": 1.7,
+     "total": 17.6
+    },
+    "tgp_kt": {
+     "res": 1.95,
+     "nres": 0.39,
+     "total": 2.34
+    },
+    "ove_pct": {
+     "res": 67.1,
+     "nres": 26.5,
+     "total": 63.3
+    },
+    "fe_mwh_preb": {
+     "res": 4.63,
+     "total": 5.11
+    },
+    "tgp_t_preb": {
+     "res": 0.57,
+     "total": 0.68
+    },
+    "nres_kwh_m2": 107,
+    "nres_measured_area_pct": 45.7,
+    "dh_ove_pct": null
+   }
   },
   "126": {
    "name": "Šoštanj",
@@ -2770,7 +5475,36 @@
     "G": 13.9
    },
    "above43_area_pct": 37.6,
-   "known_pct": 7.6
+   "known_pct": 7.6,
+   "vse": {
+    "pop": 9007,
+    "fe_gwh": {
+     "res": 37.4,
+     "nres": 20.8,
+     "total": 58.2
+    },
+    "tgp_kt": {
+     "res": 5.55,
+     "nres": 4.67,
+     "total": 10.22
+    },
+    "ove_pct": {
+     "res": 57.9,
+     "nres": 27.1,
+     "total": 46.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.15,
+     "total": 6.46
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 1.13
+    },
+    "nres_kwh_m2": 205,
+    "nres_measured_area_pct": 22.9,
+    "dh_ove_pct": 2.5
+   }
   },
   "127": {
    "name": "Štore",
@@ -2799,7 +5533,36 @@
     "G": 19.2
    },
    "above43_area_pct": 45.0,
-   "known_pct": 7.1
+   "known_pct": 7.1,
+   "vse": {
+    "pop": 4542,
+    "fe_gwh": {
+     "res": 17.8,
+     "nres": 3.7,
+     "total": 21.5
+    },
+    "tgp_kt": {
+     "res": 2.37,
+     "nres": 0.83,
+     "total": 3.2
+    },
+    "ove_pct": {
+     "res": 62.0,
+     "nres": 25.4,
+     "total": 55.7
+    },
+    "fe_mwh_preb": {
+     "res": 3.92,
+     "total": 4.74
+    },
+    "tgp_t_preb": {
+     "res": 0.52,
+     "total": 0.7
+    },
+    "nres_kwh_m2": 141,
+    "nres_measured_area_pct": 35.9,
+    "dh_ove_pct": null
+   }
   },
   "128": {
    "name": "Tolmin",
@@ -2828,7 +5591,36 @@
     "G": 23.6
    },
    "above43_area_pct": 54.8,
-   "known_pct": 5.9
+   "known_pct": 5.9,
+   "vse": {
+    "pop": 10661,
+    "fe_gwh": {
+     "res": 69.0,
+     "nres": 19.7,
+     "total": 88.7
+    },
+    "tgp_kt": {
+     "res": 8.52,
+     "nres": 4.24,
+     "total": 12.77
+    },
+    "ove_pct": {
+     "res": 66.0,
+     "nres": 31.8,
+     "total": 58.4
+    },
+    "fe_mwh_preb": {
+     "res": 6.48,
+     "total": 8.32
+    },
+    "tgp_t_preb": {
+     "res": 0.8,
+     "total": 1.2
+    },
+    "nres_kwh_m2": 156,
+    "nres_measured_area_pct": 29.8,
+    "dh_ove_pct": 100.0
+   }
   },
   "129": {
    "name": "Trbovlje",
@@ -2857,7 +5649,36 @@
     "G": 26.9
    },
    "above43_area_pct": 54.8,
-   "known_pct": 15.8
+   "known_pct": 15.8,
+   "vse": {
+    "pop": 15935,
+    "fe_gwh": {
+     "res": 58.7,
+     "nres": 21.5,
+     "total": 80.1
+    },
+    "tgp_kt": {
+     "res": 10.94,
+     "nres": 4.96,
+     "total": 15.89
+    },
+    "ove_pct": {
+     "res": 45.2,
+     "nres": 27.8,
+     "total": 40.5
+    },
+    "fe_mwh_preb": {
+     "res": 3.68,
+     "total": 5.03
+    },
+    "tgp_t_preb": {
+     "res": 0.69,
+     "total": 1.0
+    },
+    "nres_kwh_m2": 150,
+    "nres_measured_area_pct": 34.2,
+    "dh_ove_pct": 0.0
+   }
   },
   "130": {
    "name": "Trebnje",
@@ -2886,7 +5707,36 @@
     "G": 7.7
    },
    "above43_area_pct": 26.2,
-   "known_pct": 6.0
+   "known_pct": 6.0,
+   "vse": {
+    "pop": 13855,
+    "fe_gwh": {
+     "res": 61.4,
+     "nres": 13.5,
+     "total": 74.8
+    },
+    "tgp_kt": {
+     "res": 7.48,
+     "nres": 2.65,
+     "total": 10.13
+    },
+    "ove_pct": {
+     "res": 66.9,
+     "nres": 41.7,
+     "total": 62.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.43,
+     "total": 5.4
+    },
+    "tgp_t_preb": {
+     "res": 0.54,
+     "total": 0.73
+    },
+    "nres_kwh_m2": 140,
+    "nres_measured_area_pct": 36.1,
+    "dh_ove_pct": 100.0
+   }
   },
   "131": {
    "name": "Tržič",
@@ -2915,7 +5765,36 @@
     "G": 18.0
    },
    "above43_area_pct": 43.5,
-   "known_pct": 7.9
+   "known_pct": 7.9,
+   "vse": {
+    "pop": 15044,
+    "fe_gwh": {
+     "res": 61.1,
+     "nres": 12.9,
+     "total": 74.0
+    },
+    "tgp_kt": {
+     "res": 8.85,
+     "nres": 2.7,
+     "total": 11.55
+    },
+    "ove_pct": {
+     "res": 58.8,
+     "nres": 36.2,
+     "total": 54.8
+    },
+    "fe_mwh_preb": {
+     "res": 4.06,
+     "total": 4.92
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.77
+    },
+    "nres_kwh_m2": 144,
+    "nres_measured_area_pct": 14.9,
+    "dh_ove_pct": null
+   }
   },
   "132": {
    "name": "Turnišče",
@@ -2944,7 +5823,36 @@
     "G": 12.3
    },
    "above43_area_pct": 36.7,
-   "known_pct": 4.5
+   "known_pct": 4.5,
+   "vse": {
+    "pop": 3070,
+    "fe_gwh": {
+     "res": 17.0,
+     "nres": 2.8,
+     "total": 19.9
+    },
+    "tgp_kt": {
+     "res": 1.99,
+     "nres": 0.6,
+     "total": 2.59
+    },
+    "ove_pct": {
+     "res": 69.1,
+     "nres": 33.7,
+     "total": 64.1
+    },
+    "fe_mwh_preb": {
+     "res": 5.54,
+     "total": 6.47
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 0.84
+    },
+    "nres_kwh_m2": 165,
+    "nres_measured_area_pct": 1.3,
+    "dh_ove_pct": null
+   }
   },
   "133": {
    "name": "Velenje",
@@ -2973,7 +5881,36 @@
     "G": 19.0
    },
    "above43_area_pct": 44.2,
-   "known_pct": 9.9
+   "known_pct": 9.9,
+   "vse": {
+    "pop": 33873,
+    "fe_gwh": {
+     "res": 119.8,
+     "nres": 48.9,
+     "total": 168.7
+    },
+    "tgp_kt": {
+     "res": 21.59,
+     "nres": 11.18,
+     "total": 32.77
+    },
+    "ove_pct": {
+     "res": 47.1,
+     "nres": 27.9,
+     "total": 41.5
+    },
+    "fe_mwh_preb": {
+     "res": 3.54,
+     "total": 4.98
+    },
+    "tgp_t_preb": {
+     "res": 0.64,
+     "total": 0.97
+    },
+    "nres_kwh_m2": 141,
+    "nres_measured_area_pct": 36.7,
+    "dh_ove_pct": 2.5
+   }
   },
   "134": {
    "name": "Velike Lašče",
@@ -3002,7 +5939,36 @@
     "G": 10.5
    },
    "above43_area_pct": 33.0,
-   "known_pct": 5.2
+   "known_pct": 5.2,
+   "vse": {
+    "pop": 4546,
+    "fe_gwh": {
+     "res": 25.1,
+     "nres": 3.4,
+     "total": 28.4
+    },
+    "tgp_kt": {
+     "res": 2.98,
+     "nres": 0.67,
+     "total": 3.65
+    },
+    "ove_pct": {
+     "res": 68.1,
+     "nres": 38.2,
+     "total": 64.6
+    },
+    "fe_mwh_preb": {
+     "res": 5.51,
+     "total": 6.25
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 0.8
+    },
+    "nres_kwh_m2": 146,
+    "nres_measured_area_pct": 25.5,
+    "dh_ove_pct": null
+   }
   },
   "136": {
    "name": "Vipava",
@@ -3031,7 +5997,36 @@
     "G": 12.5
    },
    "above43_area_pct": 36.3,
-   "known_pct": 4.9
+   "known_pct": 4.9,
+   "vse": {
+    "pop": 5866,
+    "fe_gwh": {
+     "res": 27.8,
+     "nres": 15.7,
+     "total": 43.6
+    },
+    "tgp_kt": {
+     "res": 3.58,
+     "nres": 3.49,
+     "total": 7.07
+    },
+    "ove_pct": {
+     "res": 63.7,
+     "nres": 29.9,
+     "total": 51.5
+    },
+    "fe_mwh_preb": {
+     "res": 4.75,
+     "total": 7.43
+    },
+    "tgp_t_preb": {
+     "res": 0.61,
+     "total": 1.2
+    },
+    "nres_kwh_m2": 200,
+    "nres_measured_area_pct": 0.4,
+    "dh_ove_pct": null
+   }
   },
   "138": {
    "name": "Vodice",
@@ -3060,7 +6055,36 @@
     "G": 6.5
    },
    "above43_area_pct": 23.8,
-   "known_pct": 6.1
+   "known_pct": 6.1,
+   "vse": {
+    "pop": 5291,
+    "fe_gwh": {
+     "res": 25.3,
+     "nres": 2.6,
+     "total": 27.9
+    },
+    "tgp_kt": {
+     "res": 3.06,
+     "nres": 0.58,
+     "total": 3.64
+    },
+    "ove_pct": {
+     "res": 67.6,
+     "nres": 22.1,
+     "total": 63.3
+    },
+    "fe_mwh_preb": {
+     "res": 4.78,
+     "total": 5.27
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 0.69
+    },
+    "nres_kwh_m2": 123,
+    "nres_measured_area_pct": 44.2,
+    "dh_ove_pct": null
+   }
   },
   "140": {
    "name": "Vrhnika",
@@ -3089,7 +6113,36 @@
     "G": 10.9
    },
    "above43_area_pct": 31.9,
-   "known_pct": 10.9
+   "known_pct": 10.9,
+   "vse": {
+    "pop": 18296,
+    "fe_gwh": {
+     "res": 70.2,
+     "nres": 18.7,
+     "total": 89.0
+    },
+    "tgp_kt": {
+     "res": 9.44,
+     "nres": 4.14,
+     "total": 13.58
+    },
+    "ove_pct": {
+     "res": 61.1,
+     "nres": 29.7,
+     "total": 54.5
+    },
+    "fe_mwh_preb": {
+     "res": 3.84,
+     "total": 4.86
+    },
+    "tgp_t_preb": {
+     "res": 0.52,
+     "total": 0.74
+    },
+    "nres_kwh_m2": 144,
+    "nres_measured_area_pct": 7.5,
+    "dh_ove_pct": null
+   }
   },
   "142": {
    "name": "Zagorje ob Savi",
@@ -3118,7 +6171,36 @@
     "G": 17.9
    },
    "above43_area_pct": 44.7,
-   "known_pct": 7.2
+   "known_pct": 7.2,
+   "vse": {
+    "pop": 16347,
+    "fe_gwh": {
+     "res": 69.6,
+     "nres": 17.8,
+     "total": 87.4
+    },
+    "tgp_kt": {
+     "res": 7.64,
+     "nres": 2.89,
+     "total": 10.53
+    },
+    "ove_pct": {
+     "res": 70.3,
+     "nres": 52.6,
+     "total": 66.7
+    },
+    "fe_mwh_preb": {
+     "res": 4.26,
+     "total": 5.35
+    },
+    "tgp_t_preb": {
+     "res": 0.47,
+     "total": 0.64
+    },
+    "nres_kwh_m2": 150,
+    "nres_measured_area_pct": 32.1,
+    "dh_ove_pct": 100.0
+   }
   },
   "144": {
    "name": "Zreče",
@@ -3147,7 +6229,36 @@
     "G": 10.8
    },
    "above43_area_pct": 33.0,
-   "known_pct": 6.5
+   "known_pct": 6.5,
+   "vse": {
+    "pop": 6657,
+    "fe_gwh": {
+     "res": 29.5,
+     "nres": 17.1,
+     "total": 46.6
+    },
+    "tgp_kt": {
+     "res": 4.21,
+     "nres": 3.61,
+     "total": 7.82
+    },
+    "ove_pct": {
+     "res": 59.9,
+     "nres": 31.1,
+     "total": 49.3
+    },
+    "fe_mwh_preb": {
+     "res": 4.43,
+     "total": 7.01
+    },
+    "tgp_t_preb": {
+     "res": 0.63,
+     "total": 1.17
+    },
+    "nres_kwh_m2": 208,
+    "nres_measured_area_pct": 14.3,
+    "dh_ove_pct": 0.0
+   }
   },
   "147": {
    "name": "Žiri",
@@ -3176,7 +6287,36 @@
     "G": 12.9
    },
    "above43_area_pct": 37.8,
-   "known_pct": 4.6
+   "known_pct": 4.6,
+   "vse": {
+    "pop": 5159,
+    "fe_gwh": {
+     "res": 24.7,
+     "nres": 6.3,
+     "total": 30.9
+    },
+    "tgp_kt": {
+     "res": 3.05,
+     "nres": 1.42,
+     "total": 4.47
+    },
+    "ove_pct": {
+     "res": 66.4,
+     "nres": 35.4,
+     "total": 60.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.78,
+     "total": 6.0
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.87
+    },
+    "nres_kwh_m2": 163,
+    "nres_measured_area_pct": 37.0,
+    "dh_ove_pct": null
+   }
   },
   "35": {
    "name": "Hrpelje-Kozina",
@@ -3205,7 +6345,36 @@
     "G": 11.0
    },
    "above43_area_pct": 32.8,
-   "known_pct": 7.4
+   "known_pct": 7.4,
+   "vse": {
+    "pop": 5451,
+    "fe_gwh": {
+     "res": 25.8,
+     "nres": 10.1,
+     "total": 35.9
+    },
+    "tgp_kt": {
+     "res": 3.25,
+     "nres": 2.13,
+     "total": 5.38
+    },
+    "ove_pct": {
+     "res": 65.2,
+     "nres": 32.1,
+     "total": 55.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.74,
+     "total": 6.58
+    },
+    "tgp_t_preb": {
+     "res": 0.6,
+     "total": 0.99
+    },
+    "nres_kwh_m2": 159,
+    "nres_measured_area_pct": 15.2,
+    "dh_ove_pct": 100.0
+   }
   },
   "38": {
    "name": "Ilirska Bistrica",
@@ -3234,7 +6403,36 @@
     "G": 18.6
    },
    "above43_area_pct": 47.1,
-   "known_pct": 6.9
+   "known_pct": 6.9,
+   "vse": {
+    "pop": 13130,
+    "fe_gwh": {
+     "res": 73.6,
+     "nres": 20.6,
+     "total": 94.1
+    },
+    "tgp_kt": {
+     "res": 9.18,
+     "nres": 4.62,
+     "total": 13.79
+    },
+    "ove_pct": {
+     "res": 65.8,
+     "nres": 29.4,
+     "total": 57.8
+    },
+    "fe_mwh_preb": {
+     "res": 5.6,
+     "total": 7.17
+    },
+    "tgp_t_preb": {
+     "res": 0.7,
+     "total": 1.05
+    },
+    "nres_kwh_m2": 137,
+    "nres_measured_area_pct": 26.8,
+    "dh_ove_pct": null
+   }
   },
   "41": {
    "name": "Jesenice",
@@ -3263,7 +6461,36 @@
     "G": 24.6
    },
    "above43_area_pct": 51.5,
-   "known_pct": 13.3
+   "known_pct": 13.3,
+   "vse": {
+    "pop": 21769,
+    "fe_gwh": {
+     "res": 64.8,
+     "nres": 28.0,
+     "total": 92.8
+    },
+    "tgp_kt": {
+     "res": 11.52,
+     "nres": 6.16,
+     "total": 17.67
+    },
+    "ove_pct": {
+     "res": 47.0,
+     "nres": 32.0,
+     "total": 42.5
+    },
+    "fe_mwh_preb": {
+     "res": 2.97,
+     "total": 4.26
+    },
+    "tgp_t_preb": {
+     "res": 0.53,
+     "total": 0.81
+    },
+    "nres_kwh_m2": 144,
+    "nres_measured_area_pct": 27.1,
+    "dh_ove_pct": 13.6
+   }
   },
   "43": {
    "name": "Kamnik",
@@ -3292,7 +6519,36 @@
     "G": 15.5
    },
    "above43_area_pct": 41.0,
-   "known_pct": 8.2
+   "known_pct": 8.2,
+   "vse": {
+    "pop": 29830,
+    "fe_gwh": {
+     "res": 124.7,
+     "nres": 37.0,
+     "total": 161.7
+    },
+    "tgp_kt": {
+     "res": 18.19,
+     "nres": 7.96,
+     "total": 26.15
+    },
+    "ove_pct": {
+     "res": 57.4,
+     "nres": 32.9,
+     "total": 51.8
+    },
+    "fe_mwh_preb": {
+     "res": 4.18,
+     "total": 5.42
+    },
+    "tgp_t_preb": {
+     "res": 0.61,
+     "total": 0.88
+    },
+    "nres_kwh_m2": 166,
+    "nres_measured_area_pct": 6.5,
+    "dh_ove_pct": 0.0
+   }
   },
   "45": {
    "name": "Kidričevo",
@@ -3321,7 +6577,36 @@
     "G": 9.9
    },
    "above43_area_pct": 29.7,
-   "known_pct": 5.2
+   "known_pct": 5.2,
+   "vse": {
+    "pop": 6606,
+    "fe_gwh": {
+     "res": 28.6,
+     "nres": 7.4,
+     "total": 36.0
+    },
+    "tgp_kt": {
+     "res": 3.13,
+     "nres": 1.27,
+     "total": 4.4
+    },
+    "ove_pct": {
+     "res": 70.8,
+     "nres": 50.5,
+     "total": 66.7
+    },
+    "fe_mwh_preb": {
+     "res": 4.33,
+     "total": 5.45
+    },
+    "tgp_t_preb": {
+     "res": 0.47,
+     "total": 0.67
+    },
+    "nres_kwh_m2": 122,
+    "nres_measured_area_pct": 23.0,
+    "dh_ove_pct": 94.3
+   }
   },
   "47": {
    "name": "Kobilje",
@@ -3350,7 +6635,36 @@
     "G": 14.2
    },
    "above43_area_pct": 40.2,
-   "known_pct": 4.5
+   "known_pct": 4.5,
+   "vse": {
+    "pop": 502,
+    "fe_gwh": {
+     "res": 3.0,
+     "nres": 0.4,
+     "total": 3.4
+    },
+    "tgp_kt": {
+     "res": 0.36,
+     "nres": 0.09,
+     "total": 0.45
+    },
+    "ove_pct": {
+     "res": 67.7,
+     "nres": 32.2,
+     "total": 63.7
+    },
+    "fe_mwh_preb": {
+     "res": 6.02,
+     "total": 6.79
+    },
+    "tgp_t_preb": {
+     "res": 0.72,
+     "total": 0.9
+    },
+    "nres_kwh_m2": 108,
+    "nres_measured_area_pct": 31.0,
+    "dh_ove_pct": null
+   }
   },
   "49": {
    "name": "Komen",
@@ -3379,7 +6693,36 @@
     "G": 18.2
    },
    "above43_area_pct": 47.6,
-   "known_pct": 5.4
+   "known_pct": 5.4,
+   "vse": {
+    "pop": 3476,
+    "fe_gwh": {
+     "res": 25.0,
+     "nres": 4.7,
+     "total": 29.7
+    },
+    "tgp_kt": {
+     "res": 3.03,
+     "nres": 1.06,
+     "total": 4.09
+    },
+    "ove_pct": {
+     "res": 66.6,
+     "nres": 25.1,
+     "total": 60.1
+    },
+    "fe_mwh_preb": {
+     "res": 7.19,
+     "total": 8.53
+    },
+    "tgp_t_preb": {
+     "res": 0.87,
+     "total": 1.18
+    },
+    "nres_kwh_m2": 162,
+    "nres_measured_area_pct": 20.4,
+    "dh_ove_pct": null
+   }
   },
   "50": {
    "name": "Koper",
@@ -3408,7 +6751,36 @@
     "G": 14.7
    },
    "above43_area_pct": 38.6,
-   "known_pct": 10.6
+   "known_pct": 10.6,
+   "vse": {
+    "pop": 54795,
+    "fe_gwh": {
+     "res": 222.5,
+     "nres": 84.2,
+     "total": 306.7
+    },
+    "tgp_kt": {
+     "res": 34.61,
+     "nres": 18.1,
+     "total": 52.71
+    },
+    "ove_pct": {
+     "res": 55.5,
+     "nres": 37.1,
+     "total": 50.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.06,
+     "total": 5.6
+    },
+    "tgp_t_preb": {
+     "res": 0.63,
+     "total": 0.96
+    },
+    "nres_kwh_m2": 128,
+    "nres_measured_area_pct": 20.1,
+    "dh_ove_pct": 0.0
+   }
   },
   "52": {
    "name": "Kranj",
@@ -3437,7 +6809,36 @@
     "G": 15.0
    },
    "above43_area_pct": 38.7,
-   "known_pct": 9.8
+   "known_pct": 9.8,
+   "vse": {
+    "pop": 57491,
+    "fe_gwh": {
+     "res": 212.0,
+     "nres": 105.3,
+     "total": 317.4
+    },
+    "tgp_kt": {
+     "res": 33.76,
+     "nres": 23.42,
+     "total": 57.18
+    },
+    "ove_pct": {
+     "res": 53.6,
+     "nres": 30.0,
+     "total": 45.8
+    },
+    "fe_mwh_preb": {
+     "res": 3.69,
+     "total": 5.52
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.99
+    },
+    "nres_kwh_m2": 170,
+    "nres_measured_area_pct": 39.7,
+    "dh_ove_pct": 0.0
+   }
   },
   "53": {
    "name": "Kranjska Gora",
@@ -3466,7 +6867,36 @@
     "G": 14.9
    },
    "above43_area_pct": 39.9,
-   "known_pct": 10.8
+   "known_pct": 10.8,
+   "vse": {
+    "pop": 5143,
+    "fe_gwh": {
+     "res": 36.2,
+     "nres": 26.2,
+     "total": 62.4
+    },
+    "tgp_kt": {
+     "res": 5.22,
+     "nres": 5.53,
+     "total": 10.75
+    },
+    "ove_pct": {
+     "res": 58.6,
+     "nres": 29.8,
+     "total": 46.5
+    },
+    "fe_mwh_preb": {
+     "res": 7.03,
+     "total": 12.13
+    },
+    "tgp_t_preb": {
+     "res": 1.02,
+     "total": 2.09
+    },
+    "nres_kwh_m2": 216,
+    "nres_measured_area_pct": 9.6,
+    "dh_ove_pct": 100.0
+   }
   },
   "56": {
    "name": "Kuzma",
@@ -3495,7 +6925,36 @@
     "G": 10.9
    },
    "above43_area_pct": 33.9,
-   "known_pct": 2.7
+   "known_pct": 2.7,
+   "vse": {
+    "pop": 1663,
+    "fe_gwh": {
+     "res": 8.2,
+     "nres": 1.6,
+     "total": 9.8
+    },
+    "tgp_kt": {
+     "res": 0.98,
+     "nres": 0.35,
+     "total": 1.33
+    },
+    "ove_pct": {
+     "res": 67.5,
+     "nres": 28.1,
+     "total": 61.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.93,
+     "total": 5.88
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.8
+    },
+    "nres_kwh_m2": 180,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "57": {
    "name": "Laško",
@@ -3524,7 +6983,36 @@
     "G": 14.0
    },
    "above43_area_pct": 38.9,
-   "known_pct": 5.6
+   "known_pct": 5.6,
+   "vse": {
+    "pop": 13023,
+    "fe_gwh": {
+     "res": 60.2,
+     "nres": 29.6,
+     "total": 89.8
+    },
+    "tgp_kt": {
+     "res": 8.05,
+     "nres": 6.38,
+     "total": 14.43
+    },
+    "ove_pct": {
+     "res": 62.3,
+     "nres": 26.9,
+     "total": 50.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.62,
+     "total": 6.89
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 1.11
+    },
+    "nres_kwh_m2": 238,
+    "nres_measured_area_pct": 34.9,
+    "dh_ove_pct": null
+   }
   },
   "59": {
    "name": "Lendava",
@@ -3553,7 +7041,36 @@
     "G": 15.5
    },
    "above43_area_pct": 42.0,
-   "known_pct": 7.1
+   "known_pct": 7.1,
+   "vse": {
+    "pop": 10088,
+    "fe_gwh": {
+     "res": 59.4,
+     "nres": 23.2,
+     "total": 82.6
+    },
+    "tgp_kt": {
+     "res": 7.35,
+     "nres": 4.75,
+     "total": 12.1
+    },
+    "ove_pct": {
+     "res": 66.3,
+     "nres": 36.8,
+     "total": 58.0
+    },
+    "fe_mwh_preb": {
+     "res": 5.89,
+     "total": 8.19
+    },
+    "tgp_t_preb": {
+     "res": 0.73,
+     "total": 1.2
+    },
+    "nres_kwh_m2": 167,
+    "nres_measured_area_pct": 15.9,
+    "dh_ove_pct": 79.5
+   }
   },
   "61": {
    "name": "Ljubljana",
@@ -3582,7 +7099,36 @@
     "G": 18.8
    },
    "above43_area_pct": 43.4,
-   "known_pct": 18.7
+   "known_pct": 18.7,
+   "vse": {
+    "pop": 302826,
+    "fe_gwh": {
+     "res": 1014.3,
+     "nres": 883.8,
+     "total": 1898.2
+    },
+    "tgp_kt": {
+     "res": 188.66,
+     "nres": 194.78,
+     "total": 383.43
+    },
+    "ove_pct": {
+     "res": 42.9,
+     "nres": 31.8,
+     "total": 37.7
+    },
+    "fe_mwh_preb": {
+     "res": 3.35,
+     "total": 6.27
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 1.27
+    },
+    "nres_kwh_m2": 162,
+    "nres_measured_area_pct": 38.6,
+    "dh_ove_pct": 13.6
+   }
   },
   "63": {
    "name": "Ljutomer",
@@ -3611,7 +7157,36 @@
     "G": 15.7
    },
    "above43_area_pct": 42.2,
-   "known_pct": 5.6
+   "known_pct": 5.6,
+   "vse": {
+    "pop": 10850,
+    "fe_gwh": {
+     "res": 59.6,
+     "nres": 17.8,
+     "total": 77.5
+    },
+    "tgp_kt": {
+     "res": 8.03,
+     "nres": 3.74,
+     "total": 11.78
+    },
+    "ove_pct": {
+     "res": 62.4,
+     "nres": 36.2,
+     "total": 56.4
+    },
+    "fe_mwh_preb": {
+     "res": 5.5,
+     "total": 7.14
+    },
+    "tgp_t_preb": {
+     "res": 0.74,
+     "total": 1.09
+    },
+    "nres_kwh_m2": 155,
+    "nres_measured_area_pct": 24.1,
+    "dh_ove_pct": null
+   }
   },
   "65": {
    "name": "Loška dolina",
@@ -3640,7 +7215,36 @@
     "G": 15.5
    },
    "above43_area_pct": 41.9,
-   "known_pct": 4.8
+   "known_pct": 4.8,
+   "vse": {
+    "pop": 3506,
+    "fe_gwh": {
+     "res": 17.3,
+     "nres": 3.9,
+     "total": 21.2
+    },
+    "tgp_kt": {
+     "res": 2.17,
+     "nres": 0.9,
+     "total": 3.07
+    },
+    "ove_pct": {
+     "res": 65.9,
+     "nres": 29.6,
+     "total": 59.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.94,
+     "total": 6.06
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.87
+    },
+    "nres_kwh_m2": 124,
+    "nres_measured_area_pct": 19.3,
+    "dh_ove_pct": null
+   }
   },
   "68": {
    "name": "Lukovica",
@@ -3669,7 +7273,36 @@
     "G": 8.7
    },
    "above43_area_pct": 28.6,
-   "known_pct": 5.7
+   "known_pct": 5.7,
+   "vse": {
+    "pop": 6193,
+    "fe_gwh": {
+     "res": 27.4,
+     "nres": 8.1,
+     "total": 35.5
+    },
+    "tgp_kt": {
+     "res": 3.33,
+     "nres": 1.79,
+     "total": 5.12
+    },
+    "ove_pct": {
+     "res": 67.5,
+     "nres": 37.6,
+     "total": 60.7
+    },
+    "fe_mwh_preb": {
+     "res": 4.43,
+     "total": 5.73
+    },
+    "tgp_t_preb": {
+     "res": 0.54,
+     "total": 0.83
+    },
+    "nres_kwh_m2": 248,
+    "nres_measured_area_pct": 36.4,
+    "dh_ove_pct": null
+   }
   },
   "70": {
    "name": "Maribor",
@@ -3698,7 +7331,36 @@
     "G": 18.6
    },
    "above43_area_pct": 43.2,
-   "known_pct": 17.1
+   "known_pct": 17.1,
+   "vse": {
+    "pop": 114872,
+    "fe_gwh": {
+     "res": 431.7,
+     "nres": 307.8,
+     "total": 739.5
+    },
+    "tgp_kt": {
+     "res": 74.79,
+     "nres": 65.8,
+     "total": 140.59
+    },
+    "ove_pct": {
+     "res": 47.5,
+     "nres": 34.0,
+     "total": 41.9
+    },
+    "fe_mwh_preb": {
+     "res": 3.76,
+     "total": 6.44
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 1.22
+    },
+    "nres_kwh_m2": 173,
+    "nres_measured_area_pct": 33.3,
+    "dh_ove_pct": 17.9
+   }
   },
   "71": {
    "name": "Medvode",
@@ -3727,7 +7389,36 @@
     "G": 10.5
    },
    "above43_area_pct": 31.6,
-   "known_pct": 11.2
+   "known_pct": 11.2,
+   "vse": {
+    "pop": 17580,
+    "fe_gwh": {
+     "res": 80.3,
+     "nres": 14.3,
+     "total": 94.6
+    },
+    "tgp_kt": {
+     "res": 10.45,
+     "nres": 3.17,
+     "total": 13.63
+    },
+    "ove_pct": {
+     "res": 63.8,
+     "nres": 25.1,
+     "total": 57.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.57,
+     "total": 5.38
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.78
+    },
+    "nres_kwh_m2": 162,
+    "nres_measured_area_pct": 31.7,
+    "dh_ove_pct": null
+   }
   },
   "73": {
    "name": "Metlika",
@@ -3756,7 +7447,36 @@
     "G": 15.0
    },
    "above43_area_pct": 41.2,
-   "known_pct": 4.3
+   "known_pct": 4.3,
+   "vse": {
+    "pop": 8552,
+    "fe_gwh": {
+     "res": 45.0,
+     "nres": 10.0,
+     "total": 55.0
+    },
+    "tgp_kt": {
+     "res": 4.9,
+     "nres": 1.64,
+     "total": 6.55
+    },
+    "ove_pct": {
+     "res": 71.0,
+     "nres": 53.1,
+     "total": 67.7
+    },
+    "fe_mwh_preb": {
+     "res": 5.26,
+     "total": 6.43
+    },
+    "tgp_t_preb": {
+     "res": 0.57,
+     "total": 0.77
+    },
+    "nres_kwh_m2": 124,
+    "nres_measured_area_pct": 33.1,
+    "dh_ove_pct": 99.5
+   }
   },
   "75": {
    "name": "Miren-Kostanjevica",
@@ -3785,7 +7505,36 @@
     "G": 15.5
    },
    "above43_area_pct": 42.2,
-   "known_pct": 6.8
+   "known_pct": 6.8,
+   "vse": {
+    "pop": 5069,
+    "fe_gwh": {
+     "res": 26.5,
+     "nres": 5.1,
+     "total": 31.6
+    },
+    "tgp_kt": {
+     "res": 3.27,
+     "nres": 1.06,
+     "total": 4.32
+    },
+    "ove_pct": {
+     "res": 66.1,
+     "nres": 34.1,
+     "total": 61.0
+    },
+    "fe_mwh_preb": {
+     "res": 5.23,
+     "total": 6.23
+    },
+    "tgp_t_preb": {
+     "res": 0.64,
+     "total": 0.85
+    },
+    "nres_kwh_m2": 152,
+    "nres_measured_area_pct": 23.4,
+    "dh_ove_pct": 100.0
+   }
   },
   "79": {
    "name": "Mozirje",
@@ -3814,7 +7563,36 @@
     "G": 10.4
    },
    "above43_area_pct": 32.1,
-   "known_pct": 6.5
+   "known_pct": 6.5,
+   "vse": {
+    "pop": 4438,
+    "fe_gwh": {
+     "res": 21.1,
+     "nres": 6.1,
+     "total": 27.2
+    },
+    "tgp_kt": {
+     "res": 2.28,
+     "nres": 0.93,
+     "total": 3.21
+    },
+    "ove_pct": {
+     "res": 71.5,
+     "nres": 57.5,
+     "total": 68.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.75,
+     "total": 6.13
+    },
+    "tgp_t_preb": {
+     "res": 0.51,
+     "total": 0.72
+    },
+    "nres_kwh_m2": 128,
+    "nres_measured_area_pct": 33.5,
+    "dh_ove_pct": 100.0
+   }
   },
   "81": {
    "name": "Muta",
@@ -3843,7 +7621,36 @@
     "G": 11.4
    },
    "above43_area_pct": 33.1,
-   "known_pct": 7.5
+   "known_pct": 7.5,
+   "vse": {
+    "pop": 3329,
+    "fe_gwh": {
+     "res": 15.5,
+     "nres": 3.6,
+     "total": 19.1
+    },
+    "tgp_kt": {
+     "res": 1.99,
+     "nres": 0.79,
+     "total": 2.78
+    },
+    "ove_pct": {
+     "res": 65.1,
+     "nres": 29.2,
+     "total": 58.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.66,
+     "total": 5.74
+    },
+    "tgp_t_preb": {
+     "res": 0.6,
+     "total": 0.83
+    },
+    "nres_kwh_m2": 129,
+    "nres_measured_area_pct": 26.4,
+    "dh_ove_pct": null
+   }
   },
   "82": {
    "name": "Naklo",
@@ -3872,7 +7679,36 @@
     "G": 9.9
    },
    "above43_area_pct": 31.5,
-   "known_pct": 4.6
+   "known_pct": 4.6,
+   "vse": {
+    "pop": 5494,
+    "fe_gwh": {
+     "res": 25.3,
+     "nres": 8.7,
+     "total": 34.0
+    },
+    "tgp_kt": {
+     "res": 3.1,
+     "nres": 1.93,
+     "total": 5.03
+    },
+    "ove_pct": {
+     "res": 66.8,
+     "nres": 27.3,
+     "total": 56.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.6,
+     "total": 6.19
+    },
+    "tgp_t_preb": {
+     "res": 0.56,
+     "total": 0.91
+    },
+    "nres_kwh_m2": 148,
+    "nres_measured_area_pct": 35.5,
+    "dh_ove_pct": null
+   }
   },
   "83": {
    "name": "Nazarje",
@@ -3901,7 +7737,36 @@
     "G": 16.5
    },
    "above43_area_pct": 44.1,
-   "known_pct": 4.9
+   "known_pct": 4.9,
+   "vse": {
+    "pop": 2681,
+    "fe_gwh": {
+     "res": 13.1,
+     "nres": 3.5,
+     "total": 16.7
+    },
+    "tgp_kt": {
+     "res": 1.35,
+     "nres": 0.52,
+     "total": 1.87
+    },
+    "ove_pct": {
+     "res": 72.6,
+     "nres": 57.9,
+     "total": 69.5
+    },
+    "fe_mwh_preb": {
+     "res": 4.89,
+     "total": 6.21
+    },
+    "tgp_t_preb": {
+     "res": 0.5,
+     "total": 0.7
+    },
+    "nres_kwh_m2": 112,
+    "nres_measured_area_pct": 35.8,
+    "dh_ove_pct": 100.0
+   }
   },
   "85": {
    "name": "Novo mesto",
@@ -3930,7 +7795,36 @@
     "G": 11.1
    },
    "above43_area_pct": 32.6,
-   "known_pct": 8.0
+   "known_pct": 8.0,
+   "vse": {
+    "pop": 38678,
+    "fe_gwh": {
+     "res": 156.4,
+     "nres": 93.6,
+     "total": 250.0
+    },
+    "tgp_kt": {
+     "res": 22.83,
+     "nres": 20.15,
+     "total": 42.98
+    },
+    "ove_pct": {
+     "res": 58.3,
+     "nres": 32.1,
+     "total": 48.5
+    },
+    "fe_mwh_preb": {
+     "res": 4.04,
+     "total": 6.46
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 1.11
+    },
+    "nres_kwh_m2": 153,
+    "nres_measured_area_pct": 33.6,
+    "dh_ove_pct": 0.0
+   }
   },
   "88": {
    "name": "Osilnica",
@@ -3959,7 +7853,36 @@
     "G": 15.1
    },
    "above43_area_pct": 42.4,
-   "known_pct": 3.4
+   "known_pct": 3.4,
+   "vse": {
+    "pop": 326,
+    "fe_gwh": {
+     "res": 2.3,
+     "nres": 1.0,
+     "total": 3.4
+    },
+    "tgp_kt": {
+     "res": 0.28,
+     "nres": 0.23,
+     "total": 0.52
+    },
+    "ove_pct": {
+     "res": 66.6,
+     "nres": 32.1,
+     "total": 56.0
+    },
+    "fe_mwh_preb": {
+     "res": 7.17,
+     "total": 10.33
+    },
+    "tgp_t_preb": {
+     "res": 0.87,
+     "total": 1.59
+    },
+    "nres_kwh_m2": 147,
+    "nres_measured_area_pct": 14.9,
+    "dh_ove_pct": null
+   }
   },
   "90": {
    "name": "Piran",
@@ -3988,7 +7911,36 @@
     "G": 17.5
    },
    "above43_area_pct": 42.1,
-   "known_pct": 11.8
+   "known_pct": 11.8,
+   "vse": {
+    "pop": 18206,
+    "fe_gwh": {
+     "res": 88.4,
+     "nres": 87.2,
+     "total": 175.5
+    },
+    "tgp_kt": {
+     "res": 15.04,
+     "nres": 18.22,
+     "total": 33.25
+    },
+    "ove_pct": {
+     "res": 50.4,
+     "nres": 31.9,
+     "total": 41.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.85,
+     "total": 9.64
+    },
+    "tgp_t_preb": {
+     "res": 0.83,
+     "total": 1.83
+    },
+    "nres_kwh_m2": 235,
+    "nres_measured_area_pct": 15.8,
+    "dh_ove_pct": 0.8
+   }
   },
   "91": {
    "name": "Pivka",
@@ -4017,7 +7969,36 @@
     "G": 13.6
    },
    "above43_area_pct": 37.1,
-   "known_pct": 5.5
+   "known_pct": 5.5,
+   "vse": {
+    "pop": 6168,
+    "fe_gwh": {
+     "res": 31.6,
+     "nres": 10.3,
+     "total": 41.9
+    },
+    "tgp_kt": {
+     "res": 3.99,
+     "nres": 2.15,
+     "total": 6.14
+    },
+    "ove_pct": {
+     "res": 65.2,
+     "nres": 33.7,
+     "total": 57.5
+    },
+    "fe_mwh_preb": {
+     "res": 5.12,
+     "total": 6.79
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 1.0
+    },
+    "nres_kwh_m2": 153,
+    "nres_measured_area_pct": 20.6,
+    "dh_ove_pct": 100.0
+   }
   },
   "93": {
    "name": "Podvelka",
@@ -4046,7 +8027,36 @@
     "G": 18.1
    },
    "above43_area_pct": 45.7,
-   "known_pct": 5.7
+   "known_pct": 5.7,
+   "vse": {
+    "pop": 2242,
+    "fe_gwh": {
+     "res": 11.7,
+     "nres": 3.3,
+     "total": 15.0
+    },
+    "tgp_kt": {
+     "res": 1.42,
+     "nres": 0.52,
+     "total": 1.94
+    },
+    "ove_pct": {
+     "res": 67.3,
+     "nres": 52.7,
+     "total": 64.1
+    },
+    "fe_mwh_preb": {
+     "res": 5.21,
+     "total": 6.69
+    },
+    "tgp_t_preb": {
+     "res": 0.63,
+     "total": 0.87
+    },
+    "nres_kwh_m2": 179,
+    "nres_measured_area_pct": 28.6,
+    "dh_ove_pct": null
+   }
   },
   "96": {
    "name": "Ptuj",
@@ -4075,7 +8085,36 @@
     "G": 13.2
    },
    "above43_area_pct": 35.9,
-   "known_pct": 8.7
+   "known_pct": 8.7,
+   "vse": {
+    "pop": 23898,
+    "fe_gwh": {
+     "res": 107.7,
+     "nres": 60.1,
+     "total": 167.8
+    },
+    "tgp_kt": {
+     "res": 13.82,
+     "nres": 11.31,
+     "total": 25.13
+    },
+    "ove_pct": {
+     "res": 63.8,
+     "nres": 41.4,
+     "total": 55.7
+    },
+    "fe_mwh_preb": {
+     "res": 4.51,
+     "total": 7.02
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 1.05
+    },
+    "nres_kwh_m2": 169,
+    "nres_measured_area_pct": 23.3,
+    "dh_ove_pct": 67.6
+   }
   },
   "97": {
    "name": "Puconci",
@@ -4104,7 +8143,36 @@
     "G": 11.7
    },
    "above43_area_pct": 35.9,
-   "known_pct": 4.3
+   "known_pct": 4.3,
+   "vse": {
+    "pop": 5800,
+    "fe_gwh": {
+     "res": 31.6,
+     "nres": 7.2,
+     "total": 38.9
+    },
+    "tgp_kt": {
+     "res": 3.66,
+     "nres": 1.61,
+     "total": 5.27
+    },
+    "ove_pct": {
+     "res": 69.3,
+     "nres": 29.3,
+     "total": 61.9
+    },
+    "fe_mwh_preb": {
+     "res": 5.45,
+     "total": 6.7
+    },
+    "tgp_t_preb": {
+     "res": 0.63,
+     "total": 0.91
+    },
+    "nres_kwh_m2": 144,
+    "nres_measured_area_pct": 1.3,
+    "dh_ove_pct": null
+   }
   },
   "99": {
    "name": "Radeče",
@@ -4133,7 +8201,36 @@
     "G": 18.3
    },
    "above43_area_pct": 46.7,
-   "known_pct": 6.6
+   "known_pct": 6.6,
+   "vse": {
+    "pop": 4046,
+    "fe_gwh": {
+     "res": 20.5,
+     "nres": 6.1,
+     "total": 26.6
+    },
+    "tgp_kt": {
+     "res": 2.65,
+     "nres": 1.36,
+     "total": 4.01
+    },
+    "ove_pct": {
+     "res": 63.7,
+     "nres": 28.9,
+     "total": 55.8
+    },
+    "fe_mwh_preb": {
+     "res": 5.08,
+     "total": 6.58
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 0.99
+    },
+    "nres_kwh_m2": 163,
+    "nres_measured_area_pct": 12.1,
+    "dh_ove_pct": null
+   }
   },
   "135": {
    "name": "Videm",
@@ -4162,7 +8259,36 @@
     "G": 9.9
    },
    "above43_area_pct": 31.6,
-   "known_pct": 3.6
+   "known_pct": 3.6,
+   "vse": {
+    "pop": 5612,
+    "fe_gwh": {
+     "res": 28.1,
+     "nres": 3.2,
+     "total": 31.3
+    },
+    "tgp_kt": {
+     "res": 3.39,
+     "nres": 0.71,
+     "total": 4.1
+    },
+    "ove_pct": {
+     "res": 67.6,
+     "nres": 29.7,
+     "total": 63.7
+    },
+    "fe_mwh_preb": {
+     "res": 5.0,
+     "total": 5.58
+    },
+    "tgp_t_preb": {
+     "res": 0.6,
+     "total": 0.73
+    },
+    "nres_kwh_m2": 132,
+    "nres_measured_area_pct": 39.6,
+    "dh_ove_pct": null
+   }
   },
   "137": {
    "name": "Vitanje",
@@ -4191,7 +8317,36 @@
     "G": 14.2
    },
    "above43_area_pct": 39.7,
-   "known_pct": 3.6
+   "known_pct": 3.6,
+   "vse": {
+    "pop": 2200,
+    "fe_gwh": {
+     "res": 10.5,
+     "nres": 2.1,
+     "total": 12.6
+    },
+    "tgp_kt": {
+     "res": 1.28,
+     "nres": 0.47,
+     "total": 1.76
+    },
+    "ove_pct": {
+     "res": 66.7,
+     "nres": 27.5,
+     "total": 60.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.77,
+     "total": 5.71
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 0.8
+    },
+    "nres_kwh_m2": 167,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "139": {
    "name": "Vojnik",
@@ -4220,7 +8375,36 @@
     "G": 9.2
    },
    "above43_area_pct": 29.5,
-   "known_pct": 5.3
+   "known_pct": 5.3,
+   "vse": {
+    "pop": 9360,
+    "fe_gwh": {
+     "res": 41.7,
+     "nres": 13.3,
+     "total": 55.0
+    },
+    "tgp_kt": {
+     "res": 5.14,
+     "nres": 3.02,
+     "total": 8.16
+    },
+    "ove_pct": {
+     "res": 66.2,
+     "nres": 27.4,
+     "total": 56.8
+    },
+    "fe_mwh_preb": {
+     "res": 4.45,
+     "total": 5.88
+    },
+    "tgp_t_preb": {
+     "res": 0.55,
+     "total": 0.87
+    },
+    "nres_kwh_m2": 191,
+    "nres_measured_area_pct": 23.4,
+    "dh_ove_pct": 100.0
+   }
   },
   "141": {
    "name": "Vuzenica",
@@ -4249,7 +8433,36 @@
     "G": 13.5
    },
    "above43_area_pct": 38.8,
-   "known_pct": 5.2
+   "known_pct": 5.2,
+   "vse": {
+    "pop": 2594,
+    "fe_gwh": {
+     "res": 13.0,
+     "nres": 2.4,
+     "total": 15.4
+    },
+    "tgp_kt": {
+     "res": 1.5,
+     "nres": 0.43,
+     "total": 1.93
+    },
+    "ove_pct": {
+     "res": 69.4,
+     "nres": 45.9,
+     "total": 65.7
+    },
+    "fe_mwh_preb": {
+     "res": 5.01,
+     "total": 5.94
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 0.74
+    },
+    "nres_kwh_m2": 145,
+    "nres_measured_area_pct": 29.6,
+    "dh_ove_pct": 100.0
+   }
   },
   "143": {
    "name": "Zavrč",
@@ -4278,7 +8491,36 @@
     "G": 12.4
    },
    "above43_area_pct": 36.1,
-   "known_pct": 4.6
+   "known_pct": 4.6,
+   "vse": {
+    "pop": 1453,
+    "fe_gwh": {
+     "res": 7.5,
+     "nres": 0.9,
+     "total": 8.4
+    },
+    "tgp_kt": {
+     "res": 0.9,
+     "nres": 0.21,
+     "total": 1.11
+    },
+    "ove_pct": {
+     "res": 67.7,
+     "nres": 29.9,
+     "total": 63.5
+    },
+    "fe_mwh_preb": {
+     "res": 5.14,
+     "total": 5.78
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.76
+    },
+    "nres_kwh_m2": 86,
+    "nres_measured_area_pct": 29.5,
+    "dh_ove_pct": null
+   }
   },
   "146": {
    "name": "Železniki",
@@ -4307,7 +8549,36 @@
     "G": 16.1
    },
    "above43_area_pct": 43.1,
-   "known_pct": 4.7
+   "known_pct": 4.7,
+   "vse": {
+    "pop": 6629,
+    "fe_gwh": {
+     "res": 31.5,
+     "nres": 7.8,
+     "total": 39.4
+    },
+    "tgp_kt": {
+     "res": 3.23,
+     "nres": 1.35,
+     "total": 4.58
+    },
+    "ove_pct": {
+     "res": 72.8,
+     "nres": 49.8,
+     "total": 68.3
+    },
+    "fe_mwh_preb": {
+     "res": 4.76,
+     "total": 5.94
+    },
+    "tgp_t_preb": {
+     "res": 0.49,
+     "total": 0.69
+    },
+    "nres_kwh_m2": 197,
+    "nres_measured_area_pct": 5.0,
+    "dh_ove_pct": 100.0
+   }
   },
   "148": {
    "name": "Benedikt",
@@ -4336,7 +8607,36 @@
     "G": 8.4
    },
    "above43_area_pct": 27.8,
-   "known_pct": 6.5
+   "known_pct": 6.5,
+   "vse": {
+    "pop": 2727,
+    "fe_gwh": {
+     "res": 12.5,
+     "nres": 1.7,
+     "total": 14.1
+    },
+    "tgp_kt": {
+     "res": 1.56,
+     "nres": 0.37,
+     "total": 1.94
+    },
+    "ove_pct": {
+     "res": 65.2,
+     "nres": 29.5,
+     "total": 61.0
+    },
+    "fe_mwh_preb": {
+     "res": 4.58,
+     "total": 5.19
+    },
+    "tgp_t_preb": {
+     "res": 0.57,
+     "total": 0.71
+    },
+    "nres_kwh_m2": 134,
+    "nres_measured_area_pct": 46.2,
+    "dh_ove_pct": null
+   }
   },
   "149": {
    "name": "Bistrica ob Sotli",
@@ -4365,7 +8665,36 @@
     "G": 15.3
    },
    "above43_area_pct": 42.4,
-   "known_pct": 3.9
+   "known_pct": 3.9,
+   "vse": {
+    "pop": 1334,
+    "fe_gwh": {
+     "res": 7.6,
+     "nres": 1.6,
+     "total": 9.2
+    },
+    "tgp_kt": {
+     "res": 0.93,
+     "nres": 0.3,
+     "total": 1.23
+    },
+    "ove_pct": {
+     "res": 66.8,
+     "nres": 42.1,
+     "total": 62.5
+    },
+    "fe_mwh_preb": {
+     "res": 5.69,
+     "total": 6.9
+    },
+    "tgp_t_preb": {
+     "res": 0.69,
+     "total": 0.92
+    },
+    "nres_kwh_m2": 149,
+    "nres_measured_area_pct": 40.9,
+    "dh_ove_pct": null
+   }
   },
   "150": {
    "name": "Bloke",
@@ -4394,7 +8723,36 @@
     "G": 13.4
    },
    "above43_area_pct": 38.7,
-   "known_pct": 5.9
+   "known_pct": 5.9,
+   "vse": {
+    "pop": 1563,
+    "fe_gwh": {
+     "res": 10.1,
+     "nres": 2.1,
+     "total": 12.2
+    },
+    "tgp_kt": {
+     "res": 1.17,
+     "nres": 0.49,
+     "total": 1.66
+    },
+    "ove_pct": {
+     "res": 68.7,
+     "nres": 27.1,
+     "total": 61.4
+    },
+    "fe_mwh_preb": {
+     "res": 6.46,
+     "total": 7.84
+    },
+    "tgp_t_preb": {
+     "res": 0.75,
+     "total": 1.06
+    },
+    "nres_kwh_m2": 174,
+    "nres_measured_area_pct": 7.5,
+    "dh_ove_pct": null
+   }
   },
   "151": {
    "name": "Braslovče",
@@ -4423,7 +8781,36 @@
     "G": 10.6
    },
    "above43_area_pct": 32.7,
-   "known_pct": 4.9
+   "known_pct": 4.9,
+   "vse": {
+    "pop": 5908,
+    "fe_gwh": {
+     "res": 30.0,
+     "nres": 4.6,
+     "total": 34.6
+    },
+    "tgp_kt": {
+     "res": 3.58,
+     "nres": 1.02,
+     "total": 4.59
+    },
+    "ove_pct": {
+     "res": 68.0,
+     "nres": 31.5,
+     "total": 63.2
+    },
+    "fe_mwh_preb": {
+     "res": 5.08,
+     "total": 5.85
+    },
+    "tgp_t_preb": {
+     "res": 0.61,
+     "total": 0.78
+    },
+    "nres_kwh_m2": 136,
+    "nres_measured_area_pct": 0.7,
+    "dh_ove_pct": null
+   }
   },
   "152": {
    "name": "Cankova",
@@ -4452,7 +8839,36 @@
     "G": 14.0
    },
    "above43_area_pct": 40.1,
-   "known_pct": 2.7
+   "known_pct": 2.7,
+   "vse": {
+    "pop": 1748,
+    "fe_gwh": {
+     "res": 10.4,
+     "nres": 2.8,
+     "total": 13.2
+    },
+    "tgp_kt": {
+     "res": 1.2,
+     "nres": 0.62,
+     "total": 1.81
+    },
+    "ove_pct": {
+     "res": 69.4,
+     "nres": 28.2,
+     "total": 60.8
+    },
+    "fe_mwh_preb": {
+     "res": 5.95,
+     "total": 7.53
+    },
+    "tgp_t_preb": {
+     "res": 0.69,
+     "total": 1.04
+    },
+    "nres_kwh_m2": 210,
+    "nres_measured_area_pct": 0.8,
+    "dh_ove_pct": null
+   }
   },
   "153": {
    "name": "Cerkvenjak",
@@ -4481,7 +8897,36 @@
     "G": 7.8
    },
    "above43_area_pct": 26.9,
-   "known_pct": 4.2
+   "known_pct": 4.2,
+   "vse": {
+    "pop": 2250,
+    "fe_gwh": {
+     "res": 10.2,
+     "nres": 1.8,
+     "total": 12.1
+    },
+    "tgp_kt": {
+     "res": 1.22,
+     "nres": 0.4,
+     "total": 1.62
+    },
+    "ove_pct": {
+     "res": 68.1,
+     "nres": 30.2,
+     "total": 62.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.56,
+     "total": 5.36
+    },
+    "tgp_t_preb": {
+     "res": 0.54,
+     "total": 0.72
+    },
+    "nres_kwh_m2": 140,
+    "nres_measured_area_pct": 10.3,
+    "dh_ove_pct": null
+   }
   },
   "154": {
    "name": "Dobje",
@@ -4510,7 +8955,36 @@
     "G": 12.8
    },
    "above43_area_pct": 37.8,
-   "known_pct": 1.5
+   "known_pct": 1.5,
+   "vse": {
+    "pop": 965,
+    "fe_gwh": {
+     "res": 5.1,
+     "nres": 1.0,
+     "total": 6.1
+    },
+    "tgp_kt": {
+     "res": 0.58,
+     "nres": 0.22,
+     "total": 0.8
+    },
+    "ove_pct": {
+     "res": 69.9,
+     "nres": 30.3,
+     "total": 63.5
+    },
+    "fe_mwh_preb": {
+     "res": 5.33,
+     "total": 6.36
+    },
+    "tgp_t_preb": {
+     "res": 0.61,
+     "total": 0.83
+    },
+    "nres_kwh_m2": 187,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "155": {
    "name": "Dobrna",
@@ -4539,7 +9013,36 @@
     "G": 11.8
    },
    "above43_area_pct": 34.2,
-   "known_pct": 6.0
+   "known_pct": 6.0,
+   "vse": {
+    "pop": 2347,
+    "fe_gwh": {
+     "res": 9.9,
+     "nres": 10.0,
+     "total": 19.9
+    },
+    "tgp_kt": {
+     "res": 1.28,
+     "nres": 2.12,
+     "total": 3.4
+    },
+    "ove_pct": {
+     "res": 63.7,
+     "nres": 29.2,
+     "total": 46.3
+    },
+    "fe_mwh_preb": {
+     "res": 4.2,
+     "total": 8.48
+    },
+    "tgp_t_preb": {
+     "res": 0.55,
+     "total": 1.45
+    },
+    "nres_kwh_m2": 320,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "156": {
    "name": "Dobrovnik",
@@ -4568,7 +9071,36 @@
     "G": 14.2
    },
    "above43_area_pct": 39.6,
-   "known_pct": 7.0
+   "known_pct": 7.0,
+   "vse": {
+    "pop": 1217,
+    "fe_gwh": {
+     "res": 7.3,
+     "nres": 1.5,
+     "total": 8.8
+    },
+    "tgp_kt": {
+     "res": 0.88,
+     "nres": 0.33,
+     "total": 1.21
+    },
+    "ove_pct": {
+     "res": 67.6,
+     "nres": 30.1,
+     "total": 61.2
+    },
+    "fe_mwh_preb": {
+     "res": 5.96,
+     "total": 7.19
+    },
+    "tgp_t_preb": {
+     "res": 0.72,
+     "total": 0.99
+    },
+    "nres_kwh_m2": 146,
+    "nres_measured_area_pct": 1.0,
+    "dh_ove_pct": null
+   }
   },
   "157": {
    "name": "Dolenjske Toplice",
@@ -4597,7 +9129,36 @@
     "G": 9.5
    },
    "above43_area_pct": 30.9,
-   "known_pct": 5.7
+   "known_pct": 5.7,
+   "vse": {
+    "pop": 3666,
+    "fe_gwh": {
+     "res": 18.6,
+     "nres": 10.1,
+     "total": 28.7
+    },
+    "tgp_kt": {
+     "res": 2.26,
+     "nres": 2.18,
+     "total": 4.44
+    },
+    "ove_pct": {
+     "res": 67.1,
+     "nres": 28.7,
+     "total": 53.6
+    },
+    "fe_mwh_preb": {
+     "res": 5.08,
+     "total": 7.84
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 1.21
+    },
+    "nres_kwh_m2": 274,
+    "nres_measured_area_pct": 10.4,
+    "dh_ove_pct": null
+   }
   },
   "158": {
    "name": "Grad",
@@ -4626,7 +9187,36 @@
     "G": 16.3
    },
    "above43_area_pct": 43.7,
-   "known_pct": 3.5
+   "known_pct": 3.5,
+   "vse": {
+    "pop": 1953,
+    "fe_gwh": {
+     "res": 11.8,
+     "nres": 2.1,
+     "total": 13.9
+    },
+    "tgp_kt": {
+     "res": 1.37,
+     "nres": 0.46,
+     "total": 1.83
+    },
+    "ove_pct": {
+     "res": 68.7,
+     "nres": 31.3,
+     "total": 62.9
+    },
+    "fe_mwh_preb": {
+     "res": 6.04,
+     "total": 7.14
+    },
+    "tgp_t_preb": {
+     "res": 0.7,
+     "total": 0.94
+    },
+    "nres_kwh_m2": 159,
+    "nres_measured_area_pct": 31.2,
+    "dh_ove_pct": null
+   }
   },
   "159": {
    "name": "Hajdina",
@@ -4655,7 +9245,36 @@
     "G": 8.3
    },
    "above43_area_pct": 27.8,
-   "known_pct": 7.5
+   "known_pct": 7.5,
+   "vse": {
+    "pop": 4092,
+    "fe_gwh": {
+     "res": 18.9,
+     "nres": 4.1,
+     "total": 23.0
+    },
+    "tgp_kt": {
+     "res": 2.3,
+     "nres": 0.9,
+     "total": 3.2
+    },
+    "ove_pct": {
+     "res": 67.3,
+     "nres": 29.9,
+     "total": 60.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.62,
+     "total": 5.62
+    },
+    "tgp_t_preb": {
+     "res": 0.56,
+     "total": 0.78
+    },
+    "nres_kwh_m2": 174,
+    "nres_measured_area_pct": 22.5,
+    "dh_ove_pct": null
+   }
   },
   "160": {
    "name": "Hoče-Slivnica",
@@ -4684,7 +9303,36 @@
     "G": 8.2
    },
    "above43_area_pct": 27.4,
-   "known_pct": 11.0
+   "known_pct": 11.0,
+   "vse": {
+    "pop": 12061,
+    "fe_gwh": {
+     "res": 60.0,
+     "nres": 20.4,
+     "total": 80.5
+    },
+    "tgp_kt": {
+     "res": 7.77,
+     "nres": 4.55,
+     "total": 12.32
+    },
+    "ove_pct": {
+     "res": 64.6,
+     "nres": 29.2,
+     "total": 55.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.98,
+     "total": 6.67
+    },
+    "tgp_t_preb": {
+     "res": 0.64,
+     "total": 1.02
+    },
+    "nres_kwh_m2": 141,
+    "nres_measured_area_pct": 19.2,
+    "dh_ove_pct": null
+   }
   },
   "161": {
    "name": "Hodoš",
@@ -4713,7 +9361,36 @@
     "G": 16.5
    },
    "above43_area_pct": 45.5,
-   "known_pct": 2.3
+   "known_pct": 2.3,
+   "vse": {
+    "pop": 335,
+    "fe_gwh": {
+     "res": 1.8,
+     "nres": 0.6,
+     "total": 2.4
+    },
+    "tgp_kt": {
+     "res": 0.22,
+     "nres": 0.13,
+     "total": 0.35
+    },
+    "ove_pct": {
+     "res": 66.0,
+     "nres": 31.0,
+     "total": 57.4
+    },
+    "fe_mwh_preb": {
+     "res": 5.49,
+     "total": 7.27
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 1.05
+    },
+    "nres_kwh_m2": 144,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "162": {
    "name": "Horjul",
@@ -4742,7 +9419,36 @@
     "G": 10.4
    },
    "above43_area_pct": 33.0,
-   "known_pct": 2.8
+   "known_pct": 2.8,
+   "vse": {
+    "pop": 3085,
+    "fe_gwh": {
+     "res": 15.1,
+     "nres": 2.2,
+     "total": 17.4
+    },
+    "tgp_kt": {
+     "res": 1.77,
+     "nres": 0.5,
+     "total": 2.27
+    },
+    "ove_pct": {
+     "res": 68.9,
+     "nres": 32.2,
+     "total": 64.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.91,
+     "total": 5.63
+    },
+    "tgp_t_preb": {
+     "res": 0.57,
+     "total": 0.74
+    },
+    "nres_kwh_m2": 93,
+    "nres_measured_area_pct": 50.1,
+    "dh_ove_pct": null
+   }
   },
   "163": {
    "name": "Jezersko",
@@ -4771,7 +9477,36 @@
     "G": 18.4
    },
    "above43_area_pct": 44.7,
-   "known_pct": 5.0
+   "known_pct": 5.0,
+   "vse": {
+    "pop": 679,
+    "fe_gwh": {
+     "res": 4.4,
+     "nres": 2.5,
+     "total": 6.9
+    },
+    "tgp_kt": {
+     "res": 0.54,
+     "nres": 0.58,
+     "total": 1.12
+    },
+    "ove_pct": {
+     "res": 65.4,
+     "nres": 24.4,
+     "total": 50.5
+    },
+    "fe_mwh_preb": {
+     "res": 6.42,
+     "total": 10.1
+    },
+    "tgp_t_preb": {
+     "res": 0.8,
+     "total": 1.65
+    },
+    "nres_kwh_m2": 251,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "164": {
    "name": "Komenda",
@@ -4800,7 +9535,36 @@
     "G": 6.7
    },
    "above43_area_pct": 23.7,
-   "known_pct": 8.8
+   "known_pct": 8.8,
+   "vse": {
+    "pop": 6800,
+    "fe_gwh": {
+     "res": 27.4,
+     "nres": 8.6,
+     "total": 36.0
+    },
+    "tgp_kt": {
+     "res": 3.57,
+     "nres": 1.89,
+     "total": 5.45
+    },
+    "ove_pct": {
+     "res": 63.8,
+     "nres": 32.0,
+     "total": 56.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.03,
+     "total": 5.29
+    },
+    "tgp_t_preb": {
+     "res": 0.52,
+     "total": 0.8
+    },
+    "nres_kwh_m2": 136,
+    "nres_measured_area_pct": 13.1,
+    "dh_ove_pct": null
+   }
   },
   "165": {
    "name": "Kostel",
@@ -4829,7 +9593,36 @@
     "G": 16.6
    },
    "above43_area_pct": 45.0,
-   "known_pct": 5.0
+   "known_pct": 5.0,
+   "vse": {
+    "pop": 604,
+    "fe_gwh": {
+     "res": 6.4,
+     "nres": 1.1,
+     "total": 7.5
+    },
+    "tgp_kt": {
+     "res": 0.76,
+     "nres": 0.19,
+     "total": 0.94
+    },
+    "ove_pct": {
+     "res": 67.4,
+     "nres": 49.5,
+     "total": 64.7
+    },
+    "fe_mwh_preb": {
+     "res": 10.52,
+     "total": 12.4
+    },
+    "tgp_t_preb": {
+     "res": 1.26,
+     "total": 1.56
+    },
+    "nres_kwh_m2": 141,
+    "nres_measured_area_pct": 42.8,
+    "dh_ove_pct": null
+   }
   },
   "166": {
    "name": "Križevci",
@@ -4858,7 +9651,36 @@
     "G": 13.2
    },
    "above43_area_pct": 37.2,
-   "known_pct": 4.1
+   "known_pct": 4.1,
+   "vse": {
+    "pop": 3531,
+    "fe_gwh": {
+     "res": 17.7,
+     "nres": 3.4,
+     "total": 21.1
+    },
+    "tgp_kt": {
+     "res": 2.2,
+     "nres": 0.75,
+     "total": 2.95
+    },
+    "ove_pct": {
+     "res": 66.3,
+     "nres": 29.5,
+     "total": 60.3
+    },
+    "fe_mwh_preb": {
+     "res": 5.01,
+     "total": 5.98
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.84
+    },
+    "nres_kwh_m2": 168,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "167": {
    "name": "Lovrenc na Pohorju",
@@ -4887,7 +9709,36 @@
     "G": 16.3
    },
    "above43_area_pct": 42.3,
-   "known_pct": 5.5
+   "known_pct": 5.5,
+   "vse": {
+    "pop": 2981,
+    "fe_gwh": {
+     "res": 14.0,
+     "nres": 1.6,
+     "total": 15.6
+    },
+    "tgp_kt": {
+     "res": 1.75,
+     "nres": 0.28,
+     "total": 2.03
+    },
+    "ove_pct": {
+     "res": 66.1,
+     "nres": 47.6,
+     "total": 64.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.7,
+     "total": 5.23
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.68
+    },
+    "nres_kwh_m2": 120,
+    "nres_measured_area_pct": 39.8,
+    "dh_ove_pct": null
+   }
   },
   "170": {
    "name": "Mirna Peč",
@@ -4916,7 +9767,36 @@
     "G": 7.8
    },
    "above43_area_pct": 27.0,
-   "known_pct": 4.2
+   "known_pct": 4.2,
+   "vse": {
+    "pop": 3238,
+    "fe_gwh": {
+     "res": 14.9,
+     "nres": 3.6,
+     "total": 18.5
+    },
+    "tgp_kt": {
+     "res": 1.75,
+     "nres": 0.81,
+     "total": 2.56
+    },
+    "ove_pct": {
+     "res": 68.9,
+     "nres": 33.1,
+     "total": 62.0
+    },
+    "fe_mwh_preb": {
+     "res": 4.62,
+     "total": 5.72
+    },
+    "tgp_t_preb": {
+     "res": 0.54,
+     "total": 0.79
+    },
+    "nres_kwh_m2": 162,
+    "nres_measured_area_pct": 37.7,
+    "dh_ove_pct": null
+   }
   },
   "171": {
    "name": "Oplotnica",
@@ -4945,7 +9825,36 @@
     "G": 10.1
    },
    "above43_area_pct": 31.6,
-   "known_pct": 1.8
+   "known_pct": 1.8,
+   "vse": {
+    "pop": 4203,
+    "fe_gwh": {
+     "res": 18.4,
+     "nres": 2.6,
+     "total": 21.0
+    },
+    "tgp_kt": {
+     "res": 2.19,
+     "nres": 0.59,
+     "total": 2.78
+    },
+    "ove_pct": {
+     "res": 68.1,
+     "nres": 30.8,
+     "total": 63.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.37,
+     "total": 5.0
+    },
+    "tgp_t_preb": {
+     "res": 0.52,
+     "total": 0.66
+    },
+    "nres_kwh_m2": 151,
+    "nres_measured_area_pct": 5.7,
+    "dh_ove_pct": 100.0
+   }
   },
   "172": {
    "name": "Podlehnik",
@@ -4974,7 +9883,36 @@
     "G": 11.9
    },
    "above43_area_pct": 35.8,
-   "known_pct": 2.8
+   "known_pct": 2.8,
+   "vse": {
+    "pop": 1828,
+    "fe_gwh": {
+     "res": 10.9,
+     "nres": 2.3,
+     "total": 13.2
+    },
+    "tgp_kt": {
+     "res": 1.3,
+     "nres": 0.52,
+     "total": 1.82
+    },
+    "ove_pct": {
+     "res": 68.1,
+     "nres": 31.6,
+     "total": 61.8
+    },
+    "fe_mwh_preb": {
+     "res": 5.99,
+     "total": 7.24
+    },
+    "tgp_t_preb": {
+     "res": 0.71,
+     "total": 1.0
+    },
+    "nres_kwh_m2": 121,
+    "nres_measured_area_pct": 40.9,
+    "dh_ove_pct": null
+   }
   },
   "174": {
    "name": "Prebold",
@@ -5003,7 +9941,36 @@
     "G": 12.6
    },
    "above43_area_pct": 34.9,
-   "known_pct": 8.7
+   "known_pct": 8.7,
+   "vse": {
+    "pop": 5318,
+    "fe_gwh": {
+     "res": 21.2,
+     "nres": 4.6,
+     "total": 25.8
+    },
+    "tgp_kt": {
+     "res": 2.84,
+     "nres": 1.01,
+     "total": 3.85
+    },
+    "ove_pct": {
+     "res": 62.1,
+     "nres": 26.8,
+     "total": 55.7
+    },
+    "fe_mwh_preb": {
+     "res": 3.98,
+     "total": 4.85
+    },
+    "tgp_t_preb": {
+     "res": 0.53,
+     "total": 0.72
+    },
+    "nres_kwh_m2": 129,
+    "nres_measured_area_pct": 17.2,
+    "dh_ove_pct": null
+   }
   },
   "176": {
    "name": "Razkrižje",
@@ -5032,7 +9999,36 @@
     "G": 16.1
    },
    "above43_area_pct": 43.9,
-   "known_pct": 3.2
+   "known_pct": 3.2,
+   "vse": {
+    "pop": 1231,
+    "fe_gwh": {
+     "res": 6.6,
+     "nres": 0.9,
+     "total": 7.5
+    },
+    "tgp_kt": {
+     "res": 0.74,
+     "nres": 0.2,
+     "total": 0.94
+    },
+    "ove_pct": {
+     "res": 70.4,
+     "nres": 25.9,
+     "total": 65.2
+    },
+    "fe_mwh_preb": {
+     "res": 5.37,
+     "total": 6.08
+    },
+    "tgp_t_preb": {
+     "res": 0.6,
+     "total": 0.76
+    },
+    "nres_kwh_m2": 166,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "178": {
    "name": "Selnica ob Dravi",
@@ -5061,7 +10057,36 @@
     "G": 11.7
    },
    "above43_area_pct": 35.3,
-   "known_pct": 5.8
+   "known_pct": 5.8,
+   "vse": {
+    "pop": 4359,
+    "fe_gwh": {
+     "res": 22.8,
+     "nres": 3.8,
+     "total": 26.6
+    },
+    "tgp_kt": {
+     "res": 2.77,
+     "nres": 0.85,
+     "total": 3.62
+    },
+    "ove_pct": {
+     "res": 67.4,
+     "nres": 31.5,
+     "total": 62.3
+    },
+    "fe_mwh_preb": {
+     "res": 5.23,
+     "total": 6.1
+    },
+    "tgp_t_preb": {
+     "res": 0.64,
+     "total": 0.83
+    },
+    "nres_kwh_m2": 137,
+    "nres_measured_area_pct": 43.6,
+    "dh_ove_pct": null
+   }
   },
   "180": {
    "name": "Solčava",
@@ -5090,7 +10115,36 @@
     "G": 16.8
    },
    "above43_area_pct": 46.2,
-   "known_pct": 3.7
+   "known_pct": 3.7,
+   "vse": {
+    "pop": 493,
+    "fe_gwh": {
+     "res": 3.8,
+     "nres": 3.2,
+     "total": 7.0
+    },
+    "tgp_kt": {
+     "res": 0.39,
+     "nres": 0.7,
+     "total": 1.1
+    },
+    "ove_pct": {
+     "res": 73.0,
+     "nres": 25.9,
+     "total": 51.5
+    },
+    "fe_mwh_preb": {
+     "res": 7.7,
+     "total": 14.18
+    },
+    "tgp_t_preb": {
+     "res": 0.8,
+     "total": 2.23
+    },
+    "nres_kwh_m2": 232,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": 100.0
+   }
   },
   "183": {
    "name": "Šempeter-Vrtojba",
@@ -5119,7 +10173,36 @@
     "G": 16.9
    },
    "above43_area_pct": 44.2,
-   "known_pct": 8.0
+   "known_pct": 8.0,
+   "vse": {
+    "pop": 6451,
+    "fe_gwh": {
+     "res": 31.9,
+     "nres": 22.8,
+     "total": 54.7
+    },
+    "tgp_kt": {
+     "res": 4.25,
+     "nres": 5.02,
+     "total": 9.27
+    },
+    "ove_pct": {
+     "res": 62.4,
+     "nres": 24.6,
+     "total": 46.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.95,
+     "total": 8.48
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 1.44
+    },
+    "nres_kwh_m2": 151,
+    "nres_measured_area_pct": 34.5,
+    "dh_ove_pct": 0.0
+   }
   },
   "184": {
    "name": "Tabor",
@@ -5148,7 +10231,36 @@
     "G": 10.6
    },
    "above43_area_pct": 32.4,
-   "known_pct": 4.9
+   "known_pct": 4.9,
+   "vse": {
+    "pop": 1833,
+    "fe_gwh": {
+     "res": 8.7,
+     "nres": 0.8,
+     "total": 9.5
+    },
+    "tgp_kt": {
+     "res": 1.03,
+     "nres": 0.17,
+     "total": 1.19
+    },
+    "ove_pct": {
+     "res": 68.3,
+     "nres": 31.2,
+     "total": 65.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.76,
+     "total": 5.17
+    },
+    "tgp_t_preb": {
+     "res": 0.56,
+     "total": 0.65
+    },
+    "nres_kwh_m2": 114,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "185": {
    "name": "Trnovska vas",
@@ -5177,7 +10289,36 @@
     "G": 6.9
    },
    "above43_area_pct": 24.5,
-   "known_pct": 3.0
+   "known_pct": 3.0,
+   "vse": {
+    "pop": 1400,
+    "fe_gwh": {
+     "res": 5.6,
+     "nres": 0.9,
+     "total": 6.5
+    },
+    "tgp_kt": {
+     "res": 0.66,
+     "nres": 0.2,
+     "total": 0.86
+    },
+    "ove_pct": {
+     "res": 68.4,
+     "nres": 27.6,
+     "total": 62.9
+    },
+    "fe_mwh_preb": {
+     "res": 4.01,
+     "total": 4.63
+    },
+    "tgp_t_preb": {
+     "res": 0.47,
+     "total": 0.61
+    },
+    "nres_kwh_m2": 138,
+    "nres_measured_area_pct": 49.2,
+    "dh_ove_pct": null
+   }
   },
   "186": {
    "name": "Trzin",
@@ -5206,7 +10347,36 @@
     "G": 6.0
    },
    "above43_area_pct": 22.6,
-   "known_pct": 10.6
+   "known_pct": 10.6,
+   "vse": {
+    "pop": 4000,
+    "fe_gwh": {
+     "res": 17.0,
+     "nres": 12.0,
+     "total": 28.9
+    },
+    "tgp_kt": {
+     "res": 2.35,
+     "nres": 2.55,
+     "total": 4.9
+    },
+    "ove_pct": {
+     "res": 59.2,
+     "nres": 34.6,
+     "total": 49.0
+    },
+    "fe_mwh_preb": {
+     "res": 4.24,
+     "total": 7.23
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 1.22
+    },
+    "nres_kwh_m2": 112,
+    "nres_measured_area_pct": 6.6,
+    "dh_ove_pct": null
+   }
   },
   "188": {
    "name": "Veržej",
@@ -5235,7 +10405,36 @@
     "G": 10.6
    },
    "above43_area_pct": 33.6,
-   "known_pct": 6.7
+   "known_pct": 6.7,
+   "vse": {
+    "pop": 1361,
+    "fe_gwh": {
+     "res": 7.7,
+     "nres": 3.4,
+     "total": 11.0
+    },
+    "tgp_kt": {
+     "res": 0.91,
+     "nres": 0.76,
+     "total": 1.67
+    },
+    "ove_pct": {
+     "res": 68.1,
+     "nres": 25.5,
+     "total": 55.1
+    },
+    "fe_mwh_preb": {
+     "res": 5.63,
+     "total": 8.1
+    },
+    "tgp_t_preb": {
+     "res": 0.67,
+     "total": 1.23
+    },
+    "nres_kwh_m2": 200,
+    "nres_measured_area_pct": 27.1,
+    "dh_ove_pct": null
+   }
   },
   "191": {
    "name": "Žetale",
@@ -5264,7 +10463,36 @@
     "G": 10.0
    },
    "above43_area_pct": 32.6,
-   "known_pct": 1.4
+   "known_pct": 1.4,
+   "vse": {
+    "pop": 1299,
+    "fe_gwh": {
+     "res": 6.5,
+     "nres": 0.7,
+     "total": 7.2
+    },
+    "tgp_kt": {
+     "res": 0.74,
+     "nres": 0.14,
+     "total": 0.88
+    },
+    "ove_pct": {
+     "res": 70.1,
+     "nres": 46.4,
+     "total": 67.8
+    },
+    "fe_mwh_preb": {
+     "res": 5.01,
+     "total": 5.56
+    },
+    "tgp_t_preb": {
+     "res": 0.57,
+     "total": 0.67
+    },
+    "nres_kwh_m2": 105,
+    "nres_measured_area_pct": 63.1,
+    "dh_ove_pct": null
+   }
   },
   "193": {
    "name": "Žužemberk",
@@ -5293,7 +10521,36 @@
     "G": 12.2
    },
    "above43_area_pct": 36.6,
-   "known_pct": 3.7
+   "known_pct": 3.7,
+   "vse": {
+    "pop": 4708,
+    "fe_gwh": {
+     "res": 26.4,
+     "nres": 5.1,
+     "total": 31.5
+    },
+    "tgp_kt": {
+     "res": 3.1,
+     "nres": 1.01,
+     "total": 4.12
+    },
+    "ove_pct": {
+     "res": 68.4,
+     "nres": 38.3,
+     "total": 63.5
+    },
+    "fe_mwh_preb": {
+     "res": 5.61,
+     "total": 6.7
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 0.87
+    },
+    "nres_kwh_m2": 165,
+    "nres_measured_area_pct": 28.6,
+    "dh_ove_pct": null
+   }
   },
   "168": {
    "name": "Markovci",
@@ -5322,7 +10579,36 @@
     "G": 8.5
    },
    "above43_area_pct": 28.8,
-   "known_pct": 2.6
+   "known_pct": 2.6,
+   "vse": {
+    "pop": 4050,
+    "fe_gwh": {
+     "res": 19.9,
+     "nres": 3.3,
+     "total": 23.2
+    },
+    "tgp_kt": {
+     "res": 2.36,
+     "nres": 0.71,
+     "total": 3.06
+    },
+    "ove_pct": {
+     "res": 68.6,
+     "nres": 35.1,
+     "total": 63.8
+    },
+    "fe_mwh_preb": {
+     "res": 4.92,
+     "total": 5.74
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 0.76
+    },
+    "nres_kwh_m2": 133,
+    "nres_measured_area_pct": 27.0,
+    "dh_ove_pct": null
+   }
   },
   "169": {
    "name": "Miklavž na Dravskem polju",
@@ -5351,7 +10637,36 @@
     "G": 7.7
    },
    "above43_area_pct": 27.0,
-   "known_pct": 9.9
+   "known_pct": 9.9,
+   "vse": {
+    "pop": 7300,
+    "fe_gwh": {
+     "res": 36.4,
+     "nres": 4.7,
+     "total": 41.1
+    },
+    "tgp_kt": {
+     "res": 4.64,
+     "nres": 1.04,
+     "total": 5.68
+    },
+    "ove_pct": {
+     "res": 65.5,
+     "nres": 19.1,
+     "total": 60.1
+    },
+    "fe_mwh_preb": {
+     "res": 4.99,
+     "total": 5.63
+    },
+    "tgp_t_preb": {
+     "res": 0.64,
+     "total": 0.78
+    },
+    "nres_kwh_m2": 212,
+    "nres_measured_area_pct": 30.4,
+    "dh_ove_pct": null
+   }
   },
   "173": {
    "name": "Polzela",
@@ -5380,7 +10695,36 @@
     "G": 8.1
    },
    "above43_area_pct": 26.8,
-   "known_pct": 7.2
+   "known_pct": 7.2,
+   "vse": {
+    "pop": 6668,
+    "fe_gwh": {
+     "res": 28.7,
+     "nres": 7.9,
+     "total": 36.6
+    },
+    "tgp_kt": {
+     "res": 3.66,
+     "nres": 1.77,
+     "total": 5.43
+    },
+    "ove_pct": {
+     "res": 65.0,
+     "nres": 30.6,
+     "total": 57.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.3,
+     "total": 5.48
+    },
+    "tgp_t_preb": {
+     "res": 0.55,
+     "total": 0.81
+    },
+    "nres_kwh_m2": 157,
+    "nres_measured_area_pct": 4.8,
+    "dh_ove_pct": 0.0
+   }
   },
   "175": {
    "name": "Prevalje",
@@ -5409,7 +10753,36 @@
     "G": 19.2
    },
    "above43_area_pct": 46.3,
-   "known_pct": 10.3
+   "known_pct": 10.3,
+   "vse": {
+    "pop": 6668,
+    "fe_gwh": {
+     "res": 32.8,
+     "nres": 7.9,
+     "total": 40.7
+    },
+    "tgp_kt": {
+     "res": 4.82,
+     "nres": 1.62,
+     "total": 6.43
+    },
+    "ove_pct": {
+     "res": 57.6,
+     "nres": 35.5,
+     "total": 53.3
+    },
+    "fe_mwh_preb": {
+     "res": 4.92,
+     "total": 6.11
+    },
+    "tgp_t_preb": {
+     "res": 0.72,
+     "total": 0.96
+    },
+    "nres_kwh_m2": 131,
+    "nres_measured_area_pct": 27.3,
+    "dh_ove_pct": 0.0
+   }
   },
   "177": {
    "name": "Ribnica na Pohorju",
@@ -5438,7 +10811,36 @@
     "G": 16.4
    },
    "above43_area_pct": 43.4,
-   "known_pct": 5.1
+   "known_pct": 5.1,
+   "vse": {
+    "pop": 1071,
+    "fe_gwh": {
+     "res": 6.6,
+     "nres": 1.4,
+     "total": 8.0
+    },
+    "tgp_kt": {
+     "res": 0.78,
+     "nres": 0.32,
+     "total": 1.1
+    },
+    "ove_pct": {
+     "res": 68.1,
+     "nres": 28.4,
+     "total": 61.0
+    },
+    "fe_mwh_preb": {
+     "res": 6.15,
+     "total": 7.5
+    },
+    "tgp_t_preb": {
+     "res": 0.73,
+     "total": 1.02
+    },
+    "nres_kwh_m2": 123,
+    "nres_measured_area_pct": 22.7,
+    "dh_ove_pct": null
+   }
   },
   "179": {
    "name": "Sodražica",
@@ -5467,7 +10869,36 @@
     "G": 13.8
    },
    "above43_area_pct": 39.1,
-   "known_pct": 4.4
+   "known_pct": 4.4,
+   "vse": {
+    "pop": 2354,
+    "fe_gwh": {
+     "res": 13.4,
+     "nres": 2.3,
+     "total": 15.8
+    },
+    "tgp_kt": {
+     "res": 1.54,
+     "nres": 0.53,
+     "total": 2.07
+    },
+    "ove_pct": {
+     "res": 69.4,
+     "nres": 30.9,
+     "total": 63.7
+    },
+    "fe_mwh_preb": {
+     "res": 5.7,
+     "total": 6.7
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 0.88
+    },
+    "nres_kwh_m2": 146,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": 100.0
+   }
   },
   "181": {
    "name": "Sveta Ana",
@@ -5496,7 +10927,36 @@
     "G": 9.3
    },
    "above43_area_pct": 30.6,
-   "known_pct": 5.4
+   "known_pct": 5.4,
+   "vse": {
+    "pop": 2347,
+    "fe_gwh": {
+     "res": 12.9,
+     "nres": 2.1,
+     "total": 15.0
+    },
+    "tgp_kt": {
+     "res": 1.54,
+     "nres": 0.46,
+     "total": 2.0
+    },
+    "ove_pct": {
+     "res": 68.0,
+     "nres": 29.2,
+     "total": 62.6
+    },
+    "fe_mwh_preb": {
+     "res": 5.52,
+     "total": 6.4
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 0.85
+    },
+    "nres_kwh_m2": 175,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "182": {
    "name": "Sveti Andraž v Slov. goricah",
@@ -5525,7 +10985,36 @@
     "G": 8.9
    },
    "above43_area_pct": 30.0,
-   "known_pct": 1.4
+   "known_pct": 1.4,
+   "vse": {
+    "pop": 1191,
+    "fe_gwh": {
+     "res": 5.5,
+     "nres": 0.9,
+     "total": 6.4
+    },
+    "tgp_kt": {
+     "res": 0.65,
+     "nres": 0.2,
+     "total": 0.84
+    },
+    "ove_pct": {
+     "res": 68.9,
+     "nres": 22.0,
+     "total": 62.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.63,
+     "total": 5.35
+    },
+    "tgp_t_preb": {
+     "res": 0.54,
+     "total": 0.71
+    },
+    "nres_kwh_m2": 147,
+    "nres_measured_area_pct": 60.6,
+    "dh_ove_pct": null
+   }
   },
   "187": {
    "name": "Velika Polana",
@@ -5554,7 +11043,36 @@
     "G": 13.0
    },
    "above43_area_pct": 37.8,
-   "known_pct": 3.1
+   "known_pct": 3.1,
+   "vse": {
+    "pop": 1379,
+    "fe_gwh": {
+     "res": 8.9,
+     "nres": 1.3,
+     "total": 10.2
+    },
+    "tgp_kt": {
+     "res": 0.99,
+     "nres": 0.29,
+     "total": 1.29
+    },
+    "ove_pct": {
+     "res": 70.7,
+     "nres": 31.7,
+     "total": 65.7
+    },
+    "fe_mwh_preb": {
+     "res": 6.42,
+     "total": 7.37
+    },
+    "tgp_t_preb": {
+     "res": 0.72,
+     "total": 0.93
+    },
+    "nres_kwh_m2": 142,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "189": {
    "name": "Vransko",
@@ -5583,7 +11101,36 @@
     "G": 12.6
    },
    "above43_area_pct": 36.4,
-   "known_pct": 5.3
+   "known_pct": 5.3,
+   "vse": {
+    "pop": 2792,
+    "fe_gwh": {
+     "res": 12.5,
+     "nres": 4.4,
+     "total": 16.9
+    },
+    "tgp_kt": {
+     "res": 1.38,
+     "nres": 0.73,
+     "total": 2.1
+    },
+    "ove_pct": {
+     "res": 70.1,
+     "nres": 51.2,
+     "total": 65.1
+    },
+    "fe_mwh_preb": {
+     "res": 4.49,
+     "total": 6.07
+    },
+    "tgp_t_preb": {
+     "res": 0.49,
+     "total": 0.75
+    },
+    "nres_kwh_m2": 182,
+    "nres_measured_area_pct": 2.1,
+    "dh_ove_pct": 100.0
+   }
   },
   "192": {
    "name": "Žirovnica",
@@ -5612,7 +11159,36 @@
     "G": 11.2
    },
    "above43_area_pct": 33.9,
-   "known_pct": 5.3
+   "known_pct": 5.3,
+   "vse": {
+    "pop": 4515,
+    "fe_gwh": {
+     "res": 23.3,
+     "nres": 2.9,
+     "total": 26.2
+    },
+    "tgp_kt": {
+     "res": 2.87,
+     "nres": 0.64,
+     "total": 3.52
+    },
+    "ove_pct": {
+     "res": 66.3,
+     "nres": 26.7,
+     "total": 61.9
+    },
+    "fe_mwh_preb": {
+     "res": 5.17,
+     "total": 5.81
+    },
+    "tgp_t_preb": {
+     "res": 0.64,
+     "total": 0.78
+    },
+    "nres_kwh_m2": 120,
+    "nres_measured_area_pct": 20.6,
+    "dh_ove_pct": null
+   }
   },
   "190": {
    "name": "Žalec",
@@ -5641,7 +11217,36 @@
     "G": 14.2
    },
    "above43_area_pct": 38.3,
-   "known_pct": 7.5
+   "known_pct": 7.5,
+   "vse": {
+    "pop": 21737,
+    "fe_gwh": {
+     "res": 99.5,
+     "nres": 29.8,
+     "total": 129.3
+    },
+    "tgp_kt": {
+     "res": 14.32,
+     "nres": 6.51,
+     "total": 20.83
+    },
+    "ove_pct": {
+     "res": 59.2,
+     "nres": 30.7,
+     "total": 52.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.58,
+     "total": 5.95
+    },
+    "tgp_t_preb": {
+     "res": 0.66,
+     "total": 0.96
+    },
+    "nres_kwh_m2": 136,
+    "nres_measured_area_pct": 23.7,
+    "dh_ove_pct": 0.0
+   }
   },
   "194": {
    "name": "Šmartno pri Litiji",
@@ -5670,7 +11275,36 @@
     "G": 10.6
    },
    "above43_area_pct": 32.3,
-   "known_pct": 4.8
+   "known_pct": 4.8,
+   "vse": {
+    "pop": 5854,
+    "fe_gwh": {
+     "res": 23.9,
+     "nres": 3.0,
+     "total": 26.8
+    },
+    "tgp_kt": {
+     "res": 2.9,
+     "nres": 0.71,
+     "total": 3.61
+    },
+    "ove_pct": {
+     "res": 67.3,
+     "nres": 23.3,
+     "total": 62.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.07,
+     "total": 4.58
+    },
+    "tgp_t_preb": {
+     "res": 0.5,
+     "total": 0.62
+    },
+    "nres_kwh_m2": 122,
+    "nres_measured_area_pct": 46.2,
+    "dh_ove_pct": null
+   }
   },
   "202": {
    "name": "Središče ob Dravi",
@@ -5699,7 +11333,36 @@
     "G": 18.9
    },
    "above43_area_pct": 49.0,
-   "known_pct": 5.1
+   "known_pct": 5.1,
+   "vse": {
+    "pop": 1827,
+    "fe_gwh": {
+     "res": 11.3,
+     "nres": 1.8,
+     "total": 13.2
+    },
+    "tgp_kt": {
+     "res": 1.37,
+     "nres": 0.41,
+     "total": 1.78
+    },
+    "ove_pct": {
+     "res": 67.0,
+     "nres": 22.5,
+     "total": 60.7
+    },
+    "fe_mwh_preb": {
+     "res": 6.19,
+     "total": 7.2
+    },
+    "tgp_t_preb": {
+     "res": 0.75,
+     "total": 0.98
+    },
+    "nres_kwh_m2": 141,
+    "nres_measured_area_pct": 31.5,
+    "dh_ove_pct": null
+   }
   },
   "203": {
    "name": "Straža",
@@ -5728,7 +11391,36 @@
     "G": 12.8
    },
    "above43_area_pct": 36.7,
-   "known_pct": 6.9
+   "known_pct": 6.9,
+   "vse": {
+    "pop": 4000,
+    "fe_gwh": {
+     "res": 19.4,
+     "nres": 2.6,
+     "total": 21.9
+    },
+    "tgp_kt": {
+     "res": 2.4,
+     "nres": 0.41,
+     "total": 2.81
+    },
+    "ove_pct": {
+     "res": 66.8,
+     "nres": 53.5,
+     "total": 65.2
+    },
+    "fe_mwh_preb": {
+     "res": 4.85,
+     "total": 5.49
+    },
+    "tgp_t_preb": {
+     "res": 0.6,
+     "total": 0.7
+    },
+    "nres_kwh_m2": 148,
+    "nres_measured_area_pct": 35.9,
+    "dh_ove_pct": null
+   }
   },
   "204": {
    "name": "Sveta Trojica v Slovenskih goricah",
@@ -5757,7 +11449,36 @@
     "G": 9.5
    },
    "above43_area_pct": 30.3,
-   "known_pct": 8.0
+   "known_pct": 8.0,
+   "vse": {
+    "pop": 2297,
+    "fe_gwh": {
+     "res": 13.2,
+     "nres": 1.5,
+     "total": 14.7
+    },
+    "tgp_kt": {
+     "res": 1.55,
+     "nres": 0.34,
+     "total": 1.89
+    },
+    "ove_pct": {
+     "res": 68.8,
+     "nres": 27.4,
+     "total": 64.6
+    },
+    "fe_mwh_preb": {
+     "res": 5.75,
+     "total": 6.4
+    },
+    "tgp_t_preb": {
+     "res": 0.68,
+     "total": 0.82
+    },
+    "nres_kwh_m2": 200,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "205": {
    "name": "Sveti Tomaž",
@@ -5786,7 +11507,36 @@
     "G": 11.5
    },
    "above43_area_pct": 35.1,
-   "known_pct": 3.1
+   "known_pct": 3.1,
+   "vse": {
+    "pop": 1966,
+    "fe_gwh": {
+     "res": 10.9,
+     "nres": 1.3,
+     "total": 12.1
+    },
+    "tgp_kt": {
+     "res": 1.29,
+     "nres": 0.3,
+     "total": 1.59
+    },
+    "ove_pct": {
+     "res": 68.4,
+     "nres": 23.6,
+     "total": 63.7
+    },
+    "fe_mwh_preb": {
+     "res": 5.53,
+     "total": 6.17
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 0.81
+    },
+    "nres_kwh_m2": 169,
+    "nres_measured_area_pct": 49.6,
+    "dh_ove_pct": null
+   }
   },
   "206": {
    "name": "Šmarješke Toplice",
@@ -5815,7 +11565,36 @@
     "G": 6.5
    },
    "above43_area_pct": 24.3,
-   "known_pct": 6.4
+   "known_pct": 6.4,
+   "vse": {
+    "pop": 3606,
+    "fe_gwh": {
+     "res": 16.8,
+     "nres": 6.6,
+     "total": 23.4
+    },
+    "tgp_kt": {
+     "res": 2.1,
+     "nres": 1.38,
+     "total": 3.48
+    },
+    "ove_pct": {
+     "res": 65.8,
+     "nres": 29.3,
+     "total": 55.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.65,
+     "total": 6.49
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 0.97
+    },
+    "nres_kwh_m2": 254,
+    "nres_measured_area_pct": 20.1,
+    "dh_ove_pct": null
+   }
   },
   "195": {
    "name": "Apače",
@@ -5844,7 +11623,36 @@
     "G": 11.0
    },
    "above43_area_pct": 32.9,
-   "known_pct": 4.9
+   "known_pct": 4.9,
+   "vse": {
+    "pop": 3562,
+    "fe_gwh": {
+     "res": 18.0,
+     "nres": 3.1,
+     "total": 21.1
+    },
+    "tgp_kt": {
+     "res": 2.11,
+     "nres": 0.69,
+     "total": 2.81
+    },
+    "ove_pct": {
+     "res": 68.7,
+     "nres": 28.4,
+     "total": 62.8
+    },
+    "fe_mwh_preb": {
+     "res": 5.06,
+     "total": 5.92
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.79
+    },
+    "nres_kwh_m2": 143,
+    "nres_measured_area_pct": 32.0,
+    "dh_ove_pct": null
+   }
   },
   "196": {
    "name": "Cirkulane",
@@ -5873,7 +11681,36 @@
     "G": 10.4
    },
    "above43_area_pct": 33.0,
-   "known_pct": 2.6
+   "known_pct": 2.6,
+   "vse": {
+    "pop": 2357,
+    "fe_gwh": {
+     "res": 13.5,
+     "nres": 2.1,
+     "total": 15.6
+    },
+    "tgp_kt": {
+     "res": 1.63,
+     "nres": 0.45,
+     "total": 2.09
+    },
+    "ove_pct": {
+     "res": 67.5,
+     "nres": 33.7,
+     "total": 62.9
+    },
+    "fe_mwh_preb": {
+     "res": 5.73,
+     "total": 6.64
+    },
+    "tgp_t_preb": {
+     "res": 0.69,
+     "total": 0.89
+    },
+    "nres_kwh_m2": 123,
+    "nres_measured_area_pct": 34.4,
+    "dh_ove_pct": null
+   }
   },
   "197": {
    "name": "Kostanjevica na Krki",
@@ -5902,7 +11739,36 @@
     "G": 12.4
    },
    "above43_area_pct": 36.9,
-   "known_pct": 3.0
+   "known_pct": 3.0,
+   "vse": {
+    "pop": 2424,
+    "fe_gwh": {
+     "res": 13.0,
+     "nres": 3.1,
+     "total": 16.1
+    },
+    "tgp_kt": {
+     "res": 1.58,
+     "nres": 0.68,
+     "total": 2.26
+    },
+    "ove_pct": {
+     "res": 67.2,
+     "nres": 29.0,
+     "total": 59.9
+    },
+    "fe_mwh_preb": {
+     "res": 5.37,
+     "total": 6.63
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 0.93
+    },
+    "nres_kwh_m2": 120,
+    "nres_measured_area_pct": 48.8,
+    "dh_ove_pct": null
+   }
   },
   "198": {
    "name": "Makole",
@@ -5931,7 +11797,36 @@
     "G": 10.9
    },
    "above43_area_pct": 34.1,
-   "known_pct": 3.2
+   "known_pct": 3.2,
+   "vse": {
+    "pop": 2052,
+    "fe_gwh": {
+     "res": 10.3,
+     "nres": 1.3,
+     "total": 11.7
+    },
+    "tgp_kt": {
+     "res": 1.21,
+     "nres": 0.26,
+     "total": 1.47
+    },
+    "ove_pct": {
+     "res": 69.0,
+     "nres": 41.1,
+     "total": 65.8
+    },
+    "fe_mwh_preb": {
+     "res": 5.04,
+     "total": 5.69
+    },
+    "tgp_t_preb": {
+     "res": 0.59,
+     "total": 0.71
+    },
+    "nres_kwh_m2": 110,
+    "nres_measured_area_pct": 22.0,
+    "dh_ove_pct": null
+   }
   },
   "199": {
    "name": "Mokronog-Trebelno",
@@ -5960,7 +11855,36 @@
     "G": 10.5
    },
    "above43_area_pct": 32.0,
-   "known_pct": 5.4
+   "known_pct": 5.4,
+   "vse": {
+    "pop": 3320,
+    "fe_gwh": {
+     "res": 16.8,
+     "nres": 2.2,
+     "total": 19.0
+    },
+    "tgp_kt": {
+     "res": 2.04,
+     "nres": 0.49,
+     "total": 2.54
+    },
+    "ove_pct": {
+     "res": 67.3,
+     "nres": 28.7,
+     "total": 62.8
+    },
+    "fe_mwh_preb": {
+     "res": 5.07,
+     "total": 5.72
+    },
+    "tgp_t_preb": {
+     "res": 0.61,
+     "total": 0.76
+    },
+    "nres_kwh_m2": 113,
+    "nres_measured_area_pct": 35.5,
+    "dh_ove_pct": null
+   }
   },
   "200": {
    "name": "Poljčane",
@@ -5989,7 +11913,36 @@
     "G": 13.6
    },
    "above43_area_pct": 37.3,
-   "known_pct": 4.0
+   "known_pct": 4.0,
+   "vse": {
+    "pop": 4327,
+    "fe_gwh": {
+     "res": 21.3,
+     "nres": 3.0,
+     "total": 24.3
+    },
+    "tgp_kt": {
+     "res": 2.81,
+     "nres": 0.68,
+     "total": 3.49
+    },
+    "ove_pct": {
+     "res": 63.6,
+     "nres": 30.8,
+     "total": 59.5
+    },
+    "fe_mwh_preb": {
+     "res": 4.93,
+     "total": 5.63
+    },
+    "tgp_t_preb": {
+     "res": 0.65,
+     "total": 0.81
+    },
+    "nres_kwh_m2": 129,
+    "nres_measured_area_pct": 30.5,
+    "dh_ove_pct": null
+   }
   },
   "201": {
    "name": "Renče-Vogrsko",
@@ -6018,7 +11971,36 @@
     "G": 14.1
    },
    "above43_area_pct": 39.4,
-   "known_pct": 4.7
+   "known_pct": 4.7,
+   "vse": {
+    "pop": 4424,
+    "fe_gwh": {
+     "res": 23.0,
+     "nres": 3.6,
+     "total": 26.6
+    },
+    "tgp_kt": {
+     "res": 2.75,
+     "nres": 0.81,
+     "total": 3.57
+    },
+    "ove_pct": {
+     "res": 67.6,
+     "nres": 28.4,
+     "total": 62.3
+    },
+    "fe_mwh_preb": {
+     "res": 5.2,
+     "total": 6.02
+    },
+    "tgp_t_preb": {
+     "res": 0.62,
+     "total": 0.81
+    },
+    "nres_kwh_m2": 139,
+    "nres_measured_area_pct": 32.3,
+    "dh_ove_pct": null
+   }
   },
   "207": {
    "name": "Gorje",
@@ -6047,7 +12029,36 @@
     "G": 20.9
    },
    "above43_area_pct": 51.2,
-   "known_pct": 6.2
+   "known_pct": 6.2,
+   "vse": {
+    "pop": 2733,
+    "fe_gwh": {
+     "res": 17.0,
+     "nres": 2.6,
+     "total": 19.6
+    },
+    "tgp_kt": {
+     "res": 2.09,
+     "nres": 0.61,
+     "total": 2.69
+    },
+    "ove_pct": {
+     "res": 66.5,
+     "nres": 26.9,
+     "total": 61.1
+    },
+    "fe_mwh_preb": {
+     "res": 6.22,
+     "total": 7.19
+    },
+    "tgp_t_preb": {
+     "res": 0.76,
+     "total": 0.99
+    },
+    "nres_kwh_m2": 222,
+    "nres_measured_area_pct": 0.0,
+    "dh_ove_pct": null
+   }
   },
   "208": {
    "name": "Log-Dragomer",
@@ -6076,7 +12087,36 @@
     "G": 8.1
    },
    "above43_area_pct": 27.7,
-   "known_pct": 9.4
+   "known_pct": 9.4,
+   "vse": {
+    "pop": 3895,
+    "fe_gwh": {
+     "res": 19.2,
+     "nres": 1.9,
+     "total": 21.2
+    },
+    "tgp_kt": {
+     "res": 2.46,
+     "nres": 0.43,
+     "total": 2.9
+    },
+    "ove_pct": {
+     "res": 65.2,
+     "nres": 25.7,
+     "total": 61.6
+    },
+    "fe_mwh_preb": {
+     "res": 4.94,
+     "total": 5.43
+    },
+    "tgp_t_preb": {
+     "res": 0.63,
+     "total": 0.74
+    },
+    "nres_kwh_m2": 113,
+    "nres_measured_area_pct": 45.1,
+    "dh_ove_pct": null
+   }
   },
   "209": {
    "name": "Rečica ob Savinji",
@@ -6105,7 +12145,36 @@
     "G": 14.8
    },
    "above43_area_pct": 42.4,
-   "known_pct": 5.1
+   "known_pct": 5.1,
+   "vse": {
+    "pop": 2300,
+    "fe_gwh": {
+     "res": 12.6,
+     "nres": 2.0,
+     "total": 14.6
+    },
+    "tgp_kt": {
+     "res": 1.41,
+     "nres": 0.45,
+     "total": 1.87
+    },
+    "ove_pct": {
+     "res": 70.2,
+     "nres": 27.5,
+     "total": 64.3
+    },
+    "fe_mwh_preb": {
+     "res": 5.47,
+     "total": 6.35
+    },
+    "tgp_t_preb": {
+     "res": 0.61,
+     "total": 0.81
+    },
+    "nres_kwh_m2": 179,
+    "nres_measured_area_pct": 7.2,
+    "dh_ove_pct": null
+   }
   },
   "210": {
    "name": "Sveti Jurij v Slovenskih goricah",
@@ -6134,7 +12203,36 @@
     "G": 7.7
    },
    "above43_area_pct": 27.0,
-   "known_pct": 5.3
+   "known_pct": 5.3,
+   "vse": {
+    "pop": 2238,
+    "fe_gwh": {
+     "res": 11.2,
+     "nres": 0.8,
+     "total": 12.0
+    },
+    "tgp_kt": {
+     "res": 1.3,
+     "nres": 0.18,
+     "total": 1.48
+    },
+    "ove_pct": {
+     "res": 69.0,
+     "nres": 22.6,
+     "total": 66.1
+    },
+    "fe_mwh_preb": {
+     "res": 5.01,
+     "total": 5.35
+    },
+    "tgp_t_preb": {
+     "res": 0.58,
+     "total": 0.66
+    },
+    "nres_kwh_m2": 100,
+    "nres_measured_area_pct": 50.4,
+    "dh_ove_pct": null
+   }
   },
   "211": {
    "name": "Šentrupert",
@@ -6163,7 +12261,36 @@
     "G": 6.1
    },
    "above43_area_pct": 22.9,
-   "known_pct": 4.5
+   "known_pct": 4.5,
+   "vse": {
+    "pop": 2915,
+    "fe_gwh": {
+     "res": 12.2,
+     "nres": 3.1,
+     "total": 15.3
+    },
+    "tgp_kt": {
+     "res": 1.49,
+     "nres": 0.64,
+     "total": 2.13
+    },
+    "ove_pct": {
+     "res": 66.9,
+     "nres": 37.0,
+     "total": 60.8
+    },
+    "fe_mwh_preb": {
+     "res": 4.17,
+     "total": 5.25
+    },
+    "tgp_t_preb": {
+     "res": 0.51,
+     "total": 0.73
+    },
+    "nres_kwh_m2": 103,
+    "nres_measured_area_pct": 14.4,
+    "dh_ove_pct": null
+   }
   },
   "212": {
    "name": "Mirna",
@@ -6192,7 +12319,36 @@
     "G": 9.3
    },
    "above43_area_pct": 28.7,
-   "known_pct": 6.6
+   "known_pct": 6.6,
+   "vse": {
+    "pop": 2895,
+    "fe_gwh": {
+     "res": 12.9,
+     "nres": 2.8,
+     "total": 15.7
+    },
+    "tgp_kt": {
+     "res": 1.57,
+     "nres": 0.54,
+     "total": 2.11
+    },
+    "ove_pct": {
+     "res": 67.2,
+     "nres": 40.6,
+     "total": 62.5
+    },
+    "fe_mwh_preb": {
+     "res": 4.45,
+     "total": 5.41
+    },
+    "tgp_t_preb": {
+     "res": 0.54,
+     "total": 0.73
+    },
+    "nres_kwh_m2": 144,
+    "nres_measured_area_pct": 31.6,
+    "dh_ove_pct": 100.0
+   }
   },
   "213": {
    "name": "Ankaran",
@@ -6221,7 +12377,36 @@
     "G": 17.6
    },
    "above43_area_pct": 41.7,
-   "known_pct": 15.0
+   "known_pct": 15.0,
+   "vse": {
+    "pop": 3444,
+    "fe_gwh": {
+     "res": 16.0,
+     "nres": 16.0,
+     "total": 32.0
+    },
+    "tgp_kt": {
+     "res": 2.47,
+     "nres": 3.61,
+     "total": 6.07
+    },
+    "ove_pct": {
+     "res": 56.7,
+     "nres": 26.0,
+     "total": 41.4
+    },
+    "fe_mwh_preb": {
+     "res": 4.65,
+     "total": 9.29
+    },
+    "tgp_t_preb": {
+     "res": 0.72,
+     "total": 1.76
+    },
+    "nres_kwh_m2": 268,
+    "nres_measured_area_pct": 7.3,
+    "dh_ove_pct": null
+   }
   }
  }
 }

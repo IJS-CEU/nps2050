@@ -116,11 +116,12 @@ export interface ObIndexRow {
   ei_area_res_pct: number | null; hise_ei_pct: number | null; res_above43_pct: number | null; es_res_any_pct: number | null;
   obnova_res_pct: number | null; pre1981_res_area_pct: number | null;
   model_fe_kwh_m2: number; model_above43_pct: number;
+  k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; pop: number;
 }
 export interface ObcineIndex {
   meta: Meta; min_cell: number; min_ei: number; classes: string[]; class_groups: string[]; periods: string[];
   segments: { id: string; name: string }[]; es_groups: { id: string; name: string }[]; categories: { id: string; name: string }[];
-  si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number; model_fe_kwh_m2: number; model_above43_pct: number };
+  si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number; model_fe_kwh_m2: number; model_above43_pct: number; k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; pop: number };
   municipalities: ObIndexRow[];
 }
 export interface Obcina extends ObArea { meta: Meta; sifra: number; eid: string; name: string; region: string; region_name: string }
@@ -128,5 +129,11 @@ export interface Obcina extends ObArea { meta: Meta; sifra: number; eid: string;
 export interface ObModelArea {
   fe_gwh: number; fe_gwh_lo: number; fe_gwh_hi: number; fe_kwh_m2: number; pe_gwh: number; pe_kwh_m2: number;
   carriers_pct: Record<string, number>; nps_pct: Record<string, number>; above43_area_pct: number; known_pct: number; tk_factor?: number; name?: string;
+  vse: ObVse;
+}
+export interface ObVse {
+  pop: number; fe_gwh: { res: number; nres: number; total: number }; tgp_kt: { res: number; nres: number; total: number };
+  ove_pct: { res: number | null; nres: number | null; total: number | null }; fe_mwh_preb: { res: number; total: number }; tgp_t_preb: { res: number; total: number };
+  nres_kwh_m2: number | null; nres_measured_area_pct: number | null; dh_ove_pct: number | null;
 }
 export interface ObcineModel { meta: Meta; carriers: { id: string; name: string }[]; classes: string[]; si: ObModelArea; municipalities: Record<string, ObModelArea> }
