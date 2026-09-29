@@ -42,6 +42,21 @@ PE_FACTORS = {
     'SPTE_V_STAVBI_FOSILNO_GORIVO_TOPLOTA': _PE['spte'], 'VETRNA_ELEKTRARNA': _PE['ve'],
 }
 
+HEAT_CLASSES = ['A1', 'A2', 'B1', 'B2', 'C', 'D', 'E', 'F', 'G']
+# Skupine energentov kot v preglednici 30 osnutka (premog je pripisan ELKO kot preostanek fosilnih goriv).
+CARRIERS = ['el', 'amb', 'gas', 'elko', 'bio', 'dh']
+_G = {'e': 'el', 'zp': 'gas', 'unp': 'gas', 'bp': 'gas', 'elko': 'elko', 'p': 'elko', 'lb': 'bio', 'to': 'amb', 'ge': 'amb', 'se': 'amb', 'sse': 'amb',
+      'dt': 'dh', 'dolb': 'dh', 'do_ove': 'dh', 'do_spte_lb': 'dh', 'do_fos': 'dh', 'dteu': 'dh'}
+CARRIER_GROUP = {k: _G[v] for k, v in {
+    'energy_e': 'e', 'ELEKTRIKA': 'e', 'energy_zp': 'zp', 'ZEMELJSKI_PLIN': 'zp', 'ZEMELJSKI_PLIN_KWH': 'zp', 'energy_unp': 'unp', 'BIOPLIN': 'bp',
+    'energy_elko': 'elko', 'EKSTRA_LAHKO_KURILNO_OLJE': 'elko', 'KURILNO_OLJE': 'elko', 'LAHKO_KURILNO_OLJE': 'elko', 'energy_p': 'p',
+    'energy_lb': 'lb', 'LESNA_BIOMASA': 'lb', 'LESNA_BIOMASA_BRIKETI': 'lb', 'LESNA_BIOMASA_PELETI': 'lb', 'LESNA_BIOMASA_POLENA': 'lb', 'LESNA_BIOMASA_SEKANCI': 'lb',
+    'energy_to': 'to', 'TOPLOTA_OKOLJA_TC': 'to', 'energy_ge': 'ge', 'energy_se': 'se', 'SONCNA_ELEKTRARNA': 'se', 'energy_sse': 'sse', 'SPREJEMNIKI_SONCNE_ENERGIJE': 'sse',
+    'energy_dt': 'dt', 'DALJINSKA_TOPLOTA': 'dt', 'DALJINSKO_OGREVANJE_NEOBNOVLJIVI_VIRI_ENERGIJE': 'dt', 'energy_dtlb': 'dolb', 'DALJINSKA_TOPLOTA_NA_LESNO_BIOMASO': 'dolb',
+    'DALJINSKA_TOPLOTA_OVE_NA_LESNO_BIOMASO': 'do_ove', 'DALJINSKO_OGREVANJE_OVE_SONCNA_GEOTERMALNA_ENERGIJA': 'do_ove', 'GEOTERMALNA_VODA': 'do_ove',
+    'DALJINSKO_OGREVANJE_OVE_SPTE_NA_BIOMASO': 'do_spte_lb', 'DALJINSKO_OGREVANJE_S_KOGENERACIJO': 'do_fos',
+    'DALJINSKO_OGREVANJE_UCINKOVITO_OGREVANJE_IN_SPTE_NA_FOSILNA_GORIVA': 'do_fos', 'energy_dteu': 'dteu'}.items()}
+
 # Eko sklad: vrste ukrepov (stolpci matrike do 2024 in vzorci imen parametrov 2025).
 ES_GROUPS = {
     'ovoj': (['Ukrep_fasada', 'Ukrep_streha', 'Ukrep_kletna_izolacija', 'Ukrep_talna_izolacija'], r'Izolacija'),
@@ -118,6 +133,16 @@ def build_table(ctx: Context, refresh: bool = False) -> pd.DataFrame:
     calc['pw'] = calc.pe * calc.a
     g = calc.groupby('key')[['pw', 'a']].sum()
     df['ei_pe'] = df.key.map(g.pw / g.a)  # površinsko utežena specifična primarna energija računskih izkaznic stavbe
+    # Razred toplotnih potreb (A1–G, kot v izkaznici in modelu RenRates): izkaznica z največjo površino v stavbi.
+    ei['razred'] = ei['Energijski razred'].str.strip()
+    rz = ei[(tip == 'računska') & ei.razred.isin(HEAT_CLASSES)].sort_values('a', ascending=False).drop_duplicates('key')
+    df['ei_razred'] = df.key.map(rz.set_index('key').razred)
+    # Deleži energentov iz izkaznic (dovedena energija po skupinah), površinsko združeno po stavbi.
+    en['grp'] = en.ENERGENT_SIFRA.map(CARRIER_GROUP)
+    eg = en[en.grp.notna()].merge(calc[['EIEI_ID', 'key']], on='EIEI_ID').groupby(['key', 'grp']).q.sum().unstack(fill_value=0)
+    eg = eg.div(eg.sum(axis=1), axis=0)
+    for c in CARRIERS:
+        df[f'ei_sh_{c}'] = df.key.map(eg[c]) if c in eg else np.nan
 
     # Eko sklad: prvo leto izvedbe posamezne vrste ukrepa (matrika do 2024 + poročilo 2025).
     mu = pd.read_excel(ctx.files['es_matrika'], dtype=str)
@@ -132,6 +157,10 @@ def build_table(ctx: Context, refresh: bool = False) -> pd.DataFrame:
         both = pd.concat([m, m25]).groupby(level=0).min()
         df[f'es_{grp}'] = df.key.map(both)
     df['es_any'] = df[[f'es_{g}' for g in ES_GROUPS]].notna().any(axis=1)
+    # Staro ogrevanje pri zamenjavi kurilne naprave (Eko sklad 2025; šifrant: -1 novo, 0 biomasa, 1 olje, 2 plin, 3 elektrika, 4 premog, 5 poleg obstoječe).
+    old = es25[es25.StaraKurilnaNaprava_ID.notna()].copy()
+    old['sk'] = pd.to_numeric(old.StaraKurilnaNaprava_ID, errors='coerce').map({0: 'bio', 1: 'elko', 2: 'gas', 3: 'el', 4: 'elko'})
+    df['es_staro'] = df.key.map(old.dropna(subset=['sk']).drop_duplicates('key').set_index('key').sk)
 
     df['period'] = period(df.year)
     CACHE.parent.mkdir(parents=True, exist_ok=True)

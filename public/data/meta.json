@@ -28,7 +28,8 @@
   "ukrepi",
   "revscina",
   "prihranek",
-  "obcine"
+  "obcine",
+  "obcine_model"
  ],
- "checks": 689
+ "checks": 717
 }

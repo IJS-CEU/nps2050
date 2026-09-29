@@ -266,7 +266,9 @@
    }
   },
   "ei_area_res_pct": 25.7,
-  "pre1981_res_area_pct": 56.5
+  "pre1981_res_area_pct": 56.5,
+  "model_fe_kwh_m2": 116,
+  "model_above43_pct": 37.9
  },
  "municipalities": [
   {
@@ -281,7 +283,9 @@
    "res_above43_pct": 49.2,
    "es_res_any_pct": 19.8,
    "obnova_res_pct": 53.4,
-   "pre1981_res_area_pct": 57.0
+   "pre1981_res_area_pct": 57.0,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 37.9
   },
   {
    "sifra": 213,
@@ -295,7 +299,9 @@
    "res_above43_pct": 40.4,
    "es_res_any_pct": 19.0,
    "obnova_res_pct": 44.2,
-   "pre1981_res_area_pct": 41.6
+   "pre1981_res_area_pct": 41.6,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 41.6
   },
   {
    "sifra": 195,
@@ -309,7 +315,9 @@
    "res_above43_pct": 45.0,
    "es_res_any_pct": 21.5,
    "obnova_res_pct": 44.2,
-   "pre1981_res_area_pct": 48.4
+   "pre1981_res_area_pct": 48.4,
+   "model_fe_kwh_m2": 125,
+   "model_above43_pct": 33.0
   },
   {
    "sifra": 2,
@@ -323,7 +331,9 @@
    "res_above43_pct": 40.4,
    "es_res_any_pct": 25.6,
    "obnova_res_pct": 45.2,
-   "pre1981_res_area_pct": 56.6
+   "pre1981_res_area_pct": 56.6,
+   "model_fe_kwh_m2": 137,
+   "model_above43_pct": 36.7
   },
   {
    "sifra": 148,
@@ -337,7 +347,9 @@
    "res_above43_pct": 37.0,
    "es_res_any_pct": 19.5,
    "obnova_res_pct": 38.4,
-   "pre1981_res_area_pct": 31.2
+   "pre1981_res_area_pct": 31.2,
+   "model_fe_kwh_m2": 113,
+   "model_above43_pct": 27.7
   },
   {
    "sifra": 149,
@@ -351,7 +363,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 12.0,
    "obnova_res_pct": 47.7,
-   "pre1981_res_area_pct": 65.8
+   "pre1981_res_area_pct": 65.8,
+   "model_fe_kwh_m2": 139,
+   "model_above43_pct": 42.5
   },
   {
    "sifra": 3,
@@ -365,7 +379,9 @@
    "res_above43_pct": 44.7,
    "es_res_any_pct": 23.1,
    "obnova_res_pct": 52.5,
-   "pre1981_res_area_pct": 63.6
+   "pre1981_res_area_pct": 63.6,
+   "model_fe_kwh_m2": 122,
+   "model_above43_pct": 41.4
   },
   {
    "sifra": 150,
@@ -379,7 +395,9 @@
    "res_above43_pct": 48.7,
    "es_res_any_pct": 18.9,
    "obnova_res_pct": 57.7,
-   "pre1981_res_area_pct": 55.9
+   "pre1981_res_area_pct": 55.9,
+   "model_fe_kwh_m2": 124,
+   "model_above43_pct": 38.7
   },
   {
    "sifra": 4,
@@ -393,7 +411,9 @@
    "res_above43_pct": 50.4,
    "es_res_any_pct": 18.2,
    "obnova_res_pct": 60.5,
-   "pre1981_res_area_pct": 66.4
+   "pre1981_res_area_pct": 66.4,
+   "model_fe_kwh_m2": 124,
+   "model_above43_pct": 43.0
   },
   {
    "sifra": 5,
@@ -407,7 +427,9 @@
    "res_above43_pct": 41.0,
    "es_res_any_pct": 30.3,
    "obnova_res_pct": 51.1,
-   "pre1981_res_area_pct": 55.7
+   "pre1981_res_area_pct": 55.7,
+   "model_fe_kwh_m2": 121,
+   "model_above43_pct": 39.3
   },
   {
    "sifra": 6,
@@ -421,7 +443,9 @@
    "res_above43_pct": 54.6,
    "es_res_any_pct": 11.5,
    "obnova_res_pct": 59.2,
-   "pre1981_res_area_pct": 63.4
+   "pre1981_res_area_pct": 63.4,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 44.0
   },
   {
    "sifra": 151,
@@ -435,7 +459,9 @@
    "res_above43_pct": 39.6,
    "es_res_any_pct": 31.4,
    "obnova_res_pct": 47.1,
-   "pre1981_res_area_pct": 47.8
+   "pre1981_res_area_pct": 47.8,
+   "model_fe_kwh_m2": 127,
+   "model_above43_pct": 32.7
   },
   {
    "sifra": 7,
@@ -449,7 +475,9 @@
    "res_above43_pct": 64.7,
    "es_res_any_pct": 18.9,
    "obnova_res_pct": 54.5,
-   "pre1981_res_area_pct": 62.9
+   "pre1981_res_area_pct": 62.9,
+   "model_fe_kwh_m2": 133,
+   "model_above43_pct": 41.1
   },
   {
    "sifra": 8,
@@ -463,7 +491,9 @@
    "res_above43_pct": 21.6,
    "es_res_any_pct": 24.9,
    "obnova_res_pct": 36.9,
-   "pre1981_res_area_pct": 42.3
+   "pre1981_res_area_pct": 42.3,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 26.0
   },
   {
    "sifra": 9,
@@ -477,7 +507,9 @@
    "res_above43_pct": 44.5,
    "es_res_any_pct": 20.8,
    "obnova_res_pct": 51.1,
-   "pre1981_res_area_pct": 58.0
+   "pre1981_res_area_pct": 58.0,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 37.0
   },
   {
    "sifra": 152,
@@ -491,7 +523,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 20.9,
    "obnova_res_pct": 44.7,
-   "pre1981_res_area_pct": 61.1
+   "pre1981_res_area_pct": 61.1,
+   "model_fe_kwh_m2": 142,
+   "model_above43_pct": 40.0
   },
   {
    "sifra": 11,
@@ -505,7 +539,9 @@
    "res_above43_pct": 31.8,
    "es_res_any_pct": 24.6,
    "obnova_res_pct": 57.7,
-   "pre1981_res_area_pct": 65.9
+   "pre1981_res_area_pct": 65.9,
+   "model_fe_kwh_m2": 113,
+   "model_above43_pct": 47.3
   },
   {
    "sifra": 12,
@@ -519,7 +555,9 @@
    "res_above43_pct": 32.1,
    "es_res_any_pct": 26.3,
    "obnova_res_pct": 39.0,
-   "pre1981_res_area_pct": 44.8
+   "pre1981_res_area_pct": 44.8,
+   "model_fe_kwh_m2": 93,
+   "model_above43_pct": 15.7
   },
   {
    "sifra": 13,
@@ -533,7 +571,9 @@
    "res_above43_pct": 47.3,
    "es_res_any_pct": 26.3,
    "obnova_res_pct": 53.6,
-   "pre1981_res_area_pct": 57.1
+   "pre1981_res_area_pct": 57.1,
+   "model_fe_kwh_m2": 123,
+   "model_above43_pct": 36.8
   },
   {
    "sifra": 14,
@@ -547,7 +587,9 @@
    "res_above43_pct": 64.7,
    "es_res_any_pct": 20.4,
    "obnova_res_pct": 57.3,
-   "pre1981_res_area_pct": 62.8
+   "pre1981_res_area_pct": 62.8,
+   "model_fe_kwh_m2": 139,
+   "model_above43_pct": 48.4
   },
   {
    "sifra": 153,
@@ -561,7 +603,9 @@
    "res_above43_pct": 42.4,
    "es_res_any_pct": 16.2,
    "obnova_res_pct": 45.2,
-   "pre1981_res_area_pct": 45.2
+   "pre1981_res_area_pct": 45.2,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 26.9
   },
   {
    "sifra": 196,
@@ -575,7 +619,9 @@
    "res_above43_pct": 65.7,
    "es_res_any_pct": 8.5,
    "obnova_res_pct": 39.7,
-   "pre1981_res_area_pct": 50.7
+   "pre1981_res_area_pct": 50.7,
+   "model_fe_kwh_m2": 133,
+   "model_above43_pct": 33.1
   },
   {
    "sifra": 18,
@@ -589,7 +635,9 @@
    "res_above43_pct": 34.1,
    "es_res_any_pct": 15.4,
    "obnova_res_pct": 44.2,
-   "pre1981_res_area_pct": 41.7
+   "pre1981_res_area_pct": 41.7,
+   "model_fe_kwh_m2": 124,
+   "model_above43_pct": 26.8
   },
   {
    "sifra": 19,
@@ -603,7 +651,9 @@
    "res_above43_pct": 55.3,
    "es_res_any_pct": 20.4,
    "obnova_res_pct": 52.5,
-   "pre1981_res_area_pct": 54.6
+   "pre1981_res_area_pct": 54.6,
+   "model_fe_kwh_m2": 109,
+   "model_above43_pct": 34.5
   },
   {
    "sifra": 154,
@@ -617,7 +667,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 17.5,
    "obnova_res_pct": 49.4,
-   "pre1981_res_area_pct": 57.5
+   "pre1981_res_area_pct": 57.5,
+   "model_fe_kwh_m2": 143,
+   "model_above43_pct": 37.8
   },
   {
    "sifra": 20,
@@ -631,7 +683,9 @@
    "res_above43_pct": 31.9,
    "es_res_any_pct": 19.7,
    "obnova_res_pct": 47.6,
-   "pre1981_res_area_pct": 46.3
+   "pre1981_res_area_pct": 46.3,
+   "model_fe_kwh_m2": 133,
+   "model_above43_pct": 35.2
   },
   {
    "sifra": 155,
@@ -645,7 +699,9 @@
    "res_above43_pct": 45.5,
    "es_res_any_pct": 21.2,
    "obnova_res_pct": 46.0,
-   "pre1981_res_area_pct": 50.3
+   "pre1981_res_area_pct": 50.3,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 34.2
   },
   {
    "sifra": 21,
@@ -659,7 +715,9 @@
    "res_above43_pct": 31.5,
    "es_res_any_pct": 21.4,
    "obnova_res_pct": 44.1,
-   "pre1981_res_area_pct": 47.5
+   "pre1981_res_area_pct": 47.5,
+   "model_fe_kwh_m2": 127,
+   "model_above43_pct": 30.7
   },
   {
    "sifra": 156,
@@ -673,7 +731,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 16.6,
    "obnova_res_pct": 50.4,
-   "pre1981_res_area_pct": 59.7
+   "pre1981_res_area_pct": 59.7,
+   "model_fe_kwh_m2": 134,
+   "model_above43_pct": 39.6
   },
   {
    "sifra": 22,
@@ -687,7 +747,9 @@
    "res_above43_pct": 11.0,
    "es_res_any_pct": 23.9,
    "obnova_res_pct": 36.7,
-   "pre1981_res_area_pct": 35.5
+   "pre1981_res_area_pct": 35.5,
+   "model_fe_kwh_m2": 114,
+   "model_above43_pct": 24.9
   },
   {
    "sifra": 157,
@@ -701,7 +763,9 @@
    "res_above43_pct": 52.2,
    "es_res_any_pct": 20.5,
    "obnova_res_pct": 52.1,
-   "pre1981_res_area_pct": 54.7
+   "pre1981_res_area_pct": 54.7,
+   "model_fe_kwh_m2": 121,
+   "model_above43_pct": 30.9
   },
   {
    "sifra": 23,
@@ -715,7 +779,9 @@
    "res_above43_pct": 22.1,
    "es_res_any_pct": 25.8,
    "obnova_res_pct": 45.4,
-   "pre1981_res_area_pct": 47.5
+   "pre1981_res_area_pct": 47.5,
+   "model_fe_kwh_m2": 118,
+   "model_above43_pct": 35.0
   },
   {
    "sifra": 24,
@@ -729,7 +795,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 18.1,
    "obnova_res_pct": 47.9,
-   "pre1981_res_area_pct": 48.0
+   "pre1981_res_area_pct": 48.0,
+   "model_fe_kwh_m2": 138,
+   "model_above43_pct": 34.5
   },
   {
    "sifra": 25,
@@ -743,7 +811,9 @@
    "res_above43_pct": 43.4,
    "es_res_any_pct": 29.6,
    "obnova_res_pct": 55.7,
-   "pre1981_res_area_pct": 56.1
+   "pre1981_res_area_pct": 56.1,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 33.9
   },
   {
    "sifra": 26,
@@ -757,7 +827,9 @@
    "res_above43_pct": 37.8,
    "es_res_any_pct": 21.3,
    "obnova_res_pct": 46.3,
-   "pre1981_res_area_pct": 44.9
+   "pre1981_res_area_pct": 44.9,
+   "model_fe_kwh_m2": 125,
+   "model_above43_pct": 29.5
   },
   {
    "sifra": 27,
@@ -771,7 +843,9 @@
    "res_above43_pct": 44.4,
    "es_res_any_pct": 24.6,
    "obnova_res_pct": 43.5,
-   "pre1981_res_area_pct": 50.6
+   "pre1981_res_area_pct": 50.6,
+   "model_fe_kwh_m2": 127,
+   "model_above43_pct": 34.4
   },
   {
    "sifra": 28,
@@ -785,7 +859,9 @@
    "res_above43_pct": 26.2,
    "es_res_any_pct": 20.8,
    "obnova_res_pct": 49.2,
-   "pre1981_res_area_pct": 49.8
+   "pre1981_res_area_pct": 49.8,
+   "model_fe_kwh_m2": 114,
+   "model_above43_pct": 25.2
   },
   {
    "sifra": 207,
@@ -799,7 +875,9 @@
    "res_above43_pct": 67.3,
    "es_res_any_pct": 23.7,
    "obnova_res_pct": 55.2,
-   "pre1981_res_area_pct": 69.9
+   "pre1981_res_area_pct": 69.9,
+   "model_fe_kwh_m2": 143,
+   "model_above43_pct": 51.3
   },
   {
    "sifra": 29,
@@ -813,7 +891,9 @@
    "res_above43_pct": 41.9,
    "es_res_any_pct": 23.6,
    "obnova_res_pct": 47.3,
-   "pre1981_res_area_pct": 53.4
+   "pre1981_res_area_pct": 53.4,
+   "model_fe_kwh_m2": 123,
+   "model_above43_pct": 36.4
   },
   {
    "sifra": 30,
@@ -827,7 +907,9 @@
    "res_above43_pct": 57.5,
    "es_res_any_pct": 24.4,
    "obnova_res_pct": 60.8,
-   "pre1981_res_area_pct": 65.5
+   "pre1981_res_area_pct": 65.5,
+   "model_fe_kwh_m2": 139,
+   "model_above43_pct": 51.3
   },
   {
    "sifra": 31,
@@ -841,7 +923,9 @@
    "res_above43_pct": 54.5,
    "es_res_any_pct": 13.3,
    "obnova_res_pct": 41.4,
-   "pre1981_res_area_pct": 62.5
+   "pre1981_res_area_pct": 62.5,
+   "model_fe_kwh_m2": 140,
+   "model_above43_pct": 46.7
   },
   {
    "sifra": 158,
@@ -855,7 +939,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 19.1,
    "obnova_res_pct": 45.8,
-   "pre1981_res_area_pct": 61.5
+   "pre1981_res_area_pct": 61.5,
+   "model_fe_kwh_m2": 139,
+   "model_above43_pct": 43.7
   },
   {
    "sifra": 32,
@@ -869,7 +955,9 @@
    "res_above43_pct": 21.6,
    "es_res_any_pct": 26.9,
    "obnova_res_pct": 41.6,
-   "pre1981_res_area_pct": 40.0
+   "pre1981_res_area_pct": 40.0,
+   "model_fe_kwh_m2": 116,
+   "model_above43_pct": 28.2
   },
   {
    "sifra": 159,
@@ -883,7 +971,9 @@
    "res_above43_pct": 22.7,
    "es_res_any_pct": 26.4,
    "obnova_res_pct": 51.6,
-   "pre1981_res_area_pct": 50.2
+   "pre1981_res_area_pct": 50.2,
+   "model_fe_kwh_m2": 120,
+   "model_above43_pct": 27.6
   },
   {
    "sifra": 161,
@@ -897,7 +987,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 14.4,
    "obnova_res_pct": 50.8,
-   "pre1981_res_area_pct": null
+   "pre1981_res_area_pct": null,
+   "model_fe_kwh_m2": 124,
+   "model_above43_pct": 45.2
   },
   {
    "sifra": 162,
@@ -911,7 +1003,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 18.9,
    "obnova_res_pct": 43.9,
-   "pre1981_res_area_pct": 55.7
+   "pre1981_res_area_pct": 55.7,
+   "model_fe_kwh_m2": 134,
+   "model_above43_pct": 33.1
   },
   {
    "sifra": 160,
@@ -925,7 +1019,9 @@
    "res_above43_pct": 29.9,
    "es_res_any_pct": 24.1,
    "obnova_res_pct": 48.4,
-   "pre1981_res_area_pct": 47.7
+   "pre1981_res_area_pct": 47.7,
+   "model_fe_kwh_m2": 116,
+   "model_above43_pct": 27.3
   },
   {
    "sifra": 34,
@@ -939,7 +1035,9 @@
    "res_above43_pct": 58.0,
    "es_res_any_pct": 25.4,
    "obnova_res_pct": 68.4,
-   "pre1981_res_area_pct": 66.8
+   "pre1981_res_area_pct": 66.8,
+   "model_fe_kwh_m2": 122,
+   "model_above43_pct": 53.4
   },
   {
    "sifra": 35,
@@ -953,7 +1051,9 @@
    "res_above43_pct": 40.8,
    "es_res_any_pct": 16.8,
    "obnova_res_pct": 56.6,
-   "pre1981_res_area_pct": 53.4
+   "pre1981_res_area_pct": 53.4,
+   "model_fe_kwh_m2": 106,
+   "model_above43_pct": 32.9
   },
   {
    "sifra": 36,
@@ -967,7 +1067,9 @@
    "res_above43_pct": 63.2,
    "es_res_any_pct": 23.5,
    "obnova_res_pct": 63.1,
-   "pre1981_res_area_pct": 66.5
+   "pre1981_res_area_pct": 66.5,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 46.9
   },
   {
    "sifra": 37,
@@ -981,7 +1083,9 @@
    "res_above43_pct": 26.3,
    "es_res_any_pct": 19.0,
    "obnova_res_pct": 34.3,
-   "pre1981_res_area_pct": 36.8
+   "pre1981_res_area_pct": 36.8,
+   "model_fe_kwh_m2": 112,
+   "model_above43_pct": 22.9
   },
   {
    "sifra": 38,
@@ -995,7 +1099,9 @@
    "res_above43_pct": 83.8,
    "es_res_any_pct": 20.7,
    "obnova_res_pct": 66.0,
-   "pre1981_res_area_pct": 69.6
+   "pre1981_res_area_pct": 69.6,
+   "model_fe_kwh_m2": 127,
+   "model_above43_pct": 47.1
   },
   {
    "sifra": 39,
@@ -1009,7 +1115,9 @@
    "res_above43_pct": 30.7,
    "es_res_any_pct": 21.0,
    "obnova_res_pct": 34.5,
-   "pre1981_res_area_pct": 44.6
+   "pre1981_res_area_pct": 44.6,
+   "model_fe_kwh_m2": 122,
+   "model_above43_pct": 29.3
   },
   {
    "sifra": 40,
@@ -1023,7 +1131,9 @@
    "res_above43_pct": 48.2,
    "es_res_any_pct": 18.7,
    "obnova_res_pct": 54.1,
-   "pre1981_res_area_pct": 48.4
+   "pre1981_res_area_pct": 48.4,
+   "model_fe_kwh_m2": 100,
+   "model_above43_pct": 42.7
   },
   {
    "sifra": 41,
@@ -1037,7 +1147,9 @@
    "res_above43_pct": 43.9,
    "es_res_any_pct": 29.1,
    "obnova_res_pct": 62.8,
-   "pre1981_res_area_pct": 75.2
+   "pre1981_res_area_pct": 75.2,
+   "model_fe_kwh_m2": 105,
+   "model_above43_pct": 51.5
   },
   {
    "sifra": 163,
@@ -1051,7 +1163,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 17.1,
    "obnova_res_pct": 49.3,
-   "pre1981_res_area_pct": 65.9
+   "pre1981_res_area_pct": 65.9,
+   "model_fe_kwh_m2": 123,
+   "model_above43_pct": 44.9
   },
   {
    "sifra": 42,
@@ -1065,7 +1179,9 @@
    "res_above43_pct": 59.4,
    "es_res_any_pct": 13.4,
    "obnova_res_pct": 38.8,
-   "pre1981_res_area_pct": 39.5
+   "pre1981_res_area_pct": 39.5,
+   "model_fe_kwh_m2": 124,
+   "model_above43_pct": 26.4
   },
   {
    "sifra": 43,
@@ -1079,7 +1195,9 @@
    "res_above43_pct": 33.5,
    "es_res_any_pct": 24.8,
    "obnova_res_pct": 50.5,
-   "pre1981_res_area_pct": 57.6
+   "pre1981_res_area_pct": 57.6,
+   "model_fe_kwh_m2": 123,
+   "model_above43_pct": 41.1
   },
   {
    "sifra": 44,
@@ -1093,7 +1211,9 @@
    "res_above43_pct": 75.0,
    "es_res_any_pct": 15.2,
    "obnova_res_pct": 72.7,
-   "pre1981_res_area_pct": 82.4
+   "pre1981_res_area_pct": 82.4,
+   "model_fe_kwh_m2": 135,
+   "model_above43_pct": 58.9
   },
   {
    "sifra": 45,
@@ -1107,7 +1227,9 @@
    "res_above43_pct": 46.2,
    "es_res_any_pct": 28.7,
    "obnova_res_pct": 51.6,
-   "pre1981_res_area_pct": 50.8
+   "pre1981_res_area_pct": 50.8,
+   "model_fe_kwh_m2": 115,
+   "model_above43_pct": 29.5
   },
   {
    "sifra": 46,
@@ -1121,7 +1243,9 @@
    "res_above43_pct": 54.5,
    "es_res_any_pct": 17.9,
    "obnova_res_pct": 67.3,
-   "pre1981_res_area_pct": 78.0
+   "pre1981_res_area_pct": 78.0,
+   "model_fe_kwh_m2": 145,
+   "model_above43_pct": 50.2
   },
   {
    "sifra": 47,
@@ -1135,7 +1259,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 13.4,
    "obnova_res_pct": 47.8,
-   "pre1981_res_area_pct": 54.2
+   "pre1981_res_area_pct": 54.2,
+   "model_fe_kwh_m2": 130,
+   "model_above43_pct": 40.2
   },
   {
    "sifra": 49,
@@ -1149,7 +1275,9 @@
    "res_above43_pct": 66.3,
    "es_res_any_pct": 18.0,
    "obnova_res_pct": 62.0,
-   "pre1981_res_area_pct": 67.4
+   "pre1981_res_area_pct": 67.4,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 47.7
   },
   {
    "sifra": 164,
@@ -1163,7 +1291,9 @@
    "res_above43_pct": 20.0,
    "es_res_any_pct": 28.8,
    "obnova_res_pct": 39.8,
-   "pre1981_res_area_pct": 44.7
+   "pre1981_res_area_pct": 44.7,
+   "model_fe_kwh_m2": 109,
+   "model_above43_pct": 23.6
   },
   {
    "sifra": 50,
@@ -1177,7 +1307,9 @@
    "res_above43_pct": 38.7,
    "es_res_any_pct": 17.1,
    "obnova_res_pct": 51.8,
-   "pre1981_res_area_pct": 55.8
+   "pre1981_res_area_pct": 55.8,
+   "model_fe_kwh_m2": 109,
+   "model_above43_pct": 38.7
   },
   {
    "sifra": 197,
@@ -1191,7 +1323,9 @@
    "res_above43_pct": 56.0,
    "es_res_any_pct": 18.0,
    "obnova_res_pct": 46.9,
-   "pre1981_res_area_pct": 55.4
+   "pre1981_res_area_pct": 55.4,
+   "model_fe_kwh_m2": 133,
+   "model_above43_pct": 37.0
   },
   {
    "sifra": 165,
@@ -1205,7 +1339,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 6.3,
    "obnova_res_pct": 50.3,
-   "pre1981_res_area_pct": 63.0
+   "pre1981_res_area_pct": 63.0,
+   "model_fe_kwh_m2": 135,
+   "model_above43_pct": 45.1
   },
   {
    "sifra": 51,
@@ -1219,7 +1355,9 @@
    "res_above43_pct": 51.4,
    "es_res_any_pct": 14.3,
    "obnova_res_pct": 51.7,
-   "pre1981_res_area_pct": 66.8
+   "pre1981_res_area_pct": 66.8,
+   "model_fe_kwh_m2": 133,
+   "model_above43_pct": 40.6
   },
   {
    "sifra": 48,
@@ -1233,7 +1371,9 @@
    "res_above43_pct": 66.2,
    "es_res_any_pct": 29.3,
    "obnova_res_pct": 54.6,
-   "pre1981_res_area_pct": 61.9
+   "pre1981_res_area_pct": 61.9,
+   "model_fe_kwh_m2": 121,
+   "model_above43_pct": 41.1
   },
   {
    "sifra": 52,
@@ -1247,7 +1387,9 @@
    "res_above43_pct": 27.9,
    "es_res_any_pct": 31.4,
    "obnova_res_pct": 53.4,
-   "pre1981_res_area_pct": 60.9
+   "pre1981_res_area_pct": 60.9,
+   "model_fe_kwh_m2": 110,
+   "model_above43_pct": 38.7
   },
   {
    "sifra": 53,
@@ -1261,7 +1403,9 @@
    "res_above43_pct": 43.6,
    "es_res_any_pct": 26.3,
    "obnova_res_pct": 51.9,
-   "pre1981_res_area_pct": 54.2
+   "pre1981_res_area_pct": 54.2,
+   "model_fe_kwh_m2": 106,
+   "model_above43_pct": 39.9
   },
   {
    "sifra": 166,
@@ -1275,7 +1419,9 @@
    "res_above43_pct": 53.3,
    "es_res_any_pct": 22.4,
    "obnova_res_pct": 36.0,
-   "pre1981_res_area_pct": 57.1
+   "pre1981_res_area_pct": 57.1,
+   "model_fe_kwh_m2": 131,
+   "model_above43_pct": 37.3
   },
   {
    "sifra": 54,
@@ -1289,7 +1435,9 @@
    "res_above43_pct": 46.3,
    "es_res_any_pct": 21.1,
    "obnova_res_pct": 49.5,
-   "pre1981_res_area_pct": 57.1
+   "pre1981_res_area_pct": 57.1,
+   "model_fe_kwh_m2": 128,
+   "model_above43_pct": 38.2
   },
   {
    "sifra": 55,
@@ -1303,7 +1451,9 @@
    "res_above43_pct": 35.5,
    "es_res_any_pct": 21.7,
    "obnova_res_pct": 45.5,
-   "pre1981_res_area_pct": 41.3
+   "pre1981_res_area_pct": 41.3,
+   "model_fe_kwh_m2": 118,
+   "model_above43_pct": 27.9
   },
   {
    "sifra": 56,
@@ -1317,7 +1467,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 25.1,
    "obnova_res_pct": 44.1,
-   "pre1981_res_area_pct": 51.0
+   "pre1981_res_area_pct": 51.0,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 33.9
   },
   {
    "sifra": 57,
@@ -1331,7 +1483,9 @@
    "res_above43_pct": 47.9,
    "es_res_any_pct": 18.3,
    "obnova_res_pct": 58.4,
-   "pre1981_res_area_pct": 60.1
+   "pre1981_res_area_pct": 60.1,
+   "model_fe_kwh_m2": 126,
+   "model_above43_pct": 38.9
   },
   {
    "sifra": 58,
@@ -1345,7 +1499,9 @@
    "res_above43_pct": 45.2,
    "es_res_any_pct": 23.5,
    "obnova_res_pct": 47.0,
-   "pre1981_res_area_pct": 39.4
+   "pre1981_res_area_pct": 39.4,
+   "model_fe_kwh_m2": 111,
+   "model_above43_pct": 29.8
   },
   {
    "sifra": 59,
@@ -1359,7 +1515,9 @@
    "res_above43_pct": 62.9,
    "es_res_any_pct": 17.1,
    "obnova_res_pct": 45.6,
-   "pre1981_res_area_pct": 63.2
+   "pre1981_res_area_pct": 63.2,
+   "model_fe_kwh_m2": 142,
+   "model_above43_pct": 42.0
   },
   {
    "sifra": 60,
@@ -1373,7 +1531,9 @@
    "res_above43_pct": 36.5,
    "es_res_any_pct": 24.9,
    "obnova_res_pct": 51.1,
-   "pre1981_res_area_pct": 53.1
+   "pre1981_res_area_pct": 53.1,
+   "model_fe_kwh_m2": 120,
+   "model_above43_pct": 35.0
   },
   {
    "sifra": 61,
@@ -1387,7 +1547,9 @@
    "res_above43_pct": 27.4,
    "es_res_any_pct": 23.2,
    "obnova_res_pct": 60.8,
-   "pre1981_res_area_pct": 61.6
+   "pre1981_res_area_pct": 61.6,
+   "model_fe_kwh_m2": 96,
+   "model_above43_pct": 43.4
   },
   {
    "sifra": 62,
@@ -1401,7 +1563,9 @@
    "res_above43_pct": 58.3,
    "es_res_any_pct": 27.4,
    "obnova_res_pct": 54.1,
-   "pre1981_res_area_pct": 64.4
+   "pre1981_res_area_pct": 64.4,
+   "model_fe_kwh_m2": 136,
+   "model_above43_pct": 44.4
   },
   {
    "sifra": 63,
@@ -1415,7 +1579,9 @@
    "res_above43_pct": 54.1,
    "es_res_any_pct": 19.3,
    "obnova_res_pct": 44.2,
-   "pre1981_res_area_pct": 58.4
+   "pre1981_res_area_pct": 58.4,
+   "model_fe_kwh_m2": 136,
+   "model_above43_pct": 42.2
   },
   {
    "sifra": 208,
@@ -1429,7 +1595,9 @@
    "res_above43_pct": 24.2,
    "es_res_any_pct": 28.1,
    "obnova_res_pct": 50.3,
-   "pre1981_res_area_pct": 55.0
+   "pre1981_res_area_pct": 55.0,
+   "model_fe_kwh_m2": 128,
+   "model_above43_pct": 27.6
   },
   {
    "sifra": 64,
@@ -1443,7 +1611,9 @@
    "res_above43_pct": 27.0,
    "es_res_any_pct": 32.7,
    "obnova_res_pct": 46.6,
-   "pre1981_res_area_pct": 46.3
+   "pre1981_res_area_pct": 46.3,
+   "model_fe_kwh_m2": 111,
+   "model_above43_pct": 31.2
   },
   {
    "sifra": 167,
@@ -1457,7 +1627,9 @@
    "res_above43_pct": 53.2,
    "es_res_any_pct": 18.2,
    "obnova_res_pct": 62.2,
-   "pre1981_res_area_pct": 65.3
+   "pre1981_res_area_pct": 65.3,
+   "model_fe_kwh_m2": 125,
+   "model_above43_pct": 42.2
   },
   {
    "sifra": 65,
@@ -1471,7 +1643,9 @@
    "res_above43_pct": 55.8,
    "es_res_any_pct": 18.1,
    "obnova_res_pct": 66.9,
-   "pre1981_res_area_pct": 71.9
+   "pre1981_res_area_pct": 71.9,
+   "model_fe_kwh_m2": 128,
+   "model_above43_pct": 41.8
   },
   {
    "sifra": 66,
@@ -1485,7 +1659,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 16.8,
    "obnova_res_pct": 63.2,
-   "pre1981_res_area_pct": 65.7
+   "pre1981_res_area_pct": 65.7,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 43.9
   },
   {
    "sifra": 68,
@@ -1499,7 +1675,9 @@
    "res_above43_pct": 20.2,
    "es_res_any_pct": 26.1,
    "obnova_res_pct": 37.8,
-   "pre1981_res_area_pct": 42.7
+   "pre1981_res_area_pct": 42.7,
+   "model_fe_kwh_m2": 123,
+   "model_above43_pct": 28.7
   },
   {
    "sifra": 67,
@@ -1513,7 +1691,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 26.6,
    "obnova_res_pct": 55.0,
-   "pre1981_res_area_pct": 67.9
+   "pre1981_res_area_pct": 67.9,
+   "model_fe_kwh_m2": 145,
+   "model_above43_pct": 50.0
   },
   {
    "sifra": 69,
@@ -1527,7 +1707,9 @@
    "res_above43_pct": 52.7,
    "es_res_any_pct": 15.3,
    "obnova_res_pct": 46.8,
-   "pre1981_res_area_pct": 48.8
+   "pre1981_res_area_pct": 48.8,
+   "model_fe_kwh_m2": 130,
+   "model_above43_pct": 35.2
   },
   {
    "sifra": 198,
@@ -1541,7 +1723,9 @@
    "res_above43_pct": 63.3,
    "es_res_any_pct": 11.0,
    "obnova_res_pct": 42.6,
-   "pre1981_res_area_pct": 50.4
+   "pre1981_res_area_pct": 50.4,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 34.1
   },
   {
    "sifra": 70,
@@ -1555,7 +1739,9 @@
    "res_above43_pct": 36.7,
    "es_res_any_pct": 25.0,
    "obnova_res_pct": 61.4,
-   "pre1981_res_area_pct": 62.4
+   "pre1981_res_area_pct": 62.4,
+   "model_fe_kwh_m2": 101,
+   "model_above43_pct": 43.3
   },
   {
    "sifra": 168,
@@ -1569,7 +1755,9 @@
    "res_above43_pct": 54.8,
    "es_res_any_pct": 24.5,
    "obnova_res_pct": 51.8,
-   "pre1981_res_area_pct": 49.1
+   "pre1981_res_area_pct": 49.1,
+   "model_fe_kwh_m2": 126,
+   "model_above43_pct": 28.7
   },
   {
    "sifra": 71,
@@ -1583,7 +1771,9 @@
    "res_above43_pct": 24.3,
    "es_res_any_pct": 28.6,
    "obnova_res_pct": 45.3,
-   "pre1981_res_area_pct": 48.9
+   "pre1981_res_area_pct": 48.9,
+   "model_fe_kwh_m2": 121,
+   "model_above43_pct": 31.7
   },
   {
    "sifra": 72,
@@ -1597,7 +1787,9 @@
    "res_above43_pct": 31.0,
    "es_res_any_pct": 29.6,
    "obnova_res_pct": 47.2,
-   "pre1981_res_area_pct": 48.2
+   "pre1981_res_area_pct": 48.2,
+   "model_fe_kwh_m2": 112,
+   "model_above43_pct": 32.7
   },
   {
    "sifra": 73,
@@ -1611,7 +1803,9 @@
    "res_above43_pct": 60.7,
    "es_res_any_pct": 19.8,
    "obnova_res_pct": 50.4,
-   "pre1981_res_area_pct": 60.1
+   "pre1981_res_area_pct": 60.1,
+   "model_fe_kwh_m2": 139,
+   "model_above43_pct": 41.3
   },
   {
    "sifra": 74,
@@ -1625,7 +1819,9 @@
    "res_above43_pct": 41.7,
    "es_res_any_pct": 31.7,
    "obnova_res_pct": 66.7,
-   "pre1981_res_area_pct": 65.9
+   "pre1981_res_area_pct": 65.9,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 47.0
   },
   {
    "sifra": 169,
@@ -1639,7 +1835,9 @@
    "res_above43_pct": 28.1,
    "es_res_any_pct": 27.9,
    "obnova_res_pct": 53.0,
-   "pre1981_res_area_pct": 49.2
+   "pre1981_res_area_pct": 49.2,
+   "model_fe_kwh_m2": 126,
+   "model_above43_pct": 26.9
   },
   {
    "sifra": 75,
@@ -1653,7 +1851,9 @@
    "res_above43_pct": 64.2,
    "es_res_any_pct": 20.1,
    "obnova_res_pct": 57.3,
-   "pre1981_res_area_pct": 62.1
+   "pre1981_res_area_pct": 62.1,
+   "model_fe_kwh_m2": 123,
+   "model_above43_pct": 42.2
   },
   {
    "sifra": 212,
@@ -1667,7 +1867,9 @@
    "res_above43_pct": 49.2,
    "es_res_any_pct": 18.7,
    "obnova_res_pct": 51.7,
-   "pre1981_res_area_pct": 52.0
+   "pre1981_res_area_pct": 52.0,
+   "model_fe_kwh_m2": 111,
+   "model_above43_pct": 28.6
   },
   {
    "sifra": 170,
@@ -1681,7 +1883,9 @@
    "res_above43_pct": 58.7,
    "es_res_any_pct": 21.2,
    "obnova_res_pct": 44.4,
-   "pre1981_res_area_pct": 41.5
+   "pre1981_res_area_pct": 41.5,
+   "model_fe_kwh_m2": 122,
+   "model_above43_pct": 27.0
   },
   {
    "sifra": 76,
@@ -1695,7 +1899,9 @@
    "res_above43_pct": 55.6,
    "es_res_any_pct": 30.5,
    "obnova_res_pct": 37.8,
-   "pre1981_res_area_pct": 49.0
+   "pre1981_res_area_pct": 49.0,
+   "model_fe_kwh_m2": 121,
+   "model_above43_pct": 31.8
   },
   {
    "sifra": 199,
@@ -1709,7 +1915,9 @@
    "res_above43_pct": 57.6,
    "es_res_any_pct": 12.9,
    "obnova_res_pct": 51.0,
-   "pre1981_res_area_pct": 52.4
+   "pre1981_res_area_pct": 52.4,
+   "model_fe_kwh_m2": 123,
+   "model_above43_pct": 32.0
   },
   {
    "sifra": 78,
@@ -1723,7 +1931,9 @@
    "res_above43_pct": 41.8,
    "es_res_any_pct": 18.4,
    "obnova_res_pct": 39.5,
-   "pre1981_res_area_pct": 50.0
+   "pre1981_res_area_pct": 50.0,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 29.9
   },
   {
    "sifra": 77,
@@ -1737,7 +1947,9 @@
    "res_above43_pct": 35.7,
    "es_res_any_pct": 21.4,
    "obnova_res_pct": 40.8,
-   "pre1981_res_area_pct": 44.7
+   "pre1981_res_area_pct": 44.7,
+   "model_fe_kwh_m2": 127,
+   "model_above43_pct": 29.4
   },
   {
    "sifra": 79,
@@ -1751,7 +1963,9 @@
    "res_above43_pct": 29.6,
    "es_res_any_pct": 36.5,
    "obnova_res_pct": 53.2,
-   "pre1981_res_area_pct": 51.6
+   "pre1981_res_area_pct": 51.6,
+   "model_fe_kwh_m2": 120,
+   "model_above43_pct": 32.1
   },
   {
    "sifra": 80,
@@ -1765,7 +1979,9 @@
    "res_above43_pct": 38.1,
    "es_res_any_pct": 28.8,
    "obnova_res_pct": 55.0,
-   "pre1981_res_area_pct": 62.1
+   "pre1981_res_area_pct": 62.1,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 42.4
   },
   {
    "sifra": 81,
@@ -1779,7 +1995,9 @@
    "res_above43_pct": 40.3,
    "es_res_any_pct": 28.0,
    "obnova_res_pct": 47.6,
-   "pre1981_res_area_pct": 48.2
+   "pre1981_res_area_pct": 48.2,
+   "model_fe_kwh_m2": 122,
+   "model_above43_pct": 33.1
   },
   {
    "sifra": 82,
@@ -1793,7 +2011,9 @@
    "res_above43_pct": 35.8,
    "es_res_any_pct": 30.6,
    "obnova_res_pct": 47.0,
-   "pre1981_res_area_pct": 55.3
+   "pre1981_res_area_pct": 55.3,
+   "model_fe_kwh_m2": 121,
+   "model_above43_pct": 31.6
   },
   {
    "sifra": 83,
@@ -1807,7 +2027,9 @@
    "res_above43_pct": 56.2,
    "es_res_any_pct": 31.8,
    "obnova_res_pct": 57.2,
-   "pre1981_res_area_pct": 59.2
+   "pre1981_res_area_pct": 59.2,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 44.1
   },
   {
    "sifra": 84,
@@ -1821,7 +2043,9 @@
    "res_above43_pct": 45.5,
    "es_res_any_pct": 20.1,
    "obnova_res_pct": 59.7,
-   "pre1981_res_area_pct": 65.5
+   "pre1981_res_area_pct": 65.5,
+   "model_fe_kwh_m2": 115,
+   "model_above43_pct": 42.8
   },
   {
    "sifra": 85,
@@ -1835,7 +2059,9 @@
    "res_above43_pct": 33.1,
    "es_res_any_pct": 25.6,
    "obnova_res_pct": 53.6,
-   "pre1981_res_area_pct": 53.0
+   "pre1981_res_area_pct": 53.0,
+   "model_fe_kwh_m2": 116,
+   "model_above43_pct": 32.5
   },
   {
    "sifra": 86,
@@ -1849,7 +2075,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 27.5,
    "obnova_res_pct": 46.8,
-   "pre1981_res_area_pct": 59.4
+   "pre1981_res_area_pct": 59.4,
+   "model_fe_kwh_m2": 133,
+   "model_above43_pct": 29.8
   },
   {
    "sifra": 171,
@@ -1863,7 +2091,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 22.7,
    "obnova_res_pct": 44.0,
-   "pre1981_res_area_pct": 49.9
+   "pre1981_res_area_pct": 49.9,
+   "model_fe_kwh_m2": 125,
+   "model_above43_pct": 31.6
   },
   {
    "sifra": 87,
@@ -1877,7 +2107,9 @@
    "res_above43_pct": 37.0,
    "es_res_any_pct": 16.0,
    "obnova_res_pct": 50.9,
-   "pre1981_res_area_pct": 54.3
+   "pre1981_res_area_pct": 54.3,
+   "model_fe_kwh_m2": 126,
+   "model_above43_pct": 35.7
   },
   {
    "sifra": 88,
@@ -1891,7 +2123,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": null,
    "obnova_res_pct": 57.7,
-   "pre1981_res_area_pct": 72.8
+   "pre1981_res_area_pct": 72.8,
+   "model_fe_kwh_m2": 116,
+   "model_above43_pct": 42.4
   },
   {
    "sifra": 89,
@@ -1905,7 +2139,9 @@
    "res_above43_pct": 39.1,
    "es_res_any_pct": 17.9,
    "obnova_res_pct": 47.4,
-   "pre1981_res_area_pct": 46.8
+   "pre1981_res_area_pct": 46.8,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 28.7
   },
   {
    "sifra": 90,
@@ -1919,7 +2155,9 @@
    "res_above43_pct": 45.5,
    "es_res_any_pct": 13.9,
    "obnova_res_pct": 54.5,
-   "pre1981_res_area_pct": 63.1
+   "pre1981_res_area_pct": 63.1,
+   "model_fe_kwh_m2": 107,
+   "model_above43_pct": 42.1
   },
   {
    "sifra": 91,
@@ -1933,7 +2171,9 @@
    "res_above43_pct": 73.4,
    "es_res_any_pct": 21.4,
    "obnova_res_pct": 59.6,
-   "pre1981_res_area_pct": 60.5
+   "pre1981_res_area_pct": 60.5,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 37.1
   },
   {
    "sifra": 172,
@@ -1947,7 +2187,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 8.3,
    "obnova_res_pct": 43.3,
-   "pre1981_res_area_pct": 46.5
+   "pre1981_res_area_pct": 46.5,
+   "model_fe_kwh_m2": 137,
+   "model_above43_pct": 35.8
   },
   {
    "sifra": 93,
@@ -1961,7 +2203,9 @@
    "res_above43_pct": 46.2,
    "es_res_any_pct": 16.0,
    "obnova_res_pct": 62.1,
-   "pre1981_res_area_pct": 66.3
+   "pre1981_res_area_pct": 66.3,
+   "model_fe_kwh_m2": 131,
+   "model_above43_pct": 45.8
   },
   {
    "sifra": 92,
@@ -1975,7 +2219,9 @@
    "res_above43_pct": 52.8,
    "es_res_any_pct": 15.2,
    "obnova_res_pct": 42.8,
-   "pre1981_res_area_pct": 54.8
+   "pre1981_res_area_pct": 54.8,
+   "model_fe_kwh_m2": 120,
+   "model_above43_pct": 28.4
   },
   {
    "sifra": 200,
@@ -1989,7 +2235,9 @@
    "res_above43_pct": 42.6,
    "es_res_any_pct": 20.0,
    "obnova_res_pct": 53.4,
-   "pre1981_res_area_pct": 57.9
+   "pre1981_res_area_pct": 57.9,
+   "model_fe_kwh_m2": 123,
+   "model_above43_pct": 37.2
   },
   {
    "sifra": 173,
@@ -2003,7 +2251,9 @@
    "res_above43_pct": 24.8,
    "es_res_any_pct": 31.9,
    "obnova_res_pct": 40.8,
-   "pre1981_res_area_pct": 42.4
+   "pre1981_res_area_pct": 42.4,
+   "model_fe_kwh_m2": 112,
+   "model_above43_pct": 26.8
   },
   {
    "sifra": 94,
@@ -2017,7 +2267,9 @@
    "res_above43_pct": 48.2,
    "es_res_any_pct": 28.2,
    "obnova_res_pct": 58.5,
-   "pre1981_res_area_pct": 58.5
+   "pre1981_res_area_pct": 58.5,
+   "model_fe_kwh_m2": 100,
+   "model_above43_pct": 35.3
   },
   {
    "sifra": 174,
@@ -2031,7 +2283,9 @@
    "res_above43_pct": 44.7,
    "es_res_any_pct": 29.5,
    "obnova_res_pct": 54.5,
-   "pre1981_res_area_pct": 53.9
+   "pre1981_res_area_pct": 53.9,
+   "model_fe_kwh_m2": 115,
+   "model_above43_pct": 34.9
   },
   {
    "sifra": 95,
@@ -2045,7 +2299,9 @@
    "res_above43_pct": 36.2,
    "es_res_any_pct": 27.1,
    "obnova_res_pct": 39.9,
-   "pre1981_res_area_pct": 47.6
+   "pre1981_res_area_pct": 47.6,
+   "model_fe_kwh_m2": 118,
+   "model_above43_pct": 28.5
   },
   {
    "sifra": 175,
@@ -2059,7 +2315,9 @@
    "res_above43_pct": 31.0,
    "es_res_any_pct": 33.8,
    "obnova_res_pct": 59.9,
-   "pre1981_res_area_pct": 61.3
+   "pre1981_res_area_pct": 61.3,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 46.3
   },
   {
    "sifra": 96,
@@ -2073,7 +2331,9 @@
    "res_above43_pct": 33.7,
    "es_res_any_pct": 23.8,
    "obnova_res_pct": 53.8,
-   "pre1981_res_area_pct": 57.1
+   "pre1981_res_area_pct": 57.1,
+   "model_fe_kwh_m2": 115,
+   "model_above43_pct": 35.7
   },
   {
    "sifra": 97,
@@ -2087,7 +2347,9 @@
    "res_above43_pct": 52.8,
    "es_res_any_pct": 20.1,
    "obnova_res_pct": 41.6,
-   "pre1981_res_area_pct": 56.6
+   "pre1981_res_area_pct": 56.6,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 36.0
   },
   {
    "sifra": 100,
@@ -2101,7 +2363,9 @@
    "res_above43_pct": 50.8,
    "es_res_any_pct": 27.6,
    "obnova_res_pct": 51.8,
-   "pre1981_res_area_pct": 57.0
+   "pre1981_res_area_pct": 57.0,
+   "model_fe_kwh_m2": 121,
+   "model_above43_pct": 32.7
   },
   {
    "sifra": 99,
@@ -2115,7 +2379,9 @@
    "res_above43_pct": 52.6,
    "es_res_any_pct": 21.0,
    "obnova_res_pct": 60.4,
-   "pre1981_res_area_pct": 66.9
+   "pre1981_res_area_pct": 66.9,
+   "model_fe_kwh_m2": 133,
+   "model_above43_pct": 46.7
   },
   {
    "sifra": 101,
@@ -2129,7 +2395,9 @@
    "res_above43_pct": 40.0,
    "es_res_any_pct": 31.2,
    "obnova_res_pct": 55.4,
-   "pre1981_res_area_pct": 54.8
+   "pre1981_res_area_pct": 54.8,
+   "model_fe_kwh_m2": 116,
+   "model_above43_pct": 34.0
   },
   {
    "sifra": 102,
@@ -2143,7 +2411,9 @@
    "res_above43_pct": 41.6,
    "es_res_any_pct": 28.8,
    "obnova_res_pct": 49.5,
-   "pre1981_res_area_pct": 58.7
+   "pre1981_res_area_pct": 58.7,
+   "model_fe_kwh_m2": 121,
+   "model_above43_pct": 40.2
   },
   {
    "sifra": 103,
@@ -2157,7 +2427,9 @@
    "res_above43_pct": 25.8,
    "es_res_any_pct": 33.2,
    "obnova_res_pct": 58.2,
-   "pre1981_res_area_pct": 57.8
+   "pre1981_res_area_pct": 57.8,
+   "model_fe_kwh_m2": 111,
+   "model_above43_pct": 39.8
   },
   {
    "sifra": 176,
@@ -2171,7 +2443,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 19.4,
    "obnova_res_pct": 34.6,
-   "pre1981_res_area_pct": 58.7
+   "pre1981_res_area_pct": 58.7,
+   "model_fe_kwh_m2": 154,
+   "model_above43_pct": 44.0
   },
   {
    "sifra": 98,
@@ -2185,7 +2459,9 @@
    "res_above43_pct": 17.7,
    "es_res_any_pct": 24.7,
    "obnova_res_pct": 42.3,
-   "pre1981_res_area_pct": 40.4
+   "pre1981_res_area_pct": 40.4,
+   "model_fe_kwh_m2": 114,
+   "model_above43_pct": 24.7
   },
   {
    "sifra": 201,
@@ -2199,7 +2475,9 @@
    "res_above43_pct": 54.4,
    "es_res_any_pct": 22.5,
    "obnova_res_pct": 54.7,
-   "pre1981_res_area_pct": 61.5
+   "pre1981_res_area_pct": 61.5,
+   "model_fe_kwh_m2": 127,
+   "model_above43_pct": 39.6
   },
   {
    "sifra": 209,
@@ -2213,7 +2491,9 @@
    "res_above43_pct": 45.7,
    "es_res_any_pct": 31.9,
    "obnova_res_pct": 51.6,
-   "pre1981_res_area_pct": 56.2
+   "pre1981_res_area_pct": 56.2,
+   "model_fe_kwh_m2": 140,
+   "model_above43_pct": 42.4
   },
   {
    "sifra": 104,
@@ -2227,7 +2507,9 @@
    "res_above43_pct": 61.1,
    "es_res_any_pct": 28.3,
    "obnova_res_pct": 50.6,
-   "pre1981_res_area_pct": 58.2
+   "pre1981_res_area_pct": 58.2,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 42.4
   },
   {
    "sifra": 177,
@@ -2241,7 +2523,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 16.5,
    "obnova_res_pct": 57.1,
-   "pre1981_res_area_pct": 60.6
+   "pre1981_res_area_pct": 60.6,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 43.3
   },
   {
    "sifra": 107,
@@ -2255,7 +2539,9 @@
    "res_above43_pct": 44.2,
    "es_res_any_pct": 13.4,
    "obnova_res_pct": 57.1,
-   "pre1981_res_area_pct": 64.1
+   "pre1981_res_area_pct": 64.1,
+   "model_fe_kwh_m2": 120,
+   "model_above43_pct": 38.0
   },
   {
    "sifra": 106,
@@ -2269,7 +2555,9 @@
    "res_above43_pct": 36.5,
    "es_res_any_pct": 19.7,
    "obnova_res_pct": 48.4,
-   "pre1981_res_area_pct": 56.0
+   "pre1981_res_area_pct": 56.0,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 31.4
   },
   {
    "sifra": 105,
@@ -2283,7 +2571,9 @@
    "res_above43_pct": 56.8,
    "es_res_any_pct": 19.9,
    "obnova_res_pct": 47.6,
-   "pre1981_res_area_pct": 54.5
+   "pre1981_res_area_pct": 54.5,
+   "model_fe_kwh_m2": 134,
+   "model_above43_pct": 32.4
   },
   {
    "sifra": 108,
@@ -2297,7 +2587,9 @@
    "res_above43_pct": 41.3,
    "es_res_any_pct": 25.0,
    "obnova_res_pct": 55.9,
-   "pre1981_res_area_pct": 54.4
+   "pre1981_res_area_pct": 54.4,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 36.9
   },
   {
    "sifra": 178,
@@ -2311,7 +2603,9 @@
    "res_above43_pct": 54.7,
    "es_res_any_pct": 20.3,
    "obnova_res_pct": 56.0,
-   "pre1981_res_area_pct": 55.2
+   "pre1981_res_area_pct": 55.2,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 35.2
   },
   {
    "sifra": 109,
@@ -2325,7 +2619,9 @@
    "res_above43_pct": 62.1,
    "es_res_any_pct": 17.0,
    "obnova_res_pct": 49.0,
-   "pre1981_res_area_pct": 53.4
+   "pre1981_res_area_pct": 53.4,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 35.9
   },
   {
    "sifra": 110,
@@ -2339,7 +2635,9 @@
    "res_above43_pct": 46.1,
    "es_res_any_pct": 17.5,
    "obnova_res_pct": 50.2,
-   "pre1981_res_area_pct": 54.1
+   "pre1981_res_area_pct": 54.1,
+   "model_fe_kwh_m2": 131,
+   "model_above43_pct": 38.2
   },
   {
    "sifra": 111,
@@ -2353,7 +2651,9 @@
    "res_above43_pct": 37.7,
    "es_res_any_pct": 21.4,
    "obnova_res_pct": 50.6,
-   "pre1981_res_area_pct": 57.6
+   "pre1981_res_area_pct": 57.6,
+   "model_fe_kwh_m2": 116,
+   "model_above43_pct": 36.7
   },
   {
    "sifra": 112,
@@ -2367,7 +2667,9 @@
    "res_above43_pct": 31.1,
    "es_res_any_pct": 32.8,
    "obnova_res_pct": 53.2,
-   "pre1981_res_area_pct": 52.0
+   "pre1981_res_area_pct": 52.0,
+   "model_fe_kwh_m2": 112,
+   "model_above43_pct": 30.7
   },
   {
    "sifra": 113,
@@ -2381,7 +2683,9 @@
    "res_above43_pct": 31.2,
    "es_res_any_pct": 24.0,
    "obnova_res_pct": 44.4,
-   "pre1981_res_area_pct": 47.4
+   "pre1981_res_area_pct": 47.4,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 30.6
   },
   {
    "sifra": 114,
@@ -2395,7 +2699,9 @@
    "res_above43_pct": 44.4,
    "es_res_any_pct": 22.3,
    "obnova_res_pct": 53.2,
-   "pre1981_res_area_pct": 49.0
+   "pre1981_res_area_pct": 49.0,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 32.0
   },
   {
    "sifra": 179,
@@ -2409,7 +2715,9 @@
    "res_above43_pct": 55.9,
    "es_res_any_pct": 22.6,
    "obnova_res_pct": 49.0,
-   "pre1981_res_area_pct": 62.9
+   "pre1981_res_area_pct": 62.9,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 39.2
   },
   {
    "sifra": 180,
@@ -2423,7 +2731,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 20.4,
    "obnova_res_pct": 57.4,
-   "pre1981_res_area_pct": 58.7
+   "pre1981_res_area_pct": 58.7,
+   "model_fe_kwh_m2": 138,
+   "model_above43_pct": 46.2
   },
   {
    "sifra": 202,
@@ -2437,7 +2747,9 @@
    "res_above43_pct": 57.6,
    "es_res_any_pct": 11.5,
    "obnova_res_pct": 56.9,
-   "pre1981_res_area_pct": 64.4
+   "pre1981_res_area_pct": 64.4,
+   "model_fe_kwh_m2": 148,
+   "model_above43_pct": 48.9
   },
   {
    "sifra": 115,
@@ -2451,7 +2763,9 @@
    "res_above43_pct": 33.3,
    "es_res_any_pct": 25.8,
    "obnova_res_pct": 50.3,
-   "pre1981_res_area_pct": 50.6
+   "pre1981_res_area_pct": 50.6,
+   "model_fe_kwh_m2": 125,
+   "model_above43_pct": 30.0
   },
   {
    "sifra": 203,
@@ -2465,7 +2779,9 @@
    "res_above43_pct": 48.7,
    "es_res_any_pct": 20.7,
    "obnova_res_pct": 54.5,
-   "pre1981_res_area_pct": 57.4
+   "pre1981_res_area_pct": 57.4,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 36.6
   },
   {
    "sifra": 181,
@@ -2479,7 +2795,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 16.8,
    "obnova_res_pct": 46.1,
-   "pre1981_res_area_pct": 40.5
+   "pre1981_res_area_pct": 40.5,
+   "model_fe_kwh_m2": 124,
+   "model_above43_pct": 30.5
   },
   {
    "sifra": 204,
@@ -2493,7 +2811,9 @@
    "res_above43_pct": 29.0,
    "es_res_any_pct": 24.1,
    "obnova_res_pct": 44.2,
-   "pre1981_res_area_pct": 43.9
+   "pre1981_res_area_pct": 43.9,
+   "model_fe_kwh_m2": 128,
+   "model_above43_pct": 30.2
   },
   {
    "sifra": 182,
@@ -2507,7 +2827,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 16.2,
    "obnova_res_pct": 39.6,
-   "pre1981_res_area_pct": 45.9
+   "pre1981_res_area_pct": 45.9,
+   "model_fe_kwh_m2": 130,
+   "model_above43_pct": 30.0
   },
   {
    "sifra": 116,
@@ -2521,7 +2843,9 @@
    "res_above43_pct": 59.1,
    "es_res_any_pct": 17.0,
    "obnova_res_pct": 39.1,
-   "pre1981_res_area_pct": 50.3
+   "pre1981_res_area_pct": 50.3,
+   "model_fe_kwh_m2": 134,
+   "model_above43_pct": 34.8
   },
   {
    "sifra": 210,
@@ -2535,7 +2859,9 @@
    "res_above43_pct": 26.8,
    "es_res_any_pct": 17.4,
    "obnova_res_pct": 49.5,
-   "pre1981_res_area_pct": 39.7
+   "pre1981_res_area_pct": 39.7,
+   "model_fe_kwh_m2": 118,
+   "model_above43_pct": 26.9
   },
   {
    "sifra": 205,
@@ -2549,7 +2875,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 11.4,
    "obnova_res_pct": 48.1,
-   "pre1981_res_area_pct": 50.4
+   "pre1981_res_area_pct": 50.4,
+   "model_fe_kwh_m2": 134,
+   "model_above43_pct": 35.1
   },
   {
    "sifra": 184,
@@ -2563,7 +2891,9 @@
    "res_above43_pct": 40.0,
    "es_res_any_pct": 26.7,
    "obnova_res_pct": 43.8,
-   "pre1981_res_area_pct": 45.4
+   "pre1981_res_area_pct": 45.4,
+   "model_fe_kwh_m2": 121,
+   "model_above43_pct": 32.4
   },
   {
    "sifra": 10,
@@ -2577,7 +2907,9 @@
    "res_above43_pct": 55.8,
    "es_res_any_pct": 31.2,
    "obnova_res_pct": 48.9,
-   "pre1981_res_area_pct": 61.7
+   "pre1981_res_area_pct": 61.7,
+   "model_fe_kwh_m2": 141,
+   "model_above43_pct": 38.1
   },
   {
    "sifra": 128,
@@ -2591,7 +2923,9 @@
    "res_above43_pct": 61.7,
    "es_res_any_pct": 19.4,
    "obnova_res_pct": 68.5,
-   "pre1981_res_area_pct": 76.8
+   "pre1981_res_area_pct": 76.8,
+   "model_fe_kwh_m2": 139,
+   "model_above43_pct": 54.9
   },
   {
    "sifra": 129,
@@ -2605,7 +2939,9 @@
    "res_above43_pct": 55.8,
    "es_res_any_pct": 34.0,
    "obnova_res_pct": 68.9,
-   "pre1981_res_area_pct": 71.9
+   "pre1981_res_area_pct": 71.9,
+   "model_fe_kwh_m2": 113,
+   "model_above43_pct": 54.8
   },
   {
    "sifra": 130,
@@ -2619,7 +2955,9 @@
    "res_above43_pct": 37.4,
    "es_res_any_pct": 18.5,
    "obnova_res_pct": 45.1,
-   "pre1981_res_area_pct": 42.3
+   "pre1981_res_area_pct": 42.3,
+   "model_fe_kwh_m2": 115,
+   "model_above43_pct": 26.2
   },
   {
    "sifra": 185,
@@ -2633,7 +2971,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 18.2,
    "obnova_res_pct": 45.1,
-   "pre1981_res_area_pct": 38.2
+   "pre1981_res_area_pct": 38.2,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 24.4
   },
   {
    "sifra": 186,
@@ -2647,7 +2987,9 @@
    "res_above43_pct": 10.0,
    "es_res_any_pct": 24.1,
    "obnova_res_pct": 46.9,
-   "pre1981_res_area_pct": 40.5
+   "pre1981_res_area_pct": 40.5,
+   "model_fe_kwh_m2": 107,
+   "model_above43_pct": 22.5
   },
   {
    "sifra": 131,
@@ -2661,7 +3003,9 @@
    "res_above43_pct": 39.1,
    "es_res_any_pct": 29.0,
    "obnova_res_pct": 50.1,
-   "pre1981_res_area_pct": 64.7
+   "pre1981_res_area_pct": 64.7,
+   "model_fe_kwh_m2": 120,
+   "model_above43_pct": 43.5
   },
   {
    "sifra": 132,
@@ -2675,7 +3019,9 @@
    "res_above43_pct": 65.9,
    "es_res_any_pct": 24.1,
    "obnova_res_pct": 48.5,
-   "pre1981_res_area_pct": 58.0
+   "pre1981_res_area_pct": 58.0,
+   "model_fe_kwh_m2": 141,
+   "model_above43_pct": 36.7
   },
   {
    "sifra": 133,
@@ -2689,7 +3035,9 @@
    "res_above43_pct": 36.5,
    "es_res_any_pct": 32.1,
    "obnova_res_pct": 56.3,
-   "pre1981_res_area_pct": 59.1
+   "pre1981_res_area_pct": 59.1,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 44.2
   },
   {
    "sifra": 187,
@@ -2703,7 +3051,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 21.5,
    "obnova_res_pct": 38.9,
-   "pre1981_res_area_pct": 49.2
+   "pre1981_res_area_pct": 49.2,
+   "model_fe_kwh_m2": 148,
+   "model_above43_pct": 37.8
   },
   {
    "sifra": 134,
@@ -2717,7 +3067,9 @@
    "res_above43_pct": 50.0,
    "es_res_any_pct": 17.2,
    "obnova_res_pct": 47.0,
-   "pre1981_res_area_pct": 49.3
+   "pre1981_res_area_pct": 49.3,
+   "model_fe_kwh_m2": 128,
+   "model_above43_pct": 33.1
   },
   {
    "sifra": 188,
@@ -2731,7 +3083,9 @@
    "res_above43_pct": 47.1,
    "es_res_any_pct": 31.2,
    "obnova_res_pct": 40.7,
-   "pre1981_res_area_pct": 54.3
+   "pre1981_res_area_pct": 54.3,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 33.6
   },
   {
    "sifra": 135,
@@ -2745,7 +3099,9 @@
    "res_above43_pct": 40.7,
    "es_res_any_pct": 13.7,
    "obnova_res_pct": 41.7,
-   "pre1981_res_area_pct": 47.2
+   "pre1981_res_area_pct": 47.2,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 31.5
   },
   {
    "sifra": 136,
@@ -2759,7 +3115,9 @@
    "res_above43_pct": 64.8,
    "es_res_any_pct": 19.6,
    "obnova_res_pct": 52.9,
-   "pre1981_res_area_pct": 62.4
+   "pre1981_res_area_pct": 62.4,
+   "model_fe_kwh_m2": 111,
+   "model_above43_pct": 36.4
   },
   {
    "sifra": 137,
@@ -2773,7 +3131,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 25.1,
    "obnova_res_pct": 52.9,
-   "pre1981_res_area_pct": 52.6
+   "pre1981_res_area_pct": 52.6,
+   "model_fe_kwh_m2": 130,
+   "model_above43_pct": 39.6
   },
   {
    "sifra": 138,
@@ -2787,7 +3147,9 @@
    "res_above43_pct": 21.5,
    "es_res_any_pct": 25.8,
    "obnova_res_pct": 34.7,
-   "pre1981_res_area_pct": 39.0
+   "pre1981_res_area_pct": 39.0,
+   "model_fe_kwh_m2": 116,
+   "model_above43_pct": 23.9
   },
   {
    "sifra": 139,
@@ -2801,7 +3163,9 @@
    "res_above43_pct": 38.8,
    "es_res_any_pct": 22.5,
    "obnova_res_pct": 44.3,
-   "pre1981_res_area_pct": 47.0
+   "pre1981_res_area_pct": 47.0,
+   "model_fe_kwh_m2": 117,
+   "model_above43_pct": 29.6
   },
   {
    "sifra": 189,
@@ -2815,7 +3179,9 @@
    "res_above43_pct": 40.0,
    "es_res_any_pct": 21.3,
    "obnova_res_pct": 53.9,
-   "pre1981_res_area_pct": 53.5
+   "pre1981_res_area_pct": 53.5,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 36.4
   },
   {
    "sifra": 140,
@@ -2829,7 +3195,9 @@
    "res_above43_pct": 25.6,
    "es_res_any_pct": 25.9,
    "obnova_res_pct": 44.5,
-   "pre1981_res_area_pct": 50.0
+   "pre1981_res_area_pct": 50.0,
+   "model_fe_kwh_m2": 112,
+   "model_above43_pct": 31.9
   },
   {
    "sifra": 141,
@@ -2843,7 +3211,9 @@
    "res_above43_pct": 53.7,
    "es_res_any_pct": 29.2,
    "obnova_res_pct": 55.7,
-   "pre1981_res_area_pct": 63.2
+   "pre1981_res_area_pct": 63.2,
+   "model_fe_kwh_m2": 128,
+   "model_above43_pct": 38.8
   },
   {
    "sifra": 142,
@@ -2857,7 +3227,9 @@
    "res_above43_pct": 45.0,
    "es_res_any_pct": 33.5,
    "obnova_res_pct": 59.8,
-   "pre1981_res_area_pct": 63.5
+   "pre1981_res_area_pct": 63.5,
+   "model_fe_kwh_m2": 126,
+   "model_above43_pct": 44.7
   },
   {
    "sifra": 143,
@@ -2871,7 +3243,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 7.1,
    "obnova_res_pct": 41.9,
-   "pre1981_res_area_pct": 56.5
+   "pre1981_res_area_pct": 56.5,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 36.1
   },
   {
    "sifra": 144,
@@ -2885,7 +3259,9 @@
    "res_above43_pct": 45.8,
    "es_res_any_pct": 22.8,
    "obnova_res_pct": 48.9,
-   "pre1981_res_area_pct": 45.2
+   "pre1981_res_area_pct": 45.2,
+   "model_fe_kwh_m2": 122,
+   "model_above43_pct": 32.9
   },
   {
    "sifra": 15,
@@ -2899,7 +3275,9 @@
    "res_above43_pct": 52.1,
    "es_res_any_pct": 25.2,
    "obnova_res_pct": 46.6,
-   "pre1981_res_area_pct": 56.6
+   "pre1981_res_area_pct": 56.6,
+   "model_fe_kwh_m2": 138,
+   "model_above43_pct": 33.7
   },
   {
    "sifra": 16,
@@ -2913,7 +3291,9 @@
    "res_above43_pct": 60.0,
    "es_res_any_pct": 26.1,
    "obnova_res_pct": 67.3,
-   "pre1981_res_area_pct": 65.2
+   "pre1981_res_area_pct": 65.2,
+   "model_fe_kwh_m2": 115,
+   "model_above43_pct": 50.0
   },
   {
    "sifra": 17,
@@ -2927,7 +3307,9 @@
    "res_above43_pct": 57.1,
    "es_res_any_pct": 18.8,
    "obnova_res_pct": 54.5,
-   "pre1981_res_area_pct": 58.5
+   "pre1981_res_area_pct": 58.5,
+   "model_fe_kwh_m2": 133,
+   "model_above43_pct": 40.3
   },
   {
    "sifra": 33,
@@ -2941,7 +3323,9 @@
    "res_above43_pct": 50.0,
    "es_res_any_pct": 13.5,
    "obnova_res_pct": 48.5,
-   "pre1981_res_area_pct": 69.3
+   "pre1981_res_area_pct": 69.3,
+   "model_fe_kwh_m2": 143,
+   "model_above43_pct": 49.8
   },
   {
    "sifra": 183,
@@ -2955,7 +3339,9 @@
    "res_above43_pct": 49.6,
    "es_res_any_pct": 23.3,
    "obnova_res_pct": 55.0,
-   "pre1981_res_area_pct": 59.9
+   "pre1981_res_area_pct": 59.9,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 44.3
   },
   {
    "sifra": 118,
@@ -2969,7 +3355,9 @@
    "res_above43_pct": 41.9,
    "es_res_any_pct": 17.3,
    "obnova_res_pct": 51.8,
-   "pre1981_res_area_pct": 48.8
+   "pre1981_res_area_pct": 48.8,
+   "model_fe_kwh_m2": 120,
+   "model_above43_pct": 30.8
   },
   {
    "sifra": 119,
@@ -2983,7 +3371,9 @@
    "res_above43_pct": 49.2,
    "es_res_any_pct": 18.8,
    "obnova_res_pct": 46.5,
-   "pre1981_res_area_pct": 49.5
+   "pre1981_res_area_pct": 49.5,
+   "model_fe_kwh_m2": 122,
+   "model_above43_pct": 27.6
   },
   {
    "sifra": 120,
@@ -2997,7 +3387,9 @@
    "res_above43_pct": 49.4,
    "es_res_any_pct": 22.9,
    "obnova_res_pct": 46.2,
-   "pre1981_res_area_pct": 52.3
+   "pre1981_res_area_pct": 52.3,
+   "model_fe_kwh_m2": 129,
+   "model_above43_pct": 32.7
   },
   {
    "sifra": 211,
@@ -3011,7 +3403,9 @@
    "res_above43_pct": 52.3,
    "es_res_any_pct": 14.7,
    "obnova_res_pct": 47.0,
-   "pre1981_res_area_pct": 51.5
+   "pre1981_res_area_pct": 51.5,
+   "model_fe_kwh_m2": 107,
+   "model_above43_pct": 22.9
   },
   {
    "sifra": 117,
@@ -3025,7 +3419,9 @@
    "res_above43_pct": 19.8,
    "es_res_any_pct": 31.0,
    "obnova_res_pct": 45.7,
-   "pre1981_res_area_pct": 47.9
+   "pre1981_res_area_pct": 47.9,
+   "model_fe_kwh_m2": 113,
+   "model_above43_pct": 26.7
   },
   {
    "sifra": 121,
@@ -3039,7 +3435,9 @@
    "res_above43_pct": 54.0,
    "es_res_any_pct": 12.7,
    "obnova_res_pct": 45.6,
-   "pre1981_res_area_pct": 50.1
+   "pre1981_res_area_pct": 50.1,
+   "model_fe_kwh_m2": 125,
+   "model_above43_pct": 30.0
   },
   {
    "sifra": 122,
@@ -3053,7 +3451,9 @@
    "res_above43_pct": 25.7,
    "es_res_any_pct": 31.6,
    "obnova_res_pct": 49.0,
-   "pre1981_res_area_pct": 55.4
+   "pre1981_res_area_pct": 55.4,
+   "model_fe_kwh_m2": 113,
+   "model_above43_pct": 33.7
   },
   {
    "sifra": 123,
@@ -3067,7 +3467,9 @@
    "res_above43_pct": 21.1,
    "es_res_any_pct": 24.9,
    "obnova_res_pct": 35.8,
-   "pre1981_res_area_pct": 30.5
+   "pre1981_res_area_pct": 30.5,
+   "model_fe_kwh_m2": 107,
+   "model_above43_pct": 23.4
   },
   {
    "sifra": 124,
@@ -3081,7 +3483,9 @@
    "res_above43_pct": 39.9,
    "es_res_any_pct": 20.0,
    "obnova_res_pct": 46.5,
-   "pre1981_res_area_pct": 57.7
+   "pre1981_res_area_pct": 57.7,
+   "model_fe_kwh_m2": 127,
+   "model_above43_pct": 31.2
   },
   {
    "sifra": 206,
@@ -3095,7 +3499,9 @@
    "res_above43_pct": 45.6,
    "es_res_any_pct": 19.5,
    "obnova_res_pct": 48.4,
-   "pre1981_res_area_pct": 40.8
+   "pre1981_res_area_pct": 40.8,
+   "model_fe_kwh_m2": 113,
+   "model_above43_pct": 24.2
   },
   {
    "sifra": 125,
@@ -3109,7 +3515,9 @@
    "res_above43_pct": 40.7,
    "es_res_any_pct": 35.1,
    "obnova_res_pct": 50.0,
-   "pre1981_res_area_pct": 48.4
+   "pre1981_res_area_pct": 48.4,
+   "model_fe_kwh_m2": 124,
+   "model_above43_pct": 31.2
   },
   {
    "sifra": 194,
@@ -3123,7 +3531,9 @@
    "res_above43_pct": 39.2,
    "es_res_any_pct": 23.0,
    "obnova_res_pct": 42.2,
-   "pre1981_res_area_pct": 48.4
+   "pre1981_res_area_pct": 48.4,
+   "model_fe_kwh_m2": 124,
+   "model_above43_pct": 32.3
   },
   {
    "sifra": 126,
@@ -3137,7 +3547,9 @@
    "res_above43_pct": 49.7,
    "es_res_any_pct": 26.9,
    "obnova_res_pct": 55.0,
-   "pre1981_res_area_pct": 54.6
+   "pre1981_res_area_pct": 54.6,
+   "model_fe_kwh_m2": 119,
+   "model_above43_pct": 37.5
   },
   {
    "sifra": 127,
@@ -3151,7 +3563,9 @@
    "res_above43_pct": 37.0,
    "es_res_any_pct": 25.9,
    "obnova_res_pct": 53.9,
-   "pre1981_res_area_pct": 58.3
+   "pre1981_res_area_pct": 58.3,
+   "model_fe_kwh_m2": 128,
+   "model_above43_pct": 44.9
   },
   {
    "sifra": 190,
@@ -3165,7 +3579,9 @@
    "res_above43_pct": 38.9,
    "es_res_any_pct": 27.2,
    "obnova_res_pct": 53.9,
-   "pre1981_res_area_pct": 57.8
+   "pre1981_res_area_pct": 57.8,
+   "model_fe_kwh_m2": 125,
+   "model_above43_pct": 38.2
   },
   {
    "sifra": 146,
@@ -3179,7 +3595,9 @@
    "res_above43_pct": 45.2,
    "es_res_any_pct": 29.3,
    "obnova_res_pct": 49.8,
-   "pre1981_res_area_pct": 56.0
+   "pre1981_res_area_pct": 56.0,
+   "model_fe_kwh_m2": 131,
+   "model_above43_pct": 43.2
   },
   {
    "sifra": 191,
@@ -3193,7 +3611,9 @@
    "res_above43_pct": null,
    "es_res_any_pct": 13.0,
    "obnova_res_pct": 47.3,
-   "pre1981_res_area_pct": 44.9
+   "pre1981_res_area_pct": 44.9,
+   "model_fe_kwh_m2": 139,
+   "model_above43_pct": 32.5
   },
   {
    "sifra": 147,
@@ -3207,7 +3627,9 @@
    "res_above43_pct": 50.0,
    "es_res_any_pct": 24.7,
    "obnova_res_pct": 50.7,
-   "pre1981_res_area_pct": 58.3
+   "pre1981_res_area_pct": 58.3,
+   "model_fe_kwh_m2": 127,
+   "model_above43_pct": 37.8
   },
   {
    "sifra": 192,
@@ -3221,7 +3643,9 @@
    "res_above43_pct": 32.4,
    "es_res_any_pct": 31.3,
    "obnova_res_pct": 46.5,
-   "pre1981_res_area_pct": 58.1
+   "pre1981_res_area_pct": 58.1,
+   "model_fe_kwh_m2": 125,
+   "model_above43_pct": 34.0
   },
   {
    "sifra": 193,
@@ -3235,7 +3659,9 @@
    "res_above43_pct": 48.6,
    "es_res_any_pct": 10.7,
    "obnova_res_pct": 52.2,
-   "pre1981_res_area_pct": 54.3
+   "pre1981_res_area_pct": 54.3,
+   "model_fe_kwh_m2": 132,
+   "model_above43_pct": 36.6
   }
  ]
 }

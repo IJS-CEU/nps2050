@@ -115,11 +115,18 @@ export interface ObIndexRow {
   sifra: number; eid: string; name: string; region: string; buildings: number; area_k_m2: number;
   ei_area_res_pct: number | null; hise_ei_pct: number | null; res_above43_pct: number | null; es_res_any_pct: number | null;
   obnova_res_pct: number | null; pre1981_res_area_pct: number | null;
+  model_fe_kwh_m2: number; model_above43_pct: number;
 }
 export interface ObcineIndex {
   meta: Meta; min_cell: number; classes: string[]; class_groups: string[]; periods: string[];
   segments: { id: string; name: string }[]; es_groups: { id: string; name: string }[]; categories: { id: string; name: string }[];
-  si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number };
+  si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number; model_fe_kwh_m2: number; model_above43_pct: number };
   municipalities: ObIndexRow[];
 }
 export interface Obcina extends ObArea { meta: Meta; sifra: number; eid: string; name: string; region: string; region_name: string }
+
+export interface ObModelArea {
+  fe_gwh: number; fe_gwh_lo: number; fe_gwh_hi: number; fe_kwh_m2: number; pe_gwh: number; pe_kwh_m2: number;
+  carriers_pct: Record<string, number>; nps_pct: Record<string, number>; above43_area_pct: number; known_pct: number; tk_factor?: number; name?: string;
+}
+export interface ObcineModel { meta: Meta; carriers: { id: string; name: string }[]; classes: string[]; si: ObModelArea; municipalities: Record<string, ObModelArea> }

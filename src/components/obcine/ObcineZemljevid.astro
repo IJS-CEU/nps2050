@@ -25,10 +25,12 @@ const d = loadData<ObcineIndex>('obcine_index');
       { value: 'pre1981_res_area_pct', label: 'Zgrajeno pred 1981' },
       { value: 'es_res_any_pct', label: 'Ukrepi Eko sklada' },
       { value: 'obnova_res_pct', label: 'Vpisane obnove' },
+      { value: 'model_fe_kwh_m2', label: 'Ocena: raba na m²' },
+      { value: 'model_above43_pct', label: 'Ocena: nad pragom 43 %' },
     ]} />
   </Fragment>
   <Fragment slot="caption">
-    <p id="ob-cap">Vsi kazalniki veljajo za stanovanjske stavbe (enostanovanjske hiše in večstanovanjske stavbe). Barve so razdeljene v pet razredov s podobnim številom občin.</p>
+    <p id="ob-cap">Vsi kazalniki veljajo za stanovanjske stavbe (enostanovanjske hiše in večstanovanjske stavbe). Barve so razdeljene v pet razredov s podobnim številom občin. Kazalnika z oznako »Ocena« sta izračunana z modelom (metoda je opisana spodaj).</p>
     <p>Viri: kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (podprte naložbe do 2025); meje: GURS RPE (CC BY 4.0).</p>
   </Fragment>
   <Fragment slot="table">
@@ -40,11 +42,13 @@ const d = loadData<ObcineIndex>('obcine_index');
   import { base, choice, echarts, mount, nf, tipRow, tipTitle, type Tokens } from '../../scripts/charts/core';
   import type { ObcineIndex, ObIndexRow } from '../../lib/data';
 
-  const METRIC: Record<string, { label: string; si: (d: ObcineIndex) => number | null; cap: string }> = {
+  const METRIC: Record<string, { label: string; si: (d: ObcineIndex) => number | null; cap: string; unit?: string }> = {
     ei_area_res_pct: { label: 'Stanovanjska površina z veljavno izkaznico', si: (d) => d.si.ei_area_res_pct, cap: 'Delež uporabne površine stanovanjskih stavb, ki imajo vsaj eno veljavno energetsko izkaznico.' },
     pre1981_res_area_pct: { label: 'Stanovanjska površina, zgrajena pred 1981', si: (d) => d.si.pre1981_res_area_pct, cap: 'Delež uporabne površine stanovanjskih stavb, zgrajenih pred prvimi toplotnimi predpisi (1981).' },
     es_res_any_pct: { label: 'Stanovanjske stavbe z ukrepom Eko sklada', si: (d) => d.si.es_res_any_pct, cap: 'Delež stanovanjskih stavb z vsaj eno naložbo, ki jo je podprl Eko sklad (izolacija, okna, ogrevanje, sončna elektrarna, prezračevanje).' },
     obnova_res_pct: { label: 'Stanovanjske stavbe z vpisano obnovo', si: (d) => d.si.obnova_res_pct, cap: 'Delež stanovanjskih stavb, pri katerih je v katastru vpisano leto obnove strehe, fasade ali oken.' },
+    model_fe_kwh_m2: { label: 'Ocenjena končna raba na m²', si: (d) => d.si.model_fe_kwh_m2, unit: ' kWh/m²', cap: 'Ocena modela: letna končna energija stanovanjskih stavb na m² uporabne površine (ogrevanje, topla voda, prezračevanje, razsvetljava).' },
+    model_above43_pct: { label: 'Ocenjena površina nad pragom 43 %', si: (d) => d.si.model_above43_pct, cap: 'Ocena modela: delež stanovanjske površine nad pragom 43 % energetsko najmanj učinkovitih stavb.' },
   };
 
   const b = import.meta.env.BASE_URL.replace(/\/?$/, '/');
@@ -68,14 +72,17 @@ const d = loadData<ObcineIndex>('obcine_index');
       const o = base(t) as Record<string, any>;
       const cs = getComputedStyle(document.documentElement);
       const ramp = [1, 2, 3, 4, 5].map((i) => cs.getPropertyValue(`--map-${i}`).trim());
+      const U = METRIC[metric].unit ?? ' %';
       const vals = d.municipalities.map((m) => (m as any)[metric]).filter((v: number | null) => v !== null) as number[];
       const br = breaks(vals);
       const edges = [Math.floor(Math.min(...vals)), ...br, Math.ceil(Math.max(...vals))];
       const pieces = edges.slice(0, -1).map((lo, i) => ({
         min: lo, max: edges[i + 1], color: ramp[Math.round((i * (ramp.length - 1)) / Math.max(1, edges.length - 2))],
-        label: i === 0 ? `do ${nf(edges[1])} %` : i === edges.length - 2 ? `nad ${nf(lo)} %` : `${nf(lo)}–${nf(edges[i + 1])} %`,
+        label: i === 0 ? `do ${nf(edges[1])}${U}` : i === edges.length - 2 ? `nad ${nf(lo)}${U}` : `${nf(lo)}–${nf(edges[i + 1])}${U}`,
       }));
       const si = METRIC[metric].si(d);
+      const u = METRIC[metric].unit ?? ' %';
+      const dec = u === ' %' ? 1 : 0;
       return {
         ...o,
         legend: { show: false },
@@ -84,8 +91,8 @@ const d = loadData<ObcineIndex>('obcine_index');
           formatter: (p: any) => {
             const m = byName[p.name]; if (!m) return '';
             const v = (m as any)[metric];
-            return tipTitle(m.name) + tipRow(p.color || t.muted, METRIC[metric].label, v === null ? 'premalo podatkov' : `${nf(v, 1)} %`, 'rect')
-              + `<div style="opacity:.75;margin-top:2px">Slovenija: ${nf(si, 1)} % · klik odpre stran občine</div>`;
+            return tipTitle(m.name) + tipRow(p.color || t.muted, METRIC[metric].label, v === null ? 'premalo podatkov' : `${nf(v, dec)}${u}`, 'rect')
+              + `<div style="opacity:.75;margin-top:2px">Slovenija: ${nf(si, dec)}${u} · klik odpre stran občine</div>`;
           },
         },
         visualMap: {

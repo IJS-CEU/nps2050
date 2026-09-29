@@ -7,7 +7,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import Base from '../../layouts/Base.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
-import { loadData, type Obcina, type ObcineIndex } from '../../lib/data';
+import { loadData, type Obcina, type ObcineIndex, type ObcineModel } from '../../lib/data';
 import { nf } from '../../lib/format';
 
 export function getStaticPaths() {
@@ -19,6 +19,14 @@ const { sifra } = Astro.params;
 const ix = loadData<ObcineIndex>('obcine_index');
 const o = JSON.parse(readFileSync(resolve(process.cwd(), 'public', 'data', 'obcine', `${sifra}.json`), 'utf-8')) as Obcina;
 const si = ix.si;
+const md = loadData<ObcineModel>('obcine_model');
+const mo = md.municipalities[String(sifra)];
+const ms = md.si;
+const CAR_COL: Record<string, string> = { el: '#2A6FC9', amb: '#6FA8DC', gas: '#C4661A', elko: '#5B4636', bio: '#86A11C', dh: '#7B5CC4' };
+const CAR_LT = new Set(['el', 'elko', 'dh']); // bela pisava na temnih barvah
+const tkTxt = mo.tk_factor === undefined || Math.abs(mo.tk_factor - 1) < 0.03 ? 'se s toplotno karto dobro ujema'
+  : mo.tk_factor > 1 ? `ima po toplotni karti za ${nf(100 * (mo.tk_factor - 1), 0)} % višjo potrebo po toploti, kot bi jo dali sami arhetipi`
+  : `ima po toplotni karti za ${nf(100 * (1 - mo.tk_factor), 0)} % nižjo potrebo po toploti, kot bi jo dali sami arhetipi`;
 const row = ix.municipalities.find((m) => String(m.sifra) === sifra)!;
 const MIN = ix.min_cell;
 const CV: Record<string, string> = { A: 'A1', B: 'B1', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G' };
@@ -52,6 +60,8 @@ const clsBlocks = ['hise', 'bloki'].map((sid) => {
     rows: own ? [{ lab: 'Občina', c: own, n: g.ei_calc ?? 0 }, { lab: 'Slovenija', c: grouped ? groupSi(gs.classes_pct!) : gs.classes_pct!, n: gs.ei_calc ?? 0 }] : null,
   };
 });
+const carRows = [{ lab: 'Občina', c: mo.carriers_pct }, { lab: 'Slovenija', c: ms.carriers_pct }];
+const npsRows = [{ lab: 'Občina', c: mo.nps_pct }, { lab: 'Slovenija', c: ms.nps_pct }];
 const title = `Občina ${o.name}`;
 const description = `Stavbni fond, energetske izkaznice, energijski razredi in podprti ukrepi Eko sklada v občini ${o.name}, s primerjavo s Slovenijo.`;
 ---
@@ -167,6 +177,40 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
     </div>
     <p class="note">Leto obnove vpiše lastnik ali geodet ob spremembi v katastru. Vpis ne pove, ali je bila obnova energetska.</p>
 
+
+    <section class="ob-model" aria-labelledby="ob-model-t">
+      <p class="ob-model-k">Ocena modela</p>
+      <h2 id="ob-model-t">Koliko energije porabijo stanovanjske stavbe</h2>
+      <p>Za večino stavb ni izmerjenih podatkov, zato je raba ocenjena z modelom, s katerim so izračunani scenariji NPS 2050. Model upošteva vrsto in starost vsake stavbe, izkaznice, ukrepe Eko sklada, obnove iz katastra in toplotno karto, vsota za vso Slovenijo pa se ujema z energetsko bilanco. <a href={`${pageUrl('obcine')}#metoda`}>Kako je ocena izračunana</a></p>
+      <div class="tiles ob-tiles">
+        <div class="tile"><div class="v">{nf(mo.fe_gwh, 0)}<small> GWh</small></div><div class="l">končne energije na leto (razpon {nf(mo.fe_gwh_lo, 0)}–{nf(mo.fe_gwh_hi, 0)} GWh)</div></div>
+        <div class="tile"><div class="v">{nf(mo.fe_kwh_m2)}<small> kWh/m²</small></div><div class="l">končne energije na m² uporabne površine (Slovenija {nf(ms.fe_kwh_m2)})</div></div>
+        <div class="tile"><div class="v">{nf(mo.pe_kwh_m2)}<small> kWh/m²</small></div><div class="l">primarne energije na m² (Slovenija {nf(ms.pe_kwh_m2)})</div></div>
+        <div class="tile"><div class="v">{nf(mo.above43_area_pct, 0)} %</div><div class="l">stanovanjske površine je ocenjeno nad pragom 43 % najmanj učinkovitih (Slovenija {nf(ms.above43_area_pct, 0)} %)</div></div>
+      </div>
+      <h3>S čim se ogrevajo</h3>
+      {carRows.map((r) => (
+        <div class="ob-stack">
+          <span class="ob-stack-l">{r.lab}</span>
+          <div class="ob-bar" role="img" aria-label={`${r.lab}: ${md.carriers.map((k) => `${k.name} ${nf(r.c[k.id], 1)} %`).join(', ')}`}>
+            {md.carriers.map((k) => r.c[k.id] > 0 && <span class={`ob-c ${CAR_LT.has(k.id) ? 'lt' : ''}`} style={`width:${r.c[k.id]}%;background:${CAR_COL[k.id]}`}>{r.c[k.id] >= 8 && <b>{nf(r.c[k.id], 0)} %</b>}</span>)}
+          </div>
+        </div>
+      ))}
+      <ul class="ob-leg" aria-hidden="true">{md.carriers.map((k) => <li><i style={`background:${CAR_COL[k.id]}`}></i>{k.name}</li>)}</ul>
+      <p class="note">Delež končne energije za ogrevanje, toplo vodo, prezračevanje in razsvetljavo. Toplota okolice je toplota, ki jo toplotne črpalke odvzamejo zraku, zemlji ali vodi.</p>
+      <h3>Ocenjena razvrstitev vseh stanovanjskih stavb po razredih NPS</h3>
+      {npsRows.map((r) => (
+        <div class="ob-stack">
+          <span class="ob-stack-l">{r.lab}</span>
+          <div class="ob-bar" role="img" aria-label={`${r.lab}: ${md.classes.map((k) => `razred ${k} ${nf(r.c[k], 1)} %`).join(', ')}`}>
+            {md.classes.map((k) => r.c[k] > 0 && <span class={`ob-c ${LIGHT_TXT.has(k) ? 'lt' : ''}`} style={`width:${r.c[k]}%;background:var(--cls-${CV[k]})`}>{r.c[k] >= 6 && <b>{k}</b>}</span>)}
+          </div>
+        </div>
+      ))}
+      <p class="note">Deleži uporabne površine. Za razliko od razvrstitve zgoraj, ki velja le za stavbe z izkaznico, ta ocena zajame vse stanovanjske stavbe v občini. Neposredni podatek (izkaznico) ima {nf(mo.known_pct, 1)} % stavb. Občina {tkTxt}. Razpon kaže, kako se ocena spremeni, če toplotne karte ne upoštevamo ali jo upoštevamo močneje.</p>
+    </section>
+
     {pub.length > 0 && <>
       <h2>Javne stavbe</h2>
       <div class="tblwrap" tabindex="0" role="region" aria-label="Javne stavbe po vrsti">
@@ -215,6 +259,9 @@ const description = `Stavbni fond, energetske izkaznice, energijski razredi in p
   .ob-mini { display: grid; grid-template-columns: minmax(6rem, 14rem) 3.6rem; gap: .2rem .5rem; align-items: center; font-size: .78rem; }
   .ob-mini b.s { color: var(--ink2); font-weight: 600; }
   .ob-more { margin-top: 2rem; }
+  .ob-model { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--s-s1); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 2rem 0; }
+  .ob-model h2 { margin-top: .2rem; }
+  .ob-model-k { font-size: .74rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--s-s1); margin: 0; }
   .ob-more p { margin: .3rem 0; }
   @media (max-width: 560px) { .ob-stack { grid-template-columns: 1fr; gap: .2rem; } }
 </style>
