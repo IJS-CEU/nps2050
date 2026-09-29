@@ -11,10 +11,13 @@
     "data": "python data/build_all.py",
     "test:a11y": "node tests/a11y.mjs http://localhost:4321/",
     "test:snap": "node tests/snap.mjs http://localhost:4321/",
-    "media": "node tests/media.mjs http://localhost:4321/"
+    "media": "node tests/media.mjs http://localhost:4321/",
+    "og": "node tests/og.mjs",
+    "pdf": "node tests/pdf.mjs http://localhost:4321/"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
+    "@astrojs/markdown-satteri": "^0.4.2",
     "@astrojs/mdx": "^8.0.2",
     "@fontsource-variable/manrope": "^5.3.0",
     "@fontsource-variable/source-serif-4": "^5.3.0",

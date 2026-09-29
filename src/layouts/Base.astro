@@ -4,6 +4,9 @@ import '@fontsource-variable/source-serif-4';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import TermPop from '../components/TermPop.astro';
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { withBase, type PageId } from '../i18n/routes';
 import { ui } from '../i18n/ui';
 
@@ -14,6 +17,12 @@ interface Props {
 }
 const { page, title, description } = Astro.props;
 const fullTitle = page === 'domov' ? `NPS 2050 – ${ui.siteSub}` : `${title} – NPS 2050`;
+// Predogled ob deljenju povezave: slika public/og/<stran>.jpg (npm run og), sicer slika naslovne strani.
+// Absolutni naslovi zahtevajo `site` (ASTRO_SITE v CI); brez njega so poti relativne.
+const ogFile = page && existsSync(resolve(process.cwd(), 'public', 'og', `${page}.jpg`)) ? `og/${page}.jpg` : 'og/domov.jpg';
+const abs = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
+const ogImage = abs(withBase(ogFile));
+const canonical = abs(Astro.url.pathname);
 ---
 <!doctype html>
 <html lang="sl">
@@ -24,6 +33,18 @@ const fullTitle = page === 'domov' ? `NPS 2050 – ${ui.siteSub}` : `${title} �
     <meta name="description" content={description} />
     <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
     <meta name="color-scheme" content="light dark" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="sl_SI" />
+    <meta property="og:site_name" content={`NPS 2050 – ${ui.siteSub}`} />
+    <meta property="og:title" content={page === 'domov' ? title : `${title} – NPS 2050`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${page === 'domov' ? title : title + ' – NPS 2050'}. Strokovne podlage za Nacionalni načrt prenove stavb, IJS CEU.`} />
+    <meta name="twitter:card" content="summary_large_image" />
     <script is:inline>
       // Tema pred izrisom, da ni utripanja. Brez shranjene izbire sledi sistemu.
       try {
@@ -40,5 +61,6 @@ const fullTitle = page === 'domov' ? `NPS 2050 – ${ui.siteSub}` : `${title} �
       <slot />
     </main>
     <Footer />
+    <TermPop />
   </body>
 </html>

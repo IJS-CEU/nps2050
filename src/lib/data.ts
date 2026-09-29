@@ -89,3 +89,14 @@ export interface Ukrepi {
   investments: { periods: string[]; segments: Record<string, Record<string, (number | null)[]>>; total_2026_2030: number; total_2026_2050: number; gap_2026_2030: number };
   sources: { source: string; period: string; amount: string; purpose: string }[];
 }
+
+export interface PrihranekRow { class: string; area_mio_m2: number; sfh_use: number; sfh_saving: number; mfh_use: number; mfh_saving: number; per_euro_vs_c: string }
+export interface Prihranek { meta: Meta; after: { sfh: number; mfh: number }; rows: PrihranekRow[] }
+
+export interface Revscina {
+  meta: Meta;
+  share: { years: number[]; base: number; target_2030: [number, number]; target_2040: number; target_2050: number };
+  counts_2024: { households: number; persons: number; cannot_heat: number; arrears: number; leaks_damp: number };
+  by_type_2024: { name: string; pct: number }[];
+  investments_2030: { households: number; cumulative_gwh: number };
+}

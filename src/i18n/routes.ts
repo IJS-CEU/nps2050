@@ -10,6 +10,8 @@ export const pages = [
   // Podstrani zunaj glavne navigacije
   { id: 'preveri', slug: 'preveri-stavbo' },
   { id: 'mediji', slug: 'za-medije' },
+  { id: 'revscina', slug: 'energetska-revscina' },
+  { id: 'slovar', slug: 'slovar-izrazov' },
 ] as const;
 
 export type PageId = (typeof pages)[number]['id'];

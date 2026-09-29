@@ -19,7 +19,9 @@
   "kazalniki",
   "sankey",
   "zemljevid",
-  "ukrepi"
+  "ukrepi",
+  "revscina",
+  "prihranek"
  ],
- "checks": 662
+ "checks": 679
 }

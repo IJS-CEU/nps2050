@@ -1,0 +1,73 @@
+---
+page: revscina
+title: 'Energetska revščina'
+description: 'Koliko gospodinjstev v Sloveniji je energetsko revnih, kakšne cilje predlaga NPS 2050 do leta 2050 in katere spodbude in ukrepi so namenjeni gospodinjstvom z nizkimi dohodki in najemnikom.'
+lead: 'Prenova stavb ni le vprašanje energije in podnebja. Gospodinjstvom v slabih stanovanjih zniža stroške in izboljša bivanje. Tu so na enem mestu stanje, cilji, ukrepi in denar.'
+---
+import Revscina from '../../components/Revscina.astro';
+import { pageUrl } from '../../i18n/routes';
+
+## Kaj je energetska revščina
+
+{/* Vir: NPS_v39, pogl. 2.4.1 (nacionalna definicija, Uredba o merilih za opredelitev in ocenjevanje števila energetsko revnih gospodinjstev). */}
+
+Gospodinjstvo je energetsko revno, če ima dohodek pod pragom tveganja revščine in ne more zadovoljiti osnovnih potreb po energiji – za ogrevanje, toplo vodo, hlajenje, kuhanje in razsvetljavo. Vzrok so lahko slabe bivalne razmere, energetsko neučinkovito stanovanje ali previsoki stroški energije glede na dohodek.
+
+## Stanje in cilji
+
+{/* Vir: NPS_v39, povzetek (preglednica ključnih ciljev), pogl. 2.4.2 (preglednice 13–16, podatki SURS) in 5.3.1 (utemeljitev ciljev 2040 in 2050). Številke bere komponenta iz public/data/revscina.json. */}
+
+<Revscina />
+
+Pri gospodinjstvih pod pragom tveganja revščine je najpogostejši razlog za energetsko revščino **slabo stanje stanovanja**: puščajoča streha, vlažne stene ali trhla okna. Prav ta del vzrokov lahko odpravi prenova. Del, ki izhaja iz nizkih dohodkov, ostaja naloga socialne politike.
+
+Zato načrt predlaga, da se delež do leta 2040 zniža na največ 2,5 % (približno 21.500 gospodinjstev) in do leta 2050 na največ 1,5 % (približno 13.000). Cilja naj bi povzela naslednji Akcijski načrt za zmanjševanje energetske revščine (2027–2029) in Socialni načrt za podnebje.
+
+Do leta 2030 naj bi bila energetska prenova izvedena v najmanj **8.000 energetsko revnih gospodinjstvih**, s skupnim prihrankom 573 GWh energije v obdobju 2021–2030.
+
+## Kaj načrt predvideva
+
+{/* Vir: NPS_v39, pogl. 2.4.3 (izvajanje ukrepov, Socialni načrt za podnebje), 5.3.1, 6.1.4 (N11–N13), 4.1.1 in 6.1 (N1, N2). */}
+
+<div class="paths">
+  <div class="card">
+    <h3>Do 100-odstotne spodbude</h3>
+    <p>Energetsko revna gospodinjstva lahko pri Eko skladu dobijo spodbudo do 100 % priznanih stroškov za izolacijo, okna, prezračevanje ali ogrevanje brez fosilnih goriv. Leta 2024 je bilo tako podprtih 143 naložb. Pri prijavi pomagajo koordinatorji.</p>
+  </div>
+  <div class="card">
+    <h3>Najslabše stavbe najprej</h3>
+    <p>Prenova 43 % energetsko najmanj učinkovitih stanovanjskih stavb, v katerih je zgoščen stavbni del vzrokov energetske revščine, ima prednost. Območni programi za bloke (N2) jih dosežejo tudi brez lastne vloge.</p>
+  </div>
+  <div class="card">
+    <h3>Zaščita najemnikov</h3>
+    <p>Predlog: spodbude za lastnike oddajanih stanovanj z omejitvijo zvišanja najemnine po prenovi (N11), ločeno spremljanje najemnih stanovanj (N12) ter pomoč pri najemnini in spremljanje izselitev po prenovi (N13).</p>
+  </div>
+  <div class="card">
+    <h3>Energetske skupnosti in svetovanje</h3>
+    <p>Vključevanje v skupnostne sončne elektrarne in toplotne skupnosti, brezplačno svetovanje, usposabljanje socialnih delavcev, občin in upravnikov ter mreža »prvih informatorjev«.</p>
+  </div>
+</div>
+
+Podrobnosti o ukrepih N11–N13 in drugih ukrepih so v rubriki <a href={pageUrl('ukrepi')}>Ukrepi in financiranje</a>.
+
+## Koliko denarja je na voljo
+
+{/* Vir: NPS_v39, pogl. 2.4.3 (Socialni načrt za podnebje: 239,5 mio €, 8.710 projektov, podnaložbe) in 7.1.4 (potrebe in razpoložljiva sredstva 2026–2032, Podnebni sklad, kohezija), 5.3.1 (po letu 2032). */}
+
+S **Socialnim načrtom za podnebje** je za zmanjševanje energetske revščine v stavbah do leta 2032 predvidenih 239,5 mio €, od tega 179,6 mio € iz evropskega Socialnega sklada za podnebje. Sredstva so namenjena:
+
+- približno 8.710 projektom energetske učinkovitosti in obnovljivih virov v energetsko revnih in ranljivih gospodinjstvih, s 100-odstotno spodbudo;
+- prenovi energetsko najbolj potratnih javnih stanovanj, kjer živijo ranljivi najemniki (okoli 2.070 projektov, spodbuda 85 %);
+- 100-odstotnemu financiranju deleža ranljivih gospodinjstev pri skupnih prenovah večstanovanjskih stavb (okoli 1.780 projektov);
+- pripravi projektov za energetsko najmanj učinkovite bloke (okoli 180 projektov);
+- vključevanju najmanj 1.630 gospodinjstev v energetske skupnosti.
+
+V obdobju 2026–2032 bo za energetsko revščino potrebnih najmanj 251 mio €, na voljo pa predvidoma 268 mio €. Dodatno sta namenjena še 21 mio € iz Podnebnega sklada (2025–2028) in 47 mio € iz evropske kohezijske politike (do leta 2029). Po letu 2032 bo za doseganje ciljev treba nadaljevati 100-odstotne spodbude za približno 1.000 do 1.500 gospodinjstev na leto.
+
+## Kje dobiti pomoč
+
+- **Eko sklad** dodeljuje spodbude za energetsko revna gospodinjstva in socialno šibke občane: <a href="https://www.ekosklad.si/">spletna stran Eko sklada</a>
+- **Brezplačno energetsko svetovanje ENSVET** vam pomaga izbrati prave ukrepe: <a href="https://www.ekosklad.si/prebivalstvo/ensvet">svetovanje ENSVET</a>
+- Več odgovorov za lastnike in najemnike je na strani <a href={pageUrl('lastniki')}>Za lastnike</a>.
+
+<p class="note">Vse številke so iz osnutka NPS 2050 in virov, na katere se sklicuje (SURS, Akcijski načrt za zmanjševanje energetske revščine, Socialni načrt za podnebje). Do sprejema načrta se lahko še spremenijo.</p>

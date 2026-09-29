@@ -1,0 +1,81 @@
+---
+/**
+ * Oblaček z razlago za izraze iz slovarja (a.term z data-def, označi jih rehype-izrazi).
+ * Miška in tipkovnica: prikaz ob premiku miške ali fokusu, klik odpre slovar.
+ * Dotik: prvi dotik pokaže razlago s povezavo na slovar, drugi dotik istega izraza odpre slovar.
+ */
+---
+<div id="term-pop" class="term-pop" role="tooltip" hidden>
+  <b class="term-pop-t"></b>
+  <span class="term-pop-d"></span>
+  <a class="term-pop-a" href="#">Več v slovarju izrazov →</a>
+</div>
+
+<style is:global>
+  a.term { color: inherit; text-decoration: underline dotted; text-decoration-color: var(--green); text-decoration-thickness: 2px; text-underline-offset: 3px; cursor: help; }
+  a.term:hover, a.term:focus-visible { color: var(--green); }
+  .term-pop { position: absolute; z-index: 50; max-width: min(22rem, calc(100vw - 32px)); background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.14); padding: .7rem .85rem; font-size: .86rem; line-height: 1.45; display: grid; gap: .3rem; }
+  .term-pop[hidden] { display: none; }
+  .term-pop-t { font-weight: 800; }
+  .term-pop-a { font-weight: 700; font-size: .8rem; color: var(--green); }
+</style>
+
+<script>
+  const pop = document.getElementById('term-pop');
+  if (pop && document.querySelector('a.term')) {
+    const title = pop.querySelector('.term-pop-t') as HTMLElement;
+    const desc = pop.querySelector('.term-pop-d') as HTMLElement;
+    const more = pop.querySelector('.term-pop-a') as HTMLAnchorElement;
+    let cur: HTMLAnchorElement | null = null;
+    let hideT = 0;
+
+    const show = (a: HTMLAnchorElement) => {
+      clearTimeout(hideT);
+      if (cur && cur !== a) cur.removeAttribute('aria-describedby');
+      cur = a;
+      title.textContent = a.dataset.term || a.textContent || '';
+      desc.textContent = a.dataset.def || '';
+      more.href = a.href;
+      pop.hidden = false;
+      a.setAttribute('aria-describedby', 'term-pop');
+      const r = a.getBoundingClientRect();
+      const w = pop.offsetWidth, h = pop.offsetHeight;
+      const left = Math.max(16, Math.min(window.scrollX + r.left, window.scrollX + document.documentElement.clientWidth - w - 16));
+      const below = r.bottom + h + 12 < window.innerHeight;
+      pop.style.left = `${left}px`;
+      pop.style.top = `${window.scrollY + (below ? r.bottom + 6 : r.top - h - 6)}px`;
+    };
+    const hide = (delay = 120) => {
+      clearTimeout(hideT);
+      hideT = window.setTimeout(() => {
+        pop.hidden = true;
+        cur?.removeAttribute('aria-describedby');
+        cur = null;
+      }, delay);
+    };
+
+    document.querySelectorAll<HTMLAnchorElement>('a.term').forEach((a) => {
+      a.addEventListener('mouseenter', () => show(a));
+      a.addEventListener('mouseleave', () => hide());
+      a.addEventListener('focus', () => show(a));
+      a.addEventListener('blur', () => hide(200));
+      a.addEventListener('pointerdown', (e) => { (a as HTMLAnchorElement & { _touch?: boolean })._touch = e.pointerType === 'touch'; });
+      a.addEventListener('click', (e) => {
+        // Na dotik prvi klik le pokaže razlago.
+        if ((a as HTMLAnchorElement & { _touch?: boolean })._touch && (pop.hidden || cur !== a)) {
+          e.preventDefault();
+          show(a);
+        }
+      });
+    });
+    pop.addEventListener('mouseenter', () => clearTimeout(hideT));
+    pop.addEventListener('mouseleave', () => hide());
+    more.addEventListener('focus', () => clearTimeout(hideT));
+    more.addEventListener('blur', () => hide(200));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !pop.hidden) hide(0); });
+    document.addEventListener('pointerdown', (e) => {
+      const t = e.target as Node;
+      if (!pop.hidden && !pop.contains(t) && !(t instanceof Element && t.closest('a.term'))) hide(0);
+    });
+  }
+</script>

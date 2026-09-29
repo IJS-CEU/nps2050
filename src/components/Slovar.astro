@@ -1,0 +1,36 @@
+---
+/** Stran slovarja: vsi izrazi po abecedi s sidri (#id), na katere kažejo označeni izrazi v besedilu. */
+import { izraziAbc } from '../lib/slovar';
+
+const letters = [...new Set(izraziAbc.map((t) => t.term[0].toLocaleUpperCase('sl').replace(/\d/, '#')))];
+---
+<nav class="sl-abc" aria-label="Črke">
+  {letters.map((l) => <a href={`#crka-${l === '#' ? 'stevilke' : l}`}>{l}</a>)}
+</nav>
+<dl class="sl">
+  {izraziAbc.map((t, i) => {
+    const l = t.term[0].toLocaleUpperCase('sl').replace(/\d/, '#');
+    const first = i === 0 || izraziAbc[i - 1].term[0].toLocaleUpperCase('sl').replace(/\d/, '#') !== l;
+    return (
+      <div class="sl-item" id={t.id}>
+        {first && <span class="sl-letter" id={`crka-${l === '#' ? 'stevilke' : l}`} aria-hidden="true">{l}</span>}
+        <dt>{t.term}{t.abbr && <span class="sl-abbr"> ({t.abbr})</span>}</dt>
+        <dd><p>{t.def}</p>{t.more && <p>{t.more}</p>}</dd>
+      </div>
+    );
+  })}
+</dl>
+
+<style>
+  .sl-abc { display: flex; flex-wrap: wrap; gap: .3rem; margin: 0 0 1.5rem; }
+  .sl-abc a { display: grid; place-items: center; min-width: 2rem; height: 2rem; border: 1px solid var(--line); border-radius: 6px; text-decoration: none; font-weight: 700; color: var(--green); background: var(--panel); }
+  .sl-abc a:hover { border-color: var(--green); }
+  .sl { margin: 0; max-width: 72ch; }
+  .sl-item { position: relative; padding: .9rem 0; border-bottom: 1px solid var(--line); scroll-margin-top: 5rem; }
+  .sl-item:target { background: var(--greenbg); border-radius: 8px; padding-inline: .8rem; }
+  .sl-letter { display: block; font-size: 1.4rem; font-weight: 800; color: var(--green); margin: .8rem 0 .4rem; scroll-margin-top: 5rem; }
+  .sl dt { font-weight: 800; font-size: 1.02rem; }
+  .sl-abbr { font-weight: 600; color: var(--ink2); }
+  .sl dd { margin: .3rem 0 0; }
+  .sl dd p { margin: 0 0 .35rem; color: var(--ink2); }
+</style>

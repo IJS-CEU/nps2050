@@ -9,10 +9,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from npsdata import kazalniki, sankey, scenariji, stavbni_fond, trajektorija, ukrepi, zemljevid  # noqa: E402
+from npsdata import kazalniki, prihranek, revscina, sankey, scenariji, stavbni_fond, trajektorija, ukrepi, zemljevid  # noqa: E402
 from npsdata.context import CheckError, Context, write_json  # noqa: E402
 
-MODULES = [('trajektorija', trajektorija), ('stavbni_fond', stavbni_fond), ('scenariji', scenariji), ('kazalniki', kazalniki), ('sankey', sankey), ('zemljevid', zemljevid), ('ukrepi', ukrepi)]
+MODULES = [('trajektorija', trajektorija), ('stavbni_fond', stavbni_fond), ('scenariji', scenariji), ('kazalniki', kazalniki), ('sankey', sankey), ('zemljevid', zemljevid), ('ukrepi', ukrepi), ('revscina', revscina), ('prihranek', prihranek)]
 
 
 def main() -> int:

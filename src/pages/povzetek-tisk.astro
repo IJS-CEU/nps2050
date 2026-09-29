@@ -1,0 +1,401 @@
+---
+/**
+ * Povzetek NPS 2050 na petih straneh A4 – vir za public/nps2050-povzetek.pdf (npm run pdf).
+ * Vse številke iz public/data/*.json (osnutek NPS_vNN); grafi so statični SVG, izrisani ob gradnji.
+ * Stran ni v navigaciji in se ne indeksira; bralci dobijo PDF.
+ */
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/source-serif-4';
+import { pageUrl, withBase } from '../i18n/routes';
+import { loadData, type Kazalniki, type Revscina, type StavbniFond, type Trajektorija, type Ukrepi } from '../lib/data';
+import { nf } from '../lib/format';
+
+const k = loadData<Kazalniki>('kazalniki');
+const tr = loadData<Trajektorija>('trajektorija');
+const sf = loadData<StavbniFond>('stavbni_fond');
+const up = loadData<Ukrepi>('ukrepi');
+const rv = loadData<Revscina>('revscina');
+
+const K = Object.fromEntries(k.items.map((i) => [i.id, i]));
+const txt = (id: string, y: number) => K[id].values.find((v) => v.year === y)?.text ?? '–';
+const [dy, dm, dd] = k.meta.draft_date.split('-').map(Number);
+const draftDate = `${dd}. ${dm}. ${dy}`;
+const site = Astro.site ? new URL(withBase(''), Astro.site).href.replace(/\/$/, '') : 'ijs-ceu.github.io/nps2050';
+const siteShort = site.replace(/^https?:\/\//, '');
+const link = (id: Parameters<typeof pageUrl>[0]) => `${siteShort}${pageUrl(id).replace(withBase(''), '/')}`;
+
+// Graf trajektorije (stanovanjski fond, kWh/(m²·a))
+const W = 330, H = 190, L = 30, R = 10, T = 14, Bm = 24;
+const xs = (y: number) => L + ((y - 2020) / 30) * (W - L - R);
+const ys = (v: number) => T + (1 - v / 300) * (H - T - Bm);
+const trPts = tr.kwh_m2.years.map((y, i) => `${xs(y).toFixed(1)},${ys(tr.kwh_m2.nps[i]).toFixed(1)}`).join(' ');
+
+// Končna energija in emisije: izhodišče in mejniki
+const lead = (s: string) => Number(s.replace(/\s*\(.*$/, '').replace(/[≈≤\s]/g, '').replace(/\./g, '').replace(',', '.'));
+const bars = (id: string) => [{ y: K[id].baseline.year!, v: K[id].baseline.value! }, ...[2030, 2040, 2050].map((y) => ({ y, v: lead(txt(id, y)) }))];
+const fe = bars('koncna_energija'), em = bars('emisije');
+
+// Kdo plača 2026–2030
+const S = up.investments.segments;
+const sum5 = (a: (number | null)[] | undefined) => (a ?? []).slice(0, 5).reduce<number>((s, v) => s + (v ?? 0), 0);
+const pay = ['Stanovanjske stavbe', 'Stavbe javnega sektorja', 'Stavbe zasebnega storitvenega sektorja'].map((name) => {
+  const needs = sum5(S[name].needs), grants = sum5(S[name].grants), priv = sum5(S[name].private);
+  const gap = Math.max(0, needs - grants - priv), base = Math.max(needs, grants + priv);
+  return { name, needs, g: (100 * grants) / base, p: (100 * priv) / base, x: (100 * gap) / base };
+});
+const kindCount = (id: string) => up.measures.filter((m) => m.kinds.includes(id)).length;
+const nNepn = up.measures.filter((m) => m.group !== 'nps').length, nNew = up.measures.filter((m) => m.group === 'nps').length;
+const hisa = sf.categories.find((c) => c.id === 'HISA')!, blok = sf.categories.find((c) => c.id === 'BLOKI')!;
+const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { A: 'A1', B: 'B1', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G' };
+---
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex" />
+  <title>NPS 2050 v kratkem – povzetek strokovnih podlag</title>
+  <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
+</head>
+<body>
+
+<!-- 1 -->
+<section class="pg p1">
+  <header class="cover">
+    <p class="eyebrow"><span>Strokovne podlage za Nacionalni načrt prenove stavb</span><span>Osnutek · {draftDate}</span></p>
+    <h1>Kako naj Slovenija do leta 2050 prenovi svoje stavbe</h1>
+    <p class="cl">NPS 2050 v kratkem: cilji, kaj načrt pomeni za lastnike, ukrepi, denar in energetska revščina.</p>
+  </header>
+  <img class="photo" src={withBase('img/hero-mesto-1600.jpg')} alt="" />
+  <div class="in">
+    <h2>Kaj je NPS 2050</h2>
+    <ul class="dots">
+      <li><b>Nacionalni načrt prenove stavb do leta 2050</b> zahteva evropska direktiva o energetski učinkovitosti stavb (EPBD, 2024). Slovenija ga mora Evropski komisiji predložiti do 31. decembra 2026.</li>
+      <li>Pripravlja ga Ministrstvo za infrastrukturo in energetiko. Strokovne podlage pripravlja Center za energetsko učinkovitost Instituta »Jožef Stefan« (IJS CEU).</li>
+      <li>Načrt velja za {nf(sf.segments.skupaj.buildings)} stavb z {nf(sf.segments.skupaj.area_mio_m2, 1)} mio m² uporabne površine: stanovanjske stavbe, javne stavbe in stavbe zasebnega storitvenega sektorja.</li>
+      <li>Nadgrajuje dolgoročno strategijo prenove DSEPS 2050 in je usklajen z nacionalnim energetskim in podnebnim načrtom (NEPN 2024).</li>
+    </ul>
+    <h2>Cilji v petih številkah</h2>
+    <div class="tiles">
+      <div><b>−{K.trajektorija.values.at(-1)!.text.match(/−(\d+)/)![1]} %</b><span>primarne energije na m² stanovanjskih stavb do 2050 ({nf(tr.kwh_m2.nps[0])} → {nf(tr.kwh_m2.nps.at(-1))} kWh/(m²·a))</span></div>
+      <div><b>~2 %</b><span>površine stavb se energetsko prenovi vsako leto</span></div>
+      <div><b>−90 %</b><span>emisij toplogrednih plinov iz stavb do 2050 glede na 2023</span></div>
+      <div><b>≤ {nf(rv.share.target_2050, 1)} %</b><span>energetsko revnih gospodinjstev do 2050 ({nf(rv.share.base, 1)} % leta 2024)</span></div>
+      <div><b>{txt('investicije', 2030).split(' ')[0]} mrd €</b><span>naložb v obdobju 2026–2030, okoli 19 mrd € do 2050</span></div>
+    </div>
+    <h2>V tem povzetku</h2>
+    <ol class="toc">
+      <li><b>2</b><span><strong>Stavbe in cilji</strong>Stavbni fond, trajektorija rabe energije in ključni cilji do leta 2050.</span></li>
+      <li><b>3</b><span><strong>Za lastnike</strong>Energijski razredi, najslabše stavbe, spodbude in kotli na fosilna goriva.</span></li>
+      <li><b>4</b><span><strong>Ukrepi in financiranje</strong>44 ukrepov, investicijske potrebe in kdo jih pokrije.</span></li>
+      <li><b>5</b><span><strong>Energetska revščina</strong>Stanje, cilji, pomoč in naslednji koraki.</span></li>
+    </ol>
+    <p class="note">Vse številke so iz osnutka NPS 2050 z dne {draftDate} in se lahko do sprejema načrta še spremenijo.</p>
+  </div>
+  <footer class="pf"><span>NPS 2050 v kratkem</span><span>1 / 5</span></footer>
+</section>
+
+<!-- 2 -->
+<section class="pg">
+  <div class="in">
+    <p class="kicker">Stavbe in cilji</p>
+    <h2 class="big">Od koder začenjamo in kam gremo</h2>
+    <div class="cols2">
+      <div>
+        <h3>Stavbni fond</h3>
+        <table class="t">
+          <thead><tr><th></th><th class="n">Stavb</th><th class="n">mio m²</th></tr></thead>
+          <tbody>
+            <tr><th>Stanovanjske stavbe</th><td class="n">{nf(sf.segments.stanovanjske.buildings)}</td><td class="n">{nf(sf.segments.stanovanjske.area_mio_m2, 1)}</td></tr>
+            <tr><th>Javne stavbe</th><td class="n">{nf(sf.segments.javne.buildings)}</td><td class="n">{nf(sf.segments.javne.area_mio_m2, 1)}</td></tr>
+            <tr><th>Zasebne storitvene stavbe</th><td class="n">{nf(sf.segments.zasebne_storitvene.buildings)}</td><td class="n">{nf(sf.segments.zasebne_storitvene.area_mio_m2, 1)}</td></tr>
+            <tr class="sum"><th>Skupaj</th><td class="n">{nf(sf.segments.skupaj.buildings)}</td><td class="n">{nf(sf.segments.skupaj.area_mio_m2, 1)}</td></tr>
+          </tbody>
+        </table>
+        <p class="small">Uporabna površina po katastru nepremičnin. Stanovanjske stavbe obsegajo tri četrtine površine.</p>
+      </div>
+      <div>
+        <h3>Trajektorija stanovanjskih stavb</h3>
+        <svg viewBox={`0 0 ${W} ${H}`} class="chart" role="img" aria-label="Povprečna raba primarne energije stanovanjskih stavb od 269 kWh/(m²·a) leta 2020 do 164 leta 2050">
+          {[0, 100, 200, 300].map((v) => <g><line x1={L} x2={W - R} y1={ys(v)} y2={ys(v)} class="gl" /><text x={L - 6} y={ys(v) + 4} text-anchor="end" class="ax">{v}</text></g>)}
+          {tr.kwh_m2.years.map((y) => <text x={xs(y)} y={H - 10} text-anchor="middle" class="ax">{y}</text>)}
+          {tr.kwh_m2.epbd_max.map((e) => <g><line x1={xs(e.year) - 12} x2={xs(e.year) + 12} y1={ys(e.max)} y2={ys(e.max)} class="cap" /><text x={xs(e.year) + 14} y={ys(e.max) - 5} class="capt">EPBD</text></g>)}
+          <polyline points={trPts} class="ln" />
+          {tr.kwh_m2.years.map((y, i) => <g><circle cx={xs(y)} cy={ys(tr.kwh_m2.nps[i])} r="3.5" class="pt" /><text x={xs(y)} y={ys(tr.kwh_m2.nps[i]) + 18} text-anchor="middle" class="lb">{tr.kwh_m2.nps[i]}</text></g>)}
+        </svg>
+        <p class="small">Povprečna raba primarne energije, kWh/(m²·a), fiksni faktorji. Oznaka EPBD: najvišja dovoljena vrednost po direktivi.</p>
+      </div>
+    </div>
+
+    <h3>Ključni cilji</h3>
+    <table class="t wide">
+      <thead><tr><th>Kazalnik</th><th class="n">Izhodišče</th><th class="n">2030</th><th class="n">2040</th><th class="n">2050</th></tr></thead>
+      <tbody>
+        <tr><th>Raba končne energije v stavbah, ktoe</th><td class="n">{K.koncna_energija.baseline.text}</td><td class="n">{txt('koncna_energija', 2030)}</td><td class="n">{txt('koncna_energija', 2040)}</td><td class="n">{txt('koncna_energija', 2050)}</td></tr>
+        <tr><th>Emisije toplogrednih plinov, kt CO₂ ekv.</th><td class="n">{K.emisije.baseline.text}</td><td class="n">{txt('emisije', 2030)}</td><td class="n">{txt('emisije', 2040)}</td><td class="n">{txt('emisije', 2050)}</td></tr>
+        <tr><th>Delež obnovljivih virov v stavbah, %</th><td class="n">{K.ove.baseline.text}</td><td class="n">{txt('ove', 2030)}</td><td class="n">{txt('ove', 2040)}</td><td class="n">{txt('ove', 2050)}</td></tr>
+        <tr><th>Letna stopnja energetske prenove, %</th><td class="n">–</td><td class="n">{txt('stopnja_prenove', 2030)}</td><td class="n">{txt('stopnja_prenove', 2040)}</td><td class="n">{txt('stopnja_prenove', 2050)}</td></tr>
+        <tr><th>Letno prenovljena površina: stanovanjske / javne / zasebne storitvene, mio m²</th><td class="n">–</td><td class="n">{txt('prenovljena_povrsina', 2030)}</td><td class="n">{txt('prenovljena_povrsina', 2040)}</td><td class="n">{txt('prenovljena_povrsina', 2050)}</td></tr>
+        <tr><th>Prenovljen del 43 % najslabših stanovanjskih stavb, %</th><td class="n">{K.najslabse_stavbe.baseline.text}</td><td class="n">{txt('najslabse_stavbe', 2030)}</td><td class="n">{txt('najslabse_stavbe', 2040)}</td><td class="n">{txt('najslabse_stavbe', 2050)}</td></tr>
+        <tr><th>Raba kurilnega olja / fosilnega plina glede na 2020, %</th><td class="n">{K.fosilna_goriva.baseline.text}</td><td class="n">{txt('fosilna_goriva', 2030)}</td><td class="n">{txt('fosilna_goriva', 2040)}</td><td class="n">{txt('fosilna_goriva', 2050)}</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cols2 mini">
+      {[['Končna energija, ktoe', fe, '#1F7A57'], ['Emisije TGP, kt CO₂ ekv.', em, '#8F5A08']].map(([title, data, col]) => {
+        const d = data as { y: number; v: number }[], mx = Math.max(...d.map((x) => x.v));
+        return (
+          <div>
+            <h4>{title as string}</h4>
+            <svg viewBox="0 0 330 120" class="chart" role="img" aria-label={`${title}: ${d.map((x) => `${x.y} ${nf(x.v)}`).join(', ')}`}>
+              {d.map((x, i) => {
+                const h = (x.v / mx) * 80, bx = 25 + i * 78;
+                return <g><rect x={bx} y={96 - h} width="40" height={h} fill={i === 0 ? '#87918C' : (col as string)} rx="2" /><text x={bx + 20} y={92 - h} text-anchor="middle" class="lb">{nf(x.v)}</text><text x={bx + 20} y={112} text-anchor="middle" class="ax">{x.y}</text></g>;
+              })}
+            </svg>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+  <footer class="pf"><span>NPS 2050 v kratkem</span><span>2 / 5</span></footer>
+</section>
+
+<!-- 3 -->
+<section class="pg">
+  <div class="in">
+    <p class="kicker">Za lastnike</p>
+    <h2 class="big">Kaj načrt pomeni za vašo stavbo</h2>
+
+    <div class="box green">
+      <h3>Ali moram prenoviti hišo ali stanovanje?</h3>
+      <p><b>Ne.</b> Za stanovanjske stavbe načrt ne določa obvezne prenove posamezne stavbe. Cilj velja za povprečje vseh stanovanjskih stavb in se dosega s spodbudami in svetovanjem. Priporočljivo pa je, da vsako prenovo načrtujete kot korak k brezemisijski stavbi: dobro izoliran ovoj in ogrevanje brez fosilnih goriv.</p>
+    </div>
+
+    <h3>Nova lestvica energijskih razredov</h3>
+    <p>Razred pove, koliko primarne energije stavba porabi na m² na leto. Meje so posebej za vsako vrsto stavb. Meja med razredoma A in B je raven brezemisijske stavbe, v razredu G je 15 % najslabših stavb.</p>
+    {[hisa, blok].map((c) => (
+      <div class="scale">
+        <span class="sn">{c.name}</span>
+        <div class="sb">
+          {CLS.map((x, i) => <span style={`background:var(--cls-${CV[x]})`}><b>{x}</b>{i < 6 && <i>{c.class_bounds[['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G'][i]]}</i>}</span>)}
+        </div>
+      </div>
+    ))}
+    <p class="small">Meje razredov v kWh/(m²·a) primarne energije. Svoj razred preverite z orodjem <b>Preverite svojo stavbo</b>: {link('preveri')}</p>
+
+    <div class="cols2">
+      <div>
+        <h3>Najslabše stavbe najprej</h3>
+        <p>Med 43 % energetsko najmanj učinkovitih stanovanjskih stavb sodijo hiše z več kot <b>{nf(hisa.worst_43!.threshold)} kWh/(m²·a)</b> in bloki z več kot <b>{nf(blok.worst_43!.threshold)} kWh/(m²·a)</b> primarne energije. Iz njihove prenove mora priti najmanj 55 % zmanjšanja rabe energije stanovanjskih stavb. Do leta 2030 naj bo prenovljenih 23 %, do 2040 65 % in do 2050 vse.</p>
+        <h3>Spodbude (predlog)</h3>
+        <p>Od leta 2027 naj bi spodbude rasle s slabšim izhodiščnim razredom: osnovnih 30 %, za razred E +10, za F in G +20 in za celovito prenovo še +10 odstotnih točk, skupaj največ 70 % priznanih stroškov. Zasnova se še usklajuje z Eko skladom.</p>
+      </div>
+      <div>
+        <h3>Kotli na olje in plin</h3>
+        <ul class="dots">
+          <li>Od 2023 ni dovoljena vgradnja novih kotlov na kurilno olje in premog.</li>
+          <li>V novih stanovanjskih stavbah (gradbeno dovoljenje od 2025) ni dovoljena vgradnja plinskih kotlov; od 2025 država ne daje več spodbud za kotle na fosilna goriva.</li>
+          <li>Obstoječih kotlov načrt ne prepoveduje. Do 2040 naj se raba kurilnega olja v stavbah zmanjša za 86 %, fosilnega plina za 68 %; do 2050 se fosilna goriva opustijo.</li>
+        </ul>
+        <h3>Nestanovanjske stavbe</h3>
+        <p>Pisarne, šole, trgovine in druge nestanovanjske stavbe morajo po minimalnih standardih do 2030 izboljšati 16 % najslabših, do 2033 pa 26 % najslabših stavb. Za kulturno dediščino veljajo sorazmerne zahteve.</p>
+      </div>
+    </div>
+    <div class="box">
+      <p><b>Pomoč:</b> brezplačno energetsko svetovanje ENSVET in spodbude Eko sklada (ekosklad.si). Načrt predlaga, da lastniki najslabših stavb od 2027 prejmejo obvestilo s ponudbo svetovanja.</p>
+    </div>
+  </div>
+  <footer class="pf"><span>NPS 2050 v kratkem</span><span>3 / 5</span></footer>
+</section>
+
+<!-- 4 -->
+<section class="pg">
+  <div class="in">
+    <p class="kicker">Ukrepi in financiranje</p>
+    <h2 class="big">S čim bo država dosegla cilje</h2>
+    <p>NPS 2050 gradi na <b>{nNepn} ukrepih NEPN 2024</b>, ki se nanašajo na stavbe, in dodaja <b>{nNew} novih ukrepov (N1–N{nNew})</b> za področja, ki jih zahteva EPBD. Novi ukrepi so v osnutku predlog za odločanje.</p>
+    <div class="kinds">
+      {[['predpis', 'Predpisi'], ['finance', 'Finančne spodbude'], ['svetovanje', 'Svetovanje in obveščanje'], ['organizacija', 'Organizacija in pilotni projekti'], ['spremljanje', 'Spremljanje in podatki']].map(([id, n]) => <div><b>{kindCount(id)}</b><span>{n}</span></div>)}
+    </div>
+    <p class="small">Število ukrepov po vrsti; ukrep ima lahko več vrst.</p>
+
+    <h3>Od cilja do ukrepa: izbrani ukrepi</h3>
+    <table class="t wide">
+      <tbody>
+        <tr><th>Prenova 43 % najslabših stanovanjskih stavb</th><td>N1 stopnjevane spodbude · N2 območni programi · N3 obveščanje lastnikov · N4 spremljanje</td></tr>
+        <tr><th>Minimalni standardi za nestanovanjske stavbe</th><td>N14 seznam najslabših javnih stavb · N15 zeleno javno naročanje · N16 prenova 3 % javnih stavb · N20 kulturna dediščina</td></tr>
+        <tr><th>Opuščanje fosilnih kotlov do 2040</th><td>veljavne prepovedi · program opuščanja fosilnih goriv · dajatev na CO₂ · prihodki ETS2</td></tr>
+        <tr><th>Manj energetske revščine, zaščita najemnikov</th><td>N11 prenova oddajanih stanovanj · N12 spremljanje · N13 pomoč pri najemnini</td></tr>
+      </tbody>
+    </table>
+    <h3>Koliko stane</h3>
+    <p>Investicijske potrebe za energetsko prenovo stavb znašajo <b>{nf(up.investments.total_2026_2030 / 1000, 2)} mrd €</b> v obdobju 2026–2030 in okoli <b>{nf(Math.round(up.investments.total_2026_2050 / 1000))} mrd €</b> do leta 2050. Ob obstoječih virih v obdobju 2026–2030 ostaja nepokritih {nf(up.investments.gap_2026_2030 / 1000, 2)} mrd € – naložbe, za katere finančni instrument še ni določen (npr. energetsko pogodbeništvo, zelena posojila, garancijska shema).</p>
+    <div class="pay">
+      <p class="leg"><i class="g"></i>nepovratna javna sredstva <i class="p"></i>zasebna sredstva <i class="x"></i>še nepokrito</p>
+      {pay.map((r) => (
+        <div class="pr">
+          <span class="pn">{r.name}<small>{nf(r.needs)} mio €</small></span>
+          <span class="pb"><span class="g" style={`width:${r.g}%`}>{r.g >= 9 && `${nf(r.g, 0)} %`}</span><span class="p" style={`width:${r.p}%`}>{r.p >= 9 && `${nf(r.p, 0)} %`}</span>{r.x > 0 && <span class="x" style={`width:${r.x}%`}>{r.x >= 9 && `${nf(r.x, 0)} %`}</span>}</span>
+        </div>
+      ))}
+      <p class="small">Investicijske potrebe 2026–2030 po segmentih.</p>
+    </div>
+    <p>Za nepovratni delež 16 do 25 % naložb je po letu 2030 potrebnih 120 do 190 mio € javnih sredstev na leto. Pomembni viri so Podnebni sklad, evropska kohezijska politika, Socialni sklad za podnebje in prihodki iz trgovanja z emisijami (ETS2).</p>
+    <h3>Koristi</h3>
+    <p>Nižji računi za energijo: <b>{txt('koristi', 2030).split(' / ')[0]} mio € na leto</b> do leta 2030 in 12.000 do 14.500 podprtih delovnih mest na leto. Poleg tega čistejši zrak, bolj zdravo bivanje in manjša odvisnost od uvoza energije.</p>
+  </div>
+  <footer class="pf"><span>NPS 2050 v kratkem</span><span>4 / 5</span></footer>
+</section>
+
+<!-- 5 -->
+<section class="pg">
+  <div class="in">
+    <p class="kicker">Energetska revščina</p>
+    <h2 class="big">Prenova, ki pomaga tistim, ki jo najbolj potrebujejo</h2>
+    <div class="tiles t3">
+      <div><b>{nf(rv.counts_2024.households)}</b><span>energetsko revnih gospodinjstev leta 2024 ({nf(rv.share.base, 1)} %)</span></div>
+      <div><b>{nf(rv.counts_2024.persons)}</b><span>oseb živi v njih</span></div>
+      <div><b>{nf(rv.counts_2024.leaks_damp)}</b><span>gospodinjstev živi s puščajočo streho, vlago ali trhlimi okni</span></div>
+    </div>
+    <div class="cols2">
+      <div>
+        <h3>Cilji</h3>
+        <svg viewBox="0 0 250 130" class="chart" role="img" aria-label={`Delež energetsko revnih gospodinjstev: 2024 ${nf(rv.share.base, 1)} %, cilj 2030 ${nf(rv.share.target_2030[0], 1)}–${nf(rv.share.target_2030[1], 1)} %, 2040 največ ${nf(rv.share.target_2040, 1)} %, 2050 največ ${nf(rv.share.target_2050, 1)} %`}>
+          {[[2024, rv.share.base, `${nf(rv.share.base, 1)} %`], [2030, rv.share.target_2030[1], `${nf(rv.share.target_2030[0], 1)}–${nf(rv.share.target_2030[1], 1)} %`], [2040, rv.share.target_2040, `≤ ${nf(rv.share.target_2040, 1)} %`], [2050, rv.share.target_2050, `≤ ${nf(rv.share.target_2050, 1)} %`]].map(([y, v, l], i) => {
+            const h = ((v as number) / 8) * 90, bx = 14 + i * 60;
+            return <g><rect x={bx} y={106 - h} width="40" height={h} fill={i === 0 ? '#8F5A08' : '#1F7A57'} rx="2" /><text x={bx + 20} y={101 - h} text-anchor="middle" class="lb">{l}</text><text x={bx + 20} y={122} text-anchor="middle" class="ax">{y}</text></g>;
+          })}
+        </svg>
+        <p class="small">Delež energetsko revnih gospodinjstev. Cilj 2030 iz Akcijskega načrta za zmanjševanje energetske revščine, cilja 2040 in 2050 predlaga NPS 2050.</p>
+      </div>
+      <div>
+        <h3>Kaj načrt predvideva</h3>
+        <ul class="dots">
+          <li>Do 100-odstotne spodbude za energetsko prenovo v energetsko revnih gospodinjstvih; do 2030 najmanj {nf(rv.investments_2030.households)} prenov.</li>
+          <li>239,5 mio € iz Socialnega načrta za podnebje do leta 2032 za okoli 8.710 projektov, prenovo javnih stanovanj in skupne prenove blokov.</li>
+          <li>Zaščita najemnikov: omejitev zvišanja najemnine po prenovi in pomoč pri najemnini (N11–N13).</li>
+          <li>Prednostna prenova najslabših stavb in območni programi za bloke.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box">
+      <p><b>Kje dobiti pomoč:</b> Eko sklad dodeljuje spodbude za energetsko revna gospodinjstva in socialno šibke občane (ekosklad.si). Brezplačno energetsko svetovanje ENSVET pomaga izbrati prave ukrepe.</p>
+    </div>
+    <h3>Naslednji koraki</h3>
+    <ol class="steps">
+      <li><b>Predvidoma oktober 2026</b>Javna obravnava osnutka. Pripombe se oddajo ministrstvu.</li>
+      <li><b>31. 12. 2026</b>Predložitev načrta Evropski komisiji.</li>
+      <li><b>Od 2027</b>Izvajanje novih ukrepov; prenos v posodobitev NEPN.</li>
+      <li><b>2035</b>Pregled napredka in odločitev o nadaljnjih ukrepih za opuščanje fosilnih kotlov.</li>
+    </ol>
+
+    <div class="more">
+      <h3>Več na spletu</h3>
+      <p class="url">{siteShort}</p>
+      <ul>
+        <li>Preverite svojo stavbo: {link('preveri')}</li>
+        <li>Strokovne podlage z grafi in podatki: {link('strokovne-podlage')}</li>
+        <li>Vsi ukrepi: {link('ukrepi')}</li>
+        <li>Energetska revščina: {link('revscina')}</li>
+        <li>Slovar izrazov: {link('slovar')}</li>
+      </ul>
+    </div>
+    <p class="small colophon">Pripravil Center za energetsko učinkovitost Instituta »Jožef Stefan« (IJS CEU) za Ministrstvo za infrastrukturo in energetiko. Podatki iz osnutka NPS 2050 ({k.meta.draft}, {draftDate}); do sprejema načrta se lahko spremenijo. Povzetek ni uradni dokument ministrstva. Besedilo in podatki: CC BY 4.0, z navedbo vira »IJS CEU, strokovne podlage NPS 2050«.</p>
+  </div>
+  <footer class="pf"><span>NPS 2050 v kratkem</span><span>5 / 5</span></footer>
+</section>
+
+<style is:global>
+  :root {
+    --olive: #333D22; --gold: #D6B25E; --paper: #F5F2E8; --ink: #1B2622; --ink2: #4C5A54; --line: #D7DDD5; --green: #1E6B4E; --greenbg: #E4F0E9;
+    --amber: #8F5A08; --amberbg: #F7EBD3; --panel2: #ECEFE8;
+    --cls-A1: #0B7A45; --cls-B1: #62B044; --cls-C: #D9C92B; --cls-D: #F0AE2E; --cls-E: #EC842B; --cls-F: #DE5A2B; --cls-G: #C4302C;
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; background: #888; font-family: 'Manrope Variable', system-ui, sans-serif; color: var(--ink); font-size: 9.6pt; line-height: 1.45; }
+  .pg { width: 210mm; height: 297mm; margin: 0 auto 8mm; background: #fff; position: relative; overflow: hidden; page-break-after: always; break-after: page; }
+  @media print { body { background: #fff; } .pg { margin: 0; } }
+  .in { padding: 16mm 17mm 18mm; }
+  .p1 .in { padding-top: 5mm; }
+  h1, h2, h3, h4 { font-family: 'Source Serif 4 Variable', Georgia, serif; line-height: 1.15; margin: 0; }
+  h2 { font-size: 15pt; margin: 5mm 0 2.5mm; }
+  h2.big { font-size: 21pt; margin: 1mm 0 4mm; }
+  h3 { font-size: 11.5pt; margin: 4.5mm 0 1.8mm; }
+  h4 { font-size: 9.5pt; margin: 2mm 0 1mm; font-family: 'Manrope Variable', sans-serif; }
+  p { margin: 0 0 2.2mm; }
+  .kicker { font-size: 8pt; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--green); margin: 0; }
+  .small { font-size: 7.6pt; color: var(--ink2); }
+  .note { font-size: 7.8pt; color: var(--ink2); margin-top: 3mm; }
+  .cover { background: var(--olive); color: var(--paper); padding: 13mm 17mm 9mm; border-bottom: 1.2mm solid var(--gold); }
+  .eyebrow { display: flex; justify-content: space-between; font-size: 7.4pt; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 6mm; }
+  .cover h1 { font-size: 27pt; max-width: 22ch; }
+  .cl { color: #DAD8C9; font-size: 11pt; margin: 4mm 0 0; max-width: 60ch; }
+  .photo { display: block; width: 100%; height: 36mm; object-fit: cover; object-position: 50% 38%; }
+  ul.dots { margin: 0 0 2mm; padding-left: 4.5mm; }
+  ul.dots li { margin-bottom: 1.4mm; }
+  .tiles { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2.5mm; }
+  .tiles.t3 { grid-template-columns: repeat(3, 1fr); margin-bottom: 2mm; }
+  .tiles div { background: var(--greenbg); border-radius: 3mm; padding: 3mm 3mm 3.2mm; display: grid; align-content: start; gap: 1mm; }
+  .tiles b { font-size: 16pt; font-weight: 800; color: var(--green); line-height: 1.1; white-space: nowrap; }
+  .tiles span { font-size: 7.4pt; color: var(--ink2); line-height: 1.3; }
+  .toc { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 6mm; }
+  .toc li { display: grid; grid-template-columns: 9mm 1fr; gap: 3mm; align-items: start; border-top: .3mm solid var(--line); padding-top: 2.2mm; }
+  .toc b { font-family: 'Source Serif 4 Variable', serif; font-size: 18pt; color: var(--gold); line-height: 1; filter: brightness(.8); }
+  .toc span { font-size: 8.2pt; color: var(--ink2); display: grid; }
+  .toc strong { color: var(--ink); font-size: 9.4pt; }
+  .cols2 { display: grid; grid-template-columns: 1fr 1fr; gap: 7mm; }
+  .cols2.mini { margin-top: 2mm; }
+  table.t { border-collapse: collapse; width: 100%; font-size: 8.4pt; }
+  table.t th, table.t td { text-align: left; padding: 1.3mm 1.5mm; border-bottom: .25mm solid var(--line); font-weight: 500; }
+  table.t thead th { font-size: 7.4pt; font-weight: 800; color: var(--ink2); text-transform: uppercase; letter-spacing: .04em; border-bottom: .4mm solid var(--ink2); }
+  table.t .n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  table.t tr.sum th, table.t tr.sum td { font-weight: 800; border-top: .4mm solid var(--ink2); }
+  table.wide th:first-child { width: 42%; }
+  svg.chart { width: 100%; height: auto; display: block; font-family: 'Manrope Variable', sans-serif; }
+  .gl { stroke: #E6EAE4; } .ax { font-size: 9px; fill: #69756F; } .lb { font-size: 10px; font-weight: 700; fill: var(--ink); }
+  .cols2.mini svg.chart { max-height: 38mm; }
+  .ln { fill: none; stroke: #1F7A57; stroke-width: 2.6; } .pt { fill: #1F7A57; }
+  .cap { stroke: var(--amber); stroke-width: 2; stroke-dasharray: 4 3; } .capt { font-size: 9px; fill: var(--amber); font-weight: 700; }
+  .box { background: #F6F7F3; border: .3mm solid var(--line); border-radius: 3mm; padding: 3.5mm 4.5mm; margin: 3mm 0; }
+  .box.green { background: var(--greenbg); border-color: transparent; }
+  .box h3 { margin-top: 0; }
+  .box p:last-child { margin: 0; }
+  .scale { display: grid; grid-template-columns: 34mm 1fr; align-items: center; gap: 3mm; margin: 2mm 0 5mm; }
+  .sn { font-weight: 700; font-size: 8.4pt; }
+  .sb { display: grid; grid-template-columns: repeat(7, 1fr); gap: .5mm; }
+  .sb span { position: relative; height: 7mm; display: grid; place-items: center; }
+  .sb span b { color: #fff; font-size: 9pt; text-shadow: 0 1px 1px rgba(0,0,0,.35); }
+  .sb span i { position: absolute; right: -2.5mm; top: 7.6mm; font-style: normal; font-size: 7pt; color: var(--ink2); font-weight: 700; }
+  .kinds { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2.5mm; margin: 3mm 0 1mm; }
+  .kinds div { border: .3mm solid var(--line); border-radius: 3mm; padding: 2.5mm 3mm; display: grid; }
+  .kinds b { font-size: 17pt; color: var(--green); font-weight: 800; line-height: 1.1; }
+  .kinds span { font-size: 7.6pt; color: var(--ink2); line-height: 1.25; }
+  ul.meas { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm 6mm; }
+  ul.meas li { display: grid; grid-template-columns: 10mm 1fr; gap: 1.5mm; align-items: start; }
+  ul.meas b { display: inline-block; min-width: 9mm; background: var(--greenbg); color: var(--green); border-radius: 1.5mm; text-align: center; font-size: 8pt; margin-right: 1.5mm; }
+  .pay { margin: 2mm 0 3mm; }
+  .leg { font-size: 7.6pt; color: var(--ink2); display: flex; gap: 2mm; align-items: center; }
+  .leg i { display: inline-block; width: 4mm; height: 3mm; border-radius: .6mm; margin-left: 2mm; }
+  .pr { display: grid; grid-template-columns: 52mm 1fr; align-items: center; gap: 3mm; margin: 1.8mm 0; }
+  .pn { font-weight: 700; font-size: 8.4pt; display: grid; }
+  .pn small { font-weight: 500; color: var(--ink2); font-size: 7.4pt; }
+  .pb { display: flex; height: 7mm; gap: .5mm; }
+  .pb span { display: grid; place-items: center; font-size: 7.6pt; font-weight: 800; }
+  .g { background: var(--green); color: #fff; }
+  .p { background: var(--panel2); box-shadow: inset 0 0 0 .25mm #C9D0C8; }
+  .x { background: repeating-linear-gradient(135deg, var(--amberbg) 0 1.5mm, #fff 1.5mm 2.5mm); box-shadow: inset 0 0 0 .35mm var(--amber); }
+  ol.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5mm; }
+  ol.steps li { border-top: 1mm solid var(--green); padding-top: 2mm; font-size: 8pt; color: var(--ink2); }
+  ol.steps b { display: block; color: var(--ink); font-size: 9.5pt; }
+  .more { background: var(--olive); color: var(--paper); border-radius: 3mm; padding: 4mm 5mm; margin-top: 5mm; }
+  .more h3 { color: var(--gold); margin: 0 0 1mm; }
+  .more .url { font-size: 14pt; font-weight: 800; margin: 0 0 2mm; }
+  .more ul { margin: 0; padding-left: 4.5mm; font-size: 8.2pt; columns: 2; column-gap: 6mm; }
+  .colophon { margin-top: 4mm; }
+  .pf { position: absolute; left: 17mm; right: 17mm; bottom: 8mm; display: flex; justify-content: space-between; font-size: 7pt; color: var(--ink2); border-top: .25mm solid var(--line); padding-top: 2mm; }
+</style>
+</body>
+</html>

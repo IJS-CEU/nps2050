@@ -1,0 +1,73 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "NPS_v39: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)",
+   "NPS_v39: preglednice 13–16 (pogl. 2.4, vir podatkov SURS in Akcijski načrt za zmanjševanje energetske revščine 2023)"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Delež energetsko revnih gospodinjstev po Uredbi o merilih za opredelitev in ocenjevanje števila energetsko revnih gospodinjstev."
+ },
+ "share": {
+  "years": [
+   2024,
+   2030,
+   2040,
+   2050
+  ],
+  "base": 7.3,
+  "target_2030": [
+   3.8,
+   4.6
+  ],
+  "target_2040": 2.5,
+  "target_2050": 1.5
+ },
+ "counts_2024": {
+  "households": 63000,
+  "persons": 110000,
+  "cannot_heat": 36000,
+  "arrears": 52000,
+  "leaks_damp": 171000
+ },
+ "by_type_2024": [
+  {
+   "name": "Gospodinjstva brez vzdrževanih otrok",
+   "pct": 8.8
+  },
+  {
+   "name": "Enočlansko gospodinjstvo",
+   "pct": 14.3
+  },
+  {
+   "name": "Dva odrasla, brez vzdrževanih otrok",
+   "pct": 4.6
+  },
+  {
+   "name": "Enostarševsko gospodinjstvo z vsaj enim vzdrževanim otrokom",
+   "pct": 13.7
+  },
+  {
+   "name": "Dva odrasla z enim vzdrževanim otrokom",
+   "pct": 2.5
+  },
+  {
+   "name": "Dva odrasla z dvema vzdrževanima otrokoma",
+   "pct": 3.4
+  },
+  {
+   "name": "Dva odrasla z vsaj tremi vzdrževanimi otroki",
+   "pct": 4.9
+  },
+  {
+   "name": "Druga gospodinjstva z vzdrževanimi otroki",
+   "pct": 1.9
+  }
+ ],
+ "investments_2030": {
+  "households": 8000,
+  "cumulative_gwh": 573
+ }
+}

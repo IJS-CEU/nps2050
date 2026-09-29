@@ -1,0 +1,115 @@
+---
+/**
+ * Energetska revščina v številkah (izrisano ob gradnji, brez JS): pot deleža energetsko revnih gospodinjstev
+ * 2024 → 2050, število gospodinjstev in oseb, znaki stiske in delež po tipu gospodinjstva.
+ * Vir: public/data/revscina.json (osnutek NPS 2050, pogl. 2.4 in povzetek; podatki SURS).
+ */
+import Icon from './Icon.astro';
+import { withBase } from '../i18n/routes';
+import { loadData, type Revscina } from '../lib/data';
+import { nf } from '../lib/format';
+
+const d = loadData<Revscina>('revscina');
+const s = d.share;
+const MAX = 8; // os deleža v odstotkih
+const steps = [
+  { year: 2024, v: s.base, label: `${nf(s.base, 1)} %`, note: 'stanje' },
+  { year: 2030, v: s.target_2030[1], lo: s.target_2030[0], label: `${nf(s.target_2030[0], 1)}–${nf(s.target_2030[1], 1)} %`, note: 'cilj' },
+  { year: 2040, v: s.target_2040, label: `≤ ${nf(s.target_2040, 1)} %`, note: 'cilj' },
+  { year: 2050, v: s.target_2050, label: `≤ ${nf(s.target_2050, 1)} %`, note: 'cilj' },
+];
+const c = d.counts_2024;
+const signs = [
+  { icon: 'house', v: c.leaks_damp, l: 'gospodinjstev živi v stanovanju s puščajočo streho, vlažnimi stenami ali trhlimi okni' },
+  { icon: 'receipt-euro', v: c.arrears, l: 'gospodinjstev je zaradi finančne stiske zamujalo s plačili stanovanjskih stroškov' },
+  { icon: 'thermometer-snowflake', v: c.cannot_heat, l: 'gospodinjstev si ne more privoščiti primerno ogrevanega stanovanja' },
+];
+const types = [...d.by_type_2024].sort((a, b) => b.pct - a.pct);
+const tmax = Math.max(...types.map((t) => t.pct));
+---
+<div class="rv">
+  <div class="rv-head">
+    <div class="rv-big"><b>{nf(c.households)}</b><span>energetsko revnih gospodinjstev leta 2024</span></div>
+    <div class="rv-big"><b>{nf(c.persons)}</b><span>oseb živi v njih</span></div>
+    <div class="rv-big"><b>{nf(s.base, 1)} %</b><span>vseh gospodinjstev</span></div>
+  </div>
+
+  <section class="rv-box" aria-labelledby="rv-path-t">
+    <h3 id="rv-path-t">Cilj: delež energetsko revnih gospodinjstev do leta 2050</h3>
+    <ol class="rv-path">
+      {steps.map((x) => (
+        <li>
+          <span class="rv-bar" aria-hidden="true">
+            {x.lo !== undefined && <i class="rv-range" style={`height:${(100 * x.v) / MAX}%`}></i>}
+            <i class={x.note === 'stanje' ? 'rv-now' : 'rv-goal'} style={`height:${(100 * (x.lo ?? x.v)) / MAX}%`}></i>
+          </span>
+          <b>{x.label}</b>
+          <span class="rv-y">{x.year}<small>{x.note}</small></span>
+        </li>
+      ))}
+    </ol>
+    <p class="note">Cilj za leto 2030 izhaja iz Akcijskega načrta za zmanjševanje energetske revščine, cilja za leti 2040 in 2050 predlaga NPS 2050. Delež se ne more znižati na nič, ker del vzrokov izhaja iz nizkih dohodkov, ne iz stanja stavbe.</p>
+  </section>
+
+  <section class="rv-box" aria-labelledby="rv-signs-t">
+    <h3 id="rv-signs-t">Znaki stiske (2024)</h3>
+    <ul class="rv-signs">
+      {signs.map((x) => (
+        <li><span class="rv-ic"><Icon name={x.icon} size={22} /></span><b>{nf(x.v)}</b><span>{x.l}</span></li>
+      ))}
+    </ul>
+    <p class="note">Ocene SURS za leto 2024. Skupine se prekrivajo, zato se ne seštevajo.</p>
+  </section>
+
+  <section class="rv-box" aria-labelledby="rv-type-t">
+    <h3 id="rv-type-t">Kdo je najbolj izpostavljen</h3>
+    <p class="rv-sub">Delež energetsko revnih gospodinjstev po tipu gospodinjstva, 2024</p>
+    <table class="rv-types">
+      <caption class="visually-hidden">Delež energetsko revnih gospodinjstev po tipu gospodinjstva, 2024, v odstotkih</caption>
+      <thead class="visually-hidden"><tr><th scope="col">Tip gospodinjstva</th><th scope="col">Delež</th></tr></thead>
+      <tbody>
+        {types.map((t) => (
+          <tr class={t.pct > s.base ? 'is-high' : ''}>
+            <th scope="row">{t.name}</th>
+            <td><span class="rv-t-bar" style={`width:${(100 * t.pct) / tmax}%`} aria-hidden="true"></span><span class="rv-t-v">{nf(t.pct, 1)} %</span></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="note">Poudarjeni so tipi nad povprečjem ({nf(s.base, 1)} %). Vir: SURS. <a href={withBase('data/csv/revscina_tip_gospodinjstva.csv')} download>Prenesi CSV</a></p>
+  </section>
+</div>
+
+<style>
+  .rv { display: grid; gap: 1.2rem; margin: 1.2rem 0 2rem; max-width: 72rem; }
+  .rv-head { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: .8rem; }
+  .rv-big { background: var(--greenbg); border-radius: 14px; padding: 1rem 1.2rem; display: grid; gap: .2rem; }
+  .rv-big b { font-size: 2rem; font-weight: 800; color: var(--green); line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .rv-big span { font-size: .88rem; color: var(--ink2); }
+  .rv-box { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1.2rem 1.3rem; }
+  .rv-box h3 { margin: 0 0 .6rem; font-size: 1.08rem; }
+  .rv-sub { color: var(--ink2); font-size: .86rem; margin: -.3rem 0 .7rem; }
+  .rv-path { list-style: none; padding: 0; margin: .4rem 0 .6rem; max-width: 34rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; }
+  .rv-path li { display: grid; justify-items: center; gap: .3rem; text-align: center; }
+  .rv-bar { position: relative; width: 56%; height: 150px; border-bottom: 2px solid var(--chart-axis); }
+  .rv-bar i { position: absolute; left: 0; right: 0; bottom: 0; border-radius: 4px 4px 0 0; }
+  .rv-now { background: var(--s-ref); }
+  .rv-goal { background: var(--green); }
+  .rv-range { background: repeating-linear-gradient(135deg, var(--greenbg) 0 5px, transparent 5px 9px); box-shadow: inset 0 0 0 1.5px var(--green); }
+  .rv-path b { font-size: 1.02rem; font-variant-numeric: tabular-nums; }
+  .rv-y { font-weight: 700; color: var(--ink2); font-size: .88rem; display: grid; }
+  .rv-y small { font-weight: 600; font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; }
+  .rv-signs { list-style: none; padding: 0; margin: 0; max-width: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: .8rem; }
+  .rv-signs li { display: grid; grid-template-columns: auto 1fr; gap: .1rem .7rem; align-items: center; }
+  .rv-ic { grid-row: 1 / 3; width: 2.8rem; height: 2.8rem; border-radius: 12px; display: grid; place-items: center; background: var(--amberbg); color: var(--amber); }
+  .rv-signs b { font-size: 1.4rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .rv-signs span:last-child { font-size: .84rem; color: var(--ink2); line-height: 1.35; }
+  .rv-types { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  .rv-types th { text-align: left; font-weight: 500; padding: .3rem .8rem .3rem 0; width: 48%; border: 0; }
+  .rv-types td { padding: .3rem 0; border: 0; display: flex; align-items: center; gap: .5rem; }
+  .rv-t-bar { height: 14px; border-radius: 3px; background: var(--s-info); display: block; }
+  .rv-types .is-high .rv-t-bar { background: var(--s-ref); }
+  .rv-types .is-high th { font-weight: 700; }
+  .rv-t-v { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  @media (max-width: 560px) { .rv-types th { width: 55%; font-size: .8rem; } .rv-bar { height: 110px; } }
+</style>

@@ -8,10 +8,11 @@ import { GraphicComponent, GridComponent, LegendComponent, TooltipComponent, Vis
 import { LabelLayout } from 'echarts/features';
 import { SVGRenderer } from 'echarts/renderers';
 import { esc, nf } from '../../lib/format';
+import { loadJson } from '../../lib/load';
 
 echarts.use([BarChart, LineChart, MapChart, SankeyChart, ScatterChart, GraphicComponent, GridComponent, LegendComponent, TooltipComponent, VisualMapComponent, LabelLayout, SVGRenderer]);
 
-export { echarts, esc, nf };
+export { echarts, esc, loadJson, nf };
 export type Option = echarts.EChartsCoreOption;
 
 export interface Tokens {
@@ -33,13 +34,6 @@ export function tokens(width = 800): Tokens {
     grid: v('--chart-grid'), axis: v('--chart-axis'), s,
     font: "'Manrope Variable', system-ui, -apple-system, 'Segoe UI', sans-serif",
   };
-}
-
-export async function loadJson<T>(name: string): Promise<T> {
-  const b = import.meta.env.BASE_URL;
-  const res = await fetch(`${b.endsWith('/') ? b : b + '/'}data/${name}.json`);
-  if (!res.ok) throw new Error(`${name}.json: ${res.status}`);
-  return res.json() as Promise<T>;
 }
 
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;

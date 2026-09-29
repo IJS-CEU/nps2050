@@ -1,0 +1,63 @@
+{
+ "meta": {
+  "draft": "NPS_v39",
+  "draft_date": "2026-09-29",
+  "generated": "2026-09-29",
+  "sources": [
+   "NPS_v39: preglednica »Specifična raba končne energije po razredih toplotnih potreb in prihranek celovite energetske prenove na raven razreda B1« (pogl. 4.1.1)"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Model RenRates, povprečje arhetipov. Razredi so razredi toplotnih potreb, raba je končna energija v kWh/(m²·a)."
+ },
+ "after": {
+  "sfh": 71,
+  "mfh": 40
+ },
+ "rows": [
+  {
+   "class": "G",
+   "area_mio_m2": 0.22,
+   "sfh_use": 761,
+   "sfh_saving": 690,
+   "mfh_use": 327,
+   "mfh_saving": 287,
+   "per_euro_vs_c": "7,5-krat"
+  },
+  {
+   "class": "F",
+   "area_mio_m2": 1.65,
+   "sfh_use": 465,
+   "sfh_saving": 394,
+   "mfh_use": 237,
+   "mfh_saving": 197,
+   "per_euro_vs_c": "4,3-krat"
+  },
+  {
+   "class": "E",
+   "area_mio_m2": 5.11,
+   "sfh_use": 345,
+   "sfh_saving": 274,
+   "mfh_use": 189,
+   "mfh_saving": 149,
+   "per_euro_vs_c": "3,0-krat"
+  },
+  {
+   "class": "D",
+   "area_mio_m2": 9.23,
+   "sfh_use": 241,
+   "sfh_saving": 170,
+   "mfh_use": 152,
+   "mfh_saving": 112,
+   "per_euro_vs_c": "1,8-krat"
+  },
+  {
+   "class": "C",
+   "area_mio_m2": 12.93,
+   "sfh_use": 163,
+   "sfh_saving": 92,
+   "mfh_use": 120,
+   "mfh_saving": 80,
+   "per_euro_vs_c": "1,0-krat"
+  }
+ ]
+}
