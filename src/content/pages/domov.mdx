@@ -5,15 +5,15 @@ description: 'Strokovne podlage IJS CEU za Nacionalni načrt prenove stavb NPS 2
 lead: 'NPS 2050 določa, koliko energije bodo porabile slovenske stavbe v letih 2030, 2040 in 2050, katere stavbe se prenovijo najprej in kako se prenova financira. Na tej strani so strokovne podlage, na katerih načrt temelji.'
 ---
 import Vstopi from '../../components/home/Vstopi.astro';
-import HitroPreveri from '../../components/home/HitroPreveri.astro';
+import Izpostavljeno from '../../components/home/Izpostavljeno.astro';
 import Rubrike from '../../components/home/Rubrike.astro';
 import Tiles from '../../components/Tiles.astro';
 
-{/* Zgradba naslovne strani potrjena 29. 9. 2026: dva vstopa, orodje, pet številk, ostale rubrike. Številke v ploščicah bere komponenta iz public/data/kazalniki.json (NPS_v38, povzetek). */}
+{/* Zgradba naslovne strani potrjena 29. 9. 2026: dva vstopa, pas izpostavljenih vsebin (orodje, energetska revščina, PDF, slovar), pet številk, ostale rubrike. Številke v ploščicah bere komponenta iz public/data/kazalniki.json (NPS_v38, povzetek). */}
 
 <Vstopi />
 
-<HitroPreveri />
+<Izpostavljeno />
 
 ## Cilji v petih številkah
 

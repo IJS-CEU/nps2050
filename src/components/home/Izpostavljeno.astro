@@ -1,0 +1,60 @@
+---
+/**
+ * Pas »Izpostavljeno« na naslovni strani: kartice z ikono do orodja, energetske revščine, PDF povzetka, strani za medije in slovarja.
+ * Nadomešča samostojni obrazec za preverjanje stavbe (orodje je zdaj ena od kartic).
+ */
+import { existsSync, statSync } from 'node:fs';
+import { resolve } from 'node:path';
+import Icon from '../Icon.astro';
+import { pageUrl, withBase } from '../../i18n/routes';
+import { izrazi } from '../../lib/slovar';
+
+const pdf = resolve(process.cwd(), 'public', 'nps2050-povzetek.pdf');
+const pdfMb = existsSync(pdf) ? (statSync(pdf).size / 1e6).toFixed(1).replace('.', ',') : null;
+
+const cards = [
+  { href: pageUrl('preveri'), icon: 'house', kicker: 'Orodje', title: 'Preverite svojo stavbo',
+    text: 'V kateri razred sodi vaša stavba, katere pragove izpolnjuje in koliko energije bi prihranila celovita prenova.' },
+  { href: pageUrl('revscina'), icon: 'hand-heart', kicker: 'Tema', title: 'Energetska revščina',
+    text: 'Koliko gospodinjstev je prizadetih, kakšni so cilji do leta 2050 in katere spodbude so na voljo.' },
+  { href: withBase('nps2050-povzetek.pdf'), icon: 'file-text', kicker: pdfMb ? `PDF · ${pdfMb} MB` : 'PDF', title: 'Povzetek na petih straneh',
+    text: 'Cilji, kaj načrt pomeni za lastnike, ukrepi, denar in energetska revščina – za tisk ali sestanek.', download: true },
+  { href: pageUrl('mediji'), icon: 'newspaper', kicker: 'Za novinarje', title: 'Za medije',
+    text: 'Ključne številke, grafi za prosto uporabo z navedbo vira in kontakt.' },
+  { href: pageUrl('slovar'), icon: 'book-open', kicker: `${izrazi.length} izrazov`, title: 'Slovar izrazov',
+    text: 'Kaj pomenijo brezemisijska stavba, primarna energija, minimalni standardi in druge kratice.' },
+];
+---
+<section class="izp" aria-labelledby="izp-t">
+  <h2 id="izp-t">Izpostavljeno</h2>
+  <ul class="izp-grid">
+    {cards.map((c) => (
+      <li class="izp-c">
+        <span class="izp-ic"><Icon name={c.icon} size={24} /></span>
+        <p class="izp-k">{c.kicker}</p>
+        <h3><a href={c.href} download={c.download ? '' : undefined}>{c.title}</a></h3>
+        <p class="izp-x">{c.text}</p>
+        <span class="izp-go" aria-hidden="true">{c.download ? 'Prenesi ↓' : 'Odpri →'}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .izp { background: var(--greenbg); border-radius: 16px; padding: 1.5rem 1.6rem 1.6rem; margin: 0 0 2.6rem; }
+  .izp h2 { font-size: 1.45rem; margin: 0 0 1rem; }
+  .izp-grid { list-style: none; padding: 0; margin: 0; max-width: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .9rem; }
+  @media (min-width: 980px) { .izp-grid { grid-template-columns: repeat(5, 1fr); gap: .75rem; } }
+  .izp-c { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1rem 1rem 2.4rem; display: grid; align-content: start; gap: .35rem; transition: border-color .15s, transform .15s; }
+  .izp-c:hover, .izp-c:focus-within { border-color: var(--green); transform: translateY(-2px); }
+  .izp-ic { width: 2.8rem; height: 2.8rem; border-radius: 12px; display: grid; place-items: center; background: var(--greenbg); color: var(--green); margin-bottom: .3rem; }
+  .izp-k { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--green); margin: 0; }
+  .izp-c h3 { margin: 0; font-size: 1.1rem; }
+  .izp-c h3 a { color: var(--ink); text-decoration: none; }
+  .izp-c h3 a::after { content: ''; position: absolute; inset: 0; border-radius: 14px; }
+  .izp-c h3 a:focus-visible { outline: none; }
+  .izp-c h3 a:focus-visible::after { outline: 2px solid var(--green); outline-offset: 2px; }
+  .izp-x { font-size: .88rem; color: var(--ink2); margin: 0; }
+  .izp-go { position: absolute; left: 1rem; bottom: .9rem; font-size: .82rem; font-weight: 700; color: var(--green); }
+  @media (prefers-reduced-motion: reduce) { .izp-c { transition: none; } .izp-c:hover { transform: none; } }
+</style>
