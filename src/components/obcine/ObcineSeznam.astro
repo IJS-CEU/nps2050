@@ -75,6 +75,9 @@ const cell = (v: unknown, pct?: boolean, dec?: number) => (v === null || v === u
       n.textContent = s ? `Zadetkov: ${k}` : `${rows.length} občin`;
     };
     q.addEventListener('input', upd);
+    // iskalnik z naslovne strani brez JS pošlje ?obcina=…
+    const pre = new URLSearchParams(location.search).get('obcina');
+    if (pre) { q.value = pre; document.getElementById('obs-t')?.scrollIntoView(); }
     upd();
     tbl.querySelectorAll<HTMLButtonElement>('.obs-sort').forEach((btn) => btn.addEventListener('click', () => {
       const th = btn.closest('th')!;

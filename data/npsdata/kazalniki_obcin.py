@@ -3,7 +3,8 @@
 - Emisijski faktorji: RenRates (7_Carriers, 2025); daljinska toplota po občini glede na delež OVE sistema (AGEN-RS 2025).
   Vsota po sektorju (stanovanjski, storitveni) se umeri na osnutek NPS 2050 (emisije 2023).
 - Delež OVE: lesna biomasa + toplota okolice in sončna energija + delež OVE v elektriki + delež OVE v daljinski toploti občine.
-  Delež OVE v elektriki se po sektorju umeri tako, da se država ujema z osnutkom (stanovanjski 60 %, storitveni 33 %, 2023).
+  Delež OVE v elektriki je en sam za državo in je umerjen tako, da se vse stavbe skupaj ujemajo z osnutkom (52 %, 2023);
+  deleža po sektorjih sta rezultat mešanice energentov.
 - Prebivalci: SURS, stanje 1. 1. 2026.
 """
 import json
@@ -60,13 +61,17 @@ def build(ctx, res: pd.DataFrame, nres: pd.DataFrame, muni: dict, pop_path) -> d
     sdh = sdh.fillna(s_bar)  # občine z daljinsko toploto brez podatka AGEN-RS: državno povprečje
     ef_dh = EF['dh'] * (1 - sdh) / (1 - s_bar)
 
+    ove_all = num(row(t33, r'^Stavbe skupaj')[2]) / 100
+    fe_all = sum(A.sum(1).sum() for A in agg.values())
+    rd_all = sum((A.bio + A.amb + A.dh * sdh).sum() for A in agg.values())
+    s_el = (ove_all * fe_all - rd_all) / sum(A.el.sum() for A in agg.values())
+    ctx.check(0 <= s_el <= 1, f'kazalniki: umerjen delež OVE v elektriki (en za državo) {100 * s_el:.1f} %')
     res_out = {}
     for k, A in agg.items():
         fe = A.sum(1)
         ren_direct = A.bio + A.amb + A.dh * sdh
-        s_el = (ove_t[k] * fe.sum() - ren_direct.sum()) / A.el.sum()
-        ctx.check(0 <= s_el <= 1, f'kazalniki: umerjen delež OVE v elektriki ({k}) {100 * s_el:.1f} %')
         ove = ren_direct + A.el * s_el
+        ctx.warn_unless(abs(ove.sum() / fe.sum() - ove_t[k]) < 0.05, f'kazalniki: delež OVE ({k}) {100 * ove.sum() / fe.sum():.1f} % ob enotnem deležu OVE v elektriki; osnutek {100 * ove_t[k]:.0f} %')
         tgp_raw = sum(A[c] * EF[c] for c in C if c != 'dh') + A.dh * ef_dh
         kf = tgp_t[k] / tgp_raw.sum()
         ctx.check(0.6 < kf < 1.6, f'kazalniki: umeritev emisij ({k}) faktor {kf:.2f}')
@@ -104,7 +109,7 @@ def build(ctx, res: pd.DataFrame, nres: pd.DataFrame, muni: dict, pop_path) -> d
         b['dh_ove_pct'] = round(100 * s_dh[eid], 1) if eid in s_dh else None
         out[str(sifra)] = b
     si = block(ids, si_pop)
-    si['s_el_pct'] = {k: round(100 * v['s_el'], 1) for k, v in res_out.items()}
+    si['s_el_pct'] = round(100 * res_out['res']['s_el'], 1)
     si['dh_ove_pct'] = round(100 * s_bar, 1)
     ctx.check(abs(si['tgp_kt']['total'] - (tgp_t['res'] + tgp_t['nres']) / 1e6) < 1, f'kazalniki: emisije vseh stavb {si["tgp_kt"]["total"]} kt = osnutek')
     return {'si': si, 'municipalities': out, 'pop_period': pop.get('polletje')}

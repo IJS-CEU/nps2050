@@ -176,6 +176,7 @@ def build(ctx: Context) -> dict:
         'municipalities': index,
     }
     write_json('obcine_index', data)
+    _mini_map(ob)
     write_csv('obcine', ['občina', 'šifra', 'stavbe', 'površina [tisoč m²]', 'stanovanjska površina z izkaznico [%]', 'hiše z izkaznico [%]',
                          'stanovanjske stavbe z izkaznico nad pragom 43 % [%]', 'stanovanjske stavbe z ukrepom Eko sklada [%]',
                          'stanovanjske stavbe z vpisano obnovo v katastru [%]', 'stanovanjska površina pred 1981 [%]'],
@@ -194,3 +195,20 @@ def _sources():
 _NOTE = (f'Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsaj {MIN_EI} izkaznicah. Razredi A–G so določeni iz primarne energije '
          'računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). '
          'Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom.')
+
+
+def _mini_map(ob: dict, tol: float = 0.005, width: int = 1000):
+    """Poenostavljene meje občin kot poti SVG (za naslovno stran), v preprosti projekciji (dolžina × cos 46°)."""
+    import math
+    from shapely.geometry import shape
+    k = math.cos(math.radians(46.1))
+    geoms = [(int(f['properties']['SIFRA']), shape(f['geometry']).simplify(tol, preserve_topology=True)) for f in ob['features']]
+    minx = min(g.bounds[0] for _, g in geoms) * k; maxx = max(g.bounds[2] for _, g in geoms) * k
+    miny = min(g.bounds[1] for _, g in geoms); maxy = max(g.bounds[3] for _, g in geoms)
+    sc = width / (maxx - minx)
+    ring = lambda c: 'M' + 'L'.join(f'{(x * k - minx) * sc:.0f},{(maxy - y) * sc:.0f}' for x, y in c) + 'Z'
+    paths = {}
+    for sifra, g in geoms:
+        polys = [g] if g.geom_type == 'Polygon' else list(g.geoms)
+        paths[str(sifra)] = ''.join(ring(p.exterior.coords) for p in polys)
+    (OUT / 'obcine_mini.json').write_text(json.dumps({'w': width, 'h': round((maxy - miny) * sc), 'paths': paths}, separators=(',', ':')), encoding='utf-8')

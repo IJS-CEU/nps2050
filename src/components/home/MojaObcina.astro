@@ -1,0 +1,108 @@
+---
+/**
+ * Izpostavljeni pas »Moja občina« na naslovni strani: iskalnik občine in zemljevid vseh 212 občin (statični SVG,
+ * vsaka občina je povezava na svojo stran), obarvan po deležu obnovljivih virov v rabi energije stavb (ocena modela).
+ * Zemljevid je za miško; enakovreden dostop s tipkovnico in bralnikom zaslona sta iskalnik in seznam občin.
+ */
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { pageUrl, withBase } from '../../i18n/routes';
+import { loadData, type ObcineIndex } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+const ix = loadData<ObcineIndex>('obcine_index');
+const mini = JSON.parse(readFileSync(resolve(process.cwd(), 'public', 'data', 'obcine_mini.json'), 'utf-8')) as { w: number; h: number; paths: Record<string, string> };
+const vals = ix.municipalities.map((m) => m.k_ove_pct).sort((a, b) => a - b);
+const q = (p: number) => vals[Math.min(vals.length - 1, Math.floor(p * vals.length))];
+const br = [0.2, 0.4, 0.6, 0.8].map((p) => Math.round(q(p)));
+const cls = (v: number) => br.filter((b) => v > b).length + 1;
+const labels = [`do ${br[0]} %`, `${br[0]}–${br[1]} %`, `${br[1]}–${br[2]} %`, `${br[2]}–${br[3]} %`, `nad ${br[3]} %`];
+const sorted = [...ix.municipalities].sort((a, b) => a.name.localeCompare(b.name, 'sl'));
+const si = ix.si;
+---
+<section class="mo" aria-labelledby="mo-t">
+  <div class="mo-text">
+    <p class="mo-k"><span class="mo-new">Novo</span> Moja občina</p>
+    <h2 id="mo-t">Kako so stavbe v vaši občini?</h2>
+    <p class="mo-lead">Za vseh 212 občin: koliko energije porabijo stavbe, koliko emisij povzročijo, koliko energije je iz obnovljivih virov, v katerih energijskih razredih so hiše in bloki ter koliko prenov je že izvedenih. Vse primerjano s Slovenijo.</p>
+    <form class="mo-form" action={pageUrl('obcine')} method="get" id="mo-form">
+      <label for="mo-q">Vaša občina</label>
+      <div class="mo-row">
+        <input id="mo-q" name="obcina" list="mo-list" autocomplete="off" placeholder="npr. Celje" />
+        <button type="submit" class="btn primary">Odpri</button>
+      </div>
+      <datalist id="mo-list">{sorted.map((m) => <option value={m.name}></option>)}</datalist>
+      <p class="mo-err" id="mo-err" role="alert" hidden>Občine s tem imenom ni. Izberite jo s seznama ali odprite <a href={pageUrl('obcine')}>vse občine</a>.</p>
+    </form>
+    <dl class="mo-si">
+      <div><dt>Slovenija</dt><dd><b>{nf(si.k_fe_mwh_preb, 1)}</b> MWh energije stavb na prebivalca</dd></div>
+      <div><dt></dt><dd><b>{nf(si.k_tgp_t_preb, 1)}</b> t CO₂ ekv. na prebivalca</dd></div>
+      <div><dt></dt><dd><b>{nf(si.k_ove_pct, 0)} %</b> iz obnovljivih virov</dd></div>
+    </dl>
+    <p class="mo-more"><a href={pageUrl('obcine')}>Vse občine na zemljevidu in v preglednici →</a></p>
+  </div>
+  <figure class="mo-map">
+    <svg viewBox={`0 0 ${mini.w} ${mini.h}`} aria-hidden="true" focusable="false">
+      {ix.municipalities.map((m) => (
+        <a href={withBase(`obcina/${m.sifra}/`)} tabindex="-1">
+          <path d={mini.paths[String(m.sifra)]} class={`mo-c${cls(m.k_ove_pct)}`}><title>{m.name}: {nf(m.k_ove_pct, 0)} % obnovljivih virov</title></path>
+        </a>
+      ))}
+    </svg>
+    <figcaption>
+      <span class="mo-leg">{labels.map((l, i) => <span><i class={`mo-c${i + 1}`}></i>{l}</span>)}</span>
+      Delež obnovljivih virov v rabi energije stavb (ocena modela). Kliknite občino.
+    </figcaption>
+  </figure>
+</section>
+
+<style>
+  .mo { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 1.5rem 2.5rem; align-items: center;
+    background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--green); border-radius: 16px; padding: 1.8rem 2rem; margin: 0 0 2.6rem; }
+  @media (max-width: 880px) { .mo { grid-template-columns: 1fr; padding: 1.4rem 1.2rem; } }
+  .mo-k { display: flex; align-items: center; gap: .5rem; font-size: .76rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin: 0 0 .4rem; }
+  .mo-new { background: var(--green); color: var(--on-green); border-radius: 999px; padding: .1rem .55rem; letter-spacing: .06em; }
+  .mo h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 .6rem; }
+  .mo-lead { color: var(--ink2); margin: 0 0 1.1rem; }
+  .mo-form label { font-size: .82rem; font-weight: 700; color: var(--ink2); }
+  .mo-row { display: flex; gap: .5rem; margin-top: .25rem; }
+  .mo-row input { flex: 1; min-width: 0; font: inherit; font-size: 1rem; padding: .55rem .7rem; border: 1px solid var(--ink2); border-radius: 8px; background: var(--bg); color: var(--ink); }
+  .mo-row .btn { cursor: pointer; font: inherit; font-weight: 700; padding: .55rem 1.2rem; }
+  .mo-err { font-size: .85rem; color: var(--amber); margin: .4rem 0 0; }
+  .mo-si { display: grid; gap: .15rem; margin: 1.2rem 0 .6rem; }
+  .mo-si div { display: grid; grid-template-columns: 5.5rem 1fr; gap: .5rem; }
+  .mo-si dt { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--ink2); padding-top: .2rem; }
+  .mo-si dd { margin: 0; font-size: .92rem; color: var(--ink2); }
+  .mo-si b { color: var(--ink); font-size: 1.1rem; }
+  .mo-more { margin: .4rem 0 0; font-weight: 700; }
+  .mo-map { margin: 0; }
+  .mo-map svg { width: 100%; height: auto; display: block; }
+  .mo-map path { stroke: var(--panel); stroke-width: 1; transition: fill .12s; }
+  .mo-map a:hover path { fill: var(--s-ref); }
+  .mo-c1 { fill: var(--map-1); background: var(--map-1); } .mo-c2 { fill: var(--map-2); background: var(--map-2); } .mo-c3 { fill: var(--map-3); background: var(--map-3); }
+  .mo-c4 { fill: var(--map-4); background: var(--map-4); } .mo-c5 { fill: var(--map-5); background: var(--map-5); }
+  .mo-map figcaption { font-size: .8rem; color: var(--ink2); margin-top: .5rem; }
+  .mo-leg { display: flex; flex-wrap: wrap; gap: .2rem .8rem; margin-bottom: .3rem; }
+  .mo-leg span { display: inline-flex; align-items: center; gap: .3rem; }
+  .mo-leg i { width: 12px; height: 10px; border-radius: 2px; display: inline-block; }
+  @media (prefers-reduced-motion: reduce) { .mo-map path { transition: none; } }
+</style>
+
+<script>
+  import { withBase } from '../../i18n/routes';
+  const form = document.getElementById('mo-form') as HTMLFormElement | null;
+  if (form) {
+    const inp = form.querySelector('input') as HTMLInputElement;
+    const err = document.getElementById('mo-err')!;
+    const names = new Map<string, string>();
+    fetch(withBase('data/obcine_index.json')).then((r) => r.json()).then((d) => {
+      for (const m of d.municipalities) names.set(m.name.toLowerCase(), String(m.sifra));
+    });
+    form.addEventListener('submit', (e) => {
+      const s = names.get(inp.value.trim().toLowerCase());
+      if (s) { e.preventDefault(); location.href = withBase(`obcina/${s}/`); }
+      else if (inp.value.trim()) { e.preventDefault(); err.hidden = false; inp.focus(); }
+    });
+    inp.addEventListener('input', () => { err.hidden = true; });
+  }
+</script>

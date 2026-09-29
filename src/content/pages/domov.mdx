@@ -6,10 +6,13 @@ lead: 'NPS 2050 določa, koliko energije bodo porabile slovenske stavbe v letih 
 ---
 import Vstopi from '../../components/home/Vstopi.astro';
 import Izpostavljeno from '../../components/home/Izpostavljeno.astro';
+import MojaObcina from '../../components/home/MojaObcina.astro';
 import Rubrike from '../../components/home/Rubrike.astro';
 import Tiles from '../../components/Tiles.astro';
 
-{/* Zgradba naslovne strani potrjena 29. 9. 2026: dva vstopa, pas izpostavljenih vsebin (orodje, energetska revščina, PDF, slovar), pet številk, ostale rubrike. Številke v ploščicah bere komponenta iz public/data/kazalniki.json (NPS_v38, povzetek). */}
+{/* Zgradba naslovne strani potrjena 29. 9. 2026: pas Moja občina (zemljevid in iskalnik), dva vstopa, pas izpostavljenih vsebin (orodje, energetska revščina, PDF, slovar), pet številk, ostale rubrike. Številke v ploščicah bere komponenta iz public/data/kazalniki.json (NPS_v38, povzetek). */}
+
+<MojaObcina />
 
 <Vstopi />
 

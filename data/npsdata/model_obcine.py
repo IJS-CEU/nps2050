@@ -43,6 +43,7 @@ FP = {'el': 2.5, 'amb': 1.0, 'gas': 1.1, 'elko': 1.1, 'bio': 1.2, 'dh': 1.23}
 KWH_PER_KTOE = 11.63e6
 # Različice uskladitve s toplotno karto (spodnja in zgornja meja faktorja občine); osrednja je druga.
 EI_WEIGHT = 0.85
+EI_SHRINK = 30  # navidezne stavbe državnega povprečja pri krajevni mešanici energentov
 RENOV_FROM = 2010
 VARIANTS = {'brez': (1.0, 1.0), 'osrednja': (0.8, 1.25), 'mocna': (0.6, 1.6)}
 
@@ -256,6 +257,22 @@ def run(ctx: Context, df: pd.DataFrame, rr: dict, fond: dict, tk: pd.Series | No
     share = np.where(osum > 0, other / np.maximum(osum, 1e-9), np.array([[0.2, 0.3, 0.5]]))
     C[np.ix_(no_dh, [2, 3, 4])] += share * C[no_dh][:, [5]]
     C[no_dh, 5] = 0
+    # Krajevni odmik mešanice energentov: za vsako občino in vrsto stavbe razmerje med mešanico v izkaznicah občine in
+    # državno mešanico v izkaznicah (površinsko uteženo, omiljeno z EI_SHRINK navideznimi stavbami državnega povprečja).
+    # Tako hiše v mestih s plinovodom dobijo manj biomase kot hiše na podeželju; državne vsote uskladi korak spodaj.
+    ei_cols = [f'ei_sh_{c}' for c in CARRIERS]
+    for typ in ('HISA', 'BLOKI'):
+        m_typ = (res.cat == typ).to_numpy()
+        e = res.loc[m_typ & res.ei_sh_el.notna().to_numpy(), ['obcina', 'm2'] + ei_cols]
+        nat = (e[ei_cols].mul(e.m2, axis=0).sum() / e.m2.sum()).to_numpy() + 1e-3
+        g = e.groupby('obcina')
+        loc = g.apply(lambda x: pd.Series((x[ei_cols].mul(x.m2, axis=0).sum() / x.m2.sum()).to_numpy())).to_numpy()
+        cnt = g.size().to_numpy()[:, None]
+        mix = (cnt * loc + EI_SHRINK * (nat - 1e-3)) / (cnt + EI_SHRINK) + 1e-3
+        ratio = pd.DataFrame(mix / nat, index=g.size().index)
+        rows = m_typ & np.isin(obc, ratio.index)
+        C[rows] *= ratio.loc[obc[rows]].to_numpy()
+    C *= (tot / np.maximum(C.sum(1), 1e-9))[:, None]
     ei_sh = res[[f'ei_sh_{c}' for c in CARRIERS]].to_numpy()
     has_ei = ~np.isnan(ei_sh).any(1)
     C[has_ei] = ei_sh[has_ei] * tot[has_ei, None]
