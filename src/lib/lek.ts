@@ -7,7 +7,8 @@ import { resolve } from 'node:path';
 import { loadData, type Obcina, type ObcineIndex, type ObcineModel } from './data';
 
 export const LEK_SIGN = '© 2026 Institut »Jožef Stefan«, Center za energetsko učinkovitost (IJS CEU). Izvleček je avtorsko delo in intelektualna lastnina IJS CEU. '
-  + 'Uporaba je dovoljena z navedbo vira: »IJS CEU, strokovne podlage NPS 2050«. Kontakt: ceu@ijs.si.';
+  + 'Uporaba je dovoljena z navedbo vira »IJS CEU, strokovne podlage NPS 2050«, brez predelave in brez komercialne uporabe '
+  + '(CC BY-NC-ND 4.0, https://creativecommons.org/licenses/by-nc-nd/4.0/deed.sl). Kontakt: ceu@ijs.si.';
 
 export function lekData(sifra: string) {
   const ix = loadData<ObcineIndex>('obcine_index');
