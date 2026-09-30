@@ -1,19 +1,42 @@
 ---
 /**
- * Glava naslovne strani po vzoru naslovnice NPS 2050: temno olivno polje z naslovom in pas fotografije mesta
- * (izrez iz naslovnice, brez grba, logotipa in napisov). Ista v obeh temah.
+ * Glava naslovne strani po vzoru naslovnice NPS 2050: temno olivno polje z naslovom, gumboma in blokom »Kje smo«
+ * (faza priprave načrta) ter pas fotografije mesta (izrez iz naslovnice, brez grba, logotipa in napisov). Ista v obeh temah.
  */
-import { withBase } from '../../i18n/routes';
+import { pageUrl, withBase } from '../../i18n/routes';
 import { ui } from '../../i18n/ui';
+import { loadData } from '../../lib/data';
 
 interface Props { title: string; lead?: string }
 const { title, lead } = Astro.props;
+const [y, m, d] = loadData<{ draft_date: string }>('meta').draft_date.split('-').map(Number);
+// Vir: osnutek NPS 2050, pogl. 1 in 9 (časovnica); enako kot na strani Kaj je NPS 2050.
+const steps = [
+  { d: 'December 2025', t: 'Prvi osnutek predložen Evropski komisiji', s: 'done' },
+  { d: 'Jesen 2026', t: 'Javna obravnava osnutka', s: 'now' },
+  { d: '31. 12. 2026', t: 'Končni načrt predložen Evropski komisiji', s: '' },
+];
 ---
 <section class="hero" aria-labelledby="hero-t">
   <div class="hero-text wrap">
-    <p class="hero-eyebrow"><span>{ui.siteSub}</span><span class="hero-tag">Osnutek · 2026</span></p>
-    <h1 id="hero-t">{title}</h1>
-    {lead && <p class="hero-lead">{lead}</p>}
+    <p class="hero-eyebrow"><span>{ui.siteSub}</span><span class="hero-tag">Osnutek z dne {d}. {m}. {y}</span></p>
+    <div class="hero-grid">
+      <div>
+        <h1 id="hero-t">{title}</h1>
+        {lead && <p class="hero-lead">{lead}</p>}
+        <p class="hero-cta">
+          <a class="hero-btn primary" href={pageUrl('kaj-je-nps')}>Kaj je NPS 2050</a>
+          <a class="hero-btn" href={withBase('nps2050-povzetek.pdf')}>Povzetek (PDF)</a>
+        </p>
+      </div>
+      <div class="hero-status">
+        <h2>Kje smo</h2>
+        <ol>
+          {steps.map((s) => <li class={s.s}><span class="hd">{s.d}{s.s === 'now' && <em>zdaj</em>}</span><span class="ht">{s.t}</span></li>)}
+        </ol>
+        <a href={pageUrl('javna-obravnava')}>O javni obravnavi →</a>
+      </div>
+    </div>
   </div>
   <picture class="hero-photo">
     <source type="image/webp" srcset={`${withBase('img/hero-mesto-800.webp')} 800w, ${withBase('img/hero-mesto-1600.webp')} 1600w`} sizes="100vw" />
@@ -26,10 +49,30 @@ const { title, lead } = Astro.props;
   .hero { --olive: #333D22; --gold: #D6B25E; --paper: #F5F2E8; background: var(--olive); color: var(--paper); }
   .hero-text { padding-block: 3.2rem 2.4rem; border-bottom: 1px solid var(--gold); }
   .hero-eyebrow { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: .76rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin: 0 0 1.4rem; max-width: none; }
-  .hero-tag { letter-spacing: .18em; }
+  .hero-tag { letter-spacing: .14em; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 340px); gap: 2rem 3rem; align-items: end; }
   .hero h1 { color: var(--paper); font-size: clamp(2.1rem, 5vw, 3.6rem); max-width: 18ch; line-height: 1.08; }
   .hero-lead { color: #DAD8C9; font-size: 1.1rem; margin: 1.2rem 0 0; max-width: 60ch; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1.6rem 0 0; max-width: none; }
+  .hero-btn { display: inline-block; padding: .6rem 1.15rem; border-radius: 999px; font-weight: 700; font-size: .95rem; text-decoration: none; color: var(--paper); border: 1.5px solid var(--gold); }
+  .hero-btn.primary { background: var(--gold); color: #23290F; }
+  .hero-btn:hover { background: var(--paper); border-color: var(--paper); color: #23290F; }
+  .hero-status { border: 1px solid rgba(214, 178, 94, .55); border-radius: 14px; padding: 1.1rem 1.25rem 1rem; background: rgba(0, 0, 0, .16); }
+  .hero-status h2 { color: var(--gold); font-family: inherit; font-size: .76rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 .9rem; }
+  .hero-status ol { list-style: none; margin: 0 0 .9rem; padding: 0; max-width: none; }
+  .hero-status li { position: relative; padding: 0 0 .95rem 1.5rem; border-left: 2px solid rgba(214, 178, 94, .45); margin-left: .4rem; display: grid; gap: .1rem; }
+  .hero-status li:last-child { padding-bottom: 0; border-left-color: transparent; }
+  .hero-status li::before { content: ""; position: absolute; left: -.47rem; top: .2rem; width: .8rem; height: .8rem; border-radius: 50%; background: var(--olive); border: 2px solid var(--gold); box-sizing: border-box; }
+  .hero-status li.done::before, .hero-status li.now::before { background: var(--gold); }
+  .hero-status li.now::before { box-shadow: 0 0 0 4px rgba(214, 178, 94, .3); }
+  .hero-status .hd { font-size: .8rem; font-weight: 700; color: var(--gold); letter-spacing: .03em; }
+  .hero-status .hd em { font-style: normal; margin-left: .5rem; padding: .05rem .45rem; border-radius: 999px; background: var(--gold); color: #23290F; font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; }
+  .hero-status .ht { font-size: .93rem; line-height: 1.35; color: var(--paper); }
+  .hero-status li.now .ht { font-weight: 700; }
+  .hero-status a { color: var(--gold); font-weight: 700; font-size: .88rem; }
+  .hero-status a:hover { color: var(--paper); }
   .hero-photo { display: block; height: clamp(140px, 22vw, 260px); overflow: hidden; }
   .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; display: block; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
   @media (max-width: 560px) { .hero-text { padding-block: 2.2rem 1.8rem; } .hero-lead { font-size: 1rem; } }
 </style>
