@@ -6,13 +6,15 @@ lead: 'Kaj pomeni prenova stavb za vašo občino? Izberite občino na zemljevidu
 ---
 import ObcineZemljevid from '../../components/obcine/ObcineZemljevid.astro';
 import ObcineSeznam from '../../components/obcine/ObcineSeznam.astro';
-import { withBase } from '../../i18n/routes';
+import { pageUrl, withBase } from '../../i18n/routes';
 
 {/* Vir: CLAUDE.md §10.1. Kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (do 2025); meje razredov in pragovi NPS_v39, pogl. 3 in 4.7. Številke bere cevovod data/npsdata/obcine.py. */}
 
 <ObcineZemljevid />
 
 <ObcineSeznam />
+
+<p><a class="btn primary" href={pageUrl('primerjava')}>Primerjajte občine med seboj</a></p>
 
 ## Kaj je na strani občine
 
@@ -42,6 +44,10 @@ Izkaznico ima le vsaka dvanajsta stanovanjska stavba, veliko prenov pa se izvede
 Za javne in zasebne storitvene stavbe je postopek enak, z arhetipi RenRates za pisarne, trgovine, izobraževanje, zdravstvo, kulturo in šport ter hotele. Kjer je raba izmerjena – v energetskem knjigovodstvu javnega sektorja za leto 2025 ali z merjeno izkaznico –, se uporabi izmerjena vrednost (upoštevajo se le vrednosti med 20 in 800 kWh/m², pri elektriki 80 %, ker raba za naprave ni v obsegu načrta). Druge stavbe se ocenijo z modelom in skupaj uskladijo z osnutkom (javne stavbe 132 ktoe, zasebne storitvene 203 ktoe).
 
 **Emisije** so izračunane z emisijskimi faktorji energentov, za daljinsko toploto po deležu obnovljivih virov sistema v občini (Agencija za energijo, 2025), in umerjene na osnutek (2.142 kt CO₂ ekv. za vse stavbe). **Delež obnovljivih virov** zajame lesno biomaso, toploto okolice, sončno energijo ter obnovljivi del elektrike in daljinske toplote; delež obnovljivih virov v elektriki je en sam za vso državo in umerjen tako, da se vse stavbe skupaj ujemajo z osnutkom (52 %). **Prebivalci** so iz SURS (1. 1. 2026).
+
+**Potencial za daljinsko ogrevanje** je delež potrebne toplote za ogrevanje vseh stavb v občini, ki leži v celicah toplotne karte (100 × 100 m, leto 2020) z gostoto vsaj 250 MWh na hektar na leto. Kazalnik kaže, kje je odjem dovolj gost za daljinsko ogrevanje; ne upošteva obstoječih omrežij, virov toplote in ekonomike posameznega sistema.
+
+**Javne stavbe po vrsti stavbe.** Raba energije na m² je prikazana pri vsaj treh javnih stavbah iste vrste v občini, ker izmerjena raba posamezne stavbe ni javen podatek.
 
 **Kaj ocena pomeni in česa ne.** Ocena je najboljši približek za občino kot celoto, ne za posamezno stavbo. Največja negotovost je pri stavbah brez vseh podatkov (38 % stanovanjskih stavb) in pri ogrevanju tam, kjer ni izkaznic. Razpon ob končni rabi kaže različice brez toplotne karte in z njenim močnejšim vplivom. Rezultati za posamezne stavbe se ne objavijo in ne zapustijo izračuna.
 

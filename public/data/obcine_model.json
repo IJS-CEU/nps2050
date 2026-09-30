@@ -2,11 +2,11 @@
  "meta": {
   "draft": "NPS_v39",
   "draft_date": "2026-09-29",
-  "generated": "2026-09-29",
+  "generated": "2026-09-30",
   "sources": [
    "Model RenRates (arhetipi, razporeditev po razredih toplotnih potreb, specifična končna energija, kalibracija λ na bilanco 2024)",
    "Kataster nepremičnin GURS 2026, register energetskih izkaznic 28. 9. 2026, Eko sklad do 2025",
-   "Toplotna karta potrebne toplote za ogrevanje 2020 (mreža 100 m, vse stavbe)",
+   "Toplotna karta potrebne toplote za ogrevanje 2020 (mreža 100 m, vse stavbe); potencial daljinskega ogrevanja: celice z gostoto vsaj 250 MWh/ha",
    "NPS_v39: preglednice končne in primarne rabe po segmentih ter po energentih, emisij in OVE (2023)",
    "Energetsko knjigovodstvo javnega sektorja (poročila za leto 2025) in merjene energetske izkaznice",
    "AGEN-RS: Energetsko učinkoviti distribucijski sistemi toplote in hladu v letu 2025 (delež OVE po sistemih)",
@@ -123,6 +123,44 @@
     "fe_gwh": 9001.4,
     "tgp_kt": 222.9
    }
+  },
+  "dh_pot": {
+   "q_gwh": 13462.4,
+   "dense_gwh": 5434.8,
+   "pct": 40.4,
+   "ha": 9617
+  },
+  "javne_cat": {
+   "BOLNICA": {
+    "b": 775,
+    "kwh_m2": 409,
+    "meas_pct": 30
+   },
+   "DRUGO": {
+    "b": 4799,
+    "kwh_m2": 123,
+    "meas_pct": 22
+   },
+   "HOTELI": {
+    "b": 1,
+    "kwh_m2": null,
+    "meas_pct": null
+   },
+   "IZOBRAZ": {
+    "b": 2872,
+    "kwh_m2": 150,
+    "meas_pct": 60
+   },
+   "PISARNE": {
+    "b": 1278,
+    "kwh_m2": 113,
+    "meas_pct": 43
+   },
+   "SPORT": {
+    "b": 1459,
+    "kwh_m2": 132,
+    "meas_pct": 38
+   }
   }
  },
  "pop_period": "2026H1",
@@ -155,6 +193,39 @@
    },
    "above43_area_pct": 37.8,
    "known_pct": 5.8,
+   "dh_pot": {
+    "q_gwh": 128.0,
+    "dense_gwh": 37.0,
+    "pct": 28.9,
+    "ha": 87
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 97,
+     "meas_pct": 97
+    },
+    "DRUGO": {
+     "b": 43,
+     "kwh_m2": 100,
+     "meas_pct": 5
+    },
+    "IZOBRAZ": {
+     "b": 37,
+     "kwh_m2": 92,
+     "meas_pct": 68
+    },
+    "PISARNE": {
+     "b": 21,
+     "kwh_m2": 93,
+     "meas_pct": 23
+    },
+    "SPORT": {
+     "b": 19,
+     "kwh_m2": 84,
+     "meas_pct": 33
+    }
+   },
    "vse": {
     "pop": 19977,
     "fe_gwh": {
@@ -300,6 +371,39 @@
    },
    "above43_area_pct": 36.7,
    "known_pct": 7.3,
+   "dh_pot": {
+    "q_gwh": 49.7,
+    "dense_gwh": 3.1,
+    "pct": 6.3,
+    "ha": 9
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 17,
+     "kwh_m2": 107,
+     "meas_pct": 25
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "kwh_m2": 217,
+     "meas_pct": 52
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 147,
+     "meas_pct": 56
+    },
+    "SPORT": {
+     "b": 10,
+     "kwh_m2": 168,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 8078,
     "fe_gwh": {
@@ -445,6 +549,39 @@
    },
    "above43_area_pct": 41.4,
    "known_pct": 8.0,
+   "dh_pot": {
+    "q_gwh": 76.7,
+    "dense_gwh": 32.5,
+    "pct": 42.4,
+    "ha": 76
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 284,
+     "meas_pct": 67
+    },
+    "DRUGO": {
+     "b": 50,
+     "kwh_m2": 155,
+     "meas_pct": 5
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "kwh_m2": 155,
+     "meas_pct": 84
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 161,
+     "meas_pct": 78
+    },
+    "SPORT": {
+     "b": 14,
+     "kwh_m2": 186,
+     "meas_pct": 46
+    }
+   },
    "vse": {
     "pop": 8103,
     "fe_gwh": {
@@ -590,6 +727,39 @@
    },
    "above43_area_pct": 43.0,
    "known_pct": 5.9,
+   "dh_pot": {
+    "q_gwh": 50.5,
+    "dense_gwh": 13.6,
+    "pct": 26.8,
+    "ha": 35
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 37,
+     "kwh_m2": 161,
+     "meas_pct": 13
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 103,
+     "meas_pct": 77
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 68,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 228,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 5216,
     "fe_gwh": {
@@ -735,6 +905,39 @@
    },
    "above43_area_pct": 39.2,
    "known_pct": 8.3,
+   "dh_pot": {
+    "q_gwh": 22.9,
+    "dense_gwh": 5.0,
+    "pct": 21.8,
+    "ha": 13
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 15,
+     "kwh_m2": 169,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 82,
+     "meas_pct": 82
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 121,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 4688,
     "fe_gwh": {
@@ -880,6 +1083,39 @@
    },
    "above43_area_pct": 44.0,
    "known_pct": 6.3,
+   "dh_pot": {
+    "q_gwh": 36.6,
+    "dense_gwh": 14.1,
+    "pct": 38.5,
+    "ha": 33
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 12,
+     "kwh_m2": 124,
+     "meas_pct": 27
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 165,
+     "meas_pct": 97
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 114,
+     "meas_pct": 37
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3052,
     "fe_gwh": {
@@ -1025,6 +1261,39 @@
    },
    "above43_area_pct": 41.0,
    "known_pct": 3.8,
+   "dh_pot": {
+    "q_gwh": 44.3,
+    "dense_gwh": 6.7,
+    "pct": 15.1,
+    "ha": 16
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 25,
+     "kwh_m2": 98,
+     "meas_pct": 3
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 206,
+     "meas_pct": 100
+    },
+    "PISARNE": {
+     "b": 10,
+     "kwh_m2": 83,
+     "meas_pct": 45
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 70,
+     "meas_pct": 13
+    }
+   },
    "vse": {
     "pop": 5564,
     "fe_gwh": {
@@ -1170,6 +1439,39 @@
    },
    "above43_area_pct": 26.0,
    "known_pct": 8.6,
+   "dh_pot": {
+    "q_gwh": 67.6,
+    "dense_gwh": 6.8,
+    "pct": 10.0,
+    "ha": 19
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 20,
+     "kwh_m2": 92,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 181,
+     "meas_pct": 40
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 120,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 153,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 13202,
     "fe_gwh": {
@@ -1315,6 +1617,39 @@
    },
    "above43_area_pct": 37.0,
    "known_pct": 6.8,
+   "dh_pot": {
+    "q_gwh": 182.8,
+    "dense_gwh": 48.2,
+    "pct": 26.4,
+    "ha": 88
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 23,
+     "kwh_m2": 341,
+     "meas_pct": 27
+    },
+    "DRUGO": {
+     "b": 94,
+     "kwh_m2": 154,
+     "meas_pct": 10
+    },
+    "IZOBRAZ": {
+     "b": 21,
+     "kwh_m2": 75,
+     "meas_pct": 48
+    },
+    "PISARNE": {
+     "b": 39,
+     "kwh_m2": 83,
+     "meas_pct": 23
+    },
+    "SPORT": {
+     "b": 17,
+     "kwh_m2": 219,
+     "meas_pct": 58
+    }
+   },
    "vse": {
     "pop": 24412,
     "fe_gwh": {
@@ -1460,6 +1795,39 @@
    },
    "above43_area_pct": 38.1,
    "known_pct": 3.7,
+   "dh_pot": {
+    "q_gwh": 23.8,
+    "dense_gwh": 1.6,
+    "pct": 6.8,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 11,
+     "kwh_m2": 97,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 200,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 84,
+     "meas_pct": 77
+    },
+    "SPORT": {
+     "b": 9,
+     "kwh_m2": 128,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 3908,
     "fe_gwh": {
@@ -1605,6 +1973,39 @@
    },
    "above43_area_pct": 47.3,
    "known_pct": 11.9,
+   "dh_pot": {
+    "q_gwh": 341.0,
+    "dense_gwh": 216.0,
+    "pct": 63.3,
+    "ha": 297
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 20,
+     "kwh_m2": 473,
+     "meas_pct": 23
+    },
+    "DRUGO": {
+     "b": 108,
+     "kwh_m2": 125,
+     "meas_pct": 34
+    },
+    "IZOBRAZ": {
+     "b": 61,
+     "kwh_m2": 180,
+     "meas_pct": 49
+    },
+    "PISARNE": {
+     "b": 23,
+     "kwh_m2": 102,
+     "meas_pct": 37
+    },
+    "SPORT": {
+     "b": 26,
+     "kwh_m2": 131,
+     "meas_pct": 74
+    }
+   },
    "vse": {
     "pop": 49802,
     "fe_gwh": {
@@ -1750,6 +2151,39 @@
    },
    "above43_area_pct": 15.7,
    "known_pct": 4.7,
+   "dh_pot": {
+    "q_gwh": 46.0,
+    "dense_gwh": 5.4,
+    "pct": 11.8,
+    "ha": 11
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 77,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 24,
+     "kwh_m2": 123,
+     "meas_pct": 43
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 125,
+     "meas_pct": 89
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 99,
+     "meas_pct": 93
+    },
+    "SPORT": {
+     "b": 7,
+     "kwh_m2": 131,
+     "meas_pct": 12
+    }
+   },
    "vse": {
     "pop": 8029,
     "fe_gwh": {
@@ -1895,6 +2329,39 @@
    },
    "above43_area_pct": 36.8,
    "known_pct": 6.4,
+   "dh_pot": {
+    "q_gwh": 74.0,
+    "dense_gwh": 16.0,
+    "pct": 21.6,
+    "ha": 33
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 46,
+     "kwh_m2": 137,
+     "meas_pct": 7
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "kwh_m2": 172,
+     "meas_pct": 1
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 106,
+     "meas_pct": 11
+    },
+    "SPORT": {
+     "b": 8,
+     "kwh_m2": 114,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 11899,
     "fe_gwh": {
@@ -2040,6 +2507,39 @@
    },
    "above43_area_pct": 48.4,
    "known_pct": 3.1,
+   "dh_pot": {
+    "q_gwh": 34.9,
+    "dense_gwh": 7.0,
+    "pct": 20.2,
+    "ha": 15
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 32,
+     "kwh_m2": 108,
+     "meas_pct": 21
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 168,
+     "meas_pct": 85
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 100,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 4445,
     "fe_gwh": {
@@ -2185,6 +2685,39 @@
    },
    "above43_area_pct": 33.7,
    "known_pct": 4.0,
+   "dh_pot": {
+    "q_gwh": 26.0,
+    "dense_gwh": 1.5,
+    "pct": 5.8,
+    "ha": 4
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 15,
+     "kwh_m2": 119,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 134,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 167,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 3870,
     "fe_gwh": {
@@ -2330,6 +2863,39 @@
    },
    "above43_area_pct": 50.0,
    "known_pct": 11.0,
+   "dh_pot": {
+    "q_gwh": 19.8,
+    "dense_gwh": 6.0,
+    "pct": 30.3,
+    "ha": 14
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 15,
+     "kwh_m2": 115,
+     "meas_pct": 37
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 110,
+     "meas_pct": 90
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 135,
+     "meas_pct": 57
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 60,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 3001,
     "fe_gwh": {
@@ -2475,6 +3041,39 @@
    },
    "above43_area_pct": 40.3,
    "known_pct": 4.6,
+   "dh_pot": {
+    "q_gwh": 95.5,
+    "dense_gwh": 21.9,
+    "pct": 23.0,
+    "ha": 46
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 7,
+     "kwh_m2": 301,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 56,
+     "kwh_m2": 109,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 25,
+     "kwh_m2": 167,
+     "meas_pct": 5
+    },
+    "PISARNE": {
+     "b": 12,
+     "kwh_m2": 105,
+     "meas_pct": 18
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 94,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 14170,
     "fe_gwh": {
@@ -2620,6 +3219,34 @@
    },
    "above43_area_pct": 26.8,
    "known_pct": 4.5,
+   "dh_pot": {
+    "q_gwh": 13.8,
+    "dense_gwh": 0.6,
+    "pct": 4.6,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 7,
+     "kwh_m2": 152,
+     "meas_pct": 68
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2737,
     "fe_gwh": {
@@ -2765,6 +3392,39 @@
    },
    "above43_area_pct": 34.4,
    "known_pct": 6.8,
+   "dh_pot": {
+    "q_gwh": 29.5,
+    "dense_gwh": 5.8,
+    "pct": 19.7,
+    "ha": 15
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 37,
+     "kwh_m2": 102,
+     "meas_pct": 51
+    },
+    "IZOBRAZ": {
+     "b": 11,
+     "kwh_m2": 80,
+     "meas_pct": 89
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 191,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 4604,
     "fe_gwh": {
@@ -2910,6 +3570,39 @@
    },
    "above43_area_pct": 35.2,
    "known_pct": 5.6,
+   "dh_pot": {
+    "q_gwh": 24.6,
+    "dense_gwh": 2.6,
+    "pct": 10.4,
+    "ha": 4
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 412,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 7,
+     "kwh_m2": 122,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 182,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3946,
     "fe_gwh": {
@@ -3055,6 +3748,34 @@
    },
    "above43_area_pct": 30.7,
    "known_pct": 5.3,
+   "dh_pot": {
+    "q_gwh": 45.0,
+    "dense_gwh": 4.5,
+    "pct": 10.1,
+    "ha": 9
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 21,
+     "kwh_m2": 118,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 84,
+     "meas_pct": 86
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 118,
+     "meas_pct": 32
+    }
+   },
    "vse": {
     "pop": 8068,
     "fe_gwh": {
@@ -3200,6 +3921,34 @@
    },
    "above43_area_pct": 24.9,
    "known_pct": 7.8,
+   "dh_pot": {
+    "q_gwh": 32.5,
+    "dense_gwh": 5.8,
+    "pct": 17.7,
+    "ha": 13
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 14,
+     "kwh_m2": 142,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 156,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 6438,
     "fe_gwh": {
@@ -3345,6 +4094,39 @@
    },
    "above43_area_pct": 35.0,
    "known_pct": 10.2,
+   "dh_pot": {
+    "q_gwh": 208.3,
+    "dense_gwh": 93.3,
+    "pct": 44.8,
+    "ha": 203
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 11,
+     "kwh_m2": 555,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 29,
+     "kwh_m2": 135,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 41,
+     "kwh_m2": 170,
+     "meas_pct": 17
+    },
+    "PISARNE": {
+     "b": 13,
+     "kwh_m2": 119,
+     "meas_pct": 8
+    },
+    "SPORT": {
+     "b": 20,
+     "kwh_m2": 115,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 38326,
     "fe_gwh": {
@@ -3490,6 +4272,39 @@
    },
    "above43_area_pct": 34.6,
    "known_pct": 3.3,
+   "dh_pot": {
+    "q_gwh": 18.5,
+    "dense_gwh": 3.7,
+    "pct": 20.2,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 11,
+     "kwh_m2": 112,
+     "meas_pct": 14
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "kwh_m2": 235,
+     "meas_pct": 94
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2915,
     "fe_gwh": {
@@ -3635,6 +4450,39 @@
    },
    "above43_area_pct": 33.9,
    "known_pct": 8.2,
+   "dh_pot": {
+    "q_gwh": 53.5,
+    "dense_gwh": 14.1,
+    "pct": 26.5,
+    "ha": 32
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 598,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 28,
+     "kwh_m2": 95,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 16,
+     "kwh_m2": 86,
+     "meas_pct": 88
+    },
+    "PISARNE": {
+     "b": 10,
+     "kwh_m2": 125,
+     "meas_pct": 62
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 105,
+     "meas_pct": 10
+    }
+   },
    "vse": {
     "pop": 8773,
     "fe_gwh": {
@@ -3780,6 +4628,39 @@
    },
    "above43_area_pct": 29.6,
    "known_pct": 6.6,
+   "dh_pot": {
+    "q_gwh": 39.9,
+    "dense_gwh": 3.0,
+    "pct": 7.6,
+    "ha": 5
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 8,
+     "kwh_m2": 102,
+     "meas_pct": 33
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "kwh_m2": 104,
+     "meas_pct": 86
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 89,
+     "meas_pct": 83
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 61,
+     "meas_pct": 96
+    }
+   },
    "vse": {
     "pop": 7067,
     "fe_gwh": {
@@ -3925,6 +4806,39 @@
    },
    "above43_area_pct": 34.2,
    "known_pct": 2.8,
+   "dh_pot": {
+    "q_gwh": 45.7,
+    "dense_gwh": 2.9,
+    "pct": 6.3,
+    "ha": 7
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 25,
+     "kwh_m2": 122,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 11,
+     "kwh_m2": 94,
+     "meas_pct": 86
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 116,
+     "meas_pct": 99
+    }
+   },
    "vse": {
     "pop": 7739,
     "fe_gwh": {
@@ -4070,6 +4984,39 @@
    },
    "above43_area_pct": 25.2,
    "known_pct": 3.4,
+   "dh_pot": {
+    "q_gwh": 22.4,
+    "dense_gwh": 1.5,
+    "pct": 6.7,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 18,
+     "kwh_m2": 102,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 8,
+     "kwh_m2": 123,
+     "meas_pct": 71
+    }
+   },
    "vse": {
     "pop": 4212,
     "fe_gwh": {
@@ -4215,6 +5162,39 @@
    },
    "above43_area_pct": 36.4,
    "known_pct": 7.0,
+   "dh_pot": {
+    "q_gwh": 58.7,
+    "dense_gwh": 15.0,
+    "pct": 25.6,
+    "ha": 35
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 434,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 26,
+     "kwh_m2": 81,
+     "meas_pct": 32
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "kwh_m2": 158,
+     "meas_pct": 50
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 120,
+     "meas_pct": 83
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 45,
+     "meas_pct": 24
+    }
+   },
    "vse": {
     "pop": 8555,
     "fe_gwh": {
@@ -4360,6 +5340,34 @@
    },
    "above43_area_pct": 51.3,
    "known_pct": 5.0,
+   "dh_pot": {
+    "q_gwh": 19.0,
+    "dense_gwh": 3.3,
+    "pct": 17.4,
+    "ha": 9
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 8,
+     "kwh_m2": 100,
+     "meas_pct": 15
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 172,
+     "meas_pct": 68
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2534,
     "fe_gwh": {
@@ -4505,6 +5513,39 @@
    },
    "above43_area_pct": 46.7,
    "known_pct": 3.3,
+   "dh_pot": {
+    "q_gwh": 16.8,
+    "dense_gwh": 0.3,
+    "pct": 1.7,
+    "ha": 1
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 22,
+     "kwh_m2": 95,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 199,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 8,
+     "kwh_m2": 165,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 1918,
     "fe_gwh": {
@@ -4650,6 +5691,39 @@
    },
    "above43_area_pct": 28.3,
    "known_pct": 9.0,
+   "dh_pot": {
+    "q_gwh": 104.9,
+    "dense_gwh": 29.6,
+    "pct": 28.2,
+    "ha": 75
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 6,
+     "kwh_m2": 278,
+     "meas_pct": 85
+    },
+    "DRUGO": {
+     "b": 34,
+     "kwh_m2": 142,
+     "meas_pct": 18
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "kwh_m2": 125,
+     "meas_pct": 92
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 89,
+     "meas_pct": 56
+    },
+    "SPORT": {
+     "b": 10,
+     "kwh_m2": 150,
+     "meas_pct": 54
+    }
+   },
    "vse": {
     "pop": 22276,
     "fe_gwh": {
@@ -4795,6 +5869,34 @@
    },
    "above43_area_pct": 49.8,
    "known_pct": 4.6,
+   "dh_pot": {
+    "q_gwh": 11.7,
+    "dense_gwh": 0.0,
+    "pct": 0.0,
+    "ha": 0
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 16,
+     "kwh_m2": 84,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 239,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 183,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 1342,
     "fe_gwh": {
@@ -4940,6 +6042,39 @@
    },
    "above43_area_pct": 53.4,
    "known_pct": 10.9,
+   "dh_pot": {
+    "q_gwh": 50.7,
+    "dense_gwh": 19.6,
+    "pct": 38.5,
+    "ha": 38
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 18,
+     "kwh_m2": 124,
+     "meas_pct": 30
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "kwh_m2": 156,
+     "meas_pct": 100
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 112,
+     "meas_pct": 21
+    },
+    "SPORT": {
+     "b": 16,
+     "kwh_m2": 181,
+     "meas_pct": 41
+    }
+   },
    "vse": {
     "pop": 8755,
     "fe_gwh": {
@@ -5085,6 +6220,39 @@
    },
    "above43_area_pct": 46.9,
    "known_pct": 7.5,
+   "dh_pot": {
+    "q_gwh": 79.8,
+    "dense_gwh": 34.1,
+    "pct": 42.7,
+    "ha": 70
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 6,
+     "kwh_m2": 219,
+     "meas_pct": 94
+    },
+    "DRUGO": {
+     "b": 34,
+     "kwh_m2": 152,
+     "meas_pct": 52
+    },
+    "IZOBRAZ": {
+     "b": 22,
+     "kwh_m2": 127,
+     "meas_pct": 55
+    },
+    "PISARNE": {
+     "b": 7,
+     "kwh_m2": 120,
+     "meas_pct": 59
+    },
+    "SPORT": {
+     "b": 7,
+     "kwh_m2": 109,
+     "meas_pct": 58
+    }
+   },
    "vse": {
     "pop": 11482,
     "fe_gwh": {
@@ -5230,6 +6398,39 @@
    },
    "above43_area_pct": 22.9,
    "known_pct": 8.4,
+   "dh_pot": {
+    "q_gwh": 39.1,
+    "dense_gwh": 3.8,
+    "pct": 9.7,
+    "ha": 10
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 30,
+     "kwh_m2": 199,
+     "meas_pct": 30
+    },
+    "IZOBRAZ": {
+     "b": 13,
+     "kwh_m2": 177,
+     "meas_pct": 12
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 7974,
     "fe_gwh": {
@@ -5375,6 +6576,39 @@
    },
    "above43_area_pct": 29.3,
    "known_pct": 6.0,
+   "dh_pot": {
+    "q_gwh": 95.8,
+    "dense_gwh": 11.5,
+    "pct": 12.0,
+    "ha": 28
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 10,
+     "kwh_m2": 312,
+     "meas_pct": 14
+    },
+    "DRUGO": {
+     "b": 40,
+     "kwh_m2": 134,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 23,
+     "kwh_m2": 138,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 113,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 11,
+     "kwh_m2": 134,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 18272,
     "fe_gwh": {
@@ -5520,6 +6754,39 @@
    },
    "above43_area_pct": 42.6,
    "known_pct": 16.1,
+   "dh_pot": {
+    "q_gwh": 99.1,
+    "dense_gwh": 68.9,
+    "pct": 69.5,
+    "ha": 116
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 6,
+     "kwh_m2": 585,
+     "meas_pct": 11
+    },
+    "DRUGO": {
+     "b": 12,
+     "kwh_m2": 63,
+     "meas_pct": 12
+    },
+    "IZOBRAZ": {
+     "b": 16,
+     "kwh_m2": 96,
+     "meas_pct": 71
+    },
+    "PISARNE": {
+     "b": 11,
+     "kwh_m2": 100,
+     "meas_pct": 26
+    },
+    "SPORT": {
+     "b": 9,
+     "kwh_m2": 81,
+     "meas_pct": 85
+    }
+   },
    "vse": {
     "pop": 16447,
     "fe_gwh": {
@@ -5665,6 +6932,34 @@
    },
    "above43_area_pct": 26.4,
    "known_pct": 3.3,
+   "dh_pot": {
+    "q_gwh": 13.6,
+    "dense_gwh": 0.5,
+    "pct": 3.9,
+    "ha": 1
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 6,
+     "kwh_m2": 92,
+     "meas_pct": 17
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2486,
     "fe_gwh": {
@@ -5810,6 +7105,39 @@
    },
    "above43_area_pct": 58.9,
    "known_pct": 6.0,
+   "dh_pot": {
+    "q_gwh": 42.5,
+    "dense_gwh": 10.4,
+    "pct": 24.5,
+    "ha": 23
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 33,
+     "kwh_m2": 98,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 90,
+     "meas_pct": 60
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 88,
+     "meas_pct": 42
+    },
+    "SPORT": {
+     "b": 7,
+     "kwh_m2": 82,
+     "meas_pct": 90
+    }
+   },
    "vse": {
     "pop": 5047,
     "fe_gwh": {
@@ -5955,6 +7283,39 @@
    },
    "above43_area_pct": 50.1,
    "known_pct": 4.9,
+   "dh_pot": {
+    "q_gwh": 35.8,
+    "dense_gwh": 8.1,
+    "pct": 22.7,
+    "ha": 21
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 28,
+     "kwh_m2": 94,
+     "meas_pct": 22
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "kwh_m2": 207,
+     "meas_pct": 92
+    },
+    "PISARNE": {
+     "b": 7,
+     "kwh_m2": 88,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3964,
     "fe_gwh": {
@@ -6100,6 +7461,39 @@
    },
    "above43_area_pct": 41.1,
    "known_pct": 10.3,
+   "dh_pot": {
+    "q_gwh": 94.8,
+    "dense_gwh": 30.3,
+    "pct": 32.0,
+    "ha": 70
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 4,
+     "kwh_m2": 300,
+     "meas_pct": 61
+    },
+    "DRUGO": {
+     "b": 62,
+     "kwh_m2": 131,
+     "meas_pct": 20
+    },
+    "IZOBRAZ": {
+     "b": 26,
+     "kwh_m2": 121,
+     "meas_pct": 89
+    },
+    "PISARNE": {
+     "b": 20,
+     "kwh_m2": 93,
+     "meas_pct": 26
+    },
+    "SPORT": {
+     "b": 16,
+     "kwh_m2": 111,
+     "meas_pct": 60
+    }
+   },
    "vse": {
     "pop": 15595,
     "fe_gwh": {
@@ -6245,6 +7639,39 @@
    },
    "above43_area_pct": 40.6,
    "known_pct": 3.2,
+   "dh_pot": {
+    "q_gwh": 21.7,
+    "dense_gwh": 1.8,
+    "pct": 8.1,
+    "ha": 5
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 13,
+     "kwh_m2": 88,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 103,
+     "meas_pct": 100
+    },
+    "PISARNE": {
+     "b": 6,
+     "kwh_m2": 119,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 180,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 2996,
     "fe_gwh": {
@@ -6390,6 +7817,39 @@
    },
    "above43_area_pct": 38.1,
    "known_pct": 5.1,
+   "dh_pot": {
+    "q_gwh": 169.5,
+    "dense_gwh": 49.3,
+    "pct": 29.1,
+    "ha": 95
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 13,
+     "kwh_m2": 134,
+     "meas_pct": 66
+    },
+    "DRUGO": {
+     "b": 59,
+     "kwh_m2": 91,
+     "meas_pct": 53
+    },
+    "IZOBRAZ": {
+     "b": 37,
+     "kwh_m2": 166,
+     "meas_pct": 78
+    },
+    "PISARNE": {
+     "b": 23,
+     "kwh_m2": 93,
+     "meas_pct": 51
+    },
+    "SPORT": {
+     "b": 15,
+     "kwh_m2": 116,
+     "meas_pct": 6
+    }
+   },
    "vse": {
     "pop": 26210,
     "fe_gwh": {
@@ -6535,6 +7995,34 @@
    },
    "above43_area_pct": 27.9,
    "known_pct": 7.6,
+   "dh_pot": {
+    "q_gwh": 31.2,
+    "dense_gwh": 1.8,
+    "pct": 5.8,
+    "ha": 5
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 84,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 53,
+     "meas_pct": 92
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 67,
+     "meas_pct": 63
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 5018,
     "fe_gwh": {
@@ -6680,6 +8168,39 @@
    },
    "above43_area_pct": 30.0,
    "known_pct": 8.3,
+   "dh_pot": {
+    "q_gwh": 53.6,
+    "dense_gwh": 13.5,
+    "pct": 25.2,
+    "ha": 30
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 220,
+     "meas_pct": 85
+    },
+    "DRUGO": {
+     "b": 10,
+     "kwh_m2": 95,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "kwh_m2": 133,
+     "meas_pct": 16
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 142,
+     "meas_pct": 81
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 196,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 8674,
     "fe_gwh": {
@@ -6825,6 +8346,39 @@
    },
    "above43_area_pct": 35.0,
    "known_pct": 6.4,
+   "dh_pot": {
+    "q_gwh": 84.6,
+    "dense_gwh": 21.2,
+    "pct": 25.1,
+    "ha": 46
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 4,
+     "kwh_m2": 263,
+     "meas_pct": 79
+    },
+    "DRUGO": {
+     "b": 34,
+     "kwh_m2": 106,
+     "meas_pct": 5
+    },
+    "IZOBRAZ": {
+     "b": 27,
+     "kwh_m2": 88,
+     "meas_pct": 75
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 79,
+     "meas_pct": 89
+    },
+    "SPORT": {
+     "b": 9,
+     "kwh_m2": 166,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 15890,
     "fe_gwh": {
@@ -6970,6 +8524,39 @@
    },
    "above43_area_pct": 44.4,
    "known_pct": 2.9,
+   "dh_pot": {
+    "q_gwh": 18.8,
+    "dense_gwh": 4.0,
+    "pct": 21.1,
+    "ha": 9
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 12,
+     "kwh_m2": 103,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 203,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2476,
     "fe_gwh": {
@@ -7115,6 +8702,39 @@
    },
    "above43_area_pct": 31.2,
    "known_pct": 9.0,
+   "dh_pot": {
+    "q_gwh": 77.1,
+    "dense_gwh": 20.6,
+    "pct": 26.7,
+    "ha": 47
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 292,
+     "meas_pct": 87
+    },
+    "DRUGO": {
+     "b": 30,
+     "kwh_m2": 304,
+     "meas_pct": 44
+    },
+    "IZOBRAZ": {
+     "b": 21,
+     "kwh_m2": 176,
+     "meas_pct": 93
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 149,
+     "meas_pct": 96
+    }
+   },
    "vse": {
     "pop": 15129,
     "fe_gwh": {
@@ -7260,6 +8880,39 @@
    },
    "above43_area_pct": 44.1,
    "known_pct": 4.3,
+   "dh_pot": {
+    "q_gwh": 13.7,
+    "dense_gwh": 1.5,
+    "pct": 10.9,
+    "ha": 4
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 91,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 205,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 115,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1839,
     "fe_gwh": {
@@ -7405,6 +9058,19 @@
    },
    "above43_area_pct": 49.9,
    "known_pct": 2.8,
+   "dh_pot": {
+    "q_gwh": 10.7,
+    "dense_gwh": 2.3,
+    "pct": 21.7,
+    "ha": 7
+   },
+   "javne_cat": {
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 141,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 1396,
     "fe_gwh": {
@@ -7550,6 +9216,39 @@
    },
    "above43_area_pct": 35.3,
    "known_pct": 3.6,
+   "dh_pot": {
+    "q_gwh": 24.5,
+    "dense_gwh": 1.3,
+    "pct": 5.4,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 11,
+     "kwh_m2": 109,
+     "meas_pct": 52
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 69,
+     "meas_pct": 87
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 205,
+     "meas_pct": 98
+    }
+   },
    "vse": {
     "pop": 4009,
     "fe_gwh": {
@@ -7695,6 +9394,39 @@
    },
    "above43_area_pct": 32.7,
    "known_pct": 8.4,
+   "dh_pot": {
+    "q_gwh": 46.7,
+    "dense_gwh": 22.9,
+    "pct": 49.1,
+    "ha": 54
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 7,
+     "kwh_m2": 127,
+     "meas_pct": 44
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 71,
+     "meas_pct": 17
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 10,
+     "kwh_m2": 150,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 8812,
     "fe_gwh": {
@@ -7840,6 +9572,34 @@
    },
    "above43_area_pct": 46.9,
    "known_pct": 14.6,
+   "dh_pot": {
+    "q_gwh": 20.5,
+    "dense_gwh": 9.4,
+    "pct": 45.7,
+    "ha": 19
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 98,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 237,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 86,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 3536,
     "fe_gwh": {
@@ -7985,6 +9745,39 @@
    },
    "above43_area_pct": 31.7,
    "known_pct": 4.1,
+   "dh_pot": {
+    "q_gwh": 25.4,
+    "dense_gwh": 3.2,
+    "pct": 12.7,
+    "ha": 7
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 19,
+     "kwh_m2": 90,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "kwh_m2": 119,
+     "meas_pct": 70
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 9,
+     "kwh_m2": 64,
+     "meas_pct": 75
+    }
+   },
    "vse": {
     "pop": 4489,
     "fe_gwh": {
@@ -8130,6 +9923,34 @@
    },
    "above43_area_pct": 29.3,
    "known_pct": 5.3,
+   "dh_pot": {
+    "q_gwh": 30.2,
+    "dense_gwh": 2.7,
+    "pct": 8.9,
+    "ha": 6
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 10,
+     "kwh_m2": 107,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 170,
+     "meas_pct": 15
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 5683,
     "fe_gwh": {
@@ -8275,6 +10096,39 @@
    },
    "above43_area_pct": 29.9,
    "known_pct": 5.7,
+   "dh_pot": {
+    "q_gwh": 53.3,
+    "dense_gwh": 8.0,
+    "pct": 15.0,
+    "ha": 14
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 47,
+     "kwh_m2": 106,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 14,
+     "kwh_m2": 190,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 75,
+     "meas_pct": 38
+    },
+    "SPORT": {
+     "b": 12,
+     "kwh_m2": 165,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 5967,
     "fe_gwh": {
@@ -8420,6 +10274,39 @@
    },
    "above43_area_pct": 42.4,
    "known_pct": 8.3,
+   "dh_pot": {
+    "q_gwh": 157.3,
+    "dense_gwh": 84.1,
+    "pct": 53.5,
+    "ha": 151
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 21,
+     "kwh_m2": 435,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 48,
+     "kwh_m2": 114,
+     "meas_pct": 35
+    },
+    "IZOBRAZ": {
+     "b": 34,
+     "kwh_m2": 181,
+     "meas_pct": 38
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 74,
+     "meas_pct": 55
+    },
+    "SPORT": {
+     "b": 36,
+     "kwh_m2": 158,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 18317,
     "fe_gwh": {
@@ -8565,6 +10452,39 @@
    },
    "above43_area_pct": 42.7,
    "known_pct": 8.0,
+   "dh_pot": {
+    "q_gwh": 224.2,
+    "dense_gwh": 112.7,
+    "pct": 50.3,
+    "ha": 219
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 15,
+     "kwh_m2": 261,
+     "meas_pct": 32
+    },
+    "DRUGO": {
+     "b": 112,
+     "kwh_m2": 116,
+     "meas_pct": 21
+    },
+    "IZOBRAZ": {
+     "b": 58,
+     "kwh_m2": 130,
+     "meas_pct": 65
+    },
+    "PISARNE": {
+     "b": 32,
+     "kwh_m2": 122,
+     "meas_pct": 58
+    },
+    "SPORT": {
+     "b": 22,
+     "kwh_m2": 96,
+     "meas_pct": 61
+    }
+   },
    "vse": {
     "pop": 31781,
     "fe_gwh": {
@@ -8710,6 +10630,34 @@
    },
    "above43_area_pct": 29.8,
    "known_pct": 2.8,
+   "dh_pot": {
+    "q_gwh": 10.3,
+    "dense_gwh": 0.3,
+    "pct": 3.2,
+    "ha": 1
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 5,
+     "kwh_m2": 133,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 165,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 174,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 1609,
     "fe_gwh": {
@@ -8855,6 +10803,39 @@
    },
    "above43_area_pct": 35.7,
    "known_pct": 4.6,
+   "dh_pot": {
+    "q_gwh": 76.6,
+    "dense_gwh": 14.0,
+    "pct": 18.2,
+    "ha": 29
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 11,
+     "kwh_m2": 408,
+     "meas_pct": 38
+    },
+    "DRUGO": {
+     "b": 51,
+     "kwh_m2": 93,
+     "meas_pct": 21
+    },
+    "IZOBRAZ": {
+     "b": 15,
+     "kwh_m2": 126,
+     "meas_pct": 57
+    },
+    "PISARNE": {
+     "b": 15,
+     "kwh_m2": 95,
+     "meas_pct": 15
+    },
+    "SPORT": {
+     "b": 12,
+     "kwh_m2": 119,
+     "meas_pct": 50
+    }
+   },
    "vse": {
     "pop": 11792,
     "fe_gwh": {
@@ -9000,6 +10981,39 @@
    },
    "above43_area_pct": 28.8,
    "known_pct": 5.6,
+   "dh_pot": {
+    "q_gwh": 47.0,
+    "dense_gwh": 3.9,
+    "pct": 8.3,
+    "ha": 9
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 5,
+     "kwh_m2": 376,
+     "meas_pct": 12
+    },
+    "DRUGO": {
+     "b": 7,
+     "kwh_m2": 88,
+     "meas_pct": 29
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 102,
+     "meas_pct": 53
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 47,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 145,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 7879,
     "fe_gwh": {
@@ -9145,6 +11159,34 @@
    },
    "above43_area_pct": 28.5,
    "known_pct": 4.6,
+   "dh_pot": {
+    "q_gwh": 30.4,
+    "dense_gwh": 6.6,
+    "pct": 21.6,
+    "ha": 12
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 19,
+     "kwh_m2": 87,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 189,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 52,
+     "meas_pct": 80
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 77,
+     "meas_pct": 80
+    }
+   },
    "vse": {
     "pop": 3699,
     "fe_gwh": {
@@ -9290,6 +11332,39 @@
    },
    "above43_area_pct": 35.4,
    "known_pct": 10.0,
+   "dh_pot": {
+    "q_gwh": 104.6,
+    "dense_gwh": 47.7,
+    "pct": 45.6,
+    "ha": 91
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 5,
+     "kwh_m2": 425,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 63,
+     "kwh_m2": 152,
+     "meas_pct": 8
+    },
+    "IZOBRAZ": {
+     "b": 23,
+     "kwh_m2": 112,
+     "meas_pct": 52
+    },
+    "PISARNE": {
+     "b": 12,
+     "kwh_m2": 112,
+     "meas_pct": 13
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 101,
+     "meas_pct": 8
+    }
+   },
    "vse": {
     "pop": 17192,
     "fe_gwh": {
@@ -9435,6 +11510,34 @@
    },
    "above43_area_pct": 28.5,
    "known_pct": 6.5,
+   "dh_pot": {
+    "q_gwh": 22.6,
+    "dense_gwh": 2.8,
+    "pct": 12.3,
+    "ha": 8
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 6,
+     "kwh_m2": 85,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 106,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3946,
     "fe_gwh": {
@@ -9580,6 +11683,39 @@
    },
    "above43_area_pct": 24.8,
    "known_pct": 12.2,
+   "dh_pot": {
+    "q_gwh": 46.1,
+    "dense_gwh": 4.6,
+    "pct": 10.0,
+    "ha": 10
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 5,
+     "kwh_m2": 307,
+     "meas_pct": 43
+    },
+    "DRUGO": {
+     "b": 15,
+     "kwh_m2": 82,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "kwh_m2": 108,
+     "meas_pct": 66
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 87,
+     "meas_pct": 90
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 82,
+     "meas_pct": 62
+    }
+   },
    "vse": {
     "pop": 8363,
     "fe_gwh": {
@@ -9725,6 +11861,34 @@
    },
    "above43_area_pct": 32.9,
    "known_pct": 7.1,
+   "dh_pot": {
+    "q_gwh": 35.9,
+    "dense_gwh": 7.2,
+    "pct": 20.1,
+    "ha": 15
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 6,
+     "kwh_m2": 413,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 12,
+     "kwh_m2": 106,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 178,
+     "meas_pct": 11
+    },
+    "SPORT": {
+     "b": 10,
+     "kwh_m2": 161,
+     "meas_pct": 21
+    }
+   },
    "vse": {
     "pop": 5064,
     "fe_gwh": {
@@ -9870,6 +12034,39 @@
    },
    "above43_area_pct": 34.0,
    "known_pct": 6.2,
+   "dh_pot": {
+    "q_gwh": 36.7,
+    "dense_gwh": 9.9,
+    "pct": 27.0,
+    "ha": 23
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 4,
+     "kwh_m2": 258,
+     "meas_pct": 77
+    },
+    "DRUGO": {
+     "b": 14,
+     "kwh_m2": 87,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 157,
+     "meas_pct": 68
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 94,
+     "meas_pct": 3
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 39,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 6229,
     "fe_gwh": {
@@ -10015,6 +12212,39 @@
    },
    "above43_area_pct": 40.1,
    "known_pct": 8.0,
+   "dh_pot": {
+    "q_gwh": 124.2,
+    "dense_gwh": 45.2,
+    "pct": 36.4,
+    "ha": 103
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 6,
+     "kwh_m2": 431,
+     "meas_pct": 24
+    },
+    "DRUGO": {
+     "b": 50,
+     "kwh_m2": 95,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 32,
+     "kwh_m2": 148,
+     "meas_pct": 65
+    },
+    "PISARNE": {
+     "b": 13,
+     "kwh_m2": 114,
+     "meas_pct": 15
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 80,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 19359,
     "fe_gwh": {
@@ -10160,6 +12390,39 @@
    },
    "above43_area_pct": 39.8,
    "known_pct": 13.9,
+   "dh_pot": {
+    "q_gwh": 67.8,
+    "dense_gwh": 36.6,
+    "pct": 54.1,
+    "ha": 66
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 198,
+     "meas_pct": 80
+    },
+    "DRUGO": {
+     "b": 14,
+     "kwh_m2": 109,
+     "meas_pct": 56
+    },
+    "IZOBRAZ": {
+     "b": 14,
+     "kwh_m2": 133,
+     "meas_pct": 48
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 107,
+     "meas_pct": 50
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 202,
+     "meas_pct": 74
+    }
+   },
    "vse": {
     "pop": 11179,
     "fe_gwh": {
@@ -10305,6 +12568,39 @@
    },
    "above43_area_pct": 42.5,
    "known_pct": 4.5,
+   "dh_pot": {
+    "q_gwh": 62.8,
+    "dense_gwh": 16.7,
+    "pct": 26.5,
+    "ha": 33
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 33,
+     "kwh_m2": 104,
+     "meas_pct": 17
+    },
+    "IZOBRAZ": {
+     "b": 11,
+     "kwh_m2": 210,
+     "meas_pct": 91
+    },
+    "PISARNE": {
+     "b": 8,
+     "kwh_m2": 118,
+     "meas_pct": 70
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 310,
+     "meas_pct": 100
+    }
+   },
    "vse": {
     "pop": 9825,
     "fe_gwh": {
@@ -10450,6 +12746,34 @@
    },
    "above43_area_pct": 38.1,
    "known_pct": 5.4,
+   "dh_pot": {
+    "q_gwh": 16.5,
+    "dense_gwh": 3.5,
+    "pct": 21.2,
+    "ha": 10
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 21,
+     "kwh_m2": 187,
+     "meas_pct": 36
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 106,
+     "meas_pct": 95
+    },
+    "PISARNE": {
+     "b": 7,
+     "kwh_m2": 142,
+     "meas_pct": 48
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3081,
     "fe_gwh": {
@@ -10595,6 +12919,39 @@
    },
    "above43_area_pct": 32.4,
    "known_pct": 3.4,
+   "dh_pot": {
+    "q_gwh": 20.0,
+    "dense_gwh": 0.7,
+    "pct": 3.3,
+    "ha": 1
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 21,
+     "kwh_m2": 160,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 174,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 92,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 178,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 3027,
     "fe_gwh": {
@@ -10740,6 +13097,39 @@
    },
    "above43_area_pct": 31.4,
    "known_pct": 5.0,
+   "dh_pot": {
+    "q_gwh": 76.0,
+    "dense_gwh": 22.3,
+    "pct": 29.4,
+    "ha": 41
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 13,
+     "kwh_m2": 108,
+     "meas_pct": 27
+    },
+    "IZOBRAZ": {
+     "b": 16,
+     "kwh_m2": 182,
+     "meas_pct": 66
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 81,
+     "meas_pct": 95
+    },
+    "SPORT": {
+     "b": 9,
+     "kwh_m2": 190,
+     "meas_pct": 67
+    }
+   },
    "vse": {
     "pop": 11679,
     "fe_gwh": {
@@ -10885,6 +13275,39 @@
    },
    "above43_area_pct": 37.0,
    "known_pct": 11.5,
+   "dh_pot": {
+    "q_gwh": 42.2,
+    "dense_gwh": 14.2,
+    "pct": 33.6,
+    "ha": 34
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 95,
+     "meas_pct": 40
+    },
+    "IZOBRAZ": {
+     "b": 13,
+     "kwh_m2": 140,
+     "meas_pct": 54
+    },
+    "PISARNE": {
+     "b": 7,
+     "kwh_m2": 91,
+     "meas_pct": 76
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 275,
+     "meas_pct": 55
+    }
+   },
    "vse": {
     "pop": 7157,
     "fe_gwh": {
@@ -11030,6 +13453,34 @@
    },
    "above43_area_pct": 36.0,
    "known_pct": 4.6,
+   "dh_pot": {
+    "q_gwh": 25.4,
+    "dense_gwh": 2.9,
+    "pct": 11.3,
+    "ha": 7
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 29,
+     "kwh_m2": 91,
+     "meas_pct": 43
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 127,
+     "meas_pct": 87
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3780,
     "fe_gwh": {
@@ -11175,6 +13626,39 @@
    },
    "above43_area_pct": 38.2,
    "known_pct": 4.6,
+   "dh_pot": {
+    "q_gwh": 111.6,
+    "dense_gwh": 22.7,
+    "pct": 20.4,
+    "ha": 53
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 4,
+     "kwh_m2": 626,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 51,
+     "kwh_m2": 95,
+     "meas_pct": 13
+    },
+    "IZOBRAZ": {
+     "b": 22,
+     "kwh_m2": 125,
+     "meas_pct": 82
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 81,
+     "meas_pct": 50
+    },
+    "SPORT": {
+     "b": 8,
+     "kwh_m2": 146,
+     "meas_pct": 30
+    }
+   },
    "vse": {
     "pop": 17602,
     "fe_gwh": {
@@ -11320,6 +13804,39 @@
    },
    "above43_area_pct": 36.7,
    "known_pct": 7.3,
+   "dh_pot": {
+    "q_gwh": 101.6,
+    "dense_gwh": 33.6,
+    "pct": 33.1,
+    "ha": 71
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 6,
+     "kwh_m2": 452,
+     "meas_pct": 24
+    },
+    "DRUGO": {
+     "b": 54,
+     "kwh_m2": 94,
+     "meas_pct": 37
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "kwh_m2": 136,
+     "meas_pct": 62
+    },
+    "PISARNE": {
+     "b": 28,
+     "kwh_m2": 77,
+     "meas_pct": 45
+    },
+    "SPORT": {
+     "b": 14,
+     "kwh_m2": 105,
+     "meas_pct": 29
+    }
+   },
    "vse": {
     "pop": 13669,
     "fe_gwh": {
@@ -11465,6 +13982,39 @@
    },
    "above43_area_pct": 30.8,
    "known_pct": 6.3,
+   "dh_pot": {
+    "q_gwh": 106.0,
+    "dense_gwh": 35.6,
+    "pct": 33.6,
+    "ha": 66
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 13,
+     "kwh_m2": 313,
+     "meas_pct": 21
+    },
+    "DRUGO": {
+     "b": 22,
+     "kwh_m2": 105,
+     "meas_pct": 46
+    },
+    "IZOBRAZ": {
+     "b": 27,
+     "kwh_m2": 130,
+     "meas_pct": 59
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 122,
+     "meas_pct": 60
+    },
+    "SPORT": {
+     "b": 11,
+     "kwh_m2": 120,
+     "meas_pct": 39
+    }
+   },
    "vse": {
     "pop": 17063,
     "fe_gwh": {
@@ -11610,6 +14160,39 @@
    },
    "above43_area_pct": 30.7,
    "known_pct": 7.1,
+   "dh_pot": {
+    "q_gwh": 154.0,
+    "dense_gwh": 30.8,
+    "pct": 20.0,
+    "ha": 67
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 12,
+     "kwh_m2": 286,
+     "meas_pct": 3
+    },
+    "DRUGO": {
+     "b": 60,
+     "kwh_m2": 159,
+     "meas_pct": 1
+    },
+    "IZOBRAZ": {
+     "b": 34,
+     "kwh_m2": 100,
+     "meas_pct": 49
+    },
+    "PISARNE": {
+     "b": 13,
+     "kwh_m2": 152,
+     "meas_pct": 13
+    },
+    "SPORT": {
+     "b": 17,
+     "kwh_m2": 141,
+     "meas_pct": 12
+    }
+   },
    "vse": {
     "pop": 26363,
     "fe_gwh": {
@@ -11755,6 +14338,39 @@
    },
    "above43_area_pct": 32.1,
    "known_pct": 6.1,
+   "dh_pot": {
+    "q_gwh": 83.9,
+    "dense_gwh": 18.7,
+    "pct": 22.3,
+    "ha": 39
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 7,
+     "kwh_m2": 321,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 18,
+     "kwh_m2": 96,
+     "meas_pct": 6
+    },
+    "IZOBRAZ": {
+     "b": 18,
+     "kwh_m2": 167,
+     "meas_pct": 38
+    },
+    "PISARNE": {
+     "b": 13,
+     "kwh_m2": 114,
+     "meas_pct": 22
+    },
+    "SPORT": {
+     "b": 8,
+     "kwh_m2": 169,
+     "meas_pct": 18
+    }
+   },
    "vse": {
     "pop": 15534,
     "fe_gwh": {
@@ -11900,6 +14516,34 @@
    },
    "above43_area_pct": 30.0,
    "known_pct": 5.0,
+   "dh_pot": {
+    "q_gwh": 24.8,
+    "dense_gwh": 1.6,
+    "pct": 6.4,
+    "ha": 3
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 10,
+     "kwh_m2": 144,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "kwh_m2": 75,
+     "meas_pct": 92
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 9,
+     "kwh_m2": 123,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 4111,
     "fe_gwh": {
@@ -12045,6 +14689,39 @@
    },
    "above43_area_pct": 34.7,
    "known_pct": 4.0,
+   "dh_pot": {
+    "q_gwh": 18.0,
+    "dense_gwh": 1.4,
+    "pct": 7.6,
+    "ha": 4
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 18,
+     "kwh_m2": 69,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 133,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2795,
     "fe_gwh": {
@@ -12190,6 +14867,39 @@
    },
    "above43_area_pct": 26.7,
    "known_pct": 4.8,
+   "dh_pot": {
+    "q_gwh": 50.4,
+    "dense_gwh": 9.0,
+    "pct": 17.9,
+    "ha": 23
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 14,
+     "kwh_m2": 75,
+     "meas_pct": 12
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "kwh_m2": 163,
+     "meas_pct": 92
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 8,
+     "kwh_m2": 164,
+     "meas_pct": 33
+    }
+   },
    "vse": {
     "pop": 9041,
     "fe_gwh": {
@@ -12335,6 +15045,39 @@
    },
    "above43_area_pct": 30.9,
    "known_pct": 9.4,
+   "dh_pot": {
+    "q_gwh": 51.8,
+    "dense_gwh": 6.7,
+    "pct": 13.0,
+    "ha": 17
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 12,
+     "kwh_m2": 102,
+     "meas_pct": 58
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "kwh_m2": 119,
+     "meas_pct": 96
+    },
+    "PISARNE": {
+     "b": 12,
+     "kwh_m2": 118,
+     "meas_pct": 36
+    },
+    "SPORT": {
+     "b": 10,
+     "kwh_m2": 92,
+     "meas_pct": 95
+    }
+   },
    "vse": {
     "pop": 8371,
     "fe_gwh": {
@@ -12480,6 +15223,39 @@
    },
    "above43_area_pct": 27.6,
    "known_pct": 5.3,
+   "dh_pot": {
+    "q_gwh": 40.6,
+    "dense_gwh": 5.1,
+    "pct": 12.6,
+    "ha": 11
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 165,
+     "meas_pct": 73
+    },
+    "DRUGO": {
+     "b": 24,
+     "kwh_m2": 79,
+     "meas_pct": 53
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 52,
+     "meas_pct": 63
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 32,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 7446,
     "fe_gwh": {
@@ -12625,6 +15401,39 @@
    },
    "above43_area_pct": 32.7,
    "known_pct": 4.1,
+   "dh_pot": {
+    "q_gwh": 108.8,
+    "dense_gwh": 15.9,
+    "pct": 14.6,
+    "ha": 45
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 7,
+     "kwh_m2": 585,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 52,
+     "kwh_m2": 95,
+     "meas_pct": 10
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "kwh_m2": 183,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 54,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 9,
+     "kwh_m2": 191,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 19757,
     "fe_gwh": {
@@ -12770,6 +15579,29 @@
    },
    "above43_area_pct": 30.0,
    "known_pct": 4.2,
+   "dh_pot": {
+    "q_gwh": 19.7,
+    "dense_gwh": 0.9,
+    "pct": 4.4,
+    "ha": 2
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 17,
+     "kwh_m2": 84,
+     "meas_pct": 14
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3531,
     "fe_gwh": {
@@ -12915,6 +15747,39 @@
    },
    "above43_area_pct": 33.7,
    "known_pct": 7.9,
+   "dh_pot": {
+    "q_gwh": 128.7,
+    "dense_gwh": 55.4,
+    "pct": 43.1,
+    "ha": 123
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 7,
+     "kwh_m2": 436,
+     "meas_pct": 37
+    },
+    "DRUGO": {
+     "b": 43,
+     "kwh_m2": 85,
+     "meas_pct": 33
+    },
+    "IZOBRAZ": {
+     "b": 34,
+     "kwh_m2": 123,
+     "meas_pct": 85
+    },
+    "PISARNE": {
+     "b": 12,
+     "kwh_m2": 126,
+     "meas_pct": 58
+    },
+    "SPORT": {
+     "b": 13,
+     "kwh_m2": 129,
+     "meas_pct": 75
+    }
+   },
    "vse": {
     "pop": 23850,
     "fe_gwh": {
@@ -13060,6 +15925,39 @@
    },
    "above43_area_pct": 23.5,
    "known_pct": 10.4,
+   "dh_pot": {
+    "q_gwh": 55.0,
+    "dense_gwh": 10.3,
+    "pct": 18.8,
+    "ha": 26
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 16,
+     "kwh_m2": 98,
+     "meas_pct": 16
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "kwh_m2": 151,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 12199,
     "fe_gwh": {
@@ -13205,6 +16103,39 @@
    },
    "above43_area_pct": 31.2,
    "known_pct": 4.2,
+   "dh_pot": {
+    "q_gwh": 61.5,
+    "dense_gwh": 7.6,
+    "pct": 12.3,
+    "ha": 16
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 309,
+     "meas_pct": 72
+    },
+    "DRUGO": {
+     "b": 13,
+     "kwh_m2": 116,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "kwh_m2": 55,
+     "meas_pct": 83
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 7,
+     "kwh_m2": 107,
+     "meas_pct": 61
+    }
+   },
    "vse": {
     "pop": 10575,
     "fe_gwh": {
@@ -13350,6 +16281,34 @@
    },
    "above43_area_pct": 31.2,
    "known_pct": 5.3,
+   "dh_pot": {
+    "q_gwh": 18.5,
+    "dense_gwh": 1.9,
+    "pct": 10.2,
+    "ha": 3
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 19,
+     "kwh_m2": 67,
+     "meas_pct": 48
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 72,
+     "meas_pct": 92
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3436,
     "fe_gwh": {
@@ -13495,6 +16454,39 @@
    },
    "above43_area_pct": 37.6,
    "known_pct": 7.6,
+   "dh_pot": {
+    "q_gwh": 53.8,
+    "dense_gwh": 17.2,
+    "pct": 31.9,
+    "ha": 32
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 7,
+     "kwh_m2": 466,
+     "meas_pct": 14
+    },
+    "DRUGO": {
+     "b": 19,
+     "kwh_m2": 89,
+     "meas_pct": 33
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 132,
+     "meas_pct": 59
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 176,
+     "meas_pct": 84
+    },
+    "SPORT": {
+     "b": 11,
+     "kwh_m2": 282,
+     "meas_pct": 91
+    }
+   },
    "vse": {
     "pop": 9007,
     "fe_gwh": {
@@ -13640,6 +16632,34 @@
    },
    "above43_area_pct": 45.0,
    "known_pct": 7.1,
+   "dh_pot": {
+    "q_gwh": 23.6,
+    "dense_gwh": 8.3,
+    "pct": 35.2,
+    "ha": 16
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 189,
+     "meas_pct": 61
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 58,
+     "meas_pct": 85
+    }
+   },
    "vse": {
     "pop": 4542,
     "fe_gwh": {
@@ -13785,6 +16805,39 @@
    },
    "above43_area_pct": 54.8,
    "known_pct": 5.9,
+   "dh_pot": {
+    "q_gwh": 93.7,
+    "dense_gwh": 33.0,
+    "pct": 35.2,
+    "ha": 70
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 154,
+     "meas_pct": 91
+    },
+    "DRUGO": {
+     "b": 55,
+     "kwh_m2": 94,
+     "meas_pct": 22
+    },
+    "IZOBRAZ": {
+     "b": 18,
+     "kwh_m2": 84,
+     "meas_pct": 84
+    },
+    "PISARNE": {
+     "b": 13,
+     "kwh_m2": 85,
+     "meas_pct": 47
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 69,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 10661,
     "fe_gwh": {
@@ -13930,6 +16983,39 @@
    },
    "above43_area_pct": 54.8,
    "known_pct": 15.8,
+   "dh_pot": {
+    "q_gwh": 94.2,
+    "dense_gwh": 54.2,
+    "pct": 57.5,
+    "ha": 91
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 7,
+     "kwh_m2": 496,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 20,
+     "kwh_m2": 73,
+     "meas_pct": 68
+    },
+    "IZOBRAZ": {
+     "b": 19,
+     "kwh_m2": 151,
+     "meas_pct": 89
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 103,
+     "meas_pct": 42
+    },
+    "SPORT": {
+     "b": 12,
+     "kwh_m2": 114,
+     "meas_pct": 50
+    }
+   },
    "vse": {
     "pop": 15935,
     "fe_gwh": {
@@ -14075,6 +17161,39 @@
    },
    "above43_area_pct": 26.2,
    "known_pct": 6.0,
+   "dh_pot": {
+    "q_gwh": 75.1,
+    "dense_gwh": 12.1,
+    "pct": 16.1,
+    "ha": 30
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 46,
+     "kwh_m2": 103,
+     "meas_pct": 11
+    },
+    "IZOBRAZ": {
+     "b": 13,
+     "kwh_m2": 104,
+     "meas_pct": 87
+    },
+    "PISARNE": {
+     "b": 10,
+     "kwh_m2": 91,
+     "meas_pct": 36
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 13855,
     "fe_gwh": {
@@ -14220,6 +17339,39 @@
    },
    "above43_area_pct": 43.5,
    "known_pct": 7.9,
+   "dh_pot": {
+    "q_gwh": 81.6,
+    "dense_gwh": 26.0,
+    "pct": 31.9,
+    "ha": 54
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 365,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 23,
+     "kwh_m2": 87,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 11,
+     "kwh_m2": 153,
+     "meas_pct": 37
+    },
+    "PISARNE": {
+     "b": 6,
+     "kwh_m2": 97,
+     "meas_pct": 18
+    },
+    "SPORT": {
+     "b": 7,
+     "kwh_m2": 128,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 15044,
     "fe_gwh": {
@@ -14365,6 +17517,39 @@
    },
    "above43_area_pct": 36.7,
    "known_pct": 4.5,
+   "dh_pot": {
+    "q_gwh": 19.5,
+    "dense_gwh": 1.1,
+    "pct": 5.6,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 6,
+     "kwh_m2": 74,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 232,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 146,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 3070,
     "fe_gwh": {
@@ -14510,6 +17695,39 @@
    },
    "above43_area_pct": 44.2,
    "known_pct": 9.9,
+   "dh_pot": {
+    "q_gwh": 188.5,
+    "dense_gwh": 117.8,
+    "pct": 62.5,
+    "ha": 171
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 5,
+     "kwh_m2": 186,
+     "meas_pct": 94
+    },
+    "DRUGO": {
+     "b": 29,
+     "kwh_m2": 118,
+     "meas_pct": 35
+    },
+    "IZOBRAZ": {
+     "b": 37,
+     "kwh_m2": 147,
+     "meas_pct": 60
+    },
+    "PISARNE": {
+     "b": 11,
+     "kwh_m2": 150,
+     "meas_pct": 80
+    },
+    "SPORT": {
+     "b": 17,
+     "kwh_m2": 158,
+     "meas_pct": 44
+    }
+   },
    "vse": {
     "pop": 33873,
     "fe_gwh": {
@@ -14655,6 +17873,34 @@
    },
    "above43_area_pct": 33.0,
    "known_pct": 5.2,
+   "dh_pot": {
+    "q_gwh": 28.6,
+    "dense_gwh": 1.6,
+    "pct": 5.4,
+    "ha": 5
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 17,
+     "kwh_m2": 103,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "kwh_m2": 146,
+     "meas_pct": 84
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 4546,
     "fe_gwh": {
@@ -14800,6 +18046,39 @@
    },
    "above43_area_pct": 36.3,
    "known_pct": 4.9,
+   "dh_pot": {
+    "q_gwh": 40.5,
+    "dense_gwh": 12.6,
+    "pct": 31.1,
+    "ha": 28
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 31,
+     "kwh_m2": 187,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "kwh_m2": 194,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 113,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 88,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 5866,
     "fe_gwh": {
@@ -14945,6 +18224,34 @@
    },
    "above43_area_pct": 23.8,
    "known_pct": 6.1,
+   "dh_pot": {
+    "q_gwh": 28.1,
+    "dense_gwh": 2.5,
+    "pct": 8.9,
+    "ha": 7
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 11,
+     "kwh_m2": 110,
+     "meas_pct": 50
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 104,
+     "meas_pct": 100
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 205,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 5291,
     "fe_gwh": {
@@ -15090,6 +18397,39 @@
    },
    "above43_area_pct": 31.9,
    "known_pct": 10.9,
+   "dh_pot": {
+    "q_gwh": 92.5,
+    "dense_gwh": 31.7,
+    "pct": 34.3,
+    "ha": 71
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 7,
+     "kwh_m2": 350,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 85,
+     "kwh_m2": 137,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 14,
+     "kwh_m2": 153,
+     "meas_pct": 32
+    },
+    "PISARNE": {
+     "b": 11,
+     "kwh_m2": 117,
+     "meas_pct": 25
+    },
+    "SPORT": {
+     "b": 8,
+     "kwh_m2": 74,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 18296,
     "fe_gwh": {
@@ -15235,6 +18575,39 @@
    },
    "above43_area_pct": 44.7,
    "known_pct": 7.2,
+   "dh_pot": {
+    "q_gwh": 93.7,
+    "dense_gwh": 35.1,
+    "pct": 37.5,
+    "ha": 74
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 39,
+     "kwh_m2": 102,
+     "meas_pct": 28
+    },
+    "IZOBRAZ": {
+     "b": 21,
+     "kwh_m2": 133,
+     "meas_pct": 83
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 115,
+     "meas_pct": 18
+    },
+    "SPORT": {
+     "b": 11,
+     "kwh_m2": 158,
+     "meas_pct": 48
+    }
+   },
    "vse": {
     "pop": 16347,
     "fe_gwh": {
@@ -15380,6 +18753,39 @@
    },
    "above43_area_pct": 33.0,
    "known_pct": 6.5,
+   "dh_pot": {
+    "q_gwh": 41.8,
+    "dense_gwh": 12.4,
+    "pct": 29.8,
+    "ha": 28
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 4,
+     "kwh_m2": 425,
+     "meas_pct": 18
+    },
+    "DRUGO": {
+     "b": 10,
+     "kwh_m2": 176,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "kwh_m2": 232,
+     "meas_pct": 84
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 173,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 6657,
     "fe_gwh": {
@@ -15525,6 +18931,39 @@
    },
    "above43_area_pct": 37.8,
    "known_pct": 4.6,
+   "dh_pot": {
+    "q_gwh": 31.2,
+    "dense_gwh": 7.8,
+    "pct": 25.1,
+    "ha": 22
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 91,
+     "meas_pct": 66
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 168,
+     "meas_pct": 90
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 239,
+     "meas_pct": 66
+    }
+   },
    "vse": {
     "pop": 5159,
     "fe_gwh": {
@@ -15670,6 +19109,39 @@
    },
    "above43_area_pct": 32.8,
    "known_pct": 7.4,
+   "dh_pot": {
+    "q_gwh": 36.2,
+    "dense_gwh": 5.5,
+    "pct": 15.2,
+    "ha": 16
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 35,
+     "kwh_m2": 114,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "kwh_m2": 128,
+     "meas_pct": 83
+    },
+    "PISARNE": {
+     "b": 10,
+     "kwh_m2": 98,
+     "meas_pct": 32
+    },
+    "SPORT": {
+     "b": 7,
+     "kwh_m2": 72,
+     "meas_pct": 47
+    }
+   },
    "vse": {
     "pop": 5451,
     "fe_gwh": {
@@ -15815,6 +19287,39 @@
    },
    "above43_area_pct": 47.1,
    "known_pct": 6.9,
+   "dh_pot": {
+    "q_gwh": 101.4,
+    "dense_gwh": 25.3,
+    "pct": 24.9,
+    "ha": 58
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 9,
+     "kwh_m2": 366,
+     "meas_pct": 36
+    },
+    "DRUGO": {
+     "b": 47,
+     "kwh_m2": 86,
+     "meas_pct": 22
+    },
+    "IZOBRAZ": {
+     "b": 20,
+     "kwh_m2": 88,
+     "meas_pct": 96
+    },
+    "PISARNE": {
+     "b": 24,
+     "kwh_m2": 92,
+     "meas_pct": 21
+    },
+    "SPORT": {
+     "b": 8,
+     "kwh_m2": 106,
+     "meas_pct": 63
+    }
+   },
    "vse": {
     "pop": 13130,
     "fe_gwh": {
@@ -15960,6 +19465,39 @@
    },
    "above43_area_pct": 51.5,
    "known_pct": 13.3,
+   "dh_pot": {
+    "q_gwh": 109.9,
+    "dense_gwh": 65.8,
+    "pct": 59.9,
+    "ha": 113
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 9,
+     "kwh_m2": 286,
+     "meas_pct": 31
+    },
+    "DRUGO": {
+     "b": 26,
+     "kwh_m2": 124,
+     "meas_pct": 41
+    },
+    "IZOBRAZ": {
+     "b": 14,
+     "kwh_m2": 123,
+     "meas_pct": 74
+    },
+    "PISARNE": {
+     "b": 13,
+     "kwh_m2": 101,
+     "meas_pct": 24
+    },
+    "SPORT": {
+     "b": 9,
+     "kwh_m2": 84,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 21769,
     "fe_gwh": {
@@ -16105,6 +19643,39 @@
    },
    "above43_area_pct": 41.0,
    "known_pct": 8.2,
+   "dh_pot": {
+    "q_gwh": 166.4,
+    "dense_gwh": 65.3,
+    "pct": 39.3,
+    "ha": 132
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 47,
+     "kwh_m2": 99,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 35,
+     "kwh_m2": 188,
+     "meas_pct": 13
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 112,
+     "meas_pct": 13
+    },
+    "SPORT": {
+     "b": 10,
+     "kwh_m2": 122,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 29830,
     "fe_gwh": {
@@ -16250,6 +19821,39 @@
    },
    "above43_area_pct": 29.7,
    "known_pct": 5.2,
+   "dh_pot": {
+    "q_gwh": 37.8,
+    "dense_gwh": 5.5,
+    "pct": 14.6,
+    "ha": 12
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 22,
+     "kwh_m2": 129,
+     "meas_pct": 3
+    },
+    "IZOBRAZ": {
+     "b": 13,
+     "kwh_m2": 105,
+     "meas_pct": 81
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 13,
+     "kwh_m2": 63,
+     "meas_pct": 35
+    }
+   },
    "vse": {
     "pop": 6606,
     "fe_gwh": {
@@ -16395,6 +19999,34 @@
    },
    "above43_area_pct": 40.2,
    "known_pct": 4.5,
+   "dh_pot": {
+    "q_gwh": 3.7,
+    "dense_gwh": 0.3,
+    "pct": 7.4,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 502,
     "fe_gwh": {
@@ -16540,6 +20172,39 @@
    },
    "above43_area_pct": 47.6,
    "known_pct": 5.4,
+   "dh_pot": {
+    "q_gwh": 31.1,
+    "dense_gwh": 3.1,
+    "pct": 10.1,
+    "ha": 10
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 26,
+     "kwh_m2": 108,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 149,
+     "meas_pct": 87
+    },
+    "PISARNE": {
+     "b": 6,
+     "kwh_m2": 146,
+     "meas_pct": 43
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 134,
+     "meas_pct": 72
+    }
+   },
    "vse": {
     "pop": 3476,
     "fe_gwh": {
@@ -16685,6 +20350,39 @@
    },
    "above43_area_pct": 38.6,
    "known_pct": 10.6,
+   "dh_pot": {
+    "q_gwh": 338.3,
+    "dense_gwh": 173.3,
+    "pct": 51.2,
+    "ha": 283
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 12,
+     "kwh_m2": 456,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 83,
+     "kwh_m2": 115,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 64,
+     "kwh_m2": 132,
+     "meas_pct": 43
+    },
+    "PISARNE": {
+     "b": 47,
+     "kwh_m2": 71,
+     "meas_pct": 38
+    },
+    "SPORT": {
+     "b": 30,
+     "kwh_m2": 132,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 54795,
     "fe_gwh": {
@@ -16830,6 +20528,39 @@
    },
    "above43_area_pct": 38.7,
    "known_pct": 9.8,
+   "dh_pot": {
+    "q_gwh": 324.1,
+    "dense_gwh": 180.7,
+    "pct": 55.7,
+    "ha": 346
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 24,
+     "kwh_m2": 279,
+     "meas_pct": 69
+    },
+    "DRUGO": {
+     "b": 76,
+     "kwh_m2": 162,
+     "meas_pct": 16
+    },
+    "IZOBRAZ": {
+     "b": 64,
+     "kwh_m2": 167,
+     "meas_pct": 63
+    },
+    "PISARNE": {
+     "b": 22,
+     "kwh_m2": 173,
+     "meas_pct": 58
+    },
+    "SPORT": {
+     "b": 48,
+     "kwh_m2": 188,
+     "meas_pct": 43
+    }
+   },
    "vse": {
     "pop": 57491,
     "fe_gwh": {
@@ -16975,6 +20706,34 @@
    },
    "above43_area_pct": 39.9,
    "known_pct": 10.8,
+   "dh_pot": {
+    "q_gwh": 57.9,
+    "dense_gwh": 25.4,
+    "pct": 43.9,
+    "ha": 59
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 19,
+     "kwh_m2": 73,
+     "meas_pct": 37
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 238,
+     "meas_pct": 80
+    },
+    "PISARNE": {
+     "b": 6,
+     "kwh_m2": 94,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 13,
+     "kwh_m2": 64,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 5143,
     "fe_gwh": {
@@ -17120,6 +20879,34 @@
    },
    "above43_area_pct": 33.9,
    "known_pct": 2.7,
+   "dh_pot": {
+    "q_gwh": 9.6,
+    "dense_gwh": 0.6,
+    "pct": 6.0,
+    "ha": 2
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 8,
+     "kwh_m2": 111,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1663,
     "fe_gwh": {
@@ -17265,6 +21052,39 @@
    },
    "above43_area_pct": 38.9,
    "known_pct": 5.6,
+   "dh_pot": {
+    "q_gwh": 80.3,
+    "dense_gwh": 15.3,
+    "pct": 19.1,
+    "ha": 30
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 5,
+     "kwh_m2": 452,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 53,
+     "kwh_m2": 90,
+     "meas_pct": 28
+    },
+    "IZOBRAZ": {
+     "b": 17,
+     "kwh_m2": 96,
+     "meas_pct": 59
+    },
+    "PISARNE": {
+     "b": 8,
+     "kwh_m2": 105,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 10,
+     "kwh_m2": 153,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 13023,
     "fe_gwh": {
@@ -17410,6 +21230,39 @@
    },
    "above43_area_pct": 42.0,
    "known_pct": 7.1,
+   "dh_pot": {
+    "q_gwh": 80.1,
+    "dense_gwh": 17.2,
+    "pct": 21.5,
+    "ha": 39
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 5,
+     "kwh_m2": 554,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 39,
+     "kwh_m2": 113,
+     "meas_pct": 25
+    },
+    "IZOBRAZ": {
+     "b": 26,
+     "kwh_m2": 188,
+     "meas_pct": 39
+    },
+    "PISARNE": {
+     "b": 21,
+     "kwh_m2": 135,
+     "meas_pct": 29
+    },
+    "SPORT": {
+     "b": 21,
+     "kwh_m2": 125,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 10088,
     "fe_gwh": {
@@ -17555,6 +21408,39 @@
    },
    "above43_area_pct": 43.4,
    "known_pct": 18.7,
+   "dh_pot": {
+    "q_gwh": 1998.8,
+    "dense_gwh": 1605.7,
+    "pct": 80.3,
+    "ha": 2232
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 97,
+     "kwh_m2": 480,
+     "meas_pct": 28
+    },
+    "DRUGO": {
+     "b": 248,
+     "kwh_m2": 140,
+     "meas_pct": 38
+    },
+    "IZOBRAZ": {
+     "b": 435,
+     "kwh_m2": 173,
+     "meas_pct": 69
+    },
+    "PISARNE": {
+     "b": 152,
+     "kwh_m2": 143,
+     "meas_pct": 46
+    },
+    "SPORT": {
+     "b": 149,
+     "kwh_m2": 129,
+     "meas_pct": 56
+    }
+   },
    "vse": {
     "pop": 302826,
     "fe_gwh": {
@@ -17700,6 +21586,39 @@
    },
    "above43_area_pct": 42.2,
    "known_pct": 5.6,
+   "dh_pot": {
+    "q_gwh": 78.2,
+    "dense_gwh": 18.6,
+    "pct": 23.7,
+    "ha": 39
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 4,
+     "kwh_m2": 514,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 41,
+     "kwh_m2": 110,
+     "meas_pct": 16
+    },
+    "IZOBRAZ": {
+     "b": 17,
+     "kwh_m2": 146,
+     "meas_pct": 26
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 52,
+     "meas_pct": 74
+    },
+    "SPORT": {
+     "b": 11,
+     "kwh_m2": 173,
+     "meas_pct": 69
+    }
+   },
    "vse": {
     "pop": 10850,
     "fe_gwh": {
@@ -17845,6 +21764,34 @@
    },
    "above43_area_pct": 41.9,
    "known_pct": 4.8,
+   "dh_pot": {
+    "q_gwh": 22.8,
+    "dense_gwh": 2.8,
+    "pct": 12.1,
+    "ha": 7
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 150,
+     "meas_pct": 18
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 93,
+     "meas_pct": 78
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 84,
+     "meas_pct": 42
+    }
+   },
    "vse": {
     "pop": 3506,
     "fe_gwh": {
@@ -17990,6 +21937,39 @@
    },
    "above43_area_pct": 28.6,
    "known_pct": 5.7,
+   "dh_pot": {
+    "q_gwh": 32.1,
+    "dense_gwh": 1.9,
+    "pct": 5.9,
+    "ha": 5
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 103,
+     "meas_pct": 14
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "kwh_m2": 125,
+     "meas_pct": 62
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 112,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 176,
+     "meas_pct": 58
+    }
+   },
    "vse": {
     "pop": 6193,
     "fe_gwh": {
@@ -18135,6 +22115,39 @@
    },
    "above43_area_pct": 43.2,
    "known_pct": 17.1,
+   "dh_pot": {
+    "q_gwh": 765.8,
+    "dense_gwh": 535.0,
+    "pct": 69.9,
+    "ha": 850
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 74,
+     "kwh_m2": 430,
+     "meas_pct": 18
+    },
+    "DRUGO": {
+     "b": 107,
+     "kwh_m2": 159,
+     "meas_pct": 23
+    },
+    "IZOBRAZ": {
+     "b": 201,
+     "kwh_m2": 177,
+     "meas_pct": 58
+    },
+    "PISARNE": {
+     "b": 40,
+     "kwh_m2": 96,
+     "meas_pct": 62
+    },
+    "SPORT": {
+     "b": 76,
+     "kwh_m2": 140,
+     "meas_pct": 7
+    }
+   },
    "vse": {
     "pop": 114872,
     "fe_gwh": {
@@ -18280,6 +22293,39 @@
    },
    "above43_area_pct": 31.6,
    "known_pct": 11.2,
+   "dh_pot": {
+    "q_gwh": 95.7,
+    "dense_gwh": 24.0,
+    "pct": 25.1,
+    "ha": 57
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 23,
+     "kwh_m2": 97,
+     "meas_pct": 21
+    },
+    "IZOBRAZ": {
+     "b": 17,
+     "kwh_m2": 144,
+     "meas_pct": 86
+    },
+    "PISARNE": {
+     "b": 7,
+     "kwh_m2": 131,
+     "meas_pct": 42
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 146,
+     "meas_pct": 46
+    }
+   },
    "vse": {
     "pop": 17580,
     "fe_gwh": {
@@ -18425,6 +22471,39 @@
    },
    "above43_area_pct": 41.2,
    "known_pct": 4.3,
+   "dh_pot": {
+    "q_gwh": 57.6,
+    "dense_gwh": 13.2,
+    "pct": 22.9,
+    "ha": 24
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 36,
+     "kwh_m2": 87,
+     "meas_pct": 29
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 86,
+     "meas_pct": 97
+    },
+    "PISARNE": {
+     "b": 13,
+     "kwh_m2": 124,
+     "meas_pct": 38
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 8552,
     "fe_gwh": {
@@ -18570,6 +22649,39 @@
    },
    "above43_area_pct": 42.2,
    "known_pct": 6.8,
+   "dh_pot": {
+    "q_gwh": 33.3,
+    "dense_gwh": 6.0,
+    "pct": 17.9,
+    "ha": 19
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 14,
+     "kwh_m2": 125,
+     "meas_pct": 21
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "kwh_m2": 132,
+     "meas_pct": 87
+    },
+    "PISARNE": {
+     "b": 9,
+     "kwh_m2": 87,
+     "meas_pct": 37
+    },
+    "SPORT": {
+     "b": 12,
+     "kwh_m2": 94,
+     "meas_pct": 84
+    }
+   },
    "vse": {
     "pop": 5069,
     "fe_gwh": {
@@ -18715,6 +22827,39 @@
    },
    "above43_area_pct": 32.1,
    "known_pct": 6.5,
+   "dh_pot": {
+    "q_gwh": 28.0,
+    "dense_gwh": 8.3,
+    "pct": 29.5,
+    "ha": 20
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 90,
+     "meas_pct": 71
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 86,
+     "meas_pct": 100
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 93,
+     "meas_pct": 56
+    }
+   },
    "vse": {
     "pop": 4438,
     "fe_gwh": {
@@ -18860,6 +23005,34 @@
    },
    "above43_area_pct": 33.1,
    "known_pct": 7.5,
+   "dh_pot": {
+    "q_gwh": 20.0,
+    "dense_gwh": 5.5,
+    "pct": 27.5,
+    "ha": 15
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 134,
+     "meas_pct": 32
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "kwh_m2": 130,
+     "meas_pct": 59
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 115,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3329,
     "fe_gwh": {
@@ -19005,6 +23178,39 @@
    },
    "above43_area_pct": 31.5,
    "known_pct": 4.6,
+   "dh_pot": {
+    "q_gwh": 33.8,
+    "dense_gwh": 6.2,
+    "pct": 18.3,
+    "ha": 17
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 297,
+     "meas_pct": 52
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 85,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 12,
+     "kwh_m2": 207,
+     "meas_pct": 47
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 5494,
     "fe_gwh": {
@@ -19150,6 +23356,34 @@
    },
    "above43_area_pct": 44.1,
    "known_pct": 4.9,
+   "dh_pot": {
+    "q_gwh": 18.3,
+    "dense_gwh": 3.7,
+    "pct": 20.3,
+    "ha": 9
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 14,
+     "kwh_m2": 74,
+     "meas_pct": 73
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 93,
+     "meas_pct": 93
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 89,
+     "meas_pct": 92
+    }
+   },
    "vse": {
     "pop": 2681,
     "fe_gwh": {
@@ -19295,6 +23529,39 @@
    },
    "above43_area_pct": 32.6,
    "known_pct": 8.0,
+   "dh_pot": {
+    "q_gwh": 246.3,
+    "dense_gwh": 112.3,
+    "pct": 45.6,
+    "ha": 205
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 22,
+     "kwh_m2": 520,
+     "meas_pct": 8
+    },
+    "DRUGO": {
+     "b": 90,
+     "kwh_m2": 124,
+     "meas_pct": 28
+    },
+    "IZOBRAZ": {
+     "b": 69,
+     "kwh_m2": 127,
+     "meas_pct": 67
+    },
+    "PISARNE": {
+     "b": 27,
+     "kwh_m2": 98,
+     "meas_pct": 39
+    },
+    "SPORT": {
+     "b": 21,
+     "kwh_m2": 133,
+     "meas_pct": 59
+    }
+   },
    "vse": {
     "pop": 38678,
     "fe_gwh": {
@@ -19440,6 +23707,24 @@
    },
    "above43_area_pct": 42.4,
    "known_pct": 3.4,
+   "dh_pot": {
+    "q_gwh": 3.5,
+    "dense_gwh": 0.0,
+    "pct": 0.0,
+    "ha": 0
+   },
+   "javne_cat": {
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 326,
     "fe_gwh": {
@@ -19585,6 +23870,39 @@
    },
    "above43_area_pct": 42.1,
    "known_pct": 11.8,
+   "dh_pot": {
+    "q_gwh": 152.9,
+    "dense_gwh": 93.6,
+    "pct": 61.2,
+    "ha": 154
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 6,
+     "kwh_m2": 294,
+     "meas_pct": 2
+    },
+    "DRUGO": {
+     "b": 33,
+     "kwh_m2": 95,
+     "meas_pct": 19
+    },
+    "IZOBRAZ": {
+     "b": 27,
+     "kwh_m2": 97,
+     "meas_pct": 72
+    },
+    "PISARNE": {
+     "b": 15,
+     "kwh_m2": 77,
+     "meas_pct": 32
+    },
+    "SPORT": {
+     "b": 15,
+     "kwh_m2": 107,
+     "meas_pct": 36
+    }
+   },
    "vse": {
     "pop": 18206,
     "fe_gwh": {
@@ -19730,6 +24048,39 @@
    },
    "above43_area_pct": 37.1,
    "known_pct": 5.5,
+   "dh_pot": {
+    "q_gwh": 43.1,
+    "dense_gwh": 5.9,
+    "pct": 13.7,
+    "ha": 14
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 42,
+     "kwh_m2": 145,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 101,
+     "meas_pct": 85
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 6168,
     "fe_gwh": {
@@ -19875,6 +24226,39 @@
    },
    "above43_area_pct": 45.7,
    "known_pct": 5.7,
+   "dh_pot": {
+    "q_gwh": 15.1,
+    "dense_gwh": 1.3,
+    "pct": 8.4,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 15,
+     "kwh_m2": 119,
+     "meas_pct": 13
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 344,
+     "meas_pct": 84
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 21,
+     "meas_pct": 98
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 143,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 2242,
     "fe_gwh": {
@@ -20020,6 +24404,39 @@
    },
    "above43_area_pct": 35.9,
    "known_pct": 8.7,
+   "dh_pot": {
+    "q_gwh": 164.8,
+    "dense_gwh": 69.2,
+    "pct": 42.0,
+    "ha": 119
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 26,
+     "kwh_m2": 491,
+     "meas_pct": 12
+    },
+    "DRUGO": {
+     "b": 46,
+     "kwh_m2": 107,
+     "meas_pct": 38
+    },
+    "IZOBRAZ": {
+     "b": 46,
+     "kwh_m2": 169,
+     "meas_pct": 51
+    },
+    "PISARNE": {
+     "b": 16,
+     "kwh_m2": 107,
+     "meas_pct": 55
+    },
+    "SPORT": {
+     "b": 22,
+     "kwh_m2": 135,
+     "meas_pct": 42
+    }
+   },
    "vse": {
     "pop": 23898,
     "fe_gwh": {
@@ -20165,6 +24582,39 @@
    },
    "above43_area_pct": 35.9,
    "known_pct": 4.3,
+   "dh_pot": {
+    "q_gwh": 39.0,
+    "dense_gwh": 1.3,
+    "pct": 3.3,
+    "ha": 2
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 34,
+     "kwh_m2": 96,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 147,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 109,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 12,
+     "kwh_m2": 52,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 5800,
     "fe_gwh": {
@@ -20310,6 +24760,39 @@
    },
    "above43_area_pct": 46.7,
    "known_pct": 6.6,
+   "dh_pot": {
+    "q_gwh": 27.3,
+    "dense_gwh": 7.9,
+    "pct": 28.8,
+    "ha": 18
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 12,
+     "kwh_m2": 80,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 165,
+     "meas_pct": 61
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 116,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 4046,
     "fe_gwh": {
@@ -20455,6 +24938,39 @@
    },
    "above43_area_pct": 31.6,
    "known_pct": 3.6,
+   "dh_pot": {
+    "q_gwh": 31.6,
+    "dense_gwh": 1.6,
+    "pct": 4.9,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 96,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "kwh_m2": 67,
+     "meas_pct": 91
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 97,
+     "meas_pct": 74
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 247,
+     "meas_pct": 94
+    }
+   },
    "vse": {
     "pop": 5612,
     "fe_gwh": {
@@ -20600,6 +25116,34 @@
    },
    "above43_area_pct": 39.7,
    "known_pct": 3.6,
+   "dh_pot": {
+    "q_gwh": 12.7,
+    "dense_gwh": 2.7,
+    "pct": 21.4,
+    "ha": 8
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 43,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 155,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2200,
     "fe_gwh": {
@@ -20745,6 +25289,39 @@
    },
    "above43_area_pct": 29.5,
    "known_pct": 5.3,
+   "dh_pot": {
+    "q_gwh": 52.2,
+    "dense_gwh": 10.2,
+    "pct": 19.6,
+    "ha": 20
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 8,
+     "kwh_m2": 531,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 12,
+     "kwh_m2": 93,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "kwh_m2": 98,
+     "meas_pct": 71
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 58,
+     "meas_pct": 55
+    }
+   },
    "vse": {
     "pop": 9360,
     "fe_gwh": {
@@ -20890,6 +25467,39 @@
    },
    "above43_area_pct": 38.8,
    "known_pct": 5.2,
+   "dh_pot": {
+    "q_gwh": 16.0,
+    "dense_gwh": 1.9,
+    "pct": 11.9,
+    "ha": 4
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 95,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 122,
+     "meas_pct": 89
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 373,
+     "meas_pct": 65
+    }
+   },
    "vse": {
     "pop": 2594,
     "fe_gwh": {
@@ -21035,6 +25645,34 @@
    },
    "above43_area_pct": 36.1,
    "known_pct": 4.6,
+   "dh_pot": {
+    "q_gwh": 9.1,
+    "dense_gwh": 0.3,
+    "pct": 3.6,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 84,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1453,
     "fe_gwh": {
@@ -21180,6 +25818,39 @@
    },
    "above43_area_pct": 43.1,
    "known_pct": 4.7,
+   "dh_pot": {
+    "q_gwh": 39.2,
+    "dense_gwh": 9.6,
+    "pct": 24.4,
+    "ha": 22
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 19,
+     "kwh_m2": 97,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "kwh_m2": 205,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 162,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 6629,
     "fe_gwh": {
@@ -21325,6 +25996,34 @@
    },
    "above43_area_pct": 27.8,
    "known_pct": 6.5,
+   "dh_pot": {
+    "q_gwh": 14.5,
+    "dense_gwh": 2.2,
+    "pct": 15.2,
+    "ha": 7
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 55,
+     "meas_pct": 100
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2727,
     "fe_gwh": {
@@ -21470,6 +26169,34 @@
    },
    "above43_area_pct": 42.4,
    "known_pct": 3.9,
+   "dh_pot": {
+    "q_gwh": 9.3,
+    "dense_gwh": 0.7,
+    "pct": 7.0,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 5,
+     "kwh_m2": 82,
+     "meas_pct": 79
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 128,
+     "meas_pct": 42
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1334,
     "fe_gwh": {
@@ -21615,6 +26342,34 @@
    },
    "above43_area_pct": 38.7,
    "known_pct": 5.9,
+   "dh_pot": {
+    "q_gwh": 12.2,
+    "dense_gwh": 0.8,
+    "pct": 6.3,
+    "ha": 2
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 185,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1563,
     "fe_gwh": {
@@ -21760,6 +26515,34 @@
    },
    "above43_area_pct": 32.7,
    "known_pct": 4.9,
+   "dh_pot": {
+    "q_gwh": 35.3,
+    "dense_gwh": 4.0,
+    "pct": 11.3,
+    "ha": 8
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 11,
+     "kwh_m2": 63,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 143,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 11,
+     "kwh_m2": 93,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 5908,
     "fe_gwh": {
@@ -21905,6 +26688,39 @@
    },
    "above43_area_pct": 40.1,
    "known_pct": 2.7,
+   "dh_pot": {
+    "q_gwh": 12.4,
+    "dense_gwh": 1.2,
+    "pct": 9.3,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 188,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 116,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 97,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 1748,
     "fe_gwh": {
@@ -22050,6 +26866,39 @@
    },
    "above43_area_pct": 26.9,
    "known_pct": 4.2,
+   "dh_pot": {
+    "q_gwh": 12.0,
+    "dense_gwh": 0.3,
+    "pct": 2.8,
+    "ha": 1
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2250,
     "fe_gwh": {
@@ -22195,6 +27044,24 @@
    },
    "above43_area_pct": 37.8,
    "known_pct": 1.5,
+   "dh_pot": {
+    "q_gwh": 5.9,
+    "dense_gwh": 0.3,
+    "pct": 5.9,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 164,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 965,
     "fe_gwh": {
@@ -22340,6 +27207,39 @@
    },
    "above43_area_pct": 34.2,
    "known_pct": 6.0,
+   "dh_pot": {
+    "q_gwh": 14.6,
+    "dense_gwh": 4.1,
+    "pct": 27.9,
+    "ha": 8
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 6,
+     "kwh_m2": 85,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 164,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2347,
     "fe_gwh": {
@@ -22485,6 +27385,34 @@
    },
    "above43_area_pct": 39.6,
    "known_pct": 7.0,
+   "dh_pot": {
+    "q_gwh": 8.9,
+    "dense_gwh": 0.6,
+    "pct": 6.5,
+    "ha": 2
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 8,
+     "kwh_m2": 69,
+     "meas_pct": 2
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 185,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 100,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 187,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 1217,
     "fe_gwh": {
@@ -22630,6 +27558,39 @@
    },
    "above43_area_pct": 30.9,
    "known_pct": 5.7,
+   "dh_pot": {
+    "q_gwh": 23.9,
+    "dense_gwh": 3.3,
+    "pct": 13.7,
+    "ha": 8
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 51,
+     "kwh_m2": 86,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 100,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3666,
     "fe_gwh": {
@@ -22775,6 +27736,39 @@
    },
    "above43_area_pct": 43.7,
    "known_pct": 3.5,
+   "dh_pot": {
+    "q_gwh": 14.2,
+    "dense_gwh": 0.8,
+    "pct": 5.9,
+    "ha": 2
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 12,
+     "kwh_m2": 125,
+     "meas_pct": 8
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1953,
     "fe_gwh": {
@@ -22920,6 +27914,39 @@
    },
    "above43_area_pct": 27.8,
    "known_pct": 7.5,
+   "dh_pot": {
+    "q_gwh": 22.2,
+    "dense_gwh": 1.2,
+    "pct": 5.5,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 11,
+     "kwh_m2": 114,
+     "meas_pct": 18
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 205,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 4092,
     "fe_gwh": {
@@ -23065,6 +28092,34 @@
    },
    "above43_area_pct": 27.4,
    "known_pct": 11.0,
+   "dh_pot": {
+    "q_gwh": 80.2,
+    "dense_gwh": 13.3,
+    "pct": 16.5,
+    "ha": 29
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 4,
+     "kwh_m2": 445,
+     "meas_pct": 25
+    },
+    "DRUGO": {
+     "b": 23,
+     "kwh_m2": 54,
+     "meas_pct": 19
+    },
+    "IZOBRAZ": {
+     "b": 29,
+     "kwh_m2": 167,
+     "meas_pct": 41
+    },
+    "SPORT": {
+     "b": 9,
+     "kwh_m2": 81,
+     "meas_pct": 53
+    }
+   },
    "vse": {
     "pop": 12061,
     "fe_gwh": {
@@ -23210,6 +28265,34 @@
    },
    "above43_area_pct": 45.5,
    "known_pct": 2.3,
+   "dh_pot": {
+    "q_gwh": 2.5,
+    "dense_gwh": 0.0,
+    "pct": 0.0,
+    "ha": 0
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 10,
+     "kwh_m2": 149,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 123,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 335,
     "fe_gwh": {
@@ -23355,6 +28438,39 @@
    },
    "above43_area_pct": 33.0,
    "known_pct": 2.8,
+   "dh_pot": {
+    "q_gwh": 18.4,
+    "dense_gwh": 2.9,
+    "pct": 16.0,
+    "ha": 7
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 113,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 30,
+     "meas_pct": 86
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 132,
+     "meas_pct": 46
+    }
+   },
    "vse": {
     "pop": 3085,
     "fe_gwh": {
@@ -23500,6 +28616,34 @@
    },
    "above43_area_pct": 44.7,
    "known_pct": 5.0,
+   "dh_pot": {
+    "q_gwh": 6.2,
+    "dense_gwh": 1.2,
+    "pct": 20.2,
+    "ha": 3
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 8,
+     "kwh_m2": 97,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 679,
     "fe_gwh": {
@@ -23645,6 +28789,34 @@
    },
    "above43_area_pct": 23.7,
    "known_pct": 8.8,
+   "dh_pot": {
+    "q_gwh": 36.1,
+    "dense_gwh": 7.3,
+    "pct": 20.3,
+    "ha": 22
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 3,
+     "kwh_m2": 105,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 220,
+     "meas_pct": 35
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 119,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 138,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 6800,
     "fe_gwh": {
@@ -23790,6 +28962,29 @@
    },
    "above43_area_pct": 45.0,
    "known_pct": 5.0,
+   "dh_pot": {
+    "q_gwh": 7.8,
+    "dense_gwh": 0.3,
+    "pct": 3.7,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 295,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 604,
     "fe_gwh": {
@@ -23935,6 +29130,39 @@
    },
    "above43_area_pct": 37.2,
    "known_pct": 4.1,
+   "dh_pot": {
+    "q_gwh": 21.3,
+    "dense_gwh": 1.5,
+    "pct": 7.1,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 14,
+     "kwh_m2": 125,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 155,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3531,
     "fe_gwh": {
@@ -24080,6 +29308,34 @@
    },
    "above43_area_pct": 42.3,
    "known_pct": 5.5,
+   "dh_pot": {
+    "q_gwh": 17.0,
+    "dense_gwh": 1.4,
+    "pct": 8.1,
+    "ha": 4
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 61,
+     "meas_pct": 30
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 112,
+     "meas_pct": 100
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 121,
+     "meas_pct": 43
+    }
+   },
    "vse": {
     "pop": 2981,
     "fe_gwh": {
@@ -24225,6 +29481,34 @@
    },
    "above43_area_pct": 27.0,
    "known_pct": 4.2,
+   "dh_pot": {
+    "q_gwh": 17.9,
+    "dense_gwh": 3.0,
+    "pct": 17.0,
+    "ha": 4
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 114,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 110,
+     "meas_pct": 67
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3238,
     "fe_gwh": {
@@ -24370,6 +29654,29 @@
    },
    "above43_area_pct": 31.6,
    "known_pct": 1.8,
+   "dh_pot": {
+    "q_gwh": 21.2,
+    "dense_gwh": 1.9,
+    "pct": 9.1,
+    "ha": 5
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 58,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 147,
+     "meas_pct": 0
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 187,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 4203,
     "fe_gwh": {
@@ -24515,6 +29822,39 @@
    },
    "above43_area_pct": 35.8,
    "known_pct": 2.8,
+   "dh_pot": {
+    "q_gwh": 13.5,
+    "dense_gwh": 1.1,
+    "pct": 8.1,
+    "ha": 2
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 57,
+     "meas_pct": 88
+    },
+    "PISARNE": {
+     "b": 6,
+     "kwh_m2": 81,
+     "meas_pct": 40
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1828,
     "fe_gwh": {
@@ -24660,6 +30000,39 @@
    },
    "above43_area_pct": 34.9,
    "known_pct": 8.7,
+   "dh_pot": {
+    "q_gwh": 27.8,
+    "dense_gwh": 6.3,
+    "pct": 22.7,
+    "ha": 12
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 10,
+     "kwh_m2": 100,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 161,
+     "meas_pct": 97
+    },
+    "PISARNE": {
+     "b": 4,
+     "kwh_m2": 107,
+     "meas_pct": 75
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 96,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 5318,
     "fe_gwh": {
@@ -24805,6 +30178,29 @@
    },
    "above43_area_pct": 43.9,
    "known_pct": 3.2,
+   "dh_pot": {
+    "q_gwh": 7.4,
+    "dense_gwh": 1.0,
+    "pct": 13.5,
+    "ha": 2
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 7,
+     "kwh_m2": 93,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 1231,
     "fe_gwh": {
@@ -24950,6 +30346,34 @@
    },
    "above43_area_pct": 35.3,
    "known_pct": 5.8,
+   "dh_pot": {
+    "q_gwh": 27.2,
+    "dense_gwh": 2.5,
+    "pct": 9.2,
+    "ha": 7
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 8,
+     "kwh_m2": 63,
+     "meas_pct": 44
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 132,
+     "meas_pct": 93
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 137,
+     "meas_pct": 86
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 4359,
     "fe_gwh": {
@@ -25095,6 +30519,34 @@
    },
    "above43_area_pct": 46.2,
    "known_pct": 3.7,
+   "dh_pot": {
+    "q_gwh": 5.8,
+    "dense_gwh": 0.9,
+    "pct": 16.2,
+    "ha": 3
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 46,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 493,
     "fe_gwh": {
@@ -25240,6 +30692,39 @@
    },
    "above43_area_pct": 44.2,
    "known_pct": 8.0,
+   "dh_pot": {
+    "q_gwh": 54.4,
+    "dense_gwh": 27.7,
+    "pct": 50.9,
+    "ha": 51
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 7,
+     "kwh_m2": 287,
+     "meas_pct": 95
+    },
+    "DRUGO": {
+     "b": 8,
+     "kwh_m2": 116,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 10,
+     "kwh_m2": 131,
+     "meas_pct": 51
+    },
+    "PISARNE": {
+     "b": 8,
+     "kwh_m2": 102,
+     "meas_pct": 37
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 51,
+     "meas_pct": 90
+    }
+   },
    "vse": {
     "pop": 6451,
     "fe_gwh": {
@@ -25385,6 +30870,34 @@
    },
    "above43_area_pct": 32.4,
    "known_pct": 4.9,
+   "dh_pot": {
+    "q_gwh": 9.9,
+    "dense_gwh": 0.5,
+    "pct": 4.7,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 3,
+     "kwh_m2": 84,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 131,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1833,
     "fe_gwh": {
@@ -25530,6 +31043,39 @@
    },
    "above43_area_pct": 24.5,
    "known_pct": 3.0,
+   "dh_pot": {
+    "q_gwh": 6.5,
+    "dense_gwh": 0.3,
+    "pct": 4.1,
+    "ha": 1
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 3,
+     "kwh_m2": 41,
+     "meas_pct": 80
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1400,
     "fe_gwh": {
@@ -25675,6 +31221,34 @@
    },
    "above43_area_pct": 22.6,
    "known_pct": 10.6,
+   "dh_pot": {
+    "q_gwh": 31.0,
+    "dense_gwh": 15.2,
+    "pct": 49.0,
+    "ha": 37
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 5,
+     "kwh_m2": 47,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 135,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 4000,
     "fe_gwh": {
@@ -25820,6 +31394,29 @@
    },
    "above43_area_pct": 33.6,
    "known_pct": 6.7,
+   "dh_pot": {
+    "q_gwh": 10.1,
+    "dense_gwh": 1.1,
+    "pct": 10.5,
+    "ha": 3
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 48,
+     "meas_pct": 63
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 86,
+     "meas_pct": 63
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 112,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 1361,
     "fe_gwh": {
@@ -25965,6 +31562,34 @@
    },
    "above43_area_pct": 32.6,
    "known_pct": 1.4,
+   "dh_pot": {
+    "q_gwh": 7.3,
+    "dense_gwh": 0.4,
+    "pct": 5.6,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 3,
+     "kwh_m2": 184,
+     "meas_pct": 58
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1299,
     "fe_gwh": {
@@ -26110,6 +31735,39 @@
    },
    "above43_area_pct": 36.6,
    "known_pct": 3.7,
+   "dh_pot": {
+    "q_gwh": 31.3,
+    "dense_gwh": 2.8,
+    "pct": 8.8,
+    "ha": 6
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 15,
+     "kwh_m2": 99,
+     "meas_pct": 14
+    },
+    "IZOBRAZ": {
+     "b": 8,
+     "kwh_m2": 152,
+     "meas_pct": 94
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 174,
+     "meas_pct": 64
+    }
+   },
    "vse": {
     "pop": 4708,
     "fe_gwh": {
@@ -26255,6 +31913,34 @@
    },
    "above43_area_pct": 28.8,
    "known_pct": 2.6,
+   "dh_pot": {
+    "q_gwh": 23.4,
+    "dense_gwh": 1.7,
+    "pct": 7.5,
+    "ha": 4
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 11,
+     "kwh_m2": 124,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 131,
+     "meas_pct": 58
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 7,
+     "kwh_m2": 105,
+     "meas_pct": 71
+    }
+   },
    "vse": {
     "pop": 4050,
     "fe_gwh": {
@@ -26400,6 +32086,39 @@
    },
    "above43_area_pct": 27.0,
    "known_pct": 9.9,
+   "dh_pot": {
+    "q_gwh": 39.3,
+    "dense_gwh": 7.0,
+    "pct": 17.8,
+    "ha": 22
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 7,
+     "kwh_m2": 112,
+     "meas_pct": 30
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 364,
+     "meas_pct": 97
+    },
+    "PISARNE": {
+     "b": 3,
+     "kwh_m2": 69,
+     "meas_pct": 61
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 33,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 7300,
     "fe_gwh": {
@@ -26545,6 +32264,39 @@
    },
    "above43_area_pct": 26.8,
    "known_pct": 7.2,
+   "dh_pot": {
+    "q_gwh": 36.3,
+    "dense_gwh": 7.7,
+    "pct": 21.2,
+    "ha": 15
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 120,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 9,
+     "kwh_m2": 193,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 11,
+     "kwh_m2": 174,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 6668,
     "fe_gwh": {
@@ -26690,6 +32442,39 @@
    },
    "above43_area_pct": 46.3,
    "known_pct": 10.3,
+   "dh_pot": {
+    "q_gwh": 44.6,
+    "dense_gwh": 18.6,
+    "pct": 41.6,
+    "ha": 33
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 4,
+     "kwh_m2": 220,
+     "meas_pct": 69
+    },
+    "DRUGO": {
+     "b": 16,
+     "kwh_m2": 70,
+     "meas_pct": 54
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 121,
+     "meas_pct": 100
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 6,
+     "kwh_m2": 113,
+     "meas_pct": 34
+    }
+   },
    "vse": {
     "pop": 6668,
     "fe_gwh": {
@@ -26835,6 +32620,29 @@
    },
    "above43_area_pct": 43.4,
    "known_pct": 5.1,
+   "dh_pot": {
+    "q_gwh": 8.6,
+    "dense_gwh": 1.0,
+    "pct": 12.0,
+    "ha": 3
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 15,
+     "kwh_m2": 106,
+     "meas_pct": 38
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1071,
     "fe_gwh": {
@@ -26980,6 +32788,39 @@
    },
    "above43_area_pct": 39.1,
    "known_pct": 4.4,
+   "dh_pot": {
+    "q_gwh": 16.2,
+    "dense_gwh": 1.7,
+    "pct": 10.3,
+    "ha": 4
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 7,
+     "kwh_m2": 91,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2354,
     "fe_gwh": {
@@ -27125,6 +32966,34 @@
    },
    "above43_area_pct": 30.6,
    "known_pct": 5.4,
+   "dh_pot": {
+    "q_gwh": 14.7,
+    "dense_gwh": 1.0,
+    "pct": 7.1,
+    "ha": 2
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 3,
+     "kwh_m2": 136,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 209,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 86,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 2347,
     "fe_gwh": {
@@ -27270,6 +33139,29 @@
    },
    "above43_area_pct": 30.0,
    "known_pct": 1.4,
+   "dh_pot": {
+    "q_gwh": 6.3,
+    "dense_gwh": 0.3,
+    "pct": 4.8,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1191,
     "fe_gwh": {
@@ -27415,6 +33307,29 @@
    },
    "above43_area_pct": 37.8,
    "known_pct": 3.1,
+   "dh_pot": {
+    "q_gwh": 10.1,
+    "dense_gwh": 1.4,
+    "pct": 14.4,
+    "ha": 3
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 57,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1379,
     "fe_gwh": {
@@ -27560,6 +33475,39 @@
    },
    "above43_area_pct": 36.4,
    "known_pct": 5.3,
+   "dh_pot": {
+    "q_gwh": 16.4,
+    "dense_gwh": 2.6,
+    "pct": 15.6,
+    "ha": 7
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 94,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 172,
+     "meas_pct": 0
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2792,
     "fe_gwh": {
@@ -27705,6 +33653,34 @@
    },
    "above43_area_pct": 33.9,
    "known_pct": 5.3,
+   "dh_pot": {
+    "q_gwh": 27.5,
+    "dense_gwh": 2.6,
+    "pct": 9.5,
+    "ha": 8
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 14,
+     "kwh_m2": 87,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 89,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 4515,
     "fe_gwh": {
@@ -27850,6 +33826,39 @@
    },
    "above43_area_pct": 38.3,
    "known_pct": 7.5,
+   "dh_pot": {
+    "q_gwh": 135.6,
+    "dense_gwh": 43.1,
+    "pct": 31.8,
+    "ha": 82
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 6,
+     "kwh_m2": 147,
+     "meas_pct": 63
+    },
+    "DRUGO": {
+     "b": 52,
+     "kwh_m2": 128,
+     "meas_pct": 12
+    },
+    "IZOBRAZ": {
+     "b": 23,
+     "kwh_m2": 115,
+     "meas_pct": 71
+    },
+    "PISARNE": {
+     "b": 18,
+     "kwh_m2": 99,
+     "meas_pct": 36
+    },
+    "SPORT": {
+     "b": 11,
+     "kwh_m2": 154,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 21737,
     "fe_gwh": {
@@ -27995,6 +34004,34 @@
    },
    "above43_area_pct": 32.3,
    "known_pct": 4.8,
+   "dh_pot": {
+    "q_gwh": 28.0,
+    "dense_gwh": 4.1,
+    "pct": 14.5,
+    "ha": 10
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 13,
+     "kwh_m2": 73,
+     "meas_pct": 48
+    },
+    "IZOBRAZ": {
+     "b": 7,
+     "kwh_m2": 105,
+     "meas_pct": 96
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 99,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 5854,
     "fe_gwh": {
@@ -28140,6 +34177,34 @@
    },
    "above43_area_pct": 49.0,
    "known_pct": 5.1,
+   "dh_pot": {
+    "q_gwh": 13.5,
+    "dense_gwh": 1.7,
+    "pct": 12.6,
+    "ha": 5
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 8,
+     "kwh_m2": 71,
+     "meas_pct": 39
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 5,
+     "kwh_m2": 116,
+     "meas_pct": 12
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1827,
     "fe_gwh": {
@@ -28285,6 +34350,24 @@
    },
    "above43_area_pct": 36.7,
    "known_pct": 6.9,
+   "dh_pot": {
+    "q_gwh": 22.5,
+    "dense_gwh": 2.7,
+    "pct": 12.2,
+    "ha": 6
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 5,
+     "kwh_m2": 63,
+     "meas_pct": 67
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 4000,
     "fe_gwh": {
@@ -28430,6 +34513,29 @@
    },
    "above43_area_pct": 30.3,
    "known_pct": 8.0,
+   "dh_pot": {
+    "q_gwh": 14.3,
+    "dense_gwh": 1.3,
+    "pct": 9.4,
+    "ha": 2
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 103,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2297,
     "fe_gwh": {
@@ -28575,6 +34681,39 @@
    },
    "above43_area_pct": 35.1,
    "known_pct": 3.1,
+   "dh_pot": {
+    "q_gwh": 12.0,
+    "dense_gwh": 0.8,
+    "pct": 6.4,
+    "ha": 2
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 6,
+     "kwh_m2": 135,
+     "meas_pct": 21
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 1966,
     "fe_gwh": {
@@ -28720,6 +34859,39 @@
    },
    "above43_area_pct": 24.3,
    "known_pct": 6.4,
+   "dh_pot": {
+    "q_gwh": 20.3,
+    "dense_gwh": 1.4,
+    "pct": 6.8,
+    "ha": 3
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 91,
+     "meas_pct": 32
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 135,
+     "meas_pct": 99
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3606,
     "fe_gwh": {
@@ -28865,6 +35037,39 @@
    },
    "above43_area_pct": 32.9,
    "known_pct": 4.9,
+   "dh_pot": {
+    "q_gwh": 21.4,
+    "dense_gwh": 0.6,
+    "pct": 2.8,
+    "ha": 1
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 15,
+     "kwh_m2": 83,
+     "meas_pct": 16
+    },
+    "IZOBRAZ": {
+     "b": 6,
+     "kwh_m2": 95,
+     "meas_pct": 84
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3562,
     "fe_gwh": {
@@ -29010,6 +35215,29 @@
    },
    "above43_area_pct": 33.0,
    "known_pct": 2.6,
+   "dh_pot": {
+    "q_gwh": 15.9,
+    "dense_gwh": 2.0,
+    "pct": 12.5,
+    "ha": 4
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 71,
+     "meas_pct": 14
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 132,
+     "meas_pct": 100
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2357,
     "fe_gwh": {
@@ -29155,6 +35383,29 @@
    },
    "above43_area_pct": 36.9,
    "known_pct": 3.0,
+   "dh_pot": {
+    "q_gwh": 16.8,
+    "dense_gwh": 3.6,
+    "pct": 21.7,
+    "ha": 10
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 40,
+     "meas_pct": 86
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 49,
+     "meas_pct": 95
+    }
+   },
    "vse": {
     "pop": 2424,
     "fe_gwh": {
@@ -29300,6 +35551,39 @@
    },
    "above43_area_pct": 34.1,
    "known_pct": 3.2,
+   "dh_pot": {
+    "q_gwh": 12.1,
+    "dense_gwh": 1.3,
+    "pct": 10.5,
+    "ha": 2
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 85,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 122,
+     "meas_pct": 82
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2052,
     "fe_gwh": {
@@ -29445,6 +35729,39 @@
    },
    "above43_area_pct": 32.0,
    "known_pct": 5.4,
+   "dh_pot": {
+    "q_gwh": 19.9,
+    "dense_gwh": 1.8,
+    "pct": 8.8,
+    "ha": 5
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 11,
+     "kwh_m2": 55,
+     "meas_pct": 47
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 3320,
     "fe_gwh": {
@@ -29590,6 +35907,39 @@
    },
    "above43_area_pct": 37.3,
    "known_pct": 4.0,
+   "dh_pot": {
+    "q_gwh": 26.2,
+    "dense_gwh": 3.2,
+    "pct": 12.1,
+    "ha": 7
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 9,
+     "kwh_m2": 132,
+     "meas_pct": 14
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 79,
+     "meas_pct": 97
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 4327,
     "fe_gwh": {
@@ -29735,6 +36085,34 @@
    },
    "above43_area_pct": 39.4,
    "known_pct": 4.7,
+   "dh_pot": {
+    "q_gwh": 27.8,
+    "dense_gwh": 2.2,
+    "pct": 7.9,
+    "ha": 6
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 3,
+     "kwh_m2": 187,
+     "meas_pct": 0
+    },
+    "DRUGO": {
+     "b": 15,
+     "kwh_m2": 121,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 5,
+     "kwh_m2": 93,
+     "meas_pct": 92
+    },
+    "SPORT": {
+     "b": 5,
+     "kwh_m2": 67,
+     "meas_pct": 89
+    }
+   },
    "vse": {
     "pop": 4424,
     "fe_gwh": {
@@ -29880,6 +36258,24 @@
    },
    "above43_area_pct": 51.2,
    "known_pct": 6.2,
+   "dh_pot": {
+    "q_gwh": 20.1,
+    "dense_gwh": 3.3,
+    "pct": 16.4,
+    "ha": 9
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 4,
+     "kwh_m2": 85,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2733,
     "fe_gwh": {
@@ -30025,6 +36421,39 @@
    },
    "above43_area_pct": 27.7,
    "known_pct": 9.4,
+   "dh_pot": {
+    "q_gwh": 21.4,
+    "dense_gwh": 5.5,
+    "pct": 25.7,
+    "ha": 17
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 3,
+     "kwh_m2": 90,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 117,
+     "meas_pct": 94
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 3,
+     "kwh_m2": 99,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 3895,
     "fe_gwh": {
@@ -30170,6 +36599,34 @@
    },
    "above43_area_pct": 42.4,
    "known_pct": 5.1,
+   "dh_pot": {
+    "q_gwh": 14.5,
+    "dense_gwh": 1.9,
+    "pct": 13.1,
+    "ha": 6
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 7,
+     "kwh_m2": 107,
+     "meas_pct": 0
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2300,
     "fe_gwh": {
@@ -30315,6 +36772,29 @@
    },
    "above43_area_pct": 27.0,
    "known_pct": 5.3,
+   "dh_pot": {
+    "q_gwh": 12.3,
+    "dense_gwh": 0.3,
+    "pct": 2.2,
+    "ha": 1
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2238,
     "fe_gwh": {
@@ -30460,6 +36940,29 @@
    },
    "above43_area_pct": 22.9,
    "known_pct": 4.5,
+   "dh_pot": {
+    "q_gwh": 16.2,
+    "dense_gwh": 1.0,
+    "pct": 6.5,
+    "ha": 3
+   },
+   "javne_cat": {
+    "DRUGO": {
+     "b": 49,
+     "kwh_m2": 73,
+     "meas_pct": 1
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 122,
+     "meas_pct": 100
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2915,
     "fe_gwh": {
@@ -30605,6 +37108,39 @@
    },
    "above43_area_pct": 28.7,
    "known_pct": 6.6,
+   "dh_pot": {
+    "q_gwh": 16.1,
+    "dense_gwh": 1.6,
+    "pct": 9.7,
+    "ha": 4
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 6,
+     "kwh_m2": 133,
+     "meas_pct": 35
+    },
+    "IZOBRAZ": {
+     "b": 4,
+     "kwh_m2": 150,
+     "meas_pct": 66
+    },
+    "PISARNE": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    }
+   },
    "vse": {
     "pop": 2895,
     "fe_gwh": {
@@ -30750,6 +37286,44 @@
    },
    "above43_area_pct": 41.7,
    "known_pct": 15.0,
+   "dh_pot": {
+    "q_gwh": 26.1,
+    "dense_gwh": 16.2,
+    "pct": 62.0,
+    "ha": 36
+   },
+   "javne_cat": {
+    "BOLNICA": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "DRUGO": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "HOTELI": {
+     "b": 1,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "IZOBRAZ": {
+     "b": 3,
+     "kwh_m2": 131,
+     "meas_pct": 100
+    },
+    "PISARNE": {
+     "b": 2,
+     "kwh_m2": null,
+     "meas_pct": null
+    },
+    "SPORT": {
+     "b": 4,
+     "kwh_m2": 188,
+     "meas_pct": 0
+    }
+   },
    "vse": {
     "pop": 3444,
     "fe_gwh": {

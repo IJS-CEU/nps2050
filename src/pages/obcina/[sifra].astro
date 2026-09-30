@@ -52,7 +52,8 @@ const tiles = [
 const cmp = (label: string, v: number | null, s: number | null, note?: string) => ({ label, v, s, note });
 const esRows = ix.es_groups.map((g) => ({ ...g, o: o.es_res[g.id], s: si.es_res[g.id] }));
 const esMax = Math.max(1, ...esRows.flatMap((r) => [r.o.pct ?? 0, r.s.pct ?? 0]));
-const pub = ix.categories.slice(2).map((c) => ({ id: c.id, name: c.name, ...o.public_by_cat[c.id] })).filter((c) => c.b !== 0);
+const pub = ix.categories.slice(2).map((c) => ({ id: c.id, name: c.name, ...o.public_by_cat[c.id], e: mo.javne_cat?.[c.id] ?? null, es: ms.javne_cat?.[c.id] ?? null })).filter((c) => c.b !== 0);
+const dh = mo.dh_pot!, dhSi = ms.dh_pot!;
 const clsBlocks = ['hise', 'bloki'].map((sid) => {
   const g = o.segments[sid], gs = si.segments[sid];
   const grouped = !g.classes_pct && !!g.class_groups_pct;
@@ -106,6 +107,7 @@ const TOC = [
   { id: 'ob-peer-t', icon: 'map', label: 'Primerjava', hint: 'sosednje in podobne občine' },
   { id: 'ob-cilji-t', icon: 'target', label: 'Cilji NPS 2050', hint: 'potrebna prenova v občini' },
   { id: 'ob-pot-t', icon: 'trending-down', label: 'Pot do leta 2050', hint: 'energija, emisije, OVE' },
+  { id: 'ob-dh-t', icon: 'flame', label: 'Daljinsko ogrevanje', hint: 'potencial po toplotni karti' },
   { id: 'ob-model-t', icon: 'house', label: 'Stanovanjske stavbe', hint: 'energenti in razredi' },
   { id: 'reg-seg', icon: 'building-2', label: 'Podatki iz registrov', hint: 'stavbe, izkaznice, prenove' },
   { id: 'lek', icon: 'file-text', label: 'Kartica občine', hint: 'PDF in CSV za LEK' },
@@ -157,6 +159,7 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
 
     <section class="ob-peer" aria-labelledby="ob-peer-t">
       <h2 id="ob-peer-t">Primerjava s sosednjimi in podobnimi občinami</h2>
+      <p><a class="btn" href={`${pageUrl('primerjava')}?o=${[sifra, ...me.neighbours.slice(0, 3)].join(',')}`}>Primerjaj z izbranimi občinami</a></p>
       <p>Občina {o.name} spada med <strong>{grpName}</strong> ({grp.length} občin). Po rabi energije v stanovanjskih stavbah na prebivalca je {rank}. od {grp.length} (1 = najnižja raba).</p>
       <div class="tblwrap" tabindex="0" role="region" aria-label="Primerjava s podobnimi občinami">
         <table>
@@ -218,6 +221,21 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
         </table>
       </div>
       <p class="note">Ponazoritev: prehodi med energijskimi razredi po scenariju NPS 2050 (model RenRates) so uporabljeni za vsako stavbo v občini; vsota za državo po vrstah stavb sledi osnutku, emisije in delež obnovljivih virov pa se za državo ujemajo z osnutkom v vsakem letu. Leto 2023 je izhodišče.</p>
+    </section>
+
+    <section class="ob-cilji ob-dh" aria-labelledby="ob-dh-t">
+      <p class="ob-model-k">NPS 2050 v občini · daljinsko ogrevanje</p>
+      <h2 id="ob-dh-t">Potencial za daljinsko ogrevanje</h2>
+      {dh.ha > 0
+        ? <p>V občini je <strong>{nf(dh.ha)} ha</strong> območij, kjer je gostota potrebne toplote za ogrevanje vsaj 250 MWh na hektar na leto. Na teh območjih je <strong>{nf(dh.pct, 0)} %</strong> vse potrebne toplote za ogrevanje stavb v občini (Slovenija {nf(dhSi.pct, 0)} %). Tako gosta območja so praviloma primerna za daljinsko ogrevanje.</p>
+        : <p>V občini ni območij, kjer bi gostota potrebne toplote za ogrevanje dosegla 250 MWh na hektar na leto (Slovenija: {nf(dhSi.pct, 0)} % potrebne toplote na takih območjih). Primernejše so individualne rešitve ali manjši skupni sistemi.</p>}
+      <div class="tiles ob-tiles">
+        <div class="tile"><div class="v">{nf(dh.pct, 0)}<small> %</small></div><div class="l">potrebne toplote za ogrevanje na območjih z gostoto vsaj 250 MWh/ha (Slovenija {nf(dhSi.pct, 0)} %)</div></div>
+        <div class="tile"><div class="v">{nf(dh.dense_gwh, dh.dense_gwh < 10 ? 1 : 0)}<small> GWh</small></div><div class="l">potrebne toplote na leto na teh območjih, od skupaj {nf(dh.q_gwh, dh.q_gwh < 10 ? 1 : 0)} GWh v občini</div></div>
+        <div class="tile"><div class="v">{nf(dh.ha)}<small> ha</small></div><div class="l">površina območij z gostoto vsaj 250 MWh/ha (celice 100 × 100 m)</div></div>
+        <div class="tile"><div class="v">{nf(mo.carriers_pct.dh, 0)}<small> %</small></div><div class="l">sedanji delež daljinske toplote v rabi energije v stanovanjskih stavbah (ocena)</div></div>
+      </div>
+      <p class="note">Vir: toplotna karta potrebne toplote za ogrevanje 2020 (vse stavbe, mreža 100 × 100 m). Kazalnik kaže tehnični potencial glede na gostoto odjema; ne upošteva obstoječih omrežij, virov toplote in ekonomike posameznega sistema. Z energetsko prenovo stavb se gostota odjema zmanjšuje.</p>
     </section>
 
     <div class="ob-part" id="del-3">
@@ -370,10 +388,11 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
       <h2 id="reg-javne">Javne stavbe</h2>
       <div class="tblwrap" tabindex="0" role="region" aria-label="Javne stavbe po vrsti">
         <table>
-          <thead><tr><th scope="col">Vrsta stavbe</th><th scope="col" class="num">Stavbe</th><th scope="col" class="num">Površina [tisoč m²]</th></tr></thead>
-          <tbody>{pub.map((c) => <tr><th scope="row">{c.name}</th><td class="num">{c.b === null ? few : nf(c.b)}</td><td class="num">{c.a === null ? '–' : nf(c.a, 1)}</td></tr>)}</tbody>
+          <thead><tr><th scope="col">Vrsta stavbe</th><th scope="col" class="num">Stavbe</th><th scope="col" class="num">Površina [tisoč m²]</th><th scope="col" class="num">Raba končne energije [kWh/m²]</th><th scope="col" class="num">Slovenija [kWh/m²]</th><th scope="col" class="num">Površina z izmerjeno rabo [%]</th></tr></thead>
+          <tbody>{pub.map((c) => <tr><th scope="row">{c.name}</th><td class="num">{c.b === null ? few : nf(c.b)}</td><td class="num">{c.a === null ? '–' : nf(c.a, 1)}</td><td class="num"><b>{c.e?.kwh_m2 == null ? '–' : nf(c.e.kwh_m2)}</b></td><td class="num">{c.es?.kwh_m2 == null ? '–' : nf(c.es.kwh_m2)}</td><td class="num">{c.e?.meas_pct == null ? '–' : nf(c.e.meas_pct)}</td></tr>)}</tbody>
         </table>
       </div>
+      <p class="note">Raba končne energije je ocena: kjer je na voljo, izmerjena raba iz energetskega knjigovodstva javnega sektorja (2025) ali merjene izkaznice, sicer model. Pri elektriki je upoštevanih 80 % (raba za naprave ni v obsegu načrta). Raba na m² je prikazana pri vsaj treh stavbah iste vrste, da ni mogoče razbrati podatkov posamezne stavbe.</p>
     </>}
 
     <div class="card green ob-lek" id="lek">

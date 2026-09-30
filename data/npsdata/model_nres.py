@@ -122,7 +122,7 @@ def run(ctx, df: pd.DataFrame, meas: pd.DataFrame, rr: dict, dh_m: set) -> pd.Da
     S = _rake(S, tt, tgt)
     C[free] = S * tt[:, None]
     ctx.check(abs(C.sum() / sum(seg_t.values()) - 1) < 0.005, f'model nestanovanjskih: končna raba {C.sum() / KWH_PER_KTOE:.1f} ktoe ≈ osnutek {sum(seg_t.values()) / KWH_PER_KTOE:.0f}')
-    out = pd.DataFrame({'obcina': obc, 'seg': seg, 'm2': nr.m2.to_numpy(), 'measured': measured, 'known': known})
+    out = pd.DataFrame({'obcina': obc, 'seg': seg, 'cat': nr.cat.to_numpy(), 'm2': nr.m2.to_numpy(), 'measured': measured, 'known': known})
     for i, c in enumerate(CARRIERS):
         out[f'c_{c}'] = C[:, i]
     out['fe'] = C.sum(1)

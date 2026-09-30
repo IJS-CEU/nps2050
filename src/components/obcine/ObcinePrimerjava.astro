@@ -1,0 +1,135 @@
+---
+/**
+ * Primerjalnik občin: uporabnik izbere do štiri občine, prikažejo se ena ob drugi in ob Sloveniji.
+ * Podatki (seštevki po občinah) so vgrajeni ob gradnji; izbira se zapiše v naslov (?o=61,70), da se primerjava lahko deli.
+ */
+import { pageUrl, withBase } from '../../i18n/routes';
+import { loadData, type ObcineIndex, type ObcineModel, type ObSkupine } from '../../lib/data';
+
+const ix = loadData<ObcineIndex>('obcine_index');
+const md = loadData<ObcineModel>('obcine_model');
+const sk = loadData<ObSkupine>('obcine_skupine');
+const grpName = Object.fromEntries(sk.groups.map((g) => [g.id, g.name]));
+const pct = (a: number, b: number) => Math.round(100 * (b / a - 1));
+
+const rowOf = (m: ObcineModel['si'] | ObcineModel['municipalities'][string], r: Partial<ObcineIndex['municipalities'][number]> & Record<string, unknown>, fossil: number | null, ove50: number | null, fossil50: number | null, renova: number | null) => ({
+  pop: m.vse.pop, b: r.buildings, a: r.area_k_m2,
+  fe: m.vse.fe_mwh_preb.total, fer: m.vse.fe_mwh_preb.res, fem2: m.fe_kwh_m2, nm2: m.vse.nres_kwh_m2,
+  tgp: m.vse.tgp_t_preb.total, ove: m.vse.ove_pct.total, fos: fossil, a43: m.above43_area_pct,
+  p81: r.pre1981_res_area_pct ?? null, ei: r.ei_area_res_pct ?? null, es: r.es_res_any_pct ?? null, dh: m.dh_pot?.pct ?? null,
+  dfe: pct(m.pot!['2023'].fe_gwh, m.pot!['2050'].fe_gwh), dtgp: pct(m.pot!['2023'].tgp_kt, m.pot!['2050'].tgp_kt), ove50, fos50: fossil50, ren: renova,
+});
+const all = Object.values(md.municipalities);
+const wavg = (y: '2023' | '2050', k: 'ove_pct' | 'fossil_pct') => Math.round(10 * all.reduce((s, m) => s + m.pot![y].fe_gwh * (m.pot![y][k] ?? 0), 0) / all.reduce((s, m) => s + m.pot![y].fe_gwh, 0)) / 10;
+const data = {
+  car: md.carriers, cls: md.classes,
+  si: { n: 'Slovenija', g: '', v: rowOf(md.si as never, ix.si as never, wavg('2023', 'fossil_pct'), wavg('2050', 'ove_pct'), wavg('2050', 'fossil_pct'), null), c: md.si.carriers_pct, k: md.si.nps_pct },
+  m: Object.fromEntries([...ix.municipalities].sort((a, b) => a.name.localeCompare(b.name, 'sl')).map((r) => {
+    const m = md.municipalities[String(r.sifra)];
+    return [String(r.sifra), { n: r.name, g: grpName[sk.municipalities[String(r.sifra)].group], v: rowOf(m, r as never, m.pot!['2023'].fossil_pct, m.pot!['2050'].ove_pct, m.pot!['2050'].fossil_pct, m.cilji!.prenova_skupaj_m2_leto['2026_2030']), c: m.carriers_pct, k: m.nps_pct }];
+  })),
+  order: [...ix.municipalities].sort((a, b) => a.name.localeCompare(b.name, 'sl')).map((r) => String(r.sifra)),
+};
+const N = [1, 2, 3, 4];
+---
+<section class="pr" aria-labelledby="pr-t">
+  <h2 id="pr-t">Izberite občine</h2>
+  <div class="pr-sel js-only">
+    {N.map((i) => (
+      <label><span>{i}. občina{i > 2 && ' (neobvezno)'}</span>
+        <select class="pr-s" data-i={i - 1}>
+          <option value="">–</option>
+          {data.order.map((s) => <option value={s}>{data.m[s].n}</option>)}
+        </select>
+      </label>
+    ))}
+  </div>
+  <noscript><p class="note">Primerjalnik potrebuje JavaScript. Podatki vseh občin so tudi v preglednici na strani <a href={pageUrl('obcine')}>Moja občina</a>.</p></noscript>
+  <div id="pr-out" data-base={withBase('obcina/')} aria-live="polite"></div>
+  <p class="note">Vrednosti so ocena modela IJS CEU (stanje 2023) in podatki iz registrov; pot do leta 2050 je ponazoritev po scenariju NPS 2050. Stolpec pod številko kaže vrednost glede na največjo v vrstici. Kako so ocene izračunane: <a href={`${pageUrl('obcine')}#metoda`}>metoda</a>.</p>
+  <script type="application/json" id="pr-data" set:html={JSON.stringify(data)} />
+</section>
+
+<style is:global>
+  .pr-sel { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .8rem; margin: 1rem 0 1.5rem; }
+  .pr-sel label { display: grid; gap: .25rem; font-size: .8rem; font-weight: 700; color: var(--ink2); }
+  .pr-sel select { font: inherit; font-size: .95rem; font-weight: 600; padding: .5rem .6rem; border: 1px solid var(--ink2); border-radius: 8px; background: var(--panel); color: var(--ink); }
+  .pr table { font-size: .9rem; width: 100%; }
+  .pr thead th { vertical-align: bottom; }
+  .pr thead th a { font-family: var(--font-serif); font-size: 1.05rem; }
+  .pr thead th small { display: block; font-weight: 500; color: var(--ink2); text-transform: none; letter-spacing: 0; font-size: .74rem; }
+  .pr tr.grp th { font-family: var(--font-serif); font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--ink); padding-top: 1.2rem; border-bottom: 2px solid var(--green); }
+  .pr td.num { white-space: nowrap; }
+  .pr td.si { color: var(--ink2); }
+  .pr .bar { display: block; height: 4px; border-radius: 2px; background: var(--green); margin: .25rem 0 0 auto; min-width: 2px; }
+  .pr td.si .bar { background: var(--ink2); opacity: .5; }
+  .pr-stacks { display: grid; gap: 1.6rem; margin: 1.6rem 0; }
+  .pr-stacks h3 { margin: 0 0 .5rem; }
+  .pr-row { display: grid; grid-template-columns: minmax(6rem, 11rem) 1fr; gap: .6rem; align-items: center; margin-bottom: .35rem; font-size: .88rem; }
+  .pr-stack { display: flex; height: 1.5rem; border-radius: 5px; overflow: hidden; }
+  .pr-stack span { display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 700; color: #1B2622; min-width: 0; }
+  .pr-stack span.lt { color: #fff; }
+  .pr-leg { list-style: none; padding: 0; margin: .5rem 0 0; display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .8rem; color: var(--ink2); max-width: none; }
+  .pr-leg i { display: inline-block; width: .75rem; height: .75rem; border-radius: 3px; margin-right: .35rem; vertical-align: -.08rem; }
+  .pr-links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+</style>
+
+<script>
+  type V = Record<string, number | null>;
+  type M = { n: string; g: string; v: V; c: Record<string, number>; k: Record<string, number> };
+  const el = document.getElementById('pr-data');
+  const out = document.getElementById('pr-out');
+  if (el && out) {
+    const D = JSON.parse(el.textContent!) as { car: { id: string; name: string }[]; cls: string[]; si: M; m: Record<string, M>; order: string[] };
+    const base = out.dataset.base!;
+    const sels = [...document.querySelectorAll<HTMLSelectElement>('.pr-s')];
+    const nf = (v: number | null | undefined, d = 0) => (v === null || v === undefined ? '–' : v.toFixed(d).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.'));
+    const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+    const CAR: Record<string, string> = { el: '#2A6FC9', amb: '#6FA8DC', gas: '#A4520E', elko: '#5B4636', bio: '#86A11C', dh: '#7B5CC4' };
+    const CLS: Record<string, string> = { A: '#1E6B4E', B: '#2F7D3E', C: '#A9C23F', D: '#F0CF45', E: '#F0A23A', F: '#B84A14', G: '#9B1C1C' };
+    const LT = new Set(['el', 'gas', 'elko', 'dh', 'A', 'B', 'F', 'G']);
+    const ROWS: ([string] | [string, string, number, string, boolean?])[] = [
+      ['Osnovni podatki'],
+      ['pop', 'Prebivalci', 0, '', true], ['b', 'Stavbe', 0, '', true], ['a', 'Uporabna površina stavb', 0, ' tisoč m²', true],
+      ['Raba energije in emisije (ocena, 2023)'],
+      ['fe', 'Raba končne energije v vseh stavbah na prebivalca', 1, ' MWh'], ['fer', 'Raba končne energije v stanovanjskih stavbah na prebivalca', 1, ' MWh'],
+      ['fem2', 'Raba končne energije v stanovanjskih stavbah na m²', 0, ' kWh/m²'], ['nm2', 'Raba končne energije v nestanovanjskih stavbah na m²', 0, ' kWh/m²'],
+      ['tgp', 'Emisije TGP iz stavb na prebivalca', 2, ' t'], ['ove', 'Delež obnovljivih virov', 0, ' %'], ['fos', 'Delež plina in kurilnega olja', 0, ' %'],
+      ['Stavbni fond'],
+      ['a43', 'Stanovanjska površina med 43 % najmanj učinkovitih', 0, ' %'], ['p81', 'Stanovanjska površina, zgrajena pred 1981', 0, ' %'],
+      ['ei', 'Stanovanjska površina z energetsko izkaznico', 0, ' %'], ['es', 'Stanovanjske stavbe z ukrepom Eko sklada', 0, ' %'],
+      ['dh', 'Potrebna toplota na območjih z gostoto vsaj 250 MWh/ha', 0, ' %'],
+      ['Pot do leta 2050 po scenariju NPS 2050 (ponazoritev)'],
+      ['dfe', 'Raba končne energije 2050 glede na 2023', 0, ' %'], ['dtgp', 'Emisije TGP 2050 glede na 2023', 0, ' %'],
+      ['ove50', 'Delež obnovljivih virov leta 2050', 0, ' %'], ['fos50', 'Delež plina in kurilnega olja leta 2050', 0, ' %'],
+      ['ren', 'Potrebna energetska prenova 2026–2030', 0, ' m²/leto', true],
+    ];
+    const stack = (title: string, keys: string[], names: Record<string, string>, col: Record<string, string>, ms: M[], f: 'c' | 'k') =>
+      `<div><h3>${title}</h3>${ms.map((m) => `<div class="pr-row"><span>${esc(m.n)}</span><span class="pr-stack" role="img" aria-label="${esc(m.n)}: ${keys.map((k) => `${names[k]} ${nf(m[f][k], 0)} %`).join(', ')}">${keys.map((k) => (m[f][k] > 0 ? `<span class="${LT.has(k) ? 'lt' : ''}" style="width:${m[f][k]}%;background:${col[k]}">${m[f][k] >= 8 ? nf(m[f][k], 0) : ''}</span>` : '')).join('')}</span></div>`).join('')}<ul class="pr-leg" aria-hidden="true">${keys.map((k) => `<li><i style="background:${col[k]}"></i>${names[k]}</li>`).join('')}</ul></div>`;
+    const draw = () => {
+      const ids = [...new Set(sels.map((s) => s.value).filter((v) => v && D.m[v]))];
+      const u = new URL(location.href);
+      if (ids.length) u.searchParams.set('o', ids.join(',')); else u.searchParams.delete('o');
+      history.replaceState(null, '', u);
+      if (ids.length < 1) { out.innerHTML = '<p>Izberite vsaj eno občino.</p>'; return; }
+      const ms = ids.map((i) => D.m[i]);
+      const cols = [...ms, D.si];
+      const head = `<tr><th scope="col">Kazalnik</th>${ms.map((m, j) => `<th scope="col" class="num"><a href="${base}${ids[j]}/">${esc(m.n)}</a><small>${esc(m.g)}</small></th>`).join('')}<th scope="col" class="num">Slovenija</th></tr>`;
+      const body = ROWS.map((r) => {
+        if (r.length === 1) return `<tr class="grp"><th scope="colgroup" colspan="${cols.length + 1}">${r[0]}</th></tr>`;
+        const [k, lab, d, unit, nobar] = r;
+        const vals = cols.map((c) => c.v[k]);
+        const mx = Math.max(...vals.slice(0, nobar ? 0 : vals.length).map((v) => Math.abs(v ?? 0)), 1e-9);
+        return `<tr><th scope="row">${lab}</th>${vals.map((v, j) => `<td class="num${j === cols.length - 1 ? ' si' : ''}">${v === null || v === undefined ? '–' : `${(k === 'dfe' || k === 'dtgp') && v > 0 ? '+' : ''}${nf(v, d).replace('-', '−')}${unit}`}${nobar || v === null || v === undefined ? '' : `<span class="bar" style="width:${Math.round((100 * Math.abs(v)) / mx)}%"></span>`}</td>`).join('')}</tr>`;
+      }).join('');
+      const carN = Object.fromEntries(D.car.map((c) => [c.id, c.name]));
+      const clsN = Object.fromEntries(D.cls.map((c) => [c, `razred ${c}`]));
+      out.innerHTML = `<div class="tblwrap" tabindex="0" role="region" aria-label="Primerjava občin"><table><thead>${head}</thead><tbody>${body}</tbody></table></div>`
+        + `<div class="pr-stacks">${stack('Energenti v stanovanjskih stavbah (delež končne energije)', D.car.map((c) => c.id), carN, CAR, cols, 'c')}${stack('Energijski razredi stanovanjskih stavb (delež površine, ocena)', D.cls, clsN, CLS, cols, 'k')}</div>`
+        + `<p class="pr-links">${ms.map((m, j) => `<a class="btn" href="${base}${ids[j]}/lek/">Kartica: ${esc(m.n)}</a>`).join('')}</p>`;
+    };
+    const init = (new URL(location.href).searchParams.get('o') || '61,70').split(',').filter((s) => D.m[s]).slice(0, 4);
+    sels.forEach((s, i) => { s.value = init[i] ?? ''; s.addEventListener('change', draw); });
+    draw();
+  }
+</script>

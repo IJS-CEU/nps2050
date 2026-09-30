@@ -112,8 +112,12 @@ def _tm_inverse(E, N):
     return np.degrees(lon), np.degrees(lat)
 
 
-def heat_map_by_municipality(ctx: Context) -> pd.Series:
-    """Potreba po toploti za ogrevanje (vse stavbe) iz toplotne karte 2020, seštevek po občinah (MWh)."""
+DH_DENSITY = 250.0  # MWh/ha: prag gostote potrebne toplote za daljinsko ogrevanje (celica 100 × 100 m = 1 ha)
+MIN_PUB = 3  # raba energije javnih stavb po vrsti stavbe se prikaže pri vsaj toliko stavbah (izmerjena raba ni javen podatek)
+
+
+def heat_map_by_municipality(ctx: Context) -> tuple[pd.Series, pd.DataFrame]:
+    """Potreba po toploti za ogrevanje (vse stavbe) iz toplotne karte 2020: seštevek po občinah (MWh) in del v celicah nad pragom gostote."""
     con = sqlite3.connect(ctx.files['toplotna_karta'])
     rows = con.execute('select geom, QnH_og_MWh from TK_og2020_EPSG3794 where QnH_og_MWh > 0').fetchall()
     xs, ys, q = [], [], []
@@ -130,9 +134,12 @@ def heat_map_by_municipality(ctx: Context) -> pd.Series:
     tree = shapely.STRtree(polys)
     pts = shapely.points(lon, lat)
     pi, gi = tree.query(pts, predicate='within')
-    s = pd.Series(np.array(q)[pi], index=[ids[i] for i in gi]).groupby(level=0).sum()
+    cells = pd.DataFrame({'eid': [ids[i] for i in gi], 'q': np.array(q)[pi]})
+    s = cells.groupby('eid').q.sum()
+    dense = cells[cells.q >= DH_DENSITY].groupby('eid').q.agg(['sum', 'count'])
+    dh = pd.DataFrame({'q': s, 'q_dense': dense['sum'], 'ha': dense['count']}).fillna(0)
     ctx.check(s.sum() / sum(q) > 0.995, f'model: toplotna karta – {100 * s.sum() / sum(q):.1f} % potrebe pripisane občinam')
-    return s
+    return s, dh
 
 
 # ---------------------------------------------------------------- pomožno
@@ -331,7 +338,7 @@ def build(ctx: Context) -> dict:
     fond = json.loads((OUT / 'stavbni_fond.json').read_text(encoding='utf-8'))
     df = build_table(ctx)
     rr = load_renrates(ctx)
-    tk = heat_map_by_municipality(ctx)
+    tk, dhp = heat_map_by_municipality(ctx)
     runs = {k: run(ctx, df, rr, fond, tk, clip) for k, clip in VARIANTS.items()}
     c = runs['osrednja']['buildings']
     meas = build_measured(ctx, df)
@@ -375,6 +382,17 @@ def build(ctx: Context) -> dict:
     for eid, g in c.groupby('obcina'):
         s, name = muni[eid]
         out[str(s)] = {'name': name, 'tk_factor': round(float(runs['osrednja']['factor'].get(eid, 1.0)), 3), **agg(g, gl.get_group(eid), gh.get_group(eid))}
+    # Potencial daljinskega ogrevanja (toplotna karta) in javne stavbe po vrsti stavbe
+    dh_pot = lambda q, qd, ha: {'q_gwh': round(float(q) / 1e3, 1), 'dense_gwh': round(float(qd) / 1e3, 1), 'pct': round(100 * float(qd) / float(q), 1) if q else 0.0, 'ha': int(ha)}
+    def javne_cat(g):
+        return {cid: {'b': int(len(m)), 'kwh_m2': int(round(m.fe.sum() / m.m2.sum())) if len(m) >= MIN_PUB else None,
+                      'meas_pct': int(round(100 * m.m2[m.measured].sum() / m.m2.sum())) if len(m) >= MIN_PUB else None} for cid, m in g.groupby('cat')}
+    pubn = nres[nres.seg == 'javne']
+    pubg = {e: g for e, g in pubn.groupby('obcina')}
+    for eid, (s, _) in muni.items():
+        r = dhp.loc[eid] if eid in dhp.index else {'q': 0, 'q_dense': 0, 'ha': 0}
+        out[str(s)]['dh_pot'] = dh_pot(r['q'], r['q_dense'], r['ha'])
+        out[str(s)]['javne_cat'] = javne_cat(pubg[eid]) if eid in pubg else {}
     kz = kazalniki_obcin.build(ctx, c, nres, muni, DATA_DIR / 'raw' / 'prebivalci.json')
     for sfx, v in kz['municipalities'].items():
         out[sfx]['vse'] = v
@@ -397,7 +415,7 @@ def build(ctx: Context) -> dict:
         'meta': ctx.meta([
             'Model RenRates (arhetipi, razporeditev po razredih toplotnih potreb, specifična končna energija, kalibracija λ na bilanco 2024)',
             'Kataster nepremičnin GURS 2026, register energetskih izkaznic 28. 9. 2026, Eko sklad do 2025',
-            'Toplotna karta potrebne toplote za ogrevanje 2020 (mreža 100 m, vse stavbe)',
+            'Toplotna karta potrebne toplote za ogrevanje 2020 (mreža 100 m, vse stavbe); potencial daljinskega ogrevanja: celice z gostoto vsaj 250 MWh/ha',
             f'{ctx.draft.name}: preglednice končne in primarne rabe po segmentih ter po energentih, emisij in OVE (2023)',
             'Energetsko knjigovodstvo javnega sektorja (poročila za leto 2025) in merjene energetske izkaznice',
             'AGEN-RS: Energetsko učinkoviti distribucijski sistemi toplote in hladu v letu 2025 (delež OVE po sistemih)',
@@ -410,7 +428,7 @@ def build(ctx: Context) -> dict:
         'carriers': [{'id': 'el', 'name': 'električna energija'}, {'id': 'amb', 'name': 'toplota okolice in sončna energija'}, {'id': 'gas', 'name': 'plin (zemeljski, UNP)'},
                      {'id': 'elko', 'name': 'kurilno olje'}, {'id': 'bio', 'name': 'lesna biomasa'}, {'id': 'dh', 'name': 'daljinska toplota'}],
         'classes': NPS,
-        'si': {**agg(c, lo, hi), 'vse': kz['si'], 'pot': si_pot},
+        'si': {**agg(c, lo, hi), 'vse': kz['si'], 'pot': si_pot, 'dh_pot': dh_pot(dhp.q.sum(), dhp.q_dense.sum(), dhp.ha.sum()), 'javne_cat': javne_cat(pubn)},
         'pop_period': kz['pop_period'],
         'municipalities': out,
     }
@@ -422,7 +440,7 @@ def build(ctx: Context) -> dict:
         a = v['vse']
         return {'model_fe_kwh_m2': v['fe_kwh_m2'], 'model_above43_pct': v['above43_area_pct'],
                 'k_fe_mwh_preb': a['fe_mwh_preb']['total'], 'k_res_fe_mwh_preb': a['fe_mwh_preb']['res'], 'k_tgp_t_preb': a['tgp_t_preb']['total'],
-                'k_ove_pct': a['ove_pct']['total'], 'k_nres_kwh_m2': a['nres_kwh_m2'], 'pop': a['pop']}
+                'k_ove_pct': a['ove_pct']['total'], 'k_nres_kwh_m2': a['nres_kwh_m2'], 'k_dh_pot_pct': v['dh_pot']['pct'], 'pop': a['pop']}
     for r in ix['municipalities']:
         r.update(idx_fields(out[str(r['sifra'])]))
     ix['si'].update(idx_fields(data['si']))
