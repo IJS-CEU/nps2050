@@ -4,9 +4,9 @@
  */
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { loadData, type Obcina, type ObcineIndex, type ObcineModel } from './data';
+import { loadData, type Obcina, type ObcineIndex, type ObcineModel, type ObSkupine } from './data';
 
-export const LEK_SIGN = '© 2026 Institut »Jožef Stefan«, Center za energetsko učinkovitost (IJS CEU). Izvleček je avtorsko delo in intelektualna lastnina IJS CEU. '
+export const LEK_SIGN = '© 2026 Institut »Jožef Stefan«, Center za energetsko učinkovitost (IJS CEU). Kartica je avtorsko delo in intelektualna lastnina IJS CEU. '
   + 'Uporaba je dovoljena z navedbo vira »IJS CEU, strokovne podlage NPS 2050«, brez predelave in brez komercialne uporabe '
   + '(CC BY-NC-ND 4.0, https://creativecommons.org/licenses/by-nc-nd/4.0/deed.sl). Kontakt: ceu@ijs.si.';
 
@@ -58,5 +58,33 @@ export function lekRows(sifra: string): [string, string, string | number | null,
     ['NPS 2050: nestanovanjske stavbe za izboljšanje do 2030 (minimalni standardi, ocena)', 'število', ci.meps.n_2030, null],
     ['NPS 2050: kurilno olje v stavbah 2023 → 2030 → 2040', 'GWh/leto', `${ci.fosilna.elko.gwh_2023} → ${ci.fosilna.elko.gwh[0]} → ${ci.fosilna.elko.gwh[1]}`, null],
     ['NPS 2050: zemeljski plin v stavbah 2023 → 2030 → 2040', 'GWh/leto', `${ci.fosilna.gas.gwh_2023} → ${ci.fosilna.gas.gwh[0]} → ${ci.fosilna.gas.gwh[1]}`, null],
+    ...POT_KEYS.map(([k, l, u]): [string, string, string, null] => [`NPS 2050: ${l} 2023 → 2030 → 2040 → 2050 (ponazoritev)`, u, POT_Y.map((y) => mo.pot![y][k]).join(' → '), null]),
   ];
+}
+
+export const POT_Y = ['2023', '2030', '2040', '2050'] as const;
+export const POT_KEYS: ['fe_gwh' | 'tgp_kt' | 'ove_pct' | 'fossil_pct', string, string][] = [
+  ['fe_gwh', 'raba končne energije v stavbah', 'GWh/leto'],
+  ['tgp_kt', 'emisije TGP iz stavb', 'kt CO₂ ekv./leto'],
+  ['ove_pct', 'delež obnovljivih virov', '%'],
+  ['fossil_pct', 'delež plina in kurilnega olja', '%'],
+];
+
+/** Dodatni podatki za kartico: delež fosilnih goriv v Sloveniji in mesto občine med podobnimi in sosednjimi občinami. */
+export function lekKartica(sifra: string) {
+  const { ix, md } = lekData(sifra);
+  const all = Object.values(md.municipalities);
+  const fe = all.reduce((a, m) => a + m.pot!['2023'].fe_gwh, 0);
+  const fossilSi = all.reduce((a, m) => a + m.pot!['2023'].fe_gwh * (m.pot!['2023'].fossil_pct ?? 0), 0) / fe;
+  const sk = loadData<ObSkupine>('obcine_skupine');
+  const me = sk.municipalities[sifra];
+  const grp = ix.municipalities.filter((r) => sk.municipalities[String(r.sifra)].group === me.group);
+  const rank = [...grp].sort((a, b) => a.k_res_fe_mwh_preb - b.k_res_fe_mwh_preb).findIndex((r) => String(r.sifra) === sifra) + 1;
+  const nb = ix.municipalities.filter((r) => me.neighbours.map(String).includes(String(r.sifra)));
+  const mean = (k: 'k_res_fe_mwh_preb' | 'k_tgp_t_preb' | 'k_ove_pct') => (nb.length ? nb.reduce((a, r) => a + r[k], 0) / nb.length : null);
+  return {
+    fossilSi, rank, groupN: grp.length, groupName: sk.groups.find((g) => g.id === me.group)!.name,
+    row: ix.municipalities.find((r) => String(r.sifra) === sifra)!,
+    nb: { n: nb.length, fe: mean('k_res_fe_mwh_preb'), tgp: mean('k_tgp_t_preb'), ove: mean('k_ove_pct') },
+  };
 }

@@ -9,7 +9,7 @@ export function getStaticPaths() {
 
 const cell = (v: unknown) => {
   if (v === null || v === undefined) return '';
-  const s = typeof v === 'number' ? String(v).replace('.', ',') : String(v);
+  const s = typeof v === 'number' ? String(v).replace('.', ',') : String(v).includes('→') ? String(v).replace(/\./g, ',') : String(v);
   return /[;"\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 };
 
@@ -17,7 +17,7 @@ export const GET: APIRoute = ({ params }) => {
   const sifra = String(params.sifra);
   const { o, draftDate } = lekData(sifra);
   const lines = [
-    `Strokovne podlage NPS 2050 – izvleček za lokalni energetski koncept;Občina ${o.name}`,
+    `Strokovne podlage NPS 2050 – energetsko-podnebna kartica občine: stavbe (podatki za lokalni energetski koncept);Občina ${o.name}`,
     `${LEK_SIGN};`,
     `Podatki: osnutek NPS 2050 z dne ${draftDate}, kataster nepremičnin, register energetskih izkaznic, Eko sklad, energetsko knjigovodstvo, model IJS CEU. Ocene modela so označene.;`,
     '',

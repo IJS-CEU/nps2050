@@ -108,7 +108,7 @@ const TOC = [
   { id: 'ob-pot-t', icon: 'trending-down', label: 'Pot do leta 2050', hint: 'energija, emisije, OVE' },
   { id: 'ob-model-t', icon: 'house', label: 'Stanovanjske stavbe', hint: 'energenti in razredi' },
   { id: 'reg-seg', icon: 'building-2', label: 'Podatki iz registrov', hint: 'stavbe, izkaznice, prenove' },
-  { id: 'lek', icon: 'file-text', label: 'Izvoz za LEK', hint: 'PDF in CSV' },
+  { id: 'lek', icon: 'file-text', label: 'Kartica občine', hint: 'PDF in CSV za LEK' },
 ];
 const title = `Občina ${o.name}`;
 const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NPS 2050 v občini ${o.name}: primerjava s sosednjimi in podobnimi občinami ter s Slovenijo.`;
@@ -377,8 +377,8 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
     </>}
 
     <div class="card green ob-lek" id="lek">
-      <p><strong>Izvleček za lokalni energetski koncept (LEK).</strong> Ključni kazalniki občine in kaj cilji NPS 2050 pomenijo zanjo, na eni strani za tisk ali kot PDF, in v obliki CSV. Izvleček je intelektualna lastnina IJS CEU; uporaba je dovoljena z navedbo vira, brez predelave in brez komercialne uporabe (CC BY-NC-ND 4.0).</p>
-      <p><a class="btn primary" href={withBase(`obcina/${o.sifra}/lek/`)}>Izvleček za tisk / PDF</a> <a class="btn" href={withBase(`obcina/${o.sifra}/lek.csv`)} download={`NPS2050_${o.name}_LEK.csv`}>CSV</a></p>
+      <p><strong>Energetsko-podnebna kartica občine: stavbe.</strong> Stanje, energenti, energijski razredi in pot do leta 2050 na eni strani, na drugi podatki za lokalni energetski koncept (LEK); za tisk ali kot PDF in v obliki CSV. Kartica je intelektualna lastnina IJS CEU; uporaba je dovoljena z navedbo vira, brez predelave in brez komercialne uporabe (CC BY-NC-ND 4.0).</p>
+      <p><a class="btn primary" href={withBase(`obcina/${o.sifra}/lek/`)}>Kartica za tisk / PDF</a> <a class="btn" href={withBase(`obcina/${o.sifra}/lek.csv`)} download={`NPS2050_${o.name}_LEK.csv`}>CSV</a></p>
     </div>
     <div class="card ob-more">
       <p><strong>Podatki za prenos:</strong> <a href={withBase(`data/obcine/${o.sifra}.json`)} download>JSON (občina {o.name})</a> · <a href={withBase('data/csv/obcine.csv')} download>CSV (vse občine)</a>. Licenca CC BY 4.0.</p>
