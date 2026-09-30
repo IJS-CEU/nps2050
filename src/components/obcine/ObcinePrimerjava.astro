@@ -16,7 +16,7 @@ const rowOf = (m: ObcineModel['si'] | ObcineModel['municipalities'][string], r: 
   pop: m.vse.pop, b: r.buildings, a: r.area_k_m2,
   fe: m.vse.fe_mwh_preb.total, fer: m.vse.fe_mwh_preb.res, fem2: m.fe_kwh_m2, nm2: m.vse.nres_kwh_m2,
   tgp: m.vse.tgp_t_preb.total, ove: m.vse.ove_pct.total, fos: fossil, a43: m.above43_area_pct,
-  p81: r.pre1981_res_area_pct ?? null, ei: r.ei_area_res_pct ?? null, es: r.es_res_any_pct ?? null, dh: m.dh_pot?.pct ?? null,
+  p81: r.pre1981_res_area_pct ?? null, ei: r.ei_area_res_pct ?? null, es: r.es_res_any_pct ?? null, dh: m.dh_pot?.pct ?? null, dhf: m.dh_pot?.fe_pct ?? null,
   dfe: pct(m.pot!['2023'].fe_gwh, m.pot!['2050'].fe_gwh), dtgp: pct(m.pot!['2023'].tgp_kt, m.pot!['2050'].tgp_kt), ove50, fos50: fossil50, ren: renova,
 });
 const all = Object.values(md.municipalities);
@@ -98,7 +98,8 @@ const N = [1, 2, 3, 4];
       ['Stavbni fond'],
       ['a43', 'Stanovanjska površina med 43 % najmanj učinkovitih', 0, ' %'], ['p81', 'Stanovanjska površina, zgrajena pred 1981', 0, ' %'],
       ['ei', 'Stanovanjska površina z energetsko izkaznico', 0, ' %'], ['es', 'Stanovanjske stavbe z ukrepom Eko sklada', 0, ' %'],
-      ['dh', 'Potrebna toplota na območjih z gostoto vsaj 250 MWh/ha', 0, ' %'],
+      ['dhf', 'Končna energija goriv in daljinske toplote na območjih z gostoto vsaj 250 MWh/ha', 0, ' %'],
+      ['dh', 'Potrebna toplota za ogrevanje na območjih z gostoto vsaj 250 MWh/ha', 0, ' %'],
       ['Pot do leta 2050 po scenariju NPS 2050 (ponazoritev)'],
       ['dfe', 'Raba končne energije 2050 glede na 2023', 0, ' %'], ['dtgp', 'Emisije TGP 2050 glede na 2023', 0, ' %'],
       ['ove50', 'Delež obnovljivih virov leta 2050', 0, ' %'], ['fos50', 'Delež plina in kurilnega olja leta 2050', 0, ' %'],

@@ -27,7 +27,8 @@ const d = loadData<ObcineIndex>('obcine_index');
           <option value="k_ove_pct">Delež obnovljivih virov</option>
           <option value="k_res_fe_mwh_preb">Stanovanjske stavbe: raba energije na prebivalca</option>
           <option value="k_nres_kwh_m2">Nestanovanjske stavbe: raba energije na m²</option>
-          <option value="k_dh_pot_pct">Potencial za daljinsko ogrevanje</option>
+          <option value="k_dh_fe_pct">Potencial za daljinsko ogrevanje (končna energija)</option>
+          <option value="k_dh_pot_pct">Potencial za daljinsko ogrevanje (potrebna toplota)</option>
         </optgroup>
         <optgroup label="Stanovanjske stavbe – ocena modela">
           <option value="model_fe_kwh_m2">Raba končne energije na m²</option>
@@ -66,6 +67,7 @@ const d = loadData<ObcineIndex>('obcine_index');
     k_ove_pct: { label: 'Delež OVE v rabi energije v stavbah', si: (d) => d.si.k_ove_pct, cap: 'Ocena: delež obnovljivih virov v rabi končne energije v vseh stavbah (lesna biomasa, toplota okolice, sončna energija ter obnovljivi del elektrike in daljinske toplote).' },
     k_res_fe_mwh_preb: { label: 'Raba končne energije v stanovanjskih stavbah na prebivalca', si: (d) => d.si.k_res_fe_mwh_preb, unit: ' MWh', dec: 1, cap: 'Ocena: letna raba končne energije v stanovanjskih stavbah na prebivalca. Najbolj primerljiv kazalnik med občinami.' },
     k_nres_kwh_m2: { label: 'Raba končne energije v nestanovanjskih stavbah na m²', si: (d) => d.si.k_nres_kwh_m2, unit: ' kWh/m²', cap: 'Ocena: letna raba končne energije v javnih in zasebnih storitvenih stavbah na m² uporabne površine; kjer je na voljo, iz energetskega knjigovodstva ali merjenih izkaznic.' },
+    k_dh_fe_pct: { label: 'Končna energija goriv in daljinske toplote na območjih z gostoto vsaj 250 MWh/ha', si: (d) => d.si.k_dh_fe_pct, cap: 'Ocena modela: delež rabe končne energije goriv in daljinske toplote (ogrevanje in topla voda, brez elektrike in toplote okolice) v celicah 100 × 100 m z gostoto vsaj 250 MWh/ha na leto. Stanje 2023, usklajeno z energetsko bilanco.' },
     k_dh_pot_pct: { label: 'Potrebna toplota na območjih z gostoto vsaj 250 MWh/ha', si: (d) => d.si.k_dh_pot_pct, cap: 'Delež potrebne toplote za ogrevanje vseh stavb v občini, ki leži v celicah toplotne karte (100 × 100 m) z gostoto vsaj 250 MWh/ha na leto. Večji delež pomeni več območij, primernih za daljinsko ogrevanje.' },
     ei_area_res_pct: { label: 'Stanovanjska površina z veljavno izkaznico', si: (d) => d.si.ei_area_res_pct, cap: 'Delež uporabne površine stanovanjskih stavb, ki imajo vsaj eno veljavno energetsko izkaznico.' },
     pre1981_res_area_pct: { label: 'Stanovanjska površina, zgrajena pred 1981', si: (d) => d.si.pre1981_res_area_pct, cap: 'Delež uporabne površine stanovanjskih stavb, zgrajenih pred prvimi toplotnimi predpisi (1981).' },

@@ -127,7 +127,7 @@ const r100 = (v: number) => nf(Math.round(v / 100) * 100);
           <ul class="facts">
             <li><b>{kx.rank}. od {kx.groupN}</b> občin v skupini »{kx.groupName}« po rabi energije v stanovanjskih stavbah na prebivalca (1. = najnižja raba)</li>
             {kx.nb.fe !== null && <li><b>{nf(kx.row.k_res_fe_mwh_preb, 1)} MWh</b> na prebivalca v stanovanjskih stavbah; povprečje sosednjih občin ({kx.nb.n}) {nf(kx.nb.fe, 1)} MWh</li>}
-            <li><b>{nf(mo.dh_pot!.pct, 0)} %</b> potrebne toplote za ogrevanje na območjih z gostoto vsaj 250 MWh/ha ({nf(mo.dh_pot!.ha)} ha); Slovenija {nf(ms.dh_pot!.pct, 0)} %</li>
+            <li><b>{nf(mo.dh_pot!.fe_pct, 0)} %</b> končne energije goriv in daljinske toplote na območjih z gostoto vsaj 250 MWh/ha ({nf(mo.dh_pot!.fe_ha)} ha); Slovenija {nf(ms.dh_pot!.fe_pct, 0)} %</li>
             {kx.nb.ove !== null && <li><b>{nf(kx.row.k_ove_pct, 0)} %</b> obnovljivih virov; povprečje sosednjih občin {nf(kx.nb.ove, 0)} %</li>}
           </ul>
         </section>
@@ -213,7 +213,7 @@ const r100 = (v: number) => nf(Math.round(v / 100) * 100);
   .disc { font-size: 7.6pt; color: #4C5A54; margin: 4mm 0 0; background: #F2F5EE; border-radius: 1.5mm; padding: 2mm 2.5mm; }
   table { width: 100%; border-collapse: collapse; font-size: 7.8pt; line-height: 1.22; break-inside: auto; }
   tr { break-inside: avoid; }
-  th, td { text-align: left; padding: .5mm 1.5mm; border-bottom: .25mm solid #D7DDD5; vertical-align: top; }
+  th, td { text-align: left; padding: .38mm 1.5mm; border-bottom: .25mm solid #D7DDD5; vertical-align: top; }
   thead th { font-size: 7.2pt; text-transform: uppercase; letter-spacing: .04em; color: #4C5A54; border-bottom: .4mm solid #4C5A54; }
   tbody th { font-weight: 500; width: 55%; }
   .n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }

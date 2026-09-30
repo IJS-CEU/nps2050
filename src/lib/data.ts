@@ -122,12 +122,12 @@ export interface ObIndexRow {
   ei_area_res_pct: number | null; hise_ei_pct: number | null; res_above43_pct: number | null; es_res_any_pct: number | null;
   obnova_res_pct: number | null; pre1981_res_area_pct: number | null;
   model_fe_kwh_m2: number; model_above43_pct: number;
-  k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; k_dh_pot_pct: number; pop: number;
+  k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; k_dh_pot_pct: number; k_dh_fe_pct: number; pop: number;
 }
 export interface ObcineIndex {
   meta: Meta; min_cell: number; min_ei: number; classes: string[]; class_groups: string[]; periods: string[];
   segments: { id: string; name: string }[]; es_groups: { id: string; name: string }[]; categories: { id: string; name: string }[];
-  si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number; model_fe_kwh_m2: number; model_above43_pct: number; k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; k_dh_pot_pct: number; pop: number };
+  si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number; model_fe_kwh_m2: number; model_above43_pct: number; k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; k_dh_pot_pct: number; k_dh_fe_pct: number; pop: number };
   municipalities: ObIndexRow[];
 }
 export interface Obcina extends ObArea { meta: Meta; sifra: number; eid: string; name: string; region: string; region_name: string }
@@ -137,7 +137,7 @@ export interface ObModelArea {
   carriers_pct: Record<string, number>; nps_pct: Record<string, number>; above43_area_pct: number; known_pct: number; tk_factor?: number; name?: string;
   vse: ObVse;
   cilji?: ObCilji;
-  dh_pot?: { q_gwh: number; dense_gwh: number; pct: number; ha: number };
+  dh_pot?: { q_gwh: number; dense_gwh: number; pct: number; ha: number; fe_gwh: number; fe_dense_gwh: number; fe_pct: number; fe_ha: number };
   javne_cat?: Record<string, { b: number; kwh_m2: number | null; meas_pct: number | null }>;
   pot?: Record<string, { fe_gwh: number; fe_res_gwh: number; tgp_kt: number; ove_pct: number | null; fossil_pct: number | null }>;
 }

@@ -226,16 +226,23 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
     <section class="ob-cilji ob-dh" aria-labelledby="ob-dh-t">
       <p class="ob-model-k">NPS 2050 v občini · daljinsko ogrevanje</p>
       <h2 id="ob-dh-t">Potencial za daljinsko ogrevanje</h2>
-      {dh.ha > 0
-        ? <p>V občini je <strong>{nf(dh.ha)} ha</strong> območij, kjer je gostota potrebne toplote za ogrevanje vsaj 250 MWh na hektar na leto. Na teh območjih je <strong>{nf(dh.pct, 0)} %</strong> vse potrebne toplote za ogrevanje stavb v občini (Slovenija {nf(dhSi.pct, 0)} %). Tako gosta območja so praviloma primerna za daljinsko ogrevanje.</p>
-        : <p>V občini ni območij, kjer bi gostota potrebne toplote za ogrevanje dosegla 250 MWh na hektar na leto (Slovenija: {nf(dhSi.pct, 0)} % potrebne toplote na takih območjih). Primernejše so individualne rešitve ali manjši skupni sistemi.</p>}
+      {dh.fe_ha > 0 || dh.ha > 0
+        ? <p>Na območjih, kjer stavbe na hektar na leto rabijo vsaj 250 MWh končne energije goriv in daljinske toplote, je <strong>{nf(dh.fe_pct, 0)} %</strong> te energije v občini (Slovenija {nf(dhSi.fe_pct, 0)} %), na <strong>{nf(dh.fe_ha)} ha</strong>. Tako gosta območja so praviloma primerna za daljinsko ogrevanje. Po toplotni karti potrebne toplote je delež {nf(dh.pct, 0)} % (Slovenija {nf(dhSi.pct, 0)} %).</p>
+        : <p>V občini ni območij, kjer bi gostota odjema dosegla 250 MWh na hektar na leto (Slovenija: {nf(dhSi.fe_pct, 0)} % končne energije goriv in daljinske toplote na takih območjih). Primernejše so individualne rešitve ali manjši skupni sistemi.</p>}
+      <h3>Po rabi končne energije (ocena modela, 2023)</h3>
       <div class="tiles ob-tiles">
-        <div class="tile"><div class="v">{nf(dh.pct, 0)}<small> %</small></div><div class="l">potrebne toplote za ogrevanje na območjih z gostoto vsaj 250 MWh/ha (Slovenija {nf(dhSi.pct, 0)} %)</div></div>
-        <div class="tile"><div class="v">{nf(dh.dense_gwh, dh.dense_gwh < 10 ? 1 : 0)}<small> GWh</small></div><div class="l">potrebne toplote na leto na teh območjih, od skupaj {nf(dh.q_gwh, dh.q_gwh < 10 ? 1 : 0)} GWh v občini</div></div>
-        <div class="tile"><div class="v">{nf(dh.ha)}<small> ha</small></div><div class="l">površina območij z gostoto vsaj 250 MWh/ha (celice 100 × 100 m)</div></div>
+        <div class="tile"><div class="v">{nf(dh.fe_pct, 0)}<small> %</small></div><div class="l">končne energije goriv in daljinske toplote na območjih z gostoto vsaj 250 MWh/ha (Slovenija {nf(dhSi.fe_pct, 0)} %)</div></div>
+        <div class="tile"><div class="v">{nf(dh.fe_dense_gwh, dh.fe_dense_gwh < 10 ? 1 : 0)}<small> GWh</small></div><div class="l">na leto na teh območjih, od skupaj {nf(dh.fe_gwh, dh.fe_gwh < 10 ? 1 : 0)} GWh v občini</div></div>
+        <div class="tile"><div class="v">{nf(dh.fe_ha)}<small> ha</small></div><div class="l">površina območij z gostoto vsaj 250 MWh/ha (celice 100 × 100 m)</div></div>
         <div class="tile"><div class="v">{nf(mo.carriers_pct.dh, 0)}<small> %</small></div><div class="l">sedanji delež daljinske toplote v rabi energije v stanovanjskih stavbah (ocena)</div></div>
       </div>
-      <p class="note">Vir: toplotna karta potrebne toplote za ogrevanje 2020 (vse stavbe, mreža 100 × 100 m). Kazalnik kaže tehnični potencial glede na gostoto odjema; ne upošteva obstoječih omrežij, virov toplote in ekonomike posameznega sistema. Z energetsko prenovo stavb se gostota odjema zmanjšuje.</p>
+      <h3>Po potrebni toploti za ogrevanje (toplotna karta 2020)</h3>
+      <div class="tiles ob-tiles">
+        <div class="tile"><div class="v">{nf(dh.pct, 0)}<small> %</small></div><div class="l">potrebne toplote za ogrevanje na območjih z gostoto vsaj 250 MWh/ha (Slovenija {nf(dhSi.pct, 0)} %)</div></div>
+        <div class="tile"><div class="v">{nf(dh.dense_gwh, dh.dense_gwh < 10 ? 1 : 0)}<small> GWh</small></div><div class="l">na leto na teh območjih, od skupaj {nf(dh.q_gwh, dh.q_gwh < 10 ? 1 : 0)} GWh v občini</div></div>
+        <div class="tile"><div class="v">{nf(dh.ha)}<small> ha</small></div><div class="l">površina območij z gostoto vsaj 250 MWh/ha (celice 100 × 100 m)</div></div>
+      </div>
+      <p class="note">Končna energija: ocena modela za vsako stavbo (goriva in daljinska toplota za ogrevanje in toplo vodo, brez elektrike in toplote okolice), sešteta po celicah 100 × 100 m glede na lego stavbe v katastru; stanje 2023, usklajeno z energetsko bilanco. Potrebna toplota: toplotna karta 2020 (vse stavbe), izdelana neodvisno in neusklajena z bilanco, zato je višja. Oba kazalnika kažeta tehnični potencial glede na gostoto odjema; ne upoštevata obstoječih omrežij, virov toplote in ekonomike posameznega sistema. Z energetsko prenovo stavb se gostota odjema zmanjšuje.</p>
     </section>
 
     <div class="ob-part" id="del-3">

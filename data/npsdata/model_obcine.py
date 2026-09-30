@@ -142,6 +142,48 @@ def heat_map_by_municipality(ctx: Context) -> tuple[pd.Series, pd.DataFrame]:
     return s, dh
 
 
+def building_points(ctx: Context) -> pd.DataFrame:
+    """Točka stavbe (D96/TM) iz katastra GURS; samo za seštevanje po celicah 100 × 100 m, koordinate ostanejo lokalno."""
+    cache = DATA_DIR / 'raw' / 'koord.pkl'
+    if cache.exists():
+        return pd.read_pickle(cache)
+    import zipfile
+    z = zipfile.ZipFile(ctx.files['kataster_stavbe_zip'])
+    shx = z.read('KN_SLO_STAVBE_SLO_STAVBE_tocka.shx'); shp = z.read('KN_SLO_STAVBE_SLO_STAVBE_tocka.shp')
+    offs = np.frombuffer(shx[100:], dtype='>i4').reshape(-1, 2)[:, 0].astype(np.int64) * 2
+    xy = np.full((len(offs), 2), np.nan)
+    for i, o in enumerate(offs):
+        if struct.unpack('<i', shp[o + 8:o + 12])[0] != 0:
+            xy[i] = struct.unpack('<2d', shp[o + 12:o + 28])
+    raw = z.read('KN_SLO_STAVBE_SLO_STAVBE_tocka.dbf')
+    n = struct.unpack('<I', raw[4:8])[0]; hl = struct.unpack('<H', raw[8:10])[0]; rl = struct.unpack('<H', raw[10:12])[0]
+    off, pos = 1, 32
+    while raw[pos] != 0x0D:
+        name = raw[pos:pos + 11].split(b'\0')[0].decode(); ln = raw[pos + 16]
+        if name == 'EID_STAVBA':
+            f = (off, ln)
+        off += ln; pos += 32
+    eid = [raw[hl + i * rl + f[0]:hl + i * rl + f[0] + f[1]].decode('latin-1').strip() for i in range(n)]
+    out = pd.DataFrame({'x': xy[:n, 0], 'y': xy[:n, 1]}, index=eid).dropna()
+    out = out[~out.index.duplicated()]
+    out.to_pickle(cache)
+    return out
+
+
+def fe_density(ctx: Context, eid, obcina, fe_heat) -> pd.DataFrame:
+    """Končna energija goriv in daljinske toplote (brez elektrike in toplote okolice) po celicah 100 × 100 m; seštevek po občinah."""
+    pts = building_points(ctx)
+    d = pd.DataFrame({'eid': eid, 'obcina': obcina, 'fe': fe_heat})
+    d = d.join(pts, on='eid')
+    ok = d.x.notna()
+    ctx.check(d.fe[ok].sum() / d.fe.sum() > 0.98, f'model: gostota končne energije – {100 * d.fe[ok].sum() / d.fe.sum():.1f} % energije z znano lokacijo stavbe')
+    d = d[ok].copy()
+    d['cell'] = (np.floor(d.x / 100).astype(np.int64) * 100000 + np.floor(d.y / 100).astype(np.int64))
+    d['dense'] = d.groupby('cell').fe.transform('sum') >= DH_DENSITY * 1000  # kWh na hektar
+    g = d.groupby('obcina')
+    return pd.DataFrame({'fe': g.fe.sum(), 'fe_dense': d[d.dense].groupby('obcina').fe.sum(), 'ha': d[d.dense].groupby('obcina').cell.nunique()}).fillna(0)
+
+
 # ---------------------------------------------------------------- pomožno
 def _rake_rows(P, w, target, fixed, iters=500):
     """IPF: vrstice (stavbe) so porazdelitve (vsota 1), stolpčne vsote Σ w·P se prilagodijo cilju; fiksne vrstice ostanejo."""
@@ -383,7 +425,14 @@ def build(ctx: Context) -> dict:
         s, name = muni[eid]
         out[str(s)] = {'name': name, 'tk_factor': round(float(runs['osrednja']['factor'].get(eid, 1.0)), 3), **agg(g, gl.get_group(eid), gh.get_group(eid))}
     # Potencial daljinskega ogrevanja (toplotna karta) in javne stavbe po vrsti stavbe
-    dh_pot = lambda q, qd, ha: {'q_gwh': round(float(q) / 1e3, 1), 'dense_gwh': round(float(qd) / 1e3, 1), 'pct': round(100 * float(qd) / float(q), 1) if q else 0.0, 'ha': int(ha)}
+    dh_pot = lambda q, qd, ha, f: {'q_gwh': round(float(q) / 1e3, 1), 'dense_gwh': round(float(qd) / 1e3, 1), 'pct': round(100 * float(qd) / float(q), 1) if q else 0.0, 'ha': int(ha),
+                                   'fe_gwh': round(float(f['fe']) / 1e6, 1), 'fe_dense_gwh': round(float(f['fe_dense']) / 1e6, 1), 'fe_pct': round(100 * float(f['fe_dense']) / float(f['fe']), 1) if f['fe'] else 0.0, 'fe_ha': int(f['ha'])}
+    HEATC = ['c_gas', 'c_elko', 'c_bio', 'c_dh']  # goriva in daljinska toplota: ogrevanje in topla voda, brez elektrike in toplote okolice
+    res_eid = df[df.seg.isin(['hise', 'bloki'])].EID_STAVBA.to_numpy(); nr_eid = df[df.seg.isin(['javne', 'zasebne'])].EID_STAVBA.to_numpy()
+    assert len(res_eid) == len(c) and len(nr_eid) == len(nres)
+    fed = fe_density(ctx, np.concatenate([res_eid, nr_eid]), np.concatenate([c.obcina.to_numpy(), nres.obcina.to_numpy()]),
+                     np.concatenate([c[HEATC].sum(1).to_numpy(), nres[HEATC].sum(1).to_numpy()]))
+    fe0 = {'fe': 0, 'fe_dense': 0, 'ha': 0}
     def javne_cat(g):
         return {cid: {'b': int(len(m)), 'kwh_m2': int(round(m.fe.sum() / m.m2.sum())) if len(m) >= MIN_PUB else None,
                       'meas_pct': int(round(100 * m.m2[m.measured].sum() / m.m2.sum())) if len(m) >= MIN_PUB else None} for cid, m in g.groupby('cat')}
@@ -391,7 +440,7 @@ def build(ctx: Context) -> dict:
     pubg = {e: g for e, g in pubn.groupby('obcina')}
     for eid, (s, _) in muni.items():
         r = dhp.loc[eid] if eid in dhp.index else {'q': 0, 'q_dense': 0, 'ha': 0}
-        out[str(s)]['dh_pot'] = dh_pot(r['q'], r['q_dense'], r['ha'])
+        out[str(s)]['dh_pot'] = dh_pot(r['q'], r['q_dense'], r['ha'], fed.loc[eid] if eid in fed.index else fe0)
         out[str(s)]['javne_cat'] = javne_cat(pubg[eid]) if eid in pubg else {}
     kz = kazalniki_obcin.build(ctx, c, nres, muni, DATA_DIR / 'raw' / 'prebivalci.json')
     for sfx, v in kz['municipalities'].items():
@@ -428,7 +477,7 @@ def build(ctx: Context) -> dict:
         'carriers': [{'id': 'el', 'name': 'električna energija'}, {'id': 'amb', 'name': 'toplota okolice in sončna energija'}, {'id': 'gas', 'name': 'plin (zemeljski, UNP)'},
                      {'id': 'elko', 'name': 'kurilno olje'}, {'id': 'bio', 'name': 'lesna biomasa'}, {'id': 'dh', 'name': 'daljinska toplota'}],
         'classes': NPS,
-        'si': {**agg(c, lo, hi), 'vse': kz['si'], 'pot': si_pot, 'dh_pot': dh_pot(dhp.q.sum(), dhp.q_dense.sum(), dhp.ha.sum()), 'javne_cat': javne_cat(pubn)},
+        'si': {**agg(c, lo, hi), 'vse': kz['si'], 'pot': si_pot, 'dh_pot': dh_pot(dhp.q.sum(), dhp.q_dense.sum(), dhp.ha.sum(), fed.sum()), 'javne_cat': javne_cat(pubn)},
         'pop_period': kz['pop_period'],
         'municipalities': out,
     }
@@ -440,7 +489,7 @@ def build(ctx: Context) -> dict:
         a = v['vse']
         return {'model_fe_kwh_m2': v['fe_kwh_m2'], 'model_above43_pct': v['above43_area_pct'],
                 'k_fe_mwh_preb': a['fe_mwh_preb']['total'], 'k_res_fe_mwh_preb': a['fe_mwh_preb']['res'], 'k_tgp_t_preb': a['tgp_t_preb']['total'],
-                'k_ove_pct': a['ove_pct']['total'], 'k_nres_kwh_m2': a['nres_kwh_m2'], 'k_dh_pot_pct': v['dh_pot']['pct'], 'pop': a['pop']}
+                'k_ove_pct': a['ove_pct']['total'], 'k_nres_kwh_m2': a['nres_kwh_m2'], 'k_dh_pot_pct': v['dh_pot']['pct'], 'k_dh_fe_pct': v['dh_pot']['fe_pct'], 'pop': a['pop']}
     for r in ix['municipalities']:
         r.update(idx_fields(out[str(r['sifra'])]))
     ix['si'].update(idx_fields(data['si']))
