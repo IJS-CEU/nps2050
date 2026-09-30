@@ -9,22 +9,38 @@ import { resolve } from 'node:path';
 import { pageUrl, withBase } from '../../i18n/routes';
 import { loadData, type ObcineIndex } from '../../lib/data';
 import { nf } from '../../lib/format';
+import Icon from '../Icon.astro';
 
 const ix = loadData<ObcineIndex>('obcine_index');
 const mini = JSON.parse(readFileSync(resolve(process.cwd(), 'public', 'data', 'obcine_mini.json'), 'utf-8')) as { w: number; h: number; paths: Record<string, string> };
-const vals = ix.municipalities.map((m) => m.k_ove_pct).sort((a, b) => a - b);
-const q = (p: number) => vals[Math.min(vals.length - 1, Math.floor(p * vals.length))];
-const br = [0.2, 0.4, 0.6, 0.8].map((p) => Math.round(q(p)));
-const cls = (v: number) => br.filter((b) => v > b).length + 1;
-const labels = [`do ${br[0]} %`, `${br[0]}–${br[1]} %`, `${br[1]}–${br[2]} %`, `${br[2]}–${br[3]} %`, `nad ${br[3]} %`];
+const q = (vals: number[], p: number) => vals[Math.min(vals.length - 1, Math.floor(p * vals.length))];
+const quint = (k: 'k_ove_pct' | 'k_fe_mwh_preb' | 'k_tgp_t_preb', dec: number) => {
+  const vals = ix.municipalities.map((m) => m[k]).sort((a, b) => a - b);
+  const f = 10 ** dec;
+  return [0.2, 0.4, 0.6, 0.8].map((x) => Math.round(q(vals, x) * f) / f);
+};
+// Kazalniki za obarvanje zemljevida (ocena modela); razredi so kvintili, pri daljinskem ogrevanju stalne meje (veliko občin ima 0 %).
+const METRICS = [
+  { id: 'ove', k: 'k_ove_pct', btn: 'Obnovljivi viri', dec: 0, unit: ' %', br: quint('k_ove_pct', 0), cap: 'Delež obnovljivih virov v rabi energije v stavbah' },
+  { id: 'fe', k: 'k_fe_mwh_preb', btn: 'Raba energije', dec: 1, unit: ' MWh', br: quint('k_fe_mwh_preb', 1), cap: 'Raba končne energije v stavbah na prebivalca na leto' },
+  { id: 'tgp', k: 'k_tgp_t_preb', btn: 'Emisije', dec: 2, unit: ' t', br: quint('k_tgp_t_preb', 2), cap: 'Emisije toplogrednih plinov iz stavb na prebivalca na leto (t CO₂ ekv.)' },
+  { id: 'dh', k: 'k_dh_fe_pct', btn: 'Daljinsko ogrevanje', dec: 0, unit: ' %', br: [1, 10, 20, 35], cap: 'Potencial za daljinsko ogrevanje: delež končne energije goriv in daljinske toplote na območjih z gostoto vsaj 250 MWh/ha' },
+] as const;
+const cls = (v: number, br: readonly number[]) => br.filter((b) => v > b).length + 1;
+const lab = (m: (typeof METRICS)[number]) => { const f = (v: number) => nf(v, m.dec); return [`do ${f(m.br[0])}${m.unit}`, `${f(m.br[0])}–${f(m.br[1])}${m.unit}`, `${f(m.br[1])}–${f(m.br[2])}${m.unit}`, `${f(m.br[2])}–${f(m.br[3])}${m.unit}`, `nad ${f(m.br[3])}${m.unit}`]; };
+const GETS = [
+  { icon: 'gauge', t: 'Stanje in primerjava', d: 'raba energije, emisije in obnovljivi viri ob sosednjih in podobnih občinah' },
+  { icon: 'trending-down', t: 'Pot do leta 2050', d: 'kaj cilji NPS 2050 pomenijo za stavbe v občini' },
+  { icon: 'file-text', t: 'Kartica občine', d: 'PDF in CSV za lokalni energetski koncept' },
+  { icon: 'flame', t: 'Daljinsko ogrevanje', d: 'kje je odjem dovolj gost' },
+];
 const sorted = [...ix.municipalities].sort((a, b) => a.name.localeCompare(b.name, 'sl'));
-const si = ix.si;
 ---
 <section class="mo" aria-labelledby="mo-t">
   <div class="mo-text">
     <p class="mo-k">Moja občina</p>
     <h2 id="mo-t">Stavbni fond in raba energije po občinah</h2>
-    <p class="mo-lead">Kako se izhodišče NPS 2050 kaže v posamezni občini: stavbni fond, raba energije v stavbah, emisije toplogrednih plinov, delež obnovljivih virov, energijski razredi hiš in blokov ter izvedene prenove. Za vseh 212 občin, v primerjavi s Slovenijo.</p>
+    <p class="mo-lead">Kako se NPS 2050 kaže v vsaki od 212 slovenskih občin, v primerjavi s Slovenijo.</p>
     <form class="mo-form" action={pageUrl('obcine')} method="get" id="mo-form">
       <label for="mo-q">Vaša občina</label>
       <div class="mo-row">
@@ -34,24 +50,30 @@ const si = ix.si;
       <datalist id="mo-list">{sorted.map((m) => <option value={m.name}></option>)}</datalist>
       <p class="mo-err" id="mo-err" role="alert" hidden>Občine s tem imenom ni. Izberite jo s seznama ali odprite <a href={pageUrl('obcine')}>vse občine</a>.</p>
     </form>
-    <dl class="mo-si">
-      <div><dt>Slovenija</dt><dd><b>{nf(si.k_fe_mwh_preb, 1)}</b> MWh rabe končne energije v stavbah na prebivalca</dd></div>
-      <div><dt></dt><dd><b>{nf(si.k_tgp_t_preb, 1)}</b> t CO₂ ekv. emisij iz stavb na prebivalca</dd></div>
-      <div><dt></dt><dd><b>{nf(si.k_ove_pct, 0)} %</b> delež obnovljivih virov</dd></div>
-    </dl>
-    <p class="mo-more"><a href={pageUrl('obcine')}>Vse občine na zemljevidu in v preglednici →</a></p>
+    <p class="mo-gets-t">Kaj dobite za svojo občino</p>
+    <ul class="mo-gets">
+      {GETS.map((g) => <li><span class="mo-ic"><Icon name={g.icon} size={18} /></span><span><b>{g.t}</b>{g.d}</span></li>)}
+    </ul>
+    <p class="mo-more"><a href={pageUrl('primerjava')}>Primerjajte občine med seboj →</a><a href={pageUrl('obcine')}>Vse občine na zemljevidu in v preglednici →</a></p>
   </div>
-  <figure class="mo-map">
+  <figure class="mo-map" data-m="ove">
+    <div class="mo-tabs js-only" role="group" aria-label="Kazalnik na zemljevidu">
+      {METRICS.map((m, i) => <button type="button" data-m={m.id} aria-pressed={i === 0 ? 'true' : 'false'}>{m.btn}</button>)}
+    </div>
     <svg viewBox={`0 0 ${mini.w} ${mini.h}`} aria-hidden="true" focusable="false">
       {ix.municipalities.map((m) => (
         <a href={withBase(`obcina/${m.sifra}/`)} tabindex="-1">
-          <path d={mini.paths[String(m.sifra)]} class={`mo-c${cls(m.k_ove_pct)}`}><title>{m.name}: delež obnovljivih virov {nf(m.k_ove_pct, 0)} %</title></path>
+          <path d={mini.paths[String(m.sifra)]} class={METRICS.map((x) => `${x.id}${cls(m[x.k], x.br)}`).join(' ')} data-n={m.name} data-v={METRICS.map((x) => `${nf(m[x.k], x.dec)}${x.unit}`).join('|')}><title>{m.name}: {nf(m.k_ove_pct, 0)} %</title></path>
         </a>
       ))}
     </svg>
     <figcaption>
-      <span class="mo-leg">{labels.map((l, i) => <span><i class={`mo-c${i + 1}`}></i>{l}</span>)}</span>
-      Delež obnovljivih virov v rabi energije v stavbah (ocena modela). Kliknite občino.
+      {METRICS.map((m) => (
+        <span class="mo-cap" data-m={m.id}>
+          <span class="mo-leg">{lab(m).map((l, i) => <span><i class={`mo-c${i + 1}`}></i>{l}</span>)}</span>
+          {m.cap} (ocena modela). Kliknite občino.
+        </span>
+      ))}
     </figcaption>
   </figure>
 </section>
@@ -68,18 +90,27 @@ const si = ix.si;
   .mo-row input { flex: 1; min-width: 0; font: inherit; font-size: 1rem; padding: .55rem .7rem; border: 1px solid var(--ink2); border-radius: 8px; background: var(--bg); color: var(--ink); }
   .mo-row .btn { cursor: pointer; font: inherit; font-weight: 700; padding: .55rem 1.2rem; }
   .mo-err { font-size: .85rem; color: var(--amber); margin: .4rem 0 0; }
-  .mo-si { display: grid; gap: .15rem; margin: 1.2rem 0 .6rem; }
-  .mo-si div { display: grid; grid-template-columns: 5.5rem 1fr; gap: .5rem; }
-  .mo-si dt { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--ink2); padding-top: .2rem; }
-  .mo-si dd { margin: 0; font-size: .92rem; color: var(--ink2); }
-  .mo-si b { color: var(--ink); font-size: 1.1rem; }
-  .mo-more { margin: .4rem 0 0; font-weight: 700; }
+  .mo-gets-t { font-size: .78rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; color: var(--ink2); margin: 1.3rem 0 .5rem; }
+  .mo-gets { list-style: none; padding: 0; margin: 0 0 .9rem; max-width: none; display: grid; grid-template-columns: 1fr 1fr; gap: .6rem .9rem; }
+  .mo-gets li { display: flex; gap: .55rem; align-items: flex-start; font-size: .84rem; color: var(--ink2); line-height: 1.35; }
+  .mo-gets b { display: block; color: var(--ink); font-size: .92rem; }
+  .mo-ic { flex: none; width: 2rem; height: 2rem; border-radius: 8px; display: grid; place-items: center; background: var(--greenbg); color: var(--green); }
+  @media (max-width: 480px) { .mo-gets { grid-template-columns: 1fr; } }
+  .mo-more { margin: .4rem 0 0; font-weight: 700; display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; max-width: none; }
   .mo-map { margin: 0; }
   .mo-map svg { width: 100%; height: auto; display: block; }
   .mo-map path { stroke: var(--panel); stroke-width: 1; transition: fill .12s; }
   .mo-map a:hover path { fill: var(--s-ref); }
-  .mo-c1 { fill: var(--map-1); background: var(--map-1); } .mo-c2 { fill: var(--map-2); background: var(--map-2); } .mo-c3 { fill: var(--map-3); background: var(--map-3); }
-  .mo-c4 { fill: var(--map-4); background: var(--map-4); } .mo-c5 { fill: var(--map-5); background: var(--map-5); }
+  .mo-c1 { background: var(--map-1); } .mo-c2 { background: var(--map-2); } .mo-c3 { background: var(--map-3); } .mo-c4 { background: var(--map-4); } .mo-c5 { background: var(--map-5); }
+  .mo-map[data-m="ove"] path.ove1 { fill: var(--map-1); } .mo-map[data-m="ove"] path.ove2 { fill: var(--map-2); } .mo-map[data-m="ove"] path.ove3 { fill: var(--map-3); } .mo-map[data-m="ove"] path.ove4 { fill: var(--map-4); } .mo-map[data-m="ove"] path.ove5 { fill: var(--map-5); }
+  .mo-map[data-m="fe"] path.fe1 { fill: var(--map-1); } .mo-map[data-m="fe"] path.fe2 { fill: var(--map-2); } .mo-map[data-m="fe"] path.fe3 { fill: var(--map-3); } .mo-map[data-m="fe"] path.fe4 { fill: var(--map-4); } .mo-map[data-m="fe"] path.fe5 { fill: var(--map-5); }
+  .mo-map[data-m="tgp"] path.tgp1 { fill: var(--map-1); } .mo-map[data-m="tgp"] path.tgp2 { fill: var(--map-2); } .mo-map[data-m="tgp"] path.tgp3 { fill: var(--map-3); } .mo-map[data-m="tgp"] path.tgp4 { fill: var(--map-4); } .mo-map[data-m="tgp"] path.tgp5 { fill: var(--map-5); }
+  .mo-map[data-m="dh"] path.dh1 { fill: var(--map-1); } .mo-map[data-m="dh"] path.dh2 { fill: var(--map-2); } .mo-map[data-m="dh"] path.dh3 { fill: var(--map-3); } .mo-map[data-m="dh"] path.dh4 { fill: var(--map-4); } .mo-map[data-m="dh"] path.dh5 { fill: var(--map-5); }
+  .mo-cap { display: none; }
+  .mo-map[data-m="ove"] .mo-cap[data-m="ove"], .mo-map[data-m="fe"] .mo-cap[data-m="fe"], .mo-map[data-m="tgp"] .mo-cap[data-m="tgp"], .mo-map[data-m="dh"] .mo-cap[data-m="dh"] { display: block; }
+  .mo-tabs { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .7rem; }
+  .mo-tabs button { font: inherit; font-size: .82rem; font-weight: 700; padding: .3rem .8rem; border-radius: 999px; border: 1px solid var(--ink2); background: transparent; color: var(--ink2); cursor: pointer; }
+  .mo-tabs button[aria-pressed='true'] { background: var(--green); border-color: var(--green); color: var(--on-green); }
   .mo-map figcaption { font-size: .8rem; color: var(--ink2); margin-top: .5rem; }
   .mo-leg { display: flex; flex-wrap: wrap; gap: .2rem .8rem; margin-bottom: .3rem; }
   .mo-leg span { display: inline-flex; align-items: center; gap: .3rem; }
@@ -103,5 +134,15 @@ const si = ix.si;
       else if (inp.value.trim()) { e.preventDefault(); err.hidden = false; inp.focus(); }
     });
     inp.addEventListener('input', () => { err.hidden = true; });
+  }
+  const map = document.querySelector<HTMLElement>('.mo-map');
+  if (map) {
+    const btns = [...map.querySelectorAll<HTMLButtonElement>('.mo-tabs button')];
+    const paths = [...map.querySelectorAll<SVGPathElement>('path')];
+    btns.forEach((b, i) => b.addEventListener('click', () => {
+      map.dataset.m = b.dataset.m;
+      btns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      for (const p of paths) p.querySelector('title')!.textContent = `${p.dataset.n}: ${p.dataset.v!.split('|')[i]}`;
+    }));
   }
 </script>
