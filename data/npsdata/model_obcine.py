@@ -442,6 +442,39 @@ def build(ctx: Context) -> dict:
         r = dhp.loc[eid] if eid in dhp.index else {'q': 0, 'q_dense': 0, 'ha': 0}
         out[str(s)]['dh_pot'] = dh_pot(r['q'], r['q_dense'], r['ha'], fed.loc[eid] if eid in fed.index else fe0)
         out[str(s)]['javne_cat'] = javne_cat(pubg[eid]) if eid in pubg else {}
+    # 11.8 Najslabše stavbe: delež površine – ocena modela (stanovanjske, skupina 43 %) in registri (stavbe z izkaznico:
+    # stanovanjske nad pragom 43 %, nestanovanjske nad pragom minimalnih standardov 2030). Izkaznice so javne: brez praga.
+    from .obcine import _classify, _flags
+    dfl = df.copy()
+    dfl['cls'] = _classify(dfl, fond)
+    dfl = _flags(dfl, fond)
+    thr43 = {k['id'] for k in fond['categories'] if k.get('worst_43')}
+    mepsc = {k['id'] for k in fond['categories'] if k.get('meps')}
+    rr_ = dfl[dfl.seg.isin(['hise', 'bloki']) & dfl.ei_pe.notna() & dfl.cat.isin(thr43)]
+    nr_ = dfl[dfl.seg.isin(['javne', 'zasebne']) & dfl.ei_pe.notna() & dfl.cat.isin(mepsc)]
+
+    def worst(cm, rg, ng):
+        sh = lambda num, den: round(100 * float(num) / float(den), 1) if den else None
+        return {'res_model_pct': sh(cm.above.sum(), cm.m2.sum()),
+                'res_reg_pct': sh(rg.m2[rg.above43].sum(), rg.m2.sum()), 'res_reg_n': int(len(rg)),
+                'nres_reg_pct': sh(ng.m2[ng.above_meps30].sum(), ng.m2.sum()), 'nres_reg_n': int(len(ng))}
+    gc, gr, gn = dict(tuple(c.groupby('obcina'))), dict(tuple(rr_.groupby('obcina'))), dict(tuple(nr_.groupby('obcina')))
+    empty = rr_.iloc[:0]
+    for eid, (s, _) in muni.items():
+        out[str(s)]['worst'] = worst(gc[eid], gr.get(eid, empty), gn.get(eid, nr_.iloc[:0]))
+    worst_si = worst(c, rr_, nr_)
+    ctx.check(abs(worst_si['res_model_pct'] - 100 * c.above.sum() / c.m2.sum()) < 0.1, f'najslabše stavbe: ocena {worst_si["res_model_pct"]} % površine')
+    # regije (za zemljevid v Strokovnih podlagah)
+    zj = json.loads((OUT / 'zemljevid.json').read_text(encoding='utf-8'))
+    reg_of = {e: m['region'] for e, m in zj['municipalities'].items()}
+    for eid, m in zj['municipalities'].items():
+        m.update({f'w_{k}': v for k, v in out[str(muni[eid][0])]['worst'].items()})
+    for code, r in zj['regions'].items():
+        es = [e for e, rc in reg_of.items() if rc == code]
+        r.update({f'w_{k}': v for k, v in worst(c[c.obcina.isin(es)], rr_[rr_.obcina.isin(es)], nr_[nr_.obcina.isin(es)]).items()})
+    zj['si'] = {f'w_{k}': v for k, v in worst_si.items()}
+    write_json('zemljevid', zj)
+
     kz = kazalniki_obcin.build(ctx, c, nres, muni, DATA_DIR / 'raw' / 'prebivalci.json')
     for sfx, v in kz['municipalities'].items():
         out[sfx]['vse'] = v
@@ -477,7 +510,7 @@ def build(ctx: Context) -> dict:
         'carriers': [{'id': 'el', 'name': 'električna energija'}, {'id': 'amb', 'name': 'toplota okolice in sončna energija'}, {'id': 'gas', 'name': 'plin (zemeljski, UNP)'},
                      {'id': 'elko', 'name': 'kurilno olje'}, {'id': 'bio', 'name': 'lesna biomasa'}, {'id': 'dh', 'name': 'daljinska toplota'}],
         'classes': NPS,
-        'si': {**agg(c, lo, hi), 'vse': kz['si'], 'pot': si_pot, 'dh_pot': dh_pot(dhp.q.sum(), dhp.q_dense.sum(), dhp.ha.sum(), fed.sum()), 'javne_cat': javne_cat(pubn)},
+        'si': {**agg(c, lo, hi), 'worst': worst_si, 'vse': kz['si'], 'pot': si_pot, 'dh_pot': dh_pot(dhp.q.sum(), dhp.q_dense.sum(), dhp.ha.sum(), fed.sum()), 'javne_cat': javne_cat(pubn)},
         'pop_period': kz['pop_period'],
         'municipalities': out,
     }
@@ -489,7 +522,9 @@ def build(ctx: Context) -> dict:
         a = v['vse']
         return {'model_fe_kwh_m2': v['fe_kwh_m2'], 'model_above43_pct': v['above43_area_pct'],
                 'k_fe_mwh_preb': a['fe_mwh_preb']['total'], 'k_res_fe_mwh_preb': a['fe_mwh_preb']['res'], 'k_tgp_t_preb': a['tgp_t_preb']['total'],
-                'k_ove_pct': a['ove_pct']['total'], 'k_nres_kwh_m2': a['nres_kwh_m2'], 'k_dh_pot_pct': v['dh_pot']['pct'], 'k_dh_fe_pct': v['dh_pot']['fe_pct'], 'pop': a['pop']}
+                'k_ove_pct': a['ove_pct']['total'], 'k_nres_kwh_m2': a['nres_kwh_m2'], 'k_dh_pot_pct': v['dh_pot']['pct'], 'k_dh_fe_pct': v['dh_pot']['fe_pct'],
+                'w_res_model_pct': v['worst']['res_model_pct'], 'w_res_reg_pct': v['worst']['res_reg_pct'], 'w_res_reg_n': v['worst']['res_reg_n'],
+                'w_nres_reg_pct': v['worst']['nres_reg_pct'], 'w_nres_reg_n': v['worst']['nres_reg_n'], 'pop': a['pop']}
     for r in ix['municipalities']:
         r.update(idx_fields(out[str(r['sifra'])]))
     ix['si'].update(idx_fields(data['si']))

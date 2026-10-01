@@ -10,7 +10,7 @@
    "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsaj 10 izkaznicah. Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+  "note": "Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsakem številu izkaznic, skupaj s številom izkaznic. Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
  },
  "sifra": 193,
  "eid": "110200000214279932",
@@ -43,7 +43,15 @@
    "ei_buildings_pct": 35.0,
    "ei_area_pct": 51.0,
    "ei_calc": 7,
-   "classes_pct": null,
+   "classes_pct": {
+    "A": 0.0,
+    "B": 14.3,
+    "C": 0.0,
+    "D": 28.6,
+    "E": 14.3,
+    "F": 28.6,
+    "G": 14.3
+   },
    "class_groups_pct": null
   },
   "javne": {
@@ -52,7 +60,15 @@
    "ei_buildings_pct": 28.6,
    "ei_area_pct": 35.2,
    "ei_calc": 1,
-   "classes_pct": null,
+   "classes_pct": {
+    "A": 0.0,
+    "B": 0.0,
+    "C": 0.0,
+    "D": 0.0,
+    "E": 0.0,
+    "F": 0.0,
+    "G": 100.0
+   },
    "class_groups_pct": null
   },
   "zasebne": {
@@ -61,7 +77,15 @@
    "ei_buildings_pct": 2.2,
    "ei_area_pct": 1.9,
    "ei_calc": 2,
-   "classes_pct": null,
+   "classes_pct": {
+    "A": 0.0,
+    "B": 50.0,
+    "C": 0.0,
+    "D": 0.0,
+    "E": 0.0,
+    "F": 50.0,
+    "G": 0.0
+   },
    "class_groups_pct": null
   }
  },
@@ -77,8 +101,8 @@
  },
  "res_above43_pct": 48.6,
  "res_ei_calc": 74,
- "nres_above_meps30_pct": null,
- "nres_above_meps33_pct": null,
+ "nres_above_meps30_pct": 33.3,
+ "nres_above_meps33_pct": 66.7,
  "nres_ei_calc": 3,
  "es_res": {
   "ovoj": {

@@ -28,6 +28,9 @@ const top = [...regions].sort((a, b) => b[1].buildings - a[1].buildings)[0][1];
       { value: 'buildings', label: 'Število stavb' },
       { value: 'area_k_m2', label: 'Površina' },
       { value: 'pre1981_area_pct', label: 'Delež pred 1981' },
+      { value: 'w_res_model_pct', label: 'Najslabše stanovanjske (ocena)' },
+      { value: 'w_res_reg_pct', label: 'Najslabše stanovanjske (izkaznice)' },
+      { value: 'w_nres_reg_pct', label: 'Nestanovanjske nad pragom 2030 (izkaznice)' },
     ]} />
     <label class="zm-pick js-only"><span class="ctl-label">Podrobnosti:</span> <select id="zm-select" aria-controls="zm-detail"></select></label>
   </Fragment>
@@ -71,6 +74,9 @@ const top = [...regions].sort((a, b) => b[1].buildings - a[1].buildings)[0][1];
     buildings: { label: 'Število stavb', fmt: (v) => nf(v) },
     area_k_m2: { label: 'Uporabna površina', fmt: (v) => `${nf(v, 0)} tisoč m²` },
     pre1981_area_pct: { label: 'Delež površine, zgrajene pred 1981', fmt: (v) => `${nf(v, 1)} %` },
+    w_res_model_pct: { label: 'Stanovanjske stavbe v skupini 43 % (ocena, delež površine)', fmt: (v) => `${nf(v, 0)} %` },
+    w_res_reg_pct: { label: 'Stanovanjske stavbe z izkaznico v skupini 43 % (delež površine)', fmt: (v) => `${nf(v, 0)} %` },
+    w_nres_reg_pct: { label: 'Nestanovanjske stavbe z izkaznico nad pragom 2030 (delež površine)', fmt: (v) => `${nf(v, 0)} %` },
   };
 
   async function get(file: string) {
@@ -108,7 +114,7 @@ const top = [...regions].sort((a, b) => b[1].buildings - a[1].buildings)[0][1];
       const cs = getComputedStyle(document.documentElement);
       const ramp = [1, 2, 3, 4, 5].map((i) => cs.getPropertyValue(`--map-${i}`).trim());
       const U = units();
-      const vals = Object.values(U).map((a) => (a as any)[metric] as number);
+      const vals = Object.values(U).map((a) => (a as any)[metric] as number | null).filter((v): v is number => v !== null && v !== undefined);
       const b = breaks(vals);
       const fmt = METRIC[metric].fmt;
       const edges = [Math.min(...vals), ...b, Math.max(...vals)];
@@ -125,7 +131,7 @@ const top = [...regions].sort((a, b) => b[1].buildings - a[1].buildings)[0][1];
             const id = byName()[p.name]; if (!id) return '';
             const a = U[id] as Area;
             return tipTitle(a.name) + (a.region ? `<div style="opacity:.75;margin:-2px 0 4px">Regija: ${esc(d.regions[a.region].name)}</div>` : '')
-              + tipRow(p.color, METRIC[metric].label, fmt((a as any)[metric]), 'rect');
+              + tipRow(p.color, METRIC[metric].label, (a as any)[metric] == null ? 'ni izkaznic' : fmt((a as any)[metric]), 'rect');
           },
         },
         visualMap: {
@@ -145,7 +151,7 @@ const top = [...regions].sort((a, b) => b[1].buildings - a[1].buildings)[0][1];
           select: { label: { color: t.ink }, itemStyle: { areaColor: t.s.ref, borderColor: t.ink, borderWidth: 2 } },
           selectedMode: 'single',
           label: { show: level === 'regije' && !t.narrow, color: t.ink, fontSize: 10, fontWeight: 600, fontFamily: t.font, textBorderColor: t.panel, textBorderWidth: 3 },
-          data: Object.values(U).map((a) => ({ name: (a as Area).name, value: (a as any)[metric], selected: selected !== null && units()[selected]?.name === (a as Area).name })),
+          data: Object.values(U).map((a) => ({ name: (a as Area).name, value: (a as any)[metric] ?? undefined, selected: selected !== null && units()[selected]?.name === (a as Area).name })),
         }],
       };
     };

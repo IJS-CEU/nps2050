@@ -7,7 +7,7 @@ from .numbers import num
 
 MIN_CELL = 1  # brez skrivanja majhnih celic: kataster in register izkaznic sta javna (odločitev 29. 9. 2026)
 # Najmanjše število izkaznic za prikaz deleža med stavbami z izkaznico (statistična zanesljivost, ne zasebnost).
-MIN_EI = 10
+MIN_EI = 1  # izkaznice so javne: deleži in razredi se prikažejo že pri eni izkaznici, s številom izkaznic (odločitev 1. 10. 2026)
 
 # id (kot v katastru), ime na strani, segment, vzorec prve celice v preglednicah osnutka
 CATS = [

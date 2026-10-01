@@ -11,7 +11,21 @@ const pages = defineCollection({
     title: z.string(),
     description: z.string(),
     lead: z.string().optional(),
+    /** Nova rubrika do potrditve (CLAUDE.md §11): zgradi se, a ima noindex in ni v navigaciji. */
+    draft: z.boolean().optional(),
   }),
 });
 
-export const collections = { pages };
+// 11.9 Dnevnik sprememb: en vnos na datoteko src/content/dnevnik/<datum>-<ime>.md
+const dnevnik = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/dnevnik' }),
+  schema: z.object({
+    datum: z.string(),
+    naslov: z.string(),
+    vrsta: z.enum(['rocni', 'samodejni']),
+    osnutek: z.string().optional(),
+    osnutek_datum: z.string().optional(),
+  }),
+});
+
+export const collections = { pages, dnevnik };

@@ -1,0 +1,33 @@
+---
+/**
+ * 11.9 Dnevnik sprememb: vnosi iz src/content/dnevnik/*.md, najnovejši zgoraj.
+ * Ročni vnosi opisujejo vsebinske spremembe, samodejne zapiše cevovod ob zagonu (data/build_all.py).
+ */
+import { getCollection, render } from 'astro:content';
+
+const entries = (await getCollection('dnevnik')).sort((a, b) => b.data.datum.localeCompare(a.data.datum) || (a.data.vrsta === 'rocni' ? -1 : 1));
+const dt = (s: string) => { const [y, m, d] = s.split('-').map(Number); return `${d}. ${m}. ${y}`; };
+const rendered = await Promise.all(entries.map(async (e) => ({ e, Content: (await render(e)).Content })));
+---
+<ol class="dn">
+  {rendered.map(({ e, Content }) => (
+    <li class={`dn-e ${e.data.vrsta}`}>
+      <p class="dn-m"><time datetime={e.data.datum}>{dt(e.data.datum)}</time>{e.data.osnutek_datum && <span>osnutek z dne {dt(e.data.osnutek_datum)}</span>}<span class="dn-t">{e.data.vrsta === 'rocni' ? 'vsebina' : 'samodejno: podatki'}</span></p>
+      <h2>{e.data.naslov}</h2>
+      <div class="dn-c"><Content /></div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .dn { list-style: none; padding: 0; margin: 1.5rem 0; max-width: none; display: grid; gap: 1rem; }
+  .dn-e { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--green); border-radius: 12px; padding: 1rem 1.25rem; }
+  .dn-e.samodejni { border-left-color: var(--line); }
+  .dn-m { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .82rem; color: var(--ink2); margin: 0 0 .3rem; }
+  .dn-m time { font-weight: 800; color: var(--ink); }
+  .dn-t { text-transform: uppercase; letter-spacing: .06em; font-weight: 700; font-size: .72rem; }
+  .dn-e h2 { font-size: 1.15rem; margin: 0 0 .4rem; }
+  .dn-c :global(ul) { margin: .2rem 0; padding-left: 1.2rem; }
+  .dn-c :global(li) { font-size: .92rem; margin: .15rem 0; }
+  .dn-c :global(p) { font-size: .92rem; margin: .3rem 0; }
+</style>

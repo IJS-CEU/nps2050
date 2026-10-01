@@ -10,10 +10,10 @@
    "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsaj 10 izkaznicah. Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+  "note": "Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsakem številu izkaznic, skupaj s številom izkaznic. Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
  },
  "min_cell": 1,
- "min_ei": 10,
+ "min_ei": 1,
  "classes": [
   "A",
   "B",
@@ -278,6 +278,11 @@
   "k_nres_kwh_m2": 162,
   "k_dh_pot_pct": 40.4,
   "k_dh_fe_pct": 23.9,
+  "w_res_model_pct": 37.9,
+  "w_res_reg_pct": 25.7,
+  "w_res_reg_n": 40854,
+  "w_nres_reg_pct": 7.7,
+  "w_nres_reg_n": 3469,
   "pop": 2135107
  },
  "municipalities": [
@@ -303,6 +308,11 @@
    "k_nres_kwh_m2": 113,
    "k_dh_pot_pct": 28.9,
    "k_dh_fe_pct": 9.5,
+   "w_res_model_pct": 37.8,
+   "w_res_reg_pct": 26.0,
+   "w_res_reg_n": 309,
+   "w_nres_reg_pct": 10.3,
+   "w_nres_reg_n": 26,
    "pop": 19977
   },
   {
@@ -327,6 +337,11 @@
    "k_nres_kwh_m2": 268,
    "k_dh_pot_pct": 62.0,
    "k_dh_fe_pct": 51.1,
+   "w_res_model_pct": 41.7,
+   "w_res_reg_pct": 54.9,
+   "w_res_reg_n": 99,
+   "w_nres_reg_pct": 20.8,
+   "w_nres_reg_n": 6,
    "pop": 3444
   },
   {
@@ -351,6 +366,11 @@
    "k_nres_kwh_m2": 143,
    "k_dh_pot_pct": 2.8,
    "k_dh_fe_pct": 2.4,
+   "w_res_model_pct": 32.9,
+   "w_res_reg_pct": 34.2,
+   "w_res_reg_n": 60,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 9,
    "pop": 3562
   },
   {
@@ -375,6 +395,11 @@
    "k_nres_kwh_m2": 171,
    "k_dh_pot_pct": 6.3,
    "k_dh_fe_pct": 2.9,
+   "w_res_model_pct": 36.7,
+   "w_res_reg_pct": 33.6,
+   "w_res_reg_n": 178,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5,
    "pop": 8078
   },
   {
@@ -399,6 +424,11 @@
    "k_nres_kwh_m2": 134,
    "k_dh_pot_pct": 15.2,
    "k_dh_fe_pct": 2.6,
+   "w_res_model_pct": 27.8,
+   "w_res_reg_pct": 20.4,
+   "w_res_reg_n": 54,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1,
    "pop": 2727
   },
   {
@@ -423,6 +453,11 @@
    "k_nres_kwh_m2": 149,
    "k_dh_pot_pct": 7.0,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 42.4,
+   "w_res_reg_pct": 59.0,
+   "w_res_reg_n": 22,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 1334
   },
   {
@@ -447,6 +482,11 @@
    "k_nres_kwh_m2": 262,
    "k_dh_pot_pct": 42.4,
    "k_dh_fe_pct": 39.4,
+   "w_res_model_pct": 41.4,
+   "w_res_reg_pct": 41.1,
+   "w_res_reg_n": 179,
+   "w_nres_reg_pct": 0.9,
+   "w_nres_reg_n": 21,
    "pop": 8103
   },
   {
@@ -471,6 +511,11 @@
    "k_nres_kwh_m2": 174,
    "k_dh_pot_pct": 6.3,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 38.7,
+   "w_res_reg_pct": 27.9,
+   "w_res_reg_n": 39,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 1563
   },
   {
@@ -495,6 +540,11 @@
    "k_nres_kwh_m2": 207,
    "k_dh_pot_pct": 26.8,
    "k_dh_fe_pct": 16.9,
+   "w_res_model_pct": 43.0,
+   "w_res_reg_pct": 48.8,
+   "w_res_reg_n": 123,
+   "w_nres_reg_pct": 18.8,
+   "w_nres_reg_n": 15,
    "pop": 5216
   },
   {
@@ -519,6 +569,11 @@
    "k_nres_kwh_m2": 148,
    "k_dh_pot_pct": 21.8,
    "k_dh_fe_pct": 2.1,
+   "w_res_model_pct": 39.2,
+   "w_res_reg_pct": 25.0,
+   "w_res_reg_n": 83,
+   "w_nres_reg_pct": 31.4,
+   "w_nres_reg_n": 4,
    "pop": 4688
   },
   {
@@ -543,6 +598,11 @@
    "k_nres_kwh_m2": 173,
    "k_dh_pot_pct": 38.5,
    "k_dh_fe_pct": 24.7,
+   "w_res_model_pct": 44.0,
+   "w_res_reg_pct": 59.9,
+   "w_res_reg_n": 97,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 13,
    "pop": 3052
   },
   {
@@ -567,6 +627,11 @@
    "k_nres_kwh_m2": 136,
    "k_dh_pot_pct": 11.3,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 32.7,
+   "w_res_reg_pct": 29.6,
+   "w_res_reg_n": 96,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 7,
    "pop": 5908
   },
   {
@@ -591,6 +656,11 @@
    "k_nres_kwh_m2": 170,
    "k_dh_pot_pct": 15.1,
    "k_dh_fe_pct": 8.9,
+   "w_res_model_pct": 41.0,
+   "w_res_reg_pct": 60.8,
+   "w_res_reg_n": 68,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 10,
    "pop": 5564
   },
   {
@@ -615,6 +685,11 @@
    "k_nres_kwh_m2": 159,
    "k_dh_pot_pct": 10.0,
    "k_dh_fe_pct": 5.9,
+   "w_res_model_pct": 26.0,
+   "w_res_reg_pct": 21.1,
+   "w_res_reg_n": 292,
+   "w_nres_reg_pct": 2.6,
+   "w_nres_reg_n": 8,
    "pop": 13202
   },
   {
@@ -639,6 +714,11 @@
    "k_nres_kwh_m2": 180,
    "k_dh_pot_pct": 26.4,
    "k_dh_fe_pct": 16.3,
+   "w_res_model_pct": 37.0,
+   "w_res_reg_pct": 28.3,
+   "w_res_reg_n": 512,
+   "w_nres_reg_pct": 5.8,
+   "w_nres_reg_n": 51,
    "pop": 24412
   },
   {
@@ -663,6 +743,11 @@
    "k_nres_kwh_m2": 210,
    "k_dh_pot_pct": 9.3,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 40.1,
+   "w_res_reg_pct": 57.0,
+   "w_res_reg_n": 19,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 1748
   },
   {
@@ -687,6 +772,11 @@
    "k_nres_kwh_m2": 168,
    "k_dh_pot_pct": 63.3,
    "k_dh_fe_pct": 43.2,
+   "w_res_model_pct": 47.3,
+   "w_res_reg_pct": 14.6,
+   "w_res_reg_n": 950,
+   "w_nres_reg_pct": 4.4,
+   "w_nres_reg_n": 101,
    "pop": 49802
   },
   {
@@ -711,6 +801,11 @@
    "k_nres_kwh_m2": 143,
    "k_dh_pot_pct": 11.8,
    "k_dh_fe_pct": 16.2,
+   "w_res_model_pct": 15.7,
+   "w_res_reg_pct": 44.0,
+   "w_res_reg_n": 109,
+   "w_nres_reg_pct": 3.8,
+   "w_nres_reg_n": 10,
    "pop": 8029
   },
   {
@@ -735,6 +830,11 @@
    "k_nres_kwh_m2": 145,
    "k_dh_pot_pct": 21.6,
    "k_dh_fe_pct": 5.8,
+   "w_res_model_pct": 36.8,
+   "w_res_reg_pct": 48.0,
+   "w_res_reg_n": 205,
+   "w_nres_reg_pct": 13.3,
+   "w_nres_reg_n": 18,
    "pop": 11899
   },
   {
@@ -759,6 +859,11 @@
    "k_nres_kwh_m2": 183,
    "k_dh_pot_pct": 20.2,
    "k_dh_fe_pct": 9.9,
+   "w_res_model_pct": 48.4,
+   "w_res_reg_pct": 82.8,
+   "w_res_reg_n": 51,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 4445
   },
   {
@@ -783,6 +888,11 @@
    "k_nres_kwh_m2": 140,
    "k_dh_pot_pct": 2.8,
    "k_dh_fe_pct": 3.0,
+   "w_res_model_pct": 26.9,
+   "w_res_reg_pct": 21.3,
+   "w_res_reg_n": 33,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 2250
   },
   {
@@ -807,6 +917,11 @@
    "k_nres_kwh_m2": 123,
    "k_dh_pot_pct": 12.5,
    "k_dh_fe_pct": 2.7,
+   "w_res_model_pct": 33.0,
+   "w_res_reg_pct": 61.6,
+   "w_res_reg_n": 35,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 2357
   },
   {
@@ -831,6 +946,11 @@
    "k_nres_kwh_m2": 139,
    "k_dh_pot_pct": 4.6,
    "k_dh_fe_pct": 3.1,
+   "w_res_model_pct": 26.8,
+   "w_res_reg_pct": 21.3,
+   "w_res_reg_n": 41,
+   "w_nres_reg_pct": 59.8,
+   "w_nres_reg_n": 3,
    "pop": 2737
   },
   {
@@ -855,6 +975,11 @@
    "k_nres_kwh_m2": 146,
    "k_dh_pot_pct": 19.7,
    "k_dh_fe_pct": 6.1,
+   "w_res_model_pct": 34.4,
+   "w_res_reg_pct": 45.6,
+   "w_res_reg_n": 94,
+   "w_nres_reg_pct": 35.6,
+   "w_nres_reg_n": 7,
    "pop": 4604
   },
   {
@@ -866,7 +991,7 @@
    "area_k_m2": 41.4,
    "ei_area_res_pct": 1.4,
    "hise_ei_pct": 1.5,
-   "res_above43_pct": null,
+   "res_above43_pct": 20.0,
    "es_res_any_pct": 17.5,
    "obnova_res_pct": 49.4,
    "pre1981_res_area_pct": 57.5,
@@ -879,6 +1004,11 @@
    "k_nres_kwh_m2": 187,
    "k_dh_pot_pct": 5.9,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 37.8,
+   "w_res_reg_pct": 10.7,
+   "w_res_reg_n": 5,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 965
   },
   {
@@ -903,6 +1033,11 @@
    "k_nres_kwh_m2": 150,
    "k_dh_pot_pct": 10.4,
    "k_dh_fe_pct": 5.0,
+   "w_res_model_pct": 35.2,
+   "w_res_reg_pct": 33.2,
+   "w_res_reg_n": 69,
+   "w_nres_reg_pct": 68.0,
+   "w_nres_reg_n": 3,
    "pop": 3946
   },
   {
@@ -927,6 +1062,11 @@
    "k_nres_kwh_m2": 320,
    "k_dh_pot_pct": 27.9,
    "k_dh_fe_pct": 40.3,
+   "w_res_model_pct": 34.2,
+   "w_res_reg_pct": 26.9,
+   "w_res_reg_n": 44,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 2347
   },
   {
@@ -951,6 +1091,11 @@
    "k_nres_kwh_m2": 133,
    "k_dh_pot_pct": 10.1,
    "k_dh_fe_pct": 1.0,
+   "w_res_model_pct": 30.7,
+   "w_res_reg_pct": 26.5,
+   "w_res_reg_n": 124,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 8068
   },
   {
@@ -975,6 +1120,11 @@
    "k_nres_kwh_m2": 146,
    "k_dh_pot_pct": 6.5,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 39.6,
+   "w_res_reg_pct": 59.1,
+   "w_res_reg_n": 31,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 1217
   },
   {
@@ -999,6 +1149,11 @@
    "k_nres_kwh_m2": 127,
    "k_dh_pot_pct": 17.7,
    "k_dh_fe_pct": 2.9,
+   "w_res_model_pct": 24.9,
+   "w_res_reg_pct": 6.0,
+   "w_res_reg_n": 127,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 6438
   },
   {
@@ -1023,6 +1178,11 @@
    "k_nres_kwh_m2": 274,
    "k_dh_pot_pct": 13.7,
    "k_dh_fe_pct": 25.2,
+   "w_res_model_pct": 30.9,
+   "w_res_reg_pct": 41.4,
+   "w_res_reg_n": 67,
+   "w_nres_reg_pct": 3.8,
+   "w_nres_reg_n": 4,
    "pop": 3666
   },
   {
@@ -1047,6 +1207,11 @@
    "k_nres_kwh_m2": 151,
    "k_dh_pot_pct": 44.8,
    "k_dh_fe_pct": 15.8,
+   "w_res_model_pct": 35.0,
+   "w_res_reg_pct": 23.0,
+   "w_res_reg_n": 777,
+   "w_nres_reg_pct": 11.3,
+   "w_nres_reg_n": 32,
    "pop": 38326
   },
   {
@@ -1071,6 +1236,11 @@
    "k_nres_kwh_m2": 181,
    "k_dh_pot_pct": 20.2,
    "k_dh_fe_pct": 11.7,
+   "w_res_model_pct": 34.6,
+   "w_res_reg_pct": 32.5,
+   "w_res_reg_n": 30,
+   "w_nres_reg_pct": 1.8,
+   "w_nres_reg_n": 5,
    "pop": 2915
   },
   {
@@ -1095,6 +1265,11 @@
    "k_nres_kwh_m2": 142,
    "k_dh_pot_pct": 26.5,
    "k_dh_fe_pct": 11.5,
+   "w_res_model_pct": 33.9,
+   "w_res_reg_pct": 32.2,
+   "w_res_reg_n": 189,
+   "w_nres_reg_pct": 14.2,
+   "w_nres_reg_n": 14,
    "pop": 8773
   },
   {
@@ -1119,6 +1294,11 @@
    "k_nres_kwh_m2": 115,
    "k_dh_pot_pct": 7.6,
    "k_dh_fe_pct": 1.3,
+   "w_res_model_pct": 29.6,
+   "w_res_reg_pct": 22.6,
+   "w_res_reg_n": 143,
+   "w_nres_reg_pct": 13.5,
+   "w_nres_reg_n": 6,
    "pop": 7067
   },
   {
@@ -1143,6 +1323,11 @@
    "k_nres_kwh_m2": 145,
    "k_dh_pot_pct": 6.3,
    "k_dh_fe_pct": 1.0,
+   "w_res_model_pct": 34.2,
+   "w_res_reg_pct": 23.1,
+   "w_res_reg_n": 63,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5,
    "pop": 7739
   },
   {
@@ -1167,6 +1352,11 @@
    "k_nres_kwh_m2": 129,
    "k_dh_pot_pct": 6.7,
    "k_dh_fe_pct": 6.0,
+   "w_res_model_pct": 25.2,
+   "w_res_reg_pct": 31.3,
+   "w_res_reg_n": 42,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 4212
   },
   {
@@ -1191,6 +1381,11 @@
    "k_nres_kwh_m2": 222,
    "k_dh_pot_pct": 16.4,
    "k_dh_fe_pct": 6.3,
+   "w_res_model_pct": 51.2,
+   "w_res_reg_pct": 66.0,
+   "w_res_reg_n": 55,
+   "w_nres_reg_pct": 20.7,
+   "w_nres_reg_n": 7,
    "pop": 2733
   },
   {
@@ -1215,6 +1410,11 @@
    "k_nres_kwh_m2": 154,
    "k_dh_pot_pct": 25.6,
    "k_dh_fe_pct": 8.3,
+   "w_res_model_pct": 36.4,
+   "w_res_reg_pct": 40.2,
+   "w_res_reg_n": 167,
+   "w_nres_reg_pct": 6.8,
+   "w_nres_reg_n": 25,
    "pop": 8555
   },
   {
@@ -1239,6 +1439,11 @@
    "k_nres_kwh_m2": 169,
    "k_dh_pot_pct": 17.4,
    "k_dh_fe_pct": 15.1,
+   "w_res_model_pct": 51.3,
+   "w_res_reg_pct": 56.7,
+   "w_res_reg_n": 40,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 2534
   },
   {
@@ -1263,6 +1468,11 @@
    "k_nres_kwh_m2": 164,
    "k_dh_pot_pct": 1.7,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 46.7,
+   "w_res_reg_pct": 31.2,
+   "w_res_reg_n": 33,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 1918
   },
   {
@@ -1287,6 +1497,11 @@
    "k_nres_kwh_m2": 159,
    "k_dh_pot_pct": 5.9,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 43.7,
+   "w_res_reg_pct": 77.6,
+   "w_res_reg_n": 29,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 1953
   },
   {
@@ -1311,6 +1526,11 @@
    "k_nres_kwh_m2": 137,
    "k_dh_pot_pct": 28.2,
    "k_dh_fe_pct": 8.2,
+   "w_res_model_pct": 28.3,
+   "w_res_reg_pct": 17.0,
+   "w_res_reg_n": 440,
+   "w_nres_reg_pct": 2.0,
+   "w_nres_reg_n": 27,
    "pop": 22276
   },
   {
@@ -1335,6 +1555,11 @@
    "k_nres_kwh_m2": 174,
    "k_dh_pot_pct": 5.5,
    "k_dh_fe_pct": 5.3,
+   "w_res_model_pct": 27.8,
+   "w_res_reg_pct": 18.0,
+   "w_res_reg_n": 88,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 4092
   },
   {
@@ -1346,7 +1571,7 @@
    "area_k_m2": 19.0,
    "ei_area_res_pct": 2.0,
    "hise_ei_pct": 3.1,
-   "res_above43_pct": null,
+   "res_above43_pct": 66.7,
    "es_res_any_pct": 14.4,
    "obnova_res_pct": 50.8,
    "pre1981_res_area_pct": 60.5,
@@ -1359,6 +1584,11 @@
    "k_nres_kwh_m2": 144,
    "k_dh_pot_pct": 0.0,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 45.5,
+   "w_res_reg_pct": 68.5,
+   "w_res_reg_n": 3,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 335
   },
   {
@@ -1383,6 +1613,11 @@
    "k_nres_kwh_m2": 93,
    "k_dh_pot_pct": 16.0,
    "k_dh_fe_pct": 2.4,
+   "w_res_model_pct": 33.0,
+   "w_res_reg_pct": 34.3,
+   "w_res_reg_n": 23,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 3085
   },
   {
@@ -1407,6 +1642,11 @@
    "k_nres_kwh_m2": 141,
    "k_dh_pot_pct": 16.5,
    "k_dh_fe_pct": 9.9,
+   "w_res_model_pct": 27.4,
+   "w_res_reg_pct": 20.2,
+   "w_res_reg_n": 415,
+   "w_nres_reg_pct": 6.9,
+   "w_nres_reg_n": 22,
    "pop": 12061
   },
   {
@@ -1431,6 +1671,11 @@
    "k_nres_kwh_m2": 145,
    "k_dh_pot_pct": 38.5,
    "k_dh_fe_pct": 20.0,
+   "w_res_model_pct": 53.4,
+   "w_res_reg_pct": 46.9,
+   "w_res_reg_n": 176,
+   "w_nres_reg_pct": 4.0,
+   "w_nres_reg_n": 15,
    "pop": 8755
   },
   {
@@ -1455,6 +1700,11 @@
    "k_nres_kwh_m2": 159,
    "k_dh_pot_pct": 15.2,
    "k_dh_fe_pct": 7.5,
+   "w_res_model_pct": 32.8,
+   "w_res_reg_pct": 25.0,
+   "w_res_reg_n": 125,
+   "w_nres_reg_pct": 9.9,
+   "w_nres_reg_n": 18,
    "pop": 5451
   },
   {
@@ -1479,6 +1729,11 @@
    "k_nres_kwh_m2": 145,
    "k_dh_pot_pct": 42.7,
    "k_dh_fe_pct": 22.4,
+   "w_res_model_pct": 46.9,
+   "w_res_reg_pct": 71.2,
+   "w_res_reg_n": 204,
+   "w_nres_reg_pct": 9.0,
+   "w_nres_reg_n": 26,
    "pop": 11482
   },
   {
@@ -1503,6 +1758,11 @@
    "k_nres_kwh_m2": 171,
    "k_dh_pot_pct": 9.7,
    "k_dh_fe_pct": 8.3,
+   "w_res_model_pct": 22.9,
+   "w_res_reg_pct": 27.2,
+   "w_res_reg_n": 190,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 6,
    "pop": 7974
   },
   {
@@ -1527,6 +1787,11 @@
    "k_nres_kwh_m2": 137,
    "k_dh_pot_pct": 24.9,
    "k_dh_fe_pct": 8.1,
+   "w_res_model_pct": 47.1,
+   "w_res_reg_pct": 72.8,
+   "w_res_reg_n": 253,
+   "w_nres_reg_pct": 5.4,
+   "w_nres_reg_n": 26,
    "pop": 13130
   },
   {
@@ -1551,6 +1816,11 @@
    "k_nres_kwh_m2": 150,
    "k_dh_pot_pct": 12.0,
    "k_dh_fe_pct": 3.7,
+   "w_res_model_pct": 29.3,
+   "w_res_reg_pct": 24.3,
+   "w_res_reg_n": 329,
+   "w_nres_reg_pct": 6.3,
+   "w_nres_reg_n": 13,
    "pop": 18272
   },
   {
@@ -1575,6 +1845,11 @@
    "k_nres_kwh_m2": 233,
    "k_dh_pot_pct": 69.5,
    "k_dh_fe_pct": 42.9,
+   "w_res_model_pct": 42.6,
+   "w_res_reg_pct": 32.4,
+   "w_res_reg_n": 436,
+   "w_nres_reg_pct": 18.2,
+   "w_nres_reg_n": 22,
    "pop": 16447
   },
   {
@@ -1599,6 +1874,11 @@
    "k_nres_kwh_m2": 144,
    "k_dh_pot_pct": 59.9,
    "k_dh_fe_pct": 31.1,
+   "w_res_model_pct": 51.5,
+   "w_res_reg_pct": 25.4,
+   "w_res_reg_n": 344,
+   "w_nres_reg_pct": 3.9,
+   "w_nres_reg_n": 24,
    "pop": 21769
   },
   {
@@ -1623,6 +1903,11 @@
    "k_nres_kwh_m2": 251,
    "k_dh_pot_pct": 20.2,
    "k_dh_fe_pct": 15.9,
+   "w_res_model_pct": 44.7,
+   "w_res_reg_pct": 62.5,
+   "w_res_reg_n": 13,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4,
    "pop": 679
   },
   {
@@ -1647,6 +1932,11 @@
    "k_nres_kwh_m2": 143,
    "k_dh_pot_pct": 3.9,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 26.4,
+   "w_res_reg_pct": 19.9,
+   "w_res_reg_n": 32,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 2486
   },
   {
@@ -1671,6 +1961,11 @@
    "k_nres_kwh_m2": 166,
    "k_dh_pot_pct": 39.3,
    "k_dh_fe_pct": 19.3,
+   "w_res_model_pct": 41.0,
+   "w_res_reg_pct": 22.6,
+   "w_res_reg_n": 493,
+   "w_nres_reg_pct": 8.2,
+   "w_nres_reg_n": 73,
    "pop": 29830
   },
   {
@@ -1695,6 +1990,11 @@
    "k_nres_kwh_m2": 127,
    "k_dh_pot_pct": 24.5,
    "k_dh_fe_pct": 11.6,
+   "w_res_model_pct": 58.9,
+   "w_res_reg_pct": 64.6,
+   "w_res_reg_n": 92,
+   "w_nres_reg_pct": 2.1,
+   "w_nres_reg_n": 5,
    "pop": 5047
   },
   {
@@ -1719,6 +2019,11 @@
    "k_nres_kwh_m2": 122,
    "k_dh_pot_pct": 14.6,
    "k_dh_fe_pct": 6.5,
+   "w_res_model_pct": 29.7,
+   "w_res_reg_pct": 48.7,
+   "w_res_reg_n": 93,
+   "w_nres_reg_pct": 4.3,
+   "w_nres_reg_n": 5,
    "pop": 6606
   },
   {
@@ -1743,6 +2048,11 @@
    "k_nres_kwh_m2": 186,
    "k_dh_pot_pct": 22.7,
    "k_dh_fe_pct": 12.0,
+   "w_res_model_pct": 50.1,
+   "w_res_reg_pct": 43.4,
+   "w_res_reg_n": 77,
+   "w_nres_reg_pct": 46.4,
+   "w_nres_reg_n": 9,
    "pop": 3964
   },
   {
@@ -1767,6 +2077,11 @@
    "k_nres_kwh_m2": 108,
    "k_dh_pot_pct": 7.4,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 40.2,
+   "w_res_reg_pct": 25.8,
+   "w_res_reg_n": 10,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 502
   },
   {
@@ -1791,6 +2106,11 @@
    "k_nres_kwh_m2": 162,
    "k_dh_pot_pct": 10.1,
    "k_dh_fe_pct": 1.4,
+   "w_res_model_pct": 47.6,
+   "w_res_reg_pct": 68.2,
+   "w_res_reg_n": 86,
+   "w_nres_reg_pct": 2.6,
+   "w_nres_reg_n": 6,
    "pop": 3476
   },
   {
@@ -1815,6 +2135,11 @@
    "k_nres_kwh_m2": 136,
    "k_dh_pot_pct": 20.3,
    "k_dh_fe_pct": 11.3,
+   "w_res_model_pct": 23.7,
+   "w_res_reg_pct": 13.6,
+   "w_res_reg_n": 145,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 8,
    "pop": 6800
   },
   {
@@ -1839,6 +2164,11 @@
    "k_nres_kwh_m2": 128,
    "k_dh_pot_pct": 51.2,
    "k_dh_fe_pct": 23.5,
+   "w_res_model_pct": 38.6,
+   "w_res_reg_pct": 31.2,
+   "w_res_reg_n": 1285,
+   "w_nres_reg_pct": 9.8,
+   "w_nres_reg_n": 79,
    "pop": 54795
   },
   {
@@ -1863,6 +2193,11 @@
    "k_nres_kwh_m2": 120,
    "k_dh_pot_pct": 21.7,
    "k_dh_fe_pct": 7.2,
+   "w_res_model_pct": 36.9,
+   "w_res_reg_pct": 56.2,
+   "w_res_reg_n": 25,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 2424
   },
   {
@@ -1887,6 +2222,11 @@
    "k_nres_kwh_m2": 141,
    "k_dh_pot_pct": 3.7,
    "k_dh_fe_pct": 4.6,
+   "w_res_model_pct": 45.0,
+   "w_res_reg_pct": 56.6,
+   "w_res_reg_n": 24,
+   "w_nres_reg_pct": 41.6,
+   "w_nres_reg_n": 2,
    "pop": 604
   },
   {
@@ -1911,6 +2251,11 @@
    "k_nres_kwh_m2": 130,
    "k_dh_pot_pct": 8.1,
    "k_dh_fe_pct": 1.8,
+   "w_res_model_pct": 40.6,
+   "w_res_reg_pct": 42.2,
+   "w_res_reg_n": 37,
+   "w_nres_reg_pct": 2.8,
+   "w_nres_reg_n": 6,
    "pop": 2996
   },
   {
@@ -1935,6 +2280,11 @@
    "k_nres_kwh_m2": 135,
    "k_dh_pot_pct": 32.0,
    "k_dh_fe_pct": 13.9,
+   "w_res_model_pct": 41.1,
+   "w_res_reg_pct": 61.0,
+   "w_res_reg_n": 358,
+   "w_nres_reg_pct": 8.0,
+   "w_nres_reg_n": 26,
    "pop": 15595
   },
   {
@@ -1959,6 +2309,11 @@
    "k_nres_kwh_m2": 170,
    "k_dh_pot_pct": 55.7,
    "k_dh_fe_pct": 28.2,
+   "w_res_model_pct": 38.7,
+   "w_res_reg_pct": 13.8,
+   "w_res_reg_n": 963,
+   "w_nres_reg_pct": 15.0,
+   "w_nres_reg_n": 69,
    "pop": 57491
   },
   {
@@ -1983,6 +2338,11 @@
    "k_nres_kwh_m2": 216,
    "k_dh_pot_pct": 43.9,
    "k_dh_fe_pct": 38.0,
+   "w_res_model_pct": 39.9,
+   "w_res_reg_pct": 56.9,
+   "w_res_reg_n": 202,
+   "w_nres_reg_pct": 11.9,
+   "w_nres_reg_n": 27,
    "pop": 5143
   },
   {
@@ -2007,6 +2367,11 @@
    "k_nres_kwh_m2": 168,
    "k_dh_pot_pct": 7.1,
    "k_dh_fe_pct": 2.6,
+   "w_res_model_pct": 37.2,
+   "w_res_reg_pct": 49.9,
+   "w_res_reg_n": 45,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 3531
   },
   {
@@ -2031,6 +2396,11 @@
    "k_nres_kwh_m2": 134,
    "k_dh_pot_pct": 29.1,
    "k_dh_fe_pct": 10.8,
+   "w_res_model_pct": 38.1,
+   "w_res_reg_pct": 25.5,
+   "w_res_reg_n": 361,
+   "w_nres_reg_pct": 0.7,
+   "w_nres_reg_n": 36,
    "pop": 26210
   },
   {
@@ -2055,6 +2425,11 @@
    "k_nres_kwh_m2": 121,
    "k_dh_pot_pct": 5.8,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 27.9,
+   "w_res_reg_pct": 31.1,
+   "w_res_reg_n": 124,
+   "w_nres_reg_pct": 24.5,
+   "w_nres_reg_n": 8,
    "pop": 5018
   },
   {
@@ -2079,6 +2454,11 @@
    "k_nres_kwh_m2": 180,
    "k_dh_pot_pct": 6.0,
    "k_dh_fe_pct": 4.5,
+   "w_res_model_pct": 33.9,
+   "w_res_reg_pct": 26.6,
+   "w_res_reg_n": 16,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 1663
   },
   {
@@ -2103,6 +2483,11 @@
    "k_nres_kwh_m2": 238,
    "k_dh_pot_pct": 19.1,
    "k_dh_fe_pct": 20.6,
+   "w_res_model_pct": 38.9,
+   "w_res_reg_pct": 29.4,
+   "w_res_reg_n": 219,
+   "w_nres_reg_pct": 32.0,
+   "w_nres_reg_n": 10,
    "pop": 13023
   },
   {
@@ -2127,6 +2512,11 @@
    "k_nres_kwh_m2": 135,
    "k_dh_pot_pct": 25.2,
    "k_dh_fe_pct": 9.8,
+   "w_res_model_pct": 30.0,
+   "w_res_reg_pct": 49.6,
+   "w_res_reg_n": 177,
+   "w_nres_reg_pct": 13.3,
+   "w_nres_reg_n": 16,
    "pop": 8674
   },
   {
@@ -2151,6 +2541,11 @@
    "k_nres_kwh_m2": 167,
    "k_dh_pot_pct": 21.5,
    "k_dh_fe_pct": 9.2,
+   "w_res_model_pct": 42.0,
+   "w_res_reg_pct": 51.6,
+   "w_res_reg_n": 256,
+   "w_nres_reg_pct": 3.0,
+   "w_nres_reg_n": 33,
    "pop": 10088
   },
   {
@@ -2175,6 +2570,11 @@
    "k_nres_kwh_m2": 123,
    "k_dh_pot_pct": 25.1,
    "k_dh_fe_pct": 7.0,
+   "w_res_model_pct": 35.0,
+   "w_res_reg_pct": 20.6,
+   "w_res_reg_n": 263,
+   "w_nres_reg_pct": 2.8,
+   "w_nres_reg_n": 12,
    "pop": 15890
   },
   {
@@ -2199,6 +2599,11 @@
    "k_nres_kwh_m2": 162,
    "k_dh_pot_pct": 80.3,
    "k_dh_fe_pct": 61.6,
+   "w_res_model_pct": 43.4,
+   "w_res_reg_pct": 20.3,
+   "w_res_reg_n": 6578,
+   "w_nres_reg_pct": 6.9,
+   "w_nres_reg_n": 633,
    "pop": 302826
   },
   {
@@ -2223,6 +2628,11 @@
    "k_nres_kwh_m2": 174,
    "k_dh_pot_pct": 21.1,
    "k_dh_fe_pct": 11.4,
+   "w_res_model_pct": 44.4,
+   "w_res_reg_pct": 45.5,
+   "w_res_reg_n": 24,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4,
    "pop": 2476
   },
   {
@@ -2247,6 +2657,11 @@
    "k_nres_kwh_m2": 155,
    "k_dh_pot_pct": 23.7,
    "k_dh_fe_pct": 9.0,
+   "w_res_model_pct": 42.2,
+   "w_res_reg_pct": 46.3,
+   "w_res_reg_n": 205,
+   "w_nres_reg_pct": 6.4,
+   "w_nres_reg_n": 20,
    "pop": 10850
   },
   {
@@ -2271,6 +2686,11 @@
    "k_nres_kwh_m2": 113,
    "k_dh_pot_pct": 25.7,
    "k_dh_fe_pct": 4.6,
+   "w_res_model_pct": 27.7,
+   "w_res_reg_pct": 18.9,
+   "w_res_reg_n": 91,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4,
    "pop": 3895
   },
   {
@@ -2295,6 +2715,11 @@
    "k_nres_kwh_m2": 161,
    "k_dh_pot_pct": 26.7,
    "k_dh_fe_pct": 17.6,
+   "w_res_model_pct": 31.2,
+   "w_res_reg_pct": 20.3,
+   "w_res_reg_n": 285,
+   "w_nres_reg_pct": 3.7,
+   "w_nres_reg_n": 15,
    "pop": 15129
   },
   {
@@ -2319,6 +2744,11 @@
    "k_nres_kwh_m2": 120,
    "k_dh_pot_pct": 8.1,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 42.3,
+   "w_res_reg_pct": 60.6,
+   "w_res_reg_n": 47,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 2981
   },
   {
@@ -2343,6 +2773,11 @@
    "k_nres_kwh_m2": 124,
    "k_dh_pot_pct": 12.1,
    "k_dh_fe_pct": 3.6,
+   "w_res_model_pct": 41.9,
+   "w_res_reg_pct": 48.8,
+   "w_res_reg_n": 52,
+   "w_nres_reg_pct": 41.4,
+   "w_nres_reg_n": 3,
    "pop": 3506
   },
   {
@@ -2367,6 +2802,11 @@
    "k_nres_kwh_m2": 149,
    "k_dh_pot_pct": 10.9,
    "k_dh_fe_pct": 4.2,
+   "w_res_model_pct": 44.1,
+   "w_res_reg_pct": 86.6,
+   "w_res_reg_n": 29,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1,
    "pop": 1839
   },
   {
@@ -2391,6 +2831,11 @@
    "k_nres_kwh_m2": 248,
    "k_dh_pot_pct": 5.9,
    "k_dh_fe_pct": 3.0,
+   "w_res_model_pct": 28.6,
+   "w_res_reg_pct": 22.3,
+   "w_res_reg_n": 94,
+   "w_nres_reg_pct": 22.3,
+   "w_nres_reg_n": 4,
    "pop": 6193
   },
   {
@@ -2415,6 +2860,11 @@
    "k_nres_kwh_m2": 205,
    "k_dh_pot_pct": 21.7,
    "k_dh_fe_pct": 9.6,
+   "w_res_model_pct": 49.9,
+   "w_res_reg_pct": 44.7,
+   "w_res_reg_n": 15,
+   "w_nres_reg_pct": 48.6,
+   "w_nres_reg_n": 5,
    "pop": 1396
   },
   {
@@ -2439,6 +2889,11 @@
    "k_nres_kwh_m2": 138,
    "k_dh_pot_pct": 5.4,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 35.3,
+   "w_res_reg_pct": 34.6,
+   "w_res_reg_n": 55,
+   "w_nres_reg_pct": 84.8,
+   "w_nres_reg_n": 4,
    "pop": 4009
   },
   {
@@ -2463,6 +2918,11 @@
    "k_nres_kwh_m2": 110,
    "k_dh_pot_pct": 10.5,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 34.1,
+   "w_res_reg_pct": 68.0,
+   "w_res_reg_n": 30,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 2052
   },
   {
@@ -2487,6 +2947,11 @@
    "k_nres_kwh_m2": 173,
    "k_dh_pot_pct": 69.9,
    "k_dh_fe_pct": 47.4,
+   "w_res_model_pct": 43.2,
+   "w_res_reg_pct": 21.3,
+   "w_res_reg_n": 2887,
+   "w_nres_reg_pct": 5.0,
+   "w_nres_reg_n": 234,
    "pop": 114872
   },
   {
@@ -2511,6 +2976,11 @@
    "k_nres_kwh_m2": 133,
    "k_dh_pot_pct": 7.5,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 28.8,
+   "w_res_reg_pct": 36.6,
+   "w_res_reg_n": 31,
+   "w_nres_reg_pct": 7.0,
+   "w_nres_reg_n": 5,
    "pop": 4050
   },
   {
@@ -2535,6 +3005,11 @@
    "k_nres_kwh_m2": 162,
    "k_dh_pot_pct": 25.1,
    "k_dh_fe_pct": 10.4,
+   "w_res_model_pct": 31.6,
+   "w_res_reg_pct": 21.8,
+   "w_res_reg_n": 473,
+   "w_nres_reg_pct": 3.2,
+   "w_nres_reg_n": 13,
    "pop": 17580
   },
   {
@@ -2559,6 +3034,11 @@
    "k_nres_kwh_m2": 114,
    "k_dh_pot_pct": 49.1,
    "k_dh_fe_pct": 12.2,
+   "w_res_model_pct": 32.7,
+   "w_res_reg_pct": 27.4,
+   "w_res_reg_n": 142,
+   "w_nres_reg_pct": 0.2,
+   "w_nres_reg_n": 9,
    "pop": 8812
   },
   {
@@ -2583,6 +3063,11 @@
    "k_nres_kwh_m2": 124,
    "k_dh_pot_pct": 22.9,
    "k_dh_fe_pct": 8.2,
+   "w_res_model_pct": 41.2,
+   "w_res_reg_pct": 41.3,
+   "w_res_reg_n": 107,
+   "w_nres_reg_pct": 15.2,
+   "w_nres_reg_n": 6,
    "pop": 8552
   },
   {
@@ -2607,6 +3092,11 @@
    "k_nres_kwh_m2": 150,
    "k_dh_pot_pct": 45.7,
    "k_dh_fe_pct": 13.2,
+   "w_res_model_pct": 46.9,
+   "w_res_reg_pct": 39.1,
+   "w_res_reg_n": 96,
+   "w_nres_reg_pct": 4.0,
+   "w_nres_reg_n": 2,
    "pop": 3536
   },
   {
@@ -2631,6 +3121,11 @@
    "k_nres_kwh_m2": 212,
    "k_dh_pot_pct": 17.8,
    "k_dh_fe_pct": 9.0,
+   "w_res_model_pct": 27.0,
+   "w_res_reg_pct": 20.8,
+   "w_res_reg_n": 199,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 9,
    "pop": 7300
   },
   {
@@ -2655,6 +3150,11 @@
    "k_nres_kwh_m2": 152,
    "k_dh_pot_pct": 17.9,
    "k_dh_fe_pct": 5.5,
+   "w_res_model_pct": 42.2,
+   "w_res_reg_pct": 54.5,
+   "w_res_reg_n": 106,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 6,
    "pop": 5069
   },
   {
@@ -2679,6 +3179,11 @@
    "k_nres_kwh_m2": 144,
    "k_dh_pot_pct": 9.7,
    "k_dh_fe_pct": 8.8,
+   "w_res_model_pct": 28.7,
+   "w_res_reg_pct": 30.5,
+   "w_res_reg_n": 59,
+   "w_nres_reg_pct": 64.4,
+   "w_nres_reg_n": 5,
    "pop": 2895
   },
   {
@@ -2703,6 +3208,11 @@
    "k_nres_kwh_m2": 162,
    "k_dh_pot_pct": 17.0,
    "k_dh_fe_pct": 3.5,
+   "w_res_model_pct": 27.0,
+   "w_res_reg_pct": 52.0,
+   "w_res_reg_n": 46,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1,
    "pop": 3238
   },
   {
@@ -2727,6 +3237,11 @@
    "k_nres_kwh_m2": 125,
    "k_dh_pot_pct": 12.7,
    "k_dh_fe_pct": 3.9,
+   "w_res_model_pct": 31.7,
+   "w_res_reg_pct": 52.8,
+   "w_res_reg_n": 54,
+   "w_nres_reg_pct": 4.4,
+   "w_nres_reg_n": 3,
    "pop": 4489
   },
   {
@@ -2751,6 +3266,11 @@
    "k_nres_kwh_m2": 113,
    "k_dh_pot_pct": 8.8,
    "k_dh_fe_pct": 2.0,
+   "w_res_model_pct": 32.0,
+   "w_res_reg_pct": 59.2,
+   "w_res_reg_n": 66,
+   "w_nres_reg_pct": 3.6,
+   "w_nres_reg_n": 5,
    "pop": 3320
   },
   {
@@ -2775,6 +3295,11 @@
    "k_nres_kwh_m2": 247,
    "k_dh_pot_pct": 15.0,
    "k_dh_fe_pct": 31.5,
+   "w_res_model_pct": 29.9,
+   "w_res_reg_pct": 23.6,
+   "w_res_reg_n": 141,
+   "w_nres_reg_pct": 6.7,
+   "w_nres_reg_n": 24,
    "pop": 5967
   },
   {
@@ -2799,6 +3324,11 @@
    "k_nres_kwh_m2": 145,
    "k_dh_pot_pct": 8.9,
    "k_dh_fe_pct": 3.9,
+   "w_res_model_pct": 29.3,
+   "w_res_reg_pct": 28.0,
+   "w_res_reg_n": 84,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 5683
   },
   {
@@ -2823,6 +3353,11 @@
    "k_nres_kwh_m2": 128,
    "k_dh_pot_pct": 29.5,
    "k_dh_fe_pct": 9.5,
+   "w_res_model_pct": 32.1,
+   "w_res_reg_pct": 15.8,
+   "w_res_reg_n": 81,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 12,
    "pop": 4438
   },
   {
@@ -2847,6 +3382,11 @@
    "k_nres_kwh_m2": 190,
    "k_dh_pot_pct": 53.5,
    "k_dh_fe_pct": 34.1,
+   "w_res_model_pct": 42.4,
+   "w_res_reg_pct": 26.6,
+   "w_res_reg_n": 339,
+   "w_nres_reg_pct": 11.0,
+   "w_nres_reg_n": 61,
    "pop": 18317
   },
   {
@@ -2871,6 +3411,11 @@
    "k_nres_kwh_m2": 129,
    "k_dh_pot_pct": 27.5,
    "k_dh_fe_pct": 7.0,
+   "w_res_model_pct": 33.1,
+   "w_res_reg_pct": 43.2,
+   "w_res_reg_n": 62,
+   "w_nres_reg_pct": 5.7,
+   "w_nres_reg_n": 6,
    "pop": 3329
   },
   {
@@ -2895,6 +3440,11 @@
    "k_nres_kwh_m2": 148,
    "k_dh_pot_pct": 18.3,
    "k_dh_fe_pct": 11.6,
+   "w_res_model_pct": 31.5,
+   "w_res_reg_pct": 33.4,
+   "w_res_reg_n": 67,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4,
    "pop": 5494
   },
   {
@@ -2919,6 +3469,11 @@
    "k_nres_kwh_m2": 112,
    "k_dh_pot_pct": 20.3,
    "k_dh_fe_pct": 5.0,
+   "w_res_model_pct": 44.1,
+   "w_res_reg_pct": 51.6,
+   "w_res_reg_n": 32,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 2681
   },
   {
@@ -2943,6 +3498,11 @@
    "k_nres_kwh_m2": 167,
    "k_dh_pot_pct": 50.3,
    "k_dh_fe_pct": 26.9,
+   "w_res_model_pct": 42.7,
+   "w_res_reg_pct": 28.4,
+   "w_res_reg_n": 538,
+   "w_nres_reg_pct": 14.3,
+   "w_nres_reg_n": 60,
    "pop": 31781
   },
   {
@@ -2967,6 +3527,11 @@
    "k_nres_kwh_m2": 153,
    "k_dh_pot_pct": 45.6,
    "k_dh_fe_pct": 24.5,
+   "w_res_model_pct": 32.6,
+   "w_res_reg_pct": 13.8,
+   "w_res_reg_n": 650,
+   "w_nres_reg_pct": 3.6,
+   "w_nres_reg_n": 73,
    "pop": 38678
   },
   {
@@ -2991,6 +3556,11 @@
    "k_nres_kwh_m2": 149,
    "k_dh_pot_pct": 3.2,
    "k_dh_fe_pct": 4.3,
+   "w_res_model_pct": 29.8,
+   "w_res_reg_pct": 31.7,
+   "w_res_reg_n": 12,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 1609
   },
   {
@@ -3015,6 +3585,11 @@
    "k_nres_kwh_m2": 151,
    "k_dh_pot_pct": 9.1,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 31.6,
+   "w_res_reg_pct": 55.4,
+   "w_res_reg_n": 19,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 4203
   },
   {
@@ -3039,6 +3614,11 @@
    "k_nres_kwh_m2": 162,
    "k_dh_pot_pct": 18.2,
    "k_dh_fe_pct": 9.3,
+   "w_res_model_pct": 35.7,
+   "w_res_reg_pct": 28.6,
+   "w_res_reg_n": 184,
+   "w_nres_reg_pct": 0.3,
+   "w_nres_reg_n": 39,
    "pop": 11792
   },
   {
@@ -3050,7 +3630,7 @@
    "area_k_m2": 27.1,
    "ei_area_res_pct": 7.1,
    "hise_ei_pct": 2.6,
-   "res_above43_pct": null,
+   "res_above43_pct": 57.1,
    "es_res_any_pct": 2.6,
    "obnova_res_pct": 57.7,
    "pre1981_res_area_pct": 72.8,
@@ -3063,6 +3643,11 @@
    "k_nres_kwh_m2": 147,
    "k_dh_pot_pct": 0.0,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 42.4,
+   "w_res_reg_pct": 77.2,
+   "w_res_reg_n": 7,
+   "w_nres_reg_pct": 14.4,
+   "w_nres_reg_n": 4,
    "pop": 326
   },
   {
@@ -3087,6 +3672,11 @@
    "k_nres_kwh_m2": 147,
    "k_dh_pot_pct": 8.3,
    "k_dh_fe_pct": 2.4,
+   "w_res_model_pct": 28.8,
+   "w_res_reg_pct": 30.7,
+   "w_res_reg_n": 138,
+   "w_nres_reg_pct": 16.1,
+   "w_nres_reg_n": 11,
    "pop": 7879
   },
   {
@@ -3111,6 +3701,11 @@
    "k_nres_kwh_m2": 235,
    "k_dh_pot_pct": 61.2,
    "k_dh_fe_pct": 50.2,
+   "w_res_model_pct": 42.1,
+   "w_res_reg_pct": 32.6,
+   "w_res_reg_n": 514,
+   "w_nres_reg_pct": 14.5,
+   "w_nres_reg_n": 69,
    "pop": 18206
   },
   {
@@ -3135,6 +3730,11 @@
    "k_nres_kwh_m2": 153,
    "k_dh_pot_pct": 13.7,
    "k_dh_fe_pct": 12.1,
+   "w_res_model_pct": 37.1,
+   "w_res_reg_pct": 72.0,
+   "w_res_reg_n": 94,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 12,
    "pop": 6168
   },
   {
@@ -3159,6 +3759,11 @@
    "k_nres_kwh_m2": 121,
    "k_dh_pot_pct": 8.1,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 35.8,
+   "w_res_reg_pct": 36.5,
+   "w_res_reg_n": 22,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 1828
   },
   {
@@ -3183,6 +3788,11 @@
    "k_nres_kwh_m2": 179,
    "k_dh_pot_pct": 8.4,
    "k_dh_fe_pct": 9.1,
+   "w_res_model_pct": 45.7,
+   "w_res_reg_pct": 41.1,
+   "w_res_reg_n": 39,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1,
    "pop": 2242
   },
   {
@@ -3207,6 +3817,11 @@
    "k_nres_kwh_m2": 190,
    "k_dh_pot_pct": 21.6,
    "k_dh_fe_pct": 20.4,
+   "w_res_model_pct": 28.5,
+   "w_res_reg_pct": 68.5,
+   "w_res_reg_n": 72,
+   "w_nres_reg_pct": 17.2,
+   "w_nres_reg_n": 8,
    "pop": 3699
   },
   {
@@ -3231,6 +3846,11 @@
    "k_nres_kwh_m2": 129,
    "k_dh_pot_pct": 12.1,
    "k_dh_fe_pct": 6.4,
+   "w_res_model_pct": 37.3,
+   "w_res_reg_pct": 29.7,
+   "w_res_reg_n": 54,
+   "w_nres_reg_pct": 3.4,
+   "w_nres_reg_n": 3,
    "pop": 4327
   },
   {
@@ -3255,6 +3875,11 @@
    "k_nres_kwh_m2": 157,
    "k_dh_pot_pct": 21.2,
    "k_dh_fe_pct": 8.1,
+   "w_res_model_pct": 26.8,
+   "w_res_reg_pct": 14.8,
+   "w_res_reg_n": 125,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 6668
   },
   {
@@ -3279,6 +3904,11 @@
    "k_nres_kwh_m2": 151,
    "k_dh_pot_pct": 45.6,
    "k_dh_fe_pct": 24.0,
+   "w_res_model_pct": 35.4,
+   "w_res_reg_pct": 36.9,
+   "w_res_reg_n": 307,
+   "w_nres_reg_pct": 7.9,
+   "w_nres_reg_n": 58,
    "pop": 17192
   },
   {
@@ -3303,6 +3933,11 @@
    "k_nres_kwh_m2": 129,
    "k_dh_pot_pct": 22.7,
    "k_dh_fe_pct": 11.5,
+   "w_res_model_pct": 34.9,
+   "w_res_reg_pct": 24.3,
+   "w_res_reg_n": 114,
+   "w_nres_reg_pct": 20.0,
+   "w_nres_reg_n": 5,
    "pop": 5318
   },
   {
@@ -3327,6 +3962,11 @@
    "k_nres_kwh_m2": 173,
    "k_dh_pot_pct": 12.3,
    "k_dh_fe_pct": 5.5,
+   "w_res_model_pct": 28.5,
+   "w_res_reg_pct": 27.2,
+   "w_res_reg_n": 69,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4,
    "pop": 3946
   },
   {
@@ -3351,6 +3991,11 @@
    "k_nres_kwh_m2": 131,
    "k_dh_pot_pct": 41.6,
    "k_dh_fe_pct": 18.9,
+   "w_res_model_pct": 46.3,
+   "w_res_reg_pct": 22.7,
+   "w_res_reg_n": 145,
+   "w_nres_reg_pct": 2.4,
+   "w_nres_reg_n": 14,
    "pop": 6668
   },
   {
@@ -3375,6 +4020,11 @@
    "k_nres_kwh_m2": 169,
    "k_dh_pot_pct": 42.0,
    "k_dh_fe_pct": 25.0,
+   "w_res_model_pct": 35.9,
+   "w_res_reg_pct": 23.4,
+   "w_res_reg_n": 486,
+   "w_nres_reg_pct": 4.3,
+   "w_nres_reg_n": 53,
    "pop": 23898
   },
   {
@@ -3399,6 +4049,11 @@
    "k_nres_kwh_m2": 144,
    "k_dh_pot_pct": 3.3,
    "k_dh_fe_pct": 1.2,
+   "w_res_model_pct": 35.9,
+   "w_res_reg_pct": 47.0,
+   "w_res_reg_n": 89,
+   "w_nres_reg_pct": 4.8,
+   "w_nres_reg_n": 6,
    "pop": 5800
   },
   {
@@ -3423,6 +4078,11 @@
    "k_nres_kwh_m2": 203,
    "k_dh_pot_pct": 20.1,
    "k_dh_fe_pct": 21.2,
+   "w_res_model_pct": 32.9,
+   "w_res_reg_pct": 48.8,
+   "w_res_reg_n": 124,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5,
    "pop": 5064
   },
   {
@@ -3447,6 +4107,11 @@
    "k_nres_kwh_m2": 163,
    "k_dh_pot_pct": 28.8,
    "k_dh_fe_pct": 9.6,
+   "w_res_model_pct": 46.7,
+   "w_res_reg_pct": 28.2,
+   "w_res_reg_n": 78,
+   "w_nres_reg_pct": 48.7,
+   "w_nres_reg_n": 7,
    "pop": 4046
   },
   {
@@ -3471,6 +4136,11 @@
    "k_nres_kwh_m2": 137,
    "k_dh_pot_pct": 27.0,
    "k_dh_fe_pct": 9.5,
+   "w_res_model_pct": 34.0,
+   "w_res_reg_pct": 37.2,
+   "w_res_reg_n": 95,
+   "w_nres_reg_pct": 3.5,
+   "w_nres_reg_n": 8,
    "pop": 6229
   },
   {
@@ -3495,6 +4165,11 @@
    "k_nres_kwh_m2": 166,
    "k_dh_pot_pct": 36.4,
    "k_dh_fe_pct": 17.1,
+   "w_res_model_pct": 40.1,
+   "w_res_reg_pct": 36.8,
+   "w_res_reg_n": 329,
+   "w_nres_reg_pct": 23.7,
+   "w_nres_reg_n": 33,
    "pop": 19359
   },
   {
@@ -3519,6 +4194,11 @@
    "k_nres_kwh_m2": 132,
    "k_dh_pot_pct": 54.1,
    "k_dh_fe_pct": 25.8,
+   "w_res_model_pct": 39.8,
+   "w_res_reg_pct": 19.1,
+   "w_res_reg_n": 252,
+   "w_nres_reg_pct": 3.0,
+   "w_nres_reg_n": 19,
    "pop": 11179
   },
   {
@@ -3543,6 +4223,11 @@
    "k_nres_kwh_m2": 166,
    "k_dh_pot_pct": 13.5,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 43.9,
+   "w_res_reg_pct": 44.9,
+   "w_res_reg_n": 14,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 1231
   },
   {
@@ -3567,6 +4252,11 @@
    "k_nres_kwh_m2": 111,
    "k_dh_pot_pct": 10.0,
    "k_dh_fe_pct": 1.2,
+   "w_res_model_pct": 24.8,
+   "w_res_reg_pct": 16.3,
+   "w_res_reg_n": 310,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 12,
    "pop": 8363
   },
   {
@@ -3591,6 +4281,11 @@
    "k_nres_kwh_m2": 139,
    "k_dh_pot_pct": 7.9,
    "k_dh_fe_pct": 5.9,
+   "w_res_model_pct": 39.4,
+   "w_res_reg_pct": 47.0,
+   "w_res_reg_n": 57,
+   "w_nres_reg_pct": 30.5,
+   "w_nres_reg_n": 6,
    "pop": 4424
   },
   {
@@ -3615,6 +4310,11 @@
    "k_nres_kwh_m2": 179,
    "k_dh_pot_pct": 13.1,
    "k_dh_fe_pct": 3.0,
+   "w_res_model_pct": 42.4,
+   "w_res_reg_pct": 55.2,
+   "w_res_reg_n": 35,
+   "w_nres_reg_pct": 36.3,
+   "w_nres_reg_n": 5,
    "pop": 2300
   },
   {
@@ -3639,6 +4339,11 @@
    "k_nres_kwh_m2": 152,
    "k_dh_pot_pct": 26.5,
    "k_dh_fe_pct": 12.0,
+   "w_res_model_pct": 42.5,
+   "w_res_reg_pct": 60.0,
+   "w_res_reg_n": 113,
+   "w_nres_reg_pct": 7.1,
+   "w_nres_reg_n": 15,
    "pop": 9825
   },
   {
@@ -3663,6 +4368,11 @@
    "k_nres_kwh_m2": 123,
    "k_dh_pot_pct": 12.0,
    "k_dh_fe_pct": 5.4,
+   "w_res_model_pct": 43.4,
+   "w_res_reg_pct": 77.8,
+   "w_res_reg_n": 21,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5,
    "pop": 1071
   },
   {
@@ -3687,6 +4397,11 @@
    "k_nres_kwh_m2": 130,
    "k_dh_pot_pct": 21.2,
    "k_dh_fe_pct": 4.8,
+   "w_res_model_pct": 38.1,
+   "w_res_reg_pct": 34.7,
+   "w_res_reg_n": 43,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4,
    "pop": 3081
   },
   {
@@ -3711,6 +4426,11 @@
    "k_nres_kwh_m2": 202,
    "k_dh_pot_pct": 29.4,
    "k_dh_fe_pct": 24.0,
+   "w_res_model_pct": 31.4,
+   "w_res_reg_pct": 27.2,
+   "w_res_reg_n": 156,
+   "w_nres_reg_pct": 17.6,
+   "w_nres_reg_n": 25,
    "pop": 11679
   },
   {
@@ -3735,6 +4455,11 @@
    "k_nres_kwh_m2": 185,
    "k_dh_pot_pct": 3.3,
    "k_dh_fe_pct": 4.0,
+   "w_res_model_pct": 32.4,
+   "w_res_reg_pct": 57.9,
+   "w_res_reg_n": 37,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 3027
   },
   {
@@ -3759,6 +4484,11 @@
    "k_nres_kwh_m2": 177,
    "k_dh_pot_pct": 33.6,
    "k_dh_fe_pct": 15.9,
+   "w_res_model_pct": 37.0,
+   "w_res_reg_pct": 30.1,
+   "w_res_reg_n": 184,
+   "w_nres_reg_pct": 5.8,
+   "w_nres_reg_n": 13,
    "pop": 7157
   },
   {
@@ -3783,6 +4513,11 @@
    "k_nres_kwh_m2": 137,
    "k_dh_pot_pct": 9.2,
    "k_dh_fe_pct": 5.5,
+   "w_res_model_pct": 35.3,
+   "w_res_reg_pct": 41.6,
+   "w_res_reg_n": 75,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 4359
   },
   {
@@ -3807,6 +4542,11 @@
    "k_nres_kwh_m2": 144,
    "k_dh_pot_pct": 11.3,
    "k_dh_fe_pct": 3.6,
+   "w_res_model_pct": 36.0,
+   "w_res_reg_pct": 55.7,
+   "w_res_reg_n": 58,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 3780
   },
   {
@@ -3831,6 +4571,11 @@
    "k_nres_kwh_m2": 150,
    "k_dh_pot_pct": 20.4,
    "k_dh_fe_pct": 8.1,
+   "w_res_model_pct": 38.2,
+   "w_res_reg_pct": 21.4,
+   "w_res_reg_n": 267,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 15,
    "pop": 17602
   },
   {
@@ -3855,6 +4600,11 @@
    "k_nres_kwh_m2": 159,
    "k_dh_pot_pct": 33.1,
    "k_dh_fe_pct": 16.2,
+   "w_res_model_pct": 36.7,
+   "w_res_reg_pct": 23.9,
+   "w_res_reg_n": 265,
+   "w_nres_reg_pct": 4.7,
+   "w_nres_reg_n": 90,
    "pop": 13669
   },
   {
@@ -3879,6 +4629,11 @@
    "k_nres_kwh_m2": 155,
    "k_dh_pot_pct": 33.6,
    "k_dh_fe_pct": 18.0,
+   "w_res_model_pct": 30.8,
+   "w_res_reg_pct": 18.2,
+   "w_res_reg_n": 257,
+   "w_nres_reg_pct": 0.4,
+   "w_nres_reg_n": 30,
    "pop": 17063
   },
   {
@@ -3903,6 +4658,11 @@
    "k_nres_kwh_m2": 151,
    "k_dh_pot_pct": 20.0,
    "k_dh_fe_pct": 9.3,
+   "w_res_model_pct": 30.7,
+   "w_res_reg_pct": 24.1,
+   "w_res_reg_n": 539,
+   "w_nres_reg_pct": 6.8,
+   "w_nres_reg_n": 41,
    "pop": 26363
   },
   {
@@ -3927,6 +4687,11 @@
    "k_nres_kwh_m2": 174,
    "k_dh_pot_pct": 22.3,
    "k_dh_fe_pct": 9.5,
+   "w_res_model_pct": 32.1,
+   "w_res_reg_pct": 27.7,
+   "w_res_reg_n": 234,
+   "w_nres_reg_pct": 17.2,
+   "w_nres_reg_n": 22,
    "pop": 15534
   },
   {
@@ -3951,6 +4716,11 @@
    "k_nres_kwh_m2": 146,
    "k_dh_pot_pct": 10.3,
    "k_dh_fe_pct": 3.0,
+   "w_res_model_pct": 39.1,
+   "w_res_reg_pct": 49.5,
+   "w_res_reg_n": 34,
+   "w_nres_reg_pct": 23.8,
+   "w_nres_reg_n": 2,
    "pop": 2354
   },
   {
@@ -3962,7 +4732,7 @@
    "area_k_m2": 41.2,
    "ei_area_res_pct": 7.8,
    "hise_ei_pct": 3.3,
-   "res_above43_pct": null,
+   "res_above43_pct": 50.0,
    "es_res_any_pct": 20.4,
    "obnova_res_pct": 57.4,
    "pre1981_res_area_pct": 58.7,
@@ -3975,6 +4745,11 @@
    "k_nres_kwh_m2": 232,
    "k_dh_pot_pct": 16.2,
    "k_dh_fe_pct": 15.4,
+   "w_res_model_pct": 46.2,
+   "w_res_reg_pct": 73.6,
+   "w_res_reg_n": 8,
+   "w_nres_reg_pct": 29.1,
+   "w_nres_reg_n": 6,
    "pop": 493
   },
   {
@@ -3999,6 +4774,11 @@
    "k_nres_kwh_m2": 141,
    "k_dh_pot_pct": 12.6,
    "k_dh_fe_pct": 4.9,
+   "w_res_model_pct": 49.0,
+   "w_res_reg_pct": 44.2,
+   "w_res_reg_n": 33,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 1827
   },
   {
@@ -4023,6 +4803,11 @@
    "k_nres_kwh_m2": 125,
    "k_dh_pot_pct": 6.4,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 30.0,
+   "w_res_reg_pct": 23.4,
+   "w_res_reg_n": 60,
+   "w_nres_reg_pct": 10.0,
+   "w_nres_reg_n": 7,
    "pop": 4111
   },
   {
@@ -4047,6 +4832,11 @@
    "k_nres_kwh_m2": 148,
    "k_dh_pot_pct": 12.2,
    "k_dh_fe_pct": 5.3,
+   "w_res_model_pct": 36.7,
+   "w_res_reg_pct": 50.6,
+   "w_res_reg_n": 78,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 4000
   },
   {
@@ -4071,6 +4861,11 @@
    "k_nres_kwh_m2": 175,
    "k_dh_pot_pct": 7.1,
    "k_dh_fe_pct": 4.9,
+   "w_res_model_pct": 30.6,
+   "w_res_reg_pct": 12.0,
+   "w_res_reg_n": 35,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 2347
   },
   {
@@ -4095,6 +4890,11 @@
    "k_nres_kwh_m2": 200,
    "k_dh_pot_pct": 9.4,
    "k_dh_fe_pct": 3.1,
+   "w_res_model_pct": 30.3,
+   "w_res_reg_pct": 21.8,
+   "w_res_reg_n": 62,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 2297
   },
   {
@@ -4106,7 +4906,7 @@
    "area_k_m2": 48.2,
    "ei_area_res_pct": 1.3,
    "hise_ei_pct": 1.4,
-   "res_above43_pct": null,
+   "res_above43_pct": 60.0,
    "es_res_any_pct": 16.2,
    "obnova_res_pct": 39.6,
    "pre1981_res_area_pct": 45.9,
@@ -4119,6 +4919,11 @@
    "k_nres_kwh_m2": 147,
    "k_dh_pot_pct": 4.8,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 30.0,
+   "w_res_reg_pct": 46.3,
+   "w_res_reg_n": 5,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 1191
   },
   {
@@ -4143,6 +4948,11 @@
    "k_nres_kwh_m2": 125,
    "k_dh_pot_pct": 7.6,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 34.7,
+   "w_res_reg_pct": 57.2,
+   "w_res_reg_n": 44,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 2795
   },
   {
@@ -4167,6 +4977,11 @@
    "k_nres_kwh_m2": 100,
    "k_dh_pot_pct": 2.2,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 27.0,
+   "w_res_reg_pct": 14.6,
+   "w_res_reg_n": 41,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 2238
   },
   {
@@ -4191,6 +5006,11 @@
    "k_nres_kwh_m2": 169,
    "k_dh_pot_pct": 6.4,
    "k_dh_fe_pct": 4.2,
+   "w_res_model_pct": 35.1,
+   "w_res_reg_pct": 35.7,
+   "w_res_reg_n": 24,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 1966
   },
   {
@@ -4215,6 +5035,11 @@
    "k_nres_kwh_m2": 114,
    "k_dh_pot_pct": 4.7,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 32.4,
+   "w_res_reg_pct": 41.8,
+   "w_res_reg_n": 30,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 1833
   },
   {
@@ -4239,6 +5064,11 @@
    "k_nres_kwh_m2": 184,
    "k_dh_pot_pct": 6.8,
    "k_dh_fe_pct": 2.3,
+   "w_res_model_pct": 38.1,
+   "w_res_reg_pct": 47.2,
+   "w_res_reg_n": 43,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 3908
   },
   {
@@ -4263,6 +5093,11 @@
    "k_nres_kwh_m2": 156,
    "k_dh_pot_pct": 35.2,
    "k_dh_fe_pct": 15.6,
+   "w_res_model_pct": 54.8,
+   "w_res_reg_pct": 59.2,
+   "w_res_reg_n": 209,
+   "w_nres_reg_pct": 21.1,
+   "w_nres_reg_n": 25,
    "pop": 10661
   },
   {
@@ -4287,6 +5122,11 @@
    "k_nres_kwh_m2": 150,
    "k_dh_pot_pct": 57.5,
    "k_dh_fe_pct": 39.1,
+   "w_res_model_pct": 54.8,
+   "w_res_reg_pct": 46.0,
+   "w_res_reg_n": 344,
+   "w_nres_reg_pct": 3.7,
+   "w_nres_reg_n": 15,
    "pop": 15935
   },
   {
@@ -4311,6 +5151,11 @@
    "k_nres_kwh_m2": 140,
    "k_dh_pot_pct": 16.1,
    "k_dh_fe_pct": 5.7,
+   "w_res_model_pct": 26.2,
+   "w_res_reg_pct": 19.5,
+   "w_res_reg_n": 235,
+   "w_nres_reg_pct": 16.3,
+   "w_nres_reg_n": 17,
    "pop": 13855
   },
   {
@@ -4335,6 +5180,11 @@
    "k_nres_kwh_m2": 138,
    "k_dh_pot_pct": 4.1,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 24.5,
+   "w_res_reg_pct": 22.2,
+   "w_res_reg_n": 13,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 1400
   },
   {
@@ -4359,6 +5209,11 @@
    "k_nres_kwh_m2": 112,
    "k_dh_pot_pct": 49.0,
    "k_dh_fe_pct": 20.7,
+   "w_res_model_pct": 22.6,
+   "w_res_reg_pct": 4.2,
+   "w_res_reg_n": 100,
+   "w_nres_reg_pct": 0.5,
+   "w_nres_reg_n": 34,
    "pop": 4000
   },
   {
@@ -4383,6 +5238,11 @@
    "k_nres_kwh_m2": 144,
    "k_dh_pot_pct": 31.9,
    "k_dh_fe_pct": 11.5,
+   "w_res_model_pct": 43.5,
+   "w_res_reg_pct": 23.3,
+   "w_res_reg_n": 235,
+   "w_nres_reg_pct": 15.8,
+   "w_nres_reg_n": 17,
    "pop": 15044
   },
   {
@@ -4407,6 +5267,11 @@
    "k_nres_kwh_m2": 165,
    "k_dh_pot_pct": 5.6,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 36.7,
+   "w_res_reg_pct": 59.7,
+   "w_res_reg_n": 41,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 3070
   },
   {
@@ -4431,6 +5296,11 @@
    "k_nres_kwh_m2": 141,
    "k_dh_pot_pct": 62.5,
    "k_dh_fe_pct": 44.0,
+   "w_res_model_pct": 44.2,
+   "w_res_reg_pct": 22.8,
+   "w_res_reg_n": 433,
+   "w_nres_reg_pct": 7.2,
+   "w_nres_reg_n": 23,
    "pop": 33873
   },
   {
@@ -4455,6 +5325,11 @@
    "k_nres_kwh_m2": 142,
    "k_dh_pot_pct": 14.4,
    "k_dh_fe_pct": 4.5,
+   "w_res_model_pct": 37.8,
+   "w_res_reg_pct": 89.6,
+   "w_res_reg_n": 14,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 1379
   },
   {
@@ -4479,6 +5354,11 @@
    "k_nres_kwh_m2": 146,
    "k_dh_pot_pct": 5.4,
    "k_dh_fe_pct": 3.4,
+   "w_res_model_pct": 33.0,
+   "w_res_reg_pct": 45.3,
+   "w_res_reg_n": 84,
+   "w_nres_reg_pct": 12.7,
+   "w_nres_reg_n": 4,
    "pop": 4546
   },
   {
@@ -4503,6 +5383,11 @@
    "k_nres_kwh_m2": 200,
    "k_dh_pot_pct": 10.5,
    "k_dh_fe_pct": 18.7,
+   "w_res_model_pct": 33.6,
+   "w_res_reg_pct": 37.6,
+   "w_res_reg_n": 34,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 6,
    "pop": 1361
   },
   {
@@ -4527,6 +5412,11 @@
    "k_nres_kwh_m2": 132,
    "k_dh_pot_pct": 4.9,
    "k_dh_fe_pct": 2.5,
+   "w_res_model_pct": 31.6,
+   "w_res_reg_pct": 35.0,
+   "w_res_reg_n": 81,
+   "w_nres_reg_pct": 8.1,
+   "w_nres_reg_n": 2,
    "pop": 5612
   },
   {
@@ -4551,6 +5441,11 @@
    "k_nres_kwh_m2": 200,
    "k_dh_pot_pct": 31.1,
    "k_dh_fe_pct": 21.1,
+   "w_res_model_pct": 36.3,
+   "w_res_reg_pct": 42.9,
+   "w_res_reg_n": 71,
+   "w_nres_reg_pct": 2.0,
+   "w_nres_reg_n": 7,
    "pop": 5866
   },
   {
@@ -4575,6 +5470,11 @@
    "k_nres_kwh_m2": 167,
    "k_dh_pot_pct": 21.4,
    "k_dh_fe_pct": 7.8,
+   "w_res_model_pct": 39.7,
+   "w_res_reg_pct": 25.4,
+   "w_res_reg_n": 26,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2,
    "pop": 2200
   },
   {
@@ -4599,6 +5499,11 @@
    "k_nres_kwh_m2": 123,
    "k_dh_pot_pct": 8.9,
    "k_dh_fe_pct": 3.7,
+   "w_res_model_pct": 23.8,
+   "w_res_reg_pct": 23.0,
+   "w_res_reg_n": 93,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 5291
   },
   {
@@ -4623,6 +5528,11 @@
    "k_nres_kwh_m2": 191,
    "k_dh_pot_pct": 19.6,
    "k_dh_fe_pct": 13.1,
+   "w_res_model_pct": 29.5,
+   "w_res_reg_pct": 35.7,
+   "w_res_reg_n": 165,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5,
    "pop": 9360
   },
   {
@@ -4647,6 +5557,11 @@
    "k_nres_kwh_m2": 182,
    "k_dh_pot_pct": 15.6,
    "k_dh_fe_pct": 7.7,
+   "w_res_model_pct": 36.4,
+   "w_res_reg_pct": 17.2,
+   "w_res_reg_n": 45,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 6,
    "pop": 2792
   },
   {
@@ -4671,6 +5586,11 @@
    "k_nres_kwh_m2": 144,
    "k_dh_pot_pct": 34.3,
    "k_dh_fe_pct": 12.4,
+   "w_res_model_pct": 31.9,
+   "w_res_reg_pct": 22.2,
+   "w_res_reg_n": 429,
+   "w_nres_reg_pct": 5.0,
+   "w_nres_reg_n": 42,
    "pop": 18296
   },
   {
@@ -4695,6 +5615,11 @@
    "k_nres_kwh_m2": 145,
    "k_dh_pot_pct": 11.9,
    "k_dh_fe_pct": 9.2,
+   "w_res_model_pct": 38.8,
+   "w_res_reg_pct": 30.0,
+   "w_res_reg_n": 41,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 2594
   },
   {
@@ -4719,6 +5644,11 @@
    "k_nres_kwh_m2": 150,
    "k_dh_pot_pct": 37.5,
    "k_dh_fe_pct": 16.1,
+   "w_res_model_pct": 44.7,
+   "w_res_reg_pct": 42.6,
+   "w_res_reg_n": 240,
+   "w_nres_reg_pct": 16.8,
+   "w_nres_reg_n": 11,
    "pop": 16347
   },
   {
@@ -4743,6 +5673,11 @@
    "k_nres_kwh_m2": 86,
    "k_dh_pot_pct": 3.6,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 36.1,
+   "w_res_reg_pct": 79.1,
+   "w_res_reg_n": 26,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 1453
   },
   {
@@ -4767,6 +5702,11 @@
    "k_nres_kwh_m2": 208,
    "k_dh_pot_pct": 29.8,
    "k_dh_fe_pct": 21.7,
+   "w_res_model_pct": 33.0,
+   "w_res_reg_pct": 29.9,
+   "w_res_reg_n": 118,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 10,
    "pop": 6657
   },
   {
@@ -4791,6 +5731,11 @@
    "k_nres_kwh_m2": 174,
    "k_dh_pot_pct": 5.8,
    "k_dh_fe_pct": 4.6,
+   "w_res_model_pct": 33.7,
+   "w_res_reg_pct": 46.1,
+   "w_res_reg_n": 48,
+   "w_nres_reg_pct": 18.5,
+   "w_nres_reg_n": 9,
    "pop": 3870
   },
   {
@@ -4815,6 +5760,11 @@
    "k_nres_kwh_m2": 140,
    "k_dh_pot_pct": 30.3,
    "k_dh_fe_pct": 12.8,
+   "w_res_model_pct": 50.0,
+   "w_res_reg_pct": 45.9,
+   "w_res_reg_n": 75,
+   "w_nres_reg_pct": 7.2,
+   "w_nres_reg_n": 6,
    "pop": 3001
   },
   {
@@ -4839,6 +5789,11 @@
    "k_nres_kwh_m2": 161,
    "k_dh_pot_pct": 23.0,
    "k_dh_fe_pct": 8.3,
+   "w_res_model_pct": 40.3,
+   "w_res_reg_pct": 43.2,
+   "w_res_reg_n": 203,
+   "w_nres_reg_pct": 20.1,
+   "w_nres_reg_n": 22,
    "pop": 14170
   },
   {
@@ -4863,6 +5818,11 @@
    "k_nres_kwh_m2": 164,
    "k_dh_pot_pct": 0.0,
    "k_dh_fe_pct": 4.1,
+   "w_res_model_pct": 49.8,
+   "w_res_reg_pct": 48.6,
+   "w_res_reg_n": 24,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0,
    "pop": 1342
   },
   {
@@ -4887,6 +5847,11 @@
    "k_nres_kwh_m2": 151,
    "k_dh_pot_pct": 50.9,
    "k_dh_fe_pct": 33.0,
+   "w_res_model_pct": 44.2,
+   "w_res_reg_pct": 40.6,
+   "w_res_reg_n": 127,
+   "w_nres_reg_pct": 0.7,
+   "w_nres_reg_n": 19,
    "pop": 6451
   },
   {
@@ -4911,6 +5876,11 @@
    "k_nres_kwh_m2": 141,
    "k_dh_pot_pct": 13.0,
    "k_dh_fe_pct": 4.3,
+   "w_res_model_pct": 30.9,
+   "w_res_reg_pct": 42.2,
+   "w_res_reg_n": 241,
+   "w_nres_reg_pct": 7.6,
+   "w_nres_reg_n": 12,
    "pop": 8371
   },
   {
@@ -4935,6 +5905,11 @@
    "k_nres_kwh_m2": 120,
    "k_dh_pot_pct": 12.6,
    "k_dh_fe_pct": 2.3,
+   "w_res_model_pct": 27.6,
+   "w_res_reg_pct": 34.5,
+   "w_res_reg_n": 118,
+   "w_nres_reg_pct": 4.6,
+   "w_nres_reg_n": 10,
    "pop": 7446
   },
   {
@@ -4959,6 +5934,11 @@
    "k_nres_kwh_m2": 163,
    "k_dh_pot_pct": 14.6,
    "k_dh_fe_pct": 3.8,
+   "w_res_model_pct": 32.7,
+   "w_res_reg_pct": 38.0,
+   "w_res_reg_n": 259,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 17,
    "pop": 19757
   },
   {
@@ -4983,6 +5963,11 @@
    "k_nres_kwh_m2": 103,
    "k_dh_pot_pct": 6.5,
    "k_dh_fe_pct": 2.5,
+   "w_res_model_pct": 22.9,
+   "w_res_reg_pct": 46.3,
+   "w_res_reg_n": 44,
+   "w_nres_reg_pct": 10.3,
+   "w_nres_reg_n": 19,
    "pop": 2915
   },
   {
@@ -5007,6 +5992,11 @@
    "k_nres_kwh_m2": 124,
    "k_dh_pot_pct": 17.9,
    "k_dh_fe_pct": 8.1,
+   "w_res_model_pct": 26.7,
+   "w_res_reg_pct": 13.9,
+   "w_res_reg_n": 111,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 9041
   },
   {
@@ -5031,6 +6021,11 @@
    "k_nres_kwh_m2": 123,
    "k_dh_pot_pct": 4.4,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 30.0,
+   "w_res_reg_pct": 51.4,
+   "w_res_reg_n": 50,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 3531
   },
   {
@@ -5055,6 +6050,11 @@
    "k_nres_kwh_m2": 146,
    "k_dh_pot_pct": 43.1,
    "k_dh_fe_pct": 21.8,
+   "w_res_model_pct": 33.7,
+   "w_res_reg_pct": 17.2,
+   "w_res_reg_n": 369,
+   "w_nres_reg_pct": 17.5,
+   "w_nres_reg_n": 33,
    "pop": 23850
   },
   {
@@ -5079,6 +6079,11 @@
    "k_nres_kwh_m2": 129,
    "k_dh_pot_pct": 18.8,
    "k_dh_fe_pct": 5.8,
+   "w_res_model_pct": 23.5,
+   "w_res_reg_pct": 11.7,
+   "w_res_reg_n": 289,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5,
    "pop": 12199
   },
   {
@@ -5103,6 +6108,11 @@
    "k_nres_kwh_m2": 120,
    "k_dh_pot_pct": 12.3,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 31.2,
+   "w_res_reg_pct": 22.4,
+   "w_res_reg_n": 158,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 10575
   },
   {
@@ -5127,6 +6137,11 @@
    "k_nres_kwh_m2": 254,
    "k_dh_pot_pct": 6.8,
    "k_dh_fe_pct": 22.9,
+   "w_res_model_pct": 24.3,
+   "w_res_reg_pct": 21.4,
+   "w_res_reg_n": 79,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1,
    "pop": 3606
   },
   {
@@ -5151,6 +6166,11 @@
    "k_nres_kwh_m2": 107,
    "k_dh_pot_pct": 10.2,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 31.2,
+   "w_res_reg_pct": 24.7,
+   "w_res_reg_n": 59,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4,
    "pop": 3436
   },
   {
@@ -5175,6 +6195,11 @@
    "k_nres_kwh_m2": 122,
    "k_dh_pot_pct": 14.5,
    "k_dh_fe_pct": 1.9,
+   "w_res_model_pct": 32.3,
+   "w_res_reg_pct": 25.2,
+   "w_res_reg_n": 79,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 5854
   },
   {
@@ -5199,6 +6224,11 @@
    "k_nres_kwh_m2": 205,
    "k_dh_pot_pct": 31.9,
    "k_dh_fe_pct": 27.0,
+   "w_res_model_pct": 37.6,
+   "w_res_reg_pct": 36.5,
+   "w_res_reg_n": 159,
+   "w_nres_reg_pct": 14.4,
+   "w_nres_reg_n": 14,
    "pop": 9007
   },
   {
@@ -5223,6 +6253,11 @@
    "k_nres_kwh_m2": 141,
    "k_dh_pot_pct": 35.2,
    "k_dh_fe_pct": 13.3,
+   "w_res_model_pct": 45.0,
+   "w_res_reg_pct": 18.0,
+   "w_res_reg_n": 73,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 4542
   },
   {
@@ -5247,6 +6282,11 @@
    "k_nres_kwh_m2": 136,
    "k_dh_pot_pct": 31.8,
    "k_dh_fe_pct": 8.8,
+   "w_res_model_pct": 38.3,
+   "w_res_reg_pct": 24.8,
+   "w_res_reg_n": 427,
+   "w_nres_reg_pct": 0.4,
+   "w_nres_reg_n": 39,
    "pop": 21737
   },
   {
@@ -5271,6 +6311,11 @@
    "k_nres_kwh_m2": 197,
    "k_dh_pot_pct": 24.4,
    "k_dh_fe_pct": 16.1,
+   "w_res_model_pct": 43.1,
+   "w_res_reg_pct": 49.8,
+   "w_res_reg_n": 73,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 7,
    "pop": 6629
   },
   {
@@ -5282,7 +6327,7 @@
    "area_k_m2": 53.7,
    "ei_area_res_pct": 1.7,
    "hise_ei_pct": 1.4,
-   "res_above43_pct": null,
+   "res_above43_pct": 50.0,
    "es_res_any_pct": 13.0,
    "obnova_res_pct": 47.3,
    "pre1981_res_area_pct": 44.9,
@@ -5295,6 +6340,11 @@
    "k_nres_kwh_m2": 105,
    "k_dh_pot_pct": 5.6,
    "k_dh_fe_pct": 0.0,
+   "w_res_model_pct": 32.6,
+   "w_res_reg_pct": 39.0,
+   "w_res_reg_n": 6,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1,
    "pop": 1299
   },
   {
@@ -5319,6 +6369,11 @@
    "k_nres_kwh_m2": 163,
    "k_dh_pot_pct": 25.1,
    "k_dh_fe_pct": 5.1,
+   "w_res_model_pct": 37.8,
+   "w_res_reg_pct": 46.0,
+   "w_res_reg_n": 64,
+   "w_nres_reg_pct": 44.9,
+   "w_nres_reg_n": 5,
    "pop": 5159
   },
   {
@@ -5343,6 +6398,11 @@
    "k_nres_kwh_m2": 120,
    "k_dh_pot_pct": 9.5,
    "k_dh_fe_pct": 2.9,
+   "w_res_model_pct": 33.9,
+   "w_res_reg_pct": 29.3,
+   "w_res_reg_n": 68,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3,
    "pop": 4515
   },
   {
@@ -5367,6 +6427,11 @@
    "k_nres_kwh_m2": 165,
    "k_dh_pot_pct": 8.8,
    "k_dh_fe_pct": 4.3,
+   "w_res_model_pct": 36.6,
+   "w_res_reg_pct": 44.1,
+   "w_res_reg_n": 74,
+   "w_nres_reg_pct": 55.9,
+   "w_nres_reg_n": 3,
    "pop": 4708
   }
  ]

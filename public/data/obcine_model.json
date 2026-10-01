@@ -76,6 +76,13 @@
   },
   "above43_area_pct": 37.9,
   "known_pct": 8.2,
+  "worst": {
+   "res_model_pct": 37.9,
+   "res_reg_pct": 25.7,
+   "res_reg_n": 40854,
+   "nres_reg_pct": 7.7,
+   "nres_reg_n": 3469
+  },
   "vse": {
    "pop": 2135107,
    "fe_gwh": {
@@ -233,6 +240,13 @@
      "kwh_m2": 84,
      "meas_pct": 33
     }
+   },
+   "worst": {
+    "res_model_pct": 37.8,
+    "res_reg_pct": 26.0,
+    "res_reg_n": 309,
+    "nres_reg_pct": 10.3,
+    "nres_reg_n": 26
    },
    "vse": {
     "pop": 19977,
@@ -416,6 +430,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 36.7,
+    "res_reg_pct": 33.6,
+    "res_reg_n": 178,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 8078,
     "fe_gwh": {
@@ -497,9 +518,9 @@
     },
     "meps": {
      "nres_buildings": 153,
-     "n_2030": 24,
-     "n_2033": 40,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -597,6 +618,13 @@
      "kwh_m2": 186,
      "meas_pct": 46
     }
+   },
+   "worst": {
+    "res_model_pct": 41.4,
+    "res_reg_pct": 41.1,
+    "res_reg_n": 179,
+    "nres_reg_pct": 0.9,
+    "nres_reg_n": 21
    },
    "vse": {
     "pop": 8103,
@@ -780,6 +808,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 43.0,
+    "res_reg_pct": 48.8,
+    "res_reg_n": 123,
+    "nres_reg_pct": 18.8,
+    "nres_reg_n": 15
+   },
    "vse": {
     "pop": 5216,
     "fe_gwh": {
@@ -962,6 +997,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 39.2,
+    "res_reg_pct": 25.0,
+    "res_reg_n": 83,
+    "nres_reg_pct": 31.4,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 4688,
     "fe_gwh": {
@@ -1043,9 +1085,9 @@
     },
     "meps": {
      "nres_buildings": 56,
-     "n_2030": 9,
-     "n_2033": 15,
-     "local_ei": false
+     "n_2030": 33,
+     "n_2033": 33,
+     "local_ei": true
     }
    },
    "pot": {
@@ -1143,6 +1185,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 44.0,
+    "res_reg_pct": 59.9,
+    "res_reg_n": 97,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 13
    },
    "vse": {
     "pop": 3052,
@@ -1326,6 +1375,13 @@
      "meas_pct": 13
     }
    },
+   "worst": {
+    "res_model_pct": 41.0,
+    "res_reg_pct": 60.8,
+    "res_reg_n": 68,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 10
+   },
    "vse": {
     "pop": 5564,
     "fe_gwh": {
@@ -1508,6 +1564,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 26.0,
+    "res_reg_pct": 21.1,
+    "res_reg_n": 292,
+    "nres_reg_pct": 2.6,
+    "nres_reg_n": 8
+   },
    "vse": {
     "pop": 13202,
     "fe_gwh": {
@@ -1589,9 +1652,9 @@
     },
     "meps": {
      "nres_buildings": 165,
-     "n_2030": 26,
-     "n_2033": 43,
-     "local_ei": false
+     "n_2030": 24,
+     "n_2033": 24,
+     "local_ei": true
     }
    },
    "pot": {
@@ -1689,6 +1752,13 @@
      "kwh_m2": 219,
      "meas_pct": 58
     }
+   },
+   "worst": {
+    "res_model_pct": 37.0,
+    "res_reg_pct": 28.3,
+    "res_reg_n": 512,
+    "nres_reg_pct": 5.8,
+    "nres_reg_n": 51
    },
    "vse": {
     "pop": 24412,
@@ -1872,6 +1942,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 38.1,
+    "res_reg_pct": 47.2,
+    "res_reg_n": 43,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 3908,
     "fe_gwh": {
@@ -1953,9 +2030,9 @@
     },
     "meps": {
      "nres_buildings": 76,
-     "n_2030": 12,
-     "n_2033": 20,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 45,
+     "local_ei": true
     }
    },
    "pot": {
@@ -2053,6 +2130,13 @@
      "kwh_m2": 131,
      "meas_pct": 74
     }
+   },
+   "worst": {
+    "res_model_pct": 47.3,
+    "res_reg_pct": 14.6,
+    "res_reg_n": 950,
+    "nres_reg_pct": 4.4,
+    "nres_reg_n": 101
    },
    "vse": {
     "pop": 49802,
@@ -2236,6 +2320,13 @@
      "meas_pct": 12
     }
    },
+   "worst": {
+    "res_model_pct": 15.7,
+    "res_reg_pct": 44.0,
+    "res_reg_n": 109,
+    "nres_reg_pct": 3.8,
+    "nres_reg_n": 10
+   },
    "vse": {
     "pop": 8029,
     "fe_gwh": {
@@ -2417,6 +2508,13 @@
      "kwh_m2": 114,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 36.8,
+    "res_reg_pct": 48.0,
+    "res_reg_n": 205,
+    "nres_reg_pct": 13.3,
+    "nres_reg_n": 18
    },
    "vse": {
     "pop": 11899,
@@ -2600,6 +2698,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 48.4,
+    "res_reg_pct": 82.8,
+    "res_reg_n": 51,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 4445,
     "fe_gwh": {
@@ -2681,9 +2786,9 @@
     },
     "meps": {
      "nres_buildings": 137,
-     "n_2030": 22,
-     "n_2033": 36,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -2782,6 +2887,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 33.7,
+    "res_reg_pct": 46.1,
+    "res_reg_n": 48,
+    "nres_reg_pct": 18.5,
+    "nres_reg_n": 9
+   },
    "vse": {
     "pop": 3870,
     "fe_gwh": {
@@ -2863,9 +2975,9 @@
     },
     "meps": {
      "nres_buildings": 80,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 21,
+     "n_2033": 53,
+     "local_ei": true
     }
    },
    "pot": {
@@ -2964,6 +3076,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 50.0,
+    "res_reg_pct": 45.9,
+    "res_reg_n": 75,
+    "nres_reg_pct": 7.2,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 3001,
     "fe_gwh": {
@@ -3045,9 +3164,9 @@
     },
     "meps": {
      "nres_buildings": 115,
-     "n_2030": 18,
-     "n_2033": 30,
-     "local_ei": false
+     "n_2030": 23,
+     "n_2033": 45,
+     "local_ei": true
     }
    },
    "pot": {
@@ -3145,6 +3264,13 @@
      "kwh_m2": 94,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 40.3,
+    "res_reg_pct": 43.2,
+    "res_reg_n": 203,
+    "nres_reg_pct": 20.1,
+    "nres_reg_n": 22
    },
    "vse": {
     "pop": 14170,
@@ -3323,6 +3449,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 26.8,
+    "res_reg_pct": 21.3,
+    "res_reg_n": 41,
+    "nres_reg_pct": 59.8,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 2737,
     "fe_gwh": {
@@ -3404,9 +3537,9 @@
     },
     "meps": {
      "nres_buildings": 32,
-     "n_2030": 5,
-     "n_2033": 8,
-     "local_ei": false
+     "n_2030": 13,
+     "n_2033": 13,
+     "local_ei": true
     }
    },
    "pot": {
@@ -3505,6 +3638,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 34.4,
+    "res_reg_pct": 45.6,
+    "res_reg_n": 94,
+    "nres_reg_pct": 35.6,
+    "nres_reg_n": 7
+   },
    "vse": {
     "pop": 4604,
     "fe_gwh": {
@@ -3586,9 +3726,9 @@
     },
     "meps": {
      "nres_buildings": 170,
-     "n_2030": 27,
-     "n_2033": 44,
-     "local_ei": false
+     "n_2030": 86,
+     "n_2033": 144,
+     "local_ei": true
     }
    },
    "pot": {
@@ -3687,6 +3827,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 35.2,
+    "res_reg_pct": 33.2,
+    "res_reg_n": 69,
+    "nres_reg_pct": 68.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 3946,
     "fe_gwh": {
@@ -3768,9 +3915,9 @@
     },
     "meps": {
      "nres_buildings": 67,
-     "n_2030": 11,
-     "n_2033": 17,
-     "local_ei": false
+     "n_2030": 26,
+     "n_2033": 26,
+     "local_ei": true
     }
    },
    "pot": {
@@ -3864,6 +4011,13 @@
      "meas_pct": 32
     }
    },
+   "worst": {
+    "res_model_pct": 30.7,
+    "res_reg_pct": 26.5,
+    "res_reg_n": 124,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 8068,
     "fe_gwh": {
@@ -3945,9 +4099,9 @@
     },
     "meps": {
      "nres_buildings": 105,
-     "n_2030": 17,
-     "n_2033": 27,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 125,
+     "local_ei": true
     }
    },
    "pot": {
@@ -4041,6 +4195,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 24.9,
+    "res_reg_pct": 6.0,
+    "res_reg_n": 127,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 6438,
     "fe_gwh": {
@@ -4122,9 +4283,9 @@
     },
     "meps": {
      "nres_buildings": 80,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -4222,6 +4383,13 @@
      "kwh_m2": 115,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 35.0,
+    "res_reg_pct": 23.0,
+    "res_reg_n": 777,
+    "nres_reg_pct": 11.3,
+    "nres_reg_n": 32
    },
    "vse": {
     "pop": 38326,
@@ -4405,6 +4573,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 34.6,
+    "res_reg_pct": 32.5,
+    "res_reg_n": 30,
+    "nres_reg_pct": 1.8,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 2915,
     "fe_gwh": {
@@ -4486,9 +4661,9 @@
     },
     "meps": {
      "nres_buildings": 55,
-     "n_2030": 9,
-     "n_2033": 14,
-     "local_ei": false
+     "n_2030": 13,
+     "n_2033": 13,
+     "local_ei": true
     }
    },
    "pot": {
@@ -4586,6 +4761,13 @@
      "kwh_m2": 105,
      "meas_pct": 10
     }
+   },
+   "worst": {
+    "res_model_pct": 33.9,
+    "res_reg_pct": 32.2,
+    "res_reg_n": 189,
+    "nres_reg_pct": 14.2,
+    "nres_reg_n": 14
    },
    "vse": {
     "pop": 8773,
@@ -4769,6 +4951,13 @@
      "meas_pct": 96
     }
    },
+   "worst": {
+    "res_model_pct": 29.6,
+    "res_reg_pct": 22.6,
+    "res_reg_n": 143,
+    "nres_reg_pct": 13.5,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 7067,
     "fe_gwh": {
@@ -4850,9 +5039,9 @@
     },
     "meps": {
      "nres_buildings": 74,
-     "n_2030": 12,
-     "n_2033": 19,
-     "local_ei": false
+     "n_2030": 15,
+     "n_2033": 15,
+     "local_ei": true
     }
    },
    "pot": {
@@ -4951,6 +5140,13 @@
      "meas_pct": 99
     }
    },
+   "worst": {
+    "res_model_pct": 34.2,
+    "res_reg_pct": 23.1,
+    "res_reg_n": 63,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 7739,
     "fe_gwh": {
@@ -5032,9 +5228,9 @@
     },
     "meps": {
      "nres_buildings": 131,
-     "n_2030": 21,
-     "n_2033": 34,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 31,
+     "local_ei": true
     }
    },
    "pot": {
@@ -5133,6 +5329,13 @@
      "meas_pct": 71
     }
    },
+   "worst": {
+    "res_model_pct": 25.2,
+    "res_reg_pct": 31.3,
+    "res_reg_n": 42,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 4212,
     "fe_gwh": {
@@ -5214,9 +5417,9 @@
     },
     "meps": {
      "nres_buildings": 72,
-     "n_2030": 12,
-     "n_2033": 19,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -5314,6 +5517,13 @@
      "kwh_m2": 45,
      "meas_pct": 24
     }
+   },
+   "worst": {
+    "res_model_pct": 36.4,
+    "res_reg_pct": 40.2,
+    "res_reg_n": 167,
+    "nres_reg_pct": 6.8,
+    "nres_reg_n": 25
    },
    "vse": {
     "pop": 8555,
@@ -5492,6 +5702,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 51.3,
+    "res_reg_pct": 56.7,
+    "res_reg_n": 40,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 2534,
     "fe_gwh": {
@@ -5573,9 +5790,9 @@
     },
     "meps": {
      "nres_buildings": 63,
-     "n_2030": 10,
-     "n_2033": 16,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -5674,6 +5891,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 46.7,
+    "res_reg_pct": 31.2,
+    "res_reg_n": 33,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 1918,
     "fe_gwh": {
@@ -5755,9 +5979,9 @@
     },
     "meps": {
      "nres_buildings": 81,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -5855,6 +6079,13 @@
      "kwh_m2": 150,
      "meas_pct": 54
     }
+   },
+   "worst": {
+    "res_model_pct": 28.3,
+    "res_reg_pct": 17.0,
+    "res_reg_n": 440,
+    "nres_reg_pct": 2.0,
+    "nres_reg_n": 27
    },
    "vse": {
     "pop": 22276,
@@ -6032,6 +6263,13 @@
      "kwh_m2": 183,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 49.8,
+    "res_reg_pct": 48.6,
+    "res_reg_n": 24,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 1342,
@@ -6215,6 +6453,13 @@
      "meas_pct": 41
     }
    },
+   "worst": {
+    "res_model_pct": 53.4,
+    "res_reg_pct": 46.9,
+    "res_reg_n": 176,
+    "nres_reg_pct": 4.0,
+    "nres_reg_n": 15
+   },
    "vse": {
     "pop": 8755,
     "fe_gwh": {
@@ -6396,6 +6641,13 @@
      "kwh_m2": 109,
      "meas_pct": 58
     }
+   },
+   "worst": {
+    "res_model_pct": 46.9,
+    "res_reg_pct": 71.2,
+    "res_reg_n": 204,
+    "nres_reg_pct": 9.0,
+    "nres_reg_n": 26
    },
    "vse": {
     "pop": 11482,
@@ -6579,6 +6831,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 22.9,
+    "res_reg_pct": 27.2,
+    "res_reg_n": 190,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 7974,
     "fe_gwh": {
@@ -6660,9 +6919,9 @@
     },
     "meps": {
      "nres_buildings": 123,
-     "n_2030": 20,
-     "n_2033": 32,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -6760,6 +7019,13 @@
      "kwh_m2": 134,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 29.3,
+    "res_reg_pct": 24.3,
+    "res_reg_n": 329,
+    "nres_reg_pct": 6.3,
+    "nres_reg_n": 13
    },
    "vse": {
     "pop": 18272,
@@ -6943,6 +7209,13 @@
      "meas_pct": 85
     }
    },
+   "worst": {
+    "res_model_pct": 42.6,
+    "res_reg_pct": 32.4,
+    "res_reg_n": 436,
+    "nres_reg_pct": 18.2,
+    "nres_reg_n": 22
+   },
    "vse": {
     "pop": 16447,
     "fe_gwh": {
@@ -7119,6 +7392,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 26.4,
+    "res_reg_pct": 19.9,
+    "res_reg_n": 32,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 2486,
@@ -7302,6 +7582,13 @@
      "meas_pct": 90
     }
    },
+   "worst": {
+    "res_model_pct": 58.9,
+    "res_reg_pct": 64.6,
+    "res_reg_n": 92,
+    "nres_reg_pct": 2.1,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 5047,
     "fe_gwh": {
@@ -7383,9 +7670,9 @@
     },
     "meps": {
      "nres_buildings": 165,
-     "n_2030": 26,
-     "n_2033": 43,
-     "local_ei": false
+     "n_2030": 39,
+     "n_2033": 39,
+     "local_ei": true
     }
    },
    "pot": {
@@ -7484,6 +7771,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 50.1,
+    "res_reg_pct": 43.4,
+    "res_reg_n": 77,
+    "nres_reg_pct": 46.4,
+    "nres_reg_n": 9
+   },
    "vse": {
     "pop": 3964,
     "fe_gwh": {
@@ -7565,9 +7859,9 @@
     },
     "meps": {
      "nres_buildings": 208,
-     "n_2030": 33,
-     "n_2033": 54,
-     "local_ei": false
+     "n_2030": 82,
+     "n_2033": 110,
+     "local_ei": true
     }
    },
    "pot": {
@@ -7665,6 +7959,13 @@
      "kwh_m2": 111,
      "meas_pct": 60
     }
+   },
+   "worst": {
+    "res_model_pct": 41.1,
+    "res_reg_pct": 61.0,
+    "res_reg_n": 358,
+    "nres_reg_pct": 8.0,
+    "nres_reg_n": 26
    },
    "vse": {
     "pop": 15595,
@@ -7848,6 +8149,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 40.6,
+    "res_reg_pct": 42.2,
+    "res_reg_n": 37,
+    "nres_reg_pct": 2.8,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 2996,
     "fe_gwh": {
@@ -7929,9 +8237,9 @@
     },
     "meps": {
      "nres_buildings": 109,
-     "n_2030": 17,
-     "n_2033": 28,
-     "local_ei": false
+     "n_2030": 22,
+     "n_2033": 86,
+     "local_ei": true
     }
    },
    "pot": {
@@ -8029,6 +8337,13 @@
      "kwh_m2": 116,
      "meas_pct": 6
     }
+   },
+   "worst": {
+    "res_model_pct": 38.1,
+    "res_reg_pct": 25.5,
+    "res_reg_n": 361,
+    "nres_reg_pct": 0.7,
+    "nres_reg_n": 36
    },
    "vse": {
     "pop": 26210,
@@ -8207,6 +8522,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 27.9,
+    "res_reg_pct": 31.1,
+    "res_reg_n": 124,
+    "nres_reg_pct": 24.5,
+    "nres_reg_n": 8
+   },
    "vse": {
     "pop": 5018,
     "fe_gwh": {
@@ -8288,9 +8610,9 @@
     },
     "meps": {
      "nres_buildings": 79,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 12,
+     "n_2033": 47,
+     "local_ei": true
     }
    },
    "pot": {
@@ -8388,6 +8710,13 @@
      "kwh_m2": 196,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 30.0,
+    "res_reg_pct": 49.6,
+    "res_reg_n": 177,
+    "nres_reg_pct": 13.3,
+    "nres_reg_n": 16
    },
    "vse": {
     "pop": 8674,
@@ -8571,6 +8900,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 35.0,
+    "res_reg_pct": 20.6,
+    "res_reg_n": 263,
+    "nres_reg_pct": 2.8,
+    "nres_reg_n": 12
+   },
    "vse": {
     "pop": 15890,
     "fe_gwh": {
@@ -8753,6 +9089,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 44.4,
+    "res_reg_pct": 45.5,
+    "res_reg_n": 24,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 2476,
     "fe_gwh": {
@@ -8834,9 +9177,9 @@
     },
     "meps": {
      "nres_buildings": 88,
-     "n_2030": 14,
-     "n_2033": 23,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -8934,6 +9277,13 @@
      "kwh_m2": 149,
      "meas_pct": 96
     }
+   },
+   "worst": {
+    "res_model_pct": 31.2,
+    "res_reg_pct": 20.3,
+    "res_reg_n": 285,
+    "nres_reg_pct": 3.7,
+    "nres_reg_n": 15
    },
    "vse": {
     "pop": 15129,
@@ -9117,6 +9467,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 44.1,
+    "res_reg_pct": 86.6,
+    "res_reg_n": 29,
+    "nres_reg_pct": 100.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 1839,
     "fe_gwh": {
@@ -9198,9 +9555,9 @@
     },
     "meps": {
      "nres_buildings": 48,
-     "n_2030": 8,
-     "n_2033": 12,
-     "local_ei": false
+     "n_2030": 57,
+     "n_2033": 57,
+     "local_ei": true
     }
    },
    "pot": {
@@ -9278,6 +9635,13 @@
      "kwh_m2": 141,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 49.9,
+    "res_reg_pct": 44.7,
+    "res_reg_n": 15,
+    "nres_reg_pct": 48.6,
+    "nres_reg_n": 5
    },
    "vse": {
     "pop": 1396,
@@ -9360,9 +9724,9 @@
     },
     "meps": {
      "nres_buildings": 41,
-     "n_2030": 7,
-     "n_2033": 11,
-     "local_ei": false
+     "n_2030": 10,
+     "n_2033": 10,
+     "local_ei": true
     }
    },
    "pot": {
@@ -9461,6 +9825,13 @@
      "meas_pct": 98
     }
    },
+   "worst": {
+    "res_model_pct": 35.3,
+    "res_reg_pct": 34.6,
+    "res_reg_n": 55,
+    "nres_reg_pct": 84.8,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 4009,
     "fe_gwh": {
@@ -9542,9 +9913,9 @@
     },
     "meps": {
      "nres_buildings": 80,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 71,
+     "n_2033": 71,
+     "local_ei": true
     }
    },
    "pot": {
@@ -9643,6 +10014,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 32.7,
+    "res_reg_pct": 27.4,
+    "res_reg_n": 142,
+    "nres_reg_pct": 0.2,
+    "nres_reg_n": 9
+   },
    "vse": {
     "pop": 8812,
     "fe_gwh": {
@@ -9724,9 +10102,9 @@
     },
     "meps": {
      "nres_buildings": 126,
-     "n_2030": 20,
-     "n_2033": 33,
-     "local_ei": false
+     "n_2030": 17,
+     "n_2033": 17,
+     "local_ei": true
     }
    },
    "pot": {
@@ -9820,6 +10198,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 46.9,
+    "res_reg_pct": 39.1,
+    "res_reg_n": 96,
+    "nres_reg_pct": 4.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 3536,
     "fe_gwh": {
@@ -9901,9 +10286,9 @@
     },
     "meps": {
      "nres_buildings": 61,
-     "n_2030": 10,
-     "n_2033": 16,
-     "local_ei": false
+     "n_2030": 36,
+     "n_2033": 36,
+     "local_ei": true
     }
    },
    "pot": {
@@ -10002,6 +10387,13 @@
      "meas_pct": 75
     }
    },
+   "worst": {
+    "res_model_pct": 31.7,
+    "res_reg_pct": 52.8,
+    "res_reg_n": 54,
+    "nres_reg_pct": 4.4,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 4489,
     "fe_gwh": {
@@ -10083,9 +10475,9 @@
     },
     "meps": {
      "nres_buildings": 99,
-     "n_2030": 16,
-     "n_2033": 26,
-     "local_ei": false
+     "n_2030": 39,
+     "n_2033": 39,
+     "local_ei": true
     }
    },
    "pot": {
@@ -10179,6 +10571,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 29.3,
+    "res_reg_pct": 28.0,
+    "res_reg_n": 84,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 5683,
     "fe_gwh": {
@@ -10260,9 +10659,9 @@
     },
     "meps": {
      "nres_buildings": 76,
-     "n_2030": 12,
-     "n_2033": 20,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -10360,6 +10759,13 @@
      "kwh_m2": 165,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 29.9,
+    "res_reg_pct": 23.6,
+    "res_reg_n": 141,
+    "nres_reg_pct": 6.7,
+    "nres_reg_n": 24
    },
    "vse": {
     "pop": 5967,
@@ -10543,6 +10949,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 42.4,
+    "res_reg_pct": 26.6,
+    "res_reg_n": 339,
+    "nres_reg_pct": 11.0,
+    "nres_reg_n": 61
+   },
    "vse": {
     "pop": 18317,
     "fe_gwh": {
@@ -10725,6 +11138,13 @@
      "meas_pct": 61
     }
    },
+   "worst": {
+    "res_model_pct": 42.7,
+    "res_reg_pct": 28.4,
+    "res_reg_n": 538,
+    "nres_reg_pct": 14.3,
+    "nres_reg_n": 60
+   },
    "vse": {
     "pop": 31781,
     "fe_gwh": {
@@ -10902,6 +11322,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 29.8,
+    "res_reg_pct": 31.7,
+    "res_reg_n": 12,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 1609,
     "fe_gwh": {
@@ -10983,9 +11410,9 @@
     },
     "meps": {
      "nres_buildings": 38,
-     "n_2030": 6,
-     "n_2033": 10,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -11083,6 +11510,13 @@
      "kwh_m2": 119,
      "meas_pct": 50
     }
+   },
+   "worst": {
+    "res_model_pct": 35.7,
+    "res_reg_pct": 28.6,
+    "res_reg_n": 184,
+    "nres_reg_pct": 0.3,
+    "nres_reg_n": 39
    },
    "vse": {
     "pop": 11792,
@@ -11266,6 +11700,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 28.8,
+    "res_reg_pct": 30.7,
+    "res_reg_n": 138,
+    "nres_reg_pct": 16.1,
+    "nres_reg_n": 11
+   },
    "vse": {
     "pop": 7879,
     "fe_gwh": {
@@ -11443,6 +11884,13 @@
      "meas_pct": 80
     }
    },
+   "worst": {
+    "res_model_pct": 28.5,
+    "res_reg_pct": 68.5,
+    "res_reg_n": 72,
+    "nres_reg_pct": 17.2,
+    "nres_reg_n": 8
+   },
    "vse": {
     "pop": 3699,
     "fe_gwh": {
@@ -11524,9 +11972,9 @@
     },
     "meps": {
      "nres_buildings": 173,
-     "n_2030": 28,
-     "n_2033": 45,
-     "local_ei": false
+     "n_2030": 26,
+     "n_2033": 26,
+     "local_ei": true
     }
    },
    "pot": {
@@ -11624,6 +12072,13 @@
      "kwh_m2": 101,
      "meas_pct": 8
     }
+   },
+   "worst": {
+    "res_model_pct": 35.4,
+    "res_reg_pct": 36.9,
+    "res_reg_n": 307,
+    "nres_reg_pct": 7.9,
+    "nres_reg_n": 58
    },
    "vse": {
     "pop": 17192,
@@ -11802,6 +12257,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 28.5,
+    "res_reg_pct": 27.2,
+    "res_reg_n": 69,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 3946,
     "fe_gwh": {
@@ -11883,9 +12345,9 @@
     },
     "meps": {
      "nres_buildings": 74,
-     "n_2030": 12,
-     "n_2033": 19,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 22,
+     "local_ei": true
     }
    },
    "pot": {
@@ -11983,6 +12445,13 @@
      "kwh_m2": 82,
      "meas_pct": 62
     }
+   },
+   "worst": {
+    "res_model_pct": 24.8,
+    "res_reg_pct": 16.3,
+    "res_reg_n": 310,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 12
    },
    "vse": {
     "pop": 8363,
@@ -12161,6 +12630,13 @@
      "meas_pct": 21
     }
    },
+   "worst": {
+    "res_model_pct": 32.9,
+    "res_reg_pct": 48.8,
+    "res_reg_n": 124,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 5064,
     "fe_gwh": {
@@ -12242,9 +12718,9 @@
     },
     "meps": {
      "nres_buildings": 110,
-     "n_2030": 18,
-     "n_2033": 29,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -12343,6 +12819,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 34.0,
+    "res_reg_pct": 37.2,
+    "res_reg_n": 95,
+    "nres_reg_pct": 3.5,
+    "nres_reg_n": 8
+   },
    "vse": {
     "pop": 6229,
     "fe_gwh": {
@@ -12424,9 +12907,9 @@
     },
     "meps": {
      "nres_buildings": 147,
-     "n_2030": 24,
-     "n_2033": 38,
-     "local_ei": false
+     "n_2030": 22,
+     "n_2033": 22,
+     "local_ei": true
     }
    },
    "pot": {
@@ -12524,6 +13007,13 @@
      "kwh_m2": 80,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 40.1,
+    "res_reg_pct": 36.8,
+    "res_reg_n": 329,
+    "nres_reg_pct": 23.7,
+    "nres_reg_n": 33
    },
    "vse": {
     "pop": 19359,
@@ -12707,6 +13197,13 @@
      "meas_pct": 74
     }
    },
+   "worst": {
+    "res_model_pct": 39.8,
+    "res_reg_pct": 19.1,
+    "res_reg_n": 252,
+    "nres_reg_pct": 3.0,
+    "nres_reg_n": 19
+   },
    "vse": {
     "pop": 11179,
     "fe_gwh": {
@@ -12889,6 +13386,13 @@
      "meas_pct": 100
     }
    },
+   "worst": {
+    "res_model_pct": 42.5,
+    "res_reg_pct": 60.0,
+    "res_reg_n": 113,
+    "nres_reg_pct": 7.1,
+    "nres_reg_n": 15
+   },
    "vse": {
     "pop": 9825,
     "fe_gwh": {
@@ -13066,6 +13570,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 38.1,
+    "res_reg_pct": 34.7,
+    "res_reg_n": 43,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 3081,
     "fe_gwh": {
@@ -13147,9 +13658,9 @@
     },
     "meps": {
      "nres_buildings": 80,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 24,
+     "local_ei": true
     }
    },
    "pot": {
@@ -13248,6 +13759,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 32.4,
+    "res_reg_pct": 57.9,
+    "res_reg_n": 37,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 3027,
     "fe_gwh": {
@@ -13329,9 +13847,9 @@
     },
     "meps": {
      "nres_buildings": 97,
-     "n_2030": 16,
-     "n_2033": 25,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -13429,6 +13947,13 @@
      "kwh_m2": 190,
      "meas_pct": 67
     }
+   },
+   "worst": {
+    "res_model_pct": 31.4,
+    "res_reg_pct": 27.2,
+    "res_reg_n": 156,
+    "nres_reg_pct": 17.6,
+    "nres_reg_n": 25
    },
    "vse": {
     "pop": 11679,
@@ -13612,6 +14137,13 @@
      "meas_pct": 55
     }
    },
+   "worst": {
+    "res_model_pct": 37.0,
+    "res_reg_pct": 30.1,
+    "res_reg_n": 184,
+    "nres_reg_pct": 5.8,
+    "nres_reg_n": 13
+   },
    "vse": {
     "pop": 7157,
     "fe_gwh": {
@@ -13789,6 +14321,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 36.0,
+    "res_reg_pct": 55.7,
+    "res_reg_n": 58,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 3780,
     "fe_gwh": {
@@ -13870,9 +14409,9 @@
     },
     "meps": {
      "nres_buildings": 112,
-     "n_2030": 18,
-     "n_2033": 29,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -13970,6 +14509,13 @@
      "kwh_m2": 146,
      "meas_pct": 30
     }
+   },
+   "worst": {
+    "res_model_pct": 38.2,
+    "res_reg_pct": 21.4,
+    "res_reg_n": 267,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 15
    },
    "vse": {
     "pop": 17602,
@@ -14153,6 +14699,13 @@
      "meas_pct": 29
     }
    },
+   "worst": {
+    "res_model_pct": 36.7,
+    "res_reg_pct": 23.9,
+    "res_reg_n": 265,
+    "nres_reg_pct": 4.7,
+    "nres_reg_n": 90
+   },
    "vse": {
     "pop": 13669,
     "fe_gwh": {
@@ -14334,6 +14887,13 @@
      "kwh_m2": 120,
      "meas_pct": 39
     }
+   },
+   "worst": {
+    "res_model_pct": 30.8,
+    "res_reg_pct": 18.2,
+    "res_reg_n": 257,
+    "nres_reg_pct": 0.4,
+    "nres_reg_n": 30
    },
    "vse": {
     "pop": 17063,
@@ -14517,6 +15077,13 @@
      "meas_pct": 12
     }
    },
+   "worst": {
+    "res_model_pct": 30.7,
+    "res_reg_pct": 24.1,
+    "res_reg_n": 539,
+    "nres_reg_pct": 6.8,
+    "nres_reg_n": 41
+   },
    "vse": {
     "pop": 26363,
     "fe_gwh": {
@@ -14699,6 +15266,13 @@
      "meas_pct": 18
     }
    },
+   "worst": {
+    "res_model_pct": 32.1,
+    "res_reg_pct": 27.7,
+    "res_reg_n": 234,
+    "nres_reg_pct": 17.2,
+    "nres_reg_n": 22
+   },
    "vse": {
     "pop": 15534,
     "fe_gwh": {
@@ -14876,6 +15450,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 30.0,
+    "res_reg_pct": 23.4,
+    "res_reg_n": 60,
+    "nres_reg_pct": 10.0,
+    "nres_reg_n": 7
+   },
    "vse": {
     "pop": 4111,
     "fe_gwh": {
@@ -14957,9 +15538,9 @@
     },
     "meps": {
      "nres_buildings": 70,
-     "n_2030": 11,
-     "n_2033": 18,
-     "local_ei": false
+     "n_2030": 12,
+     "n_2033": 12,
+     "local_ei": true
     }
    },
    "pot": {
@@ -15058,6 +15639,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 34.7,
+    "res_reg_pct": 57.2,
+    "res_reg_n": 44,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 2795,
     "fe_gwh": {
@@ -15139,9 +15727,9 @@
     },
     "meps": {
      "nres_buildings": 101,
-     "n_2030": 16,
-     "n_2033": 26,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -15240,6 +15828,13 @@
      "meas_pct": 33
     }
    },
+   "worst": {
+    "res_model_pct": 26.7,
+    "res_reg_pct": 13.9,
+    "res_reg_n": 111,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 9041,
     "fe_gwh": {
@@ -15321,9 +15916,9 @@
     },
     "meps": {
      "nres_buildings": 140,
-     "n_2030": 22,
-     "n_2033": 36,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -15421,6 +16016,13 @@
      "kwh_m2": 92,
      "meas_pct": 95
     }
+   },
+   "worst": {
+    "res_model_pct": 30.9,
+    "res_reg_pct": 42.2,
+    "res_reg_n": 241,
+    "nres_reg_pct": 7.6,
+    "nres_reg_n": 12
    },
    "vse": {
     "pop": 8371,
@@ -15604,6 +16206,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 27.6,
+    "res_reg_pct": 34.5,
+    "res_reg_n": 118,
+    "nres_reg_pct": 4.6,
+    "nres_reg_n": 10
+   },
    "vse": {
     "pop": 7446,
     "fe_gwh": {
@@ -15786,6 +16395,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 32.7,
+    "res_reg_pct": 38.0,
+    "res_reg_n": 259,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 17
+   },
    "vse": {
     "pop": 19757,
     "fe_gwh": {
@@ -15958,6 +16574,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 30.0,
+    "res_reg_pct": 51.4,
+    "res_reg_n": 50,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 3531,
     "fe_gwh": {
@@ -16039,9 +16662,9 @@
     },
     "meps": {
      "nres_buildings": 75,
-     "n_2030": 12,
-     "n_2033": 20,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -16139,6 +16762,13 @@
      "kwh_m2": 129,
      "meas_pct": 75
     }
+   },
+   "worst": {
+    "res_model_pct": 33.7,
+    "res_reg_pct": 17.2,
+    "res_reg_n": 369,
+    "nres_reg_pct": 17.5,
+    "nres_reg_n": 33
    },
    "vse": {
     "pop": 23850,
@@ -16322,6 +16952,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 23.5,
+    "res_reg_pct": 11.7,
+    "res_reg_n": 289,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 12199,
     "fe_gwh": {
@@ -16403,9 +17040,9 @@
     },
     "meps": {
      "nres_buildings": 110,
-     "n_2030": 18,
-     "n_2033": 29,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -16504,6 +17141,13 @@
      "meas_pct": 61
     }
    },
+   "worst": {
+    "res_model_pct": 31.2,
+    "res_reg_pct": 22.4,
+    "res_reg_n": 158,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 10575,
     "fe_gwh": {
@@ -16585,9 +17229,9 @@
     },
     "meps": {
      "nres_buildings": 183,
-     "n_2030": 29,
-     "n_2033": 48,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 72,
+     "local_ei": true
     }
    },
    "pot": {
@@ -16681,6 +17325,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 31.2,
+    "res_reg_pct": 24.7,
+    "res_reg_n": 59,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 3436,
     "fe_gwh": {
@@ -16762,9 +17413,9 @@
     },
     "meps": {
      "nres_buildings": 60,
-     "n_2030": 10,
-     "n_2033": 16,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -16862,6 +17513,13 @@
      "kwh_m2": 282,
      "meas_pct": 91
     }
+   },
+   "worst": {
+    "res_model_pct": 37.6,
+    "res_reg_pct": 36.5,
+    "res_reg_n": 159,
+    "nres_reg_pct": 14.4,
+    "nres_reg_n": 14
    },
    "vse": {
     "pop": 9007,
@@ -17040,6 +17698,13 @@
      "meas_pct": 85
     }
    },
+   "worst": {
+    "res_model_pct": 45.0,
+    "res_reg_pct": 18.0,
+    "res_reg_n": 73,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 4542,
     "fe_gwh": {
@@ -17121,9 +17786,9 @@
     },
     "meps": {
      "nres_buildings": 63,
-     "n_2030": 10,
-     "n_2033": 16,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -17221,6 +17886,13 @@
      "kwh_m2": 69,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 54.8,
+    "res_reg_pct": 59.2,
+    "res_reg_n": 209,
+    "nres_reg_pct": 21.1,
+    "nres_reg_n": 25
    },
    "vse": {
     "pop": 10661,
@@ -17404,6 +18076,13 @@
      "meas_pct": 50
     }
    },
+   "worst": {
+    "res_model_pct": 54.8,
+    "res_reg_pct": 46.0,
+    "res_reg_n": 344,
+    "nres_reg_pct": 3.7,
+    "nres_reg_n": 15
+   },
    "vse": {
     "pop": 15935,
     "fe_gwh": {
@@ -17585,6 +18264,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 26.2,
+    "res_reg_pct": 19.5,
+    "res_reg_n": 235,
+    "nres_reg_pct": 16.3,
+    "nres_reg_n": 17
    },
    "vse": {
     "pop": 13855,
@@ -17768,6 +18454,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 43.5,
+    "res_reg_pct": 23.3,
+    "res_reg_n": 235,
+    "nres_reg_pct": 15.8,
+    "nres_reg_n": 17
+   },
    "vse": {
     "pop": 15044,
     "fe_gwh": {
@@ -17950,6 +18643,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 36.7,
+    "res_reg_pct": 59.7,
+    "res_reg_n": 41,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 3070,
     "fe_gwh": {
@@ -18031,9 +18731,9 @@
     },
     "meps": {
      "nres_buildings": 61,
-     "n_2030": 10,
-     "n_2033": 16,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -18131,6 +18831,13 @@
      "kwh_m2": 158,
      "meas_pct": 44
     }
+   },
+   "worst": {
+    "res_model_pct": 44.2,
+    "res_reg_pct": 22.8,
+    "res_reg_n": 433,
+    "nres_reg_pct": 7.2,
+    "nres_reg_n": 23
    },
    "vse": {
     "pop": 33873,
@@ -18309,6 +19016,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 33.0,
+    "res_reg_pct": 45.3,
+    "res_reg_n": 84,
+    "nres_reg_pct": 12.7,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 4546,
     "fe_gwh": {
@@ -18390,9 +19104,9 @@
     },
     "meps": {
      "nres_buildings": 89,
-     "n_2030": 14,
-     "n_2033": 23,
-     "local_ei": false
+     "n_2030": 26,
+     "n_2033": 26,
+     "local_ei": true
     }
    },
    "pot": {
@@ -18491,6 +19205,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 36.3,
+    "res_reg_pct": 42.9,
+    "res_reg_n": 71,
+    "nres_reg_pct": 2.0,
+    "nres_reg_n": 7
+   },
    "vse": {
     "pop": 5866,
     "fe_gwh": {
@@ -18572,9 +19293,9 @@
     },
     "meps": {
      "nres_buildings": 176,
-     "n_2030": 28,
-     "n_2033": 46,
-     "local_ei": false
+     "n_2030": 30,
+     "n_2033": 60,
+     "local_ei": true
     }
    },
    "pot": {
@@ -18668,6 +19389,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 23.8,
+    "res_reg_pct": 23.0,
+    "res_reg_n": 93,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 5291,
     "fe_gwh": {
@@ -18749,9 +19477,9 @@
     },
     "meps": {
      "nres_buildings": 71,
-     "n_2030": 11,
-     "n_2033": 18,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -18849,6 +19577,13 @@
      "kwh_m2": 74,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 31.9,
+    "res_reg_pct": 22.2,
+    "res_reg_n": 429,
+    "nres_reg_pct": 5.0,
+    "nres_reg_n": 42
    },
    "vse": {
     "pop": 18296,
@@ -19032,6 +19767,13 @@
      "meas_pct": 48
     }
    },
+   "worst": {
+    "res_model_pct": 44.7,
+    "res_reg_pct": 42.6,
+    "res_reg_n": 240,
+    "nres_reg_pct": 16.8,
+    "nres_reg_n": 11
+   },
    "vse": {
     "pop": 16347,
     "fe_gwh": {
@@ -19213,6 +19955,13 @@
      "kwh_m2": 173,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 33.0,
+    "res_reg_pct": 29.9,
+    "res_reg_n": 118,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 10
    },
    "vse": {
     "pop": 6657,
@@ -19396,6 +20145,13 @@
      "meas_pct": 66
     }
    },
+   "worst": {
+    "res_model_pct": 37.8,
+    "res_reg_pct": 46.0,
+    "res_reg_n": 64,
+    "nres_reg_pct": 44.9,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 5159,
     "fe_gwh": {
@@ -19477,9 +20233,9 @@
     },
     "meps": {
      "nres_buildings": 80,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 38,
+     "n_2033": 38,
+     "local_ei": true
     }
    },
    "pot": {
@@ -19577,6 +20333,13 @@
      "kwh_m2": 72,
      "meas_pct": 47
     }
+   },
+   "worst": {
+    "res_model_pct": 32.8,
+    "res_reg_pct": 25.0,
+    "res_reg_n": 125,
+    "nres_reg_pct": 9.9,
+    "nres_reg_n": 18
    },
    "vse": {
     "pop": 5451,
@@ -19760,6 +20523,13 @@
      "meas_pct": 63
     }
    },
+   "worst": {
+    "res_model_pct": 47.1,
+    "res_reg_pct": 72.8,
+    "res_reg_n": 253,
+    "nres_reg_pct": 5.4,
+    "nres_reg_n": 26
+   },
    "vse": {
     "pop": 13130,
     "fe_gwh": {
@@ -19941,6 +20711,13 @@
      "kwh_m2": 84,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 51.5,
+    "res_reg_pct": 25.4,
+    "res_reg_n": 344,
+    "nres_reg_pct": 3.9,
+    "nres_reg_n": 24
    },
    "vse": {
     "pop": 21769,
@@ -20124,6 +20901,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 41.0,
+    "res_reg_pct": 22.6,
+    "res_reg_n": 493,
+    "nres_reg_pct": 8.2,
+    "nres_reg_n": 73
+   },
    "vse": {
     "pop": 29830,
     "fe_gwh": {
@@ -20306,6 +21090,13 @@
      "meas_pct": 35
     }
    },
+   "worst": {
+    "res_model_pct": 29.7,
+    "res_reg_pct": 48.7,
+    "res_reg_n": 93,
+    "nres_reg_pct": 4.3,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 6606,
     "fe_gwh": {
@@ -20387,9 +21178,9 @@
     },
     "meps": {
      "nres_buildings": 150,
-     "n_2030": 24,
-     "n_2033": 39,
-     "local_ei": false
+     "n_2030": 36,
+     "n_2033": 107,
+     "local_ei": true
     }
    },
    "pot": {
@@ -20482,6 +21273,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 40.2,
+    "res_reg_pct": 25.8,
+    "res_reg_n": 10,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 502,
@@ -20665,6 +21463,13 @@
      "meas_pct": 72
     }
    },
+   "worst": {
+    "res_model_pct": 47.6,
+    "res_reg_pct": 68.2,
+    "res_reg_n": 86,
+    "nres_reg_pct": 2.6,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 3476,
     "fe_gwh": {
@@ -20746,9 +21551,9 @@
     },
     "meps": {
      "nres_buildings": 147,
-     "n_2030": 24,
-     "n_2033": 38,
-     "local_ei": false
+     "n_2030": 29,
+     "n_2033": 29,
+     "local_ei": true
     }
    },
    "pot": {
@@ -20846,6 +21651,13 @@
      "kwh_m2": 132,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 38.6,
+    "res_reg_pct": 31.2,
+    "res_reg_n": 1285,
+    "nres_reg_pct": 9.8,
+    "nres_reg_n": 79
    },
    "vse": {
     "pop": 54795,
@@ -21029,6 +21841,13 @@
      "meas_pct": 43
     }
    },
+   "worst": {
+    "res_model_pct": 38.7,
+    "res_reg_pct": 13.8,
+    "res_reg_n": 963,
+    "nres_reg_pct": 15.0,
+    "nres_reg_n": 69
+   },
    "vse": {
     "pop": 57491,
     "fe_gwh": {
@@ -21205,6 +22024,13 @@
      "kwh_m2": 64,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 39.9,
+    "res_reg_pct": 56.9,
+    "res_reg_n": 202,
+    "nres_reg_pct": 11.9,
+    "nres_reg_n": 27
    },
    "vse": {
     "pop": 5143,
@@ -21383,6 +22209,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 33.9,
+    "res_reg_pct": 26.6,
+    "res_reg_n": 16,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 1663,
     "fe_gwh": {
@@ -21464,9 +22297,9 @@
     },
     "meps": {
      "nres_buildings": 41,
-     "n_2030": 7,
-     "n_2033": 11,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -21564,6 +22397,13 @@
      "kwh_m2": 153,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 38.9,
+    "res_reg_pct": 29.4,
+    "res_reg_n": 219,
+    "nres_reg_pct": 32.0,
+    "nres_reg_n": 10
    },
    "vse": {
     "pop": 13023,
@@ -21747,6 +22587,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 42.0,
+    "res_reg_pct": 51.6,
+    "res_reg_n": 256,
+    "nres_reg_pct": 3.0,
+    "nres_reg_n": 33
+   },
    "vse": {
     "pop": 10088,
     "fe_gwh": {
@@ -21928,6 +22775,13 @@
      "kwh_m2": 129,
      "meas_pct": 56
     }
+   },
+   "worst": {
+    "res_model_pct": 43.4,
+    "res_reg_pct": 20.3,
+    "res_reg_n": 6578,
+    "nres_reg_pct": 6.9,
+    "nres_reg_n": 633
    },
    "vse": {
     "pop": 302826,
@@ -22111,6 +22965,13 @@
      "meas_pct": 69
     }
    },
+   "worst": {
+    "res_model_pct": 42.2,
+    "res_reg_pct": 46.3,
+    "res_reg_n": 205,
+    "nres_reg_pct": 6.4,
+    "nres_reg_n": 20
+   },
    "vse": {
     "pop": 10850,
     "fe_gwh": {
@@ -22288,6 +23149,13 @@
      "meas_pct": 42
     }
    },
+   "worst": {
+    "res_model_pct": 41.9,
+    "res_reg_pct": 48.8,
+    "res_reg_n": 52,
+    "nres_reg_pct": 41.4,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 3506,
     "fe_gwh": {
@@ -22369,9 +23237,9 @@
     },
     "meps": {
      "nres_buildings": 106,
-     "n_2030": 17,
-     "n_2033": 28,
-     "local_ei": false
+     "n_2030": 42,
+     "n_2033": 84,
+     "local_ei": true
     }
    },
    "pot": {
@@ -22470,6 +23338,13 @@
      "meas_pct": 58
     }
    },
+   "worst": {
+    "res_model_pct": 28.6,
+    "res_reg_pct": 22.3,
+    "res_reg_n": 94,
+    "nres_reg_pct": 22.3,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 6193,
     "fe_gwh": {
@@ -22551,9 +23426,9 @@
     },
     "meps": {
      "nres_buildings": 99,
-     "n_2030": 16,
-     "n_2033": 26,
-     "local_ei": false
+     "n_2030": 29,
+     "n_2033": 29,
+     "local_ei": true
     }
    },
    "pot": {
@@ -22651,6 +23526,13 @@
      "kwh_m2": 140,
      "meas_pct": 7
     }
+   },
+   "worst": {
+    "res_model_pct": 43.2,
+    "res_reg_pct": 21.3,
+    "res_reg_n": 2887,
+    "nres_reg_pct": 5.0,
+    "nres_reg_n": 234
    },
    "vse": {
     "pop": 114872,
@@ -22834,6 +23716,13 @@
      "meas_pct": 46
     }
    },
+   "worst": {
+    "res_model_pct": 31.6,
+    "res_reg_pct": 21.8,
+    "res_reg_n": 473,
+    "nres_reg_pct": 3.2,
+    "nres_reg_n": 13
+   },
    "vse": {
     "pop": 17580,
     "fe_gwh": {
@@ -23016,6 +23905,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 41.2,
+    "res_reg_pct": 41.3,
+    "res_reg_n": 107,
+    "nres_reg_pct": 15.2,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 8552,
     "fe_gwh": {
@@ -23097,9 +23993,9 @@
     },
     "meps": {
      "nres_buildings": 217,
-     "n_2030": 35,
-     "n_2033": 56,
-     "local_ei": false
+     "n_2030": 86,
+     "n_2033": 86,
+     "local_ei": true
     }
    },
    "pot": {
@@ -23198,6 +24094,13 @@
      "meas_pct": 84
     }
    },
+   "worst": {
+    "res_model_pct": 42.2,
+    "res_reg_pct": 54.5,
+    "res_reg_n": 106,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 5069,
     "fe_gwh": {
@@ -23279,9 +24182,9 @@
     },
     "meps": {
      "nres_buildings": 138,
-     "n_2030": 22,
-     "n_2033": 36,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 27,
+     "local_ei": true
     }
    },
    "pot": {
@@ -23379,6 +24282,13 @@
      "kwh_m2": 93,
      "meas_pct": 56
     }
+   },
+   "worst": {
+    "res_model_pct": 32.1,
+    "res_reg_pct": 15.8,
+    "res_reg_n": 81,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 12
    },
    "vse": {
     "pop": 4438,
@@ -23557,6 +24467,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 33.1,
+    "res_reg_pct": 43.2,
+    "res_reg_n": 62,
+    "nres_reg_pct": 5.7,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 3329,
     "fe_gwh": {
@@ -23638,9 +24555,9 @@
     },
     "meps": {
      "nres_buildings": 92,
-     "n_2030": 15,
-     "n_2033": 24,
-     "local_ei": false
+     "n_2030": 18,
+     "n_2033": 18,
+     "local_ei": true
     }
    },
    "pot": {
@@ -23739,6 +24656,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 31.5,
+    "res_reg_pct": 33.4,
+    "res_reg_n": 67,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 5494,
     "fe_gwh": {
@@ -23820,9 +24744,9 @@
     },
     "meps": {
      "nres_buildings": 125,
-     "n_2030": 20,
-     "n_2033": 33,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 37,
+     "local_ei": true
     }
    },
    "pot": {
@@ -23916,6 +24840,13 @@
      "meas_pct": 92
     }
    },
+   "worst": {
+    "res_model_pct": 44.1,
+    "res_reg_pct": 51.6,
+    "res_reg_n": 32,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 2681,
     "fe_gwh": {
@@ -23997,9 +24928,9 @@
     },
     "meps": {
      "nres_buildings": 73,
-     "n_2030": 12,
-     "n_2033": 19,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -24097,6 +25028,13 @@
      "kwh_m2": 133,
      "meas_pct": 59
     }
+   },
+   "worst": {
+    "res_model_pct": 32.6,
+    "res_reg_pct": 13.8,
+    "res_reg_n": 650,
+    "nres_reg_pct": 3.6,
+    "nres_reg_n": 73
    },
    "vse": {
     "pop": 38678,
@@ -24265,6 +25203,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 42.4,
+    "res_reg_pct": 77.2,
+    "res_reg_n": 7,
+    "nres_reg_pct": 14.4,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 326,
     "fe_gwh": {
@@ -24346,9 +25291,9 @@
     },
     "meps": {
      "nres_buildings": 19,
-     "n_2030": 3,
-     "n_2033": 5,
-     "local_ei": false
+     "n_2030": 11,
+     "n_2033": 11,
+     "local_ei": true
     }
    },
    "pot": {
@@ -24446,6 +25391,13 @@
      "kwh_m2": 107,
      "meas_pct": 36
     }
+   },
+   "worst": {
+    "res_model_pct": 42.1,
+    "res_reg_pct": 32.6,
+    "res_reg_n": 514,
+    "nres_reg_pct": 14.5,
+    "nres_reg_n": 69
    },
    "vse": {
     "pop": 18206,
@@ -24629,6 +25581,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 37.1,
+    "res_reg_pct": 72.0,
+    "res_reg_n": 94,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 12
+   },
    "vse": {
     "pop": 6168,
     "fe_gwh": {
@@ -24811,6 +25770,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 45.7,
+    "res_reg_pct": 41.1,
+    "res_reg_n": 39,
+    "nres_reg_pct": 100.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 2242,
     "fe_gwh": {
@@ -24892,9 +25858,9 @@
     },
     "meps": {
      "nres_buildings": 85,
-     "n_2030": 14,
-     "n_2033": 22,
-     "local_ei": false
+     "n_2030": 101,
+     "n_2033": 101,
+     "local_ei": true
     }
    },
    "pot": {
@@ -24992,6 +25958,13 @@
      "kwh_m2": 135,
      "meas_pct": 42
     }
+   },
+   "worst": {
+    "res_model_pct": 35.9,
+    "res_reg_pct": 23.4,
+    "res_reg_n": 486,
+    "nres_reg_pct": 4.3,
+    "nres_reg_n": 53
    },
    "vse": {
     "pop": 23898,
@@ -25175,6 +26148,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 35.9,
+    "res_reg_pct": 47.0,
+    "res_reg_n": 89,
+    "nres_reg_pct": 4.8,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 5800,
     "fe_gwh": {
@@ -25256,9 +26236,9 @@
     },
     "meps": {
      "nres_buildings": 174,
-     "n_2030": 28,
-     "n_2033": 45,
-     "local_ei": false
+     "n_2030": 34,
+     "n_2033": 34,
+     "local_ei": true
     }
    },
    "pot": {
@@ -25357,6 +26337,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 46.7,
+    "res_reg_pct": 28.2,
+    "res_reg_n": 78,
+    "nres_reg_pct": 48.7,
+    "nres_reg_n": 7
+   },
    "vse": {
     "pop": 4046,
     "fe_gwh": {
@@ -25438,9 +26425,9 @@
     },
     "meps": {
      "nres_buildings": 99,
-     "n_2030": 16,
-     "n_2033": 26,
-     "local_ei": false
+     "n_2030": 34,
+     "n_2033": 34,
+     "local_ei": true
     }
    },
    "pot": {
@@ -25539,6 +26526,13 @@
      "meas_pct": 94
     }
    },
+   "worst": {
+    "res_model_pct": 31.6,
+    "res_reg_pct": 35.0,
+    "res_reg_n": 81,
+    "nres_reg_pct": 8.1,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 5612,
     "fe_gwh": {
@@ -25620,9 +26614,9 @@
     },
     "meps": {
      "nres_buildings": 78,
-     "n_2030": 12,
-     "n_2033": 20,
-     "local_ei": false
+     "n_2030": 46,
+     "n_2033": 46,
+     "local_ei": true
     }
    },
    "pot": {
@@ -25716,6 +26710,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 39.7,
+    "res_reg_pct": 25.4,
+    "res_reg_n": 26,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 2200,
     "fe_gwh": {
@@ -25797,9 +26798,9 @@
     },
     "meps": {
      "nres_buildings": 51,
-     "n_2030": 8,
-     "n_2033": 13,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -25898,6 +26899,13 @@
      "meas_pct": 55
     }
    },
+   "worst": {
+    "res_model_pct": 29.5,
+    "res_reg_pct": 35.7,
+    "res_reg_n": 165,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 9360,
     "fe_gwh": {
@@ -25979,9 +26987,9 @@
     },
     "meps": {
      "nres_buildings": 139,
-     "n_2030": 22,
-     "n_2033": 36,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 66,
+     "local_ei": true
     }
    },
    "pot": {
@@ -26080,6 +27088,13 @@
      "meas_pct": 65
     }
    },
+   "worst": {
+    "res_model_pct": 38.8,
+    "res_reg_pct": 30.0,
+    "res_reg_n": 41,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 2594,
     "fe_gwh": {
@@ -26161,9 +27176,9 @@
     },
     "meps": {
      "nres_buildings": 55,
-     "n_2030": 9,
-     "n_2033": 14,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -26257,6 +27272,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 36.1,
+    "res_reg_pct": 79.1,
+    "res_reg_n": 26,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 1453,
     "fe_gwh": {
@@ -26338,9 +27360,9 @@
     },
     "meps": {
      "nres_buildings": 27,
-     "n_2030": 4,
-     "n_2033": 7,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 32,
+     "local_ei": true
     }
    },
    "pot": {
@@ -26439,6 +27461,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 43.1,
+    "res_reg_pct": 49.8,
+    "res_reg_n": 73,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 7
+   },
    "vse": {
     "pop": 6629,
     "fe_gwh": {
@@ -26520,9 +27549,9 @@
     },
     "meps": {
      "nres_buildings": 133,
-     "n_2030": 21,
-     "n_2033": 35,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -26616,6 +27645,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 27.8,
+    "res_reg_pct": 20.4,
+    "res_reg_n": 54,
+    "nres_reg_pct": 100.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 2727,
     "fe_gwh": {
@@ -26697,9 +27733,9 @@
     },
     "meps": {
      "nres_buildings": 41,
-     "n_2030": 7,
-     "n_2033": 11,
-     "local_ei": false
+     "n_2030": 49,
+     "n_2033": 49,
+     "local_ei": true
     }
    },
    "pot": {
@@ -26792,6 +27828,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 42.4,
+    "res_reg_pct": 59.0,
+    "res_reg_n": 22,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 1334,
@@ -26970,6 +28013,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 38.7,
+    "res_reg_pct": 27.9,
+    "res_reg_n": 39,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
+   },
    "vse": {
     "pop": 1563,
     "fe_gwh": {
@@ -27147,6 +28197,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 32.7,
+    "res_reg_pct": 29.6,
+    "res_reg_n": 96,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 7
+   },
    "vse": {
     "pop": 5908,
     "fe_gwh": {
@@ -27228,9 +28285,9 @@
     },
     "meps": {
      "nres_buildings": 110,
-     "n_2030": 18,
-     "n_2033": 29,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -27328,6 +28385,13 @@
      "kwh_m2": 97,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 40.1,
+    "res_reg_pct": 57.0,
+    "res_reg_n": 19,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 1748,
@@ -27511,6 +28575,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 26.9,
+    "res_reg_pct": 21.3,
+    "res_reg_n": 33,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 2250,
     "fe_gwh": {
@@ -27592,9 +28663,9 @@
     },
     "meps": {
      "nres_buildings": 40,
-     "n_2030": 6,
-     "n_2033": 10,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 24,
+     "local_ei": true
     }
    },
    "pot": {
@@ -27677,6 +28748,13 @@
      "kwh_m2": 164,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 37.8,
+    "res_reg_pct": 10.7,
+    "res_reg_n": 5,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 965,
@@ -27860,6 +28938,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 34.2,
+    "res_reg_pct": 26.9,
+    "res_reg_n": 44,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 2347,
     "fe_gwh": {
@@ -27941,9 +29026,9 @@
     },
     "meps": {
      "nres_buildings": 48,
-     "n_2030": 8,
-     "n_2033": 12,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -28037,6 +29122,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 39.6,
+    "res_reg_pct": 59.1,
+    "res_reg_n": 31,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 1217,
     "fe_gwh": {
@@ -28118,9 +29210,9 @@
     },
     "meps": {
      "nres_buildings": 54,
-     "n_2030": 9,
-     "n_2033": 14,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -28219,6 +29311,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 30.9,
+    "res_reg_pct": 41.4,
+    "res_reg_n": 67,
+    "nres_reg_pct": 3.8,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 3666,
     "fe_gwh": {
@@ -28300,9 +29399,9 @@
     },
     "meps": {
      "nres_buildings": 130,
-     "n_2030": 21,
-     "n_2033": 34,
-     "local_ei": false
+     "n_2030": 39,
+     "n_2033": 39,
+     "local_ei": true
     }
    },
    "pot": {
@@ -28400,6 +29499,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 43.7,
+    "res_reg_pct": 77.6,
+    "res_reg_n": 29,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 1953,
@@ -28583,6 +29689,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 27.8,
+    "res_reg_pct": 18.0,
+    "res_reg_n": 88,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 4092,
     "fe_gwh": {
@@ -28664,9 +29777,9 @@
     },
     "meps": {
      "nres_buildings": 85,
-     "n_2030": 14,
-     "n_2033": 22,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -28759,6 +29872,13 @@
      "kwh_m2": 81,
      "meas_pct": 53
     }
+   },
+   "worst": {
+    "res_model_pct": 27.4,
+    "res_reg_pct": 20.2,
+    "res_reg_n": 415,
+    "nres_reg_pct": 6.9,
+    "nres_reg_n": 22
    },
    "vse": {
     "pop": 12061,
@@ -28937,6 +30057,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 45.5,
+    "res_reg_pct": 68.5,
+    "res_reg_n": 3,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 335,
     "fe_gwh": {
@@ -29018,9 +30145,9 @@
     },
     "meps": {
      "nres_buildings": 23,
-     "n_2030": 4,
-     "n_2033": 6,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -29119,6 +30246,13 @@
      "meas_pct": 46
     }
    },
+   "worst": {
+    "res_model_pct": 33.0,
+    "res_reg_pct": 34.3,
+    "res_reg_n": 23,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 3085,
     "fe_gwh": {
@@ -29200,9 +30334,9 @@
     },
     "meps": {
      "nres_buildings": 55,
-     "n_2030": 9,
-     "n_2033": 14,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -29296,6 +30430,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 44.7,
+    "res_reg_pct": 62.5,
+    "res_reg_n": 13,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 679,
     "fe_gwh": {
@@ -29377,9 +30518,9 @@
     },
     "meps": {
      "nres_buildings": 50,
-     "n_2030": 8,
-     "n_2033": 13,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 30,
+     "local_ei": true
     }
    },
    "pot": {
@@ -29473,6 +30614,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 23.7,
+    "res_reg_pct": 13.6,
+    "res_reg_n": 145,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 8
+   },
    "vse": {
     "pop": 6800,
     "fe_gwh": {
@@ -29554,9 +30702,9 @@
     },
     "meps": {
      "nres_buildings": 113,
-     "n_2030": 18,
-     "n_2033": 29,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 17,
+     "local_ei": true
     }
    },
    "pot": {
@@ -29645,6 +30793,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 45.0,
+    "res_reg_pct": 56.6,
+    "res_reg_n": 24,
+    "nres_reg_pct": 41.6,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 604,
     "fe_gwh": {
@@ -29726,9 +30881,9 @@
     },
     "meps": {
      "nres_buildings": 39,
-     "n_2030": 6,
-     "n_2033": 10,
-     "local_ei": false
+     "n_2030": 23,
+     "n_2033": 23,
+     "local_ei": true
     }
    },
    "pot": {
@@ -29826,6 +30981,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 37.2,
+    "res_reg_pct": 49.9,
+    "res_reg_n": 45,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 3531,
@@ -30004,6 +31166,13 @@
      "meas_pct": 43
     }
    },
+   "worst": {
+    "res_model_pct": 42.3,
+    "res_reg_pct": 60.6,
+    "res_reg_n": 47,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
+   },
    "vse": {
     "pop": 2981,
     "fe_gwh": {
@@ -30181,6 +31350,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 27.0,
+    "res_reg_pct": 52.0,
+    "res_reg_n": 46,
+    "nres_reg_pct": 100.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 3238,
     "fe_gwh": {
@@ -30262,9 +31438,9 @@
     },
     "meps": {
      "nres_buildings": 51,
-     "n_2030": 8,
-     "n_2033": 13,
-     "local_ei": false
+     "n_2030": 60,
+     "n_2033": 61,
+     "local_ei": true
     }
    },
    "pot": {
@@ -30352,6 +31528,13 @@
      "kwh_m2": 187,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 31.6,
+    "res_reg_pct": 55.4,
+    "res_reg_n": 19,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 4203,
@@ -30535,6 +31718,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 35.8,
+    "res_reg_pct": 36.5,
+    "res_reg_n": 22,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 1828,
     "fe_gwh": {
@@ -30616,9 +31806,9 @@
     },
     "meps": {
      "nres_buildings": 41,
-     "n_2030": 7,
-     "n_2033": 11,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -30717,6 +31907,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 34.9,
+    "res_reg_pct": 24.3,
+    "res_reg_n": 114,
+    "nres_reg_pct": 20.0,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 5318,
     "fe_gwh": {
@@ -30798,9 +31995,9 @@
     },
     "meps": {
      "nres_buildings": 88,
-     "n_2030": 14,
-     "n_2033": 23,
-     "local_ei": false
+     "n_2030": 42,
+     "n_2033": 42,
+     "local_ei": true
     }
    },
    "pot": {
@@ -30888,6 +32085,13 @@
      "kwh_m2": 93,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 43.9,
+    "res_reg_pct": 44.9,
+    "res_reg_n": 14,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 1231,
@@ -31066,6 +32270,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 35.3,
+    "res_reg_pct": 41.6,
+    "res_reg_n": 75,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 4359,
     "fe_gwh": {
@@ -31147,9 +32358,9 @@
     },
     "meps": {
      "nres_buildings": 80,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -31243,6 +32454,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 46.2,
+    "res_reg_pct": 73.6,
+    "res_reg_n": 8,
+    "nres_reg_pct": 29.1,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 493,
     "fe_gwh": {
@@ -31324,9 +32542,9 @@
     },
     "meps": {
      "nres_buildings": 54,
-     "n_2030": 9,
-     "n_2033": 14,
-     "local_ei": false
+     "n_2030": 21,
+     "n_2033": 32,
+     "local_ei": true
     }
    },
    "pot": {
@@ -31424,6 +32642,13 @@
      "kwh_m2": 51,
      "meas_pct": 90
     }
+   },
+   "worst": {
+    "res_model_pct": 44.2,
+    "res_reg_pct": 40.6,
+    "res_reg_n": 127,
+    "nres_reg_pct": 0.7,
+    "nres_reg_n": 19
    },
    "vse": {
     "pop": 6451,
@@ -31602,6 +32827,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 32.4,
+    "res_reg_pct": 41.8,
+    "res_reg_n": 30,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 1833,
     "fe_gwh": {
@@ -31683,9 +32915,9 @@
     },
     "meps": {
      "nres_buildings": 28,
-     "n_2030": 4,
-     "n_2033": 7,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -31783,6 +33015,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 24.5,
+    "res_reg_pct": 22.2,
+    "res_reg_n": 13,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 1400,
@@ -31961,6 +33200,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 22.6,
+    "res_reg_pct": 4.2,
+    "res_reg_n": 100,
+    "nres_reg_pct": 0.5,
+    "nres_reg_n": 34
+   },
    "vse": {
     "pop": 4000,
     "fe_gwh": {
@@ -32133,6 +33379,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 33.6,
+    "res_reg_pct": 37.6,
+    "res_reg_n": 34,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 1361,
     "fe_gwh": {
@@ -32214,9 +33467,9 @@
     },
     "meps": {
      "nres_buildings": 47,
-     "n_2030": 8,
-     "n_2033": 12,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -32310,6 +33563,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 32.6,
+    "res_reg_pct": 39.0,
+    "res_reg_n": 6,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 1299,
     "fe_gwh": {
@@ -32391,9 +33651,9 @@
     },
     "meps": {
      "nres_buildings": 26,
-     "n_2030": 4,
-     "n_2033": 7,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -32492,6 +33752,13 @@
      "meas_pct": 64
     }
    },
+   "worst": {
+    "res_model_pct": 36.6,
+    "res_reg_pct": 44.1,
+    "res_reg_n": 74,
+    "nres_reg_pct": 55.9,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 4708,
     "fe_gwh": {
@@ -32573,9 +33840,9 @@
     },
     "meps": {
      "nres_buildings": 119,
-     "n_2030": 19,
-     "n_2033": 31,
-     "local_ei": false
+     "n_2030": 47,
+     "n_2033": 94,
+     "local_ei": true
     }
    },
    "pot": {
@@ -32669,6 +33936,13 @@
      "meas_pct": 71
     }
    },
+   "worst": {
+    "res_model_pct": 28.8,
+    "res_reg_pct": 36.6,
+    "res_reg_n": 31,
+    "nres_reg_pct": 7.0,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 4050,
     "fe_gwh": {
@@ -32750,9 +34024,9 @@
     },
     "meps": {
      "nres_buildings": 83,
-     "n_2030": 13,
-     "n_2033": 22,
-     "local_ei": false
+     "n_2030": 20,
+     "n_2033": 20,
+     "local_ei": true
     }
    },
    "pot": {
@@ -32851,6 +34125,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 27.0,
+    "res_reg_pct": 20.8,
+    "res_reg_n": 199,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 9
+   },
    "vse": {
     "pop": 7300,
     "fe_gwh": {
@@ -32932,9 +34213,9 @@
     },
     "meps": {
      "nres_buildings": 93,
-     "n_2030": 15,
-     "n_2033": 24,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -33033,6 +34314,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 26.8,
+    "res_reg_pct": 14.8,
+    "res_reg_n": 125,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 6668,
     "fe_gwh": {
@@ -33114,9 +34402,9 @@
     },
     "meps": {
      "nres_buildings": 131,
-     "n_2030": 21,
-     "n_2033": 34,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 78,
+     "local_ei": true
     }
    },
    "pot": {
@@ -33214,6 +34502,13 @@
      "kwh_m2": 113,
      "meas_pct": 34
     }
+   },
+   "worst": {
+    "res_model_pct": 46.3,
+    "res_reg_pct": 22.7,
+    "res_reg_n": 145,
+    "nres_reg_pct": 2.4,
+    "nres_reg_n": 14
    },
    "vse": {
     "pop": 6668,
@@ -33387,6 +34682,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 43.4,
+    "res_reg_pct": 77.8,
+    "res_reg_n": 21,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 1071,
     "fe_gwh": {
@@ -33468,9 +34770,9 @@
     },
     "meps": {
      "nres_buildings": 48,
-     "n_2030": 8,
-     "n_2033": 12,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -33569,6 +34871,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 39.1,
+    "res_reg_pct": 49.5,
+    "res_reg_n": 34,
+    "nres_reg_pct": 23.8,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 2354,
     "fe_gwh": {
@@ -33650,9 +34959,9 @@
     },
     "meps": {
      "nres_buildings": 49,
-     "n_2030": 8,
-     "n_2033": 13,
-     "local_ei": false
+     "n_2030": 29,
+     "n_2033": 58,
+     "local_ei": true
     }
    },
    "pot": {
@@ -33746,6 +35055,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 30.6,
+    "res_reg_pct": 12.0,
+    "res_reg_n": 35,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 2347,
     "fe_gwh": {
@@ -33827,9 +35143,9 @@
     },
     "meps": {
      "nres_buildings": 38,
-     "n_2030": 6,
-     "n_2033": 10,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -33917,6 +35233,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 30.0,
+    "res_reg_pct": 46.3,
+    "res_reg_n": 5,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 1191,
@@ -34089,6 +35412,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 37.8,
+    "res_reg_pct": 89.6,
+    "res_reg_n": 14,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 1379,
@@ -34272,6 +35602,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 36.4,
+    "res_reg_pct": 17.2,
+    "res_reg_n": 45,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 2792,
     "fe_gwh": {
@@ -34353,9 +35690,9 @@
     },
     "meps": {
      "nres_buildings": 73,
-     "n_2030": 12,
-     "n_2033": 19,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 14,
+     "local_ei": true
     }
    },
    "pot": {
@@ -34449,6 +35786,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 33.9,
+    "res_reg_pct": 29.3,
+    "res_reg_n": 68,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 4515,
     "fe_gwh": {
@@ -34530,9 +35874,9 @@
     },
     "meps": {
      "nres_buildings": 81,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -34630,6 +35974,13 @@
      "kwh_m2": 154,
      "meas_pct": 0
     }
+   },
+   "worst": {
+    "res_model_pct": 38.3,
+    "res_reg_pct": 24.8,
+    "res_reg_n": 427,
+    "nres_reg_pct": 0.4,
+    "nres_reg_n": 39
    },
    "vse": {
     "pop": 21737,
@@ -34808,6 +36159,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 32.3,
+    "res_reg_pct": 25.2,
+    "res_reg_n": 79,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 5854,
     "fe_gwh": {
@@ -34889,9 +36247,9 @@
     },
     "meps": {
      "nres_buildings": 83,
-     "n_2030": 13,
-     "n_2033": 22,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -34985,6 +36343,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 49.0,
+    "res_reg_pct": 44.2,
+    "res_reg_n": 33,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 1827,
     "fe_gwh": {
@@ -35066,9 +36431,9 @@
     },
     "meps": {
      "nres_buildings": 47,
-     "n_2030": 8,
-     "n_2033": 12,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 19,
+     "local_ei": true
     }
    },
    "pot": {
@@ -35152,6 +36517,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 36.7,
+    "res_reg_pct": 50.6,
+    "res_reg_n": 78,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 4000,
     "fe_gwh": {
@@ -35233,9 +36605,9 @@
     },
     "meps": {
      "nres_buildings": 60,
-     "n_2030": 10,
-     "n_2033": 16,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -35324,6 +36696,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 30.3,
+    "res_reg_pct": 21.8,
+    "res_reg_n": 62,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 2297,
     "fe_gwh": {
@@ -35405,9 +36784,9 @@
     },
     "meps": {
      "nres_buildings": 28,
-     "n_2030": 4,
-     "n_2033": 7,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -35506,6 +36885,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 35.1,
+    "res_reg_pct": 35.7,
+    "res_reg_n": 24,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 1966,
     "fe_gwh": {
@@ -35587,9 +36973,9 @@
     },
     "meps": {
      "nres_buildings": 25,
-     "n_2030": 4,
-     "n_2033": 6,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -35688,6 +37074,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 24.3,
+    "res_reg_pct": 21.4,
+    "res_reg_n": 79,
+    "nres_reg_pct": 100.0,
+    "nres_reg_n": 1
+   },
    "vse": {
     "pop": 3606,
     "fe_gwh": {
@@ -35769,9 +37162,9 @@
     },
     "meps": {
      "nres_buildings": 65,
-     "n_2030": 10,
-     "n_2033": 17,
-     "local_ei": false
+     "n_2030": 77,
+     "n_2033": 77,
+     "local_ei": true
     }
    },
    "pot": {
@@ -35870,6 +37263,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 32.9,
+    "res_reg_pct": 34.2,
+    "res_reg_n": 60,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 9
+   },
    "vse": {
     "pop": 3562,
     "fe_gwh": {
@@ -35951,9 +37351,9 @@
     },
     "meps": {
      "nres_buildings": 71,
-     "n_2030": 11,
-     "n_2033": 18,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 28,
+     "local_ei": true
     }
    },
    "pot": {
@@ -36042,6 +37442,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 33.0,
+    "res_reg_pct": 61.6,
+    "res_reg_n": 35,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 2357,
     "fe_gwh": {
@@ -36123,9 +37530,9 @@
     },
     "meps": {
      "nres_buildings": 40,
-     "n_2030": 6,
-     "n_2033": 10,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -36214,6 +37621,13 @@
      "meas_pct": 95
     }
    },
+   "worst": {
+    "res_model_pct": 36.9,
+    "res_reg_pct": 56.2,
+    "res_reg_n": 25,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 2
+   },
    "vse": {
     "pop": 2424,
     "fe_gwh": {
@@ -36295,9 +37709,9 @@
     },
     "meps": {
      "nres_buildings": 67,
-     "n_2030": 11,
-     "n_2033": 17,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -36395,6 +37809,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 34.1,
+    "res_reg_pct": 68.0,
+    "res_reg_n": 30,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 2052,
@@ -36578,6 +37999,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 32.0,
+    "res_reg_pct": 59.2,
+    "res_reg_n": 66,
+    "nres_reg_pct": 3.6,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 3320,
     "fe_gwh": {
@@ -36659,9 +38087,9 @@
     },
     "meps": {
      "nres_buildings": 78,
-     "n_2030": 12,
-     "n_2033": 20,
-     "local_ei": false
+     "n_2030": 18,
+     "n_2033": 19,
+     "local_ei": true
     }
    },
    "pot": {
@@ -36760,6 +38188,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 37.3,
+    "res_reg_pct": 29.7,
+    "res_reg_n": 54,
+    "nres_reg_pct": 3.4,
+    "nres_reg_n": 3
+   },
    "vse": {
     "pop": 4327,
     "fe_gwh": {
@@ -36841,9 +38276,9 @@
     },
     "meps": {
      "nres_buildings": 81,
-     "n_2030": 13,
-     "n_2033": 21,
-     "local_ei": false
+     "n_2030": 32,
+     "n_2033": 32,
+     "local_ei": true
     }
    },
    "pot": {
@@ -36937,6 +38372,13 @@
      "meas_pct": 89
     }
    },
+   "worst": {
+    "res_model_pct": 39.4,
+    "res_reg_pct": 47.0,
+    "res_reg_n": 57,
+    "nres_reg_pct": 30.5,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 4424,
     "fe_gwh": {
@@ -37018,9 +38460,9 @@
     },
     "meps": {
      "nres_buildings": 85,
-     "n_2030": 14,
-     "n_2033": 22,
-     "local_ei": false
+     "n_2030": 50,
+     "n_2033": 50,
+     "local_ei": true
     }
    },
    "pot": {
@@ -37104,6 +38546,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 51.2,
+    "res_reg_pct": 66.0,
+    "res_reg_n": 55,
+    "nres_reg_pct": 20.7,
+    "nres_reg_n": 7
+   },
    "vse": {
     "pop": 2733,
     "fe_gwh": {
@@ -37185,9 +38634,9 @@
     },
     "meps": {
      "nres_buildings": 45,
-     "n_2030": 7,
-     "n_2033": 12,
-     "local_ei": false
+     "n_2030": 23,
+     "n_2033": 31,
+     "local_ei": true
     }
    },
    "pot": {
@@ -37286,6 +38735,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 27.7,
+    "res_reg_pct": 18.9,
+    "res_reg_n": 91,
+    "nres_reg_pct": 0.0,
+    "nres_reg_n": 4
+   },
    "vse": {
     "pop": 3895,
     "fe_gwh": {
@@ -37367,9 +38823,9 @@
     },
     "meps": {
      "nres_buildings": 49,
-     "n_2030": 8,
-     "n_2033": 13,
-     "local_ei": false
+     "n_2030": 0,
+     "n_2033": 0,
+     "local_ei": true
     }
    },
    "pot": {
@@ -37463,6 +38919,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 42.4,
+    "res_reg_pct": 55.2,
+    "res_reg_n": 35,
+    "nres_reg_pct": 36.3,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 2300,
     "fe_gwh": {
@@ -37544,9 +39007,9 @@
     },
     "meps": {
      "nres_buildings": 55,
-     "n_2030": 9,
-     "n_2033": 14,
-     "local_ei": false
+     "n_2030": 39,
+     "n_2033": 39,
+     "local_ei": true
     }
    },
    "pot": {
@@ -37634,6 +39097,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 27.0,
+    "res_reg_pct": 14.6,
+    "res_reg_n": 41,
+    "nres_reg_pct": null,
+    "nres_reg_n": 0
    },
    "vse": {
     "pop": 2238,
@@ -37806,6 +39276,13 @@
      "kwh_m2": null,
      "meas_pct": null
     }
+   },
+   "worst": {
+    "res_model_pct": 22.9,
+    "res_reg_pct": 46.3,
+    "res_reg_n": 44,
+    "nres_reg_pct": 10.3,
+    "nres_reg_n": 19
    },
    "vse": {
     "pop": 2915,
@@ -37989,6 +39466,13 @@
      "meas_pct": null
     }
    },
+   "worst": {
+    "res_model_pct": 28.7,
+    "res_reg_pct": 30.5,
+    "res_reg_n": 59,
+    "nres_reg_pct": 64.4,
+    "nres_reg_n": 5
+   },
    "vse": {
     "pop": 2895,
     "fe_gwh": {
@@ -38070,9 +39554,9 @@
     },
     "meps": {
      "nres_buildings": 54,
-     "n_2030": 9,
-     "n_2033": 14,
-     "local_ei": false
+     "n_2030": 38,
+     "n_2033": 38,
+     "local_ei": true
     }
    },
    "pot": {
@@ -38176,6 +39660,13 @@
      "meas_pct": 0
     }
    },
+   "worst": {
+    "res_model_pct": 41.7,
+    "res_reg_pct": 54.9,
+    "res_reg_n": 99,
+    "nres_reg_pct": 20.8,
+    "nres_reg_n": 6
+   },
    "vse": {
     "pop": 3444,
     "fe_gwh": {
@@ -38257,9 +39748,9 @@
     },
     "meps": {
      "nres_buildings": 126,
-     "n_2030": 20,
-     "n_2033": 33,
-     "local_ei": false
+     "n_2030": 25,
+     "n_2033": 50,
+     "local_ei": true
     }
    },
    "pot": {

@@ -14,8 +14,9 @@ interface Props {
   page?: PageId;
   title: string;
   description: string;
+  noindex?: boolean;
 }
-const { page, title, description } = Astro.props;
+const { page, title, description, noindex } = Astro.props;
 const fullTitle = page === 'domov' ? `NPS 2050 – ${ui.siteSub}` : `${title} – NPS 2050`;
 // Predogled ob deljenju povezave: slika public/og/<stran>.jpg (npm run og), sicer slika naslovne strani.
 // Absolutni naslovi zahtevajo `site` (ASTRO_SITE v CI); brez njega so poti relativne.
@@ -28,6 +29,7 @@ const canonical = abs(Astro.url.pathname);
 <html lang="sl">
   <head>
     <meta charset="utf-8" />
+    {noindex && <meta name="robots" content="noindex" />}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />

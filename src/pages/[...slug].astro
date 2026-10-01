@@ -14,9 +14,9 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props as { entry: CollectionEntry<'pages'> };
 const { Content } = await render(entry);
-const { page, title, description, lead } = entry.data;
+const { page, title, description, lead, draft } = entry.data;
 ---
-<Base page={page} title={title} description={description}>
+<Base page={page} title={title} description={description} noindex={draft}>
   {page === 'domov' ? (
     <Hero title={title} lead={lead} />
   ) : (

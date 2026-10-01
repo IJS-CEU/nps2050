@@ -102,7 +102,12 @@
      "b": 1257,
      "a": 283.4
     }
-   }
+   },
+   "w_res_model_pct": 38.1,
+   "w_res_reg_pct": 38.5,
+   "w_res_reg_n": 2056,
+   "w_nres_reg_pct": 7.3,
+   "w_nres_reg_n": 218
   },
   "2": {
    "name": "Podravska",
@@ -148,7 +153,12 @@
      "b": 1620,
      "a": 540.7
     }
-   }
+   },
+   "w_res_model_pct": 35.3,
+   "w_res_reg_pct": 23.8,
+   "w_res_reg_n": 7194,
+   "w_nres_reg_pct": 6.2,
+   "w_nres_reg_n": 536
   },
   "3": {
    "name": "Koroška",
@@ -194,7 +204,12 @@
      "b": 591,
      "a": 130.4
     }
-   }
+   },
+   "w_res_model_pct": 37.1,
+   "w_res_reg_pct": 27.8,
+   "w_res_reg_n": 1326,
+   "w_nres_reg_pct": 3.2,
+   "w_nres_reg_n": 109
   },
   "4": {
    "name": "Savinjska",
@@ -240,7 +255,12 @@
      "b": 1800,
      "a": 501.4
     }
-   }
+   },
+   "w_res_model_pct": 38.2,
+   "w_res_reg_pct": 22.7,
+   "w_res_reg_n": 4282,
+   "w_nres_reg_pct": 6.4,
+   "w_nres_reg_n": 356
   },
   "5": {
    "name": "Zasavska",
@@ -286,7 +306,12 @@
      "b": 314,
      "a": 82.2
     }
-   }
+   },
+   "w_res_model_pct": 46.0,
+   "w_res_reg_pct": 40.5,
+   "w_res_reg_n": 1023,
+   "w_nres_reg_pct": 5.2,
+   "w_nres_reg_n": 53
   },
   "6": {
    "name": "Posavska",
@@ -332,7 +357,12 @@
      "b": 867,
      "a": 195.0
     }
-   }
+   },
+   "w_res_model_pct": 38.2,
+   "w_res_reg_pct": 26.4,
+   "w_res_reg_n": 1265,
+   "w_nres_reg_pct": 5.1,
+   "w_nres_reg_n": 111
   },
   "7": {
    "name": "Jugovzhodna Slovenija",
@@ -378,7 +408,12 @@
      "b": 1412,
      "a": 296.4
     }
-   }
+   },
+   "w_res_model_pct": 34.5,
+   "w_res_reg_pct": 33.7,
+   "w_res_reg_n": 2499,
+   "w_nres_reg_pct": 12.0,
+   "w_nres_reg_n": 220
   },
   "8": {
    "name": "Osrednjeslovenska",
@@ -424,7 +459,12 @@
      "b": 2061,
      "a": 882.4
     }
-   }
+   },
+   "w_res_model_pct": 37.5,
+   "w_res_reg_pct": 20.5,
+   "w_res_reg_n": 11913,
+   "w_nres_reg_pct": 6.8,
+   "w_nres_reg_n": 947
   },
   "9": {
    "name": "Gorenjska",
@@ -470,7 +510,12 @@
      "b": 1348,
      "a": 413.0
     }
-   }
+   },
+   "w_res_model_pct": 38.1,
+   "w_res_reg_pct": 24.4,
+   "w_res_reg_n": 3436,
+   "w_nres_reg_pct": 12.3,
+   "w_nres_reg_n": 291
   },
   "10": {
    "name": "Primorsko-notranjska",
@@ -516,7 +561,12 @@
      "b": 670,
      "a": 179.1
     }
-   }
+   },
+   "w_res_model_pct": 39.6,
+   "w_res_reg_pct": 49.4,
+   "w_res_reg_n": 950,
+   "w_nres_reg_pct": 8.1,
+   "w_nres_reg_n": 117
   },
   "11": {
    "name": "Goriška",
@@ -562,7 +612,12 @@
      "b": 1258,
      "a": 298.7
     }
-   }
+   },
+   "w_res_model_pct": 44.4,
+   "w_res_reg_pct": 41.3,
+   "w_res_reg_n": 2006,
+   "w_nres_reg_pct": 11.2,
+   "w_nres_reg_n": 214
   },
   "12": {
    "name": "Obalno-kraška",
@@ -608,7 +663,12 @@
      "b": 882,
      "a": 230.3
     }
-   }
+   },
+   "w_res_model_pct": 39.5,
+   "w_res_reg_pct": 32.4,
+   "w_res_reg_n": 2904,
+   "w_nres_reg_pct": 10.5,
+   "w_nres_reg_n": 297
   }
  },
  "municipalities": {
@@ -657,7 +717,12 @@
      "b": 162,
      "a": 38.4
     }
-   }
+   },
+   "w_res_model_pct": 37.8,
+   "w_res_reg_pct": 26.0,
+   "w_res_reg_n": 309,
+   "w_nres_reg_pct": 10.3,
+   "w_nres_reg_n": 26
   },
   "110200000110265241": {
    "name": "Beltinci",
@@ -704,7 +769,12 @@
      "b": 44,
      "a": 10.1
     }
-   }
+   },
+   "w_res_model_pct": 36.7,
+   "w_res_reg_pct": 33.6,
+   "w_res_reg_n": 178,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5
   },
   "110200000110265324": {
    "name": "Bled",
@@ -751,7 +821,12 @@
      "b": 117,
      "a": 39.2
     }
-   }
+   },
+   "w_res_model_pct": 41.4,
+   "w_res_reg_pct": 41.1,
+   "w_res_reg_n": 179,
+   "w_nres_reg_pct": 0.9,
+   "w_nres_reg_n": 21
   },
   "110200000110265597": {
    "name": "Bohinj",
@@ -798,7 +873,12 @@
      "b": 122,
      "a": 24.9
     }
-   }
+   },
+   "w_res_model_pct": 43.0,
+   "w_res_reg_pct": 48.8,
+   "w_res_reg_n": 123,
+   "w_nres_reg_pct": 18.8,
+   "w_nres_reg_n": 15
   },
   "110200000110265670": {
    "name": "Borovnica",
@@ -845,7 +925,12 @@
      "b": 26,
      "a": 6.4
     }
-   }
+   },
+   "w_res_model_pct": 39.2,
+   "w_res_reg_pct": 25.0,
+   "w_res_reg_n": 83,
+   "w_nres_reg_pct": 31.4,
+   "w_nres_reg_n": 4
   },
   "110200000110265753": {
    "name": "Bovec",
@@ -892,7 +977,12 @@
      "b": 99,
      "a": 19.1
     }
-   }
+   },
+   "w_res_model_pct": 44.0,
+   "w_res_reg_pct": 59.9,
+   "w_res_reg_n": 97,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 13
   },
   "110200000110265837": {
    "name": "Brda",
@@ -939,7 +1029,12 @@
      "b": 90,
      "a": 18.7
     }
-   }
+   },
+   "w_res_model_pct": 41.0,
+   "w_res_reg_pct": 60.8,
+   "w_res_reg_n": 68,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 10
   },
   "110200000110265910": {
    "name": "Brezovica",
@@ -986,7 +1081,12 @@
      "b": 60,
      "a": 13.6
     }
-   }
+   },
+   "w_res_model_pct": 26.0,
+   "w_res_reg_pct": 21.1,
+   "w_res_reg_n": 292,
+   "w_nres_reg_pct": 2.6,
+   "w_nres_reg_n": 8
   },
   "110200000110266058": {
    "name": "Brežice",
@@ -1033,7 +1133,12 @@
      "b": 445,
      "a": 87.3
     }
-   }
+   },
+   "w_res_model_pct": 37.0,
+   "w_res_reg_pct": 28.3,
+   "w_res_reg_n": 512,
+   "w_nres_reg_pct": 5.8,
+   "w_nres_reg_n": 51
   },
   "110200000110266132": {
    "name": "Tišina",
@@ -1080,7 +1185,12 @@
      "b": 28,
      "a": 4.5
     }
-   }
+   },
+   "w_res_model_pct": 38.1,
+   "w_res_reg_pct": 47.2,
+   "w_res_reg_n": 43,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000110266215": {
    "name": "Celje",
@@ -1127,7 +1237,12 @@
      "b": 236,
      "a": 141.8
     }
-   }
+   },
+   "w_res_model_pct": 47.3,
+   "w_res_reg_pct": 14.6,
+   "w_res_reg_n": 950,
+   "w_nres_reg_pct": 4.4,
+   "w_nres_reg_n": 101
   },
   "110200000110266306": {
    "name": "Cerklje na Gorenjskem",
@@ -1174,7 +1289,12 @@
      "b": 67,
      "a": 49.8
     }
-   }
+   },
+   "w_res_model_pct": 15.7,
+   "w_res_reg_pct": 44.0,
+   "w_res_reg_n": 109,
+   "w_nres_reg_pct": 3.8,
+   "w_nres_reg_n": 10
   },
   "110200000110266488": {
    "name": "Cerknica",
@@ -1221,7 +1341,12 @@
      "b": 121,
      "a": 21.0
     }
-   }
+   },
+   "w_res_model_pct": 36.8,
+   "w_res_reg_pct": 48.0,
+   "w_res_reg_n": 205,
+   "w_nres_reg_pct": 13.3,
+   "w_nres_reg_n": 18
   },
   "110200000110266561": {
    "name": "Cerkno",
@@ -1268,7 +1393,12 @@
      "b": 64,
      "a": 10.9
     }
-   }
+   },
+   "w_res_model_pct": 48.4,
+   "w_res_reg_pct": 82.8,
+   "w_res_reg_n": 51,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000110266645": {
    "name": "Črenšovci",
@@ -1315,7 +1445,12 @@
      "b": 35,
      "a": 6.3
     }
-   }
+   },
+   "w_res_model_pct": 33.7,
+   "w_res_reg_pct": 46.1,
+   "w_res_reg_n": 48,
+   "w_nres_reg_pct": 18.5,
+   "w_nres_reg_n": 9
   },
   "110200000110266728": {
    "name": "Črna na Koroškem",
@@ -1362,7 +1497,12 @@
      "b": 56,
      "a": 8.4
     }
-   }
+   },
+   "w_res_model_pct": 50.0,
+   "w_res_reg_pct": 45.9,
+   "w_res_reg_n": 75,
+   "w_nres_reg_pct": 7.2,
+   "w_nres_reg_n": 6
   },
   "110200000110266991": {
    "name": "Črnomelj",
@@ -1409,7 +1549,12 @@
      "b": 153,
      "a": 23.6
     }
-   }
+   },
+   "w_res_model_pct": 40.3,
+   "w_res_reg_pct": 43.2,
+   "w_res_reg_n": 203,
+   "w_nres_reg_pct": 20.1,
+   "w_nres_reg_n": 22
   },
   "110200000110267023": {
    "name": "Destrnik",
@@ -1456,7 +1601,12 @@
      "b": 14,
      "a": 2.6
     }
-   }
+   },
+   "w_res_model_pct": 26.8,
+   "w_res_reg_pct": 21.3,
+   "w_res_reg_n": 41,
+   "w_nres_reg_pct": 59.8,
+   "w_nres_reg_n": 3
   },
   "110200000110267296": {
    "name": "Divača",
@@ -1503,7 +1653,12 @@
      "b": 78,
      "a": 13.3
     }
-   }
+   },
+   "w_res_model_pct": 34.4,
+   "w_res_reg_pct": 45.6,
+   "w_res_reg_n": 94,
+   "w_nres_reg_pct": 35.6,
+   "w_nres_reg_n": 7
   },
   "110200000110267379": {
    "name": "Dobrepolje",
@@ -1550,7 +1705,12 @@
      "b": 31,
      "a": 7.2
     }
-   }
+   },
+   "w_res_model_pct": 35.2,
+   "w_res_reg_pct": 33.2,
+   "w_res_reg_n": 69,
+   "w_nres_reg_pct": 68.0,
+   "w_nres_reg_n": 3
   },
   "110200000110267452": {
    "name": "Dobrova-Polhov Gradec",
@@ -1597,7 +1757,12 @@
      "b": 55,
      "a": 14.1
     }
-   }
+   },
+   "w_res_model_pct": 30.7,
+   "w_res_reg_pct": 26.5,
+   "w_res_reg_n": 124,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000110267536": {
    "name": "Dol pri Ljubljani",
@@ -1644,7 +1809,12 @@
      "b": 37,
      "a": 9.4
     }
-   }
+   },
+   "w_res_model_pct": 24.9,
+   "w_res_reg_pct": 6.0,
+   "w_res_reg_n": 127,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000110267619": {
    "name": "Domžale",
@@ -1691,7 +1861,12 @@
      "b": 85,
      "a": 20.9
     }
-   }
+   },
+   "w_res_model_pct": 35.0,
+   "w_res_reg_pct": 23.0,
+   "w_res_reg_n": 777,
+   "w_nres_reg_pct": 11.3,
+   "w_nres_reg_n": 32
   },
   "110200000110267700": {
    "name": "Dornava",
@@ -1738,7 +1913,12 @@
      "b": 23,
      "a": 8.4
     }
-   }
+   },
+   "w_res_model_pct": 34.6,
+   "w_res_reg_pct": 32.5,
+   "w_res_reg_n": 30,
+   "w_nres_reg_pct": 1.8,
+   "w_nres_reg_n": 5
   },
   "110200000110267882": {
    "name": "Dravograd",
@@ -1785,7 +1965,12 @@
      "b": 71,
      "a": 14.8
     }
-   }
+   },
+   "w_res_model_pct": 33.9,
+   "w_res_reg_pct": 32.2,
+   "w_res_reg_n": 189,
+   "w_nres_reg_pct": 14.2,
+   "w_nres_reg_n": 14
   },
   "110200000110267965": {
    "name": "Duplek",
@@ -1832,7 +2017,12 @@
      "b": 23,
      "a": 5.6
     }
-   }
+   },
+   "w_res_model_pct": 29.6,
+   "w_res_reg_pct": 22.6,
+   "w_res_reg_n": 143,
+   "w_nres_reg_pct": 13.5,
+   "w_nres_reg_n": 6
   },
   "110200000110268005": {
    "name": "Gorenja vas-Poljane",
@@ -1879,7 +2069,12 @@
      "b": 67,
      "a": 15.3
     }
-   }
+   },
+   "w_res_model_pct": 34.2,
+   "w_res_reg_pct": 23.1,
+   "w_res_reg_n": 63,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5
   },
   "110200000110268187": {
    "name": "Gorišnica",
@@ -1926,7 +2121,12 @@
      "b": 34,
      "a": 6.5
     }
-   }
+   },
+   "w_res_model_pct": 25.2,
+   "w_res_reg_pct": 31.3,
+   "w_res_reg_n": 42,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000110268260": {
    "name": "Gornja Radgona",
@@ -1973,7 +2173,12 @@
      "b": 90,
      "a": 30.1
     }
-   }
+   },
+   "w_res_model_pct": 36.4,
+   "w_res_reg_pct": 40.2,
+   "w_res_reg_n": 167,
+   "w_nres_reg_pct": 6.8,
+   "w_nres_reg_n": 25
   },
   "110200000110268344": {
    "name": "Gornji Grad",
@@ -2020,7 +2225,12 @@
      "b": 30,
      "a": 6.0
     }
-   }
+   },
+   "w_res_model_pct": 51.3,
+   "w_res_reg_pct": 56.7,
+   "w_res_reg_n": 40,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000110268427": {
    "name": "Gornji Petrovci",
@@ -2067,7 +2277,12 @@
      "b": 43,
      "a": 7.4
     }
-   }
+   },
+   "w_res_model_pct": 46.7,
+   "w_res_reg_pct": 31.2,
+   "w_res_reg_n": 33,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000110268690": {
    "name": "Grosuplje",
@@ -2114,7 +2329,12 @@
      "b": 96,
      "a": 19.9
     }
-   }
+   },
+   "w_res_model_pct": 28.3,
+   "w_res_reg_pct": 17.0,
+   "w_res_reg_n": 440,
+   "w_nres_reg_pct": 2.0,
+   "w_nres_reg_n": 27
   },
   "110200000110268773": {
    "name": "Šalovci",
@@ -2161,7 +2381,12 @@
      "b": 28,
      "a": 4.4
     }
-   }
+   },
+   "w_res_model_pct": 49.8,
+   "w_res_reg_pct": 48.6,
+   "w_res_reg_n": 24,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000110268856": {
    "name": "Hrastnik",
@@ -2208,7 +2433,12 @@
      "b": 47,
      "a": 12.2
     }
-   }
+   },
+   "w_res_model_pct": 53.4,
+   "w_res_reg_pct": 46.9,
+   "w_res_reg_n": 176,
+   "w_nres_reg_pct": 4.0,
+   "w_nres_reg_n": 15
   },
   "110200000110268930": {
    "name": "Idrija",
@@ -2255,7 +2485,12 @@
      "b": 94,
      "a": 26.9
     }
-   }
+   },
+   "w_res_model_pct": 46.9,
+   "w_res_reg_pct": 71.2,
+   "w_res_reg_n": 204,
+   "w_nres_reg_pct": 9.0,
+   "w_nres_reg_n": 26
   },
   "110200000110269078": {
    "name": "Ig",
@@ -2302,7 +2537,12 @@
      "b": 60,
      "a": 15.5
     }
-   }
+   },
+   "w_res_model_pct": 22.9,
+   "w_res_reg_pct": 27.2,
+   "w_res_reg_n": 190,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 6
   },
   "110200000110269151": {
    "name": "Ivančna Gorica",
@@ -2349,7 +2589,12 @@
      "b": 137,
      "a": 28.5
     }
-   }
+   },
+   "w_res_model_pct": 29.3,
+   "w_res_reg_pct": 24.3,
+   "w_res_reg_n": 329,
+   "w_nres_reg_pct": 6.3,
+   "w_nres_reg_n": 13
   },
   "110200000110269235": {
    "name": "Izola",
@@ -2396,7 +2641,12 @@
      "b": 54,
      "a": 13.9
     }
-   }
+   },
+   "w_res_model_pct": 42.6,
+   "w_res_reg_pct": 32.4,
+   "w_res_reg_n": 436,
+   "w_nres_reg_pct": 18.2,
+   "w_nres_reg_n": 22
   },
   "110200000110269318": {
    "name": "Juršinci",
@@ -2443,7 +2693,12 @@
      "b": 23,
      "a": 2.3
     }
-   }
+   },
+   "w_res_model_pct": 26.4,
+   "w_res_reg_pct": 19.9,
+   "w_res_reg_n": 32,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000110269409": {
    "name": "Kanal",
@@ -2490,7 +2745,12 @@
      "b": 88,
      "a": 11.5
     }
-   }
+   },
+   "w_res_model_pct": 58.9,
+   "w_res_reg_pct": 64.6,
+   "w_res_reg_n": 92,
+   "w_nres_reg_pct": 2.1,
+   "w_nres_reg_n": 5
   },
   "110200000110269581": {
    "name": "Kobarid",
@@ -2537,7 +2797,12 @@
      "b": 110,
      "a": 19.0
     }
-   }
+   },
+   "w_res_model_pct": 50.1,
+   "w_res_reg_pct": 43.4,
+   "w_res_reg_n": 77,
+   "w_nres_reg_pct": 46.4,
+   "w_nres_reg_n": 9
   },
   "110200000110269664": {
    "name": "Kočevje",
@@ -2584,7 +2849,12 @@
      "b": 147,
      "a": 26.6
     }
-   }
+   },
+   "w_res_model_pct": 41.1,
+   "w_res_reg_pct": 61.0,
+   "w_res_reg_n": 358,
+   "w_nres_reg_pct": 8.0,
+   "w_nres_reg_n": 26
   },
   "110200000110269748": {
    "name": "Kozje",
@@ -2631,7 +2901,12 @@
      "b": 49,
      "a": 10.0
     }
-   }
+   },
+   "w_res_model_pct": 40.6,
+   "w_res_reg_pct": 42.2,
+   "w_res_reg_n": 37,
+   "w_nres_reg_pct": 2.8,
+   "w_nres_reg_n": 6
   },
   "110200000110269821": {
    "name": "Krško",
@@ -2678,7 +2953,12 @@
      "b": 179,
      "a": 57.5
     }
-   }
+   },
+   "w_res_model_pct": 38.1,
+   "w_res_reg_pct": 25.5,
+   "w_res_reg_n": 361,
+   "w_nres_reg_pct": 0.7,
+   "w_nres_reg_n": 36
   },
   "110200000110270084": {
    "name": "Kungota",
@@ -2725,7 +3005,12 @@
      "b": 21,
      "a": 4.6
     }
-   }
+   },
+   "w_res_model_pct": 27.9,
+   "w_res_reg_pct": 31.1,
+   "w_res_reg_n": 124,
+   "w_nres_reg_pct": 24.5,
+   "w_nres_reg_n": 8
   },
   "110200000110270167": {
    "name": "Lenart",
@@ -2772,7 +3057,12 @@
      "b": 48,
      "a": 16.5
     }
-   }
+   },
+   "w_res_model_pct": 30.0,
+   "w_res_reg_pct": 49.6,
+   "w_res_reg_n": 177,
+   "w_nres_reg_pct": 13.3,
+   "w_nres_reg_n": 16
   },
   "110200000110270241": {
    "name": "Litija",
@@ -2819,7 +3109,12 @@
      "b": 99,
      "a": 19.5
     }
-   }
+   },
+   "w_res_model_pct": 35.0,
+   "w_res_reg_pct": 20.6,
+   "w_res_reg_n": 263,
+   "w_nres_reg_pct": 2.8,
+   "w_nres_reg_n": 12
   },
   "110200000110270324": {
    "name": "Ljubno",
@@ -2866,7 +3161,12 @@
      "b": 41,
      "a": 5.4
     }
-   }
+   },
+   "w_res_model_pct": 44.4,
+   "w_res_reg_pct": 45.5,
+   "w_res_reg_n": 24,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4
   },
   "110200000110270597": {
    "name": "Logatec",
@@ -2913,7 +3213,12 @@
      "b": 75,
      "a": 16.5
     }
-   }
+   },
+   "w_res_model_pct": 31.2,
+   "w_res_reg_pct": 20.3,
+   "w_res_reg_n": 285,
+   "w_nres_reg_pct": 3.7,
+   "w_nres_reg_n": 15
   },
   "110200000110270670": {
    "name": "Loški Potok",
@@ -2960,7 +3265,12 @@
      "b": 31,
      "a": 6.4
     }
-   }
+   },
+   "w_res_model_pct": 44.1,
+   "w_res_reg_pct": 86.6,
+   "w_res_reg_n": 29,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1
   },
   "110200000110270753": {
    "name": "Luče",
@@ -3007,7 +3317,12 @@
      "b": 17,
      "a": 3.0
     }
-   }
+   },
+   "w_res_model_pct": 49.9,
+   "w_res_reg_pct": 44.7,
+   "w_res_reg_n": 15,
+   "w_nres_reg_pct": 48.6,
+   "w_nres_reg_n": 5
   },
   "110200000110270837": {
    "name": "Majšperk",
@@ -3054,7 +3369,12 @@
      "b": 36,
      "a": 8.3
     }
-   }
+   },
+   "w_res_model_pct": 35.3,
+   "w_res_reg_pct": 34.6,
+   "w_res_reg_n": 55,
+   "w_nres_reg_pct": 84.8,
+   "w_nres_reg_n": 4
   },
   "110200000110270910": {
    "name": "Mengeš",
@@ -3101,7 +3421,12 @@
      "b": 28,
      "a": 6.7
     }
-   }
+   },
+   "w_res_model_pct": 32.7,
+   "w_res_reg_pct": 27.4,
+   "w_res_reg_n": 142,
+   "w_nres_reg_pct": 0.2,
+   "w_nres_reg_n": 9
   },
   "110200000110271058": {
    "name": "Mežica",
@@ -3148,7 +3473,12 @@
      "b": 20,
      "a": 4.6
     }
-   }
+   },
+   "w_res_model_pct": 46.9,
+   "w_res_reg_pct": 39.1,
+   "w_res_reg_n": 96,
+   "w_nres_reg_pct": 4.0,
+   "w_nres_reg_n": 2
   },
   "110200000110271132": {
    "name": "Mislinja",
@@ -3195,7 +3525,12 @@
      "b": 49,
      "a": 7.5
     }
-   }
+   },
+   "w_res_model_pct": 31.7,
+   "w_res_reg_pct": 52.8,
+   "w_res_reg_n": 54,
+   "w_nres_reg_pct": 4.4,
+   "w_nres_reg_n": 3
   },
   "110200000110271215": {
    "name": "Moravče",
@@ -3242,7 +3577,12 @@
      "b": 35,
      "a": 9.4
     }
-   }
+   },
+   "w_res_model_pct": 29.3,
+   "w_res_reg_pct": 28.0,
+   "w_res_reg_n": 84,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000110271306": {
    "name": "Moravske Toplice",
@@ -3289,7 +3629,12 @@
      "b": 164,
      "a": 45.5
     }
-   }
+   },
+   "w_res_model_pct": 29.9,
+   "w_res_reg_pct": 23.6,
+   "w_res_reg_n": 141,
+   "w_nres_reg_pct": 6.7,
+   "w_nres_reg_n": 24
   },
   "110200000110271488": {
    "name": "Murska Sobota",
@@ -3336,7 +3681,12 @@
      "b": 141,
      "a": 50.8
     }
-   }
+   },
+   "w_res_model_pct": 42.4,
+   "w_res_reg_pct": 26.6,
+   "w_res_reg_n": 339,
+   "w_nres_reg_pct": 11.0,
+   "w_nres_reg_n": 61
   },
   "110200000110271561": {
    "name": "Nova Gorica",
@@ -3383,7 +3733,12 @@
      "b": 224,
      "a": 76.6
     }
-   }
+   },
+   "w_res_model_pct": 42.7,
+   "w_res_reg_pct": 28.4,
+   "w_res_reg_n": 538,
+   "w_nres_reg_pct": 14.3,
+   "w_nres_reg_n": 60
   },
   "110200000110271645": {
    "name": "Odranci",
@@ -3430,7 +3785,12 @@
      "b": 10,
      "a": 1.6
     }
-   }
+   },
+   "w_res_model_pct": 29.8,
+   "w_res_reg_pct": 31.7,
+   "w_res_reg_n": 12,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000110271728": {
    "name": "Ormož",
@@ -3477,7 +3837,12 @@
      "b": 110,
      "a": 22.7
     }
-   }
+   },
+   "w_res_model_pct": 35.7,
+   "w_res_reg_pct": 28.6,
+   "w_res_reg_n": 184,
+   "w_nres_reg_pct": 0.3,
+   "w_nres_reg_n": 39
   },
   "110200000110271991": {
    "name": "Pesnica",
@@ -3524,7 +3889,12 @@
      "b": 35,
      "a": 11.5
     }
-   }
+   },
+   "w_res_model_pct": 28.8,
+   "w_res_reg_pct": 30.7,
+   "w_res_reg_n": 138,
+   "w_nres_reg_pct": 16.1,
+   "w_nres_reg_n": 11
   },
   "110200000110272023": {
    "name": "Podčetrtek",
@@ -3571,7 +3941,12 @@
      "b": 77,
      "a": 17.8
     }
-   }
+   },
+   "w_res_model_pct": 28.5,
+   "w_res_reg_pct": 68.5,
+   "w_res_reg_n": 72,
+   "w_nres_reg_pct": 17.2,
+   "w_nres_reg_n": 8
   },
   "110200000110272296": {
    "name": "Postojna",
@@ -3618,7 +3993,12 @@
      "b": 158,
      "a": 74.3
     }
-   }
+   },
+   "w_res_model_pct": 35.4,
+   "w_res_reg_pct": 36.9,
+   "w_res_reg_n": 307,
+   "w_nres_reg_pct": 7.9,
+   "w_nres_reg_n": 58
   },
   "110200000110272379": {
    "name": "Preddvor",
@@ -3665,7 +4045,12 @@
      "b": 35,
      "a": 7.2
     }
-   }
+   },
+   "w_res_model_pct": 28.5,
+   "w_res_reg_pct": 27.2,
+   "w_res_reg_n": 69,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4
   },
   "110200000110272452": {
    "name": "Rače-Fram",
@@ -3712,7 +4097,12 @@
      "b": 39,
      "a": 9.3
     }
-   }
+   },
+   "w_res_model_pct": 24.8,
+   "w_res_reg_pct": 16.3,
+   "w_res_reg_n": 310,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 12
   },
   "110200000110272536": {
    "name": "Radenci",
@@ -3759,7 +4149,12 @@
      "b": 31,
      "a": 6.5
     }
-   }
+   },
+   "w_res_model_pct": 32.9,
+   "w_res_reg_pct": 48.8,
+   "w_res_reg_n": 124,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5
   },
   "110200000110272619": {
    "name": "Radlje ob Dravi",
@@ -3806,7 +4201,12 @@
      "b": 50,
      "a": 13.4
     }
-   }
+   },
+   "w_res_model_pct": 34.0,
+   "w_res_reg_pct": 37.2,
+   "w_res_reg_n": 95,
+   "w_nres_reg_pct": 3.5,
+   "w_nres_reg_n": 8
   },
   "110200000110272700": {
    "name": "Radovljica",
@@ -3853,7 +4253,12 @@
      "b": 122,
      "a": 29.5
     }
-   }
+   },
+   "w_res_model_pct": 40.1,
+   "w_res_reg_pct": 36.8,
+   "w_res_reg_n": 329,
+   "w_nres_reg_pct": 23.7,
+   "w_nres_reg_n": 33
   },
   "110200000110272882": {
    "name": "Ravne na Koroškem",
@@ -3900,7 +4305,12 @@
      "b": 63,
      "a": 17.8
     }
-   }
+   },
+   "w_res_model_pct": 39.8,
+   "w_res_reg_pct": 19.1,
+   "w_res_reg_n": 252,
+   "w_nres_reg_pct": 3.0,
+   "w_nres_reg_n": 19
   },
   "110200000110272965": {
    "name": "Ribnica",
@@ -3947,7 +4357,12 @@
      "b": 76,
      "a": 15.7
     }
-   }
+   },
+   "w_res_model_pct": 42.5,
+   "w_res_reg_pct": 60.0,
+   "w_res_reg_n": 113,
+   "w_nres_reg_pct": 7.1,
+   "w_nres_reg_n": 15
   },
   "110200000110273005": {
    "name": "Rogatec",
@@ -3994,7 +4409,12 @@
      "b": 49,
      "a": 7.7
     }
-   }
+   },
+   "w_res_model_pct": 38.1,
+   "w_res_reg_pct": 34.7,
+   "w_res_reg_n": 43,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4
   },
   "110200000110273187": {
    "name": "Rogašovci",
@@ -4041,7 +4461,12 @@
      "b": 51,
      "a": 7.5
     }
-   }
+   },
+   "w_res_model_pct": 32.4,
+   "w_res_reg_pct": 57.9,
+   "w_res_reg_n": 37,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000110273260": {
    "name": "Rogaška Slatina",
@@ -4088,7 +4513,12 @@
      "b": 63,
      "a": 18.6
     }
-   }
+   },
+   "w_res_model_pct": 31.4,
+   "w_res_reg_pct": 27.2,
+   "w_res_reg_n": 156,
+   "w_nres_reg_pct": 17.6,
+   "w_nres_reg_n": 25
   },
   "110200000110273344": {
    "name": "Ruše",
@@ -4135,7 +4565,12 @@
      "b": 27,
      "a": 6.7
     }
-   }
+   },
+   "w_res_model_pct": 37.0,
+   "w_res_reg_pct": 30.1,
+   "w_res_reg_n": 184,
+   "w_nres_reg_pct": 5.8,
+   "w_nres_reg_n": 13
   },
   "110200000110273427": {
    "name": "Semič",
@@ -4182,7 +4617,12 @@
      "b": 68,
      "a": 10.1
     }
-   }
+   },
+   "w_res_model_pct": 36.0,
+   "w_res_reg_pct": 55.7,
+   "w_res_reg_n": 58,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000110273690": {
    "name": "Sevnica",
@@ -4229,7 +4669,12 @@
      "b": 155,
      "a": 26.3
     }
-   }
+   },
+   "w_res_model_pct": 38.2,
+   "w_res_reg_pct": 21.4,
+   "w_res_reg_n": 267,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 15
   },
   "110200000110273773": {
    "name": "Sežana",
@@ -4276,7 +4721,12 @@
      "b": 131,
      "a": 35.1
     }
-   }
+   },
+   "w_res_model_pct": 36.7,
+   "w_res_reg_pct": 23.9,
+   "w_res_reg_n": 265,
+   "w_nres_reg_pct": 4.7,
+   "w_nres_reg_n": 90
   },
   "110200000110273856": {
    "name": "Slovenj Gradec",
@@ -4323,7 +4773,12 @@
      "b": 117,
      "a": 34.2
     }
-   }
+   },
+   "w_res_model_pct": 30.8,
+   "w_res_reg_pct": 18.2,
+   "w_res_reg_n": 257,
+   "w_nres_reg_pct": 0.4,
+   "w_nres_reg_n": 30
   },
   "110200000110273930": {
    "name": "Slovenska Bistrica",
@@ -4370,7 +4825,12 @@
      "b": 166,
      "a": 47.8
     }
-   }
+   },
+   "w_res_model_pct": 30.7,
+   "w_res_reg_pct": 24.1,
+   "w_res_reg_n": 539,
+   "w_nres_reg_pct": 6.8,
+   "w_nres_reg_n": 41
   },
   "110200000110274078": {
    "name": "Slovenske Konjice",
@@ -4417,7 +4877,12 @@
      "b": 62,
      "a": 15.8
     }
-   }
+   },
+   "w_res_model_pct": 32.1,
+   "w_res_reg_pct": 27.7,
+   "w_res_reg_n": 234,
+   "w_nres_reg_pct": 17.2,
+   "w_nres_reg_n": 22
   },
   "110200000110274151": {
    "name": "Starše",
@@ -4464,7 +4929,12 @@
      "b": 24,
      "a": 4.5
     }
-   }
+   },
+   "w_res_model_pct": 30.0,
+   "w_res_reg_pct": 23.4,
+   "w_res_reg_n": 60,
+   "w_nres_reg_pct": 10.0,
+   "w_nres_reg_n": 7
   },
   "110200000110274235": {
    "name": "Sveti Jurij ob Ščavnici",
@@ -4511,7 +4981,12 @@
      "b": 53,
      "a": 7.9
     }
-   }
+   },
+   "w_res_model_pct": 34.7,
+   "w_res_reg_pct": 57.2,
+   "w_res_reg_n": 44,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000110274318": {
    "name": "Šenčur",
@@ -4558,7 +5033,12 @@
      "b": 38,
      "a": 10.2
     }
-   }
+   },
+   "w_res_model_pct": 26.7,
+   "w_res_reg_pct": 13.9,
+   "w_res_reg_n": 111,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000110274409": {
    "name": "Šentilj",
@@ -4605,7 +5085,12 @@
      "b": 29,
      "a": 15.6
     }
-   }
+   },
+   "w_res_model_pct": 30.9,
+   "w_res_reg_pct": 42.2,
+   "w_res_reg_n": 241,
+   "w_nres_reg_pct": 7.6,
+   "w_nres_reg_n": 12
   },
   "110200000110274581": {
    "name": "Šentjernej",
@@ -4652,7 +5137,12 @@
      "b": 68,
      "a": 13.0
     }
-   }
+   },
+   "w_res_model_pct": 27.6,
+   "w_res_reg_pct": 34.5,
+   "w_res_reg_n": 118,
+   "w_nres_reg_pct": 4.6,
+   "w_nres_reg_n": 10
   },
   "110200000110274664": {
    "name": "Šentjur",
@@ -4699,7 +5189,12 @@
      "b": 135,
      "a": 22.7
     }
-   }
+   },
+   "w_res_model_pct": 32.7,
+   "w_res_reg_pct": 38.0,
+   "w_res_reg_n": 259,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 17
   },
   "110200000110274748": {
    "name": "Škocjan",
@@ -4746,7 +5241,12 @@
      "b": 49,
      "a": 7.0
     }
-   }
+   },
+   "w_res_model_pct": 30.0,
+   "w_res_reg_pct": 51.4,
+   "w_res_reg_n": 50,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000110274821": {
    "name": "Škofja Loka",
@@ -4793,7 +5293,12 @@
      "b": 126,
      "a": 36.1
     }
-   }
+   },
+   "w_res_model_pct": 33.7,
+   "w_res_reg_pct": 17.2,
+   "w_res_reg_n": 369,
+   "w_nres_reg_pct": 17.5,
+   "w_nres_reg_n": 33
   },
   "110200000110275042": {
    "name": "Škofljica",
@@ -4840,7 +5345,12 @@
      "b": 37,
      "a": 11.3
     }
-   }
+   },
+   "w_res_model_pct": 23.5,
+   "w_res_reg_pct": 11.7,
+   "w_res_reg_n": 289,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5
   },
   "110200000110275125": {
    "name": "Šmarje pri Jelšah",
@@ -4887,7 +5397,12 @@
      "b": 75,
      "a": 17.2
     }
-   }
+   },
+   "w_res_model_pct": 31.2,
+   "w_res_reg_pct": 22.4,
+   "w_res_reg_n": 158,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000110275398": {
    "name": "Šmartno ob Paki",
@@ -4934,7 +5449,12 @@
      "b": 34,
      "a": 4.5
     }
-   }
+   },
+   "w_res_model_pct": 31.2,
+   "w_res_reg_pct": 24.7,
+   "w_res_reg_n": 59,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4
   },
   "110200000110275471": {
    "name": "Šoštanj",
@@ -4981,7 +5501,12 @@
      "b": 62,
      "a": 19.1
     }
-   }
+   },
+   "w_res_model_pct": 37.6,
+   "w_res_reg_pct": 36.5,
+   "w_res_reg_n": 159,
+   "w_nres_reg_pct": 14.4,
+   "w_nres_reg_n": 14
   },
   "110200000110275554": {
    "name": "Štore",
@@ -5028,7 +5553,12 @@
      "b": 21,
      "a": 5.9
     }
-   }
+   },
+   "w_res_model_pct": 45.0,
+   "w_res_reg_pct": 18.0,
+   "w_res_reg_n": 73,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000110275638": {
    "name": "Tolmin",
@@ -5075,7 +5605,12 @@
      "b": 156,
      "a": 25.3
     }
-   }
+   },
+   "w_res_model_pct": 54.8,
+   "w_res_reg_pct": 59.2,
+   "w_res_reg_n": 209,
+   "w_nres_reg_pct": 21.1,
+   "w_nres_reg_n": 25
   },
   "110200000110275711": {
    "name": "Trbovlje",
@@ -5122,7 +5657,12 @@
      "b": 60,
      "a": 22.4
     }
-   }
+   },
+   "w_res_model_pct": 54.8,
+   "w_res_reg_pct": 46.0,
+   "w_res_reg_n": 344,
+   "w_nres_reg_pct": 3.7,
+   "w_nres_reg_n": 15
   },
   "110200000110275802": {
    "name": "Trebnje",
@@ -5169,7 +5709,12 @@
      "b": 115,
      "a": 20.1
     }
-   }
+   },
+   "w_res_model_pct": 26.2,
+   "w_res_reg_pct": 19.5,
+   "w_res_reg_n": 235,
+   "w_nres_reg_pct": 16.3,
+   "w_nres_reg_n": 17
   },
   "110200000110275984": {
    "name": "Tržič",
@@ -5216,7 +5761,12 @@
      "b": 100,
      "a": 20.8
     }
-   }
+   },
+   "w_res_model_pct": 43.5,
+   "w_res_reg_pct": 23.3,
+   "w_res_reg_n": 235,
+   "w_nres_reg_pct": 15.8,
+   "w_nres_reg_n": 17
   },
   "110200000110276016": {
    "name": "Turnišče",
@@ -5263,7 +5813,12 @@
      "b": 24,
      "a": 4.4
     }
-   }
+   },
+   "w_res_model_pct": 36.7,
+   "w_res_reg_pct": 59.7,
+   "w_res_reg_n": 41,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000110276107": {
    "name": "Velenje",
@@ -5310,7 +5865,12 @@
      "b": 93,
      "a": 44.8
     }
-   }
+   },
+   "w_res_model_pct": 44.2,
+   "w_res_reg_pct": 22.8,
+   "w_res_reg_n": 433,
+   "w_nres_reg_pct": 7.2,
+   "w_nres_reg_n": 23
   },
   "110200000110276289": {
    "name": "Velike Lašče",
@@ -5357,7 +5917,12 @@
      "b": 42,
      "a": 9.3
     }
-   }
+   },
+   "w_res_model_pct": 33.0,
+   "w_res_reg_pct": 45.3,
+   "w_res_reg_n": 84,
+   "w_nres_reg_pct": 12.7,
+   "w_nres_reg_n": 4
   },
   "110200000110276362": {
    "name": "Vipava",
@@ -5404,7 +5969,12 @@
      "b": 80,
      "a": 34.5
     }
-   }
+   },
+   "w_res_model_pct": 36.3,
+   "w_res_reg_pct": 42.9,
+   "w_res_reg_n": 71,
+   "w_nres_reg_pct": 2.0,
+   "w_nres_reg_n": 7
   },
   "110200000110276446": {
    "name": "Vodice",
@@ -5451,7 +6021,12 @@
      "b": 31,
      "a": 8.2
     }
-   }
+   },
+   "w_res_model_pct": 23.8,
+   "w_res_reg_pct": 23.0,
+   "w_res_reg_n": 93,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000110276529": {
    "name": "Vrhnika",
@@ -5498,7 +6073,12 @@
      "b": 138,
      "a": 40.7
     }
-   }
+   },
+   "w_res_model_pct": 31.9,
+   "w_res_reg_pct": 22.2,
+   "w_res_reg_n": 429,
+   "w_nres_reg_pct": 5.0,
+   "w_nres_reg_n": 42
   },
   "110200000110276792": {
    "name": "Zagorje ob Savi",
@@ -5545,7 +6125,12 @@
      "b": 108,
      "a": 28.0
     }
-   }
+   },
+   "w_res_model_pct": 44.7,
+   "w_res_reg_pct": 42.6,
+   "w_res_reg_n": 240,
+   "w_nres_reg_pct": 16.8,
+   "w_nres_reg_n": 11
   },
   "110200000110276875": {
    "name": "Zreče",
@@ -5592,7 +6177,12 @@
      "b": 74,
      "a": 12.2
     }
-   }
+   },
+   "w_res_model_pct": 33.0,
+   "w_res_reg_pct": 29.9,
+   "w_res_reg_n": 118,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 10
   },
   "110200000110276958": {
    "name": "Žiri",
@@ -5639,7 +6229,12 @@
      "b": 23,
      "a": 9.1
     }
-   }
+   },
+   "w_res_model_pct": 37.8,
+   "w_res_reg_pct": 46.0,
+   "w_res_reg_n": 64,
+   "w_nres_reg_pct": 44.9,
+   "w_nres_reg_n": 5
   },
   "110200000110277097": {
    "name": "Hrpelje-Kozina",
@@ -5686,7 +6281,12 @@
      "b": 82,
      "a": 9.9
     }
-   }
+   },
+   "w_res_model_pct": 32.8,
+   "w_res_reg_pct": 25.0,
+   "w_res_reg_n": 125,
+   "w_nres_reg_pct": 9.9,
+   "w_nres_reg_n": 18
   },
   "110200000110277170": {
    "name": "Ilirska Bistrica",
@@ -5733,7 +6333,12 @@
      "b": 223,
      "a": 41.9
     }
-   }
+   },
+   "w_res_model_pct": 47.1,
+   "w_res_reg_pct": 72.8,
+   "w_res_reg_n": 253,
+   "w_nres_reg_pct": 5.4,
+   "w_nres_reg_n": 26
   },
   "110200000110277253": {
    "name": "Jesenice",
@@ -5780,7 +6385,12 @@
      "b": 71,
      "a": 26.4
     }
-   }
+   },
+   "w_res_model_pct": 51.5,
+   "w_res_reg_pct": 25.4,
+   "w_res_reg_n": 344,
+   "w_nres_reg_pct": 3.9,
+   "w_nres_reg_n": 24
   },
   "110200000110277337": {
    "name": "Kamnik",
@@ -5827,7 +6437,12 @@
      "b": 173,
      "a": 41.6
     }
-   }
+   },
+   "w_res_model_pct": 41.0,
+   "w_res_reg_pct": 22.6,
+   "w_res_reg_n": 493,
+   "w_nres_reg_pct": 8.2,
+   "w_nres_reg_n": 73
   },
   "110200000110277410": {
    "name": "Kidričevo",
@@ -5874,7 +6489,12 @@
      "b": 45,
      "a": 9.7
     }
-   }
+   },
+   "w_res_model_pct": 29.7,
+   "w_res_reg_pct": 48.7,
+   "w_res_reg_n": 93,
+   "w_nres_reg_pct": 4.3,
+   "w_nres_reg_n": 5
   },
   "110200000110277501": {
    "name": "Kobilje",
@@ -5921,7 +6541,12 @@
      "b": 7,
      "a": 1.2
     }
-   }
+   },
+   "w_res_model_pct": 40.2,
+   "w_res_reg_pct": 25.8,
+   "w_res_reg_n": 10,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000110277683": {
    "name": "Komen",
@@ -5968,7 +6593,12 @@
      "b": 64,
      "a": 11.1
     }
-   }
+   },
+   "w_res_model_pct": 47.6,
+   "w_res_reg_pct": 68.2,
+   "w_res_reg_n": 86,
+   "w_nres_reg_pct": 2.6,
+   "w_nres_reg_n": 6
   },
   "110200000110277766": {
    "name": "Koper",
@@ -6015,7 +6645,12 @@
      "b": 254,
      "a": 72.6
     }
-   }
+   },
+   "w_res_model_pct": 38.6,
+   "w_res_reg_pct": 31.2,
+   "w_res_reg_n": 1285,
+   "w_nres_reg_pct": 9.8,
+   "w_nres_reg_n": 79
   },
   "110200000110277840": {
    "name": "Kranj",
@@ -6062,7 +6697,12 @@
      "b": 185,
      "a": 90.9
     }
-   }
+   },
+   "w_res_model_pct": 38.7,
+   "w_res_reg_pct": 13.8,
+   "w_res_reg_n": 963,
+   "w_nres_reg_pct": 15.0,
+   "w_nres_reg_n": 69
   },
   "110200000110277923": {
    "name": "Kranjska Gora",
@@ -6109,7 +6749,12 @@
      "b": 95,
      "a": 23.6
     }
-   }
+   },
+   "w_res_model_pct": 39.9,
+   "w_res_reg_pct": 56.9,
+   "w_res_reg_n": 202,
+   "w_nres_reg_pct": 11.9,
+   "w_nres_reg_n": 27
   },
   "110200000110278061": {
    "name": "Kuzma",
@@ -6156,7 +6801,12 @@
      "b": 24,
      "a": 3.9
     }
-   }
+   },
+   "w_res_model_pct": 33.9,
+   "w_res_reg_pct": 26.6,
+   "w_res_reg_n": 16,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000110278145": {
    "name": "Laško",
@@ -6203,7 +6853,12 @@
      "b": 110,
      "a": 25.9
     }
-   }
+   },
+   "w_res_model_pct": 38.9,
+   "w_res_reg_pct": 29.4,
+   "w_res_reg_n": 219,
+   "w_nres_reg_pct": 32.0,
+   "w_nres_reg_n": 10
   },
   "110200000110278228": {
    "name": "Lendava",
@@ -6250,7 +6905,12 @@
      "b": 100,
      "a": 21.7
     }
-   }
+   },
+   "w_res_model_pct": 42.0,
+   "w_res_reg_pct": 51.6,
+   "w_res_reg_n": 256,
+   "w_nres_reg_pct": 3.0,
+   "w_nres_reg_n": 33
   },
   "110200000110278491": {
    "name": "Ljubljana",
@@ -6297,7 +6957,12 @@
      "b": 685,
      "a": 546.0
     }
-   }
+   },
+   "w_res_model_pct": 43.4,
+   "w_res_reg_pct": 20.3,
+   "w_res_reg_n": 6578,
+   "w_nres_reg_pct": 6.9,
+   "w_nres_reg_n": 633
   },
   "110200000110278574": {
    "name": "Ljutomer",
@@ -6344,7 +7009,12 @@
      "b": 107,
      "a": 17.6
     }
-   }
+   },
+   "w_res_model_pct": 42.2,
+   "w_res_reg_pct": 46.3,
+   "w_res_reg_n": 205,
+   "w_nres_reg_pct": 6.4,
+   "w_nres_reg_n": 20
   },
   "110200000110278657": {
    "name": "Loška dolina",
@@ -6391,7 +7061,12 @@
      "b": 57,
      "a": 7.4
     }
-   }
+   },
+   "w_res_model_pct": 41.9,
+   "w_res_reg_pct": 48.8,
+   "w_res_reg_n": 52,
+   "w_nres_reg_pct": 41.4,
+   "w_nres_reg_n": 3
   },
   "110200000110278731": {
    "name": "Lukovica",
@@ -6438,7 +7113,12 @@
      "b": 36,
      "a": 5.7
     }
-   }
+   },
+   "w_res_model_pct": 28.6,
+   "w_res_reg_pct": 22.3,
+   "w_res_reg_n": 94,
+   "w_nres_reg_pct": 22.3,
+   "w_nres_reg_n": 4
   },
   "110200000110278814": {
    "name": "Maribor",
@@ -6485,7 +7165,12 @@
      "b": 329,
      "a": 202.3
     }
-   }
+   },
+   "w_res_model_pct": 43.2,
+   "w_res_reg_pct": 21.3,
+   "w_res_reg_n": 2887,
+   "w_nres_reg_pct": 5.0,
+   "w_nres_reg_n": 234
   },
   "110200000110278905": {
    "name": "Medvode",
@@ -6532,7 +7217,12 @@
      "b": 77,
      "a": 17.1
     }
-   }
+   },
+   "w_res_model_pct": 31.6,
+   "w_res_reg_pct": 21.8,
+   "w_res_reg_n": 473,
+   "w_nres_reg_pct": 3.2,
+   "w_nres_reg_n": 13
   },
   "110200000110279036": {
    "name": "Metlika",
@@ -6579,7 +7269,12 @@
      "b": 87,
      "a": 20.9
     }
-   }
+   },
+   "w_res_model_pct": 41.2,
+   "w_res_reg_pct": 41.3,
+   "w_res_reg_n": 107,
+   "w_nres_reg_pct": 15.2,
+   "w_nres_reg_n": 6
   },
   "110200000110279119": {
    "name": "Miren-Kostanjevica",
@@ -6626,7 +7321,12 @@
      "b": 40,
      "a": 8.0
     }
-   }
+   },
+   "w_res_model_pct": 42.2,
+   "w_res_reg_pct": 54.5,
+   "w_res_reg_n": 106,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 6
   },
   "110200000110279200": {
    "name": "Mozirje",
@@ -6673,7 +7373,12 @@
      "b": 55,
      "a": 7.7
     }
-   }
+   },
+   "w_res_model_pct": 32.1,
+   "w_res_reg_pct": 15.8,
+   "w_res_reg_n": 81,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 12
   },
   "110200000110279382": {
    "name": "Muta",
@@ -6720,7 +7425,12 @@
      "b": 27,
      "a": 3.7
     }
-   }
+   },
+   "w_res_model_pct": 33.1,
+   "w_res_reg_pct": 43.2,
+   "w_res_reg_n": 62,
+   "w_nres_reg_pct": 5.7,
+   "w_nres_reg_n": 6
   },
   "110200000110279465": {
    "name": "Naklo",
@@ -6767,7 +7477,12 @@
      "b": 38,
      "a": 7.5
     }
-   }
+   },
+   "w_res_model_pct": 31.5,
+   "w_res_reg_pct": 33.4,
+   "w_res_reg_n": 67,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4
   },
   "110200000110279549": {
    "name": "Nazarje",
@@ -6814,7 +7529,12 @@
      "b": 33,
      "a": 8.3
     }
-   }
+   },
+   "w_res_model_pct": 44.1,
+   "w_res_reg_pct": 51.6,
+   "w_res_reg_n": 32,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000110279622": {
    "name": "Novo mesto",
@@ -6861,7 +7581,12 @@
      "b": 206,
      "a": 85.1
     }
-   }
+   },
+   "w_res_model_pct": 32.6,
+   "w_res_reg_pct": 13.8,
+   "w_res_reg_n": 650,
+   "w_nres_reg_pct": 3.6,
+   "w_nres_reg_n": 73
   },
   "110200000110279895": {
    "name": "Osilnica",
@@ -6908,7 +7633,12 @@
      "b": 10,
      "a": 0.9
     }
-   }
+   },
+   "w_res_model_pct": 42.4,
+   "w_res_reg_pct": 77.2,
+   "w_res_reg_n": 7,
+   "w_nres_reg_pct": 14.4,
+   "w_nres_reg_n": 4
   },
   "110200000110279978": {
    "name": "Piran",
@@ -6955,7 +7685,12 @@
      "b": 170,
      "a": 56.6
     }
-   }
+   },
+   "w_res_model_pct": 42.1,
+   "w_res_reg_pct": 32.6,
+   "w_res_reg_n": 514,
+   "w_nres_reg_pct": 14.5,
+   "w_nres_reg_n": 69
   },
   "110200000110280042": {
    "name": "Pivka",
@@ -7002,7 +7737,12 @@
      "b": 88,
      "a": 30.5
     }
-   }
+   },
+   "w_res_model_pct": 37.1,
+   "w_res_reg_pct": 72.0,
+   "w_res_reg_n": 94,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 12
   },
   "110200000110280125": {
    "name": "Podvelka",
@@ -7049,7 +7789,12 @@
      "b": 47,
      "a": 6.1
     }
-   }
+   },
+   "w_res_model_pct": 45.7,
+   "w_res_reg_pct": 41.1,
+   "w_res_reg_n": 39,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1
   },
   "110200000110280398": {
    "name": "Ptuj",
@@ -7096,7 +7841,12 @@
      "b": 160,
      "a": 47.3
     }
-   }
+   },
+   "w_res_model_pct": 35.9,
+   "w_res_reg_pct": 23.4,
+   "w_res_reg_n": 486,
+   "w_nres_reg_pct": 4.3,
+   "w_nres_reg_n": 53
   },
   "110200000110280471": {
    "name": "Puconci",
@@ -7143,7 +7893,12 @@
      "b": 75,
      "a": 12.9
     }
-   }
+   },
+   "w_res_model_pct": 35.9,
+   "w_res_reg_pct": 47.0,
+   "w_res_reg_n": 89,
+   "w_nres_reg_pct": 4.8,
+   "w_nres_reg_n": 6
   },
   "110200000110280554": {
    "name": "Radeče",
@@ -7190,7 +7945,12 @@
      "b": 41,
      "a": 10.7
     }
-   }
+   },
+   "w_res_model_pct": 46.7,
+   "w_res_reg_pct": 28.2,
+   "w_res_reg_n": 78,
+   "w_nres_reg_pct": 48.7,
+   "w_nres_reg_n": 7
   },
   "110200000110280638": {
    "name": "Videm",
@@ -7237,7 +7997,12 @@
      "b": 33,
      "a": 4.0
     }
-   }
+   },
+   "w_res_model_pct": 31.6,
+   "w_res_reg_pct": 35.0,
+   "w_res_reg_n": 81,
+   "w_nres_reg_pct": 8.1,
+   "w_nres_reg_n": 2
   },
   "110200000110280711": {
    "name": "Vitanje",
@@ -7284,7 +8049,12 @@
      "b": 27,
      "a": 4.5
     }
-   }
+   },
+   "w_res_model_pct": 39.7,
+   "w_res_reg_pct": 25.4,
+   "w_res_reg_n": 26,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000110280802": {
    "name": "Vojnik",
@@ -7331,7 +8101,12 @@
      "b": 51,
      "a": 11.7
     }
-   }
+   },
+   "w_res_model_pct": 29.5,
+   "w_res_reg_pct": 35.7,
+   "w_res_reg_n": 165,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5
   },
   "110200000110280984": {
    "name": "Vuzenica",
@@ -7378,7 +8153,12 @@
      "b": 24,
      "a": 5.9
     }
-   }
+   },
+   "w_res_model_pct": 38.8,
+   "w_res_reg_pct": 30.0,
+   "w_res_reg_n": 41,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000110281016": {
    "name": "Zavrč",
@@ -7425,7 +8205,12 @@
      "b": 11,
      "a": 2.6
     }
-   }
+   },
+   "w_res_model_pct": 36.1,
+   "w_res_reg_pct": 79.1,
+   "w_res_reg_n": 26,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000110281289": {
    "name": "Železniki",
@@ -7472,7 +8257,12 @@
      "b": 56,
      "a": 9.6
     }
-   }
+   },
+   "w_res_model_pct": 43.1,
+   "w_res_reg_pct": 49.8,
+   "w_res_reg_n": 73,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 7
   },
   "110200000214276243": {
    "name": "Benedikt",
@@ -7519,7 +8309,12 @@
      "b": 11,
      "a": 1.9
     }
-   }
+   },
+   "w_res_model_pct": 27.8,
+   "w_res_reg_pct": 20.4,
+   "w_res_reg_n": 54,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1
   },
   "110200000214276326": {
    "name": "Bistrica ob Sotli",
@@ -7566,7 +8361,12 @@
      "b": 17,
      "a": 3.5
     }
-   }
+   },
+   "w_res_model_pct": 42.4,
+   "w_res_reg_pct": 59.0,
+   "w_res_reg_n": 22,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214276599": {
    "name": "Bloke",
@@ -7613,7 +8413,12 @@
      "b": 23,
      "a": 4.1
     }
-   }
+   },
+   "w_res_model_pct": 38.7,
+   "w_res_reg_pct": 27.9,
+   "w_res_reg_n": 39,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214276672": {
    "name": "Braslovče",
@@ -7660,7 +8465,12 @@
      "b": 44,
      "a": 10.4
     }
-   }
+   },
+   "w_res_model_pct": 32.7,
+   "w_res_reg_pct": 29.6,
+   "w_res_reg_n": 96,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 7
   },
   "110200000214276755": {
    "name": "Cankova",
@@ -7707,7 +8517,12 @@
      "b": 27,
      "a": 6.0
     }
-   }
+   },
+   "w_res_model_pct": 40.1,
+   "w_res_reg_pct": 57.0,
+   "w_res_reg_n": 19,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214276839": {
    "name": "Cerkvenjak",
@@ -7754,7 +8569,12 @@
      "b": 9,
      "a": 1.7
     }
-   }
+   },
+   "w_res_model_pct": 26.9,
+   "w_res_reg_pct": 21.3,
+   "w_res_reg_n": 33,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000214276912": {
    "name": "Dobje",
@@ -7801,7 +8621,12 @@
      "b": 8,
      "a": 1.3
     }
-   }
+   },
+   "w_res_model_pct": 37.8,
+   "w_res_reg_pct": 10.7,
+   "w_res_reg_n": 5,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214277050": {
    "name": "Dobrna",
@@ -7848,7 +8673,12 @@
      "b": 18,
      "a": 2.9
     }
-   }
+   },
+   "w_res_model_pct": 34.2,
+   "w_res_reg_pct": 26.9,
+   "w_res_reg_n": 44,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000214277134": {
    "name": "Dobrovnik",
@@ -7895,7 +8725,12 @@
      "b": 22,
      "a": 4.1
     }
-   }
+   },
+   "w_res_model_pct": 39.6,
+   "w_res_reg_pct": 59.1,
+   "w_res_reg_n": 31,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000214277217": {
    "name": "Dolenjske Toplice",
@@ -7942,7 +8777,12 @@
      "b": 83,
      "a": 7.6
     }
-   }
+   },
+   "w_res_model_pct": 30.9,
+   "w_res_reg_pct": 41.4,
+   "w_res_reg_n": 67,
+   "w_nres_reg_pct": 3.8,
+   "w_nres_reg_n": 4
   },
   "110200000214277308": {
    "name": "Grad",
@@ -7989,7 +8829,12 @@
      "b": 30,
      "a": 5.2
     }
-   }
+   },
+   "w_res_model_pct": 43.7,
+   "w_res_reg_pct": 77.6,
+   "w_res_reg_n": 29,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214277480": {
    "name": "Hajdina",
@@ -8036,7 +8881,12 @@
      "b": 25,
      "a": 5.6
     }
-   }
+   },
+   "w_res_model_pct": 27.8,
+   "w_res_reg_pct": 18.0,
+   "w_res_reg_n": 88,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000214277563": {
    "name": "Hoče-Slivnica",
@@ -8083,7 +8933,12 @@
      "b": 59,
      "a": 26.7
     }
-   }
+   },
+   "w_res_model_pct": 27.4,
+   "w_res_reg_pct": 20.2,
+   "w_res_reg_n": 415,
+   "w_nres_reg_pct": 6.9,
+   "w_nres_reg_n": 22
   },
   "110200000214277647": {
    "name": "Hodoš",
@@ -8130,7 +8985,12 @@
      "b": 13,
      "a": 2.7
     }
-   }
+   },
+   "w_res_model_pct": 45.5,
+   "w_res_reg_pct": 68.5,
+   "w_res_reg_n": 3,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000214277720": {
    "name": "Horjul",
@@ -8177,7 +9037,12 @@
      "b": 24,
      "a": 3.9
     }
-   }
+   },
+   "w_res_model_pct": 33.0,
+   "w_res_reg_pct": 34.3,
+   "w_res_reg_n": 23,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000214277993": {
    "name": "Jezersko",
@@ -8224,7 +9089,12 @@
      "b": 29,
      "a": 3.7
     }
-   }
+   },
+   "w_res_model_pct": 44.7,
+   "w_res_reg_pct": 62.5,
+   "w_res_reg_n": 13,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4
   },
   "110200000214278025": {
    "name": "Komenda",
@@ -8271,7 +9141,12 @@
      "b": 15,
      "a": 4.3
     }
-   }
+   },
+   "w_res_model_pct": 23.7,
+   "w_res_reg_pct": 13.6,
+   "w_res_reg_n": 145,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 8
   },
   "110200000214278298": {
    "name": "Kostel",
@@ -8318,7 +9193,12 @@
      "b": 23,
      "a": 3.4
     }
-   }
+   },
+   "w_res_model_pct": 45.0,
+   "w_res_reg_pct": 56.6,
+   "w_res_reg_n": 24,
+   "w_nres_reg_pct": 41.6,
+   "w_nres_reg_n": 2
   },
   "110200000214278371": {
    "name": "Križevci",
@@ -8365,7 +9245,12 @@
      "b": 36,
      "a": 5.1
     }
-   }
+   },
+   "w_res_model_pct": 37.2,
+   "w_res_reg_pct": 49.9,
+   "w_res_reg_n": 45,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214278454": {
    "name": "Lovrenc na Pohorju",
@@ -8412,7 +9297,12 @@
      "b": 19,
      "a": 3.7
     }
-   }
+   },
+   "w_res_model_pct": 42.3,
+   "w_res_reg_pct": 60.6,
+   "w_res_reg_n": 47,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214278538": {
    "name": "Mirna Peč",
@@ -8459,7 +9349,12 @@
      "b": 24,
      "a": 3.0
     }
-   }
+   },
+   "w_res_model_pct": 27.0,
+   "w_res_reg_pct": 52.0,
+   "w_res_reg_n": 46,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1
   },
   "110200000214278611": {
    "name": "Oplotnica",
@@ -8506,7 +9401,12 @@
      "b": 26,
      "a": 5.1
     }
-   }
+   },
+   "w_res_model_pct": 31.6,
+   "w_res_reg_pct": 55.4,
+   "w_res_reg_n": 19,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214278702": {
    "name": "Podlehnik",
@@ -8553,7 +9453,12 @@
      "b": 10,
      "a": 2.4
     }
-   }
+   },
+   "w_res_model_pct": 35.8,
+   "w_res_reg_pct": 36.5,
+   "w_res_reg_n": 22,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000214278884": {
    "name": "Prebold",
@@ -8600,7 +9505,12 @@
      "b": 33,
      "a": 7.5
     }
-   }
+   },
+   "w_res_model_pct": 34.9,
+   "w_res_reg_pct": 24.3,
+   "w_res_reg_n": 114,
+   "w_nres_reg_pct": 20.0,
+   "w_nres_reg_n": 5
   },
   "110200000214278967": {
    "name": "Razkrižje",
@@ -8647,7 +9557,12 @@
      "b": 10,
      "a": 3.7
     }
-   }
+   },
+   "w_res_model_pct": 43.9,
+   "w_res_reg_pct": 44.9,
+   "w_res_reg_n": 14,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214279007": {
    "name": "Selnica ob Dravi",
@@ -8694,7 +9609,12 @@
      "b": 28,
      "a": 8.0
     }
-   }
+   },
+   "w_res_model_pct": 35.3,
+   "w_res_reg_pct": 41.6,
+   "w_res_reg_n": 75,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000214279189": {
    "name": "Solčava",
@@ -8741,7 +9661,12 @@
      "b": 26,
      "a": 5.6
     }
-   }
+   },
+   "w_res_model_pct": 46.2,
+   "w_res_reg_pct": 73.6,
+   "w_res_reg_n": 8,
+   "w_nres_reg_pct": 29.1,
+   "w_nres_reg_n": 6
   },
   "110200000214279262": {
    "name": "Šempeter-Vrtojba",
@@ -8788,7 +9713,12 @@
      "b": 27,
      "a": 5.1
     }
-   }
+   },
+   "w_res_model_pct": 44.2,
+   "w_res_reg_pct": 40.6,
+   "w_res_reg_n": 127,
+   "w_nres_reg_pct": 0.7,
+   "w_nres_reg_n": 19
   },
   "110200000214279346": {
    "name": "Tabor",
@@ -8835,7 +9765,12 @@
      "b": 15,
      "a": 1.6
     }
-   }
+   },
+   "w_res_model_pct": 32.4,
+   "w_res_reg_pct": 41.8,
+   "w_res_reg_n": 30,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000214279429": {
    "name": "Trnovska vas",
@@ -8882,7 +9817,12 @@
      "b": 12,
      "a": 2.0
     }
-   }
+   },
+   "w_res_model_pct": 24.5,
+   "w_res_reg_pct": 22.2,
+   "w_res_reg_n": 13,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214279692": {
    "name": "Trzin",
@@ -8929,7 +9869,12 @@
      "b": 26,
      "a": 15.1
     }
-   }
+   },
+   "w_res_model_pct": 22.6,
+   "w_res_reg_pct": 4.2,
+   "w_res_reg_n": 100,
+   "w_nres_reg_pct": 0.5,
+   "w_nres_reg_n": 34
   },
   "110200000214279775": {
    "name": "Veržej",
@@ -8976,7 +9921,12 @@
      "b": 15,
      "a": 2.9
     }
-   }
+   },
+   "w_res_model_pct": 33.6,
+   "w_res_reg_pct": 37.6,
+   "w_res_reg_n": 34,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 6
   },
   "110200000214279858": {
    "name": "Žetale",
@@ -9023,7 +9973,12 @@
      "b": 12,
      "a": 2.1
     }
-   }
+   },
+   "w_res_model_pct": 32.6,
+   "w_res_reg_pct": 39.0,
+   "w_res_reg_n": 6,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000214279932": {
    "name": "Žužemberk",
@@ -9070,7 +10025,12 @@
      "b": 65,
      "a": 11.0
     }
-   }
+   },
+   "w_res_model_pct": 36.6,
+   "w_res_reg_pct": 44.1,
+   "w_res_reg_n": 74,
+   "w_nres_reg_pct": 55.9,
+   "w_nres_reg_n": 3
   },
   "110200000214280195": {
    "name": "Markovci",
@@ -9117,7 +10077,12 @@
      "b": 27,
      "a": 5.2
     }
-   }
+   },
+   "w_res_model_pct": 28.8,
+   "w_res_reg_pct": 36.6,
+   "w_res_reg_n": 31,
+   "w_nres_reg_pct": 7.0,
+   "w_nres_reg_n": 5
   },
   "110200000214280278": {
    "name": "Miklavž na Dravskem polju",
@@ -9164,7 +10129,12 @@
      "b": 21,
      "a": 2.7
     }
-   }
+   },
+   "w_res_model_pct": 27.0,
+   "w_res_reg_pct": 20.8,
+   "w_res_reg_n": 199,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 9
   },
   "110200000214280351": {
    "name": "Polzela",
@@ -9211,7 +10181,12 @@
      "b": 52,
      "a": 8.9
     }
-   }
+   },
+   "w_res_model_pct": 26.8,
+   "w_res_reg_pct": 14.8,
+   "w_res_reg_n": 125,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000214280435": {
    "name": "Prevalje",
@@ -9258,7 +10233,12 @@
      "b": 37,
      "a": 9.4
     }
-   }
+   },
+   "w_res_model_pct": 46.3,
+   "w_res_reg_pct": 22.7,
+   "w_res_reg_n": 145,
+   "w_nres_reg_pct": 2.4,
+   "w_nres_reg_n": 14
   },
   "110200000214280518": {
    "name": "Ribnica na Pohorju",
@@ -9305,7 +10285,12 @@
      "b": 30,
      "a": 4.5
     }
-   }
+   },
+   "w_res_model_pct": 43.4,
+   "w_res_reg_pct": 77.8,
+   "w_res_reg_n": 21,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 5
   },
   "110200000214280609": {
    "name": "Sodražica",
@@ -9352,7 +10337,12 @@
      "b": 20,
      "a": 4.1
     }
-   }
+   },
+   "w_res_model_pct": 39.1,
+   "w_res_reg_pct": 49.5,
+   "w_res_reg_n": 34,
+   "w_nres_reg_pct": 23.8,
+   "w_nres_reg_n": 2
   },
   "110200000214280781": {
    "name": "Sveta Ana",
@@ -9399,7 +10389,12 @@
      "b": 11,
      "a": 2.4
     }
-   }
+   },
+   "w_res_model_pct": 30.6,
+   "w_res_reg_pct": 12.0,
+   "w_res_reg_n": 35,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000214280864": {
    "name": "Sveti Andraž v Slov. goricah",
@@ -9446,7 +10441,12 @@
      "b": 12,
      "a": 1.9
     }
-   }
+   },
+   "w_res_model_pct": 30.0,
+   "w_res_reg_pct": 46.3,
+   "w_res_reg_n": 5,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214280948": {
    "name": "Velika Polana",
@@ -9493,7 +10493,12 @@
      "b": 20,
      "a": 3.8
     }
-   }
+   },
+   "w_res_model_pct": 37.8,
+   "w_res_reg_pct": 89.6,
+   "w_res_reg_n": 14,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214281086": {
    "name": "Vransko",
@@ -9540,7 +10545,12 @@
      "b": 36,
      "a": 5.4
     }
-   }
+   },
+   "w_res_model_pct": 36.4,
+   "w_res_reg_pct": 17.2,
+   "w_res_reg_n": 45,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 6
   },
   "110200000214281169": {
    "name": "Žirovnica",
@@ -9587,7 +10597,12 @@
      "b": 36,
      "a": 5.5
     }
-   }
+   },
+   "w_res_model_pct": 33.9,
+   "w_res_reg_pct": 29.3,
+   "w_res_reg_n": 68,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000214281243": {
    "name": "Žalec",
@@ -9634,7 +10649,12 @@
      "b": 144,
      "a": 43.3
     }
-   }
+   },
+   "w_res_model_pct": 38.3,
+   "w_res_reg_pct": 24.8,
+   "w_res_reg_n": 427,
+   "w_nres_reg_pct": 0.4,
+   "w_nres_reg_n": 39
   },
   "110200000214282647": {
    "name": "Šmartno pri Litiji",
@@ -9681,7 +10701,12 @@
      "b": 43,
      "a": 9.4
     }
-   }
+   },
+   "w_res_model_pct": 32.3,
+   "w_res_reg_pct": 25.2,
+   "w_res_reg_n": 79,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000214336328": {
    "name": "Središče ob Dravi",
@@ -9728,7 +10753,12 @@
      "b": 16,
      "a": 3.1
     }
-   }
+   },
+   "w_res_model_pct": 49.0,
+   "w_res_reg_pct": 44.2,
+   "w_res_reg_n": 33,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000214336591": {
    "name": "Straža",
@@ -9775,7 +10805,12 @@
      "b": 20,
      "a": 3.4
     }
-   }
+   },
+   "w_res_model_pct": 36.7,
+   "w_res_reg_pct": 50.6,
+   "w_res_reg_n": 78,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000214336674": {
    "name": "Sveta Trojica v Slovenskih goricah",
@@ -9822,7 +10857,12 @@
      "b": 9,
      "a": 2.4
     }
-   }
+   },
+   "w_res_model_pct": 30.3,
+   "w_res_reg_pct": 21.8,
+   "w_res_reg_n": 62,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 3
   },
   "110200000214336757": {
    "name": "Sveti Tomaž",
@@ -9869,7 +10909,12 @@
      "b": 12,
      "a": 2.9
     }
-   }
+   },
+   "w_res_model_pct": 35.1,
+   "w_res_reg_pct": 35.7,
+   "w_res_reg_n": 24,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 1
   },
   "110200000214336831": {
    "name": "Šmarješke Toplice",
@@ -9916,7 +10961,12 @@
      "b": 35,
      "a": 5.8
     }
-   }
+   },
+   "w_res_model_pct": 24.3,
+   "w_res_reg_pct": 21.4,
+   "w_res_reg_n": 79,
+   "w_nres_reg_pct": 100.0,
+   "w_nres_reg_n": 1
   },
   "110200000214364379": {
    "name": "Apače",
@@ -9963,7 +11013,12 @@
      "b": 29,
      "a": 5.4
     }
-   }
+   },
+   "w_res_model_pct": 32.9,
+   "w_res_reg_pct": 34.2,
+   "w_res_reg_n": 60,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 9
   },
   "110200000214364452": {
    "name": "Cirkulane",
@@ -10010,7 +11065,12 @@
      "b": 19,
      "a": 8.5
     }
-   }
+   },
+   "w_res_model_pct": 33.0,
+   "w_res_reg_pct": 61.6,
+   "w_res_reg_n": 35,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000214364536": {
    "name": "Kostanjevica na Krki",
@@ -10057,7 +11117,12 @@
      "b": 30,
      "a": 9.7
     }
-   }
+   },
+   "w_res_model_pct": 36.9,
+   "w_res_reg_pct": 56.2,
+   "w_res_reg_n": 25,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 2
   },
   "110200000214364619": {
    "name": "Makole",
@@ -10104,7 +11169,12 @@
      "b": 13,
      "a": 6.3
     }
-   }
+   },
+   "w_res_model_pct": 34.1,
+   "w_res_reg_pct": 68.0,
+   "w_res_reg_n": 30,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000214364700": {
    "name": "Mokronog-Trebelno",
@@ -10151,7 +11221,12 @@
      "b": 44,
      "a": 7.4
     }
-   }
+   },
+   "w_res_model_pct": 32.0,
+   "w_res_reg_pct": 59.2,
+   "w_res_reg_n": 66,
+   "w_nres_reg_pct": 3.6,
+   "w_nres_reg_n": 5
   },
   "110200000214364882": {
    "name": "Poljčane",
@@ -10198,7 +11273,12 @@
      "b": 27,
      "a": 5.7
     }
-   }
+   },
+   "w_res_model_pct": 37.3,
+   "w_res_reg_pct": 29.7,
+   "w_res_reg_n": 54,
+   "w_nres_reg_pct": 3.4,
+   "w_nres_reg_n": 3
   },
   "110200000240634530": {
    "name": "Renče-Vogrsko",
@@ -10245,7 +11325,12 @@
      "b": 24,
      "a": 4.5
     }
-   }
+   },
+   "w_res_model_pct": 39.4,
+   "w_res_reg_pct": 47.0,
+   "w_res_reg_n": 57,
+   "w_nres_reg_pct": 30.5,
+   "w_nres_reg_n": 6
   },
   "110200000240634613": {
    "name": "Gorje",
@@ -10292,7 +11377,12 @@
      "b": 21,
      "a": 4.0
     }
-   }
+   },
+   "w_res_model_pct": 51.2,
+   "w_res_reg_pct": 66.0,
+   "w_res_reg_n": 55,
+   "w_nres_reg_pct": 20.7,
+   "w_nres_reg_n": 7
   },
   "110200000240634704": {
    "name": "Log-Dragomer",
@@ -10339,7 +11429,12 @@
      "b": 9,
      "a": 1.6
     }
-   }
+   },
+   "w_res_model_pct": 27.7,
+   "w_res_reg_pct": 18.9,
+   "w_res_reg_n": 91,
+   "w_nres_reg_pct": 0.0,
+   "w_nres_reg_n": 4
   },
   "110200000240634886": {
    "name": "Rečica ob Savinji",
@@ -10386,7 +11481,12 @@
      "b": 30,
      "a": 4.2
     }
-   }
+   },
+   "w_res_model_pct": 42.4,
+   "w_res_reg_pct": 55.2,
+   "w_res_reg_n": 35,
+   "w_nres_reg_pct": 36.3,
+   "w_nres_reg_n": 5
   },
   "110200000240634969": {
    "name": "Sveti Jurij v Slovenskih goricah",
@@ -10433,7 +11533,12 @@
      "b": 12,
      "a": 1.8
     }
-   }
+   },
+   "w_res_model_pct": 27.0,
+   "w_res_reg_pct": 14.6,
+   "w_res_reg_n": 41,
+   "w_nres_reg_pct": null,
+   "w_nres_reg_n": 0
   },
   "110200000240635008": {
    "name": "Šentrupert",
@@ -10480,7 +11585,12 @@
      "b": 69,
      "a": 18.1
     }
-   }
+   },
+   "w_res_model_pct": 22.9,
+   "w_res_reg_pct": 46.3,
+   "w_res_reg_n": 44,
+   "w_nres_reg_pct": 10.3,
+   "w_nres_reg_n": 19
   },
   "110200000240635180": {
    "name": "Mirna",
@@ -10527,7 +11637,12 @@
      "b": 19,
      "a": 3.3
     }
-   }
+   },
+   "w_res_model_pct": 28.7,
+   "w_res_reg_pct": 30.5,
+   "w_res_reg_n": 59,
+   "w_nres_reg_pct": 64.4,
+   "w_nres_reg_n": 5
   },
   "110200000240635263": {
    "name": "Ankaran",
@@ -10574,7 +11689,19 @@
      "b": 49,
      "a": 18.0
     }
-   }
+   },
+   "w_res_model_pct": 41.7,
+   "w_res_reg_pct": 54.9,
+   "w_res_reg_n": 99,
+   "w_nres_reg_pct": 20.8,
+   "w_nres_reg_n": 6
   }
+ },
+ "si": {
+  "w_res_model_pct": 37.9,
+  "w_res_reg_pct": 25.7,
+  "w_res_reg_n": 40854,
+  "w_nres_reg_pct": 7.7,
+  "w_nres_reg_n": 3469
  }
 }

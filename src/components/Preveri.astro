@@ -249,6 +249,13 @@ const pr = loadData<Prihranek>('prihranek');
       box.append(scale);
 
       const ul = el('ul');
+      // Ciljni razred do leta 2050: A (brezemisijska stavba) za vse stavbe, C za stavbe kulturne dediščine.
+      const goal = (): (string | [string, string])[] => {
+        const dk = dd !== 'ne';
+        const t = dk ? c.class_bounds['C|D'] : c.class_bounds['A|B'];
+        return [`Ciljna raven prenove do leta 2050 je ${dk ? 'za stavbe kulturne dediščine najmanj razred C' : 'razred A – brezemisijska stavba'} (do ${nf(t)} kWh/(m²·a)) – `,
+          v > t ? ['stavba je še nad to ravnjo.', 'chk-no'] : ['stavba jo že dosega.', 'chk-ok']];
+      };
       if (c.meps) {
         const m = c.meps;
         if (dd === 'spomenik') {
@@ -261,16 +268,17 @@ const pr = loadData<Prihranek>('prihranek');
           li(ul, ['Predlagan prag za leto 2040: najmanj razred D (', nf(t40), ' kWh/(m²·a)) – ', v > t40 ? ['stavba ga še ne dosega.', 'chk-no'] : ['stavba ga že dosega.', 'chk-ok']]);
           li(ul, [`Predlagan prag za leto 2050: najmanj razred ${dd === 'dediscina' ? 'C (za kulturno dediščino)' : 'B'} (`, nf(t50), ' kWh/(m²·a)) – ', v > t50 ? ['stavba ga še ne dosega.', 'chk-no'] : ['stavba ga že dosega.', 'chk-ok']]);
         }
+        li(ul, goal());
         if (m.indicative) li(ul, ['Vzorec izkaznic je v tej kategoriji majhen, zato so pragovi okvirni.']);
         box.append(ul);
         box.append(el('p', 'Izjeme: stavbe za verske obrede, začasni objekti z rabo do dveh let, stavbe pod 50 m² ter industrijske in kmetijske stavbe. Posamezno izjemo (npr. predvidena rušitev, insolventnost lastnika, negativna ocena stroškov in koristi) odobri ministrstvo na vlogo lastnika.', 'note'));
       } else if (c.worst_43) {
         const w = c.worst_43;
-        const target = dd === 'ne' ? c.class_bounds['B|C'] : c.class_bounds['C|D'];
+
         li(ul, v > w.threshold
           ? ['Stavba ', ['sodi med 43 % energetsko najmanj učinkovitih', 'chk-no'], ` stanovanjskih stavb (prag ${nf(w.threshold)} kWh/(m²·a)). Te stavbe imajo pri prenovi prednost in višje spodbude.`]
           : ['Stavba ', ['ne sodi', 'chk-ok'], ` med 43 % energetsko najmanj učinkovitih stanovanjskih stavb (prag ${nf(w.threshold)} kWh/(m²·a)).`]);
-        li(ul, [`Ciljna raven prenove teh stavb je najmanj razred ${dd === 'ne' ? 'B' : 'C (za kulturno dediščino)'} (do ${nf(target)} kWh/(m²·a)).`]);
+        li(ul, goal());
         li(ul, ['Obvezne prenove posamezne stanovanjske stavbe načrt ne določa. Priporočljivo je, da vsako prenovo načrtujete kot korak k brezemisijski stavbi.']);
         box.append(ul);
       }

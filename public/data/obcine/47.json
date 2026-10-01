@@ -10,7 +10,7 @@
    "Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsaj 10 izkaznicah. Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
+  "note": "Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsakem številu izkaznic, skupaj s številom izkaznic. Razredi A–G so določeni iz primarne energije računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom."
  },
  "sifra": 47,
  "eid": "110200000110277501",
@@ -26,7 +26,15 @@
    "ei_buildings_pct": 3.2,
    "ei_area_pct": 3.0,
    "ei_calc": 7,
-   "classes_pct": null,
+   "classes_pct": {
+    "A": 14.3,
+    "B": 0.0,
+    "C": 14.3,
+    "D": 42.9,
+    "E": 14.3,
+    "F": 14.3,
+    "G": 0.0
+   },
    "class_groups_pct": null
   },
   "bloki": {
@@ -35,7 +43,15 @@
    "ei_buildings_pct": 60.0,
    "ei_area_pct": 73.4,
    "ei_calc": 3,
-   "classes_pct": null,
+   "classes_pct": {
+    "A": 0.0,
+    "B": 33.3,
+    "C": 33.3,
+    "D": 0.0,
+    "E": 0.0,
+    "F": 0.0,
+    "G": 33.3
+   },
    "class_groups_pct": null
   },
   "javne": {

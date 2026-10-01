@@ -192,7 +192,7 @@ def _sources():
             'Meje energijskih razredov, prag 43 % in pragovi minimalnih standardov: osnutek NPS 2050']
 
 
-_NOTE = (f'Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsaj {MIN_EI} izkaznicah. Razredi A–G so določeni iz primarne energije '
+_NOTE = ('Samo agregati. Deleži med stavbami z izkaznico so prikazani pri vsakem številu izkaznic, skupaj s številom izkaznic. Razredi A–G so določeni iz primarne energije '
          'računskih izkaznic po mejah NPS 2050 za kategorijo stavbe; deleži nad pragovi veljajo za stavbe z izkaznico (vzorec). '
          'Javne stavbe po pretežni dejanski rabi delov stavbe (brez pomožnih prostorov). Eko sklad: stavbe z vsaj enim podprtim ukrepom.')
 

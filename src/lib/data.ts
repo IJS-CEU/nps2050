@@ -77,6 +77,7 @@ export interface Sankey { meta: Meta; classes: string[]; types: Record<string, S
 export interface Area {
   name: string; region?: string; buildings: number; area_k_m2: number; res_area_k_m2: number; nonres_area_k_m2: number;
   pre1981_area_pct: number | null; cats: Record<string, { b: number; a: number } | null>;
+  w_res_model_pct?: number | null; w_res_reg_pct?: number | null; w_res_reg_n?: number; w_nres_reg_pct?: number | null; w_nres_reg_n?: number;
 }
 export interface Zemljevid {
   meta: Meta; categories: { id: string; name: string; segment: string }[];
@@ -124,11 +125,12 @@ export interface ObIndexRow {
   obnova_res_pct: number | null; pre1981_res_area_pct: number | null;
   model_fe_kwh_m2: number; model_above43_pct: number;
   k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; k_dh_pot_pct: number; k_dh_fe_pct: number; pop: number;
+  w_res_model_pct: number | null; w_res_reg_pct: number | null; w_res_reg_n: number; w_nres_reg_pct: number | null; w_nres_reg_n: number;
 }
 export interface ObcineIndex {
   meta: Meta; min_cell: number; min_ei: number; classes: string[]; class_groups: string[]; periods: string[];
   segments: { id: string; name: string }[]; es_groups: { id: string; name: string }[]; categories: { id: string; name: string }[];
-  si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number; model_fe_kwh_m2: number; model_above43_pct: number; k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; k_dh_pot_pct: number; k_dh_fe_pct: number; pop: number };
+  si: ObArea & { ei_area_res_pct: number; pre1981_res_area_pct: number; model_fe_kwh_m2: number; model_above43_pct: number; k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; k_dh_pot_pct: number; k_dh_fe_pct: number; pop: number; w_res_model_pct: number | null; w_res_reg_pct: number | null; w_res_reg_n: number; w_nres_reg_pct: number | null; w_nres_reg_n: number };
   municipalities: ObIndexRow[];
 }
 export interface Obcina extends ObArea { meta: Meta; sifra: number; eid: string; name: string; region: string; region_name: string }

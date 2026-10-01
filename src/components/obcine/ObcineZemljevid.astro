@@ -11,16 +11,21 @@ const d = loadData<ObcineIndex>('obcine_index');
 ---
 <ChartFigure
   id="graf-obcine"
-  title="Stavbe po občinah"
+  title="Najslabše stavbe in raba energije po občinah"
   subtitle="Izberite kazalnik; klik na občino odpre njeno stran"
   file="nps2050-obcine"
   csv={[{ file: 'obcine_kazalniki.csv', label: 'CSV (kazalniki)' }, { file: 'obcine.csv', label: 'CSV (registri)' }]}
-  ariaLabel={`Zemljevid 212 občin, obarvan po izbranem kazalniku. Privzeto: ocenjena raba končne energije v vseh stavbah na prebivalca (Slovenija ${nf(d.si.k_fe_mwh_preb, 1)} MWh). Vse vrednosti so v preglednici občin pod zemljevidom.`}
-  height={460}
+  ariaLabel={`Zemljevid 212 občin, obarvan po izbranem kazalniku. Privzeto: ocenjeni delež površine stanovanjskih stavb v skupini 43 % energetsko najmanj učinkovitih (Slovenija ${nf(d.si.w_res_model_pct, 0)} %). Vse vrednosti so v preglednici občin pod zemljevidom.`}
+  height={600}
 >
   <Fragment slot="controls">
     <label class="ob-sel"><span class="ctl-label">Kazalnik</span>
       <select id="ob-mera">
+        <optgroup label="Najslabše stavbe (delež površine)">
+          <option value="w_res_model_pct" selected>Stanovanjske v skupini 43 % – ocena</option>
+          <option value="w_res_reg_pct">Stanovanjske v skupini 43 % – stavbe z izkaznico</option>
+          <option value="w_nres_reg_pct">Nestanovanjske nad pragom 2030 – stavbe z izkaznico</option>
+        </optgroup>
         <optgroup label="Vse stavbe – primerjava občin (ocena)">
           <option value="k_fe_mwh_preb">Raba končne energije na prebivalca</option>
           <option value="k_tgp_t_preb">Emisije TGP na prebivalca</option>
@@ -32,7 +37,6 @@ const d = loadData<ObcineIndex>('obcine_index');
         </optgroup>
         <optgroup label="Stanovanjske stavbe – ocena modela">
           <option value="model_fe_kwh_m2">Raba končne energije na m²</option>
-          <option value="model_above43_pct">Površina nad pragom 43 %</option>
         </optgroup>
         <optgroup label="Stanovanjske stavbe – registri">
           <option value="ei_area_res_pct">Pokritost z izkaznicami</option>
@@ -61,7 +65,10 @@ const d = loadData<ObcineIndex>('obcine_index');
   import { base, echarts, mount, nf, tipRow, tipTitle, type Tokens } from '../../scripts/charts/core';
   import type { ObcineIndex, ObIndexRow } from '../../lib/data';
 
-  const METRIC: Record<string, { label: string; si: (d: ObcineIndex) => number | null; cap: string; unit?: string; dec?: number }> = {
+  const METRIC: Record<string, { label: string; si: (d: ObcineIndex) => number | null; cap: string; unit?: string; dec?: number; n?: string }> = {
+    w_res_model_pct: { label: 'Stanovanjske stavbe v skupini 43 % (ocena)', si: (d) => d.si.w_res_model_pct, dec: 0, cap: 'Ocena modela: delež uporabne površine vseh stanovanjskih stavb, ki sodijo v skupino 43 % energetsko najmanj učinkovitih (nad pragom primarne energije za hiše oziroma bloke). Stavbe z izkaznico imajo znan razred, za druge je razred ocenjen.' },
+    w_res_reg_pct: { label: 'Stanovanjske stavbe z izkaznico v skupini 43 %', si: (d) => d.si.w_res_reg_pct, dec: 0, n: 'w_res_reg_n', cap: 'Registri: delež uporabne površine stanovanjskih stavb z računsko izkaznico, ki so nad pragom 43 % energetsko najmanj učinkovitih. Velja samo za stavbe z izkaznico, ki niso naključni vzorec; pri malo izkaznicah je delež okviren.' },
+    w_nres_reg_pct: { label: 'Nestanovanjske stavbe z izkaznico nad pragom 2030', si: (d) => d.si.w_nres_reg_pct, dec: 0, n: 'w_nres_reg_n', cap: 'Registri: delež uporabne površine nestanovanjskih stavb z računsko izkaznico, ki so nad pragom minimalnih standardov za leto 2030 (16 % najslabših v kategoriji). Pri malo izkaznicah je delež okviren.' },
     k_fe_mwh_preb: { label: 'Raba končne energije v vseh stavbah na prebivalca', si: (d) => d.si.k_fe_mwh_preb, unit: ' MWh', dec: 1, cap: 'Ocena: letna raba končne energije v vseh stavbah (stanovanjskih, javnih in zasebnih storitvenih) na prebivalca. Občine s središči, bolnišnicami, šolami in turizmom imajo več nestanovanjskih stavb, ki služijo tudi prebivalcem drugih občin.' },
     k_tgp_t_preb: { label: 'Emisije TGP vseh stavb na prebivalca', si: (d) => d.si.k_tgp_t_preb, unit: ' t CO₂ ekv.', dec: 2, cap: 'Ocena: letne emisije toplogrednih plinov iz stavb (neposredne in posredne) na prebivalca, umerjene na osnutek NPS 2050. Veljajo ista opozorila o središčih.' },
     k_ove_pct: { label: 'Delež OVE v rabi energije v stavbah', si: (d) => d.si.k_ove_pct, cap: 'Ocena: delež obnovljivih virov v rabi končne energije v vseh stavbah (lesna biomasa, toplota okolice, sončna energija ter obnovljivi del elektrike in daljinske toplote).' },
@@ -91,7 +98,7 @@ const d = loadData<ObcineIndex>('obcine_index');
     const [d, geo] = await Promise.all([get('obcine_index.json'), get('zemljevid_obcine.geojson')]) as [ObcineIndex, any];
     echarts.registerMap('nps-obcine-ob', geo);
     const byName: Record<string, ObIndexRow> = Object.fromEntries(d.municipalities.map((m) => [m.name, m]));
-    let metric = 'k_fe_mwh_preb';
+    let metric = 'w_res_model_pct';
     const cap = fig.querySelector<HTMLElement>('#ob-cap')!;
     const capBase = cap.textContent!;
 
@@ -105,9 +112,11 @@ const d = loadData<ObcineIndex>('obcine_index');
       const br = breaks(vals, D);
       const f = 10 ** D;
       const edges = [Math.floor(Math.min(...vals) * f) / f, ...br, Math.ceil(Math.max(...vals) * f) / f];
+      const siv = METRIC[metric].si(d);
       const pieces = edges.slice(0, -1).map((lo, i) => ({
         min: lo, max: edges[i + 1], color: ramp[Math.round((i * (ramp.length - 1)) / Math.max(1, edges.length - 2))],
-        label: i === 0 ? `do ${nf(edges[1], D)}${U}` : i === edges.length - 2 ? `nad ${nf(lo, D)}${U}` : `${nf(lo, D)}–${nf(edges[i + 1], D)}${U}`,
+        label: (i === 0 ? `do ${nf(edges[1], D)}${U}` : i === edges.length - 2 ? `nad ${nf(lo, D)}${U}` : `${nf(lo, D)}–${nf(edges[i + 1], D)}${U}`)
+          + (siv !== null && siv >= lo && (siv < edges[i + 1] || i === edges.length - 2) ? ` ◆ Slovenija ${nf(siv, D)}${U}` : ''),
       }));
       const si = METRIC[metric].si(d);
       const u = METRIC[metric].unit ?? ' %';
@@ -120,7 +129,9 @@ const d = loadData<ObcineIndex>('obcine_index');
           formatter: (p: any) => {
             const m = byName[p.name]; if (!m) return '';
             const v = (m as any)[metric];
-            return tipTitle(m.name) + tipRow(p.color || t.muted, METRIC[metric].label, v === null ? 'premalo podatkov' : `${nf(v, dec)}${u}`, 'rect')
+            const nk = METRIC[metric].n;
+            return tipTitle(m.name) + tipRow(p.color || t.muted, METRIC[metric].label, v === null ? 'ni izkaznic' : `${nf(v, dec)}${u}`, 'rect')
+              + (nk ? `<div style="opacity:.75">Izkaznic: ${nf((m as any)[nk])}</div>` : '')
               + `<div style="opacity:.75;margin-top:2px">Slovenija: ${nf(si, dec)}${u} · klik odpre stran občine</div>`;
           },
         },
@@ -130,8 +141,8 @@ const d = loadData<ObcineIndex>('obcine_index');
         },
         series: [{
           type: 'map', map: 'nps-obcine-ob', aspectScale: 0.72, roam: false, showLegendSymbol: false, selectedMode: false,
-          layoutCenter: ['50%', t.narrow ? '31%' : '45%'],
-          layoutSize: Math.round(Math.min(t.width * 0.96, (t.narrow ? 290 : 400) * 1.54)),
+          layoutCenter: ['50%', t.narrow ? '31%' : '46%'],
+          layoutSize: Math.round(Math.min(t.width * 0.98, (t.narrow ? 290 : 520) * 1.54)),
           itemStyle: { borderColor: t.panel, borderWidth: 0.5 },
           emphasis: { label: { show: false }, itemStyle: { areaColor: t.s.ref, borderColor: t.ink, borderWidth: 1.5 } },
           label: { show: false },
