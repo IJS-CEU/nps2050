@@ -1,11 +1,11 @@
 {
  "meta": {
-  "draft": "NPS_v39",
-  "draft_date": "2026-09-29",
-  "generated": "2026-09-30",
+  "draft": "NPS_v40",
+  "draft_date": "2026-09-30",
+  "generated": "2026-10-01",
   "sources": [
-   "NPS_v39: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)",
-   "NPS_v39: preglednice 13–16 (pogl. 2.4, vir podatkov SURS in Akcijski načrt za zmanjševanje energetske revščine 2023)"
+   "NPS_v40: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)",
+   "NPS_v40: preglednice 13–16 (pogl. 2.4, vir podatkov SURS in Akcijski načrt za zmanjševanje energetske revščine 2023)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
   "note": "Delež energetsko revnih gospodinjstev po Uredbi o merilih za opredelitev in ocenjevanje števila energetsko revnih gospodinjstev."

@@ -6,6 +6,7 @@ Interne opombe v osnutku (npr. »podatek še ni dostopen«, kdo mora vrednost š
 """
 import re
 
+from . import enote
 from .context import Context, write_csv, write_json
 from .draft import row
 from .numbers import num
@@ -128,6 +129,9 @@ def build(ctx: Context) -> dict:
             amount = 'obseg se še določa'
         sources.append({'source': r[0], 'period': r[2], 'amount': amount, 'purpose': r[4]})
     ctx.check(all(not INTERNAL.search(' '.join(s.values())) for s in sources), 'viri financiranja brez internih opomb')
+
+    # navedbe v ktoe v besedilih načrta → GWh / TWh (§11.12)
+    measures, boilers, sources = enote.deep(measures), enote.deep(boilers), enote.deep(sources)
 
     data = {
         'meta': ctx.meta([f'{d.name}: pogl. 6 (preglednice »Pregled vsebin …«, »Pregled obstoječih ukrepov …«, »Pregled novih ukrepov …«, '

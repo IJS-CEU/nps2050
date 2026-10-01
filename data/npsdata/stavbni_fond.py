@@ -33,7 +33,7 @@ def build(ctx: Context) -> dict:
     t3 = d.table(r'Stavbni fond po segmentih NPS 2050 in kategorijah EPBD')
     t_n = d.table(r'Število stavb po kategorijah EPBD in obdobju gradnje')
     t_a = d.table(r'Uporabna površina stavb po kategorijah EPBD in obdobju gradnje')
-    t_cls = d.table(r'Meje energijskih razredov 2025 po kategorijah stavb')
+    t_cls = d.table(r'Meje energijskih razredov (?:2025 )?po kategorijah stavb')
     t_wpb = d.table(r'Pragovi 43 % energijsko najmanj učinkovitih')
     t_meps = d.table(r'Pragovi minimalnih energetskih standardov po kategorijah')
     t_cov = d.table(r'Obseg nestanovanjskih stavb, zajetih z minimalnimi standardi')

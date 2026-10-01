@@ -1,10 +1,10 @@
 {
  "meta": {
-  "draft": "NPS_v39",
-  "draft_date": "2026-09-29",
-  "generated": "2026-09-30",
+  "draft": "NPS_v40",
+  "draft_date": "2026-09-30",
+  "generated": "2026-10-01",
   "sources": [
-   "NPS_v39: pogl. 6 (preglednice »Pregled vsebin …«, »Pregled obstoječih ukrepov …«, »Pregled novih ukrepov …«, »Novi ukrepi za izpolnitev zahtev EPBD (N1–N20)«, »Časovni načrt opuščanja kotlov …«), pogl. 7 (»Investicijske potrebe …«, »Viri financiranja … 2031–2050«)"
+   "NPS_v40: pogl. 6 (preglednice »Pregled vsebin …«, »Pregled obstoječih ukrepov …«, »Pregled novih ukrepov …«, »Novi ukrepi za izpolnitev zahtev EPBD (N1–N20)«, »Časovni načrt opuščanja kotlov …«), pogl. 7 (»Investicijske potrebe …«, »Viri financiranja … 2031–2050«)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
   "note": "Novi ukrepi N1–N20 so v osnutku predlog za odločanje; roki in nosilci se uskladijo ob posodobitvi NEPN. Investicije v mio EUR; obdobja od 2031 dalje so petletne vsote."
@@ -1684,13 +1684,13 @@
    "when": "2035",
    "milestone": "Pregled napredka in odločitev o obvezni zamenjavi kotlov na kurilno olje, starejših od 20 let, ob posodobitvi NEPN",
    "basis": "M19.17, posodobitev NEPN",
-   "effect": "tekoča goriva v stavbah 2035 ≈ 51 ktoe (24 % ravni 2020) po scenariju NEPN"
+   "effect": "tekoča goriva v stavbah 2035 ≈ 593 GWh (24 % ravni 2020) po scenariju NEPN"
   },
   {
    "when": "2040",
    "milestone": "Preostali kotli na fosilna goriva po scenariju NEPN. Preostali plinski sistemi postopoma na certificirane obnovljive pline (biometan, vodik) v skladu s SDOH in razvojem plinskega omrežja",
    "basis": "NEPN 2024 (100 % obnovljivih plinov 2050), M19.17",
-   "effect": "tekoča goriva ≈ 29 ktoe (14 % ravni 2020). Fosilni plin ≈ 40 ktoe (32 %). Obnovljivi plini 17 ktoe (30 %). Popolna opustitev do 2050"
+   "effect": "tekoča goriva ≈ 337 GWh (14 % ravni 2020). Fosilni plin ≈ 465 GWh (32 %). Obnovljivi plini 198 GWh (30 %). Popolna opustitev do 2050"
   }
  ],
  "investments": {

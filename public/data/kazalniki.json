@@ -1,10 +1,10 @@
 {
  "meta": {
-  "draft": "NPS_v39",
-  "draft_date": "2026-09-29",
-  "generated": "2026-09-30",
+  "draft": "NPS_v40",
+  "draft_date": "2026-09-30",
+  "generated": "2026-10-01",
   "sources": [
-   "NPS_v39: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)"
+   "NPS_v40: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
   "note": "Vrednosti so zapisane kot v načrtu (text); value je številka za mali graf, pri razponu zgornja meja."
@@ -18,86 +18,131 @@
   {
    "id": "koncna_energija",
    "label": "Raba končne energije v stavbah",
-   "unit": "ktoe",
+   "unit": "TWh",
    "baseline": {
-    "text": "1.149 (2023)",
-    "value": 1149,
+    "text": "13,36 (2023)",
+    "value": 13.36,
     "year": 2023
    },
    "values": [
     {
      "year": 2030,
-     "text": "976 (−15 %)",
-     "value": 976
+     "text": "11,35 (−15 %)",
+     "value": 11.35
     },
     {
      "year": 2040,
-     "text": "852 (−26 %)",
-     "value": 852
+     "text": "9,91 (−26 %)",
+     "value": 9.91
     },
     {
      "year": 2050,
-     "text": "792 (−31 %)",
-     "value": 792
+     "text": "9,21 (−31 %)",
+     "value": 9.21
     }
    ],
-   "chart": true
+   "chart": true,
+   "plan": {
+    "baseline": 1149,
+    "values": [
+     976,
+     852,
+     792
+    ],
+    "texts": [
+     "1.149 (2023)",
+     "976 (−15 %)",
+     "852 (−26 %)",
+     "792 (−31 %)"
+    ]
+   },
+   "dec": 2
   },
   {
    "id": "primarna_energija",
    "label": "Raba primarne energije v stavbah, scenarij DU-OVE",
-   "unit": "ktoe",
+   "unit": "TWh",
    "baseline": {
-    "text": "1.665 (2023)",
-    "value": 1665,
+    "text": "19,36 (2023)",
+    "value": 19.36,
     "year": 2023
    },
    "values": [
     {
      "year": 2030,
-     "text": "1.374 (−17 %)",
-     "value": 1374
+     "text": "15,98 (−17 %)",
+     "value": 15.98
     },
     {
      "year": 2040,
-     "text": "1.194 (−28 %)",
-     "value": 1194
+     "text": "13,89 (−28 %)",
+     "value": 13.89
     },
     {
      "year": 2050,
-     "text": "1.064 (−36 %)",
-     "value": 1064
+     "text": "12,37 (−36 %)",
+     "value": 12.37
     }
    ],
-   "chart": true
+   "chart": true,
+   "plan": {
+    "baseline": 1665,
+    "values": [
+     1374,
+     1194,
+     1064
+    ],
+    "texts": [
+     "1.665 (2023)",
+     "1.374 (−17 %)",
+     "1.194 (−28 %)",
+     "1.064 (−36 %)"
+    ]
+   },
+   "dec": 2
   },
   {
    "id": "primarna_energija_fiksni",
    "label": "Raba primarne energije pri nespremenjenih faktorjih primarne energije (učinek prenov in zamenjave energentov v stavbah)",
-   "unit": "ktoe",
+   "unit": "TWh",
    "baseline": {
-    "text": "1.665 (2023)",
-    "value": 1665,
+    "text": "19,36 (2023)",
+    "value": 19.36,
     "year": 2023
    },
    "values": [
     {
      "year": 2030,
-     "text": "1.496 (−10 %)",
-     "value": 1496
+     "text": "17,40 (−10 %)",
+     "value": 17.4
     },
     {
      "year": 2040,
-     "text": "1.397 (−16 %)",
-     "value": 1397
+     "text": "16,25 (−16 %)",
+     "value": 16.25
     },
     {
      "year": 2050,
-     "text": "1.331 (−20 %)",
-     "value": 1331
+     "text": "15,48 (−20 %)",
+     "value": 15.48
     }
    ],
-   "chart": true
+   "chart": true,
+   "plan": {
+    "baseline": 1665,
+    "values": [
+     1496,
+     1397,
+     1331
+    ],
+    "texts": [
+     "1.665 (2023)",
+     "1.496 (−10 %)",
+     "1.397 (−16 %)",
+     "1.331 (−20 %)"
+    ]
+   },
+   "dec": 2
   },
   {
    "id": "emisije",

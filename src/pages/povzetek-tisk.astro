@@ -130,7 +130,7 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
     <table class="t wide">
       <thead><tr><th>Kazalnik</th><th class="n">Izhodišče</th><th class="n">2030</th><th class="n">2040</th><th class="n">2050</th></tr></thead>
       <tbody>
-        <tr><th>Raba končne energije v stavbah, ktoe</th><td class="n">{K.koncna_energija.baseline.text}</td><td class="n">{txt('koncna_energija', 2030)}</td><td class="n">{txt('koncna_energija', 2040)}</td><td class="n">{txt('koncna_energija', 2050)}</td></tr>
+        <tr><th>Raba končne energije v stavbah, {K.koncna_energija.unit}</th><td class="n">{K.koncna_energija.baseline.text}</td><td class="n">{txt('koncna_energija', 2030)}</td><td class="n">{txt('koncna_energija', 2040)}</td><td class="n">{txt('koncna_energija', 2050)}</td></tr>
         <tr><th>Emisije toplogrednih plinov, kt CO₂ ekv.</th><td class="n">{K.emisije.baseline.text}</td><td class="n">{txt('emisije', 2030)}</td><td class="n">{txt('emisije', 2040)}</td><td class="n">{txt('emisije', 2050)}</td></tr>
         <tr><th>Delež obnovljivih virov v stavbah, %</th><td class="n">{K.ove.baseline.text}</td><td class="n">{txt('ove', 2030)}</td><td class="n">{txt('ove', 2040)}</td><td class="n">{txt('ove', 2050)}</td></tr>
         <tr><th>Letna stopnja energetske prenove, %</th><td class="n">–</td><td class="n">{txt('stopnja_prenove', 2030)}</td><td class="n">{txt('stopnja_prenove', 2040)}</td><td class="n">{txt('stopnja_prenove', 2050)}</td></tr>
@@ -141,15 +141,15 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
     </table>
 
     <div class="cols2 mini">
-      {[['Končna energija, ktoe', fe, '#1F7A57'], ['Emisije TGP, kt CO₂ ekv.', em, '#8F5A08']].map(([title, data, col]) => {
+      {[[`Končna energija, ${K.koncna_energija.unit}`, fe, '#1F7A57', K.koncna_energija.dec ?? 0], ['Emisije TGP, kt CO₂ ekv.', em, '#8F5A08', 0]].map(([title, data, col, dec]) => {
         const d = data as { y: number; v: number }[], mx = Math.max(...d.map((x) => x.v));
         return (
           <div>
             <h4>{title as string}</h4>
-            <svg viewBox="0 0 330 120" class="chart" role="img" aria-label={`${title}: ${d.map((x) => `${x.y} ${nf(x.v)}`).join(', ')}`}>
+            <svg viewBox="0 0 330 120" class="chart" role="img" aria-label={`${title}: ${d.map((x) => `${x.y} ${nf(x.v, dec as number)}`).join(', ')}`}>
               {d.map((x, i) => {
                 const h = (x.v / mx) * 80, bx = 25 + i * 78;
-                return <g><rect x={bx} y={96 - h} width="40" height={h} fill={i === 0 ? '#87918C' : (col as string)} rx="2" /><text x={bx + 20} y={92 - h} text-anchor="middle" class="lb">{nf(x.v)}</text><text x={bx + 20} y={112} text-anchor="middle" class="ax">{x.y}</text></g>;
+                return <g><rect x={bx} y={96 - h} width="40" height={h} fill={i === 0 ? '#87918C' : (col as string)} rx="2" /><text x={bx + 20} y={92 - h} text-anchor="middle" class="lb">{nf(x.v, dec as number)}</text><text x={bx + 20} y={112} text-anchor="middle" class="ax">{x.y}</text></g>;
               })}
             </svg>
           </div>

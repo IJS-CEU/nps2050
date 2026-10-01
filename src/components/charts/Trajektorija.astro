@@ -1,5 +1,5 @@
 ---
-/** Graf 1: trajektorija primarne energije stanovanjskega fonda (čl. 9(2) EPBD) in primarna raba stavb v ktoe. */
+/** Graf 1: trajektorija primarne energije stanovanjskega fonda (čl. 9(2) EPBD) in primarna raba stavb v TWh (pretvorba v cevovodu). */
 import ChartFigure from './ChartFigure.astro';
 import Seg from './Seg.astro';
 import { loadData, type Trajektorija } from '../../lib/data';
@@ -19,11 +19,11 @@ const z = d.zgodba;
   title="Trajektorija rabe primarne energije stanovanjskih stavb"
   subtitle="Povprečna raba primarne energije stanovanjskega fonda, 2020–2050"
   file="nps2050-trajektorija"
-  csv={[{ file: 'trajektorija_kwh_m2.csv', label: 'CSV (kWh/m²)' }, { file: 'trajektorija_strategije.csv', label: 'CSV (strategije)' }, { file: 'trajektorija_ktoe.csv', label: 'CSV (ktoe)' }]}
+  csv={[{ file: 'trajektorija_kwh_m2.csv', label: 'CSV (kWh/m²)' }, { file: 'trajektorija_strategije.csv', label: 'CSV (strategije)' }, { file: 'trajektorija_twh.csv', label: 'CSV (TWh)' }]}
   ariaLabel={`Trajektorija: povprečna raba primarne energije stanovanjskega fonda se po scenariju NPS 2050 zmanjša s ${nf(k.nps[0])} kWh/(m²·a) leta ${k.years[0]} na ${nf(k.nps[last])} kWh/(m²·a) leta ${k.years[last]}.`}
 >
   <Fragment slot="controls">
-    <Seg name="traj-mode" legend="Enota prikaza" options={[{ value: 'kwh', label: 'kWh/(m²·a)' }, { value: 'ktoe', label: 'ktoe' }]} />
+    <Seg name="traj-mode" legend="Enota prikaza" options={[{ value: 'kwh', label: 'kWh/(m²·a)' }, { value: 'twh', label: 'TWh' }]} />
     <Seg name="traj-scen" legend="Strategije" options={[{ value: 'nps', label: 'Scenarij NPS 2050' }, { value: 'cmp', label: 'Primerjava S0–S2' }]} />
   </Fragment>
   <Fragment slot="after">
@@ -44,7 +44,7 @@ const z = d.zgodba;
   </Fragment>
   <Fragment slot="caption">
     <p data-mode-cap="kwh">Stanovanjske stavbe, scenarij NPS 2050 pri fiksnih faktorjih primarne energije iz leta 2020, kot zahteva člen 9(2) EPBD. Oranžne oznake so najvišje vrednosti, ki jih EPBD dopušča za leti 2030 in 2035. Siva črta je informativni prikaz pri faktorjih, veljavnih v posameznem letu. Barvni pasovi so energijski razredi NPS za povprečno stanovanjsko stavbo (meje hiš in blokov, tehtane po površini). Strategiji S0 in S1 sta preračunani iz primerjave strategij (trajektorija NPS × razmerje indeksov).</p>
-    <p data-mode-cap="ktoe" hidden>Vse stavbe: primarna raba energije v obsegu EPBD. Za stanovanjski fond ločeno pri fiksnih faktorjih načrt vrednosti v ktoe ne navaja.</p>
+    <p data-mode-cap="twh" hidden>Vse stavbe: primarna raba energije v obsegu EPBD. Za stanovanjski fond ločeno pri fiksnih faktorjih načrt absolutnih vrednosti ne navaja.</p>
     <p>Vir: osnutek NPS 2050, poglavji 4.7.1 in 4.3.</p>
   </Fragment>
   <Fragment slot="table">
@@ -63,11 +63,11 @@ const z = d.zgodba;
       <tbody>{z.scenarios.years.map((y, i) => <tr><th scope="row">{y}</th><td class="num">{nf(z.scenarios.S0[i])}</td><td class="num">{nf(z.scenarios.S1[i])}</td><td class="num">{nf(z.scenarios.S2[i])}</td></tr>)}</tbody>
     </table>
     <table>
-      <caption class="visually-hidden">Primarna raba energije stavb, ktoe</caption>
-      <thead><tr><th scope="col">Leto</th><th scope="col" class="num">Vse stavbe [ktoe]</th><th scope="col" class="num">Vse stavbe pri faktorjih 2025 [ktoe]</th></tr></thead>
+      <caption class="visually-hidden">Primarna raba energije stavb, TWh</caption>
+      <thead><tr><th scope="col">Leto</th><th scope="col" class="num">Vse stavbe [TWh]</th><th scope="col" class="num">Vse stavbe pri faktorjih 2025 [TWh]</th></tr></thead>
       <tbody>
-        {d.ktoe.years.map((y, i) => (
-          <tr><th scope="row">{y}</th><td class="num">{nf(d.ktoe.total[i])}</td><td class="num">{nf(d.ktoe.total_fixed[i])}</td></tr>
+        {d.twh.years.map((y, i) => (
+          <tr><th scope="row">{y}</th><td class="num">{nf(d.twh.total[i], d.twh.dec)}</td><td class="num">{nf(d.twh.total_fixed[i], d.twh.dec)}</td></tr>
         ))}
       </tbody>
     </table>
@@ -156,27 +156,27 @@ const z = d.zgodba;
           ],
         };
       }
-      const k = d.ktoe;
+      const k = d.twh;
       const TOT = 'Vse stavbe (faktorji posameznega leta)', FIX = 'Vse stavbe pri faktorjih 2025';
       return {
         ...o,
         grid: { ...o.grid, right: 56 },
         legend: { ...o.legend, data: [TOT, FIX] },
         xAxis: x,
-        yAxis: valueAxis(t, { min: 0, name: 'ktoe' }),
+        yAxis: valueAxis(t, { min: 0, name: k.unit }),
         tooltip: {
           ...o.tooltip, trigger: 'axis', axisPointer: { type: 'line', lineStyle: { color: t.axis } },
           formatter: (ps: any[]) => {
             const i = k.years.indexOf(ps[0].value[0]);
-            return tipTitle(String(k.years[i])) + tipRow(t.s.s2, TOT, `${nf(k.total[i])} ktoe`) + tipRow(t.s.info, FIX, `${nf(k.total_fixed[i])} ktoe`);
+            return tipTitle(String(k.years[i])) + tipRow(t.s.s2, TOT, `${nf(k.total[i], k.dec)} ${k.unit}`) + tipRow(t.s.info, FIX, `${nf(k.total_fixed[i], k.dec)} ${k.unit}`);
           },
         },
         // Vrednosti samo na koncu črt (desno od zadnje točke), izhodišče je v opisu in preglednici.
         series: [
           { name: FIX, type: 'line', data: k.years.map((y, i) => [y, k.total_fixed[i]]), color: t.s.info, lineStyle: { width: 2 }, symbol: 'circle', symbolSize: 8, itemStyle: dot(t, t.s.info),
-            endLabel: { show: true, distance: 8, color: t.ink2, formatter: (p: any) => nf(p.value[1]) } },
+            endLabel: { show: true, distance: 8, color: t.ink2, formatter: (p: any) => nf(p.value[1], k.dec) } },
           { name: TOT, type: 'line', data: k.years.map((y, i) => [y, k.total[i]]), color: t.s.s2, lineStyle: { width: 2 }, symbol: 'circle', symbolSize: 9, itemStyle: dot(t, t.s.s2),
-            endLabel: { show: true, distance: 8, color: t.ink, fontWeight: 700, formatter: (p: any) => nf(p.value[1]) } },
+            endLabel: { show: true, distance: 8, color: t.ink, fontWeight: 700, formatter: (p: any) => nf(p.value[1], k.dec) } },
         ],
       };
     };

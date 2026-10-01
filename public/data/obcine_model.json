@@ -1,13 +1,13 @@
 {
  "meta": {
-  "draft": "NPS_v39",
-  "draft_date": "2026-09-29",
-  "generated": "2026-09-30",
+  "draft": "NPS_v40",
+  "draft_date": "2026-09-30",
+  "generated": "2026-10-01",
   "sources": [
    "Model RenRates (arhetipi, razporeditev po razredih toplotnih potreb, specifična končna energija, kalibracija λ na bilanco 2024)",
    "Kataster nepremičnin GURS 2026, register energetskih izkaznic 28. 9. 2026, Eko sklad do 2025",
    "Toplotna karta potrebne toplote za ogrevanje 2020 (mreža 100 m, vse stavbe); potencial daljinskega ogrevanja: celice z gostoto vsaj 250 MWh/ha",
-   "NPS_v39: preglednice končne in primarne rabe po segmentih ter po energentih, emisij in OVE (2023)",
+   "NPS_v40: preglednice končne in primarne rabe po segmentih ter po energentih, emisij in OVE (2023)",
    "Energetsko knjigovodstvo javnega sektorja (poročila za leto 2025) in merjene energetske izkaznice",
    "AGEN-RS: Energetsko učinkoviti distribucijski sistemi toplote in hladu v letu 2025 (delež OVE po sistemih)",
    "SURS: prebivalstvo po občinah, 1. 1. 2026"

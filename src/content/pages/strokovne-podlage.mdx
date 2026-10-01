@@ -12,6 +12,9 @@ import Sankey from '../../components/charts/Sankey.astro';
 import Zemljevid from '../../components/charts/Zemljevid.astro';
 import CiljiIzhodisca from '../../components/CiljiIzhodisca.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
+import { loadData } from '../../lib/data';
+
+export const kz = Object.fromEntries(loadData('kazalniki').items.map((i) => [i.id, i]));
 
 {/* Grafi berejo public/data/*.json iz podatkovnega cevovoda (data/build_all.py). */}
 
@@ -87,7 +90,9 @@ Evropska komisija cilje primerja glede na leti 2020 in 2023, zato so prikazani o
 
 **Najslabše stavbe.** Skupina 43 % energetsko najmanj učinkovitih stanovanjskih stavb je določena s 57. percentilom primarne energije po številu stavb, ločeno za hiše in večstanovanjske stavbe. Pragova minimalnih standardov za nestanovanjske stavbe sta 84. in 74. percentil po kategorijah, iz izkaznic stavb, zgrajenih do leta 2020. Razred in pragove za posamezno stavbo lahko <a href={pageUrl('preveri')}>preverite tukaj</a>.
 
-**Scenarij NPS 2050.** Stavbni model IJS CEU, usklajen z energetsko bilanco scenarija NEPN 2024 z dodatnimi ukrepi, z referenčnim scenarijem elektroenergetskega sistema z večjim deležem obnovljivih virov (DU-OVE). Zajema rabe energije iz Priloge I EPBD: ogrevanje, hlajenje, pripravo tople vode, prezračevanje in vgrajeno razsvetljavo. Brez gospodinjskih aparatov, kuhanja in procesne rabe. Zato je raba v scenariju (1.149 ktoe leta 2023) manjša od celotne rabe energije v stavbah po energetski bilanci (1.477 ktoe).
+**Scenarij NPS 2050.** Stavbni model IJS CEU, usklajen z energetsko bilanco scenarija NEPN 2024 z dodatnimi ukrepi, z referenčnim scenarijem elektroenergetskega sistema z večjim deležem obnovljivih virov (DU-OVE). Zajema rabe energije iz Priloge I EPBD: ogrevanje, hlajenje, pripravo tople vode, prezračevanje in vgrajeno razsvetljavo. Brez gospodinjskih aparatov, kuhanja in procesne rabe. Zato je raba v scenariju ({kz.koncna_energija.baseline.text.replace(' (2023)', '')} TWh leta 2023) manjša od celotne rabe energije v stavbah po energetski bilanci (17,18 TWh).
+
+**Enote.** Načrt navaja energijo v ktoe (tisoč ton ekvivalenta nafte), ker tako poroča Evropski komisiji. Na tej strani so vrednosti preračunane v TWh oziroma GWh po faktorju 1 ktoe = 11,63 GWh (IEA); v izvozih CSV so zaradi primerljivosti z načrtom tudi vrednosti v enotah načrta.
 
 **Primerjava strategij.** Model RenRates prenove stavb spremlja po arhetipih in energijskih razredih v petletnih korakih od 2025 do 2050. Ker ima drugačne absolutne vrednosti kot projekcija NPS 2050, so rezultati prikazani kot indeksi (2025 = 100).
 
@@ -107,7 +112,7 @@ Podatki, ki so podlaga za grafe na tej strani, so na voljo za prenos v obliki CS
   <div class="doc"><b><a href={withBase('data/csv/stavbni_fond.csv')} download>Stavbni fond po kategorijah</a></b><span>Število stavb in uporabna površina, od tega javne stavbe</span></div>
   <div class="doc"><b><a href={withBase('data/csv/stavbni_fond_po_obdobju.csv')} download>Stavbni fond po obdobju gradnje</a></b><span>Po kategorijah EPBD in osmih obdobjih gradnje</span></div>
   <div class="doc"><b><a href={withBase('data/csv/trajektorija_kwh_m2.csv')} download>Trajektorija stanovanjskih stavb</a></b><span>kWh/(m²·a), 2020–2050, z mejami EPBD</span></div>
-  <div class="doc"><b><a href={withBase('data/csv/trajektorija_ktoe.csv')} download>Primarna raba energije stavb</a></b><span>ktoe, 2020–2050</span></div>
+  <div class="doc"><b><a href={withBase('data/csv/trajektorija_twh.csv')} download>Primarna raba energije stavb</a></b><span>TWh, 2020–2050</span></div>
   <div class="doc"><b><a href={withBase('data/csv/scenariji_nps.csv')} download>Scenarij NPS 2050 po sektorjih</a></b><span>Končna in primarna energija, emisije TGP, delež OVE</span></div>
   <div class="doc"><b><a href={withBase('data/csv/scenariji_primerjava.csv')} download>Primerjava strategij S0–S2</a></b><span>Indeksi in 5-letne serije modela RenRates</span></div>
   <div class="doc"><b><a href={withBase('data/csv/kazalniki.csv')} download>Ključni cilji in kazalniki</a></b><span>Izhodišče in mejniki 2030, 2040, 2050</span></div>

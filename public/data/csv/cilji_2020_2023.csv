@@ -1,4 +1,4 @@
-﻿kazalnik;enota;izhodišče 2020;izhodišče 2023;2030: vrednost / glede na 2020 [%] / glede na 2023 [%];2040: vrednost / glede na 2020 [%] / glede na 2023 [%];2050: vrednost / glede na 2020 [%] / glede na 2023 [%]
-Končna energija v stavbah;ktoe;1212;1149;976 / -19 / -15;852 / -30 / -26;792 / -35 / -31
-Primarna energija v stavbah;ktoe;1744;1665;1374 / -21 / -17;1194 / -32 / -28;1064 / -39 / -36
-Emisije TGP iz stavb;kt CO₂ ekv.;;2142;1777 / None / -17;587 / None / -73;223 / None / -90
+﻿kazalnik;enota;izhodišče 2020;izhodišče 2023;2030: vrednost / glede na 2020 [%] / glede na 2023 [%];2040: vrednost / glede na 2020 [%] / glede na 2023 [%];2050: vrednost / glede na 2020 [%] / glede na 2023 [%];izhodišče 2020 [ktoe];izhodišče 2023 [ktoe];2030 [ktoe];2040 [ktoe];2050 [ktoe]
+Končna energija v stavbah;TWh;14,1;13,36;11.35 / -19 / -15;9.91 / -30 / -26;9.21 / -35 / -31;1212;1149;976;852;792
+Primarna energija v stavbah;TWh;20,28;19,36;15.98 / -21 / -17;13.89 / -32 / -28;12.37 / -39 / -36;1744;1665;1374;1194;1064
+Emisije TGP iz stavb;kt CO₂ ekv.;;2142;1777 / None / -17;587 / None / -73;223 / None / -90;;;;;

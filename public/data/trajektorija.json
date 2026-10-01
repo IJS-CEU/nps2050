@@ -1,14 +1,14 @@
 {
  "meta": {
-  "draft": "NPS_v39",
-  "draft_date": "2026-09-29",
-  "generated": "2026-09-30",
+  "draft": "NPS_v40",
+  "draft_date": "2026-09-30",
+  "generated": "2026-10-01",
   "sources": [
-   "NPS_v39: preglednica »Nacionalna trajektorija prenove stanovanjskega fonda« (pogl. 4.7.1)",
-   "NPS_v39: preglednica »Primarna raba energije v stavbah po scenariju NPS 2050« (pogl. 4.3)"
+   "NPS_v40: preglednica »Nacionalna trajektorija prenove stanovanjskega fonda« (pogl. 4.7.1)",
+   "NPS_v40: preglednica »Primarna raba energije v stavbah po scenariju NPS 2050« (pogl. 4.3)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "kwh_m2: stanovanjski fond, fiksni faktorji primarne energije (PURES 2021). ktoe: vse stavbe v obsegu EPBD; total pri faktorjih, veljavnih v posameznem letu (DU-OVE), total_fixed pri faktorjih 2025."
+  "note": "kwh_m2: stanovanjski fond, fiksni faktorji primarne energije (PURES 2021). twh: vse stavbe v obsegu EPBD, pretvorjeno iz enot načrta (1 TWh = 1000 GWh); total pri faktorjih, veljavnih v posameznem letu (DU-OVE), total_fixed pri faktorjih 2025."
  },
  "kwh_m2": {
   "unit": "kWh/(m²·a)",
@@ -57,8 +57,9 @@
    148
   ]
  },
- "ktoe": {
-  "unit": "ktoe",
+ "twh": {
+  "unit": "TWh",
+  "dec": 2,
   "years": [
    2020,
    2023,
@@ -67,25 +68,25 @@
    2050
   ],
   "total": [
-   1744,
-   1665,
-   1374,
-   1194,
-   1064
+   20.28,
+   19.36,
+   15.98,
+   13.89,
+   12.37
   ],
   "total_fixed": [
-   1743,
-   1665,
-   1496,
-   1397,
-   1331
+   20.27,
+   19.36,
+   17.4,
+   16.25,
+   15.48
   ],
   "residential": [
-   1179,
-   1102,
-   886,
-   740,
-   654
+   13.71,
+   12.82,
+   10.3,
+   8.61,
+   7.61
   ]
  },
  "zgodba": {
@@ -163,22 +164,32 @@
    {
     "id": "koncna_energija",
     "label": "Končna energija v stavbah",
-    "unit": "ktoe",
-    "base2020": 1212,
-    "base2023": 1149,
+    "unit": "TWh",
+    "dec": 2,
+    "base2020": 14.1,
+    "base2023": 13.36,
+    "plan": {
+     "base2020": 1212,
+     "base2023": 1149,
+     "years": {
+      "2030": 976,
+      "2040": 852,
+      "2050": 792
+     }
+    },
     "years": {
      "2030": {
-      "value": 976,
+      "value": 11.35,
       "vs2023": -15,
       "vs2020": -19
      },
      "2040": {
-      "value": 852,
+      "value": 9.91,
       "vs2023": -26,
       "vs2020": -30
      },
      "2050": {
-      "value": 792,
+      "value": 9.21,
       "vs2023": -31,
       "vs2020": -35
      }
@@ -187,22 +198,32 @@
    {
     "id": "primarna_energija",
     "label": "Primarna energija v stavbah",
-    "unit": "ktoe",
-    "base2020": 1744,
-    "base2023": 1665,
+    "unit": "TWh",
+    "dec": 2,
+    "base2020": 20.28,
+    "base2023": 19.36,
+    "plan": {
+     "base2020": 1744,
+     "base2023": 1665,
+     "years": {
+      "2030": 1374,
+      "2040": 1194,
+      "2050": 1064
+     }
+    },
     "years": {
      "2030": {
-      "value": 1374,
+      "value": 15.98,
       "vs2023": -17,
       "vs2020": -21
      },
      "2040": {
-      "value": 1194,
+      "value": 13.89,
       "vs2023": -28,
       "vs2020": -32
      },
      "2050": {
-      "value": 1064,
+      "value": 12.37,
       "vs2023": -36,
       "vs2020": -39
      }
@@ -212,8 +233,18 @@
     "id": "emisije",
     "label": "Emisije TGP iz stavb",
     "unit": "kt CO₂ ekv.",
+    "dec": 0,
     "base2020": null,
     "base2023": 2142,
+    "plan": {
+     "base2020": null,
+     "base2023": 2142,
+     "years": {
+      "2030": 1777,
+      "2040": 587,
+      "2050": 223
+     }
+    },
     "years": {
      "2030": {
       "value": 1777,

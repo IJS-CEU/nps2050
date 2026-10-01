@@ -6,6 +6,9 @@ lead: 'Ključne številke, grafi za prosto uporabo in kontakt. Vse gradivo je iz
 ---
 import Tiles from '../../components/Tiles.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
+import { loadData } from '../../lib/data';
+
+export const fe = loadData('kazalniki').items.find((i) => i.id === 'koncna_energija');
 
 ## NPS 2050 na kratko
 
@@ -29,7 +32,7 @@ Grafi so v visoki ločljivosti (PNG), z naslovom in virom. Vsi drugi grafi so na
 <div class="media-grid">
   <figure><a href={withBase('mediji/nps2050-trajektorija.png')} download><img src={withBase('mediji/nps2050-trajektorija.png')} alt="Graf: trajektorija rabe primarne energije stanovanjskih stavb, s 269 kWh/(m²·a) leta 2020 na 164 kWh/(m²·a) leta 2050, z najvišjimi vrednostmi po EPBD za leti 2030 in 2035." loading="lazy" /></a><figcaption>Trajektorija rabe primarne energije stanovanjskih stavb</figcaption></figure>
   <figure><a href={withBase('mediji/nps2050-stavbni-fond.png')} download><img src={withBase('mediji/nps2050-stavbni-fond.png')} alt="Graf: uporabna površina stavbnega fonda po kategorijah EPBD; največ je enostanovanjskih hiš (58,3 mio m²) in večstanovanjskih stavb (21,9 mio m²)." loading="lazy" /></a><figcaption>Stavbni fond po kategorijah</figcaption></figure>
-  <figure><a href={withBase('mediji/nps2050-koncna-energija.png')} download><img src={withBase('mediji/nps2050-koncna-energija.png')} alt="Graf: končna raba energije v stavbah po sektorjih, s 1.149 ktoe leta 2023 na 792 ktoe leta 2050." loading="lazy" /></a><figcaption>Končna raba energije v stavbah po sektorjih</figcaption></figure>
+  <figure><a href={withBase('mediji/nps2050-koncna-energija.png')} download><img src={withBase('mediji/nps2050-koncna-energija.png')} alt={`Graf: končna raba energije v stavbah po sektorjih, s ${fe.baseline.text.replace(' (2023)', '')} TWh leta 2023 na ${fe.values.at(-1).text.replace(/\s*\(.*$/, '')} TWh leta 2050.`} loading="lazy" /></a><figcaption>Končna raba energije v stavbah po sektorjih</figcaption></figure>
   <figure><a href={withBase('mediji/nps2050-primerjava-strategij.png')} download><img src={withBase('mediji/nps2050-primerjava-strategij.png')} alt="Graf: primerjava strategij spodbujanja prenov; končna energija leta 2050 v indeksu (2025 = 100): S0 79, S1 63, S2 58." loading="lazy" /></a><figcaption>Primerjava strategij spodbujanja prenov S0–S2</figcaption></figure>
 </div>
 

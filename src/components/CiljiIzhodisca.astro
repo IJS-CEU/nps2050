@@ -19,8 +19,8 @@ const pct = (v: number | null) => (v === null ? '–' : `${v > 0 ? '+' : '−'}$
     </thead>
     <tbody>
       {c.map((r) => (
-        <tr><th scope="row">{r.label}<small>{r.unit}</small></th><td class="num">{r.base2020 === null ? '–' : nf(r.base2020)}</td><td class="num">{nf(r.base2023)}</td>
-          {Y.map((y) => <td class="num"><b>{nf(r.years[y].value)}</b>{r.years[y].vs2020 !== null && <small>{pct(r.years[y].vs2020)} glede na 2020</small>}<small>{pct(r.years[y].vs2023)} glede na 2023</small></td>)}</tr>
+        <tr><th scope="row">{r.label}<small>{r.unit}</small></th><td class="num">{r.base2020 === null ? '–' : nf(r.base2020, r.dec)}</td><td class="num">{nf(r.base2023, r.dec)}</td>
+          {Y.map((y) => <td class="num"><b>{nf(r.years[y].value, r.dec)}</b>{r.years[y].vs2020 !== null && <small>{pct(r.years[y].vs2020)} glede na 2020</small>}<small>{pct(r.years[y].vs2023)} glede na 2023</small></td>)}</tr>
       ))}
     </tbody>
   </table>

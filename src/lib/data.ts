@@ -10,12 +10,12 @@ export interface Meta { draft: string; draft_date: string; generated: string; so
 export interface Trajektorija {
   meta: Meta;
   kwh_m2: { unit: string; years: number[]; nps: number[]; reduction_pct: (number | null)[]; epbd_max: { year: number; max: number; min: number }[]; nps_valid_factors: number[] };
-  ktoe: { unit: string; years: number[]; total: number[]; total_fixed: number[]; residential: number[] };
+  twh: { unit: string; dec: number; years: number[]; total: number[]; total_fixed: number[]; residential: number[] };
   zgodba: {
     bands: Record<string, number>;
     wpb: { area_mio_m2: number; avg_pe_2020: number; target_bc: number; years: number[]; renovated_pct: number[] };
     scenarios: { years: number[]; S0: number[]; S1: number[]; S2: number[]; names: Record<string, string> };
-    cilji: { id: string; label: string; unit: string; base2020: number | null; base2023: number; years: Record<string, { value: number; vs2023: number; vs2020: number | null }> }[];
+    cilji: { id: string; label: string; unit: string; dec: number; base2020: number | null; base2023: number; years: Record<string, { value: number; vs2023: number; vs2020: number | null }> }[];
   };
 }
 
@@ -45,7 +45,7 @@ export interface Scenariji {
   nps: {
     years: number[];
     sectors: { id: string; name: string }[];
-    indicators: Record<string, { unit: string; sectors: string[]; values: Record<string, number[]> }>;
+    indicators: Record<string, { unit: string; dec: number; sectors: string[]; values: Record<string, number[]> }>;
   };
   primerjava: {
     scenarios: { id: Scen; name: string }[];
@@ -56,7 +56,7 @@ export interface Scenariji {
 
 export interface KazalnikValue { year: number; text: string; value: number | null; range?: [number, number] }
 export interface Kazalnik {
-  id: string; label: string; unit: string; chart: boolean;
+  id: string; label: string; unit: string; dec?: number; chart: boolean;
   baseline: { text: string; value: number | null; year: number | null };
   values: KazalnikValue[];
 }

@@ -10,6 +10,7 @@ import openpyxl
 
 from .context import Context, write_csv, write_json
 from .draft import row
+from . import enote
 from .numbers import all_nums, num
 
 SECTORS = [
@@ -58,6 +59,16 @@ def build(ctx: Context) -> dict:
         for y, cell, ours in zip(YEARS, r[2:6], indicators[key]['values']['skupaj']):
             ctx.check_close(all_nums(cell)[0], round(ours), f'{key} {y}: preglednica 4.x = povzetek', tol=1)
 
+    # ktoe → TWh (§11.12); vrednosti v ktoe ostanejo samo v CSV
+    plan = {}
+    for key, ind in indicators.items():
+        if ind['unit'] == 'ktoe':
+            plan[key] = ind['values']
+            ind['values'] = {sid: [enote.twh(v) for v in vals] for sid, vals in ind['values'].items()}
+            ind['unit'], ind['dec'] = 'TWh', enote.TWH_DEC
+        else:
+            ind['dec'] = 0 if key == 'emisije' else 1
+
     comparison = _comparison(ctx)
 
     data = {
@@ -72,8 +83,8 @@ def build(ctx: Context) -> dict:
         'primerjava': comparison,
     }
     write_json('scenariji', data)
-    write_csv('scenariji_nps', ['kazalnik', 'enota', 'sektor', *map(str, YEARS)],
-              [[key, ind['unit'], dict((s[0], s[1]) for s in SECTORS)[sid], *vals]
+    write_csv('scenariji_nps', ['kazalnik', 'enota', 'sektor', *map(str, YEARS), *[f'{y} [ktoe]' for y in YEARS]],
+              [[key, ind['unit'], dict((s[0], s[1]) for s in SECTORS)[sid], *vals, *(plan[key][sid] if key in plan else [None] * len(YEARS))]
                for key, ind in indicators.items() for sid, vals in ind['values'].items()])
     rows = []
     for key in ('fe_index', 'pe_res_fixed_index', 'worst_fg_share_pct'):

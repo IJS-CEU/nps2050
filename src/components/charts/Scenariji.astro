@@ -14,7 +14,8 @@ const n = d.nps;
 const sectorName = Object.fromEntries(n.sectors.map((s) => [s.id, s.name]));
 const IND: Record<string, string> = { koncna_energija: 'Končna energija', primarna_energija: 'Primarna energija', emisije: 'Emisije TGP', ove: 'Delež OVE' };
 const p = d.primerjava;
-const fe = n.indicators.koncna_energija.values.skupaj;
+const feI = n.indicators.koncna_energija;
+const fe = feI.values.skupaj;
 ---
 <ChartFigure
   id="graf-scenariji"
@@ -22,7 +23,7 @@ const fe = n.indicators.koncna_energija.values.skupaj;
   subtitle="Scenarij NPS 2050 po sektorjih in primerjava strategij spodbujanja prenov S0–S2"
   file="nps2050-scenariji"
   csv={[{ file: 'scenariji_nps.csv', label: 'CSV (NPS 2050)' }, { file: 'scenariji_primerjava.csv', label: 'CSV (S0–S2)' }]}
-  ariaLabel={`Po scenariju NPS 2050 se končna raba energije v stavbah zmanjša s ${nf(fe[0])} ktoe leta ${n.years[0]} na ${nf(fe[fe.length - 1])} ktoe leta ${n.years[n.years.length - 1]}. Primerjava strategij S0–S2 v indeksih je v preglednici.`}
+  ariaLabel={`Po scenariju NPS 2050 se končna raba energije v stavbah zmanjša s ${nf(fe[0], feI.dec)} ${feI.unit} leta ${n.years[0]} na ${nf(fe[fe.length - 1], feI.dec)} ${feI.unit} leta ${n.years[n.years.length - 1]}. Primerjava strategij S0–S2 v indeksih je v preglednici.`}
   height={380}
 >
   <Fragment slot="controls">
@@ -46,7 +47,7 @@ const fe = n.indicators.koncna_energija.values.skupaj;
         <thead><tr><th scope="col">Sektor</th>{n.years.map((y) => <th scope="col" class="num">{y}</th>)}</tr></thead>
         <tbody>
           {ind.sectors.map((sid) => (
-            <tr><th scope="row">{sectorName[sid]}</th>{ind.values[sid].map((v) => <td class="num">{nf(v)}</td>)}</tr>
+            <tr><th scope="row">{sectorName[sid]}</th>{ind.values[sid].map((v) => <td class="num">{nf(v, ind.dec)}</td>)}</tr>
           ))}
         </tbody>
       </table>
@@ -81,7 +82,6 @@ const fe = n.indicators.koncna_energija.values.skupaj;
     enodruzinske: 'enodruzinske', vecstanovanjske: 'vecstanovanjske', javne: 'javne', zasebne: 'zasebne',
     stanovanjski: 'enodruzinske', storitveni: 'javne',
   };
-  const UNIT: Record<string, string> = { koncna_energija: 'ktoe', primarna_energija: 'ktoe', emisije: 'kt CO₂ ekv', ove: '%' };
   const SCEN_SYMBOL: Record<Scen, string> = { S0: 'triangle', S1: 'diamond', S2: 'circle' };
   const SERIES: Record<string, { name: string; unit: string; dec: number }> = {
     fe_index: { name: 'Končna energija, 2025 = 100', unit: '', dec: 0 },
@@ -98,13 +98,13 @@ const fe = n.indicators.koncna_energija.values.skupaj;
     const npsOption = (t: Tokens) => {
       const o = base(t) as Record<string, any>;
       const I = n.indicators[ind];
-      const unit = UNIT[ind];
+      const unit = n.indicators[ind].unit, dec = n.indicators[ind].dec;
       const years = n.years.map(String);
       // Deli brez »skupaj« (4 sektorji ali 2 sektorja); pri OVE (delež) se ne sešteva – ločene črte.
       const parts = I.sectors.filter((s) => s !== 'skupaj' && !(I.sectors.length === 7 && (s === 'stanovanjski' || s === 'storitveni')));
       const total = I.values.skupaj;
-      const tip = (idx: number) => tipTitle(years[idx]) + parts.map((s) => tipRow(t.s[SECTOR_COLOR[s]], sectorName[s], `${nf(I.values[s][idx])} ${unit}`, ind === 'ove' ? 'line' : 'rect')).join('')
-        + tipRow(t.ink, 'Stavbe skupaj', `${nf(total[idx])} ${unit}`, ind === 'ove' ? 'line' : 'rect');
+      const tip = (idx: number) => tipTitle(years[idx]) + parts.map((s) => tipRow(t.s[SECTOR_COLOR[s]], sectorName[s], `${nf(I.values[s][idx], dec)} ${unit}`, ind === 'ove' ? 'line' : 'rect')).join('')
+        + tipRow(t.ink, 'Stavbe skupaj', `${nf(total[idx], dec)} ${unit}`, ind === 'ove' ? 'line' : 'rect');
       if (ind === 'ove') {
         const dot = (c: string) => ({ color: c, borderColor: t.panel, borderWidth: 2 });
         // Črte se leta 2050 zbližajo (76–78 %), zato brez napisov ob koncu – vrednosti so v opisu in preglednici.
@@ -132,7 +132,7 @@ const fe = n.indicators.koncna_energija.values.skupaj;
           itemStyle: { borderColor: t.panel, borderWidth: 1, borderRadius: i === parts.length - 1 ? [4, 4, 0, 0] : 0 },
           data: I.values[s],
           // Skupna vrednost na vrhu stolpca (samo na zadnjem delu sklada).
-          label: i === parts.length - 1 ? { show: true, position: 'top', color: t.ink, fontWeight: 700, fontSize: 11, formatter: (q: any) => nf(total[q.dataIndex]) } : { show: false },
+          label: i === parts.length - 1 ? { show: true, position: 'top', color: t.ink, fontWeight: 700, fontSize: 11, formatter: (q: any) => nf(total[q.dataIndex], dec) } : { show: false },
         })),
       };
     };

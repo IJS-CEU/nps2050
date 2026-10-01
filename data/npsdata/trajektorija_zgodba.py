@@ -12,6 +12,7 @@ import numpy as np
 
 from .context import OUT, Context, write_csv
 from .draft import row
+from . import enote
 from .numbers import lead, num
 
 BOUNDS = ['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G']
@@ -55,14 +56,20 @@ def build(ctx: Context) -> dict:
     base2020 = {'koncna_energija': num(row(t14, r'^Stavbe skupaj')[1]), 'primarna_energija': num(row(t14, r'^Stavbe skupaj')[3]), 'emisije': None}
     items = {i['id']: i for i in kz['items']}
     cilji = []
-    for iid, label, unit in [('koncna_energija', 'Končna energija v stavbah', 'ktoe'), ('primarna_energija', 'Primarna energija v stavbah', 'ktoe'),
+    for iid, label, unit in [('koncna_energija', 'Končna energija v stavbah', 'TWh'), ('primarna_energija', 'Primarna energija v stavbah', 'TWh'),
                              ('emisije', 'Emisije TGP iz stavb', 'kt CO₂ ekv.')]:
         it = items[iid]
-        b23 = it['baseline']['value']
+        # odstotki iz vrednosti v enotah načrta (ktoe), prikaz v TWh (§11.12)
+        if 'plan' in it:
+            b23, vals = it['plan']['baseline'], dict(zip([v['year'] for v in it['values']], it['plan']['values']))
+            conv, dec = enote.twh, enote.TWH_DEC
+        else:
+            b23, vals = it['baseline']['value'], {v['year']: lead(v['text']) for v in it['values']}
+            conv, dec = (lambda x: x), 0
         b20 = base2020[iid]
-        vals = {v['year']: lead(v['text']) for v in it['values']}
-        cilji.append({'id': iid, 'label': label, 'unit': unit, 'base2020': b20, 'base2023': b23,
-                      'years': {str(y): {'value': v, 'vs2023': round(100 * (v / b23 - 1)), 'vs2020': round(100 * (v / b20 - 1)) if b20 else None} for y, v in vals.items()}})
+        cilji.append({'id': iid, 'label': label, 'unit': unit, 'dec': dec, 'base2020': conv(b20), 'base2023': conv(b23),
+                      'plan': {'base2020': b20, 'base2023': b23, 'years': {str(y): v for y, v in vals.items()}},
+                      'years': {str(y): {'value': conv(v), 'vs2023': round(100 * (v / b23 - 1)), 'vs2020': round(100 * (v / b20 - 1)) if b20 else None} for y, v in vals.items()}})
 
     tr['zgodba'] = {
         'bands': bands, 'wpb': {'area_mio_m2': wpb_area, 'avg_pe_2020': wpb_avg, 'target_bc': bands['B|C'],
@@ -75,6 +82,10 @@ def build(ctx: Context) -> dict:
     (OUT / 'trajektorija.json').write_text(json.dumps(tr, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     write_csv('trajektorija_strategije', ['leto', 'S0 [kWh/(m²·a)]', 'S1 [kWh/(m²·a)]', 'S2 – scenarij NPS 2050 [kWh/(m²·a)]'],
               [[y, a, b_, c] for y, a, b_, c in zip(years_s, scen['S0'], scen['S1'], scen['S2'])])
-    write_csv('cilji_2020_2023', ['kazalnik', 'enota', 'izhodišče 2020', 'izhodišče 2023'] + [f'{y}: vrednost / glede na 2020 [%] / glede na 2023 [%]' for y in (2030, 2040, 2050)],
-              [[c['label'], c['unit'], c['base2020'], c['base2023']] + [f"{c['years'][str(y)]['value']} / {c['years'][str(y)]['vs2020']} / {c['years'][str(y)]['vs2023']}" for y in (2030, 2040, 2050)] for c in cilji])
+    write_csv('cilji_2020_2023', ['kazalnik', 'enota', 'izhodišče 2020', 'izhodišče 2023'] + [f'{y}: vrednost / glede na 2020 [%] / glede na 2023 [%]' for y in (2030, 2040, 2050)]
+              + ['izhodišče 2020 [ktoe]', 'izhodišče 2023 [ktoe]', '2030 [ktoe]', '2040 [ktoe]', '2050 [ktoe]'],
+              [[c['label'], c['unit'], c['base2020'], c['base2023']] + [f"{c['years'][str(y)]['value']} / {c['years'][str(y)]['vs2020']} / {c['years'][str(y)]['vs2023']}" for y in (2030, 2040, 2050)]
+               + ([c['plan']['base2020'], c['plan']['base2023'], *[c['plan']['years'][str(y)] for y in (2030, 2040, 2050)]] if c['unit'] == 'TWh' else [None] * 5) for c in cilji])
+    for c in cilji:
+        del c['plan']
     return tr

@@ -5,6 +5,7 @@ import openpyxl
 
 from .context import Context, write_csv, write_json
 from .draft import row
+from . import enote
 from .numbers import all_nums, is_missing, lead, year_in
 
 # id, vzorec prve celice, ali ima mali graf
@@ -76,6 +77,21 @@ def build(ctx: Context) -> dict:
 
     _check_grafikoni(ctx, {i['id']: i for i in items})
 
+    # ktoe → TWh (§11.12): vrednosti v enotah načrta ostanejo v »plan« (za izpeljane odstotke) in v CSV.
+    for it in items:
+        texts = [it['baseline']['text']] + [v['text'] for v in it['values']]
+        if it['unit'].strip() == 'ktoe':
+            it['plan'] = {'baseline': it['baseline']['value'], 'values': [v['value'] for v in it['values']], 'texts': texts}
+            it['unit'], it['dec'] = 'TWh', enote.TWH_DEC
+            for p in [it['baseline'], *it['values']]:
+                p['text'], p['value'] = enote.text_twh(p['text']), enote.twh(p['value'])
+                if 'range' in p:
+                    p['range'] = [enote.twh(x) for x in p['range']]
+        else:
+            for p in [it['baseline'], *it['values']]:
+                p['text'] = enote.in_text(p['text'])
+    ctx.check(not any('ktoe' in str(i) for i in items), 'kazalniki: brez enote ktoe')
+
     data = {
         'meta': ctx.meta([f'{ctx.draft.name}: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)'],
                          note='Vrednosti so zapisane kot v načrtu (text); value je številka za mali graf, pri razponu zgornja meja.'),
@@ -83,8 +99,8 @@ def build(ctx: Context) -> dict:
         'items': items,
     }
     write_json('kazalniki', data)
-    write_csv('kazalniki', ['kazalnik', 'enota', 'izhodišče', '2030', '2040', '2050'],
-              [[i['label'], i['unit'], i['baseline']['text'], *[v['text'] for v in i['values']]] for i in items])
+    write_csv('kazalniki', ['kazalnik', 'enota', 'izhodišče', '2030', '2040', '2050', 'izhodišče [ktoe]', '2030 [ktoe]', '2040 [ktoe]', '2050 [ktoe]'],
+              [[i['label'], i['unit'], i['baseline']['text'], *[v['text'] for v in i['values']], *(i['plan']['texts'] if 'plan' in i else [None] * 4)] for i in items])
     return data
 
 

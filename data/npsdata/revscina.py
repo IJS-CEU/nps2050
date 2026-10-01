@@ -14,7 +14,10 @@ def build(ctx: Context) -> dict:
     ctx.check(t2030 == [3.8, 4.6] and t2040 == 2.5 and t2050 == 1.5, f'cilji energetske revščine 3,8–4,6 / 2,5 / 1,5 % (prebrano {t2030}, {t2040}, {t2050})')
 
     c = ctx.draft.table(r'Cilj zmanjšanja deleža energetsko revnih gospodinjstev')
-    ctx.check(num(c[0][-1]) == 7.3, 'preglednica ciljev: stanje 2024 = 7,3 %')
+    # Preglednica ciljev in povzetek morata navajati isto izhodišče; neskladje se sporoči avtorjem, na stran gre povzetek
+    # (skladen s štetji SURS za 2024 v preglednicah 14 in 15).
+    ctx.warn_unless(num(c[0][-1]) == base[0] and str(int(base[1])) in c[0][-2],
+                    f'energetska revščina: povzetek {base[0]} % ({int(base[1])}) ≠ preglednica ciljev »{c[0][-2]}« {c[0][-1]}')
 
     n = ctx.draft.table(r'Ocenjeno število energetsko revnih gospodinjstev in oseb')
     hh = num(row(n, r'^Ocenjeno število energetsko revnih gospodinjstev$')[1])
