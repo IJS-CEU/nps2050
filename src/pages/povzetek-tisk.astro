@@ -79,7 +79,7 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
       <div><b>−{K.trajektorija.values.at(-1)!.text.match(/−(\d+)/)![1]} %</b><span>primarne energije na m² stanovanjskih stavb do 2050 ({nf(tr.kwh_m2.nps[0])} → {nf(tr.kwh_m2.nps.at(-1))} kWh/(m²·a))</span></div>
       <div><b>~2 %</b><span>površine stavb se energetsko prenovi vsako leto</span></div>
       <div><b>−90 %</b><span>emisij toplogrednih plinov iz stavb do 2050 glede na 2023</span></div>
-      <div><b>≤ {nf(rv.share.target_2050, 1)} %</b><span>energetsko revnih gospodinjstev do 2050 ({nf(rv.share.base, 1)} % leta 2024)</span></div>
+      <div><b>≤ {nf(rv.share.target_2050, 1)} %</b><span>energetsko revnih gospodinjstev do 2050 ({nf(rv.share.base, 1)} % leta {rv.share.base_year})</span></div>
       <div><b>{txt('investicije', 2030).split(' ')[0]} mrd €</b><span>naložb v obdobju 2026–2030, okoli 19 mrd € do 2050</span></div>
     </div>
     <h2>V tem povzetku</h2>
@@ -253,15 +253,15 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
     <p class="kicker">Energetska revščina</p>
     <h2 class="big">Prenova, ki pomaga tistim, ki jo najbolj potrebujejo</h2>
     <div class="tiles t3">
-      <div><b>{nf(rv.counts_2024.households)}</b><span>energetsko revnih gospodinjstev leta 2024 ({nf(rv.share.base, 1)} %)</span></div>
+      <div><b>{nf(rv.counts_2024.households)}</b><span>energetsko revnih gospodinjstev leta 2024 (zadnji delež: {nf(rv.share.base, 1)} % leta {rv.share.base_year})</span></div>
       <div><b>{nf(rv.counts_2024.persons)}</b><span>oseb živi v njih</span></div>
       <div><b>{nf(rv.counts_2024.leaks_damp)}</b><span>gospodinjstev živi s puščajočo streho, vlago ali trhlimi okni</span></div>
     </div>
     <div class="cols2">
       <div>
         <h3>Cilji</h3>
-        <svg viewBox="0 0 250 130" class="chart" role="img" aria-label={`Delež energetsko revnih gospodinjstev: 2024 ${nf(rv.share.base, 1)} %, cilj 2030 ${nf(rv.share.target_2030[0], 1)}–${nf(rv.share.target_2030[1], 1)} %, 2040 največ ${nf(rv.share.target_2040, 1)} %, 2050 največ ${nf(rv.share.target_2050, 1)} %`}>
-          {[[2024, rv.share.base, `${nf(rv.share.base, 1)} %`], [2030, rv.share.target_2030[1], `${nf(rv.share.target_2030[0], 1)}–${nf(rv.share.target_2030[1], 1)} %`], [2040, rv.share.target_2040, `≤ ${nf(rv.share.target_2040, 1)} %`], [2050, rv.share.target_2050, `≤ ${nf(rv.share.target_2050, 1)} %`]].map(([y, v, l], i) => {
+        <svg viewBox="0 0 250 130" class="chart" role="img" aria-label={`Delež energetsko revnih gospodinjstev: ${rv.share.base_year} ${nf(rv.share.base, 1)} %, cilj 2030 ${nf(rv.share.target_2030[0], 1)}–${nf(rv.share.target_2030[1], 1)} %, 2040 največ ${nf(rv.share.target_2040, 1)} %, 2050 največ ${nf(rv.share.target_2050, 1)} %`}>
+          {[[rv.share.base_year, rv.share.base, `${nf(rv.share.base, 1)} %`], [2030, rv.share.target_2030[1], `${nf(rv.share.target_2030[0], 1)}–${nf(rv.share.target_2030[1], 1)} %`], [2040, rv.share.target_2040, `≤ ${nf(rv.share.target_2040, 1)} %`], [2050, rv.share.target_2050, `≤ ${nf(rv.share.target_2050, 1)} %`]].map(([y, v, l], i) => {
             const h = ((v as number) / 8) * 90, bx = 14 + i * 60;
             return <g><rect x={bx} y={106 - h} width="40" height={h} fill={i === 0 ? '#8F5A08' : '#1F7A57'} rx="2" /><text x={bx + 20} y={101 - h} text-anchor="middle" class="lb">{l}</text><text x={bx + 20} y={122} text-anchor="middle" class="ax">{y}</text></g>;
           })}

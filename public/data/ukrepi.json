@@ -1,7 +1,7 @@
 {
  "meta": {
   "draft": "NPS_v40",
-  "draft_date": "2026-09-30",
+  "draft_date": "2026-10-01",
   "generated": "2026-10-01",
   "sources": [
    "NPS_v40: pogl. 6 (preglednice »Pregled vsebin …«, »Pregled obstoječih ukrepov …«, »Pregled novih ukrepov …«, »Novi ukrepi za izpolnitev zahtev EPBD (N1–N20)«, »Časovni načrt opuščanja kotlov …«), pogl. 7 (»Investicijske potrebe …«, »Viri financiranja … 2031–2050«)"
@@ -461,7 +461,7 @@
     {
      "kind": "ekonomski",
      "resp": "Eko sklad, MzIE",
-     "text": "Nadaljevanje izvajanja instrumenta in / Vzpostavitev novih finančnih instrumentov. Podrobnosti ureja DSEPS. / Glej tudi ukrep Napaka! Vira sklicevanja ni bilo mogoče najti..",
+     "text": "Nadaljevanje izvajanja instrumenta in / Vzpostavitev novih finančnih instrumentov. Podrobnosti ureja DSEPS. / Glej tudi ukrep Error! Reference source not found..",
      "deadline": "2025",
      "kpi": "Posodobitev predpisa",
      "target": "2025: sprejetje predpisa"
@@ -636,7 +636,7 @@
     {
      "kind": "ekonomski",
      "resp": "MzIE, MJU, Eko sklad",
-     "text": "Nadaljevanje in nadgradnja izvajanja instrumenta: / izboljšati spremljanje učinkov naložb, ki prejmejo kredite (Eko sklad in drugo) za zmanjšanje rabe energije in emisij TGP, ter povečanje proizvodnje energije iz OVE. / Zagotovitev sistemskega finančnega vira se preuči v DSEPS. / Glej tudi ukrep Napaka! Vira sklicevanja ni bilo mogoče najti..",
+     "text": "Nadaljevanje in nadgradnja izvajanja instrumenta: / izboljšati spremljanje učinkov naložb, ki prejmejo kredite (Eko sklad in drugo) za zmanjšanje rabe energije in emisij TGP, ter povečanje proizvodnje energije iz OVE. / Zagotovitev sistemskega finančnega vira se preuči v DSEPS. / Glej tudi ukrep Error! Reference source not found..",
      "deadline": "2025",
      "kpi": "Usmerjeno spodbujanje naložb",
      "target": "2024: začetek analize / 2026: implementacija"
@@ -674,7 +674,7 @@
     {
      "kind": "ekonomski (finančne spodbude)",
      "resp": "MzIE",
-     "text": "Spodbuditi pripravo projektov v okviru pridobljenih in dodatnih sredstev mednarodne tehnične pomoči ELENA za energetsko prenovo stavb ožjega in širšega javnega sektorja. / (Glej tudi Napaka! Vira sklicevanja ni bilo mogoče najti. in Napaka! Vira sklicevanja ni bilo mogoče najti..)",
+     "text": "Spodbuditi pripravo projektov v okviru pridobljenih in dodatnih sredstev mednarodne tehnične pomoči ELENA za energetsko prenovo stavb ožjega in širšega javnega sektorja. / (Glej tudi Error! Reference source not found. in Error! Reference source not found..)",
      "deadline": "2026",
      "kpi": "Zagotovitev finančne pomoči za pripravo projektov",
      "target": "2026: prijava na razpis ELENA"
@@ -782,7 +782,7 @@
     {
      "kind": "načrtovanje, predpisi",
      "resp": "MzIE",
-     "text": "Spodbujanje opuščanja rabe fosilnih goriv v stavbah s programiranjem skrajnih rokov in ukrepov, vezanih na prepoved prodaje in vgradnje kotlov na fosilna goriva. Glej tudi ukrep Napaka! Vira sklicevanja ni bilo mogoče najti.. / Ukrep se izvede v skladu z DSEPS, ki ureja podrobnosti, ter razvojem SDOH (spodbude se ne usmerjajo na območja oskrbe z daljinsko toploto oziroma se na teh območjih spodbujajo priklopi na SDOH).",
+     "text": "Spodbujanje opuščanja rabe fosilnih goriv v stavbah s programiranjem skrajnih rokov in ukrepov, vezanih na prepoved prodaje in vgradnje kotlov na fosilna goriva. Glej tudi ukrep Error! Reference source not found.. / Ukrep se izvede v skladu z DSEPS, ki ureja podrobnosti, ter razvojem SDOH (spodbude se ne usmerjajo na območja oskrbe z daljinsko toploto oziroma se na teh območjih spodbujajo priklopi na SDOH).",
      "deadline": "",
      "kpi": "",
      "target": ""
@@ -820,7 +820,7 @@
     {
      "kind": "sklop in instrumentov (davčni in okoljski)",
      "resp": "MF, MzIE",
-     "text": "Določanje višine dajatve na emisije CO2 in zneskov trošarin za fosilne vire do leta 2030 za ogrevanje (ELKO, UNP, ZP) z namenom pospešitve prehoda na OVE. Ukrep se izvaja v okviru ukrepov Napaka! Vira sklicevanja ni bilo mogoče najti. in Napaka! Vira sklicevanja ni bilo mogoče najti..",
+     "text": "Določanje višine dajatve na emisije CO2 in zneskov trošarin za fosilne vire do leta 2030 za ogrevanje (ELKO, UNP, ZP) z namenom pospešitve prehoda na OVE. Ukrep se izvaja v okviru ukrepov Error! Reference source not found. in Error! Reference source not found..",
      "deadline": "",
      "kpi": "",
      "target": ""

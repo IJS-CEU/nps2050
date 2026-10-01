@@ -1,4 +1,6 @@
-"""Energetska revščina: stanje 2024, cilji 2030–2050 in struktura po tipu gospodinjstva (pogl. 2.4 osnutka)."""
+"""Energetska revščina: zadnje stanje (preglednica ciljev), cilji 2030–2050 in struktura po tipu gospodinjstva (pogl. 2.4 osnutka)."""
+import re
+
 from .context import Context, write_csv, write_json
 from .draft import row
 from .numbers import all_nums, num
@@ -10,13 +12,14 @@ def build(ctx: Context) -> dict:
     base = all_nums(r[2])  # '7,3 (2024)'
     t2030 = all_nums(r[3])  # '≤ 3,8–4,6'
     t2040, t2050 = all_nums(r[4])[0], all_nums(r[5])[0]
-    ctx.check(base == [7.3, 2024.0], f'energetska revščina 2024 = 7,3 % (prebrano {base})')
     ctx.check(t2030 == [3.8, 4.6] and t2040 == 2.5 and t2050 == 1.5, f'cilji energetske revščine 3,8–4,6 / 2,5 / 1,5 % (prebrano {t2030}, {t2040}, {t2050})')
 
     c = ctx.draft.table(r'Cilj zmanjšanja deleža energetsko revnih gospodinjstev')
-    # Preglednica ciljev in povzetek morata navajati isto izhodišče; neskladje se sporoči avtorjem, na stran gre povzetek
-    # (skladen s štetji SURS za 2024 v preglednicah 14 in 15).
-    ctx.warn_unless(num(c[0][-1]) == base[0] and str(int(base[1])) in c[0][-2],
+    # Vedno zadnji podatek (odločitev Gašperja 1. 10. 2026): izhodišče iz preglednice ciljev (»Stanje leta 2025«),
+    # neskladje s povzetkom se sporoči avtorjem.
+    base_v, base_y = num(c[0][-1]), int(re.search(r'(\d{4})', c[0][-2]).group(1))
+    ctx.check(0 < base_v < 15 and base_y >= 2024, f'energetska revščina: stanje {base_y} = {base_v} %')
+    ctx.warn_unless(base_v == base[0] and base_y == int(base[1]),
                     f'energetska revščina: povzetek {base[0]} % ({int(base[1])}) ≠ preglednica ciljev »{c[0][-2]}« {c[0][-1]}')
 
     n = ctx.draft.table(r'Ocenjeno število energetsko revnih gospodinjstev in oseb')
@@ -29,6 +32,10 @@ def build(ctx: Context) -> dict:
 
     ty = ctx.draft.table(r'Delež energetsko revnih gospodinjstev po tipu gospodinjstva')
     types = [{'name': x[0], 'pct': num(x[1])} for x in ty[1:] if x and x[0]]
+    ty_year = int(ty[0][1])
+    # povprečje za leto razčlenitve po tipu (za poudarek tipov nad povprečjem)
+    ty_avg = base[0] if int(base[1]) == ty_year else (base_v if base_y == ty_year else None)
+    ctx.check(ty_avg is not None, f'energetska revščina: povprečje za leto razčlenitve po tipu {ty_year}')
     ctx.check(len(types) == 8 and max(t['pct'] for t in types) == 14.3, 'delež po tipu gospodinjstva: 8 tipov, največ 14,3 %')
 
     inv = ctx.draft.table(r'Cilj in kazalniki spremljanja naložb URE in rabe OVE v energetsko revnih')
@@ -41,9 +48,10 @@ def build(ctx: Context) -> dict:
             [f'{ctx.draft.name}: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)',
              f'{ctx.draft.name}: preglednice 13–16 (pogl. 2.4, vir podatkov SURS in Akcijski načrt za zmanjševanje energetske revščine 2023)'],
             note='Delež energetsko revnih gospodinjstev po Uredbi o merilih za opredelitev in ocenjevanje števila energetsko revnih gospodinjstev.'),
-        'share': {'years': [2024, 2030, 2040, 2050], 'base': base[0], 'target_2030': t2030, 'target_2040': t2040, 'target_2050': t2050},
+        'share': {'years': [base_y, 2030, 2040, 2050], 'base': base_v, 'base_year': base_y, 'target_2030': t2030, 'target_2040': t2040, 'target_2050': t2050},
         'counts_2024': {'households': hh, 'persons': persons, 'cannot_heat': cold, 'arrears': arrears, 'leaks_damp': leaks},
         'by_type_2024': types,
+        'by_type_avg': ty_avg,
         'investments_2030': {'households': target_hh, 'cumulative_gwh': target_gwh},
     }
     write_json('revscina', data)

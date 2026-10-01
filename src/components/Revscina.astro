@@ -13,7 +13,7 @@ const d = loadData<Revscina>('revscina');
 const s = d.share;
 const MAX = 8; // os deleža v odstotkih
 const steps = [
-  { year: 2024, v: s.base, label: `${nf(s.base, 1)} %`, note: 'stanje' },
+  { year: s.base_year, v: s.base, label: `${nf(s.base, 1)} %`, note: 'stanje' },
   { year: 2030, v: s.target_2030[1], lo: s.target_2030[0], label: `${nf(s.target_2030[0], 1)}–${nf(s.target_2030[1], 1)} %`, note: 'cilj' },
   { year: 2040, v: s.target_2040, label: `≤ ${nf(s.target_2040, 1)} %`, note: 'cilj' },
   { year: 2050, v: s.target_2050, label: `≤ ${nf(s.target_2050, 1)} %`, note: 'cilj' },
@@ -31,7 +31,7 @@ const tmax = Math.max(...types.map((t) => t.pct));
   <div class="rv-head">
     <div class="rv-big"><b>{nf(c.households)}</b><span>energetsko revnih gospodinjstev leta 2024</span></div>
     <div class="rv-big"><b>{nf(c.persons)}</b><span>oseb živi v njih</span></div>
-    <div class="rv-big"><b>{nf(s.base, 1)} %</b><span>vseh gospodinjstev</span></div>
+    <div class="rv-big"><b>{nf(s.base, 1)} %</b><span>vseh gospodinjstev leta {s.base_year}</span></div>
   </div>
 
   <section class="rv-box" aria-labelledby="rv-path-t">
@@ -69,14 +69,14 @@ const tmax = Math.max(...types.map((t) => t.pct));
       <thead class="visually-hidden"><tr><th scope="col">Tip gospodinjstva</th><th scope="col">Delež</th></tr></thead>
       <tbody>
         {types.map((t) => (
-          <tr class={t.pct > s.base ? 'is-high' : ''}>
+          <tr class={t.pct > d.by_type_avg ? 'is-high' : ''}>
             <th scope="row">{t.name}</th>
             <td><span class="rv-t-bar" style={`width:${(100 * t.pct) / tmax}%`} aria-hidden="true"></span><span class="rv-t-v">{nf(t.pct, 1)} %</span></td>
           </tr>
         ))}
       </tbody>
     </table>
-    <p class="note">Poudarjeni so tipi nad povprečjem ({nf(s.base, 1)} %). Vir: SURS. <a href={withBase('data/csv/revscina_tip_gospodinjstva.csv')} download>Prenesi CSV</a></p>
+    <p class="note">Poudarjeni so tipi nad povprečjem leta 2024 ({nf(d.by_type_avg, 1)} %). Vir: SURS. <a href={withBase('data/csv/revscina_tip_gospodinjstva.csv')} download>Prenesi CSV</a></p>
   </section>
 </div>
 

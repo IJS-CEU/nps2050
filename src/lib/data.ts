@@ -101,7 +101,8 @@ export interface Prihranek { meta: Meta; after: { sfh: number; mfh: number }; ro
 
 export interface Revscina {
   meta: Meta;
-  share: { years: number[]; base: number; target_2030: [number, number]; target_2040: number; target_2050: number };
+  by_type_avg: number;
+  share: { years: number[]; base: number; base_year: number; target_2030: [number, number]; target_2040: number; target_2050: number };
   counts_2024: { households: number; persons: number; cannot_heat: number; arrears: number; leaks_damp: number };
   by_type_2024: { name: string; pct: number }[];
   investments_2030: { households: number; cumulative_gwh: number };

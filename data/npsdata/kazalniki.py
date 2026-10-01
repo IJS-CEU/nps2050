@@ -77,6 +77,14 @@ def build(ctx: Context) -> dict:
 
     _check_grafikoni(ctx, {i['id']: i for i in items})
 
+    # Energetska revščina: vedno zadnje stanje iz preglednice ciljev, če je novejše od povzetka (odločitev Gašperja 1. 10. 2026).
+    c = ctx.draft.table(r'Cilj zmanjšanja deleža energetsko revnih gospodinjstev')
+    y13 = int(re.search(r'(\d{4})', c[0][-2]).group(1))
+    er = next(i for i in items if i['id'] == 'energetska_revscina')
+    if er['baseline']['year'] is None or y13 > er['baseline']['year']:
+        v13 = c[0][-1].replace('%', '').strip()
+        er['baseline'] = {'text': f'{v13} ({y13})', 'value': lead(v13), 'year': y13}
+
     # ktoe → TWh (§11.12): vrednosti v enotah načrta ostanejo v »plan« (za izpeljane odstotke) in v CSV.
     for it in items:
         texts = [it['baseline']['text']] + [v['text'] for v in it['values']]

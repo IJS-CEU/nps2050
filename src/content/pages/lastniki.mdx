@@ -5,6 +5,10 @@ description: 'Kaj NPS 2050 pomeni za lastnike stavb: energijski razredi, najslab
 lead: 'Kaj načrt pomeni za vašo hišo ali stanovanje? Kratki odgovori na najpogostejša vprašanja.'
 ---
 import { pageUrl } from '../../i18n/routes';
+import { loadData } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+export const rv = loadData('revscina');
 
 <div class="card green">
   <p><strong>Preverite svojo stavbo.</strong> Vnesite primarno energijo iz energetske izkaznice in poglejte, v kateri razred sodi stavba in katere pragove izpolnjuje: <a href={pageUrl('preveri')}>Preveri stavbo</a></p>
@@ -102,7 +106,7 @@ Načrt predlaga območne programe prenove blokov, zgrajenih med letoma 1946 in 1
 
 {/* Vir: NPS_v38, povzetek in pogl. 2.4 (cilji energetske revščine). */}
 
-Leta 2024 je bilo energetsko revnih 7,3 % gospodinjstev, približno 63 tisoč. Cilj je, da se delež zmanjša na največ 3,8 do 4,6 % do leta 2030, 2,5 % do leta 2040 in 1,5 % do leta 2050.
+Leta {rv.share.base_year} je bilo energetsko revnih {nf(rv.share.base, 1)} % gospodinjstev (leta 2024 približno {nf(Math.round(rv.counts_2024.households / 1000))} tisoč). Cilj je, da se delež zmanjša na največ {nf(rv.share.target_2030[0], 1)} do {nf(rv.share.target_2030[1], 1)} % do leta 2030, {nf(rv.share.target_2040, 1)} % do leta 2040 in {nf(rv.share.target_2050, 1)} % do leta 2050.
 
 Načrt za energetsko revna gospodinjstva predvideva do 100-odstotno financiranje prenove in prednostno prenovo najslabših stavb, v katerih živijo. Več o stanju, ciljih, spodbudah in zaščiti najemnikov: <a href={pageUrl('revscina')}>Energetska revščina</a>
 </details>

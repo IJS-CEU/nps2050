@@ -1,7 +1,7 @@
 {
  "meta": {
   "draft": "NPS_v40",
-  "draft_date": "2026-09-30",
+  "draft_date": "2026-10-01",
   "generated": "2026-10-01",
   "sources": [
    "NPS_v40: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)",
@@ -12,12 +12,13 @@
  },
  "share": {
   "years": [
-   2024,
+   2025,
    2030,
    2040,
    2050
   ],
-  "base": 7.3,
+  "base": 6.8,
+  "base_year": 2025,
   "target_2030": [
    3.8,
    4.6
@@ -66,6 +67,7 @@
    "pct": 1.9
   }
  ],
+ "by_type_avg": 7.3,
  "investments_2030": {
   "households": 8000,
   "cumulative_gwh": 573

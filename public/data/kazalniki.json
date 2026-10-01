@@ -1,7 +1,7 @@
 {
  "meta": {
   "draft": "NPS_v40",
-  "draft_date": "2026-09-30",
+  "draft_date": "2026-10-01",
   "generated": "2026-10-01",
   "sources": [
    "NPS_v40: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)"
@@ -373,9 +373,9 @@
    "label": "Energetsko revna gospodinjstva",
    "unit": "% gospodinjstev",
    "baseline": {
-    "text": "7,3 (2024)",
-    "value": 7.3,
-    "year": 2024
+    "text": "6,8 (2025)",
+    "value": 6.8,
+    "year": 2025
    },
    "values": [
     {
