@@ -1,0 +1,36 @@
+---
+/**
+ * 11.5 Napačna razumevanja (»Kaj NPS 2050 ne pomeni«): vnosi iz src/content/napacna-razumevanja/*.md.
+ * Ob vsaki trditvi: ali drži (ne / delno), pojasnilo, vir v osnutku in povezava na rubriko.
+ */
+import { getCollection, render } from 'astro:content';
+import { pageUrl } from '../i18n/routes';
+import Icon from './Icon.astro';
+
+interface Props { only?: 'lastniki'; level?: 2 | 3 }
+const { only, level = 3 } = Astro.props;
+const all = (await getCollection('napacna')).sort((a, b) => a.id.localeCompare(b.id));
+const items = await Promise.all(all.filter((e) => !only || e.data.lastniki).map(async (e) => ({ e, Content: (await render(e)).Content })));
+const H = `h${level}` as 'h2' | 'h3';
+---
+<ul class="nr">
+  {items.map(({ e, Content }) => (
+    <li class={`nr-i ${e.data.drzi}`}>
+      <p class="nr-v"><span class="nr-ic"><Icon name={e.data.drzi === 'ne' ? 'x' : 'circle-alert'} size={16} /></span>{e.data.drzi === 'ne' ? 'Ne drži' : 'Drži le deloma'}</p>
+      <H class="nr-t">»{e.data.trditev}«</H>
+      <div class="nr-c"><Content /></div>
+      <p class="nr-s">Vir: {e.data.vir}. <a href={pageUrl(e.data.povezava)}>Več o tem</a></p>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .nr { list-style: none; padding: 0; margin: 1rem 0; max-width: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: .9rem; }
+  .nr-i { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 1rem 1.15rem; border-top: 4px solid var(--amber, #A4520E); }
+  .nr-i.ne { border-top-color: #9B1C1C; }
+  .nr-v { display: flex; align-items: center; gap: .4rem; margin: 0 0 .35rem; font-size: .76rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ink2); }
+  .nr-ic { display: grid; place-items: center; width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--greenbg); color: var(--ink); }
+  .nr-t { font-family: var(--font-serif); font-size: 1.12rem; line-height: 1.3; margin: 0 0 .4rem; }
+  .nr-c :global(p) { font-size: .92rem; margin: 0 0 .4rem; color: var(--ink); }
+  .nr-s { font-size: .8rem; color: var(--ink2); margin: .3rem 0 0; }
+</style>

@@ -5,6 +5,7 @@ description: 'Kaj NPS 2050 pomeni za lastnike stavb: energijski razredi, najslab
 lead: 'Kaj načrt pomeni za vašo hišo ali stanovanje? Kratki odgovori na najpogostejša vprašanja.'
 ---
 import { pageUrl } from '../../i18n/routes';
+import NapacnaRazumevanja from '../../components/NapacnaRazumevanja.astro';
 import { loadData } from '../../lib/data';
 import { nf } from '../../lib/format';
 
@@ -120,6 +121,14 @@ Za stavbe kulturne dediščine načrt ne predvideva splošne izjeme, ampak milej
 </details>
 
 </div>
+
+## Kaj načrt ne pomeni
+
+{/* Vir: src/content/napacna-razumevanja (vnosi z lastniki: true). */}
+
+<NapacnaRazumevanja only="lastniki" />
+
+<p><a href={pageUrl('napacna')}>Vse pogoste poenostavitve in pojasnila</a></p>
 
 ## Najslabše stavbe najprej
 

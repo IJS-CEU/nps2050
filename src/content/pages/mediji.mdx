@@ -5,6 +5,7 @@ description: 'Ključne številke NPS 2050, grafi za prosto uporabo z navedbo vir
 lead: 'Ključne številke, grafi za prosto uporabo in kontakt. Vse gradivo je iz osnutka NPS 2050 in se lahko do sprejema načrta še spremeni.'
 ---
 import Tiles from '../../components/Tiles.astro';
+import NapacnaRazumevanja from '../../components/NapacnaRazumevanja.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
 import { loadData } from '../../lib/data';
 
@@ -24,6 +25,14 @@ export const fe = loadData('kazalniki').items.find((i) => i.id === 'koncna_energ
 ## Ključne številke
 
 <Tiles />
+
+## Pogoste poenostavitve
+
+{/* Vir: src/content/napacna-razumevanja. CLAUDE.md §11.5. */}
+
+Pri poročanju o načrtu se pogosto pojavijo trditve, ki ne držijo. Kratka pojasnila (tudi na samostojni strani <a href={pageUrl('napacna')}>Kaj NPS 2050 ne pomeni</a>):
+
+<NapacnaRazumevanja />
 
 ## Grafi za prenos
 

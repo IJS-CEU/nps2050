@@ -28,4 +28,17 @@ const dnevnik = defineCollection({
   }),
 });
 
-export const collections = { pages, dnevnik };
+// 11.5 Napačna razumevanja: en vnos na datoteko src/content/napacna-razumevanja/<nn>-<ime>.md
+const napacna = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/napacna-razumevanja' }),
+  schema: z.object({
+    trditev: z.string(),
+    drzi: z.enum(['ne', 'delno']),
+    vir: z.string(),
+    povezava: z.enum(pageIds),
+    /** prikaži tudi na strani Za lastnike */
+    lastniki: z.boolean().default(false),
+  }),
+});
+
+export const collections = { pages, dnevnik, napacna };
