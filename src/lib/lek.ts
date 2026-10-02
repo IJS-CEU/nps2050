@@ -62,6 +62,12 @@ export function lekRows(sifra: string): [string, string, string | number | null,
     ['NPS 2050: nestanovanjske stavbe za izboljšanje do 2030 (minimalni standardi, ocena)', 'število', ci.meps.n_2030, null],
     ['NPS 2050: kurilno olje v stavbah 2023 → 2030 → 2040', 'GWh/leto', `${ci.fosilna.elko.gwh_2023} → ${ci.fosilna.elko.gwh[0]} → ${ci.fosilna.elko.gwh[1]}`, null],
     ['NPS 2050: zemeljski plin v stavbah 2023 → 2030 → 2040', 'GWh/leto', `${ci.fosilna.gas.gwh_2023} → ${ci.fosilna.gas.gwh[0]} → ${ci.fosilna.gas.gwh[1]}`, null],
+    ['NPS 2050: hiše za prenovo na leto 2026–2030 (ponazoritev)', 'število', (mo as any).stevilke.hise_leto, null],
+    ['NPS 2050: stanovanja v blokih za prenovo na leto 2026–2030 (ponazoritev)', 'število', (mo as any).stevilke.stanovanja_leto, null],
+    ['NPS 2050: javne in storitvene stavbe za prenovo na leto 2026–2030 (ponazoritev)', 'število', (mo as any).stevilke.javne_leto + (mo as any).stevilke.zasebne_leto, null],
+    ['NPS 2050: potrebne naložbe na leto 2026–2030 (ponazoritev)', 'mio €', Math.round((mo as any).stevilke.nalozba_eur_leto / 1e5) / 10, null],
+    ['NPS 2050: od tega nepovratne spodbude (državno povprečje, ponazoritev)', 'mio €', Math.round((mo as any).stevilke.spodbude_eur_leto / 1e5) / 10, null],
+    ['Tempo prenove stanovanjskih stavb glede na sorazmerni delež (registri 2023–2025)', '', (mo as any).stevilke.semafor, null],
     ...POT_KEYS.map(([k, l, u]): [string, string, string, null] => [`NPS 2050: ${l} 2023 → 2030 → 2040 → 2050 (ponazoritev)`, u, POT_Y.map((y) => mo.pot![y][k]).join(' → '), null]),
   ];
 }

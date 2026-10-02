@@ -1,0 +1,28 @@
+{
+ "meta": {
+  "draft": "NPS_v40",
+  "draft_date": "2026-10-01",
+  "generated": "2026-10-02",
+  "sources": [
+   "NPS_v40: preglednica 54 »Vhodni parametri ocene investicijskih potreb« (pogl. 7)",
+   "Kataster nepremičnin GURS (povprečne površine), Eko sklad (ukrepi 2023–2025)"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Konstante za pretvorbe na straneh občin (11.7). Spodbude so državno povprečje."
+ },
+ "strosek_eur_m2": {
+  "res": 339,
+  "javne": 373,
+  "zasebne": 745
+ },
+ "delez_spodbud": {
+  "res": 0.14,
+  "javne": 0.4,
+  "zasebne": 0.1
+ },
+ "drzavni_obseg_m2_leto": 2067100.0,
+ "semafor": {
+  "metoda": "B (relativna)",
+  "min_prenov": 10
+ }
+}

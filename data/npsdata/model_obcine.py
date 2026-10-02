@@ -29,7 +29,7 @@ from shapely.geometry import shape
 from .context import OUT, Context, write_csv, write_json
 from .draft import row
 from .numbers import num
-from . import cilji_obcin, daljinsko, kazalniki_obcin, model_nres, projekcija_obcin, skupine_obcin
+from . import cilji_obcin, daljinsko, stevilke_obcin, kazalniki_obcin, model_nres, projekcija_obcin, skupine_obcin
 from .context import DATA_DIR
 from .meritve import build_measured
 from .stavbe import CARRIERS, HEAT_CLASSES, build_table
@@ -547,6 +547,7 @@ def build(ctx: Context) -> dict:
         'municipalities': out,
     }
     skupine_obcin.build(ctx, df)
+    stevilke_obcin.build(ctx, df, out, muni, data['si'])
     write_json('obcine_model', data)
     # Za zemljevid: modelska kazalnika dodamo v kazalo občin.
     ix = json.loads((OUT / 'obcine_index.json').read_text(encoding='utf-8'))

@@ -254,6 +254,23 @@
    "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
   },
   {
+   "id": "k001",
+   "datum": "1. 1. 2027 (načrt), 2028 (izhodišča)",
+   "kljuc": "2027-01-01",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N6: Časovni načrt mejnih vrednosti GWP za nove stavbe po letu 2030 z izhodiščnimi vrednostmi p",
+   "opis": "Objava in priglasitev časovnega načrta po čl. 7(5) EPBD. Določitev izhodišča na vzorcu najmanj 30 novih stavb z gradbenim dovoljenjem v letih 2026–2027 po metodologiji N5",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "DOD",
+   "vir": "osnutek, pogl. 6, ukrep N6; nosilci: MzIE, MNVP",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
    "id": "k024",
    "datum": "1. 1. 2027",
    "kljuc": "2027-01-01",
@@ -1131,23 +1148,6 @@
    "segment": "stanovanjske stavbe",
    "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
    "povezava": "strokovne-podlage/"
-  },
-  {
-   "id": "k001",
-   "datum": "1. 1. 2027 (načrt), 2028 (izhodišča)",
-   "kljuc": "9998",
-   "leto": null,
-   "okvirno": false,
-   "naslov": "N6: Časovni načrt mejnih vrednosti GWP za nove stavbe po letu 2030 z izhodiščnimi vrednostmi p",
-   "opis": "Objava in priglasitev časovnega načrta po čl. 7(5) EPBD. Določitev izhodišča na vzorcu najmanj 30 novih stavb z gradbenim dovoljenjem v letih 2026–2027 po metodologiji N5",
-   "vrsta": "mejnik",
-   "status": "predlagano",
-   "koga": [
-    "drzava"
-   ],
-   "segment": "DOD",
-   "vir": "osnutek, pogl. 6, ukrep N6; nosilci: MzIE, MNVP",
-   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
   },
   {
    "id": "k062",

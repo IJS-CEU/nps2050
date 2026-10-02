@@ -55,6 +55,13 @@ const esMax = Math.max(1, ...esRows.flatMap((r) => [r.o.pct ?? 0, r.s.pct ?? 0])
 const pub = ix.categories.slice(2).map((c) => ({ id: c.id, name: c.name, ...o.public_by_cat[c.id], e: mo.javne_cat?.[c.id] ?? null, es: ms.javne_cat?.[c.id] ?? null })).filter((c) => c.b !== 0);
 const dh = mo.dh_pot!, dhSi = ms.dh_pot!;
 const om = mo.omrezja!;
+const st = (mo as any).stevilke as { hise_leto: number; stanovanja_leto: number; javne_leto: number; zasebne_leto: number; povrsina_hise: number; povrsina_stanovanja: number;
+  nalozba_eur_leto: number; nalozba_eur_2030: number; spodbude_eur_leto: number; spodbude_delez_pct: number; semafor: string; stopnja_dejanska_pct: number | null;
+  stopnja_zahtevana_pct: number | null; prenov_registri: number; indeks_tempo: number | null;
+  rang: Record<string, { vse: { mesto: number; od: number }; skupina: { mesto: number; od: number }; oznaka: string; smer: string }> };
+const stSi = (ms as any).stevilke as { stopnja_dejanska_pct: number; stopnja_zahtevana_pct: number };
+const mio = (v: number) => (v >= 1e6 ? `${nf(v / 1e6, v >= 1e7 ? 0 : 1)} mio €` : `${nf(Math.round(v / 1000))} tisoč €`);
+const SEM: Record<string, [string, string]> = { 'na poti': ['na poti', 'sem-ok'], 'pod ciljem': ['pod ciljem', 'sem-no'], 'ni podatka': ['ni podatka', 'sem-na'] };
 const sysTxt = (n: number) => (n === 1 ? 'deluje 1 sistem' : n === 2 ? 'delujeta 2 sistema' : n <= 4 ? `delujejo ${n} sistemi` : `deluje ${n} sistemov`);
 const clsBlocks = ['hise', 'bloki'].map((sid) => {
   const g = o.segments[sid], gs = si.segments[sid];
@@ -185,6 +192,30 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
         <div class="tile"><div class="v">{nf(Math.round(ci.wpb.m2_leto_2026_2030 / 100) * 100)}<small> m²</small></div><div class="l">na leto od tega iz skupine 43 % najmanj učinkovitih stanovanjskih stavb (v občini okoli {nf(Math.round(ci.wpb.area_m2 / 1000))} tisoč m²)</div></div>
         <div class="tile"><div class="v">{nf(ci.meps.n_2030)}</div><div class="l">nestanovanjskih stavb bi morali izboljšati do leta 2030 in še {nf(Math.max(0, ci.meps.n_2033 - ci.meps.n_2030))} do leta 2033 (minimalni standardi, ocena)</div></div>
       </div>
+      <h3>V številkah: kaj to pomeni na leto</h3>
+      <div class="tiles ob-tiles ob-st">
+        <div class="tile"><div class="v">{nf(st.hise_leto)}</div><div class="l">hiš na leto (povprečna hiša v občini ima {nf(st.povrsina_hise)} m²)</div></div>
+        {st.stanovanja_leto > 0 && <div class="tile"><div class="v">{nf(st.stanovanja_leto)}</div><div class="l">stanovanj v blokih na leto (povprečno {nf(st.povrsina_stanovanja)} m²)</div></div>}
+        <div class="tile"><div class="v">{nf(st.javne_leto + st.zasebne_leto)}</div><div class="l">javnih in storitvenih stavb na leto (javnih {nf(st.javne_leto)}, storitvenih {nf(st.zasebne_leto)})</div></div>
+        <div class="tile"><div class="v">{mio(st.nalozba_eur_leto)}</div><div class="l">naložb na leto, do leta 2030 skupaj okoli {mio(st.nalozba_eur_2030)}</div></div>
+        <div class="tile"><div class="v">{mio(st.spodbude_eur_leto)}</div><div class="l">na leto bi pokrile nepovratne spodbude (okoli {nf(st.spodbude_delez_pct)} %, državno povprečje)</div></div>
+      </div>
+      <div class={`ob-sem ${SEM[st.semafor][1]}`}>
+        <p class="ob-sem-h"><span class="ob-sem-dot" aria-hidden="true"></span>Tempo prenove stanovanjskih stavb: <strong>{SEM[st.semafor][0]}</strong></p>
+        {st.semafor === 'ni podatka'
+          ? <p>V registrih je za leta 2023–2025 premalo vpisanih prenov ({nf(st.prenov_registri)}), da bi lahko ocenili tempo.</p>
+          : <p>V letih 2023–2025 je bilo po registrih prenovljenih okoli {nf(st.stopnja_dejanska_pct, 2)} % stanovanjske površine na leto (Slovenija {nf(stSi.stopnja_dejanska_pct, 2)} %); zahtevano je {nf(st.stopnja_zahtevana_pct, 2)} % (Slovenija {nf(stSi.stopnja_zahtevana_pct, 2)} %). {st.semafor === 'na poti' ? 'Občina prispeva vsaj svoj sorazmerni delež k državnemu tempu.' : 'Občina prispeva manj od svojega sorazmernega deleža k državnemu tempu.'}</p>}
+        <p class="note">Primerjava tempa prenov v občini s slovenskim povprečjem, glede na to, koliko mora občina prenoviti. Vir: vpisane obnove v katastru nepremičnin in ukrepi Eko sklada 2023–2025; registri ne zajamejo vseh prenov, zato se primerjajo deleži in ne absolutne stopnje.</p>
+      </div>
+      <h3>Mesto občine med občinami</h3>
+      <div class="tblwrap" tabindex="0" role="region" aria-label="Rang občine">
+        <table>
+          <caption class="visually-hidden">Mesto občine (1. = najugodneje)</caption>
+          <thead><tr><th scope="col">Kazalnik</th><th scope="col" class="num">Med 212 občinami</th><th scope="col" class="num">V skupini »{grpName}«</th></tr></thead>
+          <tbody>{Object.values(st.rang).map((r) => <tr><th scope="row">{r.oznaka} <small>({r.smer === 'nizko' ? 'nižje je bolje' : 'višje je bolje'})</small></th><td class="num">{nf(r.vse.mesto)}. od {nf(r.vse.od)}</td><td class="num">{nf(r.skupina.mesto)}. od {nf(r.skupina.od)}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <h3>Obseg prenove po vrstah stavb</h3>
       <div class="tblwrap" tabindex="0" role="region" aria-label="Obseg prenove po vrstah stavb">
         <table>
           <caption class="visually-hidden">Potrebni letni obseg energetske prenove v občini po vrstah stavb, m² na leto</caption>
@@ -412,7 +443,7 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
     </>}
 
     <div class="card green ob-lek" id="lek">
-      <p><strong>Energetsko-podnebna kartica občine: stavbe.</strong> Stanje, energenti, energijski razredi in pot do leta 2050 na eni strani, na drugi podatki za lokalni energetski koncept (LEK); za tisk ali kot PDF in v obliki CSV. Kartica je intelektualna lastnina IJS CEU; uporaba je dovoljena z navedbo vira, brez predelave in brez komercialne uporabe (CC BY-NC-ND 4.0).</p>
+      <p><strong>Energetsko-podnebna kartica občine: stavbe.</strong> Stanje, energenti, energijski razredi in pot do leta 2050; kaj cilji NPS 2050 pomenijo za občino v številkah, s koledarjem za občine; podatki za lokalni energetski koncept (LEK); za tisk ali kot PDF in v obliki CSV. Kartica je intelektualna lastnina IJS CEU; uporaba je dovoljena z navedbo vira, brez predelave in brez komercialne uporabe (CC BY-NC-ND 4.0).</p>
       <p><a class="btn primary" href={withBase(`obcina/${o.sifra}/lek/`)}>Kartica za tisk / PDF</a> <a class="btn" href={withBase(`obcina/${o.sifra}/lek.csv`)} download={`NPS2050_${o.name}_LEK.csv`}>CSV</a> <a class="btn" href={withBase(`data/paket/obcina-${o.sifra}.zip`)} download={`NPS2050_${o.name}_paket.zip`}>Podatkovni paket (ZIP)</a></p>
       <p class="note">Podatkovni paket vsebuje vse kazalnike občine s primerjavo s sosednjimi občinami, skupino in Slovenijo, podatke v obliki JSON, slovar polj in metapodatke.</p>
     </div>
@@ -469,6 +500,12 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
   .ob-mini b.s { color: var(--ink2); font-weight: 600; }
   .ob-more { margin-top: 1rem; }
   .ob-lek { margin-top: 2rem; }
+  .ob-sem { border-radius: 12px; padding: .8rem 1rem; margin: 1rem 0; border-left: 6px solid var(--line); background: var(--panel); }
+  .ob-sem p { margin: .2rem 0; }
+  .ob-sem-h { display: flex; align-items: center; gap: .5rem; font-size: 1rem; }
+  .ob-sem-dot { width: .9rem; height: .9rem; border-radius: 50%; background: var(--ink2); flex: none; }
+  .ob-sem.sem-ok { border-left-color: #1E7A4E; } .ob-sem.sem-ok .ob-sem-dot { background: #1E7A4E; }
+  .ob-sem.sem-no { border-left-color: #B84A14; } .ob-sem.sem-no .ob-sem-dot { background: #B84A14; }
   .ob-kol { font-size: .92rem; background: var(--greenbg); border-radius: 10px; padding: .6rem .9rem; }
   .ob-lek p { margin: .3rem 0; }
   .ob-lek .btn { display: inline-block; margin: .4rem .4rem 0 0; }

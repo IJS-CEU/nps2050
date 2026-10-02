@@ -53,6 +53,11 @@ const charts = POT_KEYS.map(([k, l, u], i) => {
   return { l: l.charAt(0).toUpperCase() + l.slice(1), u: pct ? '%' : u.replace('/leto', ''), col: POT_COL[i], bars: vals.map((v, j) => ({ y: POT_Y[j], t: nf(v, dec), h: Math.max(3, Math.round((100 * v) / max)) })), change: `${d > 0 ? '+' : '−'}${nf(Math.abs(d), 0)} ${pct ? 'odstotnih točk' : '%'} do 2050` };
 });
 const r100 = (v: number) => nf(Math.round(v / 100) * 100);
+const st = (mo as any).stevilke;
+const stSi = (ms as any).stevilke;
+const kol = loadData<{ vnosi: { datum: string; naslov: string; status: string; koga: string[]; okvirno: boolean }[] }>('koledar').vnosi.filter((v) => v.koga.includes('obcine'));
+const mioK = (v: number) => (v >= 1e6 ? `${nf(v / 1e6, v >= 1e7 ? 0 : 1)} mio €` : `${nf(Math.round(v / 1000))} tisoč €`);
+const SEMT: Record<string, string> = { 'na poti': 'na poti', 'pod ciljem': 'pod ciljem', 'ni podatka': 'ni podatka' };
 ---
 <!doctype html>
 <html lang="sl">
@@ -139,6 +144,41 @@ const r100 = (v: number) => nf(Math.round(v / 100) * 100);
 
     <div class="sheet">
       <header class="small">
+        <p class="k">Energetsko-podnebna kartica občine: stavbe · NPS 2050 v občini</p>
+        <p class="h1b">Občina {o.name}</p>
+        <p class="sub">kaj državni cilji NPS 2050 pomenijo za občino (ponazoritev, ne obveznost občine) in koledar za občine</p>
+      </header>
+      <section>
+        <h2>Kaj to pomeni na leto (2026–2030)</h2>
+        <ul class="tiles">
+          <li><span class="v">{nf(st.hise_leto)}</span><span class="l">hiš na leto (povprečna hiša v občini {nf(st.povrsina_hise)} m²)</span></li>
+          <li><span class="v">{nf(st.stanovanja_leto)}</span><span class="l">stanovanj v blokih na leto</span></li>
+          <li><span class="v">{nf(st.javne_leto + st.zasebne_leto)}</span><span class="l">javnih in storitvenih stavb na leto (javnih {nf(st.javne_leto)})</span></li>
+          <li><span class="v">{mioK(st.nalozba_eur_leto)}</span><span class="l">naložb na leto; do 2030 skupaj okoli {mioK(st.nalozba_eur_2030)}</span></li>
+          <li><span class="v">{mioK(st.spodbude_eur_leto)}</span><span class="l">na leto iz nepovratnih spodbud (okoli {nf(st.spodbude_delez_pct)} %, državno povprečje)</span></li>
+          <li><span class="v">{SEMT[st.semafor]}</span><span class="l">tempo prenove stanovanjskih stavb glede na sorazmerni delež (registri 2023–2025){st.stopnja_dejanska_pct !== null && <>: {nf(st.stopnja_dejanska_pct, 2)} % na leto, zahtevano {nf(st.stopnja_zahtevana_pct, 2)} % (Slovenija {nf(stSi.stopnja_dejanska_pct, 2)} %)</>}</span></li>
+        </ul>
+      </section>
+      <section>
+        <h2>Mesto občine (1. = najugodneje)</h2>
+        <table>
+          <thead><tr><th scope="col">Kazalnik</th><th scope="col" class="n">Med 212 občinami</th><th scope="col" class="n">V skupini »{kx.groupName}«</th></tr></thead>
+          <tbody>{Object.values(st.rang as Record<string, any>).map((r: any) => <tr><th scope="row">{r.oznaka} ({r.smer === 'nizko' ? 'nižje je bolje' : 'višje je bolje'})</th><td class="n">{r.vse.mesto}. od {r.vse.od}</td><td class="n">{r.skupina.mesto}. od {r.skupina.od}</td></tr>)}</tbody>
+        </table>
+      </section>
+      <section>
+        <h2>Koledar za občine in javni sektor</h2>
+        <table class="kol">
+          <thead><tr><th scope="col">Kdaj</th><th scope="col">Kaj</th><th scope="col">Status</th></tr></thead>
+          <tbody>{kol.map((v) => <tr><td>{v.datum}{v.okvirno && ' (okvirno)'}</td><th scope="row">{v.naslov}</th><td>{v.status === 'veljavno' ? 'že velja' : 'predlagano'}</td></tr>)}</tbody>
+        </table>
+      </section>
+      <p class="disc">Cilji so državni cilji NPS 2050, preneseni na občino sorazmerno s stavbnim fondom; niso obveznost občine. Naložbe: obseg prenove × specifični strošek po segmentih iz osnutka (preglednica 54). »Že velja«: v zakonu ali predpisu; »predlagano«: predlog osnutka ali EPBD, še ni preneseno.</p>
+      <footer class="sign">{LEK_SIGN} Podatki iz osnutka NPS 2050 z dne {draftDate}.</footer>
+    </div>
+
+    <div class="sheet">
+      <header class="small">
         <p class="k">Energetsko-podnebna kartica občine: stavbe · podatki za lokalni energetski koncept</p>
         <p class="h1b">Občina {o.name}</p>
         <p class="sub">podatki iz osnutka NPS 2050 z dne {draftDate} in registrov (stanje september 2026)</p>
@@ -219,6 +259,8 @@ const r100 = (v: number) => nf(Math.round(v / 100) * 100);
   .n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
   td.n:nth-of-type(2) { font-weight: 700; }
   .sheet + .sheet h2 { margin: 3mm 0 1mm; }
+  table.kol { font-size: 7.4pt; }
+  table.kol th, table.kol td { padding: .3mm 1.5mm; }
   .method p { font-size: 7.6pt; color: #4C5A54; margin: 0; }
   .sign { margin-top: 4mm; border-top: .3mm solid #D6B25E; padding-top: 2mm; font-size: 7.2pt; color: #4C5A54; }
   @media print { body { background: #fff; } .no-print { display: none; } .sheet { margin: 0; padding: 0; max-width: none; } .sheet + .sheet { break-before: page; } }
