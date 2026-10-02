@@ -28,6 +28,7 @@ DH_VIR = 'Agencija za energijo, Analiza cen toplote iz distribucijskih sistemov 
 # stanje po celoviti prenovi
 Q_B1, ETA, DHW, SCOP, AUX = 20.0, 0.9, 15.0, 3.5, 3.0
 FP = {'el': 2.5, 'amb': 1.0, 'olje': 1.1, 'plin': 1.1, 'les': 1.2, 'dh': 1.23}  # faktorji skupne primarne energije (zakonski 2025, kot v osnutku)
+LIFE = 30                                                 # življenjska doba prenove za strošek prihranjene kWh [let]
 PV_SHARE = 0.4                                            # ZEB: delež letne rabe elektrike, pokrit s sončno elektrarno na stavbi
 GRP = {'do 1945': 'do1980', '1946–1970': 'do1980', '1971–1980': 'do1980', '1981–1990': '1981_2002', '1991–2002': '1981_2002'}
 TYPES = [
@@ -192,6 +193,7 @@ def build(ctx: Context) -> dict:
                     rr = FE[t][h1] / FE[t][hc]
                     fe1, pe1 = fe0 * rr, pe0 * rr
                     cost1 = fe1 * price0
+                    buy1 = fe1
                     faktor.setdefault(cat, []).append(rr)
                 elif t == 'SFH':  # toplotna črpalka
                     el = (q / SCOP + AUX) * k_a
@@ -200,10 +202,12 @@ def build(ctx: Context) -> dict:
                     if pid == 'zeb':
                         pe1 *= (1 - PV_SHARE); el *= (1 - PV_SHARE)
                     cost1 = el * prices['elektrika']
+                    buy1 = el
                 else:  # blok ostane na daljinskem ogrevanju
                     fe1 = (q + AUX) * k_a
                     pe1 = q * FP['dh'] + AUX * FP['el']
                     cost1 = (q * DH_EUR_KWH + AUX * prices['elektrika']) * k_a
+                    buy1 = (q + AUX) * k_a
                 # strošek na m² ogrevane površine po katastru (kot Eko sklad); energija na m² kondicionirane površine iz izkaznic
                 cost = eur * a_kat
                 sav = (fe0 * price0 - cost1) * a_kat
@@ -213,6 +217,8 @@ def build(ctx: Context) -> dict:
                 s_osn = 30 + (10 if pid != 'delna' else 0)
                 s_dod = min(70, s_osn + bonus)
                 pb = lambda s_: round(cost * (1 - s_ / 100) / sav, 1) if sav > 0 else None
+                saved_kwh = (fe0 - buy1) * a_kat     # manj kupljene energije na leto
+                ekwh = lambda s_: round(cost * (1 - s_ / 100) / (saved_kwh * LIFE), 3) if saved_kwh > 0 else None
                 paketi.append({
                     'id': pid, 'ime': NAME[pid], 'na_voljo': True, 'ukrepi': UKREPI[(t, pid)],
                     'eur_m2': round(eur), 'eur_m2_p25': round(p25) if p25 else None, 'eur_m2_p75': round(p75) if p75 else None, 'n': nn, 'vir_stroska': src,
@@ -222,6 +228,7 @@ def build(ctx: Context) -> dict:
                     'prihranek_eur': round(sav, -1), 'spodbuda_osn_pct': s_osn, 'spodbuda_dod_pct': s_dod, 'spodbuda_dod_eur': round(cost * s_dod / 100, -2),
                     'spodbuda_razlog': 'stavba je med 43 % energetsko najmanj učinkovitih' if above else (f'razred {c0}' if bonus else None),
                     'vracilo_brez': pb(0), 'vracilo_osn': pb(s_osn), 'vracilo_dod': pb(s_dod),
+                    'prihranjeno_kwh_leto': round(saved_kwh, -2), 'eur_kwh_brez': ekwh(0), 'eur_kwh_dod': ekwh(s_dod), 'cena_energije_pred': price0,
                 })
             cel = next(p for p in paketi if p['id'] == 'celovita')
             ctx.check(cel['razred_po'] == 'A', f'paketi: celovita prenova {tid}/{oid} doseže razred A ({cel["pe_po"]} kWh/(m²·a))')
@@ -241,7 +248,7 @@ def build(ctx: Context) -> dict:
                          note='Tipične vrednosti za ponazoritev, ne izračun za konkretno stavbo.'),
         'cene': {'kurilno_olje': prices['kurilno_olje'], 'elektrika': prices['elektrika'], 'plin': prices['plin'], 'les': WOOD_EUR_KWH, 'daljinska_toplota': DH_EUR_KWH},
         'preveri': preveri,
-        'predpostavke': {'q_b1': Q_B1, 'eta': ETA, 'topla_voda': DHW, 'scop': SCOP, 'pomozna_el': AUX, 'fp': FP, 'pv_delez': PV_SHARE,
+        'predpostavke': {'zivljenjska_doba': LIFE, 'q_b1': Q_B1, 'eta': ETA, 'topla_voda': DHW, 'scop': SCOP, 'pomozna_el': AUX, 'fp': FP, 'pv_delez': PV_SHARE,
                          'zeb_spodbuda_dejanska_pct': round(100 * eko[('SFH', 'zeb_spodbuda')]) if eko[('SFH', 'zeb_spodbuda')] else None},
         'tipi': tipi,
     }

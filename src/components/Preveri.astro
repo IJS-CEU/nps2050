@@ -2,21 +2,28 @@
 /**
  * Preverjanje stavbe: razred na lestvici primarne energije, minimalni standardi (nestanovanjske stavbe) in
  * skupina 43 % najmanj učinkovitih (stanovanjske stavbe). Pragovi iz public/data/stavbni_fond.json (osnutek NPS 2050).
- * Za hiše in bloke še okvirni prihranek celovite prenove do razreda B1 (public/data/prihranek.json, model RenRates).
+ * Za hiše in bloke še stanje po delni, celoviti in ZEB prenovi (public/data/paketi_prenove.json). Brez izkaznice: ocena po tipičnih
+ * stavbah iz izkaznic (public/data/arhetipi.json, CLAUDE.md §11.6).
  * Brez JS: preglednica pragov po kategorijah.
  */
-import { loadData, type Prihranek, type StavbniFond } from '../lib/data';
+import { loadData, type StavbniFond } from '../lib/data';
 import { nf } from '../lib/format';
 import { features } from '../config/features';
 import { pageUrl } from '../i18n/routes';
 
 const d = loadData<StavbniFond>('stavbni_fond');
 const bounds = ['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G'];
-const pr = loadData<Prihranek>('prihranek');
+const ar = loadData<{ obdobja: string[] }>('arhetipi');
 ---
 <section class="chk" id="preveri" aria-labelledby="chk-t">
   <h2 id="chk-t" class="visually-hidden">Preverite stavbo</h2>
   <form class="chk-form js-only" id="chk-form" novalidate>
+    <fieldset class="chk-field chk-mode">
+      <legend>Kako želite preveriti stavbo?</legend>
+      <label><input type="radio" name="chk-mode" value="ei" checked /> Imam energetsko izkaznico</label>
+      <label><input type="radio" name="chk-mode" value="tip" /> Nimam izkaznice – ocena po tipični stavbi</label>
+    </fieldset>
+    <div class="chk-ei">
     <div class="chk-field">
       <label for="chk-cat">Vrsta stavbe</label>
       <select id="chk-cat" required>
@@ -34,10 +41,19 @@ const pr = loadData<Prihranek>('prihranek');
       <div class="chk-unit"><input id="chk-pe" type="number" inputmode="decimal" min="0" max="3000" step="any" required aria-describedby="chk-pe-help" /><span>kWh/(m²·a)</span></div>
       <p class="chk-help" id="chk-pe-help">Letna raba primarne energije na enoto uporabne površine, ki je navedena v računski energetski izkaznici.</p>
     </div>
-    <div class="chk-field">
-      <label for="chk-area">Uporabna površina <span class="chk-opt">(neobvezno, za hiše in večstanovanjske stavbe)</span></label>
-      <div class="chk-unit"><input id="chk-area" type="number" inputmode="decimal" min="0" max="100000" step="any" aria-describedby="chk-area-help" /><span>m²</span></div>
-      <p class="chk-help" id="chk-area-help">Če jo vnesete, orodje okvirni prihranek preračuna na vso stavbo.</p>
+    </div>
+    <div class="chk-tip" hidden>
+      <div class="chk-field"><label for="chk-t-tip">Vrsta stavbe</label>
+        <select id="chk-t-tip"><option value="HISA">Enostanovanjska hiša</option><option value="BLOKI">Stanovanje v večstanovanjski stavbi (bloku)</option></select></div>
+      <div class="chk-field"><label for="chk-t-per">Leto gradnje</label>
+        <select id="chk-t-per">{ar.obdobja.map((o) => <option value={o}>{o}</option>)}</select></div>
+      <div class="chk-field"><label for="chk-t-ovoj">Toplotna izolacija</label>
+        <select id="chk-t-ovoj"><option value="neizolirano">Ni izolirana</option><option value="delno">Delno (npr. samo streha ali podstrešje)</option><option value="izolirano">Izolirana fasada</option></select></div>
+      <div class="chk-field"><label for="chk-t-okna">Okna zamenjana po letu 2010</label>
+        <select id="chk-t-okna"><option value="ne">Ne</option><option value="da">Da</option></select></div>
+      <div class="chk-field"><label for="chk-t-og">Glavno ogrevanje</label>
+        <select id="chk-t-og"><option value="olje">Kurilno olje</option><option value="plin">Zemeljski plin</option><option value="les">Les (drva, peleti, sekanci)</option><option value="tc">Toplotna črpalka</option><option value="daljinsko">Daljinsko ogrevanje</option><option value="elektrika">Elektrika (neposredno)</option></select></div>
+      <p class="chk-help">Ocena temelji na tipičnih stavbah z enakimi lastnostmi iz registra energetskih izkaznic. Dejanski razred določi energetska izkaznica.</p>
     </div>
     <fieldset class="chk-field">
       <legend>Ali je stavba kulturna dediščina?</legend>
@@ -70,19 +86,6 @@ const pr = loadData<Prihranek>('prihranek');
     <p class="note">Meje razredov 2025 in pragovi iz osnutka NPS 2050 (poglavji 3 in 4.7). Prag 2030/2033: minimalni standardi za nestanovanjske stavbe. Prag 43 %: meja skupine 43 % energetsko najmanj učinkovitih stanovanjskih stavb. * Majhen vzorec izkaznic, pragovi so okvirni.</p>
   </details>
 
-  <details class="chk-table">
-    <summary>Okvirni prihranki celovite prenove hiš in blokov (preglednica)</summary>
-    <div class="tblwrap" tabindex="0" role="region" aria-label="Okvirni prihranki celovite prenove">
-      <table>
-        <caption class="visually-hidden">Raba končne energije in prihranek celovite energetske prenove na raven razreda B1, kWh/(m²·a)</caption>
-        <thead><tr><th scope="col">Izhodiščni razred</th><th scope="col" class="num">Hiše: raba</th><th scope="col" class="num">Hiše: prihranek</th><th scope="col" class="num">Bloki: raba</th><th scope="col" class="num">Bloki: prihranek</th></tr></thead>
-        <tbody>
-          {pr.rows.map((r) => <tr><th scope="row">{r.class}</th><td class="num">{nf(r.sfh_use)}</td><td class="num">{nf(r.sfh_saving)}</td><td class="num">{nf(r.mfh_use)}</td><td class="num">{nf(r.mfh_saving)}</td></tr>)}
-        </tbody>
-      </table>
-    </div>
-    <p class="note">Končna energija v kWh/(m²·a), povprečje tipičnih stavb v modelu RenRates (osnutek NPS 2050, pogl. 4.1.1). Po celoviti prenovi je raba okoli {nf(pr.after.sfh)} kWh/(m²·a) pri hišah in {nf(pr.after.mfh)} kWh/(m²·a) pri blokih. Razredi so razredi toplotnih potreb, zato se z razredom po primarni energiji ujemajo le približno.</p>
-  </details>
 </section>
 
 <style>
@@ -90,6 +93,11 @@ const pr = loadData<Prihranek>('prihranek');
   .chk-form { display: grid; gap: 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem 1.3rem; }
   .chk-field { display: grid; gap: .3rem; border: 0; padding: 0; margin: 0; }
   .chk-field > label, .chk-field legend { font-weight: 700; font-size: .92rem; }
+  .chk-mode { display: flex; flex-wrap: wrap; gap: .3rem 1.4rem; }
+  .chk-mode legend { width: 100%; }
+  .chk-ei, .chk-tip { display: grid; gap: 1rem; }
+  .chk-ei[hidden], .chk-tip[hidden] { display: none; }
+  .chk-tip select { font: inherit; padding: .45rem .5rem; border: 1px solid var(--ink2); border-radius: 8px; background: var(--bg); color: var(--ink); max-width: 100%; }
   fieldset.chk-field label { font-size: .92rem; display: flex; gap: .45rem; align-items: baseline; }
   .chk select, .chk input[type=number] { font: inherit; padding: .45rem .55rem; border: 1px solid var(--ink2); border-radius: 6px; background: var(--bg); color: var(--ink); max-width: 100%; }
   .chk-unit { display: flex; gap: .5rem; align-items: center; }
@@ -123,20 +131,13 @@ const pr = loadData<Prihranek>('prihranek');
   .chk-res ul { padding-left: 1.2rem; margin: .4rem 0 .8rem; }
   .chk-res li { margin-bottom: .35rem; }
   .chk-ok { color: var(--green); font-weight: 700; }
-  .chk-sav { border-top: 1px solid var(--line); margin-top: 1rem; padding-top: .9rem; }
-  .chk-sav h4 { margin: 0 0 .5rem; font-size: 1rem; }
-  .chk-bars { display: grid; grid-template-columns: auto 1fr; gap: .35rem .7rem; align-items: center; font-size: .82rem; margin: .6rem 0; max-width: 34rem; }
-  .chk-bars i { display: block; height: 16px; border-radius: 3px; }
-  .chk-bars .b0 { background: var(--s-ref); } .chk-bars .b1 { background: var(--green); }
-  .chk-bars span { color: var(--ink2); font-weight: 700; white-space: nowrap; }
-  .chk-big { font-size: 1.25rem; font-weight: 800; color: var(--green); white-space: nowrap; }
   .chk-no { color: var(--amber); font-weight: 700; }
 </style>
 
 <script>
   import { loadJson } from '../lib/load';
   import { nf } from '../lib/format';
-  import type { Category, Prihranek, StavbniFond } from '../lib/data';
+  import type { Category, StavbniFond } from '../lib/data';
 
   const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
   const B = ['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G'];
@@ -170,56 +171,33 @@ const pr = loadData<Prihranek>('prihranek');
     ul.append(item);
   }
 
-  /** Okvirni prihranek celovite prenove do B1 za povprečno hišo ali blok v razredu (preglednica 23 osnutka). */
-  function savings(pr: Prihranek, t: 'sfh' | 'mfh', k: string, m2: number) {
-    const wrap = el('div', undefined, 'chk-sav');
-    wrap.append(el('h4', 'Koliko energije bi prihranila celovita prenova?'));
-    const who = t === 'sfh' ? 'hiši' : 'večstanovanjski stavbi';
-    const r = pr.rows.find((x) => x.class === k);
-    if (!r) {
-      wrap.append(el('p', k === 'A' || k === 'B'
-        ? `Stavba je že v razredu ${k}, blizu ravni po celoviti prenovi (okoli ${nf(pr.after[t])} kWh/(m²·a) končne energije pri povprečni ${who}). Dodatni korak je predvsem ogrevanje brez fosilnih goriv in lastna sončna elektrarna.`
-        : 'Za ta razred ocena ni na voljo.'));
-      return wrap;
-    }
-    const use = t === 'sfh' ? r.sfh_use : r.mfh_use, sav = t === 'sfh' ? r.sfh_saving : r.mfh_saving, after = use - sav;
-    const p = el('p');
-    p.append(`Pri povprečni ${who} v razredu ${k} celovita energetska prenova na raven razreda B1 zmanjša rabo končne energije s približno ${nf(use)} na ${nf(after)} kWh/(m²·a), to je za `);
-    p.append(el('strong', `${nf(sav)} kWh/(m²·a) ali ${nf((100 * sav) / use, 0)} %`), '.');
-    wrap.append(p);
-    const bars = el('div', undefined, 'chk-bars');
-    bars.setAttribute('aria-hidden', 'true');
-    for (const [lab, v, cls] of [['Zdaj', use, 'b0'], ['Po prenovi', after, 'b1']] as const) {
-      bars.append(el('span', lab));
-      const bar = el('i', undefined, cls);
-      bar.style.width = `${(100 * v) / use}%`;
-      bars.append(bar);
-    }
-    wrap.append(bars);
-    if (Number.isFinite(m2) && m2 > 0) {
-      const tot = el('p');
-      tot.append(`Za ${nf(m2, 0)} m² uporabne površine to pomeni okoli `, el('span', `${nf(Math.round((sav * m2) / 100) * 100)} kWh`, 'chk-big'), ' manj energije na leto.');
-      wrap.append(tot);
-    }
-    wrap.append(el('p', 'Ocena je povprečje tipičnih stavb iz modela RenRates (osnutek NPS 2050, pogl. 4.1.1). Razredi v tej oceni so razredi toplotnih potreb, zato se z razredom vaše stavbe po primarni energiji ujemajo le približno. Dejanski prihranek je odvisen od stavbe in izbranih ukrepov; oceno za vašo stavbo pripravi energetski svetovalec ENSVET.', 'note'));
-    return wrap;
-  }
 
   async function init() {
-    const [d, pr, pk] = await Promise.all([loadJson<StavbniFond>('stavbni_fond'), loadJson<Prihranek>('prihranek'), loadJson<{ preveri: Record<string, { delna_faktor: number; celovita_pe: number; zeb_pe: number | null }> }>('paketi_prenove')]);
-    const area = document.getElementById('chk-area') as HTMLInputElement;
+    type Ar = { pe: number; p25: number; p75: number; od: string; do: string; n: number; osnova: string };
+    const [d, ar, pk] = await Promise.all([loadJson<StavbniFond>('stavbni_fond'), loadJson<{ kombinacije: Record<string, Ar>; nova_obdobja: string[] }>('arhetipi'), loadJson<{ preveri: Record<string, { delna_faktor: number; celovita_pe: number; zeb_pe: number | null }> }>('paketi_prenove')]);
     const form = document.getElementById('chk-form') as HTMLFormElement;
     const out = document.getElementById('chk-out')!;
     const cat = document.getElementById('chk-cat') as HTMLSelectElement;
     const pe = document.getElementById('chk-pe') as HTMLInputElement;
     const cs = getComputedStyle(document.documentElement);
+    const $ = (id: string) => document.getElementById(id) as HTMLSelectElement;
+    const mode = () => (form.querySelector('input[name="chk-mode"]:checked') as HTMLInputElement).value;
+    const boxEi = form.querySelector<HTMLElement>('.chk-ei')!, boxTip = form.querySelector<HTMLElement>('.chk-tip')!;
+    form.querySelectorAll<HTMLInputElement>('input[name="chk-mode"]').forEach((r) => r.addEventListener('change', () => {
+      boxEi.hidden = mode() !== 'ei'; boxTip.hidden = mode() !== 'tip'; out.replaceChildren();
+    }));
+    const syncNew = () => {
+      const nov = ar.nova_obdobja.includes($('chk-t-per').value);
+      $('chk-t-ovoj').disabled = nov; $('chk-t-okna').disabled = nov;
+      if (nov) { $('chk-t-ovoj').value = 'izolirano'; $('chk-t-okna').value = 'da'; }
+    };
+    $('chk-t-per').addEventListener('change', syncNew);
 
     // Obrazec na naslovni strani pošlje ?kat=…&pe=… – izpolni polji in takoj preveri.
     const q = new URLSearchParams(location.search);
     const pre = () => {
       if (q.get('kat') && q.get('pe')) {
         cat.value = q.get('kat')!;
-        if (q.get('m2')) area.value = q.get('m2')!;
         pe.value = q.get('pe')!;
         form.requestSubmit();
       }
@@ -228,12 +206,20 @@ const pr = loadData<Prihranek>('prihranek');
     form.addEventListener('submit', (ev) => {
       ev.preventDefault();
       out.replaceChildren();
-      const c = d.categories.find((x) => x.id === cat.value);
-      const v = Number(String(pe.value).replace(',', '.'));
-      if (!c || !pe.value || !Number.isFinite(v) || v <= 0) {
-        out.append(el('p', 'Izberite vrsto stavbe in vnesite primarno energijo iz izkaznice (število, večje od 0).', 'chk-no'));
-        (c ? pe : cat).focus();
-        return;
+      let c: Category | undefined, v: number, est: Ar | null = null;
+      if (mode() === 'tip') {
+        c = d.categories.find((x) => x.id === $('chk-t-tip').value)!;
+        est = ar.kombinacije[[c.id, $('chk-t-per').value, $('chk-t-ovoj').value, $('chk-t-okna').value, $('chk-t-og').value].join('|')] ?? null;
+        if (!est) { out.append(el('p', 'Za to kombinacijo ni ocene, ker je v registru premalo podobnih stavb z izkaznico. Za oceno se obrnite na energetskega svetovalca ENSVET.', 'chk-no')); return; }
+        v = est.pe;
+      } else {
+        c = d.categories.find((x) => x.id === cat.value);
+        v = Number(String(pe.value).replace(',', '.'));
+        if (!c || !pe.value || !Number.isFinite(v) || v <= 0) {
+          out.append(el('p', 'Izberite vrsto stavbe in vnesite primarno energijo iz izkaznice (število, večje od 0).', 'chk-no'));
+          (c ? pe : cat).focus();
+          return;
+        }
       }
       const dd = (form.querySelector('input[name="chk-dd"]:checked') as HTMLInputElement).value;
       const k = classOf(c, v);
@@ -242,7 +228,9 @@ const pr = loadData<Prihranek>('prihranek');
       const badge = el('span', k, 'chk-cls');
       badge.style.background = cs.getPropertyValue(`--cls-${CLS_VAR[k]}`).trim();
       badge.setAttribute('aria-hidden', 'true');
-      h.append(badge, document.createTextNode(`Razred ${k} (${nf(v, 0)} kWh/(m²·a), ${c.name.toLowerCase()})`));
+      h.append(badge, document.createTextNode(est
+        ? `Verjetno razred ${est.od === est.do ? est.od : `${est.od}–${est.do}`} (tipično okoli ${nf(v, 0)} kWh/(m²·a), ${c.name.toLowerCase()})`
+        : `Razred ${k} (${nf(v, 0)} kWh/(m²·a), ${c.name.toLowerCase()})`));
       box.append(h);
 
       // Lestvica razredov z oznako vrednosti in pragov
@@ -255,6 +243,7 @@ const pr = loadData<Prihranek>('prihranek');
       const mark = el('i', `${nf(v, 0)}`, 'chk-mark'); mark.style.left = `${pos(c, v) * 100}%`; scale.append(mark);
       if (c.meps) for (const t of [c.meps.threshold_2030, c.meps.threshold_2033]) { const tk = el('i', undefined, 'chk-tick'); tk.style.left = `${pos(c, t) * 100}%`; scale.append(tk); }
       box.append(scale);
+      if (est) box.append(el('p', `Ocena na podlagi ${est.n} podobnih stavb z izkaznico${est.osnova === 'polna' ? '' : ` (${est.osnova === 'brez oken' ? 'brez upoštevanja oken' : 'brez upoštevanja izolacije in oken'})`}: polovica jih ima med ${nf(est.p25, 0)} in ${nf(est.p75, 0)} kWh/(m²·a). Ocena na podlagi tipičnih stavb. Dejanski razred določi energetska izkaznica.`, 'note'));
 
       // Stanje po prenovi (hiše in bloki): delna, celovita, celovita ZEB – drugi oznaka na lestvici
       const po = pk.preveri[c.id];
@@ -323,7 +312,6 @@ const pr = loadData<Prihranek>('prihranek');
         li(ul, ['Obvezne prenove posamezne stanovanjske stavbe načrt ne določa. Priporočljivo je, da vsako prenovo načrtujete kot korak k brezemisijski stavbi.']);
         box.append(ul);
       }
-      if (c.id === 'HISA' || c.id === 'BLOKI') box.append(savings(pr, c.id === 'HISA' ? 'sfh' : 'mfh', k, Number(String(area.value).replace(',', '.'))));
       box.append(el('p', 'Rezultat je informativen in temelji na predlogu v osnutku NPS 2050. Ni uradna ugotovitev. Pragovi se lahko do sprejema načrta in ob rekalibraciji razredov še spremenijo.', 'note'));
       out.append(box);
       box.setAttribute('tabindex', '-1');

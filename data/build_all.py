@@ -9,12 +9,12 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from npsdata import kazalniki, model_obcine, paketi, obcine, spremljanje, trajektorija_zgodba, prihranek, revscina, sankey, scenariji, stavbni_fond, trajektorija, ukrepi, zemljevid  # noqa: E402
+from npsdata import arhetipi, kazalniki, model_obcine, paketi, obcine, spremljanje, trajektorija_zgodba, prihranek, revscina, sankey, scenariji, stavbni_fond, trajektorija, ukrepi, zemljevid  # noqa: E402
 from npsdata.context import OUT, REPO, CheckError, Context, write_json  # noqa: E402
 import hashlib  # noqa: E402
 from datetime import date  # noqa: E402
 
-MODULES = [('trajektorija', trajektorija), ('stavbni_fond', stavbni_fond), ('scenariji', scenariji), ('kazalniki', kazalniki), ('trajektorija_zgodba', trajektorija_zgodba), ('sankey', sankey), ('zemljevid', zemljevid), ('ukrepi', ukrepi), ('revscina', revscina), ('prihranek', prihranek), ('obcine', obcine), ('obcine_model', model_obcine), ('spremljanje', spremljanje), ('paketi_prenove', paketi)]
+MODULES = [('trajektorija', trajektorija), ('stavbni_fond', stavbni_fond), ('scenariji', scenariji), ('kazalniki', kazalniki), ('trajektorija_zgodba', trajektorija_zgodba), ('sankey', sankey), ('zemljevid', zemljevid), ('ukrepi', ukrepi), ('revscina', revscina), ('prihranek', prihranek), ('obcine', obcine), ('obcine_model', model_obcine), ('spremljanje', spremljanje), ('paketi_prenove', paketi), ('arhetipi', arhetipi)]
 
 
 def main() -> int:

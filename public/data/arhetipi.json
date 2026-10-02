@@ -1,0 +1,3459 @@
+{
+ "meta": {
+  "draft": "NPS_v40",
+  "draft_date": "2026-10-01",
+  "generated": "2026-10-02",
+  "sources": [
+   "Register energetskih izkaznic (računske izkaznice stanovanjskih stavb) in kataster nepremičnin; Eko sklad (ovoj, okna)"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Ocena na podlagi tipičnih stavb. Dejanski razred določi energetska izkaznica."
+ },
+ "obdobja": [
+  "do 1945",
+  "1946–1970",
+  "1971–1980",
+  "1981–1990",
+  "1991–2002",
+  "2003–2010",
+  "2011–2020",
+  "po 2020"
+ ],
+ "nova_obdobja": [
+  "2003–2010",
+  "2011–2020",
+  "po 2020"
+ ],
+ "min_n": 20,
+ "kombinacije": {
+  "HISA|do 1945|neizolirano|ne|olje": {
+   "pe": 386,
+   "p25": 280,
+   "p75": 505,
+   "od": "D",
+   "do": "F",
+   "n": 971,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|ne|plin": {
+   "pe": 292,
+   "p25": 195,
+   "p75": 402,
+   "od": "C",
+   "do": "E",
+   "n": 437,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|ne|les": {
+   "pe": 524,
+   "p25": 371,
+   "p75": 736,
+   "od": "E",
+   "do": "G",
+   "n": 1581,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|ne|tc": {
+   "pe": 252,
+   "p25": 184,
+   "p75": 380,
+   "od": "C",
+   "do": "E",
+   "n": 323,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|ne|daljinsko": {
+   "pe": 353,
+   "p25": 216,
+   "p75": 432,
+   "od": "C",
+   "do": "E",
+   "n": 31,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|ne|elektrika": {
+   "pe": 347,
+   "p25": 133,
+   "p75": 618,
+   "od": "B",
+   "do": "G",
+   "n": 544,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|da|olje": {
+   "pe": 343,
+   "p25": 269,
+   "p75": 453,
+   "od": "D",
+   "do": "F",
+   "n": 57,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|da|plin": {
+   "pe": 254,
+   "p25": 161,
+   "p75": 341,
+   "od": "B",
+   "do": "D",
+   "n": 35,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|da|les": {
+   "pe": 511,
+   "p25": 382,
+   "p75": 723,
+   "od": "E",
+   "do": "G",
+   "n": 75,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|da|tc": {
+   "pe": 245,
+   "p25": 199,
+   "p75": 355,
+   "od": "C",
+   "do": "E",
+   "n": 27,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|neizolirano|da|daljinsko": {
+   "pe": 366,
+   "p25": 262,
+   "p75": 464,
+   "od": "D",
+   "do": "F",
+   "n": 37,
+   "osnova": "brez oken"
+  },
+  "HISA|do 1945|neizolirano|da|elektrika": {
+   "pe": 454,
+   "p25": 161,
+   "p75": 606,
+   "od": "B",
+   "do": "G",
+   "n": 23,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|delno|ne|olje": {
+   "pe": 307,
+   "p25": 225,
+   "p75": 402,
+   "od": "C",
+   "do": "E",
+   "n": 24,
+   "osnova": "brez oken"
+  },
+  "HISA|do 1945|delno|ne|plin": {
+   "pe": 275,
+   "p25": 186,
+   "p75": 394,
+   "od": "C",
+   "do": "E",
+   "n": 554,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|delno|ne|les": {
+   "pe": 334,
+   "p25": 198,
+   "p75": 586,
+   "od": "C",
+   "do": "G",
+   "n": 35,
+   "osnova": "brez oken"
+  },
+  "HISA|do 1945|delno|ne|tc": {
+   "pe": 237,
+   "p25": 168,
+   "p75": 349,
+   "od": "C",
+   "do": "E",
+   "n": 462,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|delno|ne|daljinsko": {
+   "pe": 331,
+   "p25": 201,
+   "p75": 438,
+   "od": "C",
+   "do": "E",
+   "n": 45,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|delno|ne|elektrika": {
+   "pe": 343,
+   "p25": 141,
+   "p75": 600,
+   "od": "B",
+   "do": "G",
+   "n": 669,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|delno|da|olje": {
+   "pe": 307,
+   "p25": 225,
+   "p75": 402,
+   "od": "C",
+   "do": "E",
+   "n": 24,
+   "osnova": "brez oken"
+  },
+  "HISA|do 1945|delno|da|plin": {
+   "pe": 275,
+   "p25": 186,
+   "p75": 394,
+   "od": "C",
+   "do": "E",
+   "n": 554,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|delno|da|les": {
+   "pe": 334,
+   "p25": 198,
+   "p75": 586,
+   "od": "C",
+   "do": "G",
+   "n": 35,
+   "osnova": "brez oken"
+  },
+  "HISA|do 1945|delno|da|tc": {
+   "pe": 237,
+   "p25": 168,
+   "p75": 349,
+   "od": "C",
+   "do": "E",
+   "n": 462,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|delno|da|daljinsko": {
+   "pe": 331,
+   "p25": 201,
+   "p75": 438,
+   "od": "C",
+   "do": "E",
+   "n": 45,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|delno|da|elektrika": {
+   "pe": 343,
+   "p25": 141,
+   "p75": 600,
+   "od": "B",
+   "do": "G",
+   "n": 669,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|izolirano|ne|olje": {
+   "pe": 378,
+   "p25": 273,
+   "p75": 549,
+   "od": "D",
+   "do": "G",
+   "n": 42,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|izolirano|ne|plin": {
+   "pe": 269,
+   "p25": 197,
+   "p75": 435,
+   "od": "C",
+   "do": "E",
+   "n": 27,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|izolirano|ne|les": {
+   "pe": 470,
+   "p25": 297,
+   "p75": 679,
+   "od": "D",
+   "do": "G",
+   "n": 67,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|izolirano|ne|tc": {
+   "pe": 184,
+   "p25": 138,
+   "p75": 268,
+   "od": "B",
+   "do": "D",
+   "n": 35,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|izolirano|ne|daljinsko": {
+   "pe": 331,
+   "p25": 201,
+   "p75": 438,
+   "od": "C",
+   "do": "E",
+   "n": 45,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|izolirano|ne|elektrika": {
+   "pe": 333,
+   "p25": 162,
+   "p75": 584,
+   "od": "B",
+   "do": "G",
+   "n": 25,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|izolirano|da|olje": {
+   "pe": 365,
+   "p25": 213,
+   "p75": 458,
+   "od": "C",
+   "do": "F",
+   "n": 51,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|izolirano|da|plin": {
+   "pe": 218,
+   "p25": 146,
+   "p75": 273,
+   "od": "B",
+   "do": "D",
+   "n": 36,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|izolirano|da|les": {
+   "pe": 339,
+   "p25": 231,
+   "p75": 492,
+   "od": "C",
+   "do": "F",
+   "n": 88,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|izolirano|da|tc": {
+   "pe": 191,
+   "p25": 124,
+   "p75": 274,
+   "od": "B",
+   "do": "D",
+   "n": 64,
+   "osnova": "polna"
+  },
+  "HISA|do 1945|izolirano|da|daljinsko": {
+   "pe": 331,
+   "p25": 201,
+   "p75": 438,
+   "od": "C",
+   "do": "E",
+   "n": 45,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|do 1945|izolirano|da|elektrika": {
+   "pe": 296,
+   "p25": 198,
+   "p75": 429,
+   "od": "C",
+   "do": "E",
+   "n": 60,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|ne|olje": {
+   "pe": 345,
+   "p25": 253,
+   "p75": 453,
+   "od": "C",
+   "do": "F",
+   "n": 1747,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|ne|plin": {
+   "pe": 254,
+   "p25": 179,
+   "p75": 339,
+   "od": "C",
+   "do": "D",
+   "n": 819,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|ne|les": {
+   "pe": 456,
+   "p25": 314,
+   "p75": 629,
+   "od": "D",
+   "do": "G",
+   "n": 1264,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|ne|tc": {
+   "pe": 220,
+   "p25": 158,
+   "p75": 313,
+   "od": "B",
+   "do": "D",
+   "n": 360,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|ne|daljinsko": {
+   "pe": 307,
+   "p25": 223,
+   "p75": 411,
+   "od": "C",
+   "do": "E",
+   "n": 116,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|ne|elektrika": {
+   "pe": 372,
+   "p25": 165,
+   "p75": 681,
+   "od": "B",
+   "do": "G",
+   "n": 308,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|da|olje": {
+   "pe": 321,
+   "p25": 228,
+   "p75": 427,
+   "od": "C",
+   "do": "E",
+   "n": 119,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|da|plin": {
+   "pe": 249,
+   "p25": 175,
+   "p75": 339,
+   "od": "C",
+   "do": "D",
+   "n": 61,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|da|les": {
+   "pe": 403,
+   "p25": 314,
+   "p75": 547,
+   "od": "D",
+   "do": "G",
+   "n": 71,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|da|tc": {
+   "pe": 276,
+   "p25": 187,
+   "p75": 375,
+   "od": "C",
+   "do": "E",
+   "n": 33,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|neizolirano|da|daljinsko": {
+   "pe": 307,
+   "p25": 223,
+   "p75": 413,
+   "od": "C",
+   "do": "E",
+   "n": 119,
+   "osnova": "brez oken"
+  },
+  "HISA|1946–1970|neizolirano|da|elektrika": {
+   "pe": 473,
+   "p25": 343,
+   "p75": 570,
+   "od": "D",
+   "do": "G",
+   "n": 22,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|delno|ne|olje": {
+   "pe": 224,
+   "p25": 180,
+   "p75": 304,
+   "od": "C",
+   "do": "D",
+   "n": 20,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|delno|ne|plin": {
+   "pe": 191,
+   "p25": 143,
+   "p75": 283,
+   "od": "B",
+   "do": "D",
+   "n": 25,
+   "osnova": "brez oken"
+  },
+  "HISA|1946–1970|delno|ne|les": {
+   "pe": 272,
+   "p25": 221,
+   "p75": 382,
+   "od": "C",
+   "do": "E",
+   "n": 30,
+   "osnova": "brez oken"
+  },
+  "HISA|1946–1970|delno|ne|tc": {
+   "pe": 152,
+   "p25": 128,
+   "p75": 237,
+   "od": "B",
+   "do": "C",
+   "n": 21,
+   "osnova": "brez oken"
+  },
+  "HISA|1946–1970|delno|ne|daljinsko": {
+   "pe": 300,
+   "p25": 191,
+   "p75": 390,
+   "od": "C",
+   "do": "E",
+   "n": 141,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1946–1970|delno|ne|elektrika": {
+   "pe": 352,
+   "p25": 173,
+   "p75": 644,
+   "od": "C",
+   "do": "G",
+   "n": 406,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1946–1970|delno|da|olje": {
+   "pe": 262,
+   "p25": 203,
+   "p75": 389,
+   "od": "C",
+   "do": "E",
+   "n": 21,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|delno|da|plin": {
+   "pe": 191,
+   "p25": 143,
+   "p75": 283,
+   "od": "B",
+   "do": "D",
+   "n": 25,
+   "osnova": "brez oken"
+  },
+  "HISA|1946–1970|delno|da|les": {
+   "pe": 272,
+   "p25": 221,
+   "p75": 382,
+   "od": "C",
+   "do": "E",
+   "n": 30,
+   "osnova": "brez oken"
+  },
+  "HISA|1946–1970|delno|da|tc": {
+   "pe": 152,
+   "p25": 128,
+   "p75": 237,
+   "od": "B",
+   "do": "C",
+   "n": 21,
+   "osnova": "brez oken"
+  },
+  "HISA|1946–1970|delno|da|daljinsko": {
+   "pe": 300,
+   "p25": 191,
+   "p75": 390,
+   "od": "C",
+   "do": "E",
+   "n": 141,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1946–1970|delno|da|elektrika": {
+   "pe": 352,
+   "p25": 173,
+   "p75": 644,
+   "od": "C",
+   "do": "G",
+   "n": 406,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1946–1970|izolirano|ne|olje": {
+   "pe": 351,
+   "p25": 239,
+   "p75": 442,
+   "od": "C",
+   "do": "F",
+   "n": 155,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|izolirano|ne|plin": {
+   "pe": 231,
+   "p25": 151,
+   "p75": 319,
+   "od": "B",
+   "do": "D",
+   "n": 98,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|izolirano|ne|les": {
+   "pe": 308,
+   "p25": 201,
+   "p75": 418,
+   "od": "C",
+   "do": "E",
+   "n": 95,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|izolirano|ne|tc": {
+   "pe": 168,
+   "p25": 135,
+   "p75": 227,
+   "od": "B",
+   "do": "C",
+   "n": 62,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|izolirano|ne|daljinsko": {
+   "pe": 185,
+   "p25": 120,
+   "p75": 286,
+   "od": "B",
+   "do": "D",
+   "n": 20,
+   "osnova": "brez oken"
+  },
+  "HISA|1946–1970|izolirano|ne|elektrika": {
+   "pe": 426,
+   "p25": 166,
+   "p75": 754,
+   "od": "B",
+   "do": "G",
+   "n": 26,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|izolirano|da|olje": {
+   "pe": 337,
+   "p25": 230,
+   "p75": 435,
+   "od": "C",
+   "do": "E",
+   "n": 123,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|izolirano|da|plin": {
+   "pe": 212,
+   "p25": 137,
+   "p75": 303,
+   "od": "B",
+   "do": "D",
+   "n": 66,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|izolirano|da|les": {
+   "pe": 364,
+   "p25": 217,
+   "p75": 478,
+   "od": "C",
+   "do": "F",
+   "n": 80,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|izolirano|da|tc": {
+   "pe": 162,
+   "p25": 114,
+   "p75": 229,
+   "od": "B",
+   "do": "C",
+   "n": 72,
+   "osnova": "polna"
+  },
+  "HISA|1946–1970|izolirano|da|daljinsko": {
+   "pe": 185,
+   "p25": 120,
+   "p75": 286,
+   "od": "B",
+   "do": "D",
+   "n": 20,
+   "osnova": "brez oken"
+  },
+  "HISA|1946–1970|izolirano|da|elektrika": {
+   "pe": 248,
+   "p25": 178,
+   "p75": 350,
+   "od": "C",
+   "do": "E",
+   "n": 34,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|ne|olje": {
+   "pe": 319,
+   "p25": 237,
+   "p75": 411,
+   "od": "C",
+   "do": "E",
+   "n": 1323,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|ne|plin": {
+   "pe": 231,
+   "p25": 168,
+   "p75": 313,
+   "od": "C",
+   "do": "D",
+   "n": 525,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|ne|les": {
+   "pe": 377,
+   "p25": 262,
+   "p75": 538,
+   "od": "D",
+   "do": "G",
+   "n": 883,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|ne|tc": {
+   "pe": 223,
+   "p25": 155,
+   "p75": 325,
+   "od": "B",
+   "do": "D",
+   "n": 284,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|ne|daljinsko": {
+   "pe": 284,
+   "p25": 231,
+   "p75": 339,
+   "od": "C",
+   "do": "D",
+   "n": 55,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|ne|elektrika": {
+   "pe": 371,
+   "p25": 206,
+   "p75": 610,
+   "od": "C",
+   "do": "G",
+   "n": 209,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|da|olje": {
+   "pe": 316,
+   "p25": 244,
+   "p75": 403,
+   "od": "C",
+   "do": "E",
+   "n": 85,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|da|plin": {
+   "pe": 197,
+   "p25": 134,
+   "p75": 288,
+   "od": "B",
+   "do": "D",
+   "n": 39,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|da|les": {
+   "pe": 343,
+   "p25": 263,
+   "p75": 454,
+   "od": "D",
+   "do": "F",
+   "n": 61,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|da|tc": {
+   "pe": 218,
+   "p25": 167,
+   "p75": 320,
+   "od": "C",
+   "do": "D",
+   "n": 32,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|neizolirano|da|daljinsko": {
+   "pe": 283,
+   "p25": 229,
+   "p75": 339,
+   "od": "C",
+   "do": "D",
+   "n": 56,
+   "osnova": "brez oken"
+  },
+  "HISA|1971–1980|neizolirano|da|elektrika": {
+   "pe": 363,
+   "p25": 168,
+   "p75": 609,
+   "od": "C",
+   "do": "G",
+   "n": 222,
+   "osnova": "brez oken"
+  },
+  "HISA|1971–1980|delno|ne|olje": {
+   "pe": 243,
+   "p25": 185,
+   "p75": 323,
+   "od": "C",
+   "do": "D",
+   "n": 33,
+   "osnova": "brez oken"
+  },
+  "HISA|1971–1980|delno|ne|plin": {
+   "pe": 219,
+   "p25": 152,
+   "p75": 306,
+   "od": "B",
+   "do": "D",
+   "n": 729,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1971–1980|delno|ne|les": {
+   "pe": 286,
+   "p25": 179,
+   "p75": 405,
+   "od": "C",
+   "do": "E",
+   "n": 22,
+   "osnova": "brez oken"
+  },
+  "HISA|1971–1980|delno|ne|tc": {
+   "pe": 176,
+   "p25": 146,
+   "p75": 234,
+   "od": "B",
+   "do": "C",
+   "n": 24,
+   "osnova": "brez oken"
+  },
+  "HISA|1971–1980|delno|ne|daljinsko": {
+   "pe": 290,
+   "p25": 229,
+   "p75": 341,
+   "od": "C",
+   "do": "D",
+   "n": 73,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1971–1980|delno|ne|elektrika": {
+   "pe": 360,
+   "p25": 171,
+   "p75": 535,
+   "od": "C",
+   "do": "G",
+   "n": 253,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1971–1980|delno|da|olje": {
+   "pe": 243,
+   "p25": 185,
+   "p75": 323,
+   "od": "C",
+   "do": "D",
+   "n": 33,
+   "osnova": "brez oken"
+  },
+  "HISA|1971–1980|delno|da|plin": {
+   "pe": 219,
+   "p25": 152,
+   "p75": 306,
+   "od": "B",
+   "do": "D",
+   "n": 729,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1971–1980|delno|da|les": {
+   "pe": 286,
+   "p25": 179,
+   "p75": 405,
+   "od": "C",
+   "do": "E",
+   "n": 22,
+   "osnova": "brez oken"
+  },
+  "HISA|1971–1980|delno|da|tc": {
+   "pe": 176,
+   "p25": 146,
+   "p75": 234,
+   "od": "B",
+   "do": "C",
+   "n": 24,
+   "osnova": "brez oken"
+  },
+  "HISA|1971–1980|delno|da|daljinsko": {
+   "pe": 290,
+   "p25": 229,
+   "p75": 341,
+   "od": "C",
+   "do": "D",
+   "n": 73,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1971–1980|delno|da|elektrika": {
+   "pe": 360,
+   "p25": 171,
+   "p75": 535,
+   "od": "C",
+   "do": "G",
+   "n": 253,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1971–1980|izolirano|ne|olje": {
+   "pe": 299,
+   "p25": 202,
+   "p75": 401,
+   "od": "C",
+   "do": "E",
+   "n": 125,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|izolirano|ne|plin": {
+   "pe": 205,
+   "p25": 141,
+   "p75": 313,
+   "od": "B",
+   "do": "D",
+   "n": 69,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|izolirano|ne|les": {
+   "pe": 338,
+   "p25": 229,
+   "p75": 497,
+   "od": "C",
+   "do": "F",
+   "n": 82,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|izolirano|ne|tc": {
+   "pe": 169,
+   "p25": 140,
+   "p75": 266,
+   "od": "B",
+   "do": "D",
+   "n": 49,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|izolirano|ne|daljinsko": {
+   "pe": 290,
+   "p25": 229,
+   "p75": 341,
+   "od": "C",
+   "do": "D",
+   "n": 73,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1971–1980|izolirano|ne|elektrika": {
+   "pe": 316,
+   "p25": 202,
+   "p75": 420,
+   "od": "C",
+   "do": "E",
+   "n": 26,
+   "osnova": "brez oken"
+  },
+  "HISA|1971–1980|izolirano|da|olje": {
+   "pe": 286,
+   "p25": 186,
+   "p75": 364,
+   "od": "C",
+   "do": "E",
+   "n": 98,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|izolirano|da|plin": {
+   "pe": 157,
+   "p25": 130,
+   "p75": 224,
+   "od": "B",
+   "do": "C",
+   "n": 81,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|izolirano|da|les": {
+   "pe": 277,
+   "p25": 216,
+   "p75": 454,
+   "od": "C",
+   "do": "F",
+   "n": 61,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|izolirano|da|tc": {
+   "pe": 176,
+   "p25": 105,
+   "p75": 245,
+   "od": "B",
+   "do": "C",
+   "n": 53,
+   "osnova": "polna"
+  },
+  "HISA|1971–1980|izolirano|da|daljinsko": {
+   "pe": 290,
+   "p25": 229,
+   "p75": 341,
+   "od": "C",
+   "do": "D",
+   "n": 73,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1971–1980|izolirano|da|elektrika": {
+   "pe": 316,
+   "p25": 202,
+   "p75": 420,
+   "od": "C",
+   "do": "E",
+   "n": 26,
+   "osnova": "brez oken"
+  },
+  "HISA|1981–1990|neizolirano|ne|olje": {
+   "pe": 270,
+   "p25": 198,
+   "p75": 364,
+   "od": "C",
+   "do": "E",
+   "n": 936,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|ne|plin": {
+   "pe": 201,
+   "p25": 146,
+   "p75": 269,
+   "od": "B",
+   "do": "D",
+   "n": 318,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|ne|les": {
+   "pe": 336,
+   "p25": 244,
+   "p75": 496,
+   "od": "C",
+   "do": "F",
+   "n": 869,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|ne|tc": {
+   "pe": 206,
+   "p25": 154,
+   "p75": 303,
+   "od": "B",
+   "do": "D",
+   "n": 349,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|ne|daljinsko": {
+   "pe": 252,
+   "p25": 196,
+   "p75": 342,
+   "od": "C",
+   "do": "D",
+   "n": 45,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|ne|elektrika": {
+   "pe": 422,
+   "p25": 229,
+   "p75": 674,
+   "od": "C",
+   "do": "G",
+   "n": 213,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|da|olje": {
+   "pe": 292,
+   "p25": 208,
+   "p75": 362,
+   "od": "C",
+   "do": "E",
+   "n": 67,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|da|plin": {
+   "pe": 179,
+   "p25": 130,
+   "p75": 217,
+   "od": "B",
+   "do": "C",
+   "n": 21,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|da|les": {
+   "pe": 284,
+   "p25": 189,
+   "p75": 363,
+   "od": "C",
+   "do": "E",
+   "n": 44,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|da|tc": {
+   "pe": 248,
+   "p25": 154,
+   "p75": 334,
+   "od": "B",
+   "do": "D",
+   "n": 28,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|neizolirano|da|daljinsko": {
+   "pe": 255,
+   "p25": 198,
+   "p75": 350,
+   "od": "C",
+   "do": "E",
+   "n": 46,
+   "osnova": "brez oken"
+  },
+  "HISA|1981–1990|neizolirano|da|elektrika": {
+   "pe": 420,
+   "p25": 229,
+   "p75": 674,
+   "od": "C",
+   "do": "G",
+   "n": 225,
+   "osnova": "brez oken"
+  },
+  "HISA|1981–1990|delno|ne|olje": {
+   "pe": 219,
+   "p25": 173,
+   "p75": 271,
+   "od": "C",
+   "do": "D",
+   "n": 23,
+   "osnova": "brez oken"
+  },
+  "HISA|1981–1990|delno|ne|plin": {
+   "pe": 197,
+   "p25": 146,
+   "p75": 264,
+   "od": "B",
+   "do": "D",
+   "n": 388,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|delno|ne|les": {
+   "pe": 290,
+   "p25": 210,
+   "p75": 504,
+   "od": "C",
+   "do": "F",
+   "n": 28,
+   "osnova": "brez oken"
+  },
+  "HISA|1981–1990|delno|ne|tc": {
+   "pe": 196,
+   "p25": 146,
+   "p75": 287,
+   "od": "B",
+   "do": "D",
+   "n": 478,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|delno|ne|daljinsko": {
+   "pe": 254,
+   "p25": 195,
+   "p75": 347,
+   "od": "C",
+   "do": "E",
+   "n": 51,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|delno|ne|elektrika": {
+   "pe": 413,
+   "p25": 218,
+   "p75": 639,
+   "od": "C",
+   "do": "G",
+   "n": 253,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|delno|da|olje": {
+   "pe": 219,
+   "p25": 173,
+   "p75": 271,
+   "od": "C",
+   "do": "D",
+   "n": 23,
+   "osnova": "brez oken"
+  },
+  "HISA|1981–1990|delno|da|plin": {
+   "pe": 197,
+   "p25": 146,
+   "p75": 264,
+   "od": "B",
+   "do": "D",
+   "n": 388,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|delno|da|les": {
+   "pe": 294,
+   "p25": 214,
+   "p75": 541,
+   "od": "C",
+   "do": "G",
+   "n": 21,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|delno|da|tc": {
+   "pe": 196,
+   "p25": 146,
+   "p75": 287,
+   "od": "B",
+   "do": "D",
+   "n": 478,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|delno|da|daljinsko": {
+   "pe": 254,
+   "p25": 195,
+   "p75": 347,
+   "od": "C",
+   "do": "E",
+   "n": 51,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|delno|da|elektrika": {
+   "pe": 413,
+   "p25": 218,
+   "p75": 639,
+   "od": "C",
+   "do": "G",
+   "n": 253,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|izolirano|ne|olje": {
+   "pe": 268,
+   "p25": 192,
+   "p75": 353,
+   "od": "C",
+   "do": "E",
+   "n": 71,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|izolirano|ne|plin": {
+   "pe": 191,
+   "p25": 149,
+   "p75": 229,
+   "od": "B",
+   "do": "C",
+   "n": 22,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|izolirano|ne|les": {
+   "pe": 321,
+   "p25": 212,
+   "p75": 423,
+   "od": "C",
+   "do": "E",
+   "n": 65,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|izolirano|ne|tc": {
+   "pe": 171,
+   "p25": 114,
+   "p75": 253,
+   "od": "B",
+   "do": "C",
+   "n": 42,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|izolirano|ne|daljinsko": {
+   "pe": 254,
+   "p25": 195,
+   "p75": 347,
+   "od": "C",
+   "do": "E",
+   "n": 51,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|izolirano|ne|elektrika": {
+   "pe": 325,
+   "p25": 234,
+   "p75": 552,
+   "od": "C",
+   "do": "G",
+   "n": 21,
+   "osnova": "brez oken"
+  },
+  "HISA|1981–1990|izolirano|da|olje": {
+   "pe": 216,
+   "p25": 159,
+   "p75": 279,
+   "od": "B",
+   "do": "D",
+   "n": 60,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|izolirano|da|plin": {
+   "pe": 188,
+   "p25": 144,
+   "p75": 229,
+   "od": "B",
+   "do": "C",
+   "n": 38,
+   "osnova": "brez oken"
+  },
+  "HISA|1981–1990|izolirano|da|les": {
+   "pe": 278,
+   "p25": 186,
+   "p75": 400,
+   "od": "C",
+   "do": "E",
+   "n": 52,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|izolirano|da|tc": {
+   "pe": 161,
+   "p25": 123,
+   "p75": 198,
+   "od": "B",
+   "do": "C",
+   "n": 46,
+   "osnova": "polna"
+  },
+  "HISA|1981–1990|izolirano|da|daljinsko": {
+   "pe": 254,
+   "p25": 195,
+   "p75": 347,
+   "od": "C",
+   "do": "E",
+   "n": 51,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1981–1990|izolirano|da|elektrika": {
+   "pe": 325,
+   "p25": 234,
+   "p75": 552,
+   "od": "C",
+   "do": "G",
+   "n": 21,
+   "osnova": "brez oken"
+  },
+  "HISA|1991–2002|neizolirano|ne|olje": {
+   "pe": 212,
+   "p25": 160,
+   "p75": 301,
+   "od": "B",
+   "do": "D",
+   "n": 656,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|neizolirano|ne|plin": {
+   "pe": 152,
+   "p25": 121,
+   "p75": 192,
+   "od": "B",
+   "do": "C",
+   "n": 356,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|neizolirano|ne|les": {
+   "pe": 270,
+   "p25": 192,
+   "p75": 374,
+   "od": "C",
+   "do": "E",
+   "n": 549,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|neizolirano|ne|tc": {
+   "pe": 185,
+   "p25": 147,
+   "p75": 256,
+   "od": "B",
+   "do": "C",
+   "n": 370,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|neizolirano|ne|elektrika": {
+   "pe": 352,
+   "p25": 177,
+   "p75": 522,
+   "od": "C",
+   "do": "F",
+   "n": 146,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|neizolirano|da|olje": {
+   "pe": 204,
+   "p25": 154,
+   "p75": 265,
+   "od": "B",
+   "do": "D",
+   "n": 38,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|neizolirano|da|plin": {
+   "pe": 152,
+   "p25": 121,
+   "p75": 195,
+   "od": "B",
+   "do": "C",
+   "n": 374,
+   "osnova": "brez oken"
+  },
+  "HISA|1991–2002|neizolirano|da|les": {
+   "pe": 335,
+   "p25": 200,
+   "p75": 471,
+   "od": "C",
+   "do": "F",
+   "n": 20,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|neizolirano|da|tc": {
+   "pe": 194,
+   "p25": 139,
+   "p75": 233,
+   "od": "B",
+   "do": "C",
+   "n": 30,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|neizolirano|da|elektrika": {
+   "pe": 352,
+   "p25": 176,
+   "p75": 524,
+   "od": "C",
+   "do": "F",
+   "n": 152,
+   "osnova": "brez oken"
+  },
+  "HISA|1991–2002|delno|ne|olje": {
+   "pe": 211,
+   "p25": 159,
+   "p75": 296,
+   "od": "B",
+   "do": "D",
+   "n": 748,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|delno|ne|plin": {
+   "pe": 154,
+   "p25": 122,
+   "p75": 201,
+   "od": "B",
+   "do": "C",
+   "n": 407,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|delno|ne|les": {
+   "pe": 268,
+   "p25": 191,
+   "p75": 371,
+   "od": "C",
+   "do": "E",
+   "n": 635,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|delno|ne|tc": {
+   "pe": 185,
+   "p25": 145,
+   "p75": 250,
+   "od": "B",
+   "do": "C",
+   "n": 477,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|delno|ne|elektrika": {
+   "pe": 334,
+   "p25": 177,
+   "p75": 501,
+   "od": "C",
+   "do": "F",
+   "n": 175,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|delno|da|olje": {
+   "pe": 211,
+   "p25": 159,
+   "p75": 296,
+   "od": "B",
+   "do": "D",
+   "n": 748,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|delno|da|plin": {
+   "pe": 154,
+   "p25": 122,
+   "p75": 201,
+   "od": "B",
+   "do": "C",
+   "n": 407,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|delno|da|les": {
+   "pe": 268,
+   "p25": 191,
+   "p75": 371,
+   "od": "C",
+   "do": "E",
+   "n": 635,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|delno|da|tc": {
+   "pe": 185,
+   "p25": 145,
+   "p75": 250,
+   "od": "B",
+   "do": "C",
+   "n": 477,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|delno|da|elektrika": {
+   "pe": 334,
+   "p25": 177,
+   "p75": 501,
+   "od": "C",
+   "do": "F",
+   "n": 175,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|izolirano|ne|olje": {
+   "pe": 240,
+   "p25": 178,
+   "p75": 279,
+   "od": "C",
+   "do": "D",
+   "n": 28,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|izolirano|ne|plin": {
+   "pe": 214,
+   "p25": 146,
+   "p75": 283,
+   "od": "B",
+   "do": "D",
+   "n": 23,
+   "osnova": "brez oken"
+  },
+  "HISA|1991–2002|izolirano|ne|les": {
+   "pe": 257,
+   "p25": 179,
+   "p75": 347,
+   "od": "C",
+   "do": "E",
+   "n": 35,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|izolirano|ne|tc": {
+   "pe": 191,
+   "p25": 146,
+   "p75": 233,
+   "od": "B",
+   "do": "C",
+   "n": 30,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|izolirano|ne|elektrika": {
+   "pe": 334,
+   "p25": 177,
+   "p75": 501,
+   "od": "C",
+   "do": "F",
+   "n": 175,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|1991–2002|izolirano|da|olje": {
+   "pe": 225,
+   "p25": 166,
+   "p75": 272,
+   "od": "C",
+   "do": "D",
+   "n": 43,
+   "osnova": "brez oken"
+  },
+  "HISA|1991–2002|izolirano|da|plin": {
+   "pe": 214,
+   "p25": 146,
+   "p75": 283,
+   "od": "B",
+   "do": "D",
+   "n": 23,
+   "osnova": "brez oken"
+  },
+  "HISA|1991–2002|izolirano|da|les": {
+   "pe": 260,
+   "p25": 172,
+   "p75": 353,
+   "od": "C",
+   "do": "E",
+   "n": 52,
+   "osnova": "brez oken"
+  },
+  "HISA|1991–2002|izolirano|da|tc": {
+   "pe": 160,
+   "p25": 109,
+   "p75": 228,
+   "od": "B",
+   "do": "C",
+   "n": 29,
+   "osnova": "polna"
+  },
+  "HISA|1991–2002|izolirano|da|elektrika": {
+   "pe": 334,
+   "p25": 177,
+   "p75": 501,
+   "od": "C",
+   "do": "F",
+   "n": 175,
+   "osnova": "brez ovoja in oken"
+  },
+  "HISA|2003–2010|izolirano|da|olje": {
+   "pe": 171,
+   "p25": 134,
+   "p75": 216,
+   "od": "B",
+   "do": "C",
+   "n": 348,
+   "osnova": "polna"
+  },
+  "HISA|2003–2010|izolirano|da|plin": {
+   "pe": 131,
+   "p25": 110,
+   "p75": 163,
+   "od": "B",
+   "do": "B",
+   "n": 537,
+   "osnova": "polna"
+  },
+  "HISA|2003–2010|izolirano|da|les": {
+   "pe": 193,
+   "p25": 157,
+   "p75": 266,
+   "od": "B",
+   "do": "D",
+   "n": 335,
+   "osnova": "polna"
+  },
+  "HISA|2003–2010|izolirano|da|tc": {
+   "pe": 147,
+   "p25": 120,
+   "p75": 189,
+   "od": "B",
+   "do": "C",
+   "n": 639,
+   "osnova": "polna"
+  },
+  "HISA|2003–2010|izolirano|da|elektrika": {
+   "pe": 241,
+   "p25": 161,
+   "p75": 336,
+   "od": "B",
+   "do": "D",
+   "n": 200,
+   "osnova": "polna"
+  },
+  "HISA|2011–2020|izolirano|da|olje": {
+   "pe": 151,
+   "p25": 111,
+   "p75": 215,
+   "od": "B",
+   "do": "C",
+   "n": 31,
+   "osnova": "polna"
+  },
+  "HISA|2011–2020|izolirano|da|plin": {
+   "pe": 104,
+   "p25": 82,
+   "p75": 136,
+   "od": "B",
+   "do": "B",
+   "n": 109,
+   "osnova": "polna"
+  },
+  "HISA|2011–2020|izolirano|da|les": {
+   "pe": 175,
+   "p25": 133,
+   "p75": 255,
+   "od": "B",
+   "do": "C",
+   "n": 137,
+   "osnova": "polna"
+  },
+  "HISA|2011–2020|izolirano|da|tc": {
+   "pe": 126,
+   "p25": 98,
+   "p75": 150,
+   "od": "B",
+   "do": "B",
+   "n": 1464,
+   "osnova": "polna"
+  },
+  "HISA|2011–2020|izolirano|da|elektrika": {
+   "pe": 203,
+   "p25": 117,
+   "p75": 280,
+   "od": "B",
+   "do": "D",
+   "n": 151,
+   "osnova": "polna"
+  },
+  "HISA|po 2020|izolirano|da|plin": {
+   "pe": 86,
+   "p25": 55,
+   "p75": 117,
+   "od": "A",
+   "do": "B",
+   "n": 117,
+   "osnova": "polna"
+  },
+  "HISA|po 2020|izolirano|da|tc": {
+   "pe": 111,
+   "p25": 89,
+   "p75": 135,
+   "od": "B",
+   "do": "B",
+   "n": 1732,
+   "osnova": "polna"
+  },
+  "HISA|po 2020|izolirano|da|elektrika": {
+   "pe": 167,
+   "p25": 142,
+   "p75": 238,
+   "od": "B",
+   "do": "C",
+   "n": 39,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|ne|olje": {
+   "pe": 313,
+   "p25": 238,
+   "p75": 415,
+   "od": "E",
+   "do": "G",
+   "n": 173,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|ne|plin": {
+   "pe": 225,
+   "p25": 170,
+   "p75": 296,
+   "od": "C",
+   "do": "F",
+   "n": 469,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|ne|les": {
+   "pe": 379,
+   "p25": 277,
+   "p75": 506,
+   "od": "F",
+   "do": "G",
+   "n": 264,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|ne|tc": {
+   "pe": 255,
+   "p25": 183,
+   "p75": 342,
+   "od": "D",
+   "do": "G",
+   "n": 151,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|ne|daljinsko": {
+   "pe": 261,
+   "p25": 206,
+   "p75": 325,
+   "od": "D",
+   "do": "G",
+   "n": 205,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|ne|elektrika": {
+   "pe": 376,
+   "p25": 247,
+   "p75": 526,
+   "od": "E",
+   "do": "G",
+   "n": 644,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|da|olje": {
+   "pe": 274,
+   "p25": 217,
+   "p75": 363,
+   "od": "D",
+   "do": "G",
+   "n": 36,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|da|plin": {
+   "pe": 213,
+   "p25": 161,
+   "p75": 284,
+   "od": "C",
+   "do": "F",
+   "n": 265,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|da|les": {
+   "pe": 388,
+   "p25": 278,
+   "p75": 505,
+   "od": "F",
+   "do": "G",
+   "n": 76,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|da|tc": {
+   "pe": 231,
+   "p25": 177,
+   "p75": 334,
+   "od": "D",
+   "do": "G",
+   "n": 57,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|da|daljinsko": {
+   "pe": 259,
+   "p25": 215,
+   "p75": 305,
+   "od": "D",
+   "do": "F",
+   "n": 125,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|neizolirano|da|elektrika": {
+   "pe": 352,
+   "p25": 248,
+   "p75": 484,
+   "od": "E",
+   "do": "G",
+   "n": 218,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|delno|ne|olje": {
+   "pe": 303,
+   "p25": 219,
+   "p75": 398,
+   "od": "D",
+   "do": "G",
+   "n": 244,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|delno|ne|plin": {
+   "pe": 197,
+   "p25": 168,
+   "p75": 259,
+   "od": "C",
+   "do": "E",
+   "n": 22,
+   "osnova": "brez oken"
+  },
+  "BLOKI|do 1945|delno|ne|les": {
+   "pe": 371,
+   "p25": 261,
+   "p75": 501,
+   "od": "E",
+   "do": "G",
+   "n": 392,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|delno|ne|tc": {
+   "pe": 235,
+   "p25": 170,
+   "p75": 317,
+   "od": "C",
+   "do": "F",
+   "n": 278,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|delno|ne|daljinsko": {
+   "pe": 250,
+   "p25": 204,
+   "p75": 309,
+   "od": "D",
+   "do": "F",
+   "n": 415,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|delno|ne|elektrika": {
+   "pe": 360,
+   "p25": 240,
+   "p75": 498,
+   "od": "E",
+   "do": "G",
+   "n": 1039,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|delno|da|olje": {
+   "pe": 303,
+   "p25": 219,
+   "p75": 398,
+   "od": "D",
+   "do": "G",
+   "n": 244,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|delno|da|plin": {
+   "pe": 197,
+   "p25": 168,
+   "p75": 259,
+   "od": "C",
+   "do": "E",
+   "n": 22,
+   "osnova": "brez oken"
+  },
+  "BLOKI|do 1945|delno|da|les": {
+   "pe": 371,
+   "p25": 261,
+   "p75": 501,
+   "od": "E",
+   "do": "G",
+   "n": 392,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|delno|da|tc": {
+   "pe": 235,
+   "p25": 170,
+   "p75": 317,
+   "od": "C",
+   "do": "F",
+   "n": 278,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|delno|da|daljinsko": {
+   "pe": 250,
+   "p25": 204,
+   "p75": 309,
+   "od": "D",
+   "do": "F",
+   "n": 415,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|delno|da|elektrika": {
+   "pe": 360,
+   "p25": 240,
+   "p75": 498,
+   "od": "E",
+   "do": "G",
+   "n": 1039,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|do 1945|izolirano|ne|olje": {
+   "pe": 233,
+   "p25": 177,
+   "p75": 340,
+   "od": "D",
+   "do": "G",
+   "n": 32,
+   "osnova": "brez oken"
+  },
+  "BLOKI|do 1945|izolirano|ne|plin": {
+   "pe": 193,
+   "p25": 129,
+   "p75": 249,
+   "od": "C",
+   "do": "E",
+   "n": 60,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|izolirano|ne|les": {
+   "pe": 325,
+   "p25": 223,
+   "p75": 460,
+   "od": "D",
+   "do": "G",
+   "n": 43,
+   "osnova": "brez oken"
+  },
+  "BLOKI|do 1945|izolirano|ne|tc": {
+   "pe": 204,
+   "p25": 148,
+   "p75": 270,
+   "od": "C",
+   "do": "E",
+   "n": 61,
+   "osnova": "brez oken"
+  },
+  "BLOKI|do 1945|izolirano|ne|daljinsko": {
+   "pe": 203,
+   "p25": 175,
+   "p75": 250,
+   "od": "D",
+   "do": "E",
+   "n": 25,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|izolirano|ne|elektrika": {
+   "pe": 315,
+   "p25": 214,
+   "p75": 395,
+   "od": "D",
+   "do": "G",
+   "n": 67,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|izolirano|da|olje": {
+   "pe": 233,
+   "p25": 177,
+   "p75": 340,
+   "od": "D",
+   "do": "G",
+   "n": 32,
+   "osnova": "brez oken"
+  },
+  "BLOKI|do 1945|izolirano|da|plin": {
+   "pe": 174,
+   "p25": 132,
+   "p75": 236,
+   "od": "C",
+   "do": "E",
+   "n": 104,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|izolirano|da|les": {
+   "pe": 274,
+   "p25": 221,
+   "p75": 430,
+   "od": "D",
+   "do": "G",
+   "n": 28,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|izolirano|da|tc": {
+   "pe": 212,
+   "p25": 147,
+   "p75": 295,
+   "od": "C",
+   "do": "F",
+   "n": 46,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|izolirano|da|daljinsko": {
+   "pe": 223,
+   "p25": 172,
+   "p75": 277,
+   "od": "C",
+   "do": "F",
+   "n": 52,
+   "osnova": "polna"
+  },
+  "BLOKI|do 1945|izolirano|da|elektrika": {
+   "pe": 327,
+   "p25": 224,
+   "p75": 429,
+   "od": "E",
+   "do": "G",
+   "n": 93,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|ne|olje": {
+   "pe": 286,
+   "p25": 219,
+   "p75": 366,
+   "od": "D",
+   "do": "G",
+   "n": 206,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|ne|plin": {
+   "pe": 217,
+   "p25": 165,
+   "p75": 279,
+   "od": "C",
+   "do": "F",
+   "n": 440,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|ne|les": {
+   "pe": 356,
+   "p25": 270,
+   "p75": 476,
+   "od": "E",
+   "do": "G",
+   "n": 192,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|ne|tc": {
+   "pe": 237,
+   "p25": 179,
+   "p75": 319,
+   "od": "D",
+   "do": "F",
+   "n": 102,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|ne|daljinsko": {
+   "pe": 251,
+   "p25": 194,
+   "p75": 306,
+   "od": "D",
+   "do": "F",
+   "n": 372,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|ne|elektrika": {
+   "pe": 305,
+   "p25": 213,
+   "p75": 408,
+   "od": "D",
+   "do": "G",
+   "n": 342,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|da|olje": {
+   "pe": 278,
+   "p25": 234,
+   "p75": 369,
+   "od": "E",
+   "do": "G",
+   "n": 34,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|da|plin": {
+   "pe": 218,
+   "p25": 181,
+   "p75": 257,
+   "od": "D",
+   "do": "E",
+   "n": 111,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|da|les": {
+   "pe": 315,
+   "p25": 259,
+   "p75": 411,
+   "od": "E",
+   "do": "G",
+   "n": 41,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|da|tc": {
+   "pe": 254,
+   "p25": 173,
+   "p75": 315,
+   "od": "C",
+   "do": "F",
+   "n": 32,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|da|daljinsko": {
+   "pe": 225,
+   "p25": 180,
+   "p75": 266,
+   "od": "D",
+   "do": "E",
+   "n": 197,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|neizolirano|da|elektrika": {
+   "pe": 330,
+   "p25": 227,
+   "p75": 422,
+   "od": "E",
+   "do": "G",
+   "n": 113,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|delno|ne|olje": {
+   "pe": 256,
+   "p25": 195,
+   "p75": 338,
+   "od": "D",
+   "do": "G",
+   "n": 329,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1946–1970|delno|ne|plin": {
+   "pe": 153,
+   "p25": 135,
+   "p75": 168,
+   "od": "C",
+   "do": "C",
+   "n": 22,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|delno|ne|les": {
+   "pe": 315,
+   "p25": 243,
+   "p75": 426,
+   "od": "E",
+   "do": "G",
+   "n": 309,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1946–1970|delno|ne|tc": {
+   "pe": 220,
+   "p25": 159,
+   "p75": 306,
+   "od": "C",
+   "do": "F",
+   "n": 191,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1946–1970|delno|ne|daljinsko": {
+   "pe": 174,
+   "p25": 153,
+   "p75": 212,
+   "od": "C",
+   "do": "D",
+   "n": 20,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|delno|ne|elektrika": {
+   "pe": 232,
+   "p25": 185,
+   "p75": 314,
+   "od": "D",
+   "do": "F",
+   "n": 33,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1946–1970|delno|da|olje": {
+   "pe": 256,
+   "p25": 195,
+   "p75": 338,
+   "od": "D",
+   "do": "G",
+   "n": 329,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1946–1970|delno|da|plin": {
+   "pe": 157,
+   "p25": 136,
+   "p75": 180,
+   "od": "C",
+   "do": "D",
+   "n": 35,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1946–1970|delno|da|les": {
+   "pe": 315,
+   "p25": 243,
+   "p75": 426,
+   "od": "E",
+   "do": "G",
+   "n": 309,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1946–1970|delno|da|tc": {
+   "pe": 220,
+   "p25": 159,
+   "p75": 306,
+   "od": "C",
+   "do": "F",
+   "n": 191,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1946–1970|delno|da|daljinsko": {
+   "pe": 176,
+   "p25": 154,
+   "p75": 213,
+   "od": "C",
+   "do": "D",
+   "n": 37,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1946–1970|delno|da|elektrika": {
+   "pe": 232,
+   "p25": 185,
+   "p75": 314,
+   "od": "D",
+   "do": "F",
+   "n": 33,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1946–1970|izolirano|ne|olje": {
+   "pe": 188,
+   "p25": 161,
+   "p75": 250,
+   "od": "C",
+   "do": "E",
+   "n": 59,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|ne|plin": {
+   "pe": 153,
+   "p25": 125,
+   "p75": 194,
+   "od": "C",
+   "do": "D",
+   "n": 357,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|ne|les": {
+   "pe": 241,
+   "p25": 198,
+   "p75": 287,
+   "od": "D",
+   "do": "F",
+   "n": 50,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|ne|tc": {
+   "pe": 193,
+   "p25": 158,
+   "p75": 276,
+   "od": "C",
+   "do": "F",
+   "n": 34,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|ne|daljinsko": {
+   "pe": 193,
+   "p25": 157,
+   "p75": 236,
+   "od": "C",
+   "do": "E",
+   "n": 385,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|ne|elektrika": {
+   "pe": 193,
+   "p25": 158,
+   "p75": 251,
+   "od": "C",
+   "do": "E",
+   "n": 317,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|da|olje": {
+   "pe": 213,
+   "p25": 169,
+   "p75": 256,
+   "od": "C",
+   "do": "E",
+   "n": 25,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|da|plin": {
+   "pe": 155,
+   "p25": 128,
+   "p75": 198,
+   "od": "C",
+   "do": "D",
+   "n": 148,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|da|les": {
+   "pe": 269,
+   "p25": 187,
+   "p75": 355,
+   "od": "D",
+   "do": "G",
+   "n": 21,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|da|tc": {
+   "pe": 137,
+   "p25": 109,
+   "p75": 182,
+   "od": "B",
+   "do": "D",
+   "n": 20,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|da|daljinsko": {
+   "pe": 182,
+   "p25": 145,
+   "p75": 229,
+   "od": "C",
+   "do": "E",
+   "n": 236,
+   "osnova": "polna"
+  },
+  "BLOKI|1946–1970|izolirano|da|elektrika": {
+   "pe": 195,
+   "p25": 162,
+   "p75": 263,
+   "od": "C",
+   "do": "E",
+   "n": 172,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|ne|olje": {
+   "pe": 257,
+   "p25": 205,
+   "p75": 325,
+   "od": "D",
+   "do": "G",
+   "n": 81,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|ne|plin": {
+   "pe": 198,
+   "p25": 157,
+   "p75": 263,
+   "od": "C",
+   "do": "E",
+   "n": 130,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|ne|les": {
+   "pe": 279,
+   "p25": 225,
+   "p75": 394,
+   "od": "E",
+   "do": "G",
+   "n": 41,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|ne|tc": {
+   "pe": 227,
+   "p25": 155,
+   "p75": 312,
+   "od": "C",
+   "do": "F",
+   "n": 43,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|ne|daljinsko": {
+   "pe": 201,
+   "p25": 163,
+   "p75": 256,
+   "od": "C",
+   "do": "E",
+   "n": 165,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|ne|elektrika": {
+   "pe": 257,
+   "p25": 172,
+   "p75": 369,
+   "od": "C",
+   "do": "G",
+   "n": 126,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|da|olje": {
+   "pe": 245,
+   "p25": 214,
+   "p75": 295,
+   "od": "D",
+   "do": "F",
+   "n": 28,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|da|plin": {
+   "pe": 190,
+   "p25": 156,
+   "p75": 244,
+   "od": "C",
+   "do": "E",
+   "n": 42,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|da|les": {
+   "pe": 294,
+   "p25": 225,
+   "p75": 360,
+   "od": "E",
+   "do": "G",
+   "n": 55,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1971–1980|neizolirano|da|tc": {
+   "pe": 220,
+   "p25": 156,
+   "p75": 308,
+   "od": "C",
+   "do": "F",
+   "n": 54,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1971–1980|neizolirano|da|daljinsko": {
+   "pe": 200,
+   "p25": 163,
+   "p75": 247,
+   "od": "C",
+   "do": "E",
+   "n": 152,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|neizolirano|da|elektrika": {
+   "pe": 240,
+   "p25": 183,
+   "p75": 346,
+   "od": "D",
+   "do": "G",
+   "n": 48,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|delno|ne|olje": {
+   "pe": 233,
+   "p25": 177,
+   "p75": 290,
+   "od": "D",
+   "do": "F",
+   "n": 200,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|delno|ne|plin": {
+   "pe": 165,
+   "p25": 133,
+   "p75": 217,
+   "od": "C",
+   "do": "D",
+   "n": 330,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|delno|ne|les": {
+   "pe": 255,
+   "p25": 193,
+   "p75": 346,
+   "od": "D",
+   "do": "G",
+   "n": 83,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|delno|ne|tc": {
+   "pe": 187,
+   "p25": 144,
+   "p75": 250,
+   "od": "C",
+   "do": "E",
+   "n": 94,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|delno|ne|daljinsko": {
+   "pe": 167,
+   "p25": 136,
+   "p75": 179,
+   "od": "C",
+   "do": "D",
+   "n": 22,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1971–1980|delno|ne|elektrika": {
+   "pe": 177,
+   "p25": 146,
+   "p75": 240,
+   "od": "C",
+   "do": "E",
+   "n": 522,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|delno|da|olje": {
+   "pe": 233,
+   "p25": 177,
+   "p75": 290,
+   "od": "D",
+   "do": "F",
+   "n": 200,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|delno|da|plin": {
+   "pe": 165,
+   "p25": 133,
+   "p75": 217,
+   "od": "C",
+   "do": "D",
+   "n": 330,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|delno|da|les": {
+   "pe": 255,
+   "p25": 193,
+   "p75": 346,
+   "od": "D",
+   "do": "G",
+   "n": 83,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|delno|da|tc": {
+   "pe": 187,
+   "p25": 144,
+   "p75": 250,
+   "od": "C",
+   "do": "E",
+   "n": 94,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|delno|da|daljinsko": {
+   "pe": 167,
+   "p25": 136,
+   "p75": 179,
+   "od": "C",
+   "do": "D",
+   "n": 22,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1971–1980|delno|da|elektrika": {
+   "pe": 177,
+   "p25": 146,
+   "p75": 240,
+   "od": "C",
+   "do": "E",
+   "n": 522,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1971–1980|izolirano|ne|olje": {
+   "pe": 189,
+   "p25": 155,
+   "p75": 259,
+   "od": "C",
+   "do": "E",
+   "n": 57,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|izolirano|ne|plin": {
+   "pe": 152,
+   "p25": 132,
+   "p75": 173,
+   "od": "C",
+   "do": "D",
+   "n": 88,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|izolirano|ne|les": {
+   "pe": 209,
+   "p25": 151,
+   "p75": 264,
+   "od": "C",
+   "do": "E",
+   "n": 28,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1971–1980|izolirano|ne|tc": {
+   "pe": 166,
+   "p25": 121,
+   "p75": 212,
+   "od": "B",
+   "do": "D",
+   "n": 36,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1971–1980|izolirano|ne|daljinsko": {
+   "pe": 160,
+   "p25": 133,
+   "p75": 206,
+   "od": "C",
+   "do": "D",
+   "n": 365,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|izolirano|ne|elektrika": {
+   "pe": 162,
+   "p25": 138,
+   "p75": 192,
+   "od": "C",
+   "do": "D",
+   "n": 181,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|izolirano|da|olje": {
+   "pe": 232,
+   "p25": 172,
+   "p75": 295,
+   "od": "C",
+   "do": "F",
+   "n": 32,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|izolirano|da|plin": {
+   "pe": 156,
+   "p25": 124,
+   "p75": 191,
+   "od": "C",
+   "do": "D",
+   "n": 61,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|izolirano|da|les": {
+   "pe": 209,
+   "p25": 151,
+   "p75": 264,
+   "od": "C",
+   "do": "E",
+   "n": 28,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1971–1980|izolirano|da|tc": {
+   "pe": 137,
+   "p25": 103,
+   "p75": 175,
+   "od": "B",
+   "do": "D",
+   "n": 20,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|izolirano|da|daljinsko": {
+   "pe": 159,
+   "p25": 132,
+   "p75": 192,
+   "od": "C",
+   "do": "D",
+   "n": 317,
+   "osnova": "polna"
+  },
+  "BLOKI|1971–1980|izolirano|da|elektrika": {
+   "pe": 166,
+   "p25": 138,
+   "p75": 196,
+   "od": "C",
+   "do": "D",
+   "n": 152,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|ne|olje": {
+   "pe": 238,
+   "p25": 197,
+   "p75": 282,
+   "od": "D",
+   "do": "F",
+   "n": 64,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|ne|plin": {
+   "pe": 178,
+   "p25": 140,
+   "p75": 251,
+   "od": "C",
+   "do": "E",
+   "n": 109,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|ne|les": {
+   "pe": 202,
+   "p25": 148,
+   "p75": 307,
+   "od": "C",
+   "do": "F",
+   "n": 27,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|ne|tc": {
+   "pe": 186,
+   "p25": 141,
+   "p75": 243,
+   "od": "C",
+   "do": "E",
+   "n": 35,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|ne|daljinsko": {
+   "pe": 189,
+   "p25": 152,
+   "p75": 229,
+   "od": "C",
+   "do": "E",
+   "n": 178,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|ne|elektrika": {
+   "pe": 241,
+   "p25": 187,
+   "p75": 352,
+   "od": "D",
+   "do": "G",
+   "n": 125,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|da|olje": {
+   "pe": 257,
+   "p25": 195,
+   "p75": 278,
+   "od": "D",
+   "do": "F",
+   "n": 33,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|da|plin": {
+   "pe": 167,
+   "p25": 140,
+   "p75": 206,
+   "od": "C",
+   "do": "D",
+   "n": 75,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|da|les": {
+   "pe": 240,
+   "p25": 153,
+   "p75": 317,
+   "od": "C",
+   "do": "F",
+   "n": 39,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1981–1990|neizolirano|da|tc": {
+   "pe": 183,
+   "p25": 135,
+   "p75": 239,
+   "od": "C",
+   "do": "E",
+   "n": 48,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1981–1990|neizolirano|da|daljinsko": {
+   "pe": 175,
+   "p25": 151,
+   "p75": 204,
+   "od": "C",
+   "do": "D",
+   "n": 171,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|neizolirano|da|elektrika": {
+   "pe": 243,
+   "p25": 193,
+   "p75": 281,
+   "od": "D",
+   "do": "F",
+   "n": 46,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|delno|ne|olje": {
+   "pe": 230,
+   "p25": 185,
+   "p75": 271,
+   "od": "D",
+   "do": "E",
+   "n": 143,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|ne|plin": {
+   "pe": 170,
+   "p25": 137,
+   "p75": 214,
+   "od": "C",
+   "do": "D",
+   "n": 287,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|ne|les": {
+   "pe": 219,
+   "p25": 152,
+   "p75": 300,
+   "od": "C",
+   "do": "F",
+   "n": 61,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|ne|tc": {
+   "pe": 171,
+   "p25": 132,
+   "p75": 231,
+   "od": "C",
+   "do": "E",
+   "n": 65,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|ne|daljinsko": {
+   "pe": 171,
+   "p25": 138,
+   "p75": 210,
+   "od": "C",
+   "do": "D",
+   "n": 721,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|ne|elektrika": {
+   "pe": 212,
+   "p25": 160,
+   "p75": 301,
+   "od": "C",
+   "do": "F",
+   "n": 301,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|da|olje": {
+   "pe": 230,
+   "p25": 185,
+   "p75": 271,
+   "od": "D",
+   "do": "E",
+   "n": 143,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|da|plin": {
+   "pe": 170,
+   "p25": 137,
+   "p75": 214,
+   "od": "C",
+   "do": "D",
+   "n": 287,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|da|les": {
+   "pe": 219,
+   "p25": 152,
+   "p75": 300,
+   "od": "C",
+   "do": "F",
+   "n": 61,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|da|tc": {
+   "pe": 171,
+   "p25": 132,
+   "p75": 231,
+   "od": "C",
+   "do": "E",
+   "n": 65,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|da|daljinsko": {
+   "pe": 171,
+   "p25": 138,
+   "p75": 210,
+   "od": "C",
+   "do": "D",
+   "n": 721,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|delno|da|elektrika": {
+   "pe": 212,
+   "p25": 160,
+   "p75": 301,
+   "od": "C",
+   "do": "F",
+   "n": 301,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|izolirano|ne|olje": {
+   "pe": 184,
+   "p25": 159,
+   "p75": 232,
+   "od": "C",
+   "do": "E",
+   "n": 22,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|izolirano|ne|plin": {
+   "pe": 166,
+   "p25": 138,
+   "p75": 192,
+   "od": "C",
+   "do": "D",
+   "n": 44,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|izolirano|ne|les": {
+   "pe": 218,
+   "p25": 158,
+   "p75": 254,
+   "od": "C",
+   "do": "E",
+   "n": 20,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1981–1990|izolirano|ne|tc": {
+   "pe": 171,
+   "p25": 132,
+   "p75": 231,
+   "od": "C",
+   "do": "E",
+   "n": 65,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|izolirano|ne|daljinsko": {
+   "pe": 171,
+   "p25": 137,
+   "p75": 211,
+   "od": "C",
+   "do": "D",
+   "n": 167,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|izolirano|ne|elektrika": {
+   "pe": 195,
+   "p25": 148,
+   "p75": 251,
+   "od": "C",
+   "do": "E",
+   "n": 74,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|izolirano|da|olje": {
+   "pe": 190,
+   "p25": 160,
+   "p75": 254,
+   "od": "C",
+   "do": "E",
+   "n": 22,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|izolirano|da|plin": {
+   "pe": 162,
+   "p25": 129,
+   "p75": 202,
+   "od": "C",
+   "do": "D",
+   "n": 56,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|izolirano|da|les": {
+   "pe": 218,
+   "p25": 158,
+   "p75": 254,
+   "od": "C",
+   "do": "E",
+   "n": 20,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1981–1990|izolirano|da|tc": {
+   "pe": 171,
+   "p25": 132,
+   "p75": 231,
+   "od": "C",
+   "do": "E",
+   "n": 65,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1981–1990|izolirano|da|daljinsko": {
+   "pe": 157,
+   "p25": 123,
+   "p75": 194,
+   "od": "B",
+   "do": "D",
+   "n": 190,
+   "osnova": "polna"
+  },
+  "BLOKI|1981–1990|izolirano|da|elektrika": {
+   "pe": 163,
+   "p25": 133,
+   "p75": 201,
+   "od": "C",
+   "do": "D",
+   "n": 52,
+   "osnova": "polna"
+  },
+  "BLOKI|1991–2002|neizolirano|ne|olje": {
+   "pe": 191,
+   "p25": 161,
+   "p75": 244,
+   "od": "C",
+   "do": "E",
+   "n": 53,
+   "osnova": "polna"
+  },
+  "BLOKI|1991–2002|neizolirano|ne|plin": {
+   "pe": 147,
+   "p25": 117,
+   "p75": 193,
+   "od": "B",
+   "do": "D",
+   "n": 249,
+   "osnova": "polna"
+  },
+  "BLOKI|1991–2002|neizolirano|ne|les": {
+   "pe": 194,
+   "p25": 156,
+   "p75": 244,
+   "od": "C",
+   "do": "E",
+   "n": 23,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|neizolirano|ne|tc": {
+   "pe": 179,
+   "p25": 113,
+   "p75": 249,
+   "od": "B",
+   "do": "E",
+   "n": 43,
+   "osnova": "polna"
+  },
+  "BLOKI|1991–2002|neizolirano|ne|daljinsko": {
+   "pe": 173,
+   "p25": 123,
+   "p75": 209,
+   "od": "B",
+   "do": "D",
+   "n": 122,
+   "osnova": "polna"
+  },
+  "BLOKI|1991–2002|neizolirano|ne|elektrika": {
+   "pe": 246,
+   "p25": 177,
+   "p75": 324,
+   "od": "D",
+   "do": "G",
+   "n": 85,
+   "osnova": "polna"
+  },
+  "BLOKI|1991–2002|neizolirano|da|olje": {
+   "pe": 192,
+   "p25": 168,
+   "p75": 245,
+   "od": "C",
+   "do": "E",
+   "n": 61,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1991–2002|neizolirano|da|plin": {
+   "pe": 151,
+   "p25": 127,
+   "p75": 177,
+   "od": "C",
+   "do": "D",
+   "n": 75,
+   "osnova": "polna"
+  },
+  "BLOKI|1991–2002|neizolirano|da|les": {
+   "pe": 194,
+   "p25": 156,
+   "p75": 244,
+   "od": "C",
+   "do": "E",
+   "n": 23,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|neizolirano|da|tc": {
+   "pe": 175,
+   "p25": 114,
+   "p75": 240,
+   "od": "B",
+   "do": "E",
+   "n": 50,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1991–2002|neizolirano|da|daljinsko": {
+   "pe": 168,
+   "p25": 134,
+   "p75": 206,
+   "od": "C",
+   "do": "D",
+   "n": 41,
+   "osnova": "polna"
+  },
+  "BLOKI|1991–2002|neizolirano|da|elektrika": {
+   "pe": 227,
+   "p25": 193,
+   "p75": 305,
+   "od": "D",
+   "do": "F",
+   "n": 25,
+   "osnova": "polna"
+  },
+  "BLOKI|1991–2002|delno|ne|olje": {
+   "pe": 191,
+   "p25": 161,
+   "p75": 250,
+   "od": "C",
+   "do": "E",
+   "n": 69,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|ne|plin": {
+   "pe": 143,
+   "p25": 116,
+   "p75": 182,
+   "od": "B",
+   "do": "D",
+   "n": 354,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|ne|les": {
+   "pe": 194,
+   "p25": 156,
+   "p75": 244,
+   "od": "C",
+   "do": "E",
+   "n": 23,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|ne|tc": {
+   "pe": 181,
+   "p25": 116,
+   "p75": 228,
+   "od": "B",
+   "do": "E",
+   "n": 62,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|ne|daljinsko": {
+   "pe": 169,
+   "p25": 125,
+   "p75": 208,
+   "od": "C",
+   "do": "D",
+   "n": 176,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|ne|elektrika": {
+   "pe": 229,
+   "p25": 176,
+   "p75": 299,
+   "od": "D",
+   "do": "F",
+   "n": 119,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|da|olje": {
+   "pe": 191,
+   "p25": 161,
+   "p75": 250,
+   "od": "C",
+   "do": "E",
+   "n": 69,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|da|plin": {
+   "pe": 143,
+   "p25": 116,
+   "p75": 182,
+   "od": "B",
+   "do": "D",
+   "n": 354,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|da|les": {
+   "pe": 194,
+   "p25": 156,
+   "p75": 244,
+   "od": "C",
+   "do": "E",
+   "n": 23,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|da|tc": {
+   "pe": 181,
+   "p25": 116,
+   "p75": 228,
+   "od": "B",
+   "do": "E",
+   "n": 62,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|da|daljinsko": {
+   "pe": 169,
+   "p25": 125,
+   "p75": 208,
+   "od": "C",
+   "do": "D",
+   "n": 176,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|delno|da|elektrika": {
+   "pe": 229,
+   "p25": 176,
+   "p75": 299,
+   "od": "D",
+   "do": "F",
+   "n": 119,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|ne|olje": {
+   "pe": 191,
+   "p25": 161,
+   "p75": 250,
+   "od": "C",
+   "do": "E",
+   "n": 69,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|ne|plin": {
+   "pe": 122,
+   "p25": 106,
+   "p75": 135,
+   "od": "B",
+   "do": "C",
+   "n": 26,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1991–2002|izolirano|ne|les": {
+   "pe": 194,
+   "p25": 156,
+   "p75": 244,
+   "od": "C",
+   "do": "E",
+   "n": 23,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|ne|tc": {
+   "pe": 181,
+   "p25": 116,
+   "p75": 228,
+   "od": "B",
+   "do": "E",
+   "n": 62,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|ne|daljinsko": {
+   "pe": 169,
+   "p25": 125,
+   "p75": 208,
+   "od": "C",
+   "do": "D",
+   "n": 176,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|ne|elektrika": {
+   "pe": 229,
+   "p25": 176,
+   "p75": 299,
+   "od": "D",
+   "do": "F",
+   "n": 119,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|da|olje": {
+   "pe": 191,
+   "p25": 161,
+   "p75": 250,
+   "od": "C",
+   "do": "E",
+   "n": 69,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|da|plin": {
+   "pe": 122,
+   "p25": 106,
+   "p75": 135,
+   "od": "B",
+   "do": "C",
+   "n": 26,
+   "osnova": "brez oken"
+  },
+  "BLOKI|1991–2002|izolirano|da|les": {
+   "pe": 194,
+   "p25": 156,
+   "p75": 244,
+   "od": "C",
+   "do": "E",
+   "n": 23,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|da|tc": {
+   "pe": 181,
+   "p25": 116,
+   "p75": 228,
+   "od": "B",
+   "do": "E",
+   "n": 62,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|da|daljinsko": {
+   "pe": 169,
+   "p25": 125,
+   "p75": 208,
+   "od": "C",
+   "do": "D",
+   "n": 176,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|1991–2002|izolirano|da|elektrika": {
+   "pe": 229,
+   "p25": 176,
+   "p75": 299,
+   "od": "D",
+   "do": "F",
+   "n": 119,
+   "osnova": "brez ovoja in oken"
+  },
+  "BLOKI|2003–2010|izolirano|da|olje": {
+   "pe": 162,
+   "p25": 134,
+   "p75": 198,
+   "od": "C",
+   "do": "D",
+   "n": 51,
+   "osnova": "polna"
+  },
+  "BLOKI|2003–2010|izolirano|da|plin": {
+   "pe": 129,
+   "p25": 109,
+   "p75": 153,
+   "od": "B",
+   "do": "C",
+   "n": 782,
+   "osnova": "polna"
+  },
+  "BLOKI|2003–2010|izolirano|da|tc": {
+   "pe": 155,
+   "p25": 114,
+   "p75": 234,
+   "od": "B",
+   "do": "E",
+   "n": 50,
+   "osnova": "polna"
+  },
+  "BLOKI|2003–2010|izolirano|da|daljinsko": {
+   "pe": 146,
+   "p25": 125,
+   "p75": 177,
+   "od": "C",
+   "do": "D",
+   "n": 164,
+   "osnova": "polna"
+  },
+  "BLOKI|2003–2010|izolirano|da|elektrika": {
+   "pe": 215,
+   "p25": 158,
+   "p75": 274,
+   "od": "C",
+   "do": "F",
+   "n": 83,
+   "osnova": "polna"
+  },
+  "BLOKI|2011–2020|izolirano|da|plin": {
+   "pe": 106,
+   "p25": 81,
+   "p75": 129,
+   "od": "B",
+   "do": "C",
+   "n": 164,
+   "osnova": "polna"
+  },
+  "BLOKI|2011–2020|izolirano|da|tc": {
+   "pe": 123,
+   "p25": 91,
+   "p75": 146,
+   "od": "B",
+   "do": "C",
+   "n": 160,
+   "osnova": "polna"
+  },
+  "BLOKI|2011–2020|izolirano|da|daljinsko": {
+   "pe": 126,
+   "p25": 93,
+   "p75": 162,
+   "od": "B",
+   "do": "C",
+   "n": 52,
+   "osnova": "polna"
+  },
+  "BLOKI|2011–2020|izolirano|da|elektrika": {
+   "pe": 165,
+   "p25": 48,
+   "p75": 273,
+   "od": "A",
+   "do": "F",
+   "n": 22,
+   "osnova": "polna"
+  },
+  "BLOKI|po 2020|izolirano|da|plin": {
+   "pe": 79,
+   "p25": 64,
+   "p75": 103,
+   "od": "A",
+   "do": "B",
+   "n": 152,
+   "osnova": "polna"
+  },
+  "BLOKI|po 2020|izolirano|da|les": {
+   "pe": 106,
+   "p25": 76,
+   "p75": 137,
+   "od": "B",
+   "do": "C",
+   "n": 20,
+   "osnova": "polna"
+  },
+  "BLOKI|po 2020|izolirano|da|tc": {
+   "pe": 100,
+   "p25": 84,
+   "p75": 132,
+   "od": "B",
+   "do": "C",
+   "n": 349,
+   "osnova": "polna"
+  },
+  "BLOKI|po 2020|izolirano|da|daljinsko": {
+   "pe": 96,
+   "p25": 75,
+   "p75": 109,
+   "od": "A",
+   "do": "B",
+   "n": 95,
+   "osnova": "polna"
+  },
+  "BLOKI|po 2020|izolirano|da|elektrika": {
+   "pe": 169,
+   "p25": 134,
+   "p75": 184,
+   "od": "C",
+   "do": "D",
+   "n": 24,
+   "osnova": "polna"
+  }
+ }
+}

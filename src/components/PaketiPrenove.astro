@@ -9,21 +9,25 @@ import Icon from './Icon.astro';
 
 type Paket = { id: string; ime: string; ukrepi: string[]; eur_m2: number; eur_m2_p25: number | null; eur_m2_p75: number | null; n: number | null;
   vir_stroska: string; strosek: number; razred_po: string; pe_po: number; prihranek_fe_pct: number; prihranek_pe_pct: number; prihranek_eur: number;
-  stroski_pred_leto: number; spodbuda_dod_pct: number; spodbuda_razlog: string | null; spodbuda_dod_eur: number; vracilo_brez: number | null; vracilo_dod: number | null };
+  stroski_pred_leto: number; eur_kwh_brez: number | null; eur_kwh_dod: number | null; cena_energije_pred: number; spodbuda_dod_pct: number; spodbuda_razlog: string | null; spodbuda_dod_eur: number; vracilo_brez: number | null; vracilo_dod: number | null };
 type Var = { id: string; ogrevanje: string; razred_pred: string; pe_pred: number; fe_pred: number; paketi: Paket[] };
 type Tip = { id: string; ime: string; tip: string; povrsina: number; povrsina_kataster: number; variante: Var[] };
 const d = loadData<{ tipi: Tip[]; cene: Record<string, number>; predpostavke: Record<string, any> }>('paketi_prenove');
 const CV: Record<string, string> = { A: 'A1', B: 'B1', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G' };
 const DARK = new Set(['B', 'C', 'D', 'E']);
 const badge = (k: string) => `background:var(--cls-${CV[k]});color:${DARK.has(k) ? '#1B2622' : '#fff'}`;
-const yrs = (v: number | null | undefined) => (v === null || v === undefined ? '–' : v > 50 ? 'več kot 50 let' : `${nf(v, v < 10 ? 1 : 0)} let`);
 const ICON: Record<string, string> = { delna: 'layers', celovita: 'house', zeb: 'sun' };
 const OGR: Record<string, string> = { olje: 'Kurilno olje', plin: 'Zemeljski plin', les: 'Les (drva)', daljinsko: 'Daljinsko ogrevanje' };
 const c = d.cene, p = d.predpostavke;
 ---
 <div class="pk">
   <div class="pk-tabs js-only" role="group" aria-label="Tip stavbe">
-    {d.tipi.map((t, i) => <button type="button" data-t={t.id} aria-pressed={i === 0 ? 'true' : 'false'}>{t.ime}</button>)}
+    {d.tipi.map((t, i) => (
+      <button type="button" data-t={t.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+        <span class="pk-ti"><Icon name={t.tip === 'SFH' ? 'house' : 'building-2'} size={22} /></span>
+        <span><b>{t.tip === 'SFH' ? 'Hiša' : 'Stanovanje v bloku'}</b><small>{t.ime.split(', ')[1]}</small></span>
+      </button>
+    ))}
   </div>
   {d.tipi.map((t) => (
     <section class="pk-t" data-t={t.id} aria-labelledby={`pk-${t.id}`}>
@@ -51,7 +55,7 @@ const c = d.cene, p = d.predpostavke;
                   <div><dt>Manj primarne energije</dt><dd>{nf(k.prihranek_pe_pct)} %</dd></div>
                   <div><dt>Prihranek stroškov energije</dt><dd>okoli {nf(k.prihranek_eur)} € na leto</dd></div>
                   <div><dt>Spodbuda po predlogu N1</dt><dd>{nf(k.spodbuda_dod_pct)} % (okoli {nf(k.spodbuda_dod_eur)} €){k.spodbuda_razlog && <small>{k.spodbuda_razlog}</small>}</dd></div>
-                  <div><dt>Vračilna doba</dt><dd>{yrs(k.vracilo_brez)} brez spodbude, {yrs(k.vracilo_dod)} s spodbudo</dd></div>
+                  <div class="pk-kwh"><dt>Strošek prihranjene kWh</dt><dd>{nf(k.eur_kwh_dod, 2)} €/kWh s spodbudo<small>brez spodbude {nf(k.eur_kwh_brez, 2)} €/kWh; danes {v.id === 'daljinsko' ? 'toplota' : OGR[v.id].toLowerCase()} stane {nf(k.cena_energije_pred, 2)} €/kWh</small></dd></div>
                 </dl>
                 <p class="pk-src">Strošek: {k.vir_stroska}{k.n && <> ({nf(k.n)} {t.tip === 'SFH' ? 'hiš' : 'stavb'})</>}.</p>
               </article>
@@ -64,14 +68,20 @@ const c = d.cene, p = d.predpostavke;
   <div class="pk-note">
     <p><strong>Tipične vrednosti, ne izračun za vašo stavbo.</strong> Dejanski strošek in prihranek sta odvisna od stanja stavbe, izvedbe in cen. Prenova prinese tudi koristi, ki niso v izračunu: udobje, zdravje, manj vlage, višjo vrednost nepremičnine in neodvisnost od cen goriv. Za vašo stavbo se posvetujte z energetskim svetovalcem ENSVET.</p>
     <p>Kako je izračunano: stroški so priznani stroški naložb, ki jih je podprl Eko sklad v letih 2023–2025, na m² ogrevane uporabne površine po katastru; pri delni in celoviti prenovi iz stavb, ki so izvedle več ukrepov hkrati, pri celoviti ZEB prenovi iz ukrepa »celovita obnova stanovanjske stavbe« 2024–2025. Razred pred prenovo je mediana neprenovljenih stavb z računsko energetsko izkaznico. Stroški in prihranki energije temeljijo na <strong>dejanski rabi</strong> po modelu IJS CEU, usklajenem z energetsko bilanco: stavbe s slabim ovojem v resnici porabijo manj, kot kaže računska izkaznica, ker jih ogrevajo varčneje ali le delno. Po celoviti prenovi ogreva toplotna črpalka (sezonsko grelno število {nf(p.scop, 1)}); pri celoviti ZEB prenovi sončna elektrarna pokrije okoli {nf(100 * p.pv_delez)} % rabe elektrike. Bloki ostanejo na daljinskem ogrevanju.</p>
-    <p>Cene energije za gospodinjstva 2025: kurilno olje {nf(c.kurilno_olje, 3)} €/kWh, zemeljski plin {nf(c.plin, 3)} €/kWh, elektrika {nf(c.elektrika, 3)} €/kWh (SURS), drva {nf(c.les, 3)} €/kWh (Gozdarski inštitut Slovenije, oktober 2024), daljinska toplota {nf(c.daljinska_toplota, 3)} €/kWh (Agencija za energijo, povprečje za stanovanje v bloku). Spodbude po predlogu ukrepa N1 iz osnutka: 30 % osnovno, za razred E 40 %, za razreda F in G ter stavbe med 43 % energetsko najmanj učinkovitih 50 %, za celovito prenovo dodatnih 10 odstotnih točk, največ 70 %. Pri večstanovanjskih stavbah celovite ZEB prenove ne prikazujemo, ker zanjo ni podatkov.</p>
+    <p>Cene energije za gospodinjstva 2025: kurilno olje {nf(c.kurilno_olje, 3)} €/kWh, zemeljski plin {nf(c.plin, 3)} €/kWh, elektrika {nf(c.elektrika, 3)} €/kWh (SURS), drva {nf(c.les, 3)} €/kWh (Gozdarski inštitut Slovenije, oktober 2024), daljinska toplota {nf(c.daljinska_toplota, 3)} €/kWh (Agencija za energijo, povprečje za stanovanje v bloku). Strošek prihranjene kWh: naložba (brez oziroma s spodbudo), deljena s prihrankom kupljene energije v {nf(p.zivljenjska_doba)} letih, brez obresti; če je nižji od cene energije, ki jo prenova nadomesti, se prenova izplača. Spodbude po predlogu ukrepa N1 iz osnutka: 30 % osnovno, za razred E 40 %, za razreda F in G ter stavbe med 43 % energetsko najmanj učinkovitih 50 %, za celovito prenovo dodatnih 10 odstotnih točk, največ 70 %. Pri večstanovanjskih stavbah celovite ZEB prenove ne prikazujemo, ker zanjo ni podatkov.</p>
   </div>
 </div>
 
 <style>
-  .pk-tabs { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0 1.2rem; }
-  .pk-tabs button { font: inherit; font-size: .88rem; font-weight: 700; padding: .45rem .9rem; border-radius: 999px; border: 1px solid var(--ink2); background: transparent; color: var(--ink2); cursor: pointer; }
-  .pk-tabs button[aria-pressed='true'] { background: var(--green); border-color: var(--green); color: var(--on-green); }
+  .pk-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; margin: 1rem 0 1.4rem; }
+  @media (max-width: 760px) { .pk-tabs { grid-template-columns: 1fr 1fr; } }
+  .pk-tabs button { font: inherit; display: flex; gap: .6rem; align-items: center; text-align: left; padding: .65rem .8rem; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+  .pk-tabs button b { display: block; font-size: .95rem; }
+  .pk-tabs button small { display: block; font-size: .78rem; color: var(--ink2); line-height: 1.25; }
+  .pk-ti { flex: none; display: grid; place-items: center; width: 2.3rem; height: 2.3rem; border-radius: 8px; background: var(--greenbg); color: var(--green); }
+  .pk-tabs button:hover { border-color: var(--green); }
+  .pk-tabs button[aria-pressed='true'] { border-color: var(--green); box-shadow: inset 0 0 0 1px var(--green); background: var(--greenbg); }
+  .pk-tabs button[aria-pressed='true'] .pk-ti { background: var(--green); color: var(--on-green); }
   .pk-t { margin: 0 0 2rem; }
   .pk-t h2 { margin: 0 0 .5rem; }
   .pk-og { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin: .2rem 0 .8rem; font-size: .85rem; color: var(--ink2); }
@@ -99,6 +109,7 @@ const c = d.cene, p = d.predpostavke;
   .pk-d div { display: flex; justify-content: space-between; gap: .8rem; border-bottom: 1px solid var(--line); padding: .3rem 0; font-size: .86rem; }
   .pk-d dt { color: var(--ink2); }
   .pk-d dd { margin: 0; font-weight: 700; text-align: right; }
+  .pk-kwh dd { color: var(--green); }
   .pk-d dd small { display: block; font-weight: 500; color: var(--ink2); font-size: .76rem; }
   .pk-src { font-size: .76rem; color: var(--ink2); margin: 0; }
   .pk-note { font-size: .86rem; color: var(--ink2); border-top: 1px solid var(--line); padding-top: 1rem; }

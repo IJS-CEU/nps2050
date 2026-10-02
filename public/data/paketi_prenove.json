@@ -34,6 +34,7 @@
   }
  },
  "predpostavke": {
+  "zivljenjska_doba": 30,
   "q_b1": 20.0,
   "eta": 0.9,
   "topla_voda": 15.0,
@@ -96,7 +97,11 @@
        "spodbuda_razlog": "stavba je med 43 % energetsko najmanj učinkovitih",
        "vracilo_brez": 34.5,
        "vracilo_osn": 24.1,
-       "vracilo_dod": 17.2
+       "vracilo_dod": 17.2,
+       "prihranjeno_kwh_leto": 7400.0,
+       "eur_kwh_brez": 0.126,
+       "eur_kwh_dod": 0.063,
+       "cena_energije_pred": 0.11
       },
       {
        "id": "celovita",
@@ -129,7 +134,11 @@
        "spodbuda_razlog": "stavba je med 43 % energetsko najmanj učinkovitih",
        "vracilo_brez": 44.3,
        "vracilo_osn": 26.6,
-       "vracilo_dod": 17.7
+       "vracilo_dod": 17.7,
+       "prihranjeno_kwh_leto": 13800.0,
+       "eur_kwh_brez": 0.147,
+       "eur_kwh_dod": 0.059,
+       "cena_energije_pred": 0.11
       },
       {
        "id": "zeb",
@@ -162,7 +171,11 @@
        "spodbuda_razlog": "stavba je med 43 % energetsko najmanj učinkovitih",
        "vracilo_brez": 58.6,
        "vracilo_osn": 35.2,
-       "vracilo_dod": 23.4
+       "vracilo_dod": 23.4,
+       "prihranjeno_kwh_leto": 14500.0,
+       "eur_kwh_brez": 0.203,
+       "eur_kwh_dod": 0.081,
+       "cena_energije_pred": 0.11
       }
      ]
     },
@@ -204,7 +217,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 47.0,
        "vracilo_osn": 32.9,
-       "vracilo_dod": 32.9
+       "vracilo_dod": 32.9,
+       "prihranjeno_kwh_leto": 6900.0,
+       "eur_kwh_brez": 0.136,
+       "eur_kwh_dod": 0.095,
+       "cena_energije_pred": 0.0865
       },
       {
        "id": "celovita",
@@ -237,7 +254,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 75.0,
        "vracilo_osn": 45.0,
-       "vracilo_dod": 45.0
+       "vracilo_dod": 45.0,
+       "prihranjeno_kwh_leto": 11500.0,
+       "eur_kwh_brez": 0.176,
+       "eur_kwh_dod": 0.106,
+       "cena_energije_pred": 0.0865
       },
       {
        "id": "zeb",
@@ -270,7 +291,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 93.6,
        "vracilo_osn": 56.2,
-       "vracilo_dod": 56.2
+       "vracilo_dod": 56.2,
+       "prihranjeno_kwh_leto": 12200.0,
+       "eur_kwh_brez": 0.241,
+       "eur_kwh_dod": 0.145,
+       "cena_energije_pred": 0.0865
       }
      ]
     },
@@ -312,7 +337,11 @@
        "spodbuda_razlog": "stavba je med 43 % energetsko najmanj učinkovitih",
        "vracilo_brez": 89.9,
        "vracilo_osn": 62.9,
-       "vracilo_dod": 45.0
+       "vracilo_dod": 45.0,
+       "prihranjeno_kwh_leto": 6400.0,
+       "eur_kwh_brez": 0.147,
+       "eur_kwh_dod": 0.073,
+       "cena_energije_pred": 0.049
       },
       {
        "id": "celovita",
@@ -345,7 +374,11 @@
        "spodbuda_razlog": "stavba je med 43 % energetsko najmanj učinkovitih",
        "vracilo_brez": 187.8,
        "vracilo_osn": 112.7,
-       "vracilo_dod": 75.1
+       "vracilo_dod": 75.1,
+       "prihranjeno_kwh_leto": 11600.0,
+       "eur_kwh_brez": 0.174,
+       "eur_kwh_dod": 0.07,
+       "cena_energije_pred": 0.049
       },
       {
        "id": "zeb",
@@ -378,7 +411,11 @@
        "spodbuda_razlog": "stavba je med 43 % energetsko najmanj učinkovitih",
        "vracilo_brez": 193.7,
        "vracilo_osn": 116.2,
-       "vracilo_dod": 77.5
+       "vracilo_dod": 77.5,
+       "prihranjeno_kwh_leto": 12300.0,
+       "eur_kwh_brez": 0.238,
+       "eur_kwh_dod": 0.095,
+       "cena_energije_pred": 0.049
       }
      ]
     }
@@ -429,7 +466,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 31.8,
        "vracilo_osn": 22.3,
-       "vracilo_dod": 22.3
+       "vracilo_dod": 22.3,
+       "prihranjeno_kwh_leto": 9000.0,
+       "eur_kwh_brez": 0.117,
+       "eur_kwh_dod": 0.082,
+       "cena_energije_pred": 0.11
       },
       {
        "id": "celovita",
@@ -462,7 +503,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 45.9,
        "vracilo_osn": 27.6,
-       "vracilo_dod": 27.6
+       "vracilo_dod": 27.6,
+       "prihranjeno_kwh_leto": 15100.0,
+       "eur_kwh_brez": 0.15,
+       "eur_kwh_dod": 0.09,
+       "cena_energije_pred": 0.11
       },
       {
        "id": "zeb",
@@ -495,7 +540,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 60.1,
        "vracilo_osn": 36.0,
-       "vracilo_dod": 36.0
+       "vracilo_dod": 36.0,
+       "prihranjeno_kwh_leto": 15900.0,
+       "eur_kwh_brez": 0.207,
+       "eur_kwh_dod": 0.124,
+       "cena_energije_pred": 0.11
       }
      ]
     },
@@ -537,7 +586,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 37.9,
        "vracilo_osn": 26.5,
-       "vracilo_dod": 26.5
+       "vracilo_dod": 26.5,
+       "prihranjeno_kwh_leto": 9600.0,
+       "eur_kwh_brez": 0.109,
+       "eur_kwh_dod": 0.076,
+       "cena_energije_pred": 0.0865
       },
       {
        "id": "celovita",
@@ -570,7 +623,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 55.8,
        "vracilo_osn": 33.5,
-       "vracilo_dod": 33.5
+       "vracilo_dod": 33.5,
+       "prihranjeno_kwh_leto": 16700.0,
+       "eur_kwh_brez": 0.136,
+       "eur_kwh_dod": 0.081,
+       "cena_energije_pred": 0.0865
       },
       {
        "id": "zeb",
@@ -603,7 +660,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 71.5,
        "vracilo_osn": 42.9,
-       "vracilo_dod": 42.9
+       "vracilo_dod": 42.9,
+       "prihranjeno_kwh_leto": 17500.0,
+       "eur_kwh_brez": 0.187,
+       "eur_kwh_dod": 0.112,
+       "cena_energije_pred": 0.0865
       }
      ]
     },
@@ -645,7 +706,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 71.2,
        "vracilo_osn": 49.9,
-       "vracilo_dod": 49.9
+       "vracilo_dod": 49.9,
+       "prihranjeno_kwh_leto": 9100.0,
+       "eur_kwh_brez": 0.116,
+       "eur_kwh_dod": 0.081,
+       "cena_energije_pred": 0.049
       },
       {
        "id": "celovita",
@@ -678,7 +743,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 155.6,
        "vracilo_osn": 93.4,
-       "vracilo_dod": 93.4
+       "vracilo_dod": 93.4,
+       "prihranjeno_kwh_leto": 15100.0,
+       "eur_kwh_brez": 0.15,
+       "eur_kwh_dod": 0.09,
+       "cena_energije_pred": 0.049
       },
       {
        "id": "zeb",
@@ -711,7 +780,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 164.7,
        "vracilo_osn": 98.8,
-       "vracilo_dod": 98.8
+       "vracilo_dod": 98.8,
+       "prihranjeno_kwh_leto": 15900.0,
+       "eur_kwh_brez": 0.206,
+       "eur_kwh_dod": 0.124,
+       "cena_energije_pred": 0.049
       }
      ]
     }
@@ -762,7 +835,11 @@
        "spodbuda_razlog": "stavba je med 43 % energetsko najmanj učinkovitih",
        "vracilo_brez": 39.2,
        "vracilo_osn": 27.4,
-       "vracilo_dod": 19.6
+       "vracilo_dod": 19.6,
+       "prihranjeno_kwh_leto": 2000.0,
+       "eur_kwh_brez": 0.222,
+       "eur_kwh_dod": 0.111,
+       "cena_energije_pred": 0.16998
       },
       {
        "id": "celovita",
@@ -795,7 +872,11 @@
        "spodbuda_razlog": "stavba je med 43 % energetsko najmanj učinkovitih",
        "vracilo_brez": 51.9,
        "vracilo_osn": 31.1,
-       "vracilo_dod": 20.8
+       "vracilo_dod": 20.8,
+       "prihranjeno_kwh_leto": 1900.0,
+       "eur_kwh_brez": 0.289,
+       "eur_kwh_dod": 0.116,
+       "cena_energije_pred": 0.16998
       }
      ]
     }
@@ -846,7 +927,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 60.1,
        "vracilo_osn": 42.1,
-       "vracilo_dod": 42.1
+       "vracilo_dod": 42.1,
+       "prihranjeno_kwh_leto": 1400.0,
+       "eur_kwh_brez": 0.341,
+       "eur_kwh_dod": 0.238,
+       "cena_energije_pred": 0.16998
       },
       {
        "id": "celovita",
@@ -879,7 +964,11 @@
        "spodbuda_razlog": null,
        "vracilo_brez": 62.5,
        "vracilo_osn": 37.5,
-       "vracilo_dod": 37.5
+       "vracilo_dod": 37.5,
+       "prihranjeno_kwh_leto": 1700.0,
+       "eur_kwh_brez": 0.348,
+       "eur_kwh_dod": 0.209,
+       "cena_energije_pred": 0.16998
       }
      ]
     }
