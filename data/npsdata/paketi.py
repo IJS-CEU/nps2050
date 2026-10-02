@@ -44,16 +44,27 @@ UKREPI = {
     ('MFH', 'delna'): ['izolacija fasade', 'zamenjava oken'],
     ('MFH', 'celovita'): ['izolacija fasade in strehe', 'zamenjava oken', 'prezračevanje z vračanjem toplote', 'ogrevanje ostane daljinsko'],
 }
-# Javni poziv Eko sklada 126SUB-OB26 (eno- in dvostanovanjske stavbe): (delež, zgornja meja na enoto, enota na m² ogrevane površine)
-# količine ukrepa na m² ogrevane površine: mediane naložb Eko sklada 2023–2025 (fasada 2,09 m², okna 0,142 m², streha 0,91 m²)
-POZIV = 'Javni poziv Eko sklada 126SUB-OB26 (eno- in dvostanovanjske stavbe)'
+# Veljavna javna poziva Eko sklada: (delež, zgornja meja na enoto, enot na m² ogrevane površine ali None za mejo na stavbo,
+# upravičeni stroški brez DDV). Količine ukrepov na m² ogrevane površine: mediane naložb Eko sklada 2023–2025.
+POZIV = {'SFH': 'Javni poziv Eko sklada 126SUB-OB26 (eno- in dvostanovanjske stavbe)',
+         'MFH': 'Javna poziva Eko sklada 124SUB-OBPO25 (skupni deli stavb z najmanj tremi deli) in 126SUB-OB26 (okna in prezračevanje v stanovanju)'}
 POZIV_UKREPI = {
-    'fasada': (0.40, 35, 2.09),         # F: do 40 %, največ 35 €/m² izolacije
-    'okna_vrata': (0.40, 300, 0.142),   # E: do 40 %, največ 300 €/m² oken (samo lesena okna)
-    'streha': (0.40, 35, 0.91),         # G: do 40 %, največ 35 €/m² izolacije
-    'tczv': (0.50, 4500, None),         # C: zamenjava stare kurilne naprave, do 50 %, največ 4.500 € na stavbo
-    'prezrac_centr': (0.30, 2500, None),  # I: centralno prezračevanje, do 30 %, največ 2.500 €
+    'SFH': {
+        'fasada': (0.40, 35, 2.09, False),          # 126 F: do 40 %, največ 35 €/m² izolacije
+        'okna_vrata': (0.40, 300, 0.142, False),    # 126 E: do 40 %, največ 300 €/m² oken (samo lesena okna)
+        'streha': (0.40, 35, 0.91, False),          # 126 G: do 40 %, največ 35 €/m² izolacije
+        'tczv': (0.50, 4500, None, False),          # 126 C: zamenjava stare kurilne naprave, do 50 %, največ 4.500 €
+        'prezrac_centr': (0.30, 2500, None, False),  # 126 I: centralno prezračevanje, do 30 %, največ 2.500 €
+    },
+    'MFH': {
+        'fasada': (0.30, 50, 0.976, True),          # 124 A: do 30 % upravičenih stroškov brez DDV, največ 50 €/m² izolacije
+        'streha': (0.30, 50, 0.263, True),          # 124 B: do 30 %, največ 50 €/m² ravne strehe (25 €/m² poševne)
+        'okna_vrata': (0.40, 300, 0.154, False),    # 126 E: lesena okna v stanovanju, do 40 %, največ 300 €/m² oken
+        'prezrac_lok': (0.30, 600, 0.038, False),   # 126 I: lokalno prezračevanje, do 30 %, največ 600 € na napravo
+    },
 }
+PAKET_UKREPI = {('SFH', 'delna'): ['fasada', 'okna_vrata'], ('SFH', 'celovita'): ['fasada', 'okna_vrata', 'streha', 'tczv', 'prezrac_centr'],
+                ('MFH', 'delna'): ['fasada', 'okna_vrata'], ('MFH', 'celovita'): ['fasada', 'okna_vrata', 'streha', 'prezrac_lok']}
 NAME = {'delna': 'Delna prenova', 'celovita': 'Celovita prenova', 'zeb': 'Celovita ZEB prenova'}
 HC = ['A1', 'A2', 'B1', 'B2', 'C', 'D', 'E', 'F', 'G']
 
@@ -104,7 +115,7 @@ def _eko_costs(ctx: Context) -> dict:
             cols = [c for c in cols if c in g25.index]
             return float(g25.loc[cols, 'Spodbuda [EUR]'].sum() / g25.loc[cols, e_col].sum()) if cols else None
         out[(tip, 'eko25_delna')] = share(['fasada', 'okna_vrata'])
-        out[(tip, 'med')] = {u: float(s.loc[s['Ukrep (koda)'] == u, 'EUR/m²'].median()) for u in POZIV_UKREPI}
+        out[(tip, 'med')] = {u: float(s.loc[s['Ukrep (koda)'] == u, 'EUR/m²'].median()) for u in POZIV_UKREPI[tip]}
         out[(tip, 'eko25_celovita')] = share(['fasada', 'okna_vrata', 'streha', 'tczv', 'prezrac_centr'] if tip == 'SFH' else ['fasada', 'okna_vrata', 'streha', 'prezrac_lok'])
         cz = s[(s['Ukrep (koda)'] == 'celovita_prenova') & (s.Leto >= 2024)]
         out[(tip, 'eko25_zeb')] = float(cz['Spodbuda [EUR]'].sum() / cz[e_col].sum()) if len(cz) else None
@@ -232,17 +243,17 @@ def build(ctx: Context) -> dict:
                 # strošek na m² ogrevane površine po katastru (kot Eko sklad); energija na m² kondicionirane površine iz izkaznic
                 cost = eur * a_kat
                 sav = (fe0 * price0 - cost1) * a_kat
-                # spodbuda po veljavnem pozivu (samo hiše; delna in celovita prenova): stroški ukrepov sorazmerno z medianami
+                # spodbuda po veljavnih pozivih (delna in celovita prenova): stroški ukrepov sorazmerno z medianami Eko sklada
                 poziv_eur = None
-                if t == 'SFH' and pid in ('delna', 'celovita'):
-                    us = ['fasada', 'okna_vrata'] if pid == 'delna' else ['fasada', 'okna_vrata', 'streha', 'tczv', 'prezrac_centr']
+                if (t, pid) in PAKET_UKREPI:
+                    us = PAKET_UKREPI[(t, pid)]
                     med = eko[(t, 'med')]
                     tot = sum(med[u] for u in us)
                     poziv_eur = 0.0
                     for u in us:
                         cu = cost * med[u] / tot
-                        pct, cap, q_m2 = POZIV_UKREPI[u]
-                        poziv_eur += min(pct * cu, cap * q_m2 * a_kat if q_m2 else cap)
+                        pct, cap, q_m2, neto = POZIV_UKREPI[t][u]
+                        poziv_eur += min(pct * cu / (1.22 if neto else 1), cap * q_m2 * a_kat if q_m2 else cap)
                 c0 = cls(cat, pe0)
                 above = pe0 > thr43[cat]
                 bonus = 20 if (c0 in ('F', 'G') or above) else 10 if c0 == 'E' else 0

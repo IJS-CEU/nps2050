@@ -6,5 +6,5 @@ export const features = {
   /** 11.9 Dnevnik sprememb: povezava v nogi ob različici podatkov. */
   dnevnik: true,
   /** 11.4 Paketi prenove: povezava iz orodja Preveri stavbo in s strani Za lastnike. */
-  paketi: false,
+  paketi: true,
 } as const;
