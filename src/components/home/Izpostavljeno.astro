@@ -1,13 +1,15 @@
 ---
 /**
- * Pas »Izpostavljeno« na naslovni strani: kartice z ikono do orodja, energetske revščine, PDF povzetka, strani za medije in slovarja.
+ * Pas »Izpostavljeno« na naslovni strani: kartice z ikono do orodja, energetske revščine, PDF povzetka, strani za medije in koledarja.
  * Nadomešča samostojni obrazec za preverjanje stavbe (orodje je zdaj ena od kartic).
  */
 import { existsSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
 import Icon from '../Icon.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
-import { izrazi } from '../../lib/slovar';
+import { loadData } from '../../lib/data';
+
+const kol = loadData<{ vnosi: unknown[] }>('koledar');
 
 const pdf = resolve(process.cwd(), 'public', 'nps2050-povzetek.pdf');
 const pdfMb = existsSync(pdf) ? (statSync(pdf).size / 1e6).toFixed(1).replace('.', ',') : null;
@@ -21,8 +23,8 @@ const cards = [
     text: 'Cilji, kaj načrt pomeni za lastnike, ukrepi, denar in energetska revščina – za tisk ali sestanek.', download: true },
   { href: pageUrl('mediji'), icon: 'newspaper', kicker: 'Za novinarje', title: 'Za medije',
     text: 'Ključne številke, grafi za prosto uporabo z navedbo vira in kontakt.' },
-  { href: pageUrl('slovar'), icon: 'book-open', kicker: `${izrazi.length} izrazov`, title: 'Slovar izrazov',
-    text: 'Kaj pomenijo brezemisijska stavba, primarna energija, minimalni standardi in druge kratice.' },
+  { href: pageUrl('koledar'), icon: 'calendar-days', kicker: `${kol.vnosi.length} datumov`, title: 'Koledar 2026–2050',
+    text: 'Kdaj začne kaj veljati: obveznosti, cilji in mejniki za stavbe, ločeno, kaj že velja in kaj je predlagano.' },
 ];
 ---
 <section class="izp" aria-labelledby="izp-t">

@@ -192,6 +192,7 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
           <tbody>{SEGN.map(([k, n]) => <tr><th scope="row">{n}</th><td class="num">{nf(ci.prenova_m2_leto[k]['2026_2030'])}</td><td class="num">{nf(ci.prenova_m2_leto[k]['2031_2040'])}</td></tr>)}</tbody>
         </table>
       </div>
+      <p class="ob-kol"><a href={`${pageUrl('koledar')}?za=obcine`}>Koledar za občine in javni sektor</a>: roki za javne stavbe, minimalni standardi, sončne elektrarne in drugi mejniki do leta 2050.</p>
       <h3>Opuščanje kurilnega olja in zemeljskega plina</h3>
       <div class="tblwrap" tabindex="0" role="region" aria-label="Opuščanje fosilnih goriv">
         <table>
@@ -468,6 +469,7 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
   .ob-mini b.s { color: var(--ink2); font-weight: 600; }
   .ob-more { margin-top: 1rem; }
   .ob-lek { margin-top: 2rem; }
+  .ob-kol { font-size: .92rem; background: var(--greenbg); border-radius: 10px; padding: .6rem .9rem; }
   .ob-lek p { margin: .3rem 0; }
   .ob-lek .btn { display: inline-block; margin: .4rem .4rem 0 0; }
   .ob-model { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--s-s1); border-radius: 12px; padding: 1.2rem 1.4rem; margin: 2rem 0; }
