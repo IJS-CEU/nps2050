@@ -1,0 +1,1204 @@
+{
+ "meta": {
+  "draft": "NPS_v40",
+  "draft_date": "2026-10-01",
+  "generated": "2026-10-02",
+  "sources": [
+   "Osnutek NPS 2050 (pogl. 3, 4.7, 6, 9) in Direktiva (EU) 2024/1275 (EPBD); preglednico potrdil IJS CEU / MzIE"
+  ],
+  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
+  "note": "Status »veljavno«: že v zakonu ali predpisu oziroma v veljavni uredbi ali direktivi EU z rokom, ki ne potrebuje prenosa. »Predlagano«: predlaga NPS 2050 ali EPBD, še ni preneseno v slovenske predpise."
+ },
+ "skupine": [
+  {
+   "id": "hise",
+   "ime": "lastniki hiš"
+  },
+  {
+   "id": "stanovanja",
+   "ime": "lastniki stanovanj in upravniki"
+  },
+  {
+   "id": "obcine",
+   "ime": "občine in javni sektor"
+  },
+  {
+   "id": "podjetja",
+   "ime": "podjetja in storitveni sektor"
+  },
+  {
+   "id": "stroka",
+   "ime": "projektanti in izdelovalci izkaznic"
+  },
+  {
+   "id": "drzava",
+   "ime": "država"
+  }
+ ],
+ "vnosi": [
+  {
+   "id": "k002",
+   "datum": "1. 1. 2023",
+   "kljuc": "2023-01-01",
+   "leto": 2023,
+   "okvirno": false,
+   "naslov": "Prepoved kotlov na kurilno olje in premog",
+   "opis": "Prepoved projektiranja, vgradnje in prodaje kotlov na kurilno olje in premog v vseh stavbah ter kotlov na fosilna goriva v novih eno- in dvostanovanjskih stavbah.",
+   "vrsta": "obveznost",
+   "status": "veljavno",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "obcine",
+    "podjetja",
+    "stroka"
+   ],
+   "segment": "vse stavbe",
+   "vir": "ZSROVE (od 1. 1. 2023); M19.17",
+   "povezava": "ukrepi-in-financiranje/#opuščanje-kotlov-na-fosilna-goriva"
+  },
+  {
+   "id": "k003",
+   "datum": "28. 5. 2024",
+   "kljuc": "2024-05-28",
+   "leto": 2024,
+   "okvirno": false,
+   "naslov": "Začne veljati prenovljena EPBD",
+   "opis": "Direktiva (EU) 2024/1275 o energetski učinkovitosti stavb začne veljati. Določa nacionalne načrte prenove stavb, minimalne standarde in brezemisijske stavbe.",
+   "vrsta": "postopek",
+   "status": "veljavno",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD 2024/1275, člen 38",
+   "povezava": null
+  },
+  {
+   "id": "k004",
+   "datum": "1. 1. 2025",
+   "kljuc": "2025-01-01",
+   "leto": 2025,
+   "okvirno": false,
+   "naslov": "Brez spodbud za fosilne kotle, brez plinskih kotlov v novih stanovanjskih stavbah",
+   "opis": "Konec finančnih spodbud za samostojne kotle na fosilna goriva. Prepoved kotlov na zemeljski plin in UNP v stanovanjskih stavbah z vlogo za gradbeno dovoljenje od 1. 1. 2025.",
+   "vrsta": "obveznost",
+   "status": "veljavno",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "stroka"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 17(15); EZ-2",
+   "povezava": "ukrepi-in-financiranje/#opuščanje-kotlov-na-fosilna-goriva"
+  },
+  {
+   "id": "k005",
+   "datum": "december 2025",
+   "kljuc": "2025-12-99",
+   "leto": 2025,
+   "okvirno": false,
+   "naslov": "Prvi osnutek NPS 2050 predložen Evropski komisiji",
+   "opis": "Slovenija je Evropski komisiji predložila prvi osnutek nacionalnega načrta prenove stavb.",
+   "vrsta": "postopek",
+   "status": "veljavno",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 3(1); osnutek, pogl. 9",
+   "povezava": "kaj-je-nps-2050/#kj-casovnica"
+  },
+  {
+   "id": "k009",
+   "datum": "29. 5. 2026",
+   "kljuc": "2026-05-29",
+   "leto": 2026,
+   "okvirno": false,
+   "naslov": "Rok za prenos EPBD v slovenske predpise",
+   "opis": "Do tega dne mora Slovenija prenesti večino določb EPBD v zakonodajo (ZURE-1, gradbeni predpisi).",
+   "vrsta": "obveznost",
+   "status": "veljavno",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 35",
+   "povezava": null
+  },
+  {
+   "id": "k010",
+   "datum": "oktober 2026",
+   "kljuc": "2026-10-99",
+   "leto": 2026,
+   "okvirno": true,
+   "naslov": "Javna obravnava osnutka NPS 2050",
+   "opis": "30-dnevna javna obravnava na portalu E-demokracija in spletni strani MzIE, s ciljnimi delavnicami po skupinah deležnikov.",
+   "vrsta": "postopek",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "obcine",
+    "podjetja",
+    "stroka",
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 3(4); osnutek, pogl. 9",
+   "povezava": "javna-obravnava/"
+  },
+  {
+   "id": "k011",
+   "datum": "31. 12. 2026",
+   "kljuc": "2026-12-31",
+   "leto": 2026,
+   "okvirno": false,
+   "naslov": "Končni NPS 2050 predložen Evropski komisiji",
+   "opis": "Rok za predložitev končnega nacionalnega načrta prenove stavb. Nato se načrt posodablja vsakih pet let.",
+   "vrsta": "postopek",
+   "status": "veljavno",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 3(1)",
+   "povezava": "kaj-je-nps-2050/#kj-casovnica"
+  },
+  {
+   "id": "k012",
+   "datum": "31. 12. 2026",
+   "kljuc": "2026-12-31",
+   "leto": 2026,
+   "okvirno": false,
+   "naslov": "Sončne elektrarne: nove javne in nestanovanjske stavbe nad 250 m²",
+   "opis": "Namestitev ustreznih sončnih elektrarn je obvezna, kjer je tehnično in ekonomsko izvedljivo.",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine",
+    "podjetja",
+    "stroka"
+   ],
+   "segment": "nestanovanjske stavbe",
+   "vir": "EPBD člen 10(3)(a); osnutek, pogl. 4.5",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k006",
+   "datum": "2026",
+   "kljuc": "2026-99-99",
+   "leto": 2026,
+   "okvirno": false,
+   "naslov": "N13: Zaščitni ukrepi za ranljiva gospodinjstva pri prenovi najemnih stanovanj",
+   "opis": "Vključitev pomoči pri najemnini za ranljiva gospodinjstva v prenovljenih stanovanjih in spremljanja izselitev po prenovi v Akcijski načrt za zmanjševanje energetske revščine (čl. 17(17) EPBD)",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "ER",
+   "vir": "osnutek, pogl. 6, ukrep N13; nosilci: MzIE, MDDSZ",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k008",
+   "datum": "2026, nato letno",
+   "kljuc": "2026-99-99",
+   "leto": 2026,
+   "okvirno": false,
+   "naslov": "N14: Letni seznam najslabših javnih stavb (razred G in nad pragovi minimalnih standardov) s pre",
+   "opis": "Letna priprava in objava seznama iz energetskega knjigovodstva (M19.12), registra izkaznic in katastra, po upravljavcih. Prednostna uvrstitev teh stavb v akcijski načrt M20.5 in razpise M19.14",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "MEPS, GP",
+   "vir": "osnutek, pogl. 6, ukrep N14; nosilci: MzIE, MJU, upravljavci stavb",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k007",
+   "datum": "2026",
+   "kljuc": "2026-99-99",
+   "leto": 2026,
+   "okvirno": false,
+   "naslov": "N16: Enotna metodologija za izpolnjevanje obveznosti prenove 3 % površine stavb javnih organov ",
+   "opis": "Priprava enotne metodologije po čl. 6 EED, vezane na seznam N14 in kazalnike iz poglavja 1.1, z letnim poročanjem po ministrstvih, javnih zavodih in občinah",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "MEPS, GP",
+   "vir": "osnutek, pogl. 6, ukrep N16; nosilci: MzIE, MJU",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k013",
+   "datum": "2026–2029",
+   "kljuc": "2026-99-99",
+   "leto": 2026,
+   "okvirno": false,
+   "naslov": "N19: Prenos zahtev za sisteme za avtomatizacijo in nadzor stavb, indikator pripravljenosti na p",
+   "opis": "Prenos čl. 13(9)–(10), 14 in 15 EPBD v ZURE-1 in gradbene predpise. Uvedba prostovoljne ocene SRI najprej za javne stavbe. Povezava z registrom pregledov sistemov (poglavje 9)",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "PTE",
+   "vir": "osnutek, pogl. 6, ukrep N19; nosilci: MzIE",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k024",
+   "datum": "1. 1. 2027",
+   "kljuc": "2027-01-01",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "Časovni načrt mejnih vrednosti GWP za nove stavbe",
+   "opis": "Objava in priglasitev časovnega načrta mejnih vrednosti potenciala globalnega segrevanja za nove stavbe po letu 2030.",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "stroka",
+    "drzava"
+   ],
+   "segment": "nove stavbe",
+   "vir": "EPBD člen 7(5); N6",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k025",
+   "datum": "31. 12. 2027",
+   "kljuc": "2027-12-31",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "Sončne elektrarne: obstoječe javne stavbe nad 2000 m²",
+   "opis": "Namestitev sončnih elektrarn na obstoječih javnih stavbah z uporabno površino nad 2000 m².",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine"
+   ],
+   "segment": "javne stavbe",
+   "vir": "EPBD člen 10(3)(b)",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k026",
+   "datum": "31. 12. 2027",
+   "kljuc": "2027-12-31",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "Sončne elektrarne: obstoječe nestanovanjske stavbe nad 500 m² ob prenovi",
+   "opis": "Obveznost ob večji prenovi ali posegu, ki zahteva dovoljenje, za obstoječe nestanovanjske stavbe nad 500 m².",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "podjetja",
+    "obcine",
+    "stroka"
+   ],
+   "segment": "nestanovanjske stavbe",
+   "vir": "EPBD člen 10(3)(c)",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k028",
+   "datum": "2027–2030",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N10: Podpora proizvodnji predizdelanih elementov in usposabljanju izvajalcev za montažo",
+   "opis": "Sofinanciranje proizvodnih linij za predizdelane lesene fasadne elemente in programov usposabljanja monterjev",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "TO",
+   "vir": "osnutek, pogl. 6, ukrep N10; nosilci: MGTŠ (v okviru M3.3, M17.1)",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k014",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N11: Instrument za prenovo oddajanih stanovanj z omejitvijo zvišanja najemnine po prenovi",
+   "opis": "Vzpostavitev nepovratnih sredstev in ugodnih posojil za lastnike oddajanih stanovanj, pogojenih z registrirano najemno pogodbo, doseženim razredom po prenovi in omejitvijo zvišanja najemnine na del prihranka pri stroških energije (čl. 17(19) EPBD). Izhodišče M19.10",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "ER, TPS",
+   "vir": "osnutek, pogl. 6, ukrep N11; nosilci: MSP, MzIE, Eko sklad",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k015",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N15: Dopolnitev Uredbe o zelenem javnem naročanju za stavbe",
+   "opis": "Dopolnitev uredbe z zahtevami: nove javne stavbe brezemisijske od 2028 (čl. 7 EPBD), celovite energetske prenove najmanj razred B ali −60 % primarne energije (čl. 17(16)), izračun GWP (N5), najem prostorov najmanj razred C (čl. 6(5) EED)",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "MEPS, GP",
+   "vir": "osnutek, pogl. 6, ukrep N15; nosilci: MzIE, MJU",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k016",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N17: Krožnost gradnje in prenove",
+   "opis": "Uvedba predrušitvenega pregleda in načrta ravnanja z odpadki za rušitve in celovite energetske prenove nad 500 m² po protokolu EU, z ločevanjem in evidenco tokov (beton, opeka, les, kovine, izolacija, azbest) v evidenci ARSO. Pogojevanje spodbud Eko sklada in meril zelenega javnega naročanja (N15) z",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "KG, DOD",
+   "vir": "osnutek, pogl. 6, ukrep N17; nosilci: MzIE, MNVP, ARSO",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k017",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N18: Mreža točk »vse na enem mestu« in enotna digitalna platforma za prenovo stavb",
+   "opis": "Vzpostavitev mreže s tehničnim, upravnim in finančnim svetovanjem, pomočjo pri izkazu o prenovi, prijavah na spodbude in organizaciji prenov večlastniških stavb ter posebno obravnavo energetsko revnih gospodinjstev (povezava z N3 in N11). Digitalna platforma združi register izkaznic, kataster in spo",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "OSS, ER",
+   "vir": "osnutek, pogl. 6, ukrep N18; nosilci: MzIE, Eko sklad (ENSVET), lokalne energetske agencije, regionalne razvojne agencije",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k018",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N1: Stopnjevanje spodbud glede na izhodiščni energijski razred",
+   "opis": "Dopolnitev meril javnih pozivov (Eko sklad, PEKP, Podnebni sklad) s stopnjevanimi deleži sofinanciranja in s pogojem primerjave energetskih izkaznic pred prenovo in po njej (čl. 17(14)(c) EPBD)",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "TPS, GP",
+   "vir": "osnutek, pogl. 6, ukrep N1; nosilci: MzIE, Eko sklad",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k019",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N20: Stavbe kulturne dediščine",
+   "opis": "Vgradnja stopnjevanih zahtev po kategorijah varstva v predpis o minimalnih standardih. Obravnava prenove ovoja, zamenjave ogrevalnega sistema in sončne elektrarne kot enega paketa z enim soglasjem ZVKDS. Uveljavitev smernic CRP V5-2358 z uredbo po ZVKD-1 in dopolnitev s katalogi združljivih ukrepov.",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "MEPS, GP",
+   "vir": "osnutek, pogl. 6, ukrep N20; nosilci: MK, ZVKDS, MzIE, Eko sklad, MKRR",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k029",
+   "datum": "2027–2035",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N2: Programi prenove območij večstanovanjskih stavb iz obdobja 1946–1980 (soseske, četrti) s s",
+   "opis": "Priprava in izvedba območnih programov prenove za ciljni fond 11.600 večstanovanjskih stavb z 9,7 mio m² uporabne površine (čl. 17(16) EPBD)",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "TPS, GP",
+   "vir": "osnutek, pogl. 6, ukrep N2; nosilci: MzIE, projektni pisarni (M19.16, M20.1), občine, upravniki",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k020",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N3: Aktivno obveščanje lastnikov stavb nad pragom energijske učinkovitosti (register energetsk",
+   "opis": "Identifikacija stavb nad pragom iz poglavij 4.7.1.1 in 4.7.2.1 ter pisno obvestilo lastnikom s ponudbo svetovanja (M19.8), informacijo o spodbudah in — za nestanovanjske stavbe — rokom po čl. 9(1) EPBD",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "TPS, MEPS",
+   "vir": "osnutek, pogl. 6, ukrep N3; nosilci: MzIE, Eko sklad (ENSVET)",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k021",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N5: Nacionalna metodologija in podatkovna baza za izračun potenciala globalnega segrevanja (GW",
+   "opis": "Priprava metodologije po Prilogi III EPBD in SIST EN 15978, vzpostavitev nacionalne baze okoljskih deklaracij proizvodov (EPD) s privzetimi vrednostmi in nadgradnja programske opreme za izkaznice (M19.19)",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "DOD, KG",
+   "vir": "osnutek, pogl. 6, ukrep N5; nosilci: MzIE, MNVP, ZAG",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k022",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N7: Merila za nizkoogljične in obnovljive gradbene materiale ter vgrajeni les v spodbudah in j",
+   "opis": "Vključitev vgradnje lesa in materialov z EPD kot dodatnega merila v javne pozive za celovito energetsko prenovo in kot zahteve v zelenem javnem naročanju (N15). Poročanje shranjenega ogljika kot odvzema po čl. 7(6) EPBD",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "DOD, KG",
+   "vir": "osnutek, pogl. 6, ukrep N7; nosilci: MzIE, MGTŠ",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k027",
+   "datum": "2027–2029",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": false,
+   "naslov": "N8: Pilotni program serijske (industrializirane) prenove večstanovanjskih stavb s predizdelani",
+   "opis": "Izbor in prenova 10–20 tipskih stavb iz obdobja 1960–1980 s predizdelanimi elementi z vgrajenimi okni, prezračevanjem in fotonapetostnimi moduli. Merjenje stroškov, časa izvedbe in doseženih prihrankov. Financiranje iz Podnebnega sklada in PEKP",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "GP, OVE",
+   "vir": "osnutek, pogl. 6, ukrep N8; nosilci: MzIE, projektna pisarna (M20.1)",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k023",
+   "datum": "2027",
+   "kljuc": "2027-99-99",
+   "leto": 2027,
+   "okvirno": true,
+   "naslov": "Začetek trgovanja z emisijami za stavbe in promet (ETS2)",
+   "opis": "Cena emisij za goriva za ogrevanje stavb. Prihodki se namenijo prenovi stavb in zamenjavi kotlov pri ranljivih gospodinjstvih. Začetek je odvisen od odločitve EU (možen zamik na leto 2028).",
+   "vrsta": "mejnik",
+   "status": "veljavno",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "obcine",
+    "podjetja",
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "Direktiva (EU) 2023/959; M19.17; osnutek, pogl. 6",
+   "povezava": "ukrepi-in-financiranje/#opuščanje-kotlov-na-fosilna-goriva"
+  },
+  {
+   "id": "k032",
+   "datum": "1. 1. 2028",
+   "kljuc": "2028-01-01",
+   "leto": 2028,
+   "okvirno": false,
+   "naslov": "Emisije v življenjskem ciklu za večje nove stavbe",
+   "opis": "Za nove stavbe z uporabno površino nad 1000 m² se izračuna in razkrije potencial globalnega segrevanja v celotnem življenjskem ciklu.",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "podjetja",
+    "obcine",
+    "stroka"
+   ],
+   "segment": "nove stavbe",
+   "vir": "EPBD člen 7(2); N5",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k033",
+   "datum": "1. 1. 2028",
+   "kljuc": "2028-01-01",
+   "leto": 2028,
+   "okvirno": false,
+   "naslov": "Nove javne stavbe brezemisijske",
+   "opis": "Nove stavbe v lasti javnih organov morajo biti brezemisijske stavbe.",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine",
+    "stroka"
+   ],
+   "segment": "javne stavbe",
+   "vir": "EPBD člen 7(1); N15",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k034",
+   "datum": "31. 12. 2028",
+   "kljuc": "2028-12-31",
+   "leto": 2028,
+   "okvirno": false,
+   "naslov": "Sončne elektrarne: obstoječe javne stavbe nad 750 m²",
+   "opis": "Razširitev obveznosti na obstoječe javne stavbe nad 750 m².",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine"
+   ],
+   "segment": "javne stavbe",
+   "vir": "EPBD člen 10(3)(b)",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k030",
+   "datum": "2028",
+   "kljuc": "2028-99-99",
+   "leto": 2028,
+   "okvirno": false,
+   "naslov": "N12: Ločeno spremljanje zasebnih najemnih stanovanj nad pragom 43 % in preučitev minimalnega en",
+   "opis": "Ločeno evidentiranje najemnih stanovanj nad pragom v registru izkaznic. Ob prenovi najemniške zakonodaje preučitev postopne uvedbe minimalnega razreda za oddajanje, povezane z N11",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "TPS, ER",
+   "vir": "osnutek, pogl. 6, ukrep N12; nosilci: MSP, MzIE",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k031",
+   "datum": "2028",
+   "kljuc": "2028-99-99",
+   "leto": 2028,
+   "okvirno": true,
+   "naslov": "Preverjanje izhodišča in prva posodobitev",
+   "opis": "Izhodišče trajektorije se preveri z vzorcem energetskih izkaznic; načrt se po potrebi posodobi.",
+   "vrsta": "pregled",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "osnutek, povzetek",
+   "povezava": "kaj-je-nps-2050/#kj-casovnica"
+  },
+  {
+   "id": "k036",
+   "datum": "31. 12. 2029",
+   "kljuc": "2029-12-31",
+   "leto": 2029,
+   "okvirno": false,
+   "naslov": "Sončne elektrarne: nove stanovanjske stavbe in pokrita parkirišča",
+   "opis": "Namestitev sončnih elektrarn na novih stanovanjskih stavbah in novih pokritih parkiriščih ob stavbah.",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "stroka"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 10(3)(d), (e); osnutek, pogl. 4.5",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k035",
+   "datum": "2029",
+   "kljuc": "2029-99-99",
+   "leto": 2029,
+   "okvirno": false,
+   "naslov": "N9: Tipski projekti in katalog rešitev za najpogostejše tipologije stavb, uporabni brez indivi",
+   "opis": "Priprava tipskih projektov in tehničnih specifikacij na podlagi pilotov N8, vključno s postopkom digitalnega zajema geometrije stavbe",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "GP",
+   "vir": "osnutek, pogl. 6, ukrep N9; nosilci: MzIE, ZAG",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k042",
+   "datum": "1. 1. 2030",
+   "kljuc": "2030-01-01",
+   "leto": 2030,
+   "okvirno": false,
+   "naslov": "Emisije v življenjskem ciklu za vse nove stavbe",
+   "opis": "Izračun in razkritje potenciala globalnega segrevanja v življenjskem ciklu za vse nove stavbe.",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "podjetja",
+    "obcine",
+    "stroka"
+   ],
+   "segment": "nove stavbe",
+   "vir": "EPBD člen 7(2); N5",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k043",
+   "datum": "1. 1. 2030",
+   "kljuc": "2030-01-01",
+   "leto": 2030,
+   "okvirno": false,
+   "naslov": "Vse nove stavbe brezemisijske",
+   "opis": "Vse nove stavbe morajo biti brezemisijske stavbe.",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "obcine",
+    "podjetja",
+    "stroka"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 7(1)",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k044",
+   "datum": "31. 12. 2030",
+   "kljuc": "2030-12-31",
+   "leto": 2030,
+   "okvirno": false,
+   "naslov": "Osnutek posodobljenega NPS",
+   "opis": "Rok za osnutek prve petletne posodobitve načrta prenove stavb.",
+   "vrsta": "postopek",
+   "status": "veljavno",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 3(1)",
+   "povezava": null
+  },
+  {
+   "id": "k045",
+   "datum": "31. 12. 2030",
+   "kljuc": "2030-12-31",
+   "leto": 2030,
+   "okvirno": false,
+   "naslov": "Sončne elektrarne: obstoječe javne stavbe nad 250 m²",
+   "opis": "Razširitev obveznosti na obstoječe javne stavbe nad 250 m².",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine"
+   ],
+   "segment": "javne stavbe",
+   "vir": "EPBD člen 10(3)(b)",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k037",
+   "datum": "2030",
+   "kljuc": "2030-99-99",
+   "leto": 2030,
+   "okvirno": false,
+   "naslov": "Brez plinskih kotlov v novih nestanovanjskih stavbah in pri celovitih prenovah",
+   "opis": "Razširitev prepovedi vgradnje kotlov na zemeljski plin in UNP na nove nestanovanjske stavbe in celovite energetske prenove; na območjih daljinskega ogrevanja prehod na OVE ali daljinsko toploto.",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine",
+    "podjetja",
+    "stroka",
+    "stanovanja"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člena 7, 8; M19.17; ZURE-1 (predlog)",
+   "povezava": "ukrepi-in-financiranje/#opuščanje-kotlov-na-fosilna-goriva"
+  },
+  {
+   "id": "k038",
+   "datum": "2030",
+   "kljuc": "2030-99-99",
+   "leto": 2030,
+   "okvirno": false,
+   "naslov": "Energetska revščina: največ 3,8–4,6 % gospodinjstev",
+   "opis": "Delež energetsko revnih gospodinjstev se zmanjša s 6,8 % (2025) na največ 3,8 do 4,6 %; 2,5 % do 2040 in 1,5 % do 2050.",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "osnutek, pogl. 2.4 (preglednica 13)",
+   "povezava": "energetska-revscina/"
+  },
+  {
+   "id": "k039",
+   "datum": "2030",
+   "kljuc": "2030-99-99",
+   "leto": 2030,
+   "okvirno": false,
+   "naslov": "Minimalni standardi: prvi prag za nestanovanjske stavbe",
+   "opis": "Vse nestanovanjske stavbe morajo doseči prag, nad katerim je 16 % najslabših stavb v svoji kategoriji (približno 6.600 stavb z 1,9 mio m²).",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine",
+    "podjetja"
+   ],
+   "segment": "nestanovanjske stavbe",
+   "vir": "EPBD člen 9(1); osnutek, pogl. 4.7.2",
+   "povezava": "preveri-stavbo/"
+  },
+  {
+   "id": "k040",
+   "datum": "2030",
+   "kljuc": "2030-99-99",
+   "leto": 2030,
+   "okvirno": false,
+   "naslov": "Najslabše stanovanjske stavbe: 23 % prenovljenih",
+   "opis": "Kumulativni delež prenovljene površine skupine 43 % energetsko najmanj učinkovitih stanovanjskih stavb (23.8 mio m²).",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k041",
+   "datum": "2030",
+   "kljuc": "2030-99-99",
+   "leto": 2030,
+   "okvirno": false,
+   "naslov": "Trajektorija stanovanjskih stavb: 217 kWh/(m²·a)",
+   "opis": "Povprečna raba primarne energije stanovanjskega fonda (fiksni faktorji) se zmanjša na 217 kWh/(m²·a), 19 % manj kot leta 2020. Najvišja vrednost po EPBD: 226 kWh/(m²·a).",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k046",
+   "datum": "31. 12. 2031",
+   "kljuc": "2031-12-31",
+   "leto": 2031,
+   "okvirno": false,
+   "naslov": "Posodobljeni NPS predložen EK",
+   "opis": "Rok za končno različico prve petletne posodobitve načrta.",
+   "vrsta": "postopek",
+   "status": "veljavno",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 3(1)",
+   "povezava": null
+  },
+  {
+   "id": "k047",
+   "datum": "2033",
+   "kljuc": "2033-99-99",
+   "leto": 2033,
+   "okvirno": false,
+   "naslov": "Dajatve na CO₂ in trošarine za goriva za ogrevanje",
+   "opis": "Postopno zviševanje dajatve na CO₂ in trošarin za kurilno olje, UNP in zemeljski plin do ravni, ki izenači stroške z OVE.",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "obcine",
+    "podjetja",
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "M19.18",
+   "povezava": "ukrepi-in-financiranje/#opuščanje-kotlov-na-fosilna-goriva"
+  },
+  {
+   "id": "k048",
+   "datum": "2033",
+   "kljuc": "2033-99-99",
+   "leto": 2033,
+   "okvirno": false,
+   "naslov": "Minimalni standardi: drugi prag za nestanovanjske stavbe",
+   "opis": "Prag, nad katerim je 26 % najslabših stavb v kategoriji (približno 10.800 stavb s 3,4 mio m²).",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine",
+    "podjetja"
+   ],
+   "segment": "nestanovanjske stavbe",
+   "vir": "EPBD člen 9(1); osnutek, pogl. 4.7.2",
+   "povezava": "preveri-stavbo/"
+  },
+  {
+   "id": "k049",
+   "datum": "2035",
+   "kljuc": "2035-99-99",
+   "leto": 2035,
+   "okvirno": false,
+   "naslov": "Najslabše stanovanjske stavbe: 46 % prenovljenih",
+   "opis": "Kumulativni delež prenovljene površine skupine 43 % energetsko najmanj učinkovitih stanovanjskih stavb (23.8 mio m²).",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k050",
+   "datum": "2035",
+   "kljuc": "2035-99-99",
+   "leto": 2035,
+   "okvirno": false,
+   "naslov": "Pregled opuščanja kotlov na kurilno olje",
+   "opis": "Pregled napredka in odločitev o obvezni zamenjavi kotlov na kurilno olje, starejših od 20 let, ob posodobitvi NEPN.",
+   "vrsta": "pregled",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "M19.17; posodobitev NEPN",
+   "povezava": "ukrepi-in-financiranje/#opuščanje-kotlov-na-fosilna-goriva"
+  },
+  {
+   "id": "k051",
+   "datum": "2035",
+   "kljuc": "2035-99-99",
+   "leto": 2035,
+   "okvirno": false,
+   "naslov": "Trajektorija stanovanjskih stavb: 199 kWh/(m²·a)",
+   "opis": "Povprečna raba primarne energije stanovanjskega fonda (fiksni faktorji) se zmanjša na 199 kWh/(m²·a), 26 % manj kot leta 2020. Najvišja vrednost po EPBD: 210–215 kWh/(m²·a).",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k052",
+   "datum": "2040",
+   "kljuc": "2040-99-99",
+   "leto": 2040,
+   "okvirno": false,
+   "naslov": "Minimalni standardi: razred D",
+   "opis": "Predlagani prag za nestanovanjske stavbe na meji razredov D|E; za registrirano dediščino prav tako najmanj D.",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine",
+    "podjetja"
+   ],
+   "segment": "nestanovanjske stavbe",
+   "vir": "osnutek, pogl. 4.7.2 in 4.7.2.2; N20",
+   "povezava": "preveri-stavbo/"
+  },
+  {
+   "id": "k053",
+   "datum": "2040",
+   "kljuc": "2040-99-99",
+   "leto": 2040,
+   "okvirno": false,
+   "naslov": "Najslabše stanovanjske stavbe: 65 % prenovljenih",
+   "opis": "Kumulativni delež prenovljene površine skupine 43 % energetsko najmanj učinkovitih stanovanjskih stavb (23.8 mio m²).",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k054",
+   "datum": "2040",
+   "kljuc": "2040-99-99",
+   "leto": 2040,
+   "okvirno": false,
+   "naslov": "Opustitev kotlov na fosilna goriva",
+   "opis": "Preostali kotli na fosilna goriva se opustijo; plinski sistemi postopoma na obnovljive pline. Popolna opustitev fosilnih goriv v stavbah do 2050.",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "obcine",
+    "podjetja",
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 17(15) (okvirno); NEPN 2024; M19.17",
+   "povezava": "ukrepi-in-financiranje/#opuščanje-kotlov-na-fosilna-goriva"
+  },
+  {
+   "id": "k055",
+   "datum": "2040",
+   "kljuc": "2040-99-99",
+   "leto": 2040,
+   "okvirno": false,
+   "naslov": "Trajektorija stanovanjskih stavb: 180 kWh/(m²·a)",
+   "opis": "Povprečna raba primarne energije stanovanjskega fonda (fiksni faktorji) se zmanjša na 180 kWh/(m²·a), 33 % manj kot leta 2020.",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k056",
+   "datum": "2045",
+   "kljuc": "2045-99-99",
+   "leto": 2045,
+   "okvirno": false,
+   "naslov": "Najslabše stanovanjske stavbe: 83 % prenovljenih",
+   "opis": "Kumulativni delež prenovljene površine skupine 43 % energetsko najmanj učinkovitih stanovanjskih stavb (23.8 mio m²).",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k057",
+   "datum": "2045",
+   "kljuc": "2045-99-99",
+   "leto": 2045,
+   "okvirno": false,
+   "naslov": "Trajektorija stanovanjskih stavb: 172 kWh/(m²·a)",
+   "opis": "Povprečna raba primarne energije stanovanjskega fonda (fiksni faktorji) se zmanjša na 172 kWh/(m²·a), 36 % manj kot leta 2020.",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k058",
+   "datum": "2050",
+   "kljuc": "2050-99-99",
+   "leto": 2050,
+   "okvirno": false,
+   "naslov": "Brezemisijski stavbni fond",
+   "opis": "Vse stavbe so brezemisijske (razred A); stavbe kulturne dediščine najmanj razred C.",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "obcine",
+    "podjetja",
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 1; osnutek, povzetek",
+   "povezava": "kaj-je-nps-2050/"
+  },
+  {
+   "id": "k059",
+   "datum": "2050",
+   "kljuc": "2050-99-99",
+   "leto": 2050,
+   "okvirno": false,
+   "naslov": "Minimalni standardi: razred B (dediščina C)",
+   "opis": "Predlagani prag za nestanovanjske stavbe na meji razredov B|C; za registrirano stavbno in naselbinsko dediščino najmanj razred C.",
+   "vrsta": "obveznost",
+   "status": "predlagano",
+   "koga": [
+    "obcine",
+    "podjetja"
+   ],
+   "segment": "nestanovanjske stavbe",
+   "vir": "osnutek, pogl. 4.7.2 in 4.7.2.2; N20",
+   "povezava": "preveri-stavbo/"
+  },
+  {
+   "id": "k060",
+   "datum": "2050",
+   "kljuc": "2050-99-99",
+   "leto": 2050,
+   "okvirno": false,
+   "naslov": "Najslabše stanovanjske stavbe: 100 % prenovljenih",
+   "opis": "Kumulativni delež prenovljene površine skupine 43 % energetsko najmanj učinkovitih stanovanjskih stavb (23.8 mio m²).",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k061",
+   "datum": "2050",
+   "kljuc": "2050-99-99",
+   "leto": 2050,
+   "okvirno": false,
+   "naslov": "Trajektorija stanovanjskih stavb: 164 kWh/(m²·a)",
+   "opis": "Povprečna raba primarne energije stanovanjskega fonda (fiksni faktorji) se zmanjša na 164 kWh/(m²·a), 39 % manj kot leta 2020.",
+   "vrsta": "cilj",
+   "status": "predlagano",
+   "koga": [
+    "hise",
+    "stanovanja",
+    "drzava"
+   ],
+   "segment": "stanovanjske stavbe",
+   "vir": "EPBD člen 9(2); osnutek, pogl. 4.7.1",
+   "povezava": "strokovne-podlage/"
+  },
+  {
+   "id": "k001",
+   "datum": "1. 1. 2027 (načrt), 2028 (izhodišča)",
+   "kljuc": "9998",
+   "leto": null,
+   "okvirno": false,
+   "naslov": "N6: Časovni načrt mejnih vrednosti GWP za nove stavbe po letu 2030 z izhodiščnimi vrednostmi p",
+   "opis": "Objava in priglasitev časovnega načrta po čl. 7(5) EPBD. Določitev izhodišča na vzorcu najmanj 30 novih stavb z gradbenim dovoljenjem v letih 2026–2027 po metodologiji N5",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "DOD",
+   "vir": "osnutek, pogl. 6, ukrep N6; nosilci: MzIE, MNVP",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k062",
+   "datum": "vsako leto",
+   "kljuc": "9999",
+   "leto": null,
+   "okvirno": true,
+   "naslov": "N4: Kazalnik spremljanja ciljanosti prenov",
+   "opis": "Uvedba kazalnika v sistem spremljanja iz poglavja 2 in letno poročanje skupaj s kazalniki stopnje prenove",
+   "vrsta": "mejnik",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "TPS",
+   "vir": "osnutek, pogl. 6, ukrep N4; nosilci: MzIE",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  },
+  {
+   "id": "k063",
+   "datum": "vsako leto",
+   "kljuc": "9999",
+   "leto": null,
+   "okvirno": false,
+   "naslov": "Poročanje kazalnikov NPS 2050",
+   "opis": "Napredek se spremlja s kazalniki iz načrta in poroča EK v nacionalnih poročilih o napredku.",
+   "vrsta": "pregled",
+   "status": "predlagano",
+   "koga": [
+    "drzava"
+   ],
+   "segment": "vse stavbe",
+   "vir": "EPBD člen 3(9); osnutek, pogl. 1",
+   "povezava": "spremljanje/"
+  },
+  {
+   "id": "k064",
+   "datum": "vsako leto",
+   "kljuc": "9999",
+   "leto": null,
+   "okvirno": false,
+   "naslov": "Prenova 3 % površine stavb javnega sektorja",
+   "opis": "Letna obveznost prenove stavb v lasti javnih organov po EED; v NPS z enotno metodologijo (N16) in seznamom najslabših stavb (N14).",
+   "vrsta": "obveznost",
+   "status": "veljavno",
+   "koga": [
+    "obcine"
+   ],
+   "segment": "javne stavbe",
+   "vir": "EED člen 6; ZURE; N14, N16",
+   "povezava": "ukrepi-in-financiranje/#pregled-ukrepov"
+  }
+ ]
+}

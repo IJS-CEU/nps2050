@@ -1,0 +1,150 @@
+---
+/**
+ * 11.1 Regulativni koledar 2026–2050: časovni trak po letih, filtra po ciljni skupini in statusu, seznam po letih in preglednica.
+ * Podatki: public/data/koledar.json (cevovod data/npsdata/koledar.py). Brez JavaScripta so prikazani vsi vnosi.
+ */
+import { withBase } from '../i18n/routes';
+import { loadData } from '../lib/data';
+import { nf } from '../lib/format';
+
+type V = { id: string; datum: string; leto: number | null; okvirno: boolean; naslov: string; opis: string; vrsta: string; status: string; koga: string[]; segment: string; vir: string; povezava: string | null };
+const d = loadData<{ skupine: { id: string; ime: string }[]; vnosi: V[] }>('koledar');
+const ime = Object.fromEntries(d.skupine.map((s) => [s.id, s.ime]));
+const groups: [string, V[]][] = [];
+for (const v of d.vnosi) {
+  const g = v.leto === null ? 'Stalno' : String(v.leto);
+  const last = groups.at(-1);
+  if (last && last[0] === g) last[1].push(v); else groups.push([g, [v]]);
+}
+const maxN = Math.max(...groups.map((g) => g[1].length));
+const VRSTA: Record<string, string> = { obveznost: 'obveznost', cilj: 'cilj', mejnik: 'mejnik', pregled: 'pregled', postopek: 'postopek' };
+const link = (p: string) => (/^https?:/.test(p) ? p : withBase(p));
+---
+<div class="kol">
+  <div class="kol-f js-only">
+    <div role="group" aria-label="Za koga">
+      <span class="kol-fl">Za koga:</span>
+      <button type="button" data-za="" aria-pressed="true">vse</button>
+      {d.skupine.map((s) => <button type="button" data-za={s.id} aria-pressed="false">{s.ime}</button>)}
+    </div>
+    <div role="group" aria-label="Status">
+      <span class="kol-fl">Status:</span>
+      <button type="button" data-st="" aria-pressed="true">vse</button>
+      <button type="button" data-st="veljavno" aria-pressed="false">že velja</button>
+      <button type="button" data-st="predlagano" aria-pressed="false">predlagano</button>
+    </div>
+    <p class="kol-n" aria-live="polite"></p>
+  </div>
+
+  <nav class="kol-trak" aria-label="Leta na časovnem traku">
+    {groups.map(([g, vs]) => (
+      <a href={`#kol-${g}`} data-g={g} class={g === '2026' ? 'now' : undefined}>
+        <span class="kol-bar"><i style={`height:${Math.round(18 + 42 * vs.length / maxN)}px`}></i></span>
+        <span class="kol-y">{g === 'Stalno' ? 'stalno' : g}</span>
+        <span class="kol-c">{vs.length}</span>
+      </a>
+    ))}
+  </nav>
+
+  {groups.map(([g, vs]) => (
+    <section class="kol-g" data-g={g} aria-labelledby={`kol-${g}`}>
+      <h2 id={`kol-${g}`}>{g === 'Stalno' ? 'Vsako leto' : g}</h2>
+      <ol class="kol-l">
+        {vs.map((v) => (
+          <li class={`kol-i ${v.status}`} data-za={v.koga.join(' ')} data-st={v.status}>
+            <p class="kol-m"><time>{v.datum}</time>{v.okvirno && <span class="kol-ok">okvirni datum</span>}<span class={`kol-s ${v.status}`}>{v.status === 'veljavno' ? 'že velja' : 'predlagano'}</span><span class="kol-v">{VRSTA[v.vrsta]}</span></p>
+            <h3>{v.naslov}</h3>
+            <p class="kol-o">{v.opis}</p>
+            <p class="kol-k">{v.koga.map((k) => <span>{ime[k]}</span>)}</p>
+            <p class="kol-src">Vir: {v.vir}{v.povezava && <> · <a href={link(v.povezava)}>Več</a></>}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+  ))}
+
+  <details class="kol-t">
+    <summary>Vsi vnosi v preglednici</summary>
+    <div class="tblwrap" tabindex="0" role="region" aria-label="Regulativni koledar">
+      <table>
+        <caption class="visually-hidden">Regulativni koledar 2026–2050</caption>
+        <thead><tr><th scope="col">Datum</th><th scope="col">Dogodek</th><th scope="col">Status</th><th scope="col">Koga zadeva</th><th scope="col">Vir</th></tr></thead>
+        <tbody>{d.vnosi.map((v) => <tr><td>{v.datum}{v.okvirno && ' (okvirno)'}</td><th scope="row">{v.naslov}</th><td>{v.status === 'veljavno' ? 'že velja' : 'predlagano'}</td><td>{v.koga.map((k) => ime[k]).join(', ')}</td><td>{v.vir}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <p><a href={withBase('data/csv/koledar.csv')} download>Prenesi CSV</a> · {nf(d.vnosi.length)} vnosov</p>
+  </details>
+</div>
+
+<style>
+  .kol-f { display: grid; gap: .5rem; margin: 1rem 0 1.2rem; }
+  .kol-f [role='group'] { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; }
+  .kol-fl { font-size: .82rem; font-weight: 700; color: var(--ink2); margin-right: .2rem; }
+  .kol-f button { font: inherit; font-size: .82rem; font-weight: 700; padding: .3rem .75rem; border-radius: 999px; border: 1px solid var(--ink2); background: transparent; color: var(--ink2); cursor: pointer; }
+  .kol-f button[aria-pressed='true'] { background: var(--green); border-color: var(--green); color: var(--on-green); }
+  .kol-n { font-size: .82rem; color: var(--ink2); margin: 0; }
+  .kol-trak { display: flex; gap: .3rem; overflow-x: auto; padding: .4rem 0 .8rem; border-bottom: 2px solid var(--line); margin-bottom: 1.4rem; }
+  .kol-trak a { flex: 1 0 2.6rem; display: grid; justify-items: center; gap: .15rem; text-decoration: none; color: var(--ink2); font-size: .74rem; }
+  .kol-bar { height: 60px; display: flex; align-items: flex-end; }
+  .kol-bar i { display: block; width: 14px; border-radius: 3px 3px 0 0; background: var(--green); opacity: .75; }
+  .kol-trak a.now .kol-bar i { opacity: 1; background: var(--ink); }
+  .kol-trak a[data-off] { opacity: .3; }
+  .kol-y { font-weight: 800; color: var(--ink); }
+  .kol-c { font-size: .7rem; }
+  .kol-g { margin: 0 0 1.6rem; scroll-margin-top: 8.5rem; }
+  .kol-g h2 { font-size: 1.35rem; margin: 0 0 .6rem; padding-bottom: .3rem; border-bottom: 1px solid var(--line); }
+  .kol-l { list-style: none; padding: 0; margin: 0; display: grid; gap: .7rem; max-width: none; }
+  .kol-i { background: var(--panel); border: 1px solid var(--line); border-left: 4px solid var(--green); border-radius: 12px; padding: .8rem 1rem; }
+  .kol-i.predlagano { border-left-style: dashed; border-left-color: var(--ink2); }
+  .kol-m { display: flex; flex-wrap: wrap; gap: .35rem .6rem; align-items: center; margin: 0 0 .25rem; font-size: .8rem; color: var(--ink2); }
+  .kol-m time { font-weight: 800; color: var(--ink); font-size: .9rem; }
+  .kol-s { font-weight: 800; padding: .05rem .5rem; border-radius: 999px; font-size: .72rem; }
+  .kol-s.veljavno { background: var(--green); color: var(--on-green); }
+  .kol-s.predlagano { border: 1px solid var(--ink2); }
+  .kol-ok { font-style: italic; }
+  .kol-v { text-transform: uppercase; letter-spacing: .06em; font-size: .68rem; font-weight: 700; }
+  .kol-i h3 { font-size: 1.02rem; margin: 0 0 .25rem; }
+  .kol-o { margin: 0 0 .35rem; font-size: .9rem; }
+  .kol-k { display: flex; flex-wrap: wrap; gap: .3rem; margin: 0 0 .3rem; }
+  .kol-k span { font-size: .72rem; background: var(--greenbg); border-radius: 999px; padding: .08rem .5rem; color: var(--ink); }
+  .kol-src { font-size: .76rem; color: var(--ink2); margin: 0; }
+  :global(.js) .kol-i[data-off], :global(.js) .kol-g[data-off] { display: none; }
+  .kol-t { margin-top: 1.5rem; }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.kol');
+  if (root) {
+    const items = [...root.querySelectorAll<HTMLElement>('.kol-i')];
+    const groups = [...root.querySelectorAll<HTMLElement>('.kol-g')];
+    const trak = [...root.querySelectorAll<HTMLElement>('.kol-trak a')];
+    const n = root.querySelector<HTMLElement>('.kol-n')!;
+    const url = new URL(location.href);
+    let za = url.searchParams.get('za') ?? '', st = url.searchParams.get('status') ?? '';
+    const apply = () => {
+      let k = 0;
+      items.forEach((i) => {
+        const ok = (!za || i.dataset.za!.split(' ').includes(za)) && (!st || i.dataset.st === st);
+        ok ? i.removeAttribute('data-off') : i.setAttribute('data-off', '');
+        if (ok) k++;
+      });
+      groups.forEach((g) => {
+        const vis = g.querySelectorAll('.kol-i:not([data-off])').length;
+        const any = vis > 0;
+        any ? g.removeAttribute('data-off') : g.setAttribute('data-off', '');
+        const t = trak.find((a) => a.dataset.g === g.dataset.g);
+        if (t) { any ? t.removeAttribute('data-off') : t.setAttribute('data-off', ''); t.querySelector('.kol-c')!.textContent = String(vis); }
+      });
+      root.querySelectorAll<HTMLButtonElement>('[data-za]').forEach((b) => b.tagName === 'BUTTON' && b.setAttribute('aria-pressed', String(b.dataset.za === za)));
+      root.querySelectorAll<HTMLButtonElement>('button[data-st]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.st === st)));
+      n.textContent = `Prikazanih ${k} od ${items.length} vnosov.`;
+      const u = new URL(location.href);
+      za ? u.searchParams.set('za', za) : u.searchParams.delete('za');
+      st ? u.searchParams.set('status', st) : u.searchParams.delete('status');
+      history.replaceState(null, '', u);
+    };
+    root.querySelectorAll<HTMLButtonElement>('button[data-za]').forEach((b) => b.addEventListener('click', () => { za = b.dataset.za!; apply(); }));
+    root.querySelectorAll<HTMLButtonElement>('button[data-st]').forEach((b) => b.addEventListener('click', () => { st = b.dataset.st!; apply(); }));
+    apply();
+  }
+</script>

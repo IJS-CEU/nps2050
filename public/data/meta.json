@@ -18,6 +18,7 @@
   "TK_ogr2020.gpkg",
   "KN_SLO_STAVBE_SLO_stavbe_20260830.zip",
   "EK_porocanja.csv",
+  "11.1_koledar_osnutek.xlsx",
   "eko_eur_m2.xlsx",
   "AERS_DO_ 2024_Analiza_ĐOM_2025.xlsx",
   "KS_porocila.csv"
@@ -38,7 +39,8 @@
   "obcine_model",
   "spremljanje",
   "paketi_prenove",
-  "arhetipi"
+  "arhetipi",
+  "koledar"
  ],
- "checks": 782
+ "checks": 912
 }

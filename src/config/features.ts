@@ -7,4 +7,6 @@ export const features = {
   dnevnik: true,
   /** 11.4 Paketi prenove: povezava iz orodja Preveri stavbo in s strani Za lastnike. */
   paketi: true,
+  /** 11.1 Koledar: povezave »Koledar za vas« na straneh Za lastnike in občin. */
+  koledar: false,
 } as const;

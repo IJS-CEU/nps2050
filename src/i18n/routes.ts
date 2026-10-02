@@ -18,6 +18,7 @@ export const pages = [
   { id: 'dnevnik', slug: 'dnevnik' },
   { id: 'napacna', slug: 'kaj-ne-pomeni' },
   { id: 'paketi', slug: 'paketi-prenove' },
+  { id: 'koledar', slug: 'koledar' },
 ] as const;
 
 export type PageId = (typeof pages)[number]['id'];

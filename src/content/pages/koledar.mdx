@@ -1,0 +1,14 @@
+---
+page: koledar
+title: 'Koledar 2026–2050'
+description: 'Vsi datumi, ki zadevajo stavbe: obveznosti, cilji in mejniki NPS 2050 in EPBD, z oznako, kaj že velja in kaj je šele predlagano, ter za koga.'
+lead: 'Kdaj začne kaj veljati: obveznosti, cilji in mejniki za stavbe do leta 2050. Izberite, koga zanima, in ločite, kaj že velja in kaj je šele predlog.'
+draft: true
+---
+import Koledar from '../../components/Koledar.astro';
+
+{/* Vir: public/data/koledar.json (cevovod data/npsdata/koledar.py) – preglednica, potrjena 2. 10. 2026, iz osnutka NPS 2050 (pogl. 3, 4.7, 6, 9) in EPBD 2024/1275. CLAUDE.md §11.1. */}
+
+<p class="note"><strong>Že velja</strong> pomeni, da je obveznost že v zakonu ali predpisu oziroma v veljavni uredbi ali direktivi EU. <strong>Predlagano</strong> pomeni predlog osnutka NPS 2050 ali zahtevo EPBD, ki še ni prenesena v slovenske predpise – o tem se še odloča.</p>
+
+<Koledar />
