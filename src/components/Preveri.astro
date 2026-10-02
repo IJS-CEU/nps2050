@@ -344,7 +344,7 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
       const nx = el('ol');
       for (const t of [
         'Brezplačno energetsko svetovanje ENSVET: svetovalec pregleda stavbo in pomaga izbrati ukrepe. Ta izpis vzemite s seboj.',
-        'Spodbude Eko sklada (www.ekosklad.si): vlogo oddajte pred začetkom del.',
+        'Spodbude Eko sklada (www.ekosklad.si): preverite pogoje javnega poziva; vlogo oddate po zaključku del, z računi in dokazili.',
         'Energetska izkaznica določi dejanski razred stavbe; potrebna je tudi ob prodaji ali oddaji.',
         `Tipični paketi prenove s stroški in spodbudami: ${location.origin}${document.querySelector<HTMLAnchorElement>('.chk-pk a')?.getAttribute('href') ?? ''}`,
       ]) nx.append(el('li', t));
