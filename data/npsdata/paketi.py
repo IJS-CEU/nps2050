@@ -44,6 +44,16 @@ UKREPI = {
     ('MFH', 'delna'): ['izolacija fasade', 'zamenjava oken'],
     ('MFH', 'celovita'): ['izolacija fasade in strehe', 'zamenjava oken', 'prezračevanje z vračanjem toplote', 'ogrevanje ostane daljinsko'],
 }
+# Javni poziv Eko sklada 126SUB-OB26 (eno- in dvostanovanjske stavbe): (delež, zgornja meja na enoto, enota na m² ogrevane površine)
+# količine ukrepa na m² ogrevane površine: mediane naložb Eko sklada 2023–2025 (fasada 2,09 m², okna 0,142 m², streha 0,91 m²)
+POZIV = 'Javni poziv Eko sklada 126SUB-OB26 (eno- in dvostanovanjske stavbe)'
+POZIV_UKREPI = {
+    'fasada': (0.40, 35, 2.09),         # F: do 40 %, največ 35 €/m² izolacije
+    'okna_vrata': (0.40, 300, 0.142),   # E: do 40 %, največ 300 €/m² oken (samo lesena okna)
+    'streha': (0.40, 35, 0.91),         # G: do 40 %, največ 35 €/m² izolacije
+    'tczv': (0.50, 4500, None),         # C: zamenjava stare kurilne naprave, do 50 %, največ 4.500 € na stavbo
+    'prezrac_centr': (0.30, 2500, None),  # I: centralno prezračevanje, do 30 %, največ 2.500 €
+}
 NAME = {'delna': 'Delna prenova', 'celovita': 'Celovita prenova', 'zeb': 'Celovita ZEB prenova'}
 HC = ['A1', 'A2', 'B1', 'B2', 'C', 'D', 'E', 'F', 'G']
 
@@ -94,6 +104,7 @@ def _eko_costs(ctx: Context) -> dict:
             cols = [c for c in cols if c in g25.index]
             return float(g25.loc[cols, 'Spodbuda [EUR]'].sum() / g25.loc[cols, e_col].sum()) if cols else None
         out[(tip, 'eko25_delna')] = share(['fasada', 'okna_vrata'])
+        out[(tip, 'med')] = {u: float(s.loc[s['Ukrep (koda)'] == u, 'EUR/m²'].median()) for u in POZIV_UKREPI}
         out[(tip, 'eko25_celovita')] = share(['fasada', 'okna_vrata', 'streha', 'tczv', 'prezrac_centr'] if tip == 'SFH' else ['fasada', 'okna_vrata', 'streha', 'prezrac_lok'])
         cz = s[(s['Ukrep (koda)'] == 'celovita_prenova') & (s.Leto >= 2024)]
         out[(tip, 'eko25_zeb')] = float(cz['Spodbuda [EUR]'].sum() / cz[e_col].sum()) if len(cz) else None
@@ -221,6 +232,17 @@ def build(ctx: Context) -> dict:
                 # strošek na m² ogrevane površine po katastru (kot Eko sklad); energija na m² kondicionirane površine iz izkaznic
                 cost = eur * a_kat
                 sav = (fe0 * price0 - cost1) * a_kat
+                # spodbuda po veljavnem pozivu (samo hiše; delna in celovita prenova): stroški ukrepov sorazmerno z medianami
+                poziv_eur = None
+                if t == 'SFH' and pid in ('delna', 'celovita'):
+                    us = ['fasada', 'okna_vrata'] if pid == 'delna' else ['fasada', 'okna_vrata', 'streha', 'tczv', 'prezrac_centr']
+                    med = eko[(t, 'med')]
+                    tot = sum(med[u] for u in us)
+                    poziv_eur = 0.0
+                    for u in us:
+                        cu = cost * med[u] / tot
+                        pct, cap, q_m2 = POZIV_UKREPI[u]
+                        poziv_eur += min(pct * cu, cap * q_m2 * a_kat if q_m2 else cap)
                 c0 = cls(cat, pe0)
                 above = pe0 > thr43[cat]
                 bonus = 20 if (c0 in ('F', 'G') or above) else 10 if c0 == 'E' else 0
@@ -238,9 +260,10 @@ def build(ctx: Context) -> dict:
                     'prihranek_eur': round(sav, -1), 'spodbuda_osn_pct': s_osn, 'spodbuda_dod_pct': s_dod, 'spodbuda_dod_eur': round(cost * s_dod / 100, -2),
                     'spodbuda_razlog': 'stavba je med 43 % energetsko najmanj učinkovitih' if above else (f'razred {c0}' if bonus else None),
                     'vracilo_brez': pb(0), 'vracilo_osn': pb(s_osn), 'vracilo_dod': pb(s_dod),
-                    'spodbuda_eko_pct': round(100 * eko[(t, f'eko25_{pid}')]) if eko.get((t, f'eko25_{pid}')) else None,
-                    'spodbuda_eko_eur': round(cost * eko[(t, f'eko25_{pid}')], -2) if eko.get((t, f'eko25_{pid}')) else None,
-                    'eur_kwh_eko': ekwh(100 * eko[(t, f'eko25_{pid}')]) if eko.get((t, f'eko25_{pid}')) else None,
+                    'spodbuda_eko_pct': round(100 * poziv_eur / cost) if poziv_eur is not None else (round(100 * eko[(t, f'eko25_{pid}')]) if eko.get((t, f'eko25_{pid}')) else None),
+                    'spodbuda_eko_eur': round(poziv_eur, -2) if poziv_eur is not None else (round(cost * eko[(t, f'eko25_{pid}')], -2) if eko.get((t, f'eko25_{pid}')) else None),
+                    'spodbuda_eko_vir': 'poziv' if poziv_eur is not None else 'dejansko 2025',
+                    'eur_kwh_eko': ekwh(100 * poziv_eur / cost) if poziv_eur is not None else (ekwh(100 * eko[(t, f'eko25_{pid}')]) if eko.get((t, f'eko25_{pid}')) else None),
                     'prihranjeno_kwh_leto': round(saved_kwh, -2), 'eur_kwh_brez': ekwh(0), 'eur_kwh_dod': ekwh(s_dod), 'cena_energije_pred': price0,
                 })
             cel = next(p for p in paketi if p['id'] == 'celovita')
@@ -261,6 +284,7 @@ def build(ctx: Context) -> dict:
                          note='Tipične vrednosti za ponazoritev, ne izračun za konkretno stavbo.'),
         'cene': {'kurilno_olje': prices['kurilno_olje'], 'elektrika': prices['elektrika'], 'plin': prices['plin'], 'les': WOOD_EUR_KWH, 'daljinska_toplota': DH_EUR_KWH},
         'preveri': preveri,
+        'poziv': POZIV,
         'predpostavke': {'zivljenjska_doba': LIFE, 'q_b1': Q_B1, 'eta': ETA, 'topla_voda': DHW, 'scop': SCOP, 'pomozna_el': AUX, 'fp': FP, 'pv_delez': PV_SHARE,
                          'zeb_spodbuda_dejanska_pct': round(100 * eko[('SFH', 'zeb_spodbuda')]) if eko[('SFH', 'zeb_spodbuda')] else None},
         'tipi': tipi,
