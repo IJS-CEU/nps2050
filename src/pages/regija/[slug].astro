@@ -1,0 +1,184 @@
+---
+/**
+ * Energetsko-podnebna kartica statistične regije: stavbe (za regionalne energetske agencije), za tisk ali PDF (2 strani A4).
+ * Seštevki občinskih podatkov (cevovod data/npsdata/regije.py). Oblika kot kartica občine (src/styles/kartica.css).
+ */
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/source-serif-4';
+import '../../styles/kartica.css';
+import { pageUrl, withBase } from '../../i18n/routes';
+import { loadData, type ObcineModel } from '../../lib/data';
+import { nf } from '../../lib/format';
+import { LEK_SIGN, POT_KEYS, POT_Y } from '../../lib/lek';
+import { regije, regijaSlug, type Regija } from '../../lib/regije';
+
+export function getStaticPaths() {
+  return regije().map((r) => ({ params: { slug: regijaSlug(r.name) }, props: { r } }));
+}
+const { r } = Astro.props as { r: Regija };
+const md = loadData<ObcineModel>('obcine_model');
+const ms = md.si as any;
+const meta = loadData<{ draft_date: string }>('meta');
+const [y, m, d] = meta.draft_date.split('-').map(Number);
+const draftDate = `${d}. ${m}. ${y}`;
+const all = regije();
+const fossilSi = (() => {
+  const mm = Object.values(md.municipalities);
+  const fe = mm.reduce((a, x) => a + x.pot!['2023'].fe_gwh, 0);
+  return mm.reduce((a, x) => a + x.pot!['2023'].fe_gwh * (x.pot!['2023'].fossil_pct ?? 0), 0) / fe;
+})();
+const va = r.vse, vs = ms.vse, st = r.stevilke, ci = r.cilji;
+const rankOf = (f: (x: Regija) => number) => [...all].sort((a, b) => f(a) - f(b)).findIndex((x) => x.id === r.id) + 1;
+const tiles = [
+  { v: nf(va.fe_mwh_preb.total, 1), u: 'MWh', l: 'raba končne energije v stavbah na prebivalca', s: `${nf(vs.fe_mwh_preb.total, 1)} MWh` },
+  { v: nf(va.tgp_t_preb.total, 2), u: 't CO₂ ekv.', l: 'emisije TGP iz stavb na prebivalca', s: `${nf(vs.tgp_t_preb.total, 2)} t` },
+  { v: nf(va.ove_pct.total, 0), u: '%', l: 'delež obnovljivih virov v rabi energije v stavbah', s: `${nf(vs.ove_pct.total, 0)} %` },
+  { v: nf(r.pot['2023'].fossil_pct, 0), u: '%', l: 'delež plina in kurilnega olja v rabi energije v stavbah', s: `${nf(fossilSi, 0)} %` },
+  { v: nf(r.above43_area_pct, 0), u: '%', l: 'stanovanjske površine med 43 % najmanj učinkovitih', s: `${nf(ms.above43_area_pct, 0)} %` },
+  { v: nf(r.pre1981_area_pct, 0), u: '%', l: 'površine stavb, zgrajenih pred letom 1981', s: '' },
+];
+const CAR_COL: Record<string, string> = { el: '#2A6FC9', amb: '#6FA8DC', gas: '#A4520E', elko: '#5B4636', bio: '#86A11C', dh: '#7B5CC4' };
+const CAR_LT = new Set(['el', 'gas', 'elko', 'dh']);
+const CLS_COL: Record<string, string> = { A: '#1E6B4E', B: '#2F7D3E', C: '#A9C23F', D: '#F0CF45', E: '#F0A23A', F: '#B84A14', G: '#9B1C1C' };
+const CLS_LT = new Set(['A', 'B', 'F', 'G']);
+const stacks = [
+  { h: 'Energenti v stanovanjskih stavbah', sub: 'delež končne energije, ocena modela', keys: md.carriers.map((c) => c.id), names: Object.fromEntries(md.carriers.map((c) => [c.id, c.name])), col: CAR_COL, lt: CAR_LT, a: r.carriers_pct, b: ms.carriers_pct as Record<string, number>, short: false },
+  { h: 'Energijski razredi stanovanjskih stavb', sub: 'delež površine po razredih NPS 2050, ocena modela', keys: md.classes, names: Object.fromEntries(md.classes.map((c) => [c, c])), col: CLS_COL, lt: CLS_LT, a: r.nps_pct, b: ms.nps_pct as Record<string, number>, short: true },
+];
+const POT_COL = ['#1E6B4E', '#9B1C1C', '#86A11C', '#A4520E'];
+const charts = POT_KEYS.map(([k, l, u], i) => {
+  const vals = POT_Y.map((yy) => r.pot[yy][k] ?? 0);
+  const max = Math.max(...vals, 1e-9);
+  const pct = k === 'ove_pct' || k === 'fossil_pct';
+  const dd = pct ? vals[3] - vals[0] : 100 * (vals[3] / Math.max(vals[0], 1e-9) - 1);
+  const dec = pct || max >= 100 ? 0 : max >= 10 ? 1 : 2;
+  return { l: l.charAt(0).toUpperCase() + l.slice(1), u: pct ? '%' : u.replace('/leto', ''), col: POT_COL[i], bars: vals.map((v, j) => ({ y: POT_Y[j], t: nf(v, dec), h: Math.max(3, Math.round((100 * v) / max)) })), change: `${dd > 0 ? '+' : '−'}${nf(Math.abs(dd), 0)} ${pct ? 'odstotnih točk' : '%'} do 2050` };
+});
+const r100 = (v: number) => nf(Math.round(v / 100) * 100);
+const mio = (v: number) => `${nf(v / 1e6, v >= 1e8 ? 0 : 1)} mio €`;
+const gwh = (a: number[]) => a.map((v) => nf(v, 0)).join(' → ');
+const os = st.obcine_semafor;
+const site = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
+---
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>{r.name} regija – energetsko-podnebna kartica: stavbe – NPS 2050 (IJS CEU)</title>
+  <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
+</head>
+<body>
+  <div class="bar no-print">
+    <a href={`${pageUrl('obcine')}#regije`}>← Nazaj na Moja občina</a>
+    <span><button type="button" id="print">Natisni ali shrani kot PDF</button> <a href={withBase('data/csv/regije.csv')} download>Prenesi CSV vseh regij</a></span>
+  </div>
+  <main>
+    <div class="sheet">
+      <header>
+        <p class="k">Energetsko-podnebna kartica regije: stavbe · za regionalne energetske agencije</p>
+        <h1>{r.name} statistična regija</h1>
+        <p class="sub">{r.n_obcin} občin · {nf(va.pop)} prebivalcev · {nf(r.buildings)} stavb · {nf(r.area_k_m2 / 1000, 1)} mio m² uporabne površine</p>
+      </header>
+
+      <section>
+        <h2>Stanje 2023 <span>ocena modela IJS CEU, usklajena z energetsko bilanco; seštevek občin</span></h2>
+        <ul class="tiles">
+          {tiles.map((t) => <li><span class="v">{t.v}<small> {t.u}</small></span><span class="l">{t.l}</span>{t.s && <span class="s">Slovenija: {t.s}</span>}</li>)}
+        </ul>
+      </section>
+
+      <div class="two">
+        {stacks.map((s) => (
+          <section>
+            <h2>{s.h}</h2>
+            <p class="cap">{s.sub}</p>
+            {[['Regija', s.a], ['Slovenija', s.b]].map(([lab, c]) => (
+              <div class="stack-row">
+                <span class="lab">{lab as string}</span>
+                <span class="stack">{s.keys.map((k) => (c as Record<string, number>)[k] > 0 && <span class={s.lt.has(k) ? 'lt' : ''} style={`width:${(c as Record<string, number>)[k]}%;background:${s.col[k]}`}>{(c as Record<string, number>)[k] >= 9 && <b>{nf((c as Record<string, number>)[k], 0)}</b>}</span>)}</span>
+              </div>
+            ))}
+            <ul class={`leg ${s.short ? 'short' : ''}`}>{s.keys.map((k) => <li><i style={`background:${s.col[k]}`}></i>{s.names[k]}{!s.short && ` ${nf(s.a[k], 0)} %`}</li>)}</ul>
+          </section>
+        ))}
+      </div>
+
+      <section>
+        <h2>Pot do leta 2050 po scenariju NPS 2050 <span>ponazoritev: državni scenarij, prenesen na stavbe v regiji</span></h2>
+        <div class="charts">
+          {charts.map((c) => (
+            <figure>
+              <figcaption><b>{c.l}</b> <span>{c.u}</span></figcaption>
+              <div class="cols">{c.bars.map((b) => <div class="col"><span class="t">{b.t}</span><span class="b" style={`height:${b.h}%;background:${c.col}`}></span><span class="y">{b.y}</span></div>)}</div>
+              <p class="chg">{c.change}</p>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <div class="two">
+        <section>
+          <h2>Kaj to pomeni na leto (2026–2030)</h2>
+          <ul class="facts">
+            <li><b>{r100(ci.prenova_m2_leto['2026_2030'])} m²</b> energetske prenove stavb na leto, od tega <b>{r100(ci.wpb_m2_leto)} m²</b> v skupini 43 % najmanj učinkovitih</li>
+            <li><b>{nf(st.hise_leto)} hiš</b>, <b>{nf(st.stanovanja_leto)} stanovanj</b> v blokih ter <b>{nf(st.javne_leto + st.zasebne_leto)}</b> javnih in storitvenih stavb na leto</li>
+            <li><b>{mio(st.nalozba_eur_leto)}</b> naložb na leto, od tega okoli <b>{mio(st.spodbude_eur_leto)}</b> iz nepovratnih spodbud (državno povprečje)</li>
+            <li><b>{nf(ci.meps_n_2030)}</b> nestanovanjskih stavb za izboljšanje do 2030 (minimalni standardi)</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Tempo prenove in fosilna goriva <span>raba na prebivalca: {rankOf((x) => x.vse.fe_mwh_preb.total)}. od 12 regij (1. = najnižja)</span></h2>
+          <ul class="facts">
+            <li><b>{st.semafor}</b>: {nf(st.stopnja_dejanska_pct, 2)} % stanovanjske površine na leto (registri 2023–2025), zahtevano {nf(st.stopnja_zahtevana_pct, 2)} %; na poti {os['na poti']} od {r.n_obcin} občin</li>
+            <li>Kurilno olje <b>{gwh(ci.elko_gwh.slice(0, 3))} GWh</b>, plin <b>{gwh(ci.plin_gwh.slice(0, 3))} GWh</b> (2023 → 2030 → 2040)</li>
+            <li><b>{nf(r.dh_pot.fe_pct, 0)} %</b> goriv in daljinske toplote na gostoti ≥ 250 MWh/ha (Slovenija {nf(ms.dh_pot.fe_pct, 0)} %)</li>
+          </ul>
+        </section>
+      </div>
+
+      <p class="disc">Ocena modela, ne meritve; regija je seštevek občin. Cilji so državni cilji NPS 2050, preneseni sorazmerno s stavbnim fondom, in niso obveznost regije ali občin. Samo stavbe.</p>
+      <footer class="sign">{LEK_SIGN} Podatki iz osnutka NPS 2050 z dne {draftDate}.</footer>
+    </div>
+
+    <div class="sheet">
+      <header class="small">
+        <p class="k">Energetsko-podnebna kartica regije: stavbe · občine v regiji</p>
+        <p class="h1b">{r.name} statistična regija</p>
+        <p class="sub">ključni kazalniki po občinah (stanje 2023, ocena modela IJS CEU) in tempo prenove (registri 2023–2025); podrobnosti na karticah občin</p>
+      </header>
+      <section>
+        <table class={`reg-t${r.obcine.length > 30 ? ' dense' : ''}`}>
+          <thead><tr><th scope="col">Občina</th><th scope="col" class="n">Prebivalci</th><th scope="col" class="n">MWh/preb.</th><th scope="col" class="n">t CO₂ ekv./preb.</th><th scope="col" class="n">OVE %</th><th scope="col" class="n">Najslabših 43 % *</th><th scope="col">Tempo prenove</th></tr></thead>
+          <tbody>
+            {r.obcine.map((o) => <tr><th scope="row"><a href={withBase(`obcina/${o.sifra}/lek/`)}>{o.name}</a></th><td class="n">{nf(o.pop)}</td><td class="n">{nf(o.fe_mwh_preb, 1)}</td><td class="n">{nf(o.tgp_t_preb, 2)}</td><td class="n">{nf(o.ove_pct, 0)}</td><td class="n">{nf(o.above43_area_pct, 0)}</td><td>{o.semafor}</td></tr>)}
+            <tr class="sum"><th scope="row">Regija</th><td class="n">{nf(va.pop)}</td><td class="n">{nf(va.fe_mwh_preb.total, 1)}</td><td class="n">{nf(va.tgp_t_preb.total, 2)}</td><td class="n">{nf(va.ove_pct.total, 0)}</td><td class="n">{nf(r.above43_area_pct, 0)}</td><td>{st.semafor}</td></tr>
+            <tr class="sum"><th scope="row">Slovenija</th><td class="n">{nf(vs.pop)}</td><td class="n">{nf(vs.fe_mwh_preb.total, 1)}</td><td class="n">{nf(vs.tgp_t_preb.total, 2)}</td><td class="n">{nf(vs.ove_pct.total, 0)}</td><td class="n">{nf(ms.above43_area_pct, 0)}</td><td></td></tr>
+          </tbody>
+        </table>
+        <p class="reg-n">MWh/preb.: raba končne energije v stavbah na prebivalca. OVE: delež obnovljivih virov. * Delež stanovanjske površine med 43 % energetsko najmanj učinkovitih (ocena modela). Tempo prenove glede na sorazmerni delež cilja NPS 2050.</p>
+      </section>
+      <section class="method">
+        <h2>Opombe k metodi</h2>
+        <p>Regija je seštevek občin v statistični regiji (meje GURS, Register prostorskih enot). Raba energije, emisije in delež obnovljivih virov so ocena modela IJS CEU, usklajena z energetsko bilanco in osnutkom NPS 2050 za leto 2023; deleži regije so tehtani z rabo energije ali stanovanjsko površino. Tempo prenove: delež stanovanjske površine z vpisano obnovo fasade, strehe ali oken (kataster) ali ukrepom Eko sklada na ovoju v letih 2023–2025, primerjan s slovenskim povprečjem in sorazmernim deležem cilja; »ni podatka« pri manj kot 10 prenovah. Podrobnosti: {site(`${pageUrl('obcine')}#metoda`)}.</p>
+      </section>
+      <footer class="sign">{LEK_SIGN} Podatki iz osnutka NPS 2050 z dne {draftDate}.</footer>
+    </div>
+  </main>
+  <script>
+    document.getElementById('print')?.addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>
+
+<style is:global>
+  tr.sum th, tr.sum td { font-weight: 800; border-top: .4mm solid #4C5A54; }
+  tbody th a { color: inherit; text-decoration: none; }
+  table.reg-t tbody th { width: auto; }
+  table.reg-t.dense { font-size: 7.2pt; }
+  table.reg-t.dense th, table.reg-t.dense td { padding-top: .2mm; padding-bottom: .2mm; }
+  table.reg-t td:last-child { white-space: nowrap; }
+  table.reg-t td.n:nth-of-type(2) { font-weight: 500; }
+  .reg-n { font-size: 7.4pt; color: #4C5A54; margin: 1mm 0 0; }
+</style>

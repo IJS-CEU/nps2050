@@ -7,6 +7,7 @@ lead: 'Kaj pomeni prenova stavb za vašo občino? Izberite občino na zemljevidu
 import ObcineZemljevid from '../../components/obcine/ObcineZemljevid.astro';
 import ObcineSeznam from '../../components/obcine/ObcineSeznam.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
+import { regije, regijaSlug } from '../../lib/regije';
 
 {/* Vir: CLAUDE.md §10.1. Kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (do 2025); meje razredov in pragovi NPS_v39, pogl. 3 in 4.7. Številke bere cevovod data/npsdata/obcine.py. */}
 
@@ -15,6 +16,12 @@ import { pageUrl, withBase } from '../../i18n/routes';
 <ObcineSeznam />
 
 <p><a class="btn primary" href={pageUrl('primerjava')}>Primerjajte občine med seboj</a></p>
+
+<h2 id="regije">Kartice statističnih regij</h2>
+
+Za regionalne energetske agencije: ista energetsko-podnebna kartica kot za občine, sešteta po 12 statističnih regijah, s preglednico občin v regiji. Za tisk ali kot PDF; podatki za vse regije so tudi v <a href={withBase('data/csv/regije.csv')} download>CSV</a>.
+
+<ul class="reg-list">{regije().sort((a, b) => a.name.localeCompare(b.name, 'sl')).map((r) => <li><a href={withBase(`regija/${regijaSlug(r.name)}/`)}>{r.name}</a> <small>{r.n_obcin} občin</small></li>)}</ul>
 
 ## Kaj je na strani občine
 

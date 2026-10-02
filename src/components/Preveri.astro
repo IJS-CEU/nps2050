@@ -132,6 +132,23 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
   .chk-res li { margin-bottom: .35rem; }
   .chk-ok { color: var(--green); font-weight: 700; }
   .chk-no { color: var(--amber); font-weight: 700; }
+  .chk-ph, .chk-pf { display: none; }
+  .chk-act { margin: .8rem 0 0; font-size: .88rem; color: var(--ink2); }
+  .chk-act .btn { cursor: pointer; font: inherit; font-weight: 700; margin-right: .5rem; }
+  /* Izpis rezultata: samo rezultat z vnosom in naslednjimi koraki (CLAUDE.md §11, nadgradnja 9). */
+  @media print {
+    body:has(.chk-res) :is(header.top, body > footer, .skip, .page-head, .chk-form, .chk-table, .chk-pk, .chk-act, .chk-po, .wrap.prose > :not(.chk)) { display: none !important; }
+    body:has(.chk-res), body:has(.chk-res) main { background: #fff !important; }
+    body:has(.chk-res) .chk { margin: 0; max-width: none; }
+    body:has(.chk-res) .chk-res { border: 0; padding: 0; background: #fff; }
+    .chk-ph, .chk-pf { display: block; }
+    .chk-ph { border-bottom: 2px solid #D6B25E; margin-bottom: .8rem; padding-bottom: .4rem; }
+    .chk-ph-k { font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #1E6B4E; margin: 0 0 .2rem; }
+    .chk-ph-v { font-size: .85rem; margin: 0; }
+    .chk-pf { border-top: 1px solid #ccc; margin-top: .8rem; padding-top: .4rem; font-size: .85rem; }
+    .chk-pf h4 { margin: 0 0 .3rem; }
+    .chk-res, .chk-scale span, .chk-cls { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
 </style>
 
 <script>
@@ -224,6 +241,15 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
       const dd = (form.querySelector('input[name="chk-dd"]:checked') as HTMLInputElement).value;
       const k = classOf(c, v);
       const box = el('div', undefined, 'chk-res');
+      const opt = (id: string) => $(id).selectedOptions[0]?.textContent ?? '';
+      const ddTxt = (form.querySelector('input[name="chk-dd"]:checked') as HTMLInputElement).parentElement!.textContent!.trim();
+      const vnos = est
+        ? `${opt('chk-t-tip')}, zgrajena ${opt('chk-t-per')}; izolacija: ${opt('chk-t-ovoj').toLowerCase()}; nova okna: ${opt('chk-t-okna').toLowerCase()}; ogrevanje: ${opt('chk-t-og').toLowerCase()}. Brez energetske izkaznice (ocena iz podobnih stavb).`
+        : `${c.name}; ${nf(v, 0)} kWh/(m²·a) primarne energije iz računske energetske izkaznice.`;
+      const ph = el('div', undefined, 'chk-ph');
+      ph.append(el('p', 'NPS 2050 · Strokovne podlage IJS CEU · Preverite svojo stavbo', 'chk-ph-k'),
+        el('p', `Izpis z dne ${new Date().toLocaleDateString('sl-SI')}. Vnos: ${vnos} Kulturna dediščina: ${ddTxt.toLowerCase()}.`, 'chk-ph-v'));
+      box.append(ph);
       const h = el('h3');
       const badge = el('span', k, 'chk-cls');
       badge.style.background = cs.getPropertyValue(`--cls-${CLS_VAR[k]}`).trim();
@@ -313,6 +339,23 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
         box.append(ul);
       }
       box.append(el('p', 'Rezultat je informativen in temelji na predlogu v osnutku NPS 2050. Ni uradna ugotovitev. Pragovi se lahko do sprejema načrta in ob rekalibraciji razredov še spremenijo.', 'note'));
+      const pf = el('div', undefined, 'chk-pf');
+      pf.append(el('h4', 'Naslednji koraki'));
+      const nx = el('ol');
+      for (const t of [
+        'Brezplačno energetsko svetovanje ENSVET: svetovalec pregleda stavbo in pomaga izbrati ukrepe. Ta izpis vzemite s seboj.',
+        'Spodbude Eko sklada (www.ekosklad.si): vlogo oddajte pred začetkom del.',
+        'Energetska izkaznica določi dejanski razred stavbe; potrebna je tudi ob prodaji ali oddaji.',
+        `Tipični paketi prenove s stroški in spodbudami: ${location.origin}${document.querySelector<HTMLAnchorElement>('.chk-pk a')?.getAttribute('href') ?? ''}`,
+      ]) nx.append(el('li', t));
+      pf.append(nx, el('p', `Vir: IJS CEU, strokovne podlage NPS 2050 (osnutek). ${location.origin}${location.pathname}`, 'note'));
+      box.append(pf);
+      const act = el('p', undefined, 'chk-act');
+      const pb = el('button', 'Natisni ali shrani kot PDF', 'btn');
+      (pb as HTMLButtonElement).type = 'button';
+      pb.addEventListener('click', () => window.print());
+      act.append(pb, document.createTextNode(' Izpis z rezultatom in naslednjimi koraki, na primer za pogovor z energetskim svetovalcem.'));
+      box.append(act);
       out.append(box);
       box.setAttribute('tabindex', '-1');
       box.focus();

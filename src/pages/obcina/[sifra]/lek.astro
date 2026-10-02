@@ -6,6 +6,7 @@
  */
 import '@fontsource-variable/manrope';
 import '@fontsource-variable/source-serif-4';
+import '../../../styles/kartica.css';
 import { pageUrl, withBase } from '../../../i18n/routes';
 import { loadData, type ObcineIndex } from '../../../lib/data';
 import { nf } from '../../../lib/format';
@@ -205,64 +206,3 @@ const SEMT: Record<string, string> = { 'na poti': 'na poti', 'pod ciljem': 'pod 
 </body>
 </html>
 
-<style is:global>
-  @page { size: A4; margin: 12mm 14mm 16mm; @bottom-center { content: "© IJS CEU – intelektualna lastnina IJS CEU · stran " counter(page); font-size: 7pt; color: #4C5A54; } }
-  * { box-sizing: border-box; }
-  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  body { margin: 0; background: #ECEFE8; font-family: 'Manrope Variable', system-ui, sans-serif; color: #1B2622; font-size: 10pt; line-height: 1.4; }
-  .bar { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; max-width: 210mm; margin: 0 auto; padding: 12px 4px; font-size: 14px; }
-  .bar a { color: #1E6B4E; font-weight: 700; }
-  .bar button { font: inherit; font-weight: 700; background: #1E6B4E; color: #fff; border: 0; border-radius: 6px; padding: 6px 14px; cursor: pointer; margin-right: 10px; }
-  .sheet { max-width: 210mm; margin: 0 auto 24px; background: #fff; padding: 12mm 14mm; }
-  header { border-bottom: 1.2mm solid #D6B25E; padding-bottom: 3mm; margin-bottom: 3mm; }
-  .k { font-size: 7.5pt; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #1E6B4E; margin: 0; }
-  h1, .h1b { font-family: 'Source Serif 4 Variable', Georgia, serif; font-weight: 600; line-height: 1.15; font-size: 24pt; margin: 1.5mm 0 1mm; }
-  .h1b { font-size: 16pt; }
-  .sub { color: #4C5A54; margin: 0; font-size: 8.6pt; }
-  h2 { font-family: 'Source Serif 4 Variable', Georgia, serif; font-size: 11.5pt; margin: 4.5mm 0 1.5mm; }
-  h2 span { font-family: 'Manrope Variable', system-ui, sans-serif; font-weight: 500; font-size: 7.6pt; color: #4C5A54; margin-left: 1.5mm; }
-  .cap { font-size: 7.6pt; color: #4C5A54; margin: -1mm 0 1.5mm; }
-  .tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2mm; }
-  .tiles li { border: .25mm solid #D7DDD5; border-left: 1mm solid #1E6B4E; border-radius: 1.5mm; padding: 2mm 2.5mm; display: grid; gap: .4mm; }
-  .tiles .v { font-family: 'Source Serif 4 Variable', Georgia, serif; font-size: 17pt; font-weight: 600; line-height: 1.1; }
-  .tiles .v small { font-family: 'Manrope Variable', system-ui, sans-serif; font-size: 8pt; font-weight: 700; color: #4C5A54; }
-  .tiles .l { font-size: 7.8pt; line-height: 1.3; }
-  .tiles .s { font-size: 7.4pt; color: #4C5A54; font-weight: 700; }
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
-  .stack-row { display: grid; grid-template-columns: 15mm 1fr; align-items: center; gap: 1.5mm; margin-bottom: 1mm; font-size: 7.8pt; }
-  .stack-row:first-of-type .lab { font-weight: 800; }
-  .stack { display: flex; height: 5.5mm; border-radius: 1mm; overflow: hidden; }
-  .stack-row + .stack-row .stack { height: 4mm; }
-  .stack > span { display: flex; align-items: center; justify-content: center; color: #1B2622; font-size: 6.8pt; min-width: 0; }
-  .stack > span.lt { color: #fff; }
-  .leg { list-style: none; margin: 1.5mm 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .6mm 3mm; font-size: 7.2pt; color: #4C5A54; }
-  .leg i { display: inline-block; width: 2.4mm; height: 2.4mm; border-radius: .5mm; margin-right: 1mm; vertical-align: -.2mm; }
-  .charts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; }
-  figure { margin: 0; border: .25mm solid #D7DDD5; border-radius: 1.5mm; padding: 2mm 2.5mm; }
-  figcaption { font-size: 7.6pt; line-height: 1.25; min-height: 8mm; }
-  figcaption span { color: #4C5A54; }
-  .cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5mm; height: 27mm; align-items: end; margin-top: 1mm; }
-  .col { display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; height: 100%; text-align: center; font-size: 6.8pt; }
-  .col .t { font-weight: 700; font-variant-numeric: tabular-nums; }
-  .col .b { display: block; border-radius: .8mm .8mm 0 0; flex: none; max-height: calc(100% - 8mm); }
-  .col .y { color: #4C5A54; border-top: .25mm solid #4C5A54; padding-top: .4mm; }
-  .chg { margin: 1mm 0 0; font-size: 7.4pt; font-weight: 800; color: #1E6B4E; }
-  .facts { list-style: none; margin: 0; padding: 0; font-size: 8.2pt; }
-  .facts li { padding: 1.1mm 0; border-bottom: .25mm solid #D7DDD5; }
-  .facts b { font-variant-numeric: tabular-nums; }
-  .disc { font-size: 7.6pt; color: #4C5A54; margin: 4mm 0 0; background: #F2F5EE; border-radius: 1.5mm; padding: 2mm 2.5mm; }
-  table { width: 100%; border-collapse: collapse; font-size: 7.8pt; line-height: 1.22; break-inside: auto; }
-  tr { break-inside: avoid; }
-  th, td { text-align: left; padding: .38mm 1.5mm; border-bottom: .25mm solid #D7DDD5; vertical-align: top; }
-  thead th { font-size: 7.2pt; text-transform: uppercase; letter-spacing: .04em; color: #4C5A54; border-bottom: .4mm solid #4C5A54; }
-  tbody th { font-weight: 500; width: 55%; }
-  .n { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
-  td.n:nth-of-type(2) { font-weight: 700; }
-  .sheet + .sheet h2 { margin: 3mm 0 1mm; }
-  table.kol { font-size: 7.4pt; }
-  table.kol th, table.kol td { padding: .3mm 1.5mm; }
-  .method p { font-size: 7.6pt; color: #4C5A54; margin: 0; }
-  .sign { margin-top: 4mm; border-top: .3mm solid #D6B25E; padding-top: 2mm; font-size: 7.2pt; color: #4C5A54; }
-  @media print { body { background: #fff; } .no-print { display: none; } .sheet { margin: 0; padding: 0; max-width: none; } .sheet + .sheet { break-before: page; } }
-  @media screen and (max-width: 700px) { .tiles, .charts { grid-template-columns: 1fr 1fr; } .two { grid-template-columns: 1fr; } }
-</style>

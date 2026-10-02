@@ -129,3 +129,9 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .kj .timeline li.now::before { background: var(--green); }
 .kj .timeline .d { font-size: .95rem; letter-spacing: .02em; }
 @media (max-width: 640px) { .kj-terms { grid-template-columns: 1fr; } }
+
+/* Kartice statističnih regij (Moja občina) */
+.reg-list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: .4rem 1rem; max-width: none; }
+.reg-list li { border: 1px solid var(--line); border-radius: 10px; padding: .5rem .8rem; background: var(--panel); }
+.reg-list a { font-weight: 700; }
+.reg-list small { color: var(--ink2); }

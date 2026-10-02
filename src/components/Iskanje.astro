@@ -1,0 +1,54 @@
+---
+/**
+ * Iskanje po strani: statični indeks Pagefind (zgradi ga `pagefind --site dist` po `astro build`), brez strežnika in brez sledenja.
+ * Indeksira se samo vsebina <main data-pagefind-body> (Base.astro); skrite strani, 404 in kartice za tisk niso v indeksu.
+ * V razvojnem strežniku (astro dev) indeksa ni.
+ */
+import { withBase } from '../i18n/routes';
+const base = withBase('');
+---
+<link rel="stylesheet" href={withBase('pagefind/pagefind-ui.css')} />
+<div id="iskanje" class="isk" data-base={base}>
+  <noscript><p>Iskanje deluje z JavaScriptom. Brez njega uporabite navigacijo ali <a href={withBase('slovar-izrazov/')}>slovar izrazov</a>.</p></noscript>
+</div>
+<p class="isk-nf" hidden>Iskalnik v tej različici strani ni na voljo (indeks se zgradi ob objavi).</p>
+
+<script is:inline define:vars={{ base }}>
+  (function () {
+    const s = document.createElement('script');
+    s.src = base + 'pagefind/pagefind-ui.js';
+    s.onerror = function () { document.querySelector('.isk-nf').hidden = false; };
+    s.onload = function () {
+      const q = new URLSearchParams(location.search).get('q') || '';
+      const ui = new PagefindUI({
+        element: '#iskanje', baseUrl: base, showSubResults: true, showImages: false, excerptLength: 22, autofocus: true,
+        translations: {
+          placeholder: 'Iščite po strani, npr. toplotna črpalka, Kranj, minimalni standardi',
+          clear_search: 'Počisti', load_more: 'Pokaži več zadetkov', search_label: 'Iskanje po strani',
+          filters_label: 'Filtri', zero_results: 'Za »[SEARCH_TERM]« ni zadetkov.', many_results: '[COUNT] zadetkov za »[SEARCH_TERM]«',
+          one_result: '1 zadetek za »[SEARCH_TERM]«', alt_search: 'Za »[SEARCH_TERM]« ni zadetkov. Prikazani so zadetki za »[DIFFERENT_TERM]«.',
+          search_suggestion: 'Za »[SEARCH_TERM]« ni zadetkov. Poskusite z eno od teh iskanj:', searching: 'Iščem »[SEARCH_TERM]« …',
+        },
+      });
+      if (q) ui.triggerSearch(q);
+    };
+    document.head.appendChild(s);
+  })();
+</script>
+
+<style>
+  .isk {
+    --pagefind-ui-scale: .9;
+    --pagefind-ui-primary: var(--green);
+    --pagefind-ui-text: var(--ink);
+    --pagefind-ui-background: var(--bg);
+    --pagefind-ui-border: var(--line);
+    --pagefind-ui-tag: var(--greenbg);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 10px;
+    --pagefind-ui-font: inherit;
+    margin: 1rem 0 2rem;
+  }
+  .isk :global(.pagefind-ui__result-link) { color: var(--green); }
+  .isk :global(mark) { background: var(--greenbg); color: var(--ink); }
+</style>

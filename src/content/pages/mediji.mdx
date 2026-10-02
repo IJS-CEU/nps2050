@@ -8,8 +8,16 @@ import Tiles from '../../components/Tiles.astro';
 import NapacnaRazumevanja from '../../components/NapacnaRazumevanja.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
 import { loadData } from '../../lib/data';
+import { nf } from '../../lib/format';
 
 export const fe = loadData('kazalniki').items.find((i) => i.id === 'koncna_energija');
+export const pk = loadData('paketi_prenove');
+export const ht = pk.tipi.find((t) => t.id === 'hisa_do1980');
+export const hv = ht.variante.find((v) => v.id === 'olje');
+export const cel = hv.paketi.find((x) => x.id === 'celovita');
+export const zeb = hv.paketi.find((x) => x.id === 'zeb');
+export const r100 = (v) => nf(Math.round(v / 1000) * 1000);
+export const kol = loadData('koledar').vnosi.filter((v) => v.leto !== null && v.leto >= 2027 && v.koga.includes('hise') && !/^(Trajektorija|Najslabše|Energetska revščina)/.test(v.naslov));
 
 ## NPS 2050 na kratko
 
@@ -25,6 +33,24 @@ export const fe = loadData('kazalniki').items.find((i) => i.id === 'koncna_energ
 ## Ključne številke
 
 <Tiles />
+
+### Za lastnike v treh številkah
+
+{/* Vir: public/data/paketi_prenove.json (11.4: stroški Eko sklad 2023–2025, cene SURS 2025) in koledar.json (11.1). */}
+
+<div class="tiles">
+  <div class="tile"><div class="v">{r100(cel.strosek)} €</div><div class="l">stane celovita prenova hiše, zgrajene do leta 1980 ({nf(ht.povrsina)} m², {nf(cel.eur_m2)} €/m²), ki jo pripelje iz razreda {hv.razred_pred} v razred {cel.razred_po}</div></div>
+  <div class="tile"><div class="v">{r100(cel.spodbuda_eko_eur)} → {r100(cel.spodbuda_dod_eur)} €</div><div class="l">spodbuda za tako prenovo danes (Eko sklad) in po predlogu NPS 2050 (ukrep N1, stopnjevane spodbude)</div></div>
+  <div class="tile"><div class="v">{nf(Math.round(cel.prihranek_eur / 100) * 100)} €</div><div class="l">manj stroškov za energijo na leto pri hiši na kurilno olje; celovita ZEB prenova s sončno elektrarno stane okoli {nf(zeb.eur_m2)} €/m²</div></div>
+</div>
+
+**Kdaj kaj začne veljati za lastnike hiš:**
+
+<ul>{kol.map((v) => <li><b>{v.datum}</b>: {v.naslov.charAt(0).toLowerCase() + v.naslov.slice(1)} ({v.status === 'veljavno' ? 'že velja' : 'predlagano'})</li>)}</ul>
+
+Ves koledar: <a href={pageUrl('koledar')}>Koledar 2026–2050</a>; vsi paketi: <a href={pageUrl('paketi')}>Paketi prenove</a>.
+
+Povzetek načrta na šestih straneh za tisk: <a href={withBase('nps2050-povzetek.pdf')}>NPS 2050 v kratkem (PDF)</a>.
 
 ## Pogoste poenostavitve
 

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "data": "python data/build_all.py",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@types/node": "^24.13.6",
+    "pagefind": "^1.5.2",
     "playwright": "^1.63.0"
   }
 }

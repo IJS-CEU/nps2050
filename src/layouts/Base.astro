@@ -36,6 +36,7 @@ const canonical = abs(Astro.url.pathname);
     <link rel="icon" href={withBase('favicon.svg')} type="image/svg+xml" />
     <meta name="color-scheme" content="light dark" />
     <link rel="canonical" href={canonical} />
+    <link rel="sitemap" type="application/xml" href={withBase('sitemap.xml')} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="sl_SI" />
     <meta property="og:site_name" content={`NPS 2050 – ${ui.siteSub}`} />
@@ -59,7 +60,7 @@ const canonical = abs(Astro.url.pathname);
   <body>
     <a class="skip" href="#vsebina">{ui.skip}</a>
     <Header page={page} />
-    <main id="vsebina" tabindex="-1">
+    <main id="vsebina" tabindex="-1" data-pagefind-body={noindex ? undefined : ''}>
       <slot />
     </main>
     <Footer />

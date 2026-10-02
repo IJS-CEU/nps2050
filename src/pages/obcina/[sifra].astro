@@ -11,6 +11,7 @@ import Icon from '../../components/Icon.astro';
 import Stolpci from '../../components/Stolpci.astro';
 import { loadData, type ObSkupine, type Obcina, type ObcineIndex, type ObcineModel } from '../../lib/data';
 import { nf } from '../../lib/format';
+import { regijaSlug } from '../../lib/regije';
 
 export function getStaticPaths() {
   const d = loadData<ObcineIndex>('obcine_index');
@@ -126,7 +127,7 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
 ---
 <Base page="obcine" title={title} description={description}>
   <div class="wrap page-head">
-    <p class="ob-crumb"><a href={pageUrl('obcine')}>Moja občina</a> / {o.region_name}</p>
+    <p class="ob-crumb"><a href={pageUrl('obcine')}>Moja občina</a> / <a href={withBase(`regija/${regijaSlug(o.region_name)}/`)} title="Kartica regije">{o.region_name}</a></p>
     <h1>{o.name}</h1>
     <p class="lead">Stavbe, raba energije, emisije in cilji NPS 2050 v občini {o.name}, v primerjavi s sosednjimi in podobnimi občinami ter s Slovenijo.</p>
   </div>
@@ -444,7 +445,7 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
 
     <div class="card green ob-lek" id="lek">
       <p><strong>Energetsko-podnebna kartica občine: stavbe.</strong> Stanje, energenti, energijski razredi in pot do leta 2050; kaj cilji NPS 2050 pomenijo za občino v številkah, s koledarjem za občine; podatki za lokalni energetski koncept (LEK); za tisk ali kot PDF in v obliki CSV. Kartica je intelektualna lastnina IJS CEU; uporaba je dovoljena z navedbo vira, brez predelave in brez komercialne uporabe (CC BY-NC-ND 4.0).</p>
-      <p><a class="btn primary" href={withBase(`obcina/${o.sifra}/lek/`)}>Kartica za tisk / PDF</a> <a class="btn" href={withBase(`obcina/${o.sifra}/lek.csv`)} download={`NPS2050_${o.name}_LEK.csv`}>CSV</a> <a class="btn" href={withBase(`data/paket/obcina-${o.sifra}.zip`)} download={`NPS2050_${o.name}_paket.zip`}>Podatkovni paket (ZIP)</a></p>
+      <p><a class="btn primary" href={withBase(`obcina/${o.sifra}/lek/`)}>Kartica za tisk / PDF</a> <a class="btn" href={withBase(`obcina/${o.sifra}/lek.csv`)} download={`NPS2050_${o.name}_LEK.csv`}>CSV</a> <a class="btn" href={withBase(`data/paket/obcina-${o.sifra}.zip`)} download={`NPS2050_${o.name}_paket.zip`}>Podatkovni paket (ZIP)</a> <a class="btn" href={withBase(`regija/${regijaSlug(o.region_name)}/`)}>Kartica regije {o.region_name}</a></p>
       <p class="note">Podatkovni paket vsebuje vse kazalnike občine s primerjavo s sosednjimi občinami, skupino in Slovenijo, podatke v obliki JSON, slovar polj in metapodatke.</p>
     </div>
     <div class="card ob-more">

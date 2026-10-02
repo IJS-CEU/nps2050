@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import { pageUrl } from '../i18n/routes';
 import { ui } from '../i18n/ui';
 ---
-<Base title="404" description={ui.notFound}>
+<Base title="404" description={ui.notFound} noindex>
   <div class="wrap page-head">
     <h1>404</h1>
     <p class="lead">{ui.notFound} <a href={pageUrl('domov')}>{ui.backHome}</a></p>
