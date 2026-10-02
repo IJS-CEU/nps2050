@@ -560,7 +560,10 @@ def build(ctx: Context) -> dict:
                 'w_nres_reg_pct': v['worst']['nres_reg_pct'], 'w_nres_reg_n': v['worst']['nres_reg_n'], 'pop': a['pop']}
     for r in ix['municipalities']:
         r.update(idx_fields(out[str(r['sifra'])]))
+        st = out[str(r['sifra'])]['stevilke']  # semafor tempa prenove (11.7) za zemljevide
+        r.update({'t_semafor': st['semafor'], 't_indeks': st['indeks_tempo'], 't_dej_pct': st['stopnja_dejanska_pct'], 't_zah_pct': st['stopnja_zahtevana_pct'], 't_n': st['prenov_registri']})
     ix['si'].update(idx_fields(data['si']))
+    ix['si'].update({'t_dej_pct': data['si']['stevilke']['stopnja_dejanska_pct'], 't_zah_pct': data['si']['stevilke']['stopnja_zahtevana_pct'], 't_semafor_n': data['si']['stevilke']['semafor']})
     write_json('obcine_index', ix)
     write_csv('obcine_kazalniki', ['občina', 'šifra', 'prebivalci', 'končna energija vseh stavb [GWh]', 'stanovanjske [GWh]', 'nestanovanjske [GWh]',
                                    'končna energija na prebivalca [MWh]', 'stanovanjske na prebivalca [MWh]', 'emisije TGP [kt CO2 ekv]', 'emisije na prebivalca [t]',

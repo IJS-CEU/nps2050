@@ -26,6 +26,9 @@ const d = loadData<ObcineIndex>('obcine_index');
           <option value="w_res_reg_pct">Stanovanjske v skupini 43 % – stavbe z izkaznico</option>
           <option value="w_nres_reg_pct">Nestanovanjske nad pragom 2030 – stavbe z izkaznico</option>
         </optgroup>
+        <optgroup label="Tempo prenove (registri 2023–2025)">
+          <option value="t_semafor">Na poti ali pod ciljem (semafor)</option>
+        </optgroup>
         <optgroup label="Vse stavbe – primerjava občin (ocena)">
           <option value="k_fe_mwh_preb">Raba končne energije na prebivalca</option>
           <option value="k_tgp_t_preb">Emisije TGP na prebivalca</option>
@@ -46,6 +49,10 @@ const d = loadData<ObcineIndex>('obcine_index');
         </optgroup>
       </select>
     </label>
+    <div class="ob-raven" role="group" aria-label="Prikaz po občinah ali regijah" hidden>
+      <button type="button" data-r="obcine" aria-pressed="true">Občine</button>
+      <button type="button" data-r="regije" aria-pressed="false">Regije</button>
+    </div>
   </Fragment>
   <Fragment slot="caption">
     <p id="ob-cap">Barve so razdeljene v pet razredov s podobnim številom občin. Kazalniki z oceno so izračunani z modelom (metoda je opisana spodaj).</p>
@@ -58,6 +65,10 @@ const d = loadData<ObcineIndex>('obcine_index');
 
 <style>
   .ob-sel { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+  .ob-raven { display: inline-flex; gap: .3rem; margin-left: .8rem; }
+  .ob-raven[hidden] { display: none; }
+  .ob-raven button { font: inherit; font-size: .82rem; font-weight: 700; padding: .25rem .75rem; border-radius: 999px; border: 1px solid var(--ink2); background: transparent; color: var(--ink2); cursor: pointer; }
+  .ob-raven button[aria-pressed='true'] { background: var(--green); border-color: var(--green); color: var(--on-green); }
   .ob-sel select { font: inherit; font-size: .9rem; padding: .35rem .5rem; border: 1px solid var(--ink2); border-radius: 6px; background: var(--panel); color: var(--ink); max-width: 100%; }
 </style>
 
@@ -81,6 +92,7 @@ const d = loadData<ObcineIndex>('obcine_index');
     es_res_any_pct: { label: 'Stanovanjske stavbe z ukrepom Eko sklada', si: (d) => d.si.es_res_any_pct, cap: 'Delež stanovanjskih stavb z vsaj eno naložbo, ki jo je podprl Eko sklad (izolacija, okna, ogrevanje, sončna elektrarna, prezračevanje).' },
     obnova_res_pct: { label: 'Stanovanjske stavbe z vpisano obnovo', si: (d) => d.si.obnova_res_pct, cap: 'Delež stanovanjskih stavb, pri katerih je v katastru vpisano leto obnove strehe, fasade ali oken.' },
     model_fe_kwh_m2: { label: 'Ocenjena raba končne energije na m²', si: (d) => d.si.model_fe_kwh_m2, unit: ' kWh/m²', cap: 'Ocena modela: letna raba končne energije v stanovanjskih stavbah na m² uporabne površine (ogrevanje, topla voda, prezračevanje, razsvetljava).' },
+    t_semafor: { label: 'Tempo prenove stanovanjskih stavb', si: () => null, cap: 'Semafor: ali se stanovanjske stavbe prenavljajo vsaj s sorazmernim deležem cilja NPS 2050. Tempo prenove (delež stanovanjske površine z vpisano obnovo fasade, strehe ali oken v katastru ali ukrepom Eko sklada na ovoju, 2023–2025) je primerjan s slovenskim; »na poti«, če je razmerje vsaj tolikšno kot razmerje zahtevanega tempa občine in Slovenije. Semafor je relativen: Slovenija kot celota se prenavlja s približno polovico potrebnega tempa. »Ni podatka« pri manj kot 10 prenovah v treh letih.' },
     model_above43_pct: { label: 'Ocenjena površina nad pragom 43 %', si: (d) => d.si.model_above43_pct, cap: 'Ocena modela: delež stanovanjske površine nad pragom 43 % energetsko najmanj učinkovitih stavb.' },
   };
 
@@ -95,16 +107,62 @@ const d = loadData<ObcineIndex>('obcine_index');
   }
 
   async function init(fig: HTMLElement) {
-    const [d, geo] = await Promise.all([get('obcine_index.json'), get('zemljevid_obcine.geojson')]) as [ObcineIndex, any];
+    const [d, geo, rgeo, rg] = await Promise.all([get('obcine_index.json'), get('zemljevid_obcine.geojson'), get('zemljevid_regije.geojson'), get('regije.json')]) as [ObcineIndex, any, any, any];
     echarts.registerMap('nps-obcine-ob', geo);
+    echarts.registerMap('nps-regije-ob', rgeo);
+    const regByName: Record<string, any> = Object.fromEntries(Object.values(rg.regions).map((r: any) => [r.name, r]));
+    const slug = (n: string) => n.toLowerCase().replace(/č/g, 'c').replace(/š/g, 's').replace(/ž/g, 'z').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const SEM = ['ni podatka', 'pod ciljem', 'na poti'];
+    let raven: 'obcine' | 'regije' = 'obcine';
     const byName: Record<string, ObIndexRow> = Object.fromEntries(d.municipalities.map((m) => [m.name, m]));
     let metric = 'w_res_model_pct';
     const cap = fig.querySelector<HTMLElement>('#ob-cap')!;
     const capBase = cap.textContent!;
 
+    const renderSem = (t: Tokens, o: Record<string, any>, cs: CSSStyleDeclaration) => {
+      const col = [t.grid, cs.getPropertyValue('--amber').trim(), cs.getPropertyValue('--green').trim()];
+      const reg = raven === 'regije';
+      const rows: { name: string; sem: string; ix: number | null; dej: number | null; zah: number | null; extra?: string }[] = reg
+        ? Object.values(rg.regions).map((r: any) => ({ name: r.name, sem: r.stevilke.semafor, ix: r.stevilke.indeks_tempo, dej: r.stevilke.stopnja_dejanska_pct, zah: r.stevilke.stopnja_zahtevana_pct,
+          extra: `Občine: ${r.stevilke.obcine_semafor['na poti']} na poti, ${r.stevilke.obcine_semafor['pod ciljem']} pod ciljem, ${r.stevilke.obcine_semafor['ni podatka']} brez podatka` }))
+        : d.municipalities.map((m) => ({ name: m.name, sem: m.t_semafor, ix: m.t_indeks, dej: m.t_dej_pct, zah: m.t_zah_pct }));
+      const cnt = (k: string) => rows.filter((r) => r.sem === k).length;
+      const byN = Object.fromEntries(rows.map((r) => [r.name, r]));
+      return {
+        ...o,
+        legend: { show: false },
+        tooltip: {
+          ...o.tooltip, trigger: 'item',
+          formatter: (p: any) => {
+            const r = byN[p.name]; if (!r) return '';
+            return tipTitle(reg ? `${r.name} regija` : r.name) + tipRow(col[SEM.indexOf(r.sem)], 'Tempo prenove', r.sem, 'rect')
+              + (r.dej !== null ? `<div>Prenova ${nf(r.dej, 2)} % stanovanjske površine na leto, sorazmerni delež cilja ${nf(r.zah, 2)} %</div>` : '')
+              + (r.ix !== null ? `<div>Indeks tempa ${nf(r.ix, 2)} (1 = sorazmerni delež; Slovenija ${nf(d.si.t_dej_pct, 2)} % na leto)</div>` : '')
+              + (r.extra ? `<div>${r.extra}</div>` : '')
+              + `<div style="opacity:.75;margin-top:2px">klik odpre ${reg ? 'kartico regije' : 'stran občine'}</div>`;
+          },
+        },
+        visualMap: {
+          type: 'piecewise', inverse: true, orient: t.narrow ? 'vertical' : 'horizontal', left: 0, ...(t.narrow ? { top: 262 } : { bottom: 0 }), itemWidth: 14, itemHeight: 10, itemGap: 14,
+          pieces: [0, 1, 2].map((v) => ({ value: v, color: col[v], label: `${SEM[v]} (${cnt(SEM[v])})` })),
+          textStyle: { color: t.ink2, fontFamily: t.font, fontSize: 11 }, selectedMode: false,
+        },
+        series: [{
+          type: 'map', map: reg ? 'nps-regije-ob' : 'nps-obcine-ob', aspectScale: 0.72, roam: false, showLegendSymbol: false, selectedMode: false,
+          layoutCenter: ['50%', t.narrow ? '31%' : '46%'],
+          layoutSize: Math.round(Math.min(t.width * 0.98, (t.narrow ? 290 : 520) * 1.54)),
+          itemStyle: { borderColor: t.panel, borderWidth: reg ? 1.5 : 0.5 },
+          emphasis: { label: { show: reg }, itemStyle: { areaColor: t.s.ref, borderColor: t.ink, borderWidth: 1.5 } },
+          label: { show: reg && !t.narrow, color: '#fff', fontFamily: t.font, fontSize: 11, fontWeight: 700, textBorderColor: 'rgba(0,0,0,.6)', textBorderWidth: 3 },
+          data: rows.map((r) => ({ name: r.name, value: SEM.indexOf(r.sem) })),
+        }],
+      };
+    };
+
     const render = (t: Tokens) => {
       const o = base(t) as Record<string, any>;
       const cs = getComputedStyle(document.documentElement);
+      if (metric === 't_semafor') return renderSem(t, o, cs);
       const ramp = [1, 2, 3, 4, 5].map((i) => cs.getPropertyValue(`--map-${i}`).trim());
       const U = METRIC[metric].unit ?? ' %';
       const D = METRIC[metric].dec ?? 0;
@@ -152,10 +210,22 @@ const d = loadData<ObcineIndex>('obcine_index');
     };
 
     const mo = mount(fig, render);
-    mo.chart.on('click', (p: any) => { const m = byName[p.name]; if (m) location.href = `${b}obcina/${m.sifra}/`; });
+    mo.chart.on('click', (p: any) => {
+      if (metric === 't_semafor' && raven === 'regije') { if (regByName[p.name]) location.href = `${b}regija/${slug(p.name)}/`; return; }
+      const m = byName[p.name]; if (m) location.href = `${b}obcina/${m.sifra}/`;
+    });
     const sel = fig.querySelector<HTMLSelectElement>('#ob-mera')!;
-    sel.addEventListener('change', () => { metric = sel.value; cap.textContent = `${METRIC[metric].cap} ${capBase}`; mo.redraw(); });
-    cap.textContent = `${METRIC[metric].cap} ${capBase}`;
+    const rv = fig.querySelector<HTMLElement>('.ob-raven')!;
+    const rbtn = [...rv.querySelectorAll<HTMLButtonElement>('button')];
+    const capFor = () => `${METRIC[metric].cap} ${metric === 't_semafor' ? (raven === 'regije' ? 'Regija: seštevek občin; klik odpre kartico regije.' : 'Klik odpre stran občine.') : capBase}`;
+    const setMetric = (v: string) => { metric = v; sel.value = v; rv.hidden = v !== 't_semafor'; if (v !== 't_semafor') raven = 'obcine'; rbtn.forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.r === raven))); cap.textContent = capFor(); mo.redraw(); };
+    sel.addEventListener('change', () => setMetric(sel.value));
+    rbtn.forEach((x) => x.addEventListener('click', () => { raven = x.dataset.r as 'obcine' | 'regije'; setMetric('t_semafor'); }));
+    // ?kazalnik=t_semafor&raven=regije odpre zemljevid semaforja (povezava z naslovnice in kartic)
+    const qs = new URLSearchParams(location.search);
+    if (qs.get('raven') === 'regije') raven = 'regije';
+    if (qs.get('kazalnik') && METRIC[qs.get('kazalnik')!]) setMetric(qs.get('kazalnik')!);
+    cap.textContent = capFor();
   }
 
   const fig = document.getElementById('graf-obcine');

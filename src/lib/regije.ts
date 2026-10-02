@@ -11,7 +11,7 @@ export interface Regija {
   pot: Record<'2023' | '2030' | '2040' | '2050', { fe_gwh: number; tgp_kt: number; ove_pct: number; fossil_pct: number }>;
   cilji: { prenova_m2_leto: Record<'2026_2030' | '2031_2040', number>; wpb_m2_leto: number; meps_n_2030: number; elko_gwh: number[]; plin_gwh: number[] };
   stevilke: { hise_leto: number; stanovanja_leto: number; javne_leto: number; zasebne_leto: number; nalozba_eur_leto: number; spodbude_eur_leto: number;
-    semafor: string; stopnja_dejanska_pct: number; stopnja_zahtevana_pct: number; prenov_registri: number; obcine_semafor: Record<string, number> };
+    semafor: string; indeks_tempo: number | null; stopnja_dejanska_pct: number; stopnja_zahtevana_pct: number; prenov_registri: number; obcine_semafor: Record<string, number> };
   obcine: RegObcina[];
 }
 

@@ -26,6 +26,10 @@ const METRICS = [
   { id: 'tgp', k: 'k_tgp_t_preb', btn: 'Emisije', dec: 2, unit: ' t', br: quint('k_tgp_t_preb', 2), cap: 'Emisije toplogrednih plinov iz stavb na prebivalca na leto (t CO₂ ekv.)' },
   { id: 'dh', k: 'k_dh_fe_pct', btn: 'Daljinsko ogrevanje', dec: 0, unit: ' %', br: [1, 10, 20, 35], cap: 'Potencial za daljinsko ogrevanje: delež končne energije goriv in daljinske toplote na območjih z gostoto vsaj 250 MWh/ha' },
 ] as const;
+// Semafor tempa prenove (11.7, relativni): kategorije namesto kvintilov.
+const SEM = ['na poti', 'pod ciljem', 'ni podatka'] as const;
+const semN = Object.fromEntries(SEM.map((k) => [k, ix.municipalities.filter((m) => m.t_semafor === k).length]));
+const TABS = [...METRICS.map((m) => ({ id: m.id, btn: m.btn })), { id: 'tempo', btn: 'Tempo prenove' }];
 const cls = (v: number, br: readonly number[]) => br.filter((b) => v > b).length + 1;
 const lab = (m: (typeof METRICS)[number]) => { const f = (v: number) => nf(v, m.dec); return [`do ${f(m.br[0])}${m.unit}`, `${f(m.br[0])}–${f(m.br[1])}${m.unit}`, `${f(m.br[1])}–${f(m.br[2])}${m.unit}`, `${f(m.br[2])}–${f(m.br[3])}${m.unit}`, `nad ${f(m.br[3])}${m.unit}`]; };
 const GETS = [
@@ -58,12 +62,12 @@ const sorted = [...ix.municipalities].sort((a, b) => a.name.localeCompare(b.name
   </div>
   <figure class="mo-map" data-m="ove">
     <div class="mo-tabs js-only" role="group" aria-label="Kazalnik na zemljevidu">
-      {METRICS.map((m, i) => <button type="button" data-m={m.id} aria-pressed={i === 0 ? 'true' : 'false'}>{m.btn}</button>)}
+      {TABS.map((m, i) => <button type="button" data-m={m.id} aria-pressed={i === 0 ? 'true' : 'false'}>{m.btn}</button>)}
     </div>
     <svg viewBox={`0 0 ${mini.w} ${mini.h}`} aria-hidden="true" focusable="false">
       {ix.municipalities.map((m) => (
         <a href={withBase(`obcina/${m.sifra}/`)} tabindex="-1">
-          <path d={mini.paths[String(m.sifra)]} class={METRICS.map((x) => `${x.id}${cls(m[x.k], x.br)}`).join(' ')} data-n={m.name} data-v={METRICS.map((x) => `${nf(m[x.k], x.dec)}${x.unit}`).join('|')}><title>{m.name}: {nf(m.k_ove_pct, 0)} %</title></path>
+          <path d={mini.paths[String(m.sifra)]} class={[...METRICS.map((x) => `${x.id}${cls(m[x.k], x.br)}`), `tempo${SEM.indexOf(m.t_semafor) + 1}`].join(' ')} data-n={m.name} data-v={[...METRICS.map((x) => `${nf(m[x.k], x.dec)}${x.unit}`), `tempo prenove ${m.t_semafor}`].join('|')}><title>{m.name}: {nf(m.k_ove_pct, 0)} %</title></path>
         </a>
       ))}
     </svg>
@@ -74,6 +78,10 @@ const sorted = [...ix.municipalities].sort((a, b) => a.name.localeCompare(b.name
           {m.cap} (ocena modela). Kliknite občino.
         </span>
       ))}
+      <span class="mo-cap" data-m="tempo">
+        <span class="mo-leg">{SEM.map((k, i) => <span><i class={`mo-t${i + 1}`}></i>{k} ({semN[k]})</span>)}</span>
+        Ali se stanovanjske stavbe prenavljajo vsaj s sorazmernim deležem cilja NPS 2050 (registri 2023–2025, primerjava s Slovenijo; Slovenija kot celota je pri približno polovici potrebnega tempa). Kliknite občino ali odprite <a href={`${pageUrl('obcine')}?kazalnik=t_semafor&raven=regije#graf-obcine`}>zemljevid regij</a>.
+      </span>
     </figcaption>
   </figure>
 </section>
@@ -106,8 +114,10 @@ const sorted = [...ix.municipalities].sort((a, b) => a.name.localeCompare(b.name
   .mo-map[data-m="fe"] path.fe1 { fill: var(--map-1); } .mo-map[data-m="fe"] path.fe2 { fill: var(--map-2); } .mo-map[data-m="fe"] path.fe3 { fill: var(--map-3); } .mo-map[data-m="fe"] path.fe4 { fill: var(--map-4); } .mo-map[data-m="fe"] path.fe5 { fill: var(--map-5); }
   .mo-map[data-m="tgp"] path.tgp1 { fill: var(--map-1); } .mo-map[data-m="tgp"] path.tgp2 { fill: var(--map-2); } .mo-map[data-m="tgp"] path.tgp3 { fill: var(--map-3); } .mo-map[data-m="tgp"] path.tgp4 { fill: var(--map-4); } .mo-map[data-m="tgp"] path.tgp5 { fill: var(--map-5); }
   .mo-map[data-m="dh"] path.dh1 { fill: var(--map-1); } .mo-map[data-m="dh"] path.dh2 { fill: var(--map-2); } .mo-map[data-m="dh"] path.dh3 { fill: var(--map-3); } .mo-map[data-m="dh"] path.dh4 { fill: var(--map-4); } .mo-map[data-m="dh"] path.dh5 { fill: var(--map-5); }
+  .mo-t1 { background: var(--green); } .mo-t2 { background: var(--amber); } .mo-t3 { background: var(--line); }
+  .mo-map[data-m="tempo"] path.tempo1 { fill: var(--green); } .mo-map[data-m="tempo"] path.tempo2 { fill: var(--amber); } .mo-map[data-m="tempo"] path.tempo3 { fill: var(--line); }
   .mo-cap { display: none; }
-  .mo-map[data-m="ove"] .mo-cap[data-m="ove"], .mo-map[data-m="fe"] .mo-cap[data-m="fe"], .mo-map[data-m="tgp"] .mo-cap[data-m="tgp"], .mo-map[data-m="dh"] .mo-cap[data-m="dh"] { display: block; }
+  .mo-map[data-m="ove"] .mo-cap[data-m="ove"], .mo-map[data-m="fe"] .mo-cap[data-m="fe"], .mo-map[data-m="tgp"] .mo-cap[data-m="tgp"], .mo-map[data-m="dh"] .mo-cap[data-m="dh"], .mo-map[data-m="tempo"] .mo-cap[data-m="tempo"] { display: block; }
   .mo-tabs { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .7rem; }
   .mo-tabs button { font: inherit; font-size: .82rem; font-weight: 700; padding: .3rem .8rem; border-radius: 999px; border: 1px solid var(--ink2); background: transparent; color: var(--ink2); cursor: pointer; }
   .mo-tabs button[aria-pressed='true'] { background: var(--green); border-color: var(--green); color: var(--on-green); }

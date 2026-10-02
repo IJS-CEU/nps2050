@@ -58,6 +58,13 @@ const r100 = (v: number) => nf(Math.round(v / 100) * 100);
 const mio = (v: number) => `${nf(v / 1e6, v >= 1e8 ? 0 : 1)} mio €`;
 const gwh = (a: number[]) => a.map((v) => nf(v, 0)).join(' → ');
 const os = st.obcine_semafor;
+// Mini zemljevid občin v regiji po semaforju (poti iz obcine_mini.json, izrez na regijo)
+const mini = loadData<{ w: number; h: number; paths: Record<string, string> }>('obcine_mini');
+const mPaths = r.obcine.map((o) => ({ o, d: mini.paths[String(o.sifra)] ?? '' }));
+const xy = mPaths.flatMap(({ d: p }) => [...p.matchAll(/(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/g)].map((m) => [Number(m[1]), Number(m[2])]));
+const [x0, x1, y0, y1] = [Math.min(...xy.map((p) => p[0])), Math.max(...xy.map((p) => p[0])), Math.min(...xy.map((p) => p[1])), Math.max(...xy.map((p) => p[1]))];
+const pad = 4, vb = `${x0 - pad} ${y0 - pad} ${x1 - x0 + 2 * pad} ${y1 - y0 + 2 * pad}`;
+const SEMC: Record<string, string> = { 'na poti': '#1E6B4E', 'pod ciljem': '#C98A1B', 'ni podatka': '#D7DDD5' };
 const site = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
 ---
 <!doctype html>
@@ -129,9 +136,9 @@ const site = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
           </ul>
         </section>
         <section>
-          <h2>Tempo prenove in fosilna goriva <span>raba na prebivalca: {rankOf((x) => x.vse.fe_mwh_preb.total)}. od 12 regij (1. = najnižja)</span></h2>
+          <h2>Tempo prenove in fosilna goriva</h2>
           <ul class="facts">
-            <li><b>{st.semafor}</b>: {nf(st.stopnja_dejanska_pct, 2)} % stanovanjske površine na leto (registri 2023–2025), zahtevano {nf(st.stopnja_zahtevana_pct, 2)} %; na poti {os['na poti']} od {r.n_obcin} občin</li>
+            <li><b>{st.semafor}</b>: {nf(st.stopnja_dejanska_pct, 2)} % stanovanjske površine na leto (registri 2023–2025), zahtevano {nf(st.stopnja_zahtevana_pct, 2)} %; na poti {os['na poti']} od {r.n_obcin} občin. Raba energije na prebivalca: {rankOf((x) => x.vse.fe_mwh_preb.total)}. najnižja od 12 regij.</li>
             <li>Kurilno olje <b>{gwh(ci.elko_gwh.slice(0, 3))} GWh</b>, plin <b>{gwh(ci.plin_gwh.slice(0, 3))} GWh</b> (2023 → 2030 → 2040)</li>
             <li><b>{nf(r.dh_pot.fe_pct, 0)} %</b> goriv in daljinske toplote na gostoti ≥ 250 MWh/ha (Slovenija {nf(ms.dh_pot.fe_pct, 0)} %)</li>
           </ul>
@@ -148,11 +155,21 @@ const site = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
         <p class="h1b">{r.name} statistična regija</p>
         <p class="sub">ključni kazalniki po občinah (stanje 2023, ocena modela IJS CEU) in tempo prenove (registri 2023–2025); podrobnosti na karticah občin</p>
       </header>
+      <section class="reg-map">
+        <svg viewBox={vb} role="img" aria-label={`Občine v regiji po tempu prenove: ${os['na poti']} na poti, ${os['pod ciljem']} pod ciljem, ${os['ni podatka']} brez podatka`}>
+          {mPaths.map(({ o, d: pp }) => <path d={pp} fill={SEMC[o.semafor]} stroke="#fff" stroke-width={Math.max(0.4, (x1 - x0) / 300)}><title>{o.name}: {o.semafor}</title></path>)}
+        </svg>
+        <div>
+          <h2>Tempo prenove po občinah</h2>
+          <ul class="leg">{Object.entries(SEMC).map(([k, c]) => <li><i style={`background:${c}`}></i>{k} ({os[k]})</li>)}</ul>
+          <p class="reg-n">Ali se stanovanjske stavbe v občini prenavljajo vsaj s sorazmernim deležem cilja NPS 2050 (registri 2023–2025, primerjava s slovenskim tempom). Semafor je relativen: Slovenija kot celota se prenavlja s {nf(ms.stevilke.stopnja_dejanska_pct, 2)} % površine na leto, potrebnih je {nf(ms.stevilke.stopnja_zahtevana_pct, 2)} %. Regija: <b>{st.semafor}</b>{st.indeks_tempo !== null && <> (indeks tempa {nf(st.indeks_tempo, 2)}; 1 = sorazmerni delež)</>}.</p>
+        </div>
+      </section>
       <section>
         <table class={`reg-t${r.obcine.length > 30 ? ' dense' : ''}`}>
           <thead><tr><th scope="col">Občina</th><th scope="col" class="n">Prebivalci</th><th scope="col" class="n">MWh/preb.</th><th scope="col" class="n">t CO₂ ekv./preb.</th><th scope="col" class="n">OVE %</th><th scope="col" class="n">Najslabših 43 % *</th><th scope="col">Tempo prenove</th></tr></thead>
           <tbody>
-            {r.obcine.map((o) => <tr><th scope="row"><a href={withBase(`obcina/${o.sifra}/lek/`)}>{o.name}</a></th><td class="n">{nf(o.pop)}</td><td class="n">{nf(o.fe_mwh_preb, 1)}</td><td class="n">{nf(o.tgp_t_preb, 2)}</td><td class="n">{nf(o.ove_pct, 0)}</td><td class="n">{nf(o.above43_area_pct, 0)}</td><td>{o.semafor}</td></tr>)}
+            {[...r.obcine].sort((a, b) => a.name.localeCompare(b.name, 'sl')).map((o) => <tr><th scope="row"><a href={withBase(`obcina/${o.sifra}/lek/`)}>{o.name}</a></th><td class="n">{nf(o.pop)}</td><td class="n">{nf(o.fe_mwh_preb, 1)}</td><td class="n">{nf(o.tgp_t_preb, 2)}</td><td class="n">{nf(o.ove_pct, 0)}</td><td class="n">{nf(o.above43_area_pct, 0)}</td><td><i class="dot" style={`background:${SEMC[o.semafor]}`}></i>{o.semafor}</td></tr>)}
             <tr class="sum"><th scope="row">Regija</th><td class="n">{nf(va.pop)}</td><td class="n">{nf(va.fe_mwh_preb.total, 1)}</td><td class="n">{nf(va.tgp_t_preb.total, 2)}</td><td class="n">{nf(va.ove_pct.total, 0)}</td><td class="n">{nf(r.above43_area_pct, 0)}</td><td>{st.semafor}</td></tr>
             <tr class="sum"><th scope="row">Slovenija</th><td class="n">{nf(vs.pop)}</td><td class="n">{nf(vs.fe_mwh_preb.total, 1)}</td><td class="n">{nf(vs.tgp_t_preb.total, 2)}</td><td class="n">{nf(vs.ove_pct.total, 0)}</td><td class="n">{nf(ms.above43_area_pct, 0)}</td><td></td></tr>
           </tbody>
@@ -176,9 +193,13 @@ const site = (p: string) => (Astro.site ? new URL(p, Astro.site).href : p);
   tr.sum th, tr.sum td { font-weight: 800; border-top: .4mm solid #4C5A54; }
   tbody th a { color: inherit; text-decoration: none; }
   table.reg-t tbody th { width: auto; }
-  table.reg-t.dense { font-size: 7.2pt; }
-  table.reg-t.dense th, table.reg-t.dense td { padding-top: .2mm; padding-bottom: .2mm; }
+  table.reg-t.dense th, table.reg-t.dense td { padding-top: 0; padding-bottom: 0; line-height: 1.15; }
   table.reg-t td:last-child { white-space: nowrap; }
   table.reg-t td.n:nth-of-type(2) { font-weight: 500; }
+  .reg-map { display: grid; grid-template-columns: 62mm 1fr; gap: 5mm; align-items: center; margin: 1mm 0 2mm; }
+  .reg-map svg { width: 62mm; max-height: 44mm; display: block; }
+  .reg-map h2 { margin-top: 0; }
+  i.dot { display: inline-block; width: 2.2mm; height: 2.2mm; border-radius: 50%; margin-right: 1.2mm; vertical-align: -.1mm; }
+  table.reg-t.dense { font-size: 7pt; }
   .reg-n { font-size: 7.4pt; color: #4C5A54; margin: 1mm 0 0; }
 </style>

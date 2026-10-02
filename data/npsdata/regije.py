@@ -70,7 +70,7 @@ def build(ctx: Context) -> dict:
             'stevilke': {'hise_leto': sum(x['hise_leto'] or 0 for x in st), 'stanovanja_leto': sum(x['stanovanja_leto'] or 0 for x in st),
                          'javne_leto': sum(x['javne_leto'] or 0 for x in st), 'zasebne_leto': sum(x['zasebne_leto'] or 0 for x in st),
                          'nalozba_eur_leto': round(sum(x['nalozba_eur_leto'] for x in st), -5), 'spodbude_eur_leto': round(sum(x['spodbude_eur_leto'] for x in st), -5),
-                         'semafor': sem, 'stopnja_dejanska_pct': round(act, 2), 'stopnja_zahtevana_pct': round(req, 2), 'prenov_registri': n_ren,
+                         'semafor': sem, 'indeks_tempo': None if sem == 'ni podatka' else round((act / act_si) / (req / req_si), 2), 'stopnja_dejanska_pct': round(act, 2), 'stopnja_zahtevana_pct': round(req, 2), 'prenov_registri': n_ren,
                          'obcine_semafor': {k: sum(1 for x in st if x['semafor'] == k) for k in ('na poti', 'pod ciljem', 'ni podatka')}},
             'obcine': sorted([{'sifra': int(s), 'name': m['name'], 'pop': m['vse']['pop'], 'fe_mwh_preb': m['vse']['fe_mwh_preb']['total'],
                                'tgp_t_preb': m['vse']['tgp_t_preb']['total'], 'ove_pct': m['vse']['ove_pct']['total'],
