@@ -1,0 +1,102 @@
+---
+/**
+ * 11.4 Tipični paketi prenove: za izbrani tip stavbe primerjava delne, celovite in celovite ZEB prenove.
+ * Vse številke iz public/data/paketi_prenove.json (cevovod data/npsdata/paketi.py). Brez JavaScripta so prikazani vsi tipi.
+ */
+import { loadData } from '../lib/data';
+import { nf } from '../lib/format';
+import Icon from './Icon.astro';
+
+type Paket = { id: string; ime: string; na_voljo: boolean; opomba?: string; ukrepi?: string[]; eur_m2?: number; eur_m2_p25?: number | null; eur_m2_p75?: number | null; n?: number | null;
+  vir_stroska?: string; strosek?: number; razred_po?: string; pe_po?: number; prihranek_fe_pct?: number; prihranek_pe_pct?: number; prihranek_eur?: number;
+  spodbuda_osn_pct?: number; spodbuda_dod_pct?: number; spodbuda_razlog?: string | null; spodbuda_dod_eur?: number; vracilo_brez?: number | null; vracilo_osn?: number | null; vracilo_dod?: number | null };
+type Tip = { id: string; ime: string; tip: string; ogrevanje_pred: string; povrsina: number; razred_pred: string; pe_pred: number; n_izkaznic: number; paketi: Paket[] };
+const d = loadData<{ tipi: Tip[]; cene: Record<string, number>; predpostavke: Record<string, any> }>('paketi_prenove');
+const CV: Record<string, string> = { A: 'A1', B: 'B1', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G' };
+const DARK = new Set(['B', 'C', 'D', 'E']);
+const badge = (k: string) => `background:var(--cls-${CV[k]});color:${DARK.has(k) ? '#1B2622' : '#fff'}`;
+const yrs = (v: number | null | undefined) => (v === null || v === undefined ? '–' : `${nf(v, v < 10 ? 1 : 0)} let`);
+const ICON: Record<string, string> = { delna: 'layers', celovita: 'house', zeb: 'sun' };
+const c = d.cene, p = d.predpostavke;
+---
+<div class="pk">
+  <div class="pk-tabs js-only" role="group" aria-label="Tip stavbe">
+    {d.tipi.map((t, i) => <button type="button" data-t={t.id} aria-pressed={i === 0 ? 'true' : 'false'}>{t.ime}</button>)}
+  </div>
+  {d.tipi.map((t, i) => (
+    <section class="pk-t" data-t={t.id} aria-labelledby={`pk-${t.id}`} data-first={i === 0 ? '1' : undefined}>
+      <h2 id={`pk-${t.id}`}>{t.ime}</h2>
+      <p class="pk-pred"><span class="pk-b" style={badge(t.razred_pred)}>{t.razred_pred}</span>
+        Tipično stanje pred prenovo: razred {t.razred_pred} ({nf(t.pe_pred)} kWh/(m²·a) primarne energije), ogrevanje: {t.ogrevanje_pred}, {t.tip === 'SFH' ? 'hiša' : 'stanovanje'} s {nf(t.povrsina)} m² ogrevane površine.</p>
+      <div class="pk-grid">
+        {t.paketi.filter((k) => k.na_voljo).map((k) => (
+          <article class={`pk-c ${k.id}`}>
+            <h3><span class="pk-ic"><Icon name={ICON[k.id]} size={20} /></span>{k.ime}</h3>
+            <ul class="pk-u">{k.ukrepi!.map((u) => <li>{u}</li>)}</ul>
+            <p class="pk-cost"><b>{nf(k.eur_m2)} €/m²</b><span>okoli {nf(k.strosek)} € za tipično {t.tip === 'SFH' ? 'hišo' : 'stanovanje'}{k.eur_m2_p25 && <> · razpon {nf(k.eur_m2_p25)}–{nf(k.eur_m2_p75)} €/m²</>}</span></p>
+            <p class="pk-cls"><span class="pk-b" style={badge(t.razred_pred)}>{t.razred_pred}</span><Icon name="arrow-right" size={18} /><span class="pk-b" style={badge(k.razred_po!)}>{k.razred_po}</span><span>{nf(k.pe_po)} kWh/(m²·a) primarne energije</span></p>
+            <dl class="pk-d">
+              <div><dt>Manj končne energije</dt><dd>{nf(k.prihranek_fe_pct)} %</dd></div>
+              <div><dt>Manj primarne energije</dt><dd>{nf(k.prihranek_pe_pct)} %</dd></div>
+              <div><dt>Prihranek stroškov energije</dt><dd>okoli {nf(k.prihranek_eur)} € na leto</dd></div>
+              <div><dt>Spodbuda po predlogu N1</dt><dd>{nf(k.spodbuda_dod_pct)} % (okoli {nf(k.spodbuda_dod_eur)} €){k.spodbuda_razlog && <small>{k.spodbuda_razlog}</small>}</dd></div>
+              <div><dt>Vračilna doba</dt><dd>{yrs(k.vracilo_brez)} brez spodbude, {yrs(k.vracilo_dod)} s spodbudo</dd></div>
+            </dl>
+            <p class="pk-src">Strošek: {k.vir_stroska}{k.n && <> ({nf(k.n)} {t.tip === 'SFH' ? 'hiš' : 'stavb'})</>}.</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+  <div class="pk-note">
+    <p><strong>Tipične vrednosti, ne izračun za vašo stavbo.</strong> Dejanski strošek in prihranek sta odvisna od stanja stavbe, izvedbe in cen. Za vašo stavbo se posvetujte z energetskim svetovalcem ENSVET.</p>
+    <p>Kako je izračunano: stroški so priznani stroški naložb, ki jih je podprl Eko sklad v letih 2023–2025, na m² ogrevane uporabne površine; pri delni in celoviti prenovi iz stavb, ki so izvedle več ukrepov hkrati, pri celoviti ZEB prenovi iz ukrepa »celovita obnova stanovanjske stavbe« 2024–2025. Stanje pred prenovo je mediana neprenovljenih stavb z energetsko izkaznico. Raba energije po prenovi: osnutek NPS 2050 (preglednica 23) in toplotna črpalka s sezonskim grelnim številom {nf(p.scop, 1)}; pri celoviti ZEB prenovi sončna elektrarna pokrije okoli {nf(100 * p.pv_delez)} % rabe elektrike. Bloki ostanejo na daljinskem ogrevanju.</p>
+    <p>Cene energije za gospodinjstva 2025: kurilno olje {nf(c.kurilno_olje, 3)} €/kWh, elektrika {nf(c.elektrika, 3)} €/kWh (SURS), daljinska toplota {nf(c.daljinska_toplota, 3)} €/kWh (Agencija za energijo, povprečje za stanovanje v bloku). Spodbude po predlogu ukrepa N1 iz osnutka: 30 % osnovno, za razred E 40 %, za razreda F in G ter stavbe med 43 % energetsko najmanj učinkovitih 50 %, za celovito prenovo dodatnih 10 odstotnih točk, največ 70 %. Pri večstanovanjskih stavbah celovite ZEB prenove ne prikazujemo, ker zanjo ni podatkov.</p>
+  </div>
+</div>
+
+<style>
+  .pk-tabs { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0 1.2rem; }
+  .pk-tabs button { font: inherit; font-size: .88rem; font-weight: 700; padding: .45rem .9rem; border-radius: 999px; border: 1px solid var(--ink2); background: transparent; color: var(--ink2); cursor: pointer; }
+  .pk-tabs button[aria-pressed='true'] { background: var(--green); border-color: var(--green); color: var(--on-green); }
+  .pk-t { margin: 0 0 2rem; }
+  .pk-t h2 { margin: 0 0 .5rem; }
+  :global(.js) .pk-t:not([data-on]) { display: none; }
+  .pk-pred { display: flex; gap: .6rem; align-items: center; color: var(--ink2); max-width: none; }
+  .pk-b { flex: none; display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 6px; font-weight: 800; font-size: 1.05rem; }
+  .pk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .pk-c { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--green); border-radius: 14px; padding: 1.1rem 1.2rem; display: grid; gap: .6rem; align-content: start; }
+  .pk-c.zeb { border-top-color: #0B7A45; }
+  .pk-c.delna { border-top-color: var(--line); }
+  .pk-c.na { opacity: .75; border-top-color: var(--line); }
+  .pk-c h3 { display: flex; align-items: center; gap: .5rem; margin: 0; font-size: 1.15rem; }
+  .pk-ic { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 8px; background: var(--greenbg); color: var(--green); }
+  .pk-u { margin: 0; padding-left: 1.1rem; font-size: .88rem; color: var(--ink2); }
+  .pk-cost { display: grid; margin: 0; }
+  .pk-cost b { font-family: var(--font-serif); font-size: 1.7rem; line-height: 1.1; }
+  .pk-cost span { font-size: .82rem; color: var(--ink2); }
+  .pk-cls { display: flex; align-items: center; gap: .4rem; margin: 0; font-size: .82rem; color: var(--ink2); flex-wrap: wrap; }
+  .pk-d { margin: 0; display: grid; gap: .25rem; }
+  .pk-d div { display: flex; justify-content: space-between; gap: .8rem; border-bottom: 1px solid var(--line); padding: .3rem 0; font-size: .86rem; }
+  .pk-d dt { color: var(--ink2); }
+  .pk-d dd { margin: 0; font-weight: 700; text-align: right; }
+  .pk-d dd small { display: block; font-weight: 500; color: var(--ink2); font-size: .76rem; }
+  .pk-src { font-size: .76rem; color: var(--ink2); margin: 0; }
+  .pk-note { font-size: .86rem; color: var(--ink2); border-top: 1px solid var(--line); padding-top: 1rem; }
+  .pk-note p { max-width: 90ch; }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.pk');
+  if (root) {
+    const secs = [...root.querySelectorAll<HTMLElement>('.pk-t')];
+    const btns = [...root.querySelectorAll<HTMLButtonElement>('.pk-tabs button')];
+    const show = (id: string) => {
+      secs.forEach((s) => (s.dataset.t === id ? s.setAttribute('data-on', '') : s.removeAttribute('data-on')));
+      btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.t === id)));
+    };
+    const q = new URL(location.href).searchParams.get('tip');
+    show(secs.some((s) => s.dataset.t === q) ? q! : secs[0].dataset.t!);
+    btns.forEach((b) => b.addEventListener('click', () => { show(b.dataset.t!); const u = new URL(location.href); u.searchParams.set('tip', b.dataset.t!); history.replaceState(null, '', u); }));
+  }
+</script>

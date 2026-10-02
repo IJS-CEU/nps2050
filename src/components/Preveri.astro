@@ -7,6 +7,8 @@
  */
 import { loadData, type Prihranek, type StavbniFond } from '../lib/data';
 import { nf } from '../lib/format';
+import { features } from '../config/features';
+import { pageUrl } from '../i18n/routes';
 
 const d = loadData<StavbniFond>('stavbni_fond');
 const bounds = ['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G'];
@@ -47,6 +49,7 @@ const pr = loadData<Prihranek>('prihranek');
   </form>
 
   <div class="chk-out" id="chk-out" aria-live="polite"></div>
+  {features.paketi && <p class="chk-pk"><a href={pageUrl('paketi')}>Tipični paketi prenove: koliko stane in kaj prinese delna, celovita ali celovita ZEB prenova</a></p>}
 
   <noscript><p>Za interaktivno preverjanje je potreben JavaScript. Pragovi so v preglednici spodaj.</p></noscript>
 
