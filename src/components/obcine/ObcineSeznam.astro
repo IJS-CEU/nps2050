@@ -13,7 +13,7 @@ const cols: { k: keyof (typeof rows)[number]; label: string; pct?: boolean; dec?
   { k: 'ei_area_res_pct', label: 'Z izkaznico', pct: true },
   { k: 'pre1981_res_area_pct', label: 'Pred 1981', pct: true },
   { k: 'es_res_any_pct', label: 'Z ukrepom Eko sklada', pct: true },
-  { k: 'obnova_res_pct', label: 'Vpisana obnova', pct: true },
+  { k: 'obnova_res_since2010_pct', label: 'Vpisana obnova od 2010', pct: true },
 ];
 const cell = (v: unknown, pct?: boolean, dec?: number) => (v === null || v === undefined ? '–' : pct ? `${nf(v as number, 1)} %` : nf(v as number, dec));
 ---
@@ -39,7 +39,7 @@ const cell = (v: unknown, pct?: boolean, dec?: number) => (v === null || v === u
         ))}
       </tbody>
       <tfoot>
-        <tr><th scope="row">Slovenija</th><td class="num">{nf(d.si.buildings)}</td><td class="num">{nf(d.si.k_fe_mwh_preb, 1)}</td><td class="num">{nf(d.si.k_ove_pct, 1)} %</td><td class="num">{nf(d.si.ei_area_res_pct, 1)} %</td><td class="num">{nf(d.si.pre1981_res_area_pct, 1)} %</td><td class="num">{nf(d.si.es_res_any_pct, 1)} %</td><td class="num">{nf(d.si.obnova_res_pct, 1)} %</td></tr>
+        <tr><th scope="row">Slovenija</th><td class="num">{nf(d.si.buildings)}</td><td class="num">{nf(d.si.k_fe_mwh_preb, 1)}</td><td class="num">{nf(d.si.k_ove_pct, 1)} %</td><td class="num">{nf(d.si.ei_area_res_pct, 1)} %</td><td class="num">{nf(d.si.pre1981_res_area_pct, 1)} %</td><td class="num">{nf(d.si.es_res_any_pct, 1)} %</td><td class="num">{nf(d.si.obnova_res_since2010_pct, 1)} %</td></tr>
       </tfoot>
     </table>
   </div>

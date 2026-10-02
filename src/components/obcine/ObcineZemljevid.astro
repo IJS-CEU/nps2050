@@ -45,7 +45,7 @@ const d = loadData<ObcineIndex>('obcine_index');
           <option value="ei_area_res_pct">Pokritost z izkaznicami</option>
           <option value="pre1981_res_area_pct">Zgrajeno pred 1981</option>
           <option value="es_res_any_pct">Ukrepi Eko sklada</option>
-          <option value="obnova_res_pct">Vpisane obnove</option>
+          <option value="obnova_res_since2010_pct">Vpisane obnove od 2010</option>
         </optgroup>
       </select>
     </label>
@@ -90,7 +90,7 @@ const d = loadData<ObcineIndex>('obcine_index');
     ei_area_res_pct: { label: 'Stanovanjska površina z veljavno izkaznico', si: (d) => d.si.ei_area_res_pct, cap: 'Delež uporabne površine stanovanjskih stavb, ki imajo vsaj eno veljavno energetsko izkaznico.' },
     pre1981_res_area_pct: { label: 'Stanovanjska površina, zgrajena pred 1981', si: (d) => d.si.pre1981_res_area_pct, cap: 'Delež uporabne površine stanovanjskih stavb, zgrajenih pred prvimi toplotnimi predpisi (1981).' },
     es_res_any_pct: { label: 'Stanovanjske stavbe z ukrepom Eko sklada', si: (d) => d.si.es_res_any_pct, cap: 'Delež stanovanjskih stavb z vsaj eno naložbo, ki jo je podprl Eko sklad (izolacija, okna, ogrevanje, sončna elektrarna, prezračevanje).' },
-    obnova_res_pct: { label: 'Stanovanjske stavbe z vpisano obnovo', si: (d) => d.si.obnova_res_pct, cap: 'Delež stanovanjskih stavb, pri katerih je v katastru vpisano leto obnove strehe, fasade ali oken.' },
+    obnova_res_since2010_pct: { label: 'Stanovanjske stavbe z vpisano obnovo od 2010', si: (d) => d.si.obnova_res_since2010_pct, dec: 1, cap: 'Delež stanovanjskih stavb, pri katerih je v katastru vpisana obnova strehe, fasade ali oken leta 2010 ali pozneje. Novejše obnove so večinoma povezane z ukrepi za učinkovito rabo energije in obnovljive vire; starejši vpisi pogosto pomenijo le barvanje fasade ali menjavo kritine.' },
     model_fe_kwh_m2: { label: 'Ocenjena raba končne energije na m²', si: (d) => d.si.model_fe_kwh_m2, unit: ' kWh/m²', cap: 'Ocena modela: letna raba končne energije v stanovanjskih stavbah na m² uporabne površine (ogrevanje, topla voda, prezračevanje, razsvetljava).' },
     t_semafor: { label: 'Tempo prenove stanovanjskih stavb', si: () => null, cap: 'Semafor: ali se stanovanjske stavbe prenavljajo vsaj s sorazmernim deležem cilja NPS 2050. Tempo prenove (delež stanovanjske površine z vpisano obnovo fasade, strehe ali oken v katastru ali ukrepom Eko sklada na ovoju, 2023–2025) je primerjan s slovenskim; »na poti«, če je razmerje vsaj tolikšno kot razmerje zahtevanega tempa občine in Slovenije. Semafor je relativen: Slovenija kot celota se prenavlja s približno polovico potrebnega tempa. »Ni podatka« pri manj kot 10 prenovah v treh letih.' },
     model_above43_pct: { label: 'Ocenjena površina nad pragom 43 %', si: (d) => d.si.model_above43_pct, cap: 'Ocena modela: delež stanovanjske površine nad pragom 43 % energetsko najmanj učinkovitih stavb.' },

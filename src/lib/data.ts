@@ -122,7 +122,7 @@ export interface ObArea {
 export interface ObIndexRow {
   sifra: number; eid: string; name: string; region: string; buildings: number; area_k_m2: number;
   ei_area_res_pct: number | null; hise_ei_pct: number | null; res_above43_pct: number | null; es_res_any_pct: number | null;
-  obnova_res_pct: number | null; pre1981_res_area_pct: number | null;
+  obnova_res_pct: number | null; obnova_res_since2010_pct: number | null; pre1981_res_area_pct: number | null;
   model_fe_kwh_m2: number; model_above43_pct: number;
   k_fe_mwh_preb: number; k_res_fe_mwh_preb: number; k_tgp_t_preb: number; k_ove_pct: number; k_nres_kwh_m2: number | null; k_dh_pot_pct: number; k_dh_fe_pct: number; pop: number;
   w_res_model_pct: number | null; w_res_reg_pct: number | null; w_res_reg_n: number; w_nres_reg_pct: number | null; w_nres_reg_n: number;

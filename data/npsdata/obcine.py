@@ -159,7 +159,7 @@ def build(ctx: Context) -> dict:
         index.append({'sifra': sifra, 'eid': eid, 'name': name, 'region': region, 'buildings': a['buildings'], 'area_k_m2': a['area_k_m2'],
                       'ei_area_res_pct': _pct(g[g.seg.isin(['hise', 'bloki']) & g.ei_any].m2.sum(), g[g.seg.isin(['hise', 'bloki'])].m2.sum(), 99, int((g.seg.isin(['hise', 'bloki']) & g.ei_any).sum())),
                       'hise_ei_pct': rs['hise']['ei_buildings_pct'], 'res_above43_pct': a['res_above43_pct'],
-                      'es_res_any_pct': a['es_res_any_pct'], 'obnova_res_pct': a['obnova_res_pct'],
+                      'es_res_any_pct': a['es_res_any_pct'], 'obnova_res_pct': a['obnova_res_pct'], 'obnova_res_since2010_pct': a['obnova_res_since2010_pct'],
                       'pre1981_res_area_pct': _pct(g[g.seg.isin(['hise', 'bloki']) & (g.year < 1981)].m2.sum(), g[g.seg.isin(['hise', 'bloki'])].m2.sum(), 99, int((g.seg.isin(['hise', 'bloki']) & (g.year < 1981)).sum()))})
     ctx.check(len(index) == 212, 'občine: 212 občin')
     ctx.check(sum(x['buildings'] for x in index) == len(df), 'občine: vsota stavb po občinah = vse stavbe')
@@ -179,9 +179,9 @@ def build(ctx: Context) -> dict:
     _mini_map(ob)
     write_csv('obcine', ['občina', 'šifra', 'stavbe', 'površina [tisoč m²]', 'stanovanjska površina z izkaznico [%]', 'hiše z izkaznico [%]',
                          'stanovanjske stavbe z izkaznico nad pragom 43 % [%]', 'stanovanjske stavbe z ukrepom Eko sklada [%]',
-                         'stanovanjske stavbe z vpisano obnovo v katastru [%]', 'stanovanjska površina pred 1981 [%]'],
+                         'stanovanjske stavbe z vpisano obnovo v katastru [%]', 'od tega obnova 2010 ali pozneje [%]', 'stanovanjska površina pred 1981 [%]'],
               [[x['name'], x['sifra'], x['buildings'], x['area_k_m2'], x['ei_area_res_pct'], x['hise_ei_pct'], x['res_above43_pct'],
-                x['es_res_any_pct'], x['obnova_res_pct'], x['pre1981_res_area_pct']] for x in index])
+                x['es_res_any_pct'], x['obnova_res_pct'], x['obnova_res_since2010_pct'], x['pre1981_res_area_pct']] for x in index])
     return data
 
 
