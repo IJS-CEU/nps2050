@@ -1,57 +1,70 @@
 ---
 /**
- * 11.4 Tipični paketi prenove: za izbrani tip stavbe primerjava delne, celovite in celovite ZEB prenove.
- * Vse številke iz public/data/paketi_prenove.json (cevovod data/npsdata/paketi.py). Brez JavaScripta so prikazani vsi tipi.
+ * 11.4 Tipični paketi prenove: za izbrani tip stavbe in ogrevanje primerjava delne, celovite in celovite ZEB prenove.
+ * Vse številke iz public/data/paketi_prenove.json (cevovod data/npsdata/paketi.py). Brez JavaScripta so prikazane vse različice.
  */
 import { loadData } from '../lib/data';
 import { nf } from '../lib/format';
 import Icon from './Icon.astro';
 
-type Paket = { id: string; ime: string; na_voljo: boolean; opomba?: string; ukrepi?: string[]; eur_m2?: number; eur_m2_p25?: number | null; eur_m2_p75?: number | null; n?: number | null;
-  vir_stroska?: string; strosek?: number; razred_po?: string; pe_po?: number; prihranek_fe_pct?: number; prihranek_pe_pct?: number; prihranek_eur?: number;
-  spodbuda_osn_pct?: number; spodbuda_dod_pct?: number; spodbuda_razlog?: string | null; spodbuda_dod_eur?: number; vracilo_brez?: number | null; vracilo_osn?: number | null; vracilo_dod?: number | null };
-type Tip = { id: string; ime: string; tip: string; ogrevanje_pred: string; povrsina: number; razred_pred: string; pe_pred: number; n_izkaznic: number; paketi: Paket[] };
+type Paket = { id: string; ime: string; ukrepi: string[]; eur_m2: number; eur_m2_p25: number | null; eur_m2_p75: number | null; n: number | null;
+  vir_stroska: string; strosek: number; razred_po: string; pe_po: number; prihranek_fe_pct: number; prihranek_pe_pct: number; prihranek_eur: number;
+  stroski_pred_leto: number; spodbuda_dod_pct: number; spodbuda_razlog: string | null; spodbuda_dod_eur: number; vracilo_brez: number | null; vracilo_dod: number | null };
+type Var = { id: string; ogrevanje: string; razred_pred: string; pe_pred: number; fe_pred: number; paketi: Paket[] };
+type Tip = { id: string; ime: string; tip: string; povrsina: number; povrsina_kataster: number; variante: Var[] };
 const d = loadData<{ tipi: Tip[]; cene: Record<string, number>; predpostavke: Record<string, any> }>('paketi_prenove');
 const CV: Record<string, string> = { A: 'A1', B: 'B1', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G' };
 const DARK = new Set(['B', 'C', 'D', 'E']);
 const badge = (k: string) => `background:var(--cls-${CV[k]});color:${DARK.has(k) ? '#1B2622' : '#fff'}`;
-const yrs = (v: number | null | undefined) => (v === null || v === undefined ? '–' : `${nf(v, v < 10 ? 1 : 0)} let`);
+const yrs = (v: number | null | undefined) => (v === null || v === undefined ? '–' : v > 50 ? 'več kot 50 let' : `${nf(v, v < 10 ? 1 : 0)} let`);
 const ICON: Record<string, string> = { delna: 'layers', celovita: 'house', zeb: 'sun' };
+const OGR: Record<string, string> = { olje: 'Kurilno olje', plin: 'Zemeljski plin', les: 'Les (drva)', daljinsko: 'Daljinsko ogrevanje' };
 const c = d.cene, p = d.predpostavke;
 ---
 <div class="pk">
   <div class="pk-tabs js-only" role="group" aria-label="Tip stavbe">
     {d.tipi.map((t, i) => <button type="button" data-t={t.id} aria-pressed={i === 0 ? 'true' : 'false'}>{t.ime}</button>)}
   </div>
-  {d.tipi.map((t, i) => (
-    <section class="pk-t" data-t={t.id} aria-labelledby={`pk-${t.id}`} data-first={i === 0 ? '1' : undefined}>
+  {d.tipi.map((t) => (
+    <section class="pk-t" data-t={t.id} aria-labelledby={`pk-${t.id}`}>
       <h2 id={`pk-${t.id}`}>{t.ime}</h2>
-      <p class="pk-pred"><span class="pk-b" style={badge(t.razred_pred)}>{t.razred_pred}</span>
-        Tipično stanje pred prenovo: razred {t.razred_pred} ({nf(t.pe_pred)} kWh/(m²·a) primarne energije), ogrevanje: {t.ogrevanje_pred}, {t.tip === 'SFH' ? 'hiša' : 'stanovanje'} s {nf(t.povrsina)} m² ogrevane površine.</p>
-      <div class="pk-grid">
-        {t.paketi.filter((k) => k.na_voljo).map((k) => (
-          <article class={`pk-c ${k.id}`}>
-            <h3><span class="pk-ic"><Icon name={ICON[k.id]} size={20} /></span>{k.ime}</h3>
-            <ul class="pk-u">{k.ukrepi!.map((u) => <li>{u}</li>)}</ul>
-            <p class="pk-cost"><b>{nf(k.eur_m2)} €/m²</b><span>okoli {nf(k.strosek)} € za tipično {t.tip === 'SFH' ? 'hišo' : 'stanovanje'}{k.eur_m2_p25 && <> · razpon {nf(k.eur_m2_p25)}–{nf(k.eur_m2_p75)} €/m²</>}</span></p>
-            <p class="pk-cls"><span class="pk-b" style={badge(t.razred_pred)}>{t.razred_pred}</span><Icon name="arrow-right" size={18} /><span class="pk-b" style={badge(k.razred_po!)}>{k.razred_po}</span><span>{nf(k.pe_po)} kWh/(m²·a) primarne energije</span></p>
-            <dl class="pk-d">
-              <div><dt>Manj končne energije</dt><dd>{nf(k.prihranek_fe_pct)} %</dd></div>
-              <div><dt>Manj primarne energije</dt><dd>{nf(k.prihranek_pe_pct)} %</dd></div>
-              <div><dt>Prihranek stroškov energije</dt><dd>okoli {nf(k.prihranek_eur)} € na leto</dd></div>
-              <div><dt>Spodbuda po predlogu N1</dt><dd>{nf(k.spodbuda_dod_pct)} % (okoli {nf(k.spodbuda_dod_eur)} €){k.spodbuda_razlog && <small>{k.spodbuda_razlog}</small>}</dd></div>
-              <div><dt>Vračilna doba</dt><dd>{yrs(k.vracilo_brez)} brez spodbude, {yrs(k.vracilo_dod)} s spodbudo</dd></div>
-            </dl>
-            <p class="pk-src">Strošek: {k.vir_stroska}{k.n && <> ({nf(k.n)} {t.tip === 'SFH' ? 'hiš' : 'stavb'})</>}.</p>
-          </article>
-        ))}
-      </div>
+      {t.variante.length > 1 && (
+        <div class="pk-og js-only" role="group" aria-label="Ogrevanje pred prenovo">
+          <span>Ogrevanje pred prenovo:</span>
+          {t.variante.map((v, i) => <button type="button" data-v={v.id} aria-pressed={i === 0 ? 'true' : 'false'}>{OGR[v.id]}</button>)}
+        </div>
+      )}
+      {t.variante.map((v) => (
+        <div class="pk-v" data-v={v.id}>
+          <h3 class="pk-vh">{OGR[v.id]}</h3>
+          <p class="pk-pred"><span class="pk-b" style={badge(v.razred_pred)}>{v.razred_pred}</span>
+            <span>Tipično stanje pred prenovo: razred {v.razred_pred} na izkaznici ({nf(v.pe_pred)} kWh/(m²·a) primarne energije), {t.tip === 'SFH' ? `hiša s ${nf(t.povrsina)} m²` : `stanovanje s ${nf(t.povrsina)} m²`} ogrevane površine. Stroški ogrevanja danes okoli <b>{nf(v.paketi[0].stroski_pred_leto)} € na leto</b>.</span></p>
+          <div class="pk-grid">
+            {v.paketi.map((k) => (
+              <article class={`pk-c ${k.id}`}>
+                <h4><span class="pk-ic"><Icon name={ICON[k.id]} size={20} /></span>{k.ime}</h4>
+                <ul class="pk-u">{k.ukrepi.map((u) => <li>{u}</li>)}</ul>
+                <p class="pk-cost"><b>{nf(k.eur_m2)} €/m²</b><span>okoli {nf(k.strosek)} € za tipično {t.tip === 'SFH' ? 'hišo' : 'stanovanje'}{k.eur_m2_p25 && <> · razpon {nf(k.eur_m2_p25)}–{nf(k.eur_m2_p75)} €/m²</>}</span></p>
+                <p class="pk-cls"><span class="pk-b" style={badge(v.razred_pred)}>{v.razred_pred}</span><Icon name="arrow-right" size={18} /><span class="pk-b" style={badge(k.razred_po)}>{k.razred_po}</span><span>{nf(k.pe_po)} kWh/(m²·a) primarne energije</span></p>
+                <dl class="pk-d">
+                  <div><dt>Manj končne energije</dt><dd>{nf(k.prihranek_fe_pct)} %</dd></div>
+                  <div><dt>Manj primarne energije</dt><dd>{nf(k.prihranek_pe_pct)} %</dd></div>
+                  <div><dt>Prihranek stroškov energije</dt><dd>okoli {nf(k.prihranek_eur)} € na leto</dd></div>
+                  <div><dt>Spodbuda po predlogu N1</dt><dd>{nf(k.spodbuda_dod_pct)} % (okoli {nf(k.spodbuda_dod_eur)} €){k.spodbuda_razlog && <small>{k.spodbuda_razlog}</small>}</dd></div>
+                  <div><dt>Vračilna doba</dt><dd>{yrs(k.vracilo_brez)} brez spodbude, {yrs(k.vracilo_dod)} s spodbudo</dd></div>
+                </dl>
+                <p class="pk-src">Strošek: {k.vir_stroska}{k.n && <> ({nf(k.n)} {t.tip === 'SFH' ? 'hiš' : 'stavb'})</>}.</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      ))}
     </section>
   ))}
   <div class="pk-note">
-    <p><strong>Tipične vrednosti, ne izračun za vašo stavbo.</strong> Dejanski strošek in prihranek sta odvisna od stanja stavbe, izvedbe in cen. Za vašo stavbo se posvetujte z energetskim svetovalcem ENSVET.</p>
-    <p>Kako je izračunano: stroški so priznani stroški naložb, ki jih je podprl Eko sklad v letih 2023–2025, na m² ogrevane uporabne površine; pri delni in celoviti prenovi iz stavb, ki so izvedle več ukrepov hkrati, pri celoviti ZEB prenovi iz ukrepa »celovita obnova stanovanjske stavbe« 2024–2025. Stanje pred prenovo je mediana neprenovljenih stavb z energetsko izkaznico. Raba energije po prenovi: osnutek NPS 2050 (preglednica 23) in toplotna črpalka s sezonskim grelnim številom {nf(p.scop, 1)}; pri celoviti ZEB prenovi sončna elektrarna pokrije okoli {nf(100 * p.pv_delez)} % rabe elektrike. Bloki ostanejo na daljinskem ogrevanju.</p>
-    <p>Cene energije za gospodinjstva 2025: kurilno olje {nf(c.kurilno_olje, 3)} €/kWh, elektrika {nf(c.elektrika, 3)} €/kWh (SURS), daljinska toplota {nf(c.daljinska_toplota, 3)} €/kWh (Agencija za energijo, povprečje za stanovanje v bloku). Spodbude po predlogu ukrepa N1 iz osnutka: 30 % osnovno, za razred E 40 %, za razreda F in G ter stavbe med 43 % energetsko najmanj učinkovitih 50 %, za celovito prenovo dodatnih 10 odstotnih točk, največ 70 %. Pri večstanovanjskih stavbah celovite ZEB prenove ne prikazujemo, ker zanjo ni podatkov.</p>
+    <p><strong>Tipične vrednosti, ne izračun za vašo stavbo.</strong> Dejanski strošek in prihranek sta odvisna od stanja stavbe, izvedbe in cen. Prenova prinese tudi koristi, ki niso v izračunu: udobje, zdravje, manj vlage, višjo vrednost nepremičnine in neodvisnost od cen goriv. Za vašo stavbo se posvetujte z energetskim svetovalcem ENSVET.</p>
+    <p>Kako je izračunano: stroški so priznani stroški naložb, ki jih je podprl Eko sklad v letih 2023–2025, na m² ogrevane uporabne površine po katastru; pri delni in celoviti prenovi iz stavb, ki so izvedle več ukrepov hkrati, pri celoviti ZEB prenovi iz ukrepa »celovita obnova stanovanjske stavbe« 2024–2025. Razred pred prenovo je mediana neprenovljenih stavb z računsko energetsko izkaznico. Stroški in prihranki energije temeljijo na <strong>dejanski rabi</strong> po modelu IJS CEU, usklajenem z energetsko bilanco: stavbe s slabim ovojem v resnici porabijo manj, kot kaže računska izkaznica, ker jih ogrevajo varčneje ali le delno. Po celoviti prenovi ogreva toplotna črpalka (sezonsko grelno število {nf(p.scop, 1)}); pri celoviti ZEB prenovi sončna elektrarna pokrije okoli {nf(100 * p.pv_delez)} % rabe elektrike. Bloki ostanejo na daljinskem ogrevanju.</p>
+    <p>Cene energije za gospodinjstva 2025: kurilno olje {nf(c.kurilno_olje, 3)} €/kWh, zemeljski plin {nf(c.plin, 3)} €/kWh, elektrika {nf(c.elektrika, 3)} €/kWh (SURS), drva {nf(c.les, 3)} €/kWh (Gozdarski inštitut Slovenije, oktober 2024), daljinska toplota {nf(c.daljinska_toplota, 3)} €/kWh (Agencija za energijo, povprečje za stanovanje v bloku). Spodbude po predlogu ukrepa N1 iz osnutka: 30 % osnovno, za razred E 40 %, za razreda F in G ter stavbe med 43 % energetsko najmanj učinkovitih 50 %, za celovito prenovo dodatnih 10 odstotnih točk, največ 70 %. Pri večstanovanjskih stavbah celovite ZEB prenove ne prikazujemo, ker zanjo ni podatkov.</p>
   </div>
 </div>
 
@@ -61,6 +74,12 @@ const c = d.cene, p = d.predpostavke;
   .pk-tabs button[aria-pressed='true'] { background: var(--green); border-color: var(--green); color: var(--on-green); }
   .pk-t { margin: 0 0 2rem; }
   .pk-t h2 { margin: 0 0 .5rem; }
+  .pk-og { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin: .2rem 0 .8rem; font-size: .85rem; color: var(--ink2); }
+  .pk-og button { font: inherit; font-size: .82rem; font-weight: 700; padding: .3rem .8rem; border-radius: 999px; border: 1px solid var(--ink2); background: transparent; color: var(--ink2); cursor: pointer; }
+  .pk-og button[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--panel); }
+  .pk-vh { font-size: 1rem; margin: .8rem 0 .3rem; }
+  :global(.js) .pk-vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  :global(.js) .pk-v:not([data-on]) { display: none; }
   :global(.js) .pk-t:not([data-on]) { display: none; }
   .pk-pred { display: flex; gap: .6rem; align-items: center; color: var(--ink2); max-width: none; }
   .pk-b { flex: none; display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 6px; font-weight: 800; font-size: 1.05rem; }
@@ -69,7 +88,7 @@ const c = d.cene, p = d.predpostavke;
   .pk-c.zeb { border-top-color: #0B7A45; }
   .pk-c.delna { border-top-color: var(--line); }
   .pk-c.na { opacity: .75; border-top-color: var(--line); }
-  .pk-c h3 { display: flex; align-items: center; gap: .5rem; margin: 0; font-size: 1.15rem; }
+  .pk-c h4 { display: flex; align-items: center; gap: .5rem; margin: 0; font-size: 1.15rem; }
   .pk-ic { display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 8px; background: var(--greenbg); color: var(--green); }
   .pk-u { margin: 0; padding-left: 1.1rem; font-size: .88rem; color: var(--ink2); }
   .pk-cost { display: grid; margin: 0; }
@@ -91,11 +110,22 @@ const c = d.cene, p = d.predpostavke;
   if (root) {
     const secs = [...root.querySelectorAll<HTMLElement>('.pk-t')];
     const btns = [...root.querySelectorAll<HTMLButtonElement>('.pk-tabs button')];
+    const url = new URL(location.href);
+    const setV = (sec: HTMLElement, vid: string) => {
+      sec.querySelectorAll<HTMLElement>('.pk-v').forEach((v) => (v.dataset.v === vid ? v.setAttribute('data-on', '') : v.removeAttribute('data-on')));
+      sec.querySelectorAll<HTMLButtonElement>('.pk-og button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === vid)));
+    };
     const show = (id: string) => {
       secs.forEach((s) => (s.dataset.t === id ? s.setAttribute('data-on', '') : s.removeAttribute('data-on')));
       btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.t === id)));
     };
-    const q = new URL(location.href).searchParams.get('tip');
+    secs.forEach((sec) => {
+      const vs = [...sec.querySelectorAll<HTMLElement>('.pk-v')].map((v) => v.dataset.v!);
+      const want = url.searchParams.get('ogrevanje');
+      setV(sec, want && vs.includes(want) ? want : vs[0]);
+      sec.querySelectorAll<HTMLButtonElement>('.pk-og button').forEach((b) => b.addEventListener('click', () => { setV(sec, b.dataset.v!); const u = new URL(location.href); u.searchParams.set('ogrevanje', b.dataset.v!); history.replaceState(null, '', u); }));
+    });
+    const q = url.searchParams.get('tip');
     show(secs.some((s) => s.dataset.t === q) ? q! : secs[0].dataset.t!);
     btns.forEach((b) => b.addEventListener('click', () => { show(b.dataset.t!); const u = new URL(location.href); u.searchParams.set('tip', b.dataset.t!); history.replaceState(null, '', u); }));
   }

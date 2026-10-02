@@ -376,6 +376,22 @@ def run(ctx: Context, df: pd.DataFrame, rr: dict, fond: dict, tk: pd.Series | No
     return {'buildings': out, 'factor': factor0, 'target_c': target_c, 'dh_m': dh_m, 'Pe': Pe, 'arch': arch, 'w': w, 'cat': res.cat.to_numpy()}
 
 
+def _fe_tipi(df: pd.DataFrame, c: pd.DataFrame):
+    """Dejanska (z bilanco usklajena) raba končne energije stanovanjskih stavb na m² po tipu, obdobju in glavnem ogrevanju –
+    za pakete prenove (11.4). Lokalni vmesni rezultat (data/raw), ne objavi se."""
+    res = df[df.seg.isin(['hise', 'bloki'])]
+    assert len(res) == len(c)
+    grp = {'do 1945': 'do1980', '1946–1970': 'do1980', '1971–1980': 'do1980', '1981–1990': '1981_2002', '1991–2002': '1981_2002'}
+    sh = c[[f'c_{k}' for k in CARRIERS]].div(c.fe.replace(0, np.nan), axis=0)
+    main = sh[['c_gas', 'c_elko', 'c_bio', 'c_dh', 'c_el']].idxmax(axis=1).str[2:]
+    t = pd.DataFrame({'cat': res.cat.to_numpy(), 'pg': res.period.astype(str).map(grp).to_numpy(),
+                      'ogr': np.where(sh.c_amb.to_numpy() >= 0.15, 'tc', main.to_numpy()), 'fe': c.fe.to_numpy(), 'm2': c.m2.to_numpy()})
+    t = t[t.pg.notna() & (t.m2 > 0)]
+    out = {f'{k[0]}|{k[1]}|{k[2]}': {'fe_kwh_m2': round(float(g.fe.sum() / g.m2.sum()), 1), 'n': int(len(g))}
+           for k, g in t.groupby(['cat', 'pg', 'ogr'])}
+    (DATA_DIR / 'raw' / 'model_fe_tipi.json').write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding='utf-8')
+
+
 def build(ctx: Context) -> dict:
     fond = json.loads((OUT / 'stavbni_fond.json').read_text(encoding='utf-8'))
     df = build_table(ctx)
@@ -383,6 +399,7 @@ def build(ctx: Context) -> dict:
     tk, dhp = heat_map_by_municipality(ctx)
     runs = {k: run(ctx, df, rr, fond, tk, clip) for k, clip in VARIANTS.items()}
     c = runs['osrednja']['buildings']
+    _fe_tipi(df, c)
     meas = build_measured(ctx, df)
     nres = model_nres.run(ctx, df, meas, rr, runs['osrednja']['dh_m'])
 

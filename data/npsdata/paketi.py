@@ -4,10 +4,11 @@ Viri (potrdil Gašper 2. 10. 2026):
 - stroški: Eko sklad 2023–2025, priznani stroški na m² ogrevane uporabne površine po GURS (analiza Stroski_EUR_m2);
   delna in celovita prenova iz dejanskih kombinacij ukrepov pri isti stavbi, celovita ZEB iz ukrepa »celovita obnova
   stanovanjske stavbe« in »sNES+ prenova« 2024–2025;
-- raba končne energije po razredih toplotnih potreb: osnutek, preglednica 23 (model RenRates);
-- primarna energija pred prenovo: mediana neprenovljenih stavb z računsko izkaznico;
-- cene energentov za gospodinjstva: SURS (tabela H028S, povprečje četrtletij 2025); daljinska toplota: Agencija za energijo,
-  Analiza cen toplote 2025 (povprečje sistemov GJS za značilnega odjemalca v večstanovanjski stavbi, s prispevki in DDV);
+- raba končne energije po razredih toplotnih potreb: osnutek, preglednica 23 (model RenRates) – za učinek delne prenove;
+- stanje pred prenovo: mediana primarne energije neprenovljenih stavb z računsko izkaznico po glavnem ogrevanju;
+  tipična površina: mediana kondicionirane površine iz izkaznic (hiše) oziroma povprečna površina stanovanja (bloki);
+- cene energentov za gospodinjstva: SURS (tabela H028S, povprečje četrtletij 2025); drva: Gozdarski inštitut Slovenije;
+  daljinska toplota: Agencija za energijo, Analiza cen toplote 2025;
 - spodbude: predlog ukrepa N1 (osnutek, preglednica 26).
 """
 import json
@@ -20,18 +21,20 @@ from .context import DATA_DIR, Context, write_json
 
 CACHE = DATA_DIR / 'raw' / 'surs_cene_2025.json'
 KWH_PER_L_OLJE = 10.0           # kurilna vrednost ekstra lahkega kurilnega olja, kWh/l
+WOOD_EUR_KWH = round(195 / 4000, 3)  # drva: 195 €/t (Gozdarski inštitut Slovenije, oktober 2024), 4,0 kWh/kg (zračno suha drva)
+WOOD_VIR = 'Gozdarski inštitut Slovenije, cene lesnih goriv (drva, oktober 2024: 195 €/t), preračunano s 4,0 kWh/kg'
 DH_EUR_KWH = 0.16998            # Agencija za energijo, Analiza cen toplote 2025: GJS, 69 m² stanovanje, s prispevki in DDV
 DH_VIR = 'Agencija za energijo, Analiza cen toplote iz distribucijskih sistemov za leto 2025 (povprečje GJS, značilni odjemalec v večstanovanjski stavbi, s prispevki in DDV)'
 # stanje po celoviti prenovi
 Q_B1, ETA, DHW, SCOP, AUX = 20.0, 0.9, 15.0, 3.5, 3.0
-FP = {'el': 2.5, 'amb': 1.0, 'olje': 1.1, 'dh': 1.23}    # faktorji skupne primarne energije (zakonski 2025, kot v osnutku)
+FP = {'el': 2.5, 'amb': 1.0, 'olje': 1.1, 'plin': 1.1, 'les': 1.2, 'dh': 1.23}  # faktorji skupne primarne energije (zakonski 2025, kot v osnutku)
 PV_SHARE = 0.4                                            # ZEB: delež letne rabe elektrike, pokrit s sončno elektrarno na stavbi
 GRP = {'do 1945': 'do1980', '1946–1970': 'do1980', '1971–1980': 'do1980', '1981–1990': '1981_2002', '1991–2002': '1981_2002'}
 TYPES = [
-    ('hisa_do1980', 'Enodružinska hiša, zgrajena do leta 1980', 'SFH', 'do1980', 'kurilno olje'),
-    ('hisa_1981_2002', 'Enodružinska hiša, zgrajena 1981–2002', 'SFH', '1981_2002', 'kurilno olje'),
-    ('blok_do1980', 'Stanovanje v bloku, zgrajenem do leta 1980', 'MFH', 'do1980', 'daljinsko ogrevanje'),
-    ('blok_1981_2002', 'Stanovanje v bloku, zgrajenem 1981–2002', 'MFH', '1981_2002', 'daljinsko ogrevanje'),
+    ('hisa_do1980', 'Enodružinska hiša, zgrajena do leta 1980', 'SFH', 'do1980', ['olje', 'plin', 'les']),
+    ('hisa_1981_2002', 'Enodružinska hiša, zgrajena 1981–2002', 'SFH', '1981_2002', ['olje', 'plin', 'les']),
+    ('blok_do1980', 'Stanovanje v bloku, zgrajenem do leta 1980', 'MFH', 'do1980', ['daljinsko']),
+    ('blok_1981_2002', 'Stanovanje v bloku, zgrajenem 1981–2002', 'MFH', '1981_2002', ['daljinsko']),
 ]
 UKREPI = {
     ('SFH', 'delna'): ['izolacija fasade', 'zamenjava oken'],
@@ -41,6 +44,7 @@ UKREPI = {
     ('MFH', 'celovita'): ['izolacija fasade in strehe', 'zamenjava oken', 'prezračevanje z vračanjem toplote', 'ogrevanje ostane daljinsko'],
 }
 NAME = {'delna': 'Delna prenova', 'celovita': 'Celovita prenova', 'zeb': 'Celovita ZEB prenova'}
+HC = ['A1', 'A2', 'B1', 'B2', 'C', 'D', 'E', 'F', 'G']
 
 
 def _surs_prices() -> dict:
@@ -78,9 +82,9 @@ def _eko_costs(ctx: Context) -> dict:
             m = p[cols].notna().all(axis=1)
             if any_of:
                 m &= p[[c for c in any_of if c in p]].notna().any(axis=1)
-            v = (p.loc[m, cols + [c for c in any_of if c in p]].sum(axis=1) / a[m])[a[m] >= 40].dropna()
-            return v
-        def per(cols):  # mediana posameznih ukrepov (na naložbo)
+            return (p.loc[m, cols + [c for c in any_of if c in p]].sum(axis=1) / a[m])[a[m] >= 40].dropna()
+
+        def per(cols):  # vsota median posameznih ukrepov
             return sum(s.loc[s['Ukrep (koda)'] == c, 'EUR/m²'].median() for c in cols)
         d = combo(['fasada', 'okna_vrata'])
         out[(tip, 'delna')] = (d, 'dejanske kombinacije fasada + okna pri isti stavbi') if len(d) >= 30 else (None, None)
@@ -91,7 +95,33 @@ def _eko_costs(ctx: Context) -> dict:
         out[(tip, 'prezr_centr')] = s.loc[s['Ukrep (koda)'] == 'prezrac_centr', 'EUR/m²'].median()
         z = s[(s['Ukrep (koda)'] == 'celovita_prenova') & (s.Leto >= 2024)]['EUR/m²'].dropna()
         out[(tip, 'zeb')] = (z, 'ukrep Eko sklada »celovita obnova stanovanjske stavbe« 2024–2025') if len(z) >= 5 else (None, None)
-        out[(tip, 'zeb_spodbuda')] = (s.loc[s['Ukrep (koda)'] == 'celovita_prenova', 'Spodbuda [EUR]'].sum() / s.loc[s['Ukrep (koda)'] == 'celovita_prenova', e_col].sum()) if (s['Ukrep (koda)'] == 'celovita_prenova').any() else None
+        cp = s['Ukrep (koda)'] == 'celovita_prenova'
+        out[(tip, 'zeb_spodbuda')] = (s.loc[cp, 'Spodbuda [EUR]'].sum() / s.loc[cp, e_col].sum()) if cp.any() else None
+    return out
+
+
+def _areas(ctx: Context, df: pd.DataFrame) -> dict:
+    """(površina za energijo, površina za stroške): hiše – mediana kondicionirane površine iz računskih izkaznic (cela stavba)
+    in mediana uporabne površine po katastru za iste stavbe; bloki – površina stanovanja (kataster) in preračun na izkaznico."""
+    ei = pd.read_csv(ctx.files['ei_stanje'], sep='|', dtype=str, usecols=['Šifra KO', 'Številka stavbe', 'Tip izkaznice', 'Kondicionirana površina stavbe'])
+    ei = ei[ei['Tip izkaznice'].str.strip() == 'računska']
+    ei['key'] = ei['Šifra KO'].str.strip().str.lstrip('0') + '-' + ei['Številka stavbe'].str.strip().str.lstrip('0')
+    ei['A'] = pd.to_numeric(ei['Kondicionirana površina stavbe'].str.replace(',', '.'), errors='coerce')
+    e = ei.groupby('key').A.max()
+    out = {}
+    for cat in ('HISA', 'BLOKI'):
+        b = df[df.cat == cat].copy()
+        b['pg'] = b.period.astype(str).map(GRP)
+        m = b.join(e, on='key')
+        for pg in ('do1980', '1981_2002'):
+            g = m[(m.pg == pg) & m.A.between(20, 20000)]
+            if cat == 'HISA':
+                ctx.check(len(g) >= 500, f'paketi: površine {cat}/{pg} iz {len(g)} izkaznic')
+                out[(cat, pg)] = (float(g.A.median()), float(g.m2.median()))
+            else:
+                k = b[b.pg == pg]
+                per_flat = float(k.m2.sum() / k.n_stan.sum())
+                out[(cat, pg)] = (per_flat, per_flat)  # izkaznice blokov so pogosto za dele stavb, zato površina stanovanja iz katastra
     return out
 
 
@@ -111,87 +141,106 @@ def build(ctx: Context) -> dict:
     prices = _surs_prices()
     ctx.check(0.1 < prices['elektrika'] < 0.4 and 0.05 < prices['kurilno_olje'] < 0.2, f'cene SURS 2025: {prices}')
     eko = _eko_costs(ctx)
+    area = _areas(ctx, df)
+    # dejanska raba po modelu občin (usklajena z bilanco), na m² uporabne površine po katastru
+    mfe = json.loads((DATA_DIR / 'raw' / 'model_fe_tipi.json').read_text(encoding='utf-8'))
 
-    # stanje pred: neprenovljene stavbe z računsko izkaznico
+    # stanje pred: neprenovljene stavbe z računsko izkaznico; glavno ogrevanje iz deležev energentov v izkaznici
     r = df[df.cat.isin(['HISA', 'BLOKI']) & df.ei_pe.notna() & df.ei_razred.notna()].copy()
     y = lambda c: pd.to_numeric(r[c], errors='coerce')
     ren = (y('obnova_fasada') >= 2010) | r.es_ovoj.notna() | (y('obnova_okna') >= 2010) | r.es_okna.notna()
     r = r[~ren]
     r['pg'] = r.period.astype(str).map(GRP)
-    HC = ['A1', 'A2', 'B1', 'B2', 'C', 'D', 'E', 'F', 'G']
+    sh = r[['ei_sh_gas', 'ei_sh_elko', 'ei_sh_bio', 'ei_sh_dh', 'ei_sh_el']].rename(columns=lambda c: c[6:])
+    r['ogr'] = np.where(r.ei_sh_amb >= 0.15, 'tc', sh.idxmax(axis=1))
 
     q = Q_B1 / ETA + DHW
-    tipi = []
-    for tid, ime, t, pg, ogr in TYPES:
+    OGR = {'olje': ('kurilno olje', 'elko', prices['kurilno_olje'], FP['olje']), 'plin': ('zemeljski plin', 'gas', prices['plin'], FP['plin']),
+           'les': ('les (drva)', 'bio', WOOD_EUR_KWH, FP['les']), 'daljinsko': ('daljinsko ogrevanje', 'dh', DH_EUR_KWH, FP['dh'])}
+    tipi, faktor = [], {}
+    for tid, ime, t, pg, ogr_list in TYPES:
         cat = 'HISA' if t == 'SFH' else 'BLOKI'
-        g = r[(r.cat == cat) & (r.pg == pg)]
-        ctx.check(len(g) >= 500, f'paketi: {tid} ima {len(g)} izkaznic')
-        pe0 = float(g.ei_pe.median())
-        hc = sorted(g.ei_razred, key=HC.index)[len(g) // 2]  # mediana razreda toplotnih potreb
-        hc = hc if hc in FE[t] else ('C' if HC.index(hc) < HC.index('C') else hc)
-        area = float(df[(df.cat == cat) & df.period.astype(str).map(GRP).eq(pg)].m2.median()) if t == 'SFH' else \
-            float((lambda b: b.m2.sum() / b.n_stan.sum())(df[(df.cat == cat) & df.period.astype(str).map(GRP).eq(pg)]))
-        fe0 = FE[t][hc]
-        price0 = prices['kurilno_olje'] if ogr == 'kurilno olje' else DH_EUR_KWH
-        paketi = []
-        for pid in ('delna', 'celovita', 'zeb'):
-            if (t, pid) not in UKREPI:
-                paketi.append({'id': pid, 'ime': NAME[pid], 'na_voljo': False,
-                               'opomba': 'Za večstanovanjske stavbe Eko sklad nima podatkov o celoviti ZEB prenovi; ocene ni.'})
-                continue
-            v, src = eko.get((t, pid), (None, None))
-            if pid == 'celovita' and t == 'SFH' and v is not None:
-                v = v + eko[(t, 'prezr_centr')]
-                src += ' + centralno prezračevanje (mediana)'
-            if v is not None:
-                eur, p25, p75, nn = float(v.median()), float(v.quantile(.25)), float(v.quantile(.75)), int(len(v))
-            else:
-                eur = float(eko[(t, 'sum_delna' if pid == 'delna' else 'sum_celovita_dh')]); p25 = p75 = None; nn = None
-                src = 'vsota median posameznih ukrepov (premalo dejanskih kombinacij)'
-            if pid == 'delna':
-                h1 = ORDER[min(ORDER.index(hc) + 2, ORDER.index('B2'))]
-                fe1 = FE[t][h1]; pe1 = pe0 * fe1 / fe0
-                cost1 = fe1 * price0
-            elif t == 'SFH':  # toplotna črpalka
-                el = q / SCOP + AUX
-                fe1 = q + AUX
-                pe1 = q / SCOP * FP['el'] + q * (1 - 1 / SCOP) * FP['amb'] + AUX * FP['el']
-                if pid == 'zeb':
-                    pe1 *= (1 - PV_SHARE); el *= (1 - PV_SHARE)
-                cost1 = el * prices['elektrika']
-            else:  # blok ostane na daljinskem ogrevanju
-                fe1 = q + AUX
-                pe1 = q * FP['dh'] + AUX * FP['el']
-                cost1 = q * DH_EUR_KWH + AUX * prices['elektrika']
-            cost = eur * area
-            sav = (fe0 * price0 - cost1) * area
-            # N1 (preglednica 26): razred E +10, razreda F in G oziroma stavbe nad pragom 43 % +20 odstotnih točk (razred NPS pred prenovo)
-            c0 = cls(cat, pe0)
-            above = pe0 > thr43[cat]
-            bonus = 20 if (c0 in ('F', 'G') or above) else 10 if c0 == 'E' else 0
-            s_osn = 30 + (10 if pid != 'delna' else 0)
-            s_dod = min(70, s_osn + bonus)
-            pb = lambda s: round(cost * (1 - s / 100) / sav, 1) if sav > 0 else None
-            paketi.append({
-                'id': pid, 'ime': NAME[pid], 'na_voljo': True, 'ukrepi': UKREPI[(t, pid)],
-                'eur_m2': round(eur), 'eur_m2_p25': round(p25) if p25 else None, 'eur_m2_p75': round(p75) if p75 else None, 'n': nn, 'vir_stroska': src,
-                'strosek': round(cost, -2), 'razred_po': cls(cat, pe1), 'pe_po': round(pe1), 'fe_po': round(fe1),
-                'prihranek_fe_pct': round(100 * (fe0 - fe1) / fe0), 'prihranek_pe_pct': round(100 * (pe0 - pe1) / pe0),
-                'prihranek_eur': round(sav, -1), 'spodbuda_osn_pct': s_osn, 'spodbuda_dod_pct': s_dod, 'spodbuda_dod_eur': round(cost * s_dod / 100, -2),
-                'spodbuda_razlog': 'stavba je med 43 % energetsko najmanj učinkovitih' if above else (f'razred {c0}' if bonus else None),
-                'vracilo_brez': pb(0), 'vracilo_osn': pb(s_osn), 'vracilo_dod': pb(s_dod),
-            })
-        cel = next(p for p in paketi if p['id'] == 'celovita')
-        ctx.check(cel['razred_po'] == 'A', f'paketi: celovita prenova {tid} doseže razred A ({cel["pe_po"]} kWh/(m²·a))')
-        tipi.append({'id': tid, 'ime': ime, 'tip': t, 'ogrevanje_pred': ogr, 'povrsina': round(area), 'razred_toplota_pred': hc,
-                     'razred_pred': cls(cat, pe0), 'pe_pred': round(pe0), 'fe_pred': fe0, 'n_izkaznic': int(len(g)), 'paketi': paketi})
+        a_ei, a_kat = area[(cat, pg)]
+        variante = []
+        for oid in ogr_list:
+            oname, code, price0, fp0 = OGR[oid]
+            g = r[(r.cat == cat) & (r.pg == pg) & (r.ogr == code)]
+            ctx.check(len(g) >= 100, f'paketi: {tid}/{oid} ima {len(g)} izkaznic')
+            pe0 = float(g.ei_pe.median())        # razred na izkaznici (računska raba)
+            m = mfe[f'{cat}|{pg}|{code}']
+            ctx.check(m['n'] >= 500, f'paketi: model {cat}/{pg}/{code} {m["n"]} stavb')
+            fe0 = m['fe_kwh_m2']                 # dejanska raba končne energije na m² (kataster)
+            hc = sorted(g.ei_razred, key=HC.index)[len(g) // 2]
+            hc = hc if hc in FE[t] else 'C'
+            paketi = []
+            for pid in ('delna', 'celovita', 'zeb'):
+                if (t, pid) not in UKREPI:
+                    continue
+                v, src = eko.get((t, pid), (None, None))
+                if pid == 'celovita' and t == 'SFH' and v is not None:
+                    v = v + eko[(t, 'prezr_centr')]
+                    src += ' + centralno prezračevanje (mediana)'
+                if v is not None:
+                    eur, p25, p75, nn = float(v.median()), float(v.quantile(.25)), float(v.quantile(.75)), int(len(v))
+                else:
+                    eur = float(eko[(t, 'sum_delna' if pid == 'delna' else 'sum_celovita_dh')]); p25 = p75 = None; nn = None
+                    src = 'vsota median posameznih ukrepov (premalo dejanskih kombinacij)'
+                # stanje po prenovi: energija na m² površine po katastru (računska raba celovite prenove je na m² izkaznice)
+                k_a = a_ei / a_kat
+                if pid == 'delna':
+                    h1 = ORDER[min(ORDER.index(hc) + 2, ORDER.index('B2'))]
+                    rr = FE[t][h1] / FE[t][hc]
+                    fe1, pe1 = fe0 * rr, pe0 * rr
+                    cost1 = fe1 * price0
+                    faktor.setdefault(cat, []).append(rr)
+                elif t == 'SFH':  # toplotna črpalka
+                    el = (q / SCOP + AUX) * k_a
+                    fe1 = (q + AUX) * k_a
+                    pe1 = q / SCOP * FP['el'] + q * (1 - 1 / SCOP) * FP['amb'] + AUX * FP['el']
+                    if pid == 'zeb':
+                        pe1 *= (1 - PV_SHARE); el *= (1 - PV_SHARE)
+                    cost1 = el * prices['elektrika']
+                else:  # blok ostane na daljinskem ogrevanju
+                    fe1 = (q + AUX) * k_a
+                    pe1 = q * FP['dh'] + AUX * FP['el']
+                    cost1 = (q * DH_EUR_KWH + AUX * prices['elektrika']) * k_a
+                # strošek na m² ogrevane površine po katastru (kot Eko sklad); energija na m² kondicionirane površine iz izkaznic
+                cost = eur * a_kat
+                sav = (fe0 * price0 - cost1) * a_kat
+                c0 = cls(cat, pe0)
+                above = pe0 > thr43[cat]
+                bonus = 20 if (c0 in ('F', 'G') or above) else 10 if c0 == 'E' else 0
+                s_osn = 30 + (10 if pid != 'delna' else 0)
+                s_dod = min(70, s_osn + bonus)
+                pb = lambda s_: round(cost * (1 - s_ / 100) / sav, 1) if sav > 0 else None
+                paketi.append({
+                    'id': pid, 'ime': NAME[pid], 'na_voljo': True, 'ukrepi': UKREPI[(t, pid)],
+                    'eur_m2': round(eur), 'eur_m2_p25': round(p25) if p25 else None, 'eur_m2_p75': round(p75) if p75 else None, 'n': nn, 'vir_stroska': src,
+                    'strosek': round(cost, -2), 'razred_po': cls(cat, pe1), 'pe_po': round(pe1), 'fe_po': round(fe1),
+                    'prihranek_fe_pct': round(100 * (fe0 - fe1) / fe0), 'prihranek_pe_pct': round(100 * (pe0 - pe1) / pe0),
+                    'fe_pred_leto': round(fe0 * a_kat, -2), 'fe_po_leto': round(fe1 * a_kat, -2), 'stroski_pred_leto': round(fe0 * a_kat * price0, -1),
+                    'prihranek_eur': round(sav, -1), 'spodbuda_osn_pct': s_osn, 'spodbuda_dod_pct': s_dod, 'spodbuda_dod_eur': round(cost * s_dod / 100, -2),
+                    'spodbuda_razlog': 'stavba je med 43 % energetsko najmanj učinkovitih' if above else (f'razred {c0}' if bonus else None),
+                    'vracilo_brez': pb(0), 'vracilo_osn': pb(s_osn), 'vracilo_dod': pb(s_dod),
+                })
+            cel = next(p for p in paketi if p['id'] == 'celovita')
+            ctx.check(cel['razred_po'] == 'A', f'paketi: celovita prenova {tid}/{oid} doseže razred A ({cel["pe_po"]} kWh/(m²·a))')
+            variante.append({'id': oid, 'ogrevanje': oname, 'razred_pred': cls(cat, pe0), 'pe_pred': round(pe0), 'fe_pred': round(fe0),
+                             'razred_toplota_pred': hc, 'n_izkaznic': int(len(g)), 'paketi': paketi})
+        tipi.append({'id': tid, 'ime': ime, 'tip': t, 'povrsina': round(a_ei), 'povrsina_kataster': round(a_kat), 'variante': variante})
+
+    # za orodje Preveri stavbo: stanje po prenovi stavbe z izkaznico
+    pe_cel_sfh = q / SCOP * FP['el'] + q * (1 - 1 / SCOP) * FP['amb'] + AUX * FP['el']
+    preveri = {'HISA': {'delna_faktor': round(float(np.median(faktor['HISA'])), 2), 'celovita_pe': round(pe_cel_sfh), 'zeb_pe': round(pe_cel_sfh * (1 - PV_SHARE))},
+               'BLOKI': {'delna_faktor': round(float(np.median(faktor['BLOKI'])), 2), 'celovita_pe': round(q * FP['dh'] + AUX * FP['el']), 'zeb_pe': None}}
 
     data = {
-        'meta': ctx.meta(['Eko sklad, priznani stroški naložb 2023–2025 (analiza IJS CEU, 2. 10. 2026)', prices['vir'], DH_VIR,
+        'meta': ctx.meta(['Eko sklad, priznani stroški naložb 2023–2025 (analiza IJS CEU, 2. 10. 2026)', prices['vir'], WOOD_VIR, DH_VIR,
                           f'{ctx.draft.name}: preglednica 23 (raba končne energije po razredih), preglednica 26 (predlog spodbud N1), meje razredov',
-                          'Register energetskih izkaznic in kataster nepremičnin (stanje pred prenovo)'],
+                          'Register energetskih izkaznic in kataster nepremičnin (stanje pred prenovo, površine)'],
                          note='Tipične vrednosti za ponazoritev, ne izračun za konkretno stavbo.'),
-        'cene': {'kurilno_olje': prices['kurilno_olje'], 'elektrika': prices['elektrika'], 'plin': prices['plin'], 'daljinska_toplota': DH_EUR_KWH},
+        'cene': {'kurilno_olje': prices['kurilno_olje'], 'elektrika': prices['elektrika'], 'plin': prices['plin'], 'les': WOOD_EUR_KWH, 'daljinska_toplota': DH_EUR_KWH},
+        'preveri': preveri,
         'predpostavke': {'q_b1': Q_B1, 'eta': ETA, 'topla_voda': DHW, 'scop': SCOP, 'pomozna_el': AUX, 'fp': FP, 'pv_delez': PV_SHARE,
                          'zeb_spodbuda_dejanska_pct': round(100 * eko[('SFH', 'zeb_spodbuda')]) if eko[('SFH', 'zeb_spodbuda')] else None},
         'tipi': tipi,

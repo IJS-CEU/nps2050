@@ -108,10 +108,15 @@ const pr = loadData<Prihranek>('prihranek');
   .chk-res { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1.1rem 1.3rem; }
   .chk-res h3 { margin: 0 0 .6rem; }
   .chk-cls { display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 8px; color: #fff; font-weight: 800; font-size: 1.3rem; margin-right: .6rem; vertical-align: middle; text-shadow: 0 1px 1px rgba(0,0,0,.35); }
-  .chk-scale { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin: 1.6rem 0 2.2rem; }
+  .chk-scale { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin: 1.6rem 0 3.4rem; }
   .chk-scale span { height: 14px; display: grid; place-items: center; }
   .chk-scale span:first-child { border-radius: 4px 0 0 4px; } .chk-scale span:last-child { border-radius: 0 4px 4px 0; }
   .chk-scale b { position: absolute; top: 18px; font-size: .72rem; color: var(--ink2); transform: translateX(-50%); font-weight: 700; }
+  .chk-mark2 { position: absolute; top: 34px; transform: translateX(-50%); font-size: .75rem; font-weight: 800; color: var(--green); white-space: nowrap; font-style: normal; }
+  .chk-mark2::before { content: ''; position: absolute; left: 50%; top: -20px; width: 2px; height: 18px; background: var(--green); transform: translateX(-50%); }
+  .chk-po { border: 0; padding: 0; margin: 0 0 .3rem; display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .9rem; }
+  .chk-po legend { font-weight: 800; font-size: .85rem; margin-bottom: .2rem; }
+  .chk-po-t { margin: .2rem 0 .8rem; font-size: .92rem; }
   .chk-mark { position: absolute; top: -22px; transform: translateX(-50%); font-size: .75rem; font-weight: 800; color: var(--ink); white-space: nowrap; }
   .chk-mark::after { content: ''; position: absolute; left: 50%; top: 16px; width: 2px; height: 22px; background: var(--ink); transform: translateX(-50%); }
   .chk-tick { position: absolute; top: 14px; width: 2px; height: 10px; background: var(--ink2); transform: translateX(-50%); }
@@ -201,7 +206,7 @@ const pr = loadData<Prihranek>('prihranek');
   }
 
   async function init() {
-    const [d, pr] = await Promise.all([loadJson<StavbniFond>('stavbni_fond'), loadJson<Prihranek>('prihranek')]);
+    const [d, pr, pk] = await Promise.all([loadJson<StavbniFond>('stavbni_fond'), loadJson<Prihranek>('prihranek'), loadJson<{ preveri: Record<string, { delna_faktor: number; celovita_pe: number; zeb_pe: number | null }> }>('paketi_prenove')]);
     const area = document.getElementById('chk-area') as HTMLInputElement;
     const form = document.getElementById('chk-form') as HTMLFormElement;
     const out = document.getElementById('chk-out')!;
@@ -250,6 +255,39 @@ const pr = loadData<Prihranek>('prihranek');
       const mark = el('i', `${nf(v, 0)}`, 'chk-mark'); mark.style.left = `${pos(c, v) * 100}%`; scale.append(mark);
       if (c.meps) for (const t of [c.meps.threshold_2030, c.meps.threshold_2033]) { const tk = el('i', undefined, 'chk-tick'); tk.style.left = `${pos(c, t) * 100}%`; scale.append(tk); }
       box.append(scale);
+
+      // Stanje po prenovi (hiše in bloki): delna, celovita, celovita ZEB – drugi oznaka na lestvici
+      const po = pk.preveri[c.id];
+      if (po) {
+        const opts: [string, string, number][] = [['delna', 'po delni prenovi (fasada, okna)', v * po.delna_faktor],
+          ['celovita', c.id === 'HISA' ? 'po celoviti prenovi (ovoj, toplotna črpalka, prezračevanje)' : 'po celoviti prenovi (ovoj, prezračevanje, daljinsko ogrevanje)', Math.min(v, po.celovita_pe)]];
+        if (po.zeb_pe !== null) opts.push(['zeb', 'po celoviti ZEB prenovi (še izolacija tal, sončna elektrarna)', Math.min(v, po.zeb_pe)]);
+        const fs = el('fieldset', undefined, 'chk-po');
+        fs.append(el('legend', 'Stanje po prenovi'));
+        const txt = el('p', undefined, 'chk-po-t');
+        txt.setAttribute('aria-live', 'polite');
+        const mark2 = el('i', '', 'chk-mark2');
+        mark2.hidden = true;
+        scale.append(mark2);
+        const set = (id: string) => {
+          const o = opts.find((x) => x[0] === id);
+          if (!o) { mark2.hidden = true; txt.textContent = ''; return; }
+          const k2 = classOf(c, o[2]);
+          mark2.hidden = false;
+          mark2.textContent = `${nf(o[2], 0)} · ${k2}`;
+          mark2.style.left = `${pos(c, o[2]) * 100}%`;
+          txt.replaceChildren(`Ocena ${o[1]}: okoli ${nf(o[2], 0)} kWh/(m²·a), `, el('b', `razred ${k2}`), '.');
+        };
+        for (const [id, lab] of [['ne', 'brez prenove'], ...opts.map((o) => [o[0], { delna: 'delna', celovita: 'celovita', zeb: 'celovita ZEB' }[o[0]]!])] as [string, string][]) {
+          const l = el('label');
+          const r = document.createElement('input');
+          r.type = 'radio'; r.name = 'chk-po'; r.value = id; r.checked = id === 'ne';
+          r.addEventListener('change', () => set(id));
+          l.append(r, document.createTextNode(` ${lab}`));
+          fs.append(l);
+        }
+        box.append(fs, txt);
+      }
 
       const ul = el('ul');
       // Ciljni razred do leta 2050: A (brezemisijska stavba) za vse stavbe, C za stavbe kulturne dediščine.
