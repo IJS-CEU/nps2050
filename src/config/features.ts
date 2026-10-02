@@ -4,5 +4,5 @@
  */
 export const features = {
   /** 11.9 Dnevnik sprememb: povezava v nogi ob različici podatkov. */
-  dnevnik: false,
+  dnevnik: true,
 } as const;
