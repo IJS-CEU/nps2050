@@ -6,14 +6,23 @@ lead: 'Kaj načrt pomeni za vašo hišo ali stanovanje? Kratki odgovori na najpo
 ---
 import { pageUrl } from '../../i18n/routes';
 import NapacnaRazumevanja from '../../components/NapacnaRazumevanja.astro';
+import PaketiPovzetek from '../../components/PaketiPovzetek.astro';
 import { loadData } from '../../lib/data';
 import { nf } from '../../lib/format';
 
 export const rv = loadData('revscina');
 
 <div class="card green">
-  <p><strong>Preverite svojo stavbo.</strong> Vnesite primarno energijo iz energetske izkaznice in poglejte, v kateri razred sodi stavba in katere pragove izpolnjuje: <a href={pageUrl('preveri')}>Preveri stavbo</a></p>
+  <p><strong>Preverite svojo stavbo.</strong> Z energetsko izkaznico ali brez nje poglejte, v kateri razred sodi stavba, katere pragove izpolnjuje in kam bi jo pripeljala prenova: <a href={pageUrl('preveri')}>Preveri stavbo</a></p>
 </div>
+
+## Koliko stane prenova in kaj prinese
+
+{/* Vir: public/data/paketi_prenove.json (cevovod data/npsdata/paketi.py). */}
+
+Tri stopnje prenove: delna (fasada in okna), celovita (ovoj, toplotna črpalka, prezračevanje – do razreda A) in celovita ZEB prenova (še sončna elektrarna in izolacija tal). Ob vsaki je primerjava današnje spodbude Eko sklada s predlogom iz osnutka NPS 2050.
+
+<PaketiPovzetek />
 
 ## Vprašanja in odgovori
 
@@ -148,7 +157,6 @@ Za stavbe kulturne dediščine načrt ne predvideva splošne izjeme, ampak milej
 
 ## Svetovanje in spodbude
 
-<p class="card green"><strong>Koliko stane prenova in kaj prinese?</strong> Tipični stroški, prihranki, razred po prenovi in spodbude za delno, celovito in celovito ZEB prenovo hiše ali stanovanja v bloku: <a href={pageUrl('paketi')}>Paketi prenove</a>.</p>
 
 {/* Vir: NPS_v38, pogl. 6.1 (M19.8 ENSVET, N18 mreža točk »vse na enem mestu«). */}
 
