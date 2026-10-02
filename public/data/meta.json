@@ -1,7 +1,7 @@
 {
  "draft": "NPS_v40",
  "draft_date": "2026-10-01",
- "generated": "2026-10-01",
+ "generated": "2026-10-02",
  "sources": [
   "NPS_v40.docx",
   "Kataster_stavbe_EPBD_2026.csv.gz",
@@ -18,6 +18,7 @@
   "TK_ogr2020.gpkg",
   "KN_SLO_STAVBE_SLO_stavbe_20260830.zip",
   "EK_porocanja.csv",
+  "AERS_DO_ 2024_Analiza_ĐOM_2025.xlsx",
   "KS_porocila.csv"
  ],
  "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
@@ -36,5 +37,5 @@
   "obcine_model",
   "spremljanje"
  ],
- "checks": 750
+ "checks": 754
 }

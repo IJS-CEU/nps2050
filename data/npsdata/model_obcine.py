@@ -29,7 +29,7 @@ from shapely.geometry import shape
 from .context import OUT, Context, write_csv, write_json
 from .draft import row
 from .numbers import num
-from . import cilji_obcin, kazalniki_obcin, model_nres, projekcija_obcin, skupine_obcin
+from . import cilji_obcin, daljinsko, kazalniki_obcin, model_nres, projekcija_obcin, skupine_obcin
 from .context import DATA_DIR
 from .meritve import build_measured
 from .stavbe import CARRIERS, HEAT_CLASSES, build_table
@@ -442,6 +442,21 @@ def build(ctx: Context) -> dict:
         r = dhp.loc[eid] if eid in dhp.index else {'q': 0, 'q_dense': 0, 'ha': 0}
         out[str(s)]['dh_pot'] = dh_pot(r['q'], r['q_dense'], r['ha'], fed.loc[eid] if eid in fed.index else fe0)
         out[str(s)]['javne_cat'] = javne_cat(pubg[eid]) if eid in pubg else {}
+    # 11.2 Omrežja: daljinsko ogrevanje (AERS 2024) in zemeljski plin (ocena modela). Priključek na plinovod v katastru je izpolnjen
+    # le za ~10 tisoč stavb (premalo za objavo).
+    # Podatki distributerjev plina (dolžina, odjemalci, količine) so v pridobivanju; polja so pripravljena in prazna.
+    do = daljinsko.build(ctx, muni)
+    gas = (c.groupby('obcina').c_gas.sum().add(nres.groupby('obcina').c_gas.sum(), fill_value=0)) / 1e6
+    def omrezja(eid, s):
+        return {'do': do.get(s), 'plin': {'raba_gwh_ocena': round(float(gas.get(eid, 0)), 1),
+                                          'dolzina_km': None, 'odjemalci_gospodinjski': None, 'odjemalci_negospodinjski': None, 'distribuirano_gwh': None,
+                                          'vir': 'ocena modela IJS CEU; podatki distributerjev v pridobivanju'}}
+    for eid, (s, _) in muni.items():
+        out[str(s)]['omrezja'] = omrezja(eid, str(s))
+    ctx.check(sum(1 for v in out.values() if v['omrezja']['do']) >= 55, f'daljinsko ogrevanje: {sum(1 for v in out.values() if v["omrezja"]["do"])} občin s sistemom')
+    om_si = {'do': {'obcine': sum(1 for v in out.values() if v['omrezja']['do']), 'sistemi': sum(v['omrezja']['do']['sistemi'] for v in out.values() if v['omrezja']['do']),
+                    'prodaja_gwh': round(sum(v['omrezja']['do']['prodaja_gwh'] for v in out.values() if v['omrezja']['do']), 1)},
+             'plin': {'raba_gwh_ocena': round(float(gas.sum()), 1)}}
     # 11.8 Najslabše stavbe: delež površine – ocena modela (stanovanjske, skupina 43 %) in registri (stavbe z izkaznico:
     # stanovanjske nad pragom 43 %, nestanovanjske nad pragom minimalnih standardov 2030). Izkaznice so javne: brez praga.
     from .obcine import _classify, _flags
@@ -510,7 +525,7 @@ def build(ctx: Context) -> dict:
         'carriers': [{'id': 'el', 'name': 'električna energija'}, {'id': 'amb', 'name': 'toplota okolice in sončna energija'}, {'id': 'gas', 'name': 'plin (zemeljski, UNP)'},
                      {'id': 'elko', 'name': 'kurilno olje'}, {'id': 'bio', 'name': 'lesna biomasa'}, {'id': 'dh', 'name': 'daljinska toplota'}],
         'classes': NPS,
-        'si': {**agg(c, lo, hi), 'worst': worst_si, 'vse': kz['si'], 'pot': si_pot, 'dh_pot': dh_pot(dhp.q.sum(), dhp.q_dense.sum(), dhp.ha.sum(), fed.sum()), 'javne_cat': javne_cat(pubn)},
+        'si': {**agg(c, lo, hi), 'worst': worst_si, 'vse': kz['si'], 'pot': si_pot, 'dh_pot': dh_pot(dhp.q.sum(), dhp.q_dense.sum(), dhp.ha.sum(), fed.sum()), 'omrezja': om_si, 'javne_cat': javne_cat(pubn)},
         'pop_period': kz['pop_period'],
         'municipalities': out,
     }
@@ -522,7 +537,7 @@ def build(ctx: Context) -> dict:
         a = v['vse']
         return {'model_fe_kwh_m2': v['fe_kwh_m2'], 'model_above43_pct': v['above43_area_pct'],
                 'k_fe_mwh_preb': a['fe_mwh_preb']['total'], 'k_res_fe_mwh_preb': a['fe_mwh_preb']['res'], 'k_tgp_t_preb': a['tgp_t_preb']['total'],
-                'k_ove_pct': a['ove_pct']['total'], 'k_nres_kwh_m2': a['nres_kwh_m2'], 'k_dh_pot_pct': v['dh_pot']['pct'], 'k_dh_fe_pct': v['dh_pot']['fe_pct'],
+                'k_ove_pct': a['ove_pct']['total'], 'k_nres_kwh_m2': a['nres_kwh_m2'], 'k_dh_pot_pct': v['dh_pot']['pct'], 'k_dh_fe_pct': v['dh_pot']['fe_pct'], 'k_do_sistemi': (v['omrezja']['do'] or {}).get('sistemi', 0) if 'omrezja' in v else None,
                 'w_res_model_pct': v['worst']['res_model_pct'], 'w_res_reg_pct': v['worst']['res_reg_pct'], 'w_res_reg_n': v['worst']['res_reg_n'],
                 'w_nres_reg_pct': v['worst']['nres_reg_pct'], 'w_nres_reg_n': v['worst']['nres_reg_n'], 'pop': a['pop']}
     for r in ix['municipalities']:

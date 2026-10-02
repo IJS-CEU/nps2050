@@ -142,6 +142,7 @@ export interface ObModelArea {
   cilji?: ObCilji;
   dh_pot?: { q_gwh: number; dense_gwh: number; pct: number; ha: number; fe_gwh: number; fe_dense_gwh: number; fe_pct: number; fe_ha: number };
   javne_cat?: Record<string, { b: number; kwh_m2: number | null; meas_pct: number | null }>;
+  omrezja?: { do: { sistemi: number; proizvodnja_gwh: number; prodaja_gwh: number; ove_pct: number | null; plin_pct: number | null; ucinkovit: boolean | null; spte: number } | null; plin: { raba_gwh_ocena: number; dolzina_km: number | null; odjemalci_gospodinjski: number | null; odjemalci_negospodinjski: number | null; distribuirano_gwh: number | null; vir: string } };
   pot?: Record<string, { fe_gwh: number; fe_res_gwh: number; tgp_kt: number; ove_pct: number | null; fossil_pct: number | null }>;
 }
 export interface ObSkupine { groups: { id: string; name: string; n: number }[]; municipalities: Record<string, { group: string; neighbours: number[]; density: number; hotel_m2_preb: number }> }

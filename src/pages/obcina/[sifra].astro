@@ -54,6 +54,8 @@ const esRows = ix.es_groups.map((g) => ({ ...g, o: o.es_res[g.id], s: si.es_res[
 const esMax = Math.max(1, ...esRows.flatMap((r) => [r.o.pct ?? 0, r.s.pct ?? 0]));
 const pub = ix.categories.slice(2).map((c) => ({ id: c.id, name: c.name, ...o.public_by_cat[c.id], e: mo.javne_cat?.[c.id] ?? null, es: ms.javne_cat?.[c.id] ?? null })).filter((c) => c.b !== 0);
 const dh = mo.dh_pot!, dhSi = ms.dh_pot!;
+const om = mo.omrezja!;
+const sysTxt = (n: number) => (n === 1 ? 'deluje 1 sistem' : n === 2 ? 'delujeta 2 sistema' : n <= 4 ? `delujejo ${n} sistemi` : `deluje ${n} sistemov`);
 const clsBlocks = ['hise', 'bloki'].map((sid) => {
   const g = o.segments[sid], gs = si.segments[sid];
   const grouped = !g.classes_pct && !!g.class_groups_pct;
@@ -107,7 +109,7 @@ const TOC = [
   { id: 'ob-peer-t', icon: 'map', label: 'Primerjava', hint: 'sosednje in podobne občine' },
   { id: 'ob-cilji-t', icon: 'target', label: 'Cilji NPS 2050', hint: 'potrebna prenova v občini' },
   { id: 'ob-pot-t', icon: 'trending-down', label: 'Pot do leta 2050', hint: 'energija, emisije, OVE' },
-  { id: 'ob-dh-t', icon: 'flame', label: 'Daljinsko ogrevanje', hint: 'potencial po toplotni karti' },
+  { id: 'ob-dh-t', icon: 'flame', label: 'Daljinsko ogrevanje', hint: 'potencial in omrežja' },
   { id: 'ob-model-t', icon: 'house', label: 'Stanovanjske stavbe', hint: 'energenti in razredi' },
   { id: 'reg-seg', icon: 'building-2', label: 'Podatki iz registrov', hint: 'stavbe, izkaznice, prenove' },
   { id: 'lek', icon: 'file-text', label: 'Kartica občine', hint: 'PDF in CSV za LEK' },
@@ -242,6 +244,12 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
         <div class="tile"><div class="v">{nf(dh.dense_gwh, dh.dense_gwh < 10 ? 1 : 0)}<small> GWh</small></div><div class="l">na leto na teh območjih, od skupaj {nf(dh.q_gwh, dh.q_gwh < 10 ? 1 : 0)} GWh v občini</div></div>
         <div class="tile"><div class="v">{nf(dh.ha)}<small> ha</small></div><div class="l">površina območij z gostoto vsaj 250 MWh/ha (celice 100 × 100 m)</div></div>
       </div>
+      <h3>Omrežja v občini</h3>
+      {om.do
+        ? <p>V občini {sysTxt(om.do.sistemi)} daljinskega ogrevanja, {om.do.sistemi === 1 ? 'ki je' : om.do.sistemi === 2 ? 'ki sta' : 'ki so'} leta 2024 {om.do.sistemi === 1 ? 'prodal' : om.do.sistemi === 2 ? 'prodala' : 'prodali'} <strong>{nf(om.do.prodaja_gwh, om.do.prodaja_gwh < 10 ? 1 : 0)} GWh</strong> toplote{om.do.ove_pct !== null && <>; obnovljivi viri so dali {nf(om.do.ove_pct, 0)} % goriva{om.do.plin_pct ? <>, zemeljski plin {nf(om.do.plin_pct, 0)} %</> : ''}</>}{om.do.ove_pct === null && om.do.proizvodnja_gwh === 0 && <>; toploto kupujejo iz sistema v drugi občini</>}{om.do.ucinkovit === true && <>. Daljinsko ogrevanje v občini je po merilih EU učinkovito</>}{om.do.ucinkovit === false && <>. Daljinsko ogrevanje v občini po merilih EU ni učinkovito</>}.</p>
+        : <p>V občini ni sistema daljinskega ogrevanja, ki bi poročal Agenciji za energijo.</p>}
+      <p>Zemeljski plin: v stavbah v občini se ga po oceni modela porabi okoli <strong>{nf(om.plin.raba_gwh_ocena, om.plin.raba_gwh_ocena < 10 ? 1 : 0)} GWh</strong> na leto. Podatki distributerjev (dolžina omrežja, število odjemalcev, distribuirane količine) so v pridobivanju.</p>
+      <p class="note">Viri: Agencija za energijo, poročila izvajalcev daljinskega ogrevanja za leto 2024 (prodana toplota, gorivo po kraju proizvodnje); zemeljski plin – ocena modela IJS CEU (stanje 2023).</p>
       <p class="note">Končna energija: ocena modela za vsako stavbo (goriva in daljinska toplota za ogrevanje in toplo vodo, brez elektrike in toplote okolice), sešteta po celicah 100 × 100 m glede na lego stavbe v katastru; stanje 2023, usklajeno z energetsko bilanco. Potrebna toplota: toplotna karta 2020 (vse stavbe), izdelana neodvisno in neusklajena z bilanco, zato je višja. Oba kazalnika kažeta tehnični potencial glede na gostoto odjema; ne upoštevata obstoječih omrežij, virov toplote in ekonomike posameznega sistema. Z energetsko prenovo stavb se gostota odjema zmanjšuje.</p>
     </section>
 
@@ -404,7 +412,8 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
 
     <div class="card green ob-lek" id="lek">
       <p><strong>Energetsko-podnebna kartica občine: stavbe.</strong> Stanje, energenti, energijski razredi in pot do leta 2050 na eni strani, na drugi podatki za lokalni energetski koncept (LEK); za tisk ali kot PDF in v obliki CSV. Kartica je intelektualna lastnina IJS CEU; uporaba je dovoljena z navedbo vira, brez predelave in brez komercialne uporabe (CC BY-NC-ND 4.0).</p>
-      <p><a class="btn primary" href={withBase(`obcina/${o.sifra}/lek/`)}>Kartica za tisk / PDF</a> <a class="btn" href={withBase(`obcina/${o.sifra}/lek.csv`)} download={`NPS2050_${o.name}_LEK.csv`}>CSV</a></p>
+      <p><a class="btn primary" href={withBase(`obcina/${o.sifra}/lek/`)}>Kartica za tisk / PDF</a> <a class="btn" href={withBase(`obcina/${o.sifra}/lek.csv`)} download={`NPS2050_${o.name}_LEK.csv`}>CSV</a> <a class="btn" href={withBase(`data/paket/obcina-${o.sifra}.zip`)} download={`NPS2050_${o.name}_paket.zip`}>Podatkovni paket (ZIP)</a></p>
+      <p class="note">Podatkovni paket vsebuje vse kazalnike občine s primerjavo s sosednjimi občinami, skupino in Slovenijo, podatke v obliki JSON, slovar polj in metapodatke.</p>
     </div>
     <div class="card ob-more">
       <p><strong>Podatki za prenos:</strong> <a href={withBase(`data/obcine/${o.sifra}.json`)} download>JSON (občina {o.name})</a> · <a href={withBase('data/csv/obcine.csv')} download>CSV (vse občine)</a>. Licenca CC BY 4.0.</p>
