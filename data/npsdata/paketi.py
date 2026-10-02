@@ -87,6 +87,16 @@ def _eko_costs(ctx: Context) -> dict:
 
         def per(cols):  # vsota median posameznih ukrepov
             return sum(s.loc[s['Ukrep (koda)'] == c, 'EUR/m²'].median() for c in cols)
+        # dejanski delež spodbude Eko sklada 2025 za iste ukrepe (vsota spodbud / vsota priznanih stroškov ukrepov paketa)
+        s25 = s[s.Leto == 2025]
+        g25 = s25.groupby('Ukrep (koda)')[[e_col, 'Spodbuda [EUR]']].sum()
+        def share(cols):
+            cols = [c for c in cols if c in g25.index]
+            return float(g25.loc[cols, 'Spodbuda [EUR]'].sum() / g25.loc[cols, e_col].sum()) if cols else None
+        out[(tip, 'eko25_delna')] = share(['fasada', 'okna_vrata'])
+        out[(tip, 'eko25_celovita')] = share(['fasada', 'okna_vrata', 'streha', 'tczv', 'prezrac_centr'] if tip == 'SFH' else ['fasada', 'okna_vrata', 'streha', 'prezrac_lok'])
+        cz = s[(s['Ukrep (koda)'] == 'celovita_prenova') & (s.Leto >= 2024)]
+        out[(tip, 'eko25_zeb')] = float(cz['Spodbuda [EUR]'].sum() / cz[e_col].sum()) if len(cz) else None
         d = combo(['fasada', 'okna_vrata'])
         out[(tip, 'delna')] = (d, 'dejanske kombinacije fasada + okna pri isti stavbi') if len(d) >= 30 else (None, None)
         c = combo(['fasada', 'okna_vrata', 'streha'], ('tczv', 'tczemlja', 'tcvv'))
@@ -228,6 +238,9 @@ def build(ctx: Context) -> dict:
                     'prihranek_eur': round(sav, -1), 'spodbuda_osn_pct': s_osn, 'spodbuda_dod_pct': s_dod, 'spodbuda_dod_eur': round(cost * s_dod / 100, -2),
                     'spodbuda_razlog': 'stavba je med 43 % energetsko najmanj učinkovitih' if above else (f'razred {c0}' if bonus else None),
                     'vracilo_brez': pb(0), 'vracilo_osn': pb(s_osn), 'vracilo_dod': pb(s_dod),
+                    'spodbuda_eko_pct': round(100 * eko[(t, f'eko25_{pid}')]) if eko.get((t, f'eko25_{pid}')) else None,
+                    'spodbuda_eko_eur': round(cost * eko[(t, f'eko25_{pid}')], -2) if eko.get((t, f'eko25_{pid}')) else None,
+                    'eur_kwh_eko': ekwh(100 * eko[(t, f'eko25_{pid}')]) if eko.get((t, f'eko25_{pid}')) else None,
                     'prihranjeno_kwh_leto': round(saved_kwh, -2), 'eur_kwh_brez': ekwh(0), 'eur_kwh_dod': ekwh(s_dod), 'cena_energije_pred': price0,
                 })
             cel = next(p for p in paketi if p['id'] == 'celovita')
