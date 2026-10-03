@@ -6,7 +6,11 @@ Krivulje se ne interpolirajo in ne izmišljujejo (CLAUDE.md §11.3).
 
 - Povprečna primarna energija stanovanjskih stavb pri fiksnih faktorjih 2025: energenti SFH + MFH (8_SFH_Charts) × faktorji PE
   2025 (7_Carriers) / stanovanjska površina; kot indeks (2025 = 100).
-- kWh/(m²·a) na lestvici trajektorije NPS: trajektorija NPS × indeks položaja / indeks S2 (enako kot S0 in S1 v primerjavi strategij).
+- kWh/(m²·a) na lestvici trajektorije NPS: ocenjeno stanje 2025 × indeks položaja (2025 = 100). Model se začne leta 2025, zato je
+  stanje 2025 ocenjeno iz podatkov (OCENA_2025), ne privzeto s premice 2020–2030: (a) registri 2020–2025 (kataster in Eko sklad,
+  ukrepi ovrednoteni z arhetipi iz izkaznic, z novogradnjami): 254–256; (b) primarna raba stanovanjskih stavb 2020 → 2023 iz
+  izhodiščne preglednice osnutka (NEPN 2024), popravljena za stopinjske dneve (Eurostat) in rast površine (NEPN 2020/2024),
+  2023–2025 s tempom sedanje prakse (S0): okoli 257. Razpon 252–260.
 - Dosežena stopnja prenove: prenovljena stanovanjska površina 2026–2050 (delna, celovita, celovita s potresno) / površina / 25 let.
   Model prenavlja le stavbe razredov C–G, zato dosežena stopnja zaostaja za vpisano in se pri visokih stopnjah nasiči.
 """
@@ -17,9 +21,15 @@ import openpyxl
 from .context import OUT, Context, write_csv, write_json
 
 POS = [('k070', 0.7), ('k100', 1.0), ('k150', 1.5), ('k200', 2.0)]
+OCENA_2025 = {'osrednja': 255, 'spodnja': 252, 'zgornja': 260}  # kWh/(m²·a), glej opis zgoraj
+VIRI_2025 = {'registri': [254, 256], 'bilanca': 257}  # data/raw/ocena_2020_2025.py (okni 2020–2025 in 2021–2025); bilanca s popravkom za vreme
+BASE_2020 = 269
 PERIODS = ['2026-2030', '2031-2035', '2036-2040', '2041-2045', '2046-2050']
 YEARS = [2025, 2030, 2035, 2040, 2045, 2050]
 CARRIER_ROWS = {'SFH': 147, 'MFH': 231}
+# Enotni stroški in delež javnih sredstev P / D / DS (Scenario_Compare vrstici 142–143, predpostavka NPS 7.1)
+COST = {'SFH': (200, 520, 750), 'MFH': (170, 420, 620), 'PB': (280, 700, 1000), 'SB': (250, 650, 950)}
+PUBLIC = {'SFH': (.15, .30, .40), 'MFH': (.15, .30, .40), 'PB': (.5, .5, .5), 'SB': (.10, .20, .25)}
 
 
 def _run(path) -> dict:
@@ -31,20 +41,27 @@ def _run(path) -> dict:
     for i in range(41, 71):
         stock[rr[i][3]] = stock.get(rr[i][3], 0) + (rr[i][2] or 0)
     res_area = stock['SFH'] + stock['MFH']
-    ren = 0.0
-    for per in PERIODS:
+    ren = inv = inv30 = pub = 0.0
+    for pi, per in enumerate(PERIODS):
         ws = wb[per]
         rows = {i: r for i, r in enumerate(ws.iter_rows(min_row=1, max_row=110, max_col=32, values_only=True), start=1)}
-        for rng, col in ((range(6, 36), 31), (range(42, 72), 28), (range(78, 108), 28)):  # delna AF, celovita AC, celovita + potresna AC
+        for k, (rng, col) in enumerate(((range(6, 36), 31), (range(42, 72), 28), (range(78, 108), 28))):  # delna AF, celovita AC, celovita + potresna AC
             for i in rng:
-                if typ[int(rows[i][0])] in ('SFH', 'MFH'):
-                    ren += rows[i][col] or 0
+                t = typ[int(rows[i][0])]
+                a = rows[i][col] or 0
+                if t in ('SFH', 'MFH'):
+                    ren += a
+                c = a * COST[t][k] / 1e9
+                inv += c; pub += c * PUBLIC[t][k]
+                if pi == 0:
+                    inv30 += c
     ch = {i: r for i, r in enumerate(wb['8_SFH_Charts'].iter_rows(min_row=1, max_row=240, max_col=7, values_only=True), start=1)}
     car = wb['7_Carriers']
     pef = [car.cell(22 + j, 2).value for j in range(5)]
     pe = [sum(ch[CARRIER_ROWS[t] + j][1 + y] * pef[j] for t in CARRIER_ROWS for j in range(5)) * 1e6 / res_area for y in range(6)]
     co = {i: r for i, r in enumerate(wb['Class Overview'].iter_rows(min_row=1, max_row=156, max_col=7, values_only=True), start=1)}
-    sc = {i: r for i, r in enumerate(wb['Scenario_Compare'].iter_rows(min_row=1, max_row=14, max_col=2, values_only=True), start=1)}
+    sc = {i: r for i, r in enumerate(wb['Scenario_Compare'].iter_rows(min_row=1, max_row=43, max_col=2, values_only=True), start=1)}
+    lab = {str(r[0]).strip(): r[1] for r in sc.values() if r[0]}
     return {
         'input_pct': {'SFH': [100 * v for v in rr[6][5:10]], 'MFH': [100 * v for v in rr[7][5:10]]},
         'rate_res_pct': 100 * ren / res_area / 25,
@@ -53,6 +70,8 @@ def _run(path) -> dict:
         'fe_2050_live': sc[14][1],
         'fg_pct': [100 * v for v in co[151][1:7]],
         'epbd_red': {'2030': co[142][2], '2035': co[143][2]},
+        'red_2050': {'fe': lab['Final energy reduction vs 2025'], 'pe': lab['Primary energy reduction vs 2025'], 'co2': lab['CO₂ reduction vs 2025']},
+        'inv_bn': inv, 'inv_2030_bn': inv30, 'public_bn': pub,
     }
 
 
@@ -78,26 +97,31 @@ def build(ctx: Context) -> dict:
     out = []
     for key, f in POS:
         r = runs[key]
-        kwh = [nps[2020]] + [round(nps[y] * i / i2) for y, i, i2 in zip(YEARS, idx[key], idx['k100'])]
+        kwh = [nps[2020]] + [round(OCENA_2025['osrednja'] * i / 100) for i in idx[key]]
+        lo = [nps[2020]] + [round(OCENA_2025['spodnja'] * i / 100) for i in idx[key]]
+        hi = [nps[2020]] + [round(OCENA_2025['zgornja'] * i / 100) for i in idx[key]]
         out.append({
             'id': key, 'faktor': f,
             'stopnja_dosezena_pct': round(r['rate_res_pct'], 2),
             'stopnja_vpisana_2026_2030_pct': {t: round(v[0], 2) for t, v in r['input_pct'].items()},
-            'kwh_m2': kwh,
+            'kwh_m2': kwh, 'kwh_m2_spodnja': lo, 'kwh_m2_zgornja': hi,
+            'zmanjsanje_2030_pct': round(100 * (1 - kwh[2] / BASE_2020), 1), 'zmanjsanje_2035_pct': round(100 * (1 - kwh[3] / BASE_2020), 1),
             'indeks_pe': [round(v, 1) for v in idx[key]],
             'fe_twh': [round(v / 1000, 2) for v in r['fe_gwh']],
             'fe_zmanjsanje_2050_pct': round(100 * (1 - r['fe_gwh'][5] / r['fe_gwh'][0])),
             'fg_pct': [round(v, 1) for v in r['fg_pct']],
             'epbd_2030': kwh[2] <= epbd['2030']['max'], 'epbd_2035': kwh[3] <= epbd['2035']['max'],
+            'zmanjsanje_2050_pct': {k: round(100 * v, 1) for k, v in r['red_2050'].items()},
+            'nalozbe_mrd': round(r['inv_bn'], 1), 'nalozbe_2026_2030_mrd': round(r['inv_2030_bn'], 1), 'javna_mrd': round(r['public_bn'], 2),
         })
-    ctx.check(out[1]['kwh_m2'][1:] == [nps[y] for y in YEARS], 'drsnik: položaj k100 = trajektorija NPS')
+    ctx.check(nps[2020] == BASE_2020, f'drsnik: izhodišče 2020 = {BASE_2020} kWh/(m²·a)')
     data = {
         'meta': ctx.meta(['Model RenRates_SI (uskladitev z NEPN 2024, 3. 10. 2026): štirje zagoni z različnimi stopnjami prenove stanovanjskih stavb',
                           f'{ctx.draft.name}: nacionalna trajektorija stanovanjskega fonda in najvišje vrednosti po EPBD'],
-                         note='kWh/(m²·a) na lestvici trajektorije NPS (trajektorija NPS × indeks položaja / indeks scenarija NPS). '
+                         note='kWh/(m²·a): ocenjeno stanje 2025 (registri 2020–2025 in energetska bilanca s popravkom za vreme; 255, razpon 252–260) × indeks položaja iz modela. '
                               'Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb; vse drugo je kot v scenariju NPS 2050.'),
-        'years': [2020] + YEARS, 'nps': [nps[2020]] + [nps[y] for y in YEARS], 'epbd_max': k['epbd_max'],
-        'privzeto': 'k100', 'polozaji': out,
+        'years': [2020] + YEARS, 'nps': [nps[2020]] + [None if y == 2025 else nps[y] for y in YEARS], 'epbd_max': k['epbd_max'],
+        'privzeto': 'k100', 'polozaji': out, 'ocena_2025': OCENA_2025, 'viri_2025': VIRI_2025,
     }
     write_json('drsnik', data)
     write_csv('drsnik', ['položaj', 'faktor stopenj', 'dosežena stopnja prenove stanovanjskih stavb 2026–2050 [%/leto]']

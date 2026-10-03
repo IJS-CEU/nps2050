@@ -8,7 +8,7 @@
    "NPS_v40: nacionalna trajektorija stanovanjskega fonda in najvišje vrednosti po EPBD"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
-  "note": "kWh/(m²·a) na lestvici trajektorije NPS (trajektorija NPS × indeks položaja / indeks scenarija NPS). Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb; vse drugo je kot v scenariju NPS 2050."
+  "note": "kWh/(m²·a): ocenjeno stanje 2025 (registri 2020–2025 in energetska bilanca s popravkom za vreme; 255, razpon 252–260) × indeks položaja iz modela. Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb; vse drugo je kot v scenariju NPS 2050."
  },
  "years": [
   2020,
@@ -21,7 +21,7 @@
  ],
  "nps": [
   269,
-  243,
+  null,
   217,
   199,
   180,
@@ -52,13 +52,33 @@
    },
    "kwh_m2": [
     269,
-    243,
-    224,
-    210,
-    193,
-    186,
-    180
+    255,
+    235,
+    221,
+    208,
+    198,
+    189
    ],
+   "kwh_m2_spodnja": [
+    269,
+    252,
+    233,
+    218,
+    205,
+    195,
+    187
+   ],
+   "kwh_m2_zgornja": [
+    269,
+    260,
+    240,
+    225,
+    212,
+    201,
+    193
+   ],
+   "zmanjsanje_2030_pct": 12.6,
+   "zmanjsanje_2035_pct": 17.8,
    "indeks_pe": [
     100.0,
     92.3,
@@ -84,8 +104,16 @@
     0.0,
     0.0
    ],
-   "epbd_2030": true,
-   "epbd_2035": true
+   "epbd_2030": false,
+   "epbd_2035": false,
+   "zmanjsanje_2050_pct": {
+    "fe": 39.3,
+    "pe": 46.8,
+    "co2": 73.9
+   },
+   "nalozbe_mrd": 12.8,
+   "nalozbe_2026_2030_mrd": 3.1,
+   "javna_mrd": 4.77
   },
   {
    "id": "k100",
@@ -97,13 +125,33 @@
    },
    "kwh_m2": [
     269,
-    243,
-    217,
-    199,
-    180,
-    172,
-    164
+    255,
+    228,
+    209,
+    194,
+    182,
+    172
    ],
+   "kwh_m2_spodnja": [
+    269,
+    252,
+    225,
+    207,
+    191,
+    180,
+    170
+   ],
+   "kwh_m2_zgornja": [
+    269,
+    260,
+    232,
+    213,
+    197,
+    186,
+    176
+   ],
+   "zmanjsanje_2030_pct": 15.2,
+   "zmanjsanje_2035_pct": 22.3,
    "indeks_pe": [
     100.0,
     89.3,
@@ -129,8 +177,16 @@
     0.0,
     0
    ],
-   "epbd_2030": true,
-   "epbd_2035": true
+   "epbd_2030": false,
+   "epbd_2035": true,
+   "zmanjsanje_2050_pct": {
+    "fe": 44.7,
+    "pe": 51.0,
+    "co2": 77.0
+   },
+   "nalozbe_mrd": 15.0,
+   "nalozbe_2026_2030_mrd": 3.8,
+   "javna_mrd": 5.39
   },
   {
    "id": "k150",
@@ -142,13 +198,33 @@
    },
    "kwh_m2": [
     269,
-    243,
-    206,
-    184,
-    163,
-    155,
-    151
+    255,
+    216,
+    193,
+    176,
+    165,
+    159
    ],
+   "kwh_m2_spodnja": [
+    269,
+    252,
+    214,
+    191,
+    174,
+    163,
+    157
+   ],
+   "kwh_m2_zgornja": [
+    269,
+    260,
+    220,
+    197,
+    179,
+    168,
+    162
+   ],
+   "zmanjsanje_2030_pct": 19.7,
+   "zmanjsanje_2035_pct": 28.3,
    "indeks_pe": [
     100.0,
     84.8,
@@ -175,7 +251,15 @@
     0
    ],
    "epbd_2030": true,
-   "epbd_2035": true
+   "epbd_2035": true,
+   "zmanjsanje_2050_pct": {
+    "fe": 49.1,
+    "pe": 54.4,
+    "co2": 79.7
+   },
+   "nalozbe_mrd": 17.2,
+   "nalozbe_2026_2030_mrd": 4.9,
+   "javna_mrd": 5.98
   },
   {
    "id": "k200",
@@ -187,13 +271,33 @@
    },
    "kwh_m2": [
     269,
-    243,
-    197,
-    173,
-    153,
-    151,
-    150
+    255,
+    206,
+    181,
+    164,
+    160,
+    158
    ],
+   "kwh_m2_spodnja": [
+    269,
+    252,
+    204,
+    179,
+    162,
+    158,
+    156
+   ],
+   "kwh_m2_zgornja": [
+    269,
+    260,
+    210,
+    185,
+    168,
+    163,
+    161
+   ],
+   "zmanjsanje_2030_pct": 23.4,
+   "zmanjsanje_2035_pct": 32.7,
    "indeks_pe": [
     100.0,
     80.9,
@@ -220,7 +324,27 @@
     0
    ],
    "epbd_2030": true,
-   "epbd_2035": true
+   "epbd_2035": true,
+   "zmanjsanje_2050_pct": {
+    "fe": 49.6,
+    "pe": 54.8,
+    "co2": 80.2
+   },
+   "nalozbe_mrd": 17.6,
+   "nalozbe_2026_2030_mrd": 6.0,
+   "javna_mrd": 6.06
   }
- ]
+ ],
+ "ocena_2025": {
+  "osrednja": 255,
+  "spodnja": 252,
+  "zgornja": 260
+ },
+ "viri_2025": {
+  "registri": [
+   254,
+   256
+  ],
+  "bilanca": 257
+ }
 }

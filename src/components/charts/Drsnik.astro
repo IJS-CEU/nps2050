@@ -1,6 +1,7 @@
 ---
 /**
  * 11.3 »Kaj pa, če« drsnik na trajektoriji: štirje zagoni modela RenRates z različno stopnjo prenove stanovanjskih stavb.
+ * Krivulje: ocenjeno stanje 2025 (registri 2020–2025 in energetska bilanca s popravkom za vreme) × indeks iz modela; pas = razpon ocene 2025.
  * Podatki: public/data/drsnik.json (cevovod data/npsdata/drsnik.py). Graf je statični SVG; drsnik izbere krivuljo in stavek.
  * Brez JavaScripta so vidne vse krivulje in preglednica.
  */
@@ -8,26 +9,51 @@ import { withBase } from '../../i18n/routes';
 import { loadData } from '../../lib/data';
 import { nf } from '../../lib/format';
 
-type Poz = { id: string; faktor: number; stopnja_dosezena_pct: number; stopnja_vpisana_2026_2030_pct: Record<string, number>; kwh_m2: number[]; fe_zmanjsanje_2050_pct: number; fe_twh: number[]; epbd_2030: boolean; epbd_2035: boolean };
-const d = loadData<{ years: number[]; nps: number[]; epbd_max: { year: number; max: number; min: number }[]; privzeto: string; polozaji: Poz[] }>('drsnik');
+type Poz = { id: string; faktor: number; stopnja_dosezena_pct: number; stopnja_vpisana_2026_2030_pct: Record<string, number>; kwh_m2: number[]; kwh_m2_spodnja: number[]; kwh_m2_zgornja: number[];
+  zmanjsanje_2030_pct: number; zmanjsanje_2035_pct: number; fe_zmanjsanje_2050_pct: number; epbd_2030: boolean; epbd_2035: boolean;
+  fg_pct: number[]; zmanjsanje_2050_pct: Record<'fe' | 'pe' | 'co2', number>; nalozbe_mrd: number; nalozbe_2026_2030_mrd: number; javna_mrd: number };
+const d = loadData<{ years: number[]; nps: (number | null)[]; epbd_max: { year: number; max: number; min: number }[]; privzeto: string; polozaji: Poz[];
+  ocena_2025: Record<string, number>; viri_2025: { registri: number[]; bilanca: number } }>('drsnik');
 const W = 640, H = 300, L = 46, R = 16, T = 16, B = 30;
 const y0 = 120, y1 = 280;
 const xs = (y: number) => L + ((y - 2020) / 30) * (W - L - R);
 const ys = (v: number) => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
-const path = (vals: number[]) => vals.map((v, i) => `${i ? 'L' : 'M'}${xs(d.years[i]).toFixed(1)},${ys(v).toFixed(1)}`).join(' ');
+const pts = (vals: (number | null)[]) => vals.map((v, i) => [d.years[i], v] as const).filter(([, v]) => v !== null) as [number, number][];
+const path = (vals: (number | null)[]) => pts(vals).map(([y, v], i) => `${i ? 'L' : 'M'}${xs(y).toFixed(1)},${ys(v).toFixed(1)}`).join(' ');
+const band = (lo: number[], hi: number[]) => {
+  const a = pts(hi).slice(1), b = pts(lo).slice(1).reverse();
+  return [...a, ...b].map(([y, v], i) => `${i ? 'L' : 'M'}${xs(y).toFixed(1)},${ys(v).toFixed(1)}`).join(' ') + ' Z';
+};
 const def = d.polozaji.findIndex((p) => p.id === d.privzeto);
 const e30 = d.epbd_max.find((e) => e.year === 2030)!, e35 = d.epbd_max.find((e) => e.year === 2035)!;
+const ix = (y: number) => d.years.indexOf(y);
+const ocena = (ok: boolean, lo: number, hi: number, max: number) =>
+  ok ? (hi <= max ? 'izpolnjeno' : 'izpolnjeno, a na robu negotovosti') : (lo <= max ? 'ni izpolnjeno, a na robu negotovosti' : 'ni izpolnjeno');
 const stavek = (p: Poz) => {
-  const v30 = p.kwh_m2[d.years.indexOf(2030)], v50 = p.kwh_m2[d.years.indexOf(2050)];
-  const n30 = d.nps[d.years.indexOf(2030)], n50 = d.nps[d.years.indexOf(2050)];
-  return `Pri povprečni doseženi stopnji prenove stanovanjskih stavb ${nf(p.stopnja_dosezena_pct, 2)} % na leto dosežemo leta 2030 ${nf(v30)} kWh/(m²·a) (cilj NPS ${nf(n30)}, najvišja vrednost po EPBD ${nf(e30.max)}) in leta 2050 ${nf(v50)} kWh/(m²·a) (cilj NPS ${nf(n50)}). Končna energija vseh stavb se do leta 2050 zmanjša za ${nf(p.fe_zmanjsanje_2050_pct)} %.`;
+  const [v30, v35, v50] = [2030, 2035, 2050].map((y) => p.kwh_m2[ix(y)]);
+  const lo = (y: number) => p.kwh_m2_spodnja[ix(y)], hi = (y: number) => p.kwh_m2_zgornja[ix(y)];
+  return `Pri povprečni doseženi stopnji prenove stanovanjskih stavb ${nf(p.stopnja_dosezena_pct, 2)} % na leto je povprečje leta 2030 okoli ${nf(v30)} kWh/(m²·a) (razpon ${nf(lo(2030))}–${nf(hi(2030))}; najvišja vrednost po EPBD ${nf(e30.max)}: ${ocena(p.epbd_2030, lo(2030), hi(2030), e30.max)}), leta 2035 okoli ${nf(v35)} (EPBD ${nf(e35.min)}–${nf(e35.max)}: ${ocena(p.epbd_2035, lo(2035), hi(2035), e35.max)}) in leta 2050 okoli ${nf(v50)} kWh/(m²·a).`;
 };
-const ok = (p: Poz) => p.kwh_m2.every((v, i) => v <= d.nps[i]);
+const FGY = [2030, 2035, 2050], FGMAX = [7, 5, 2];
+const FG_YEARS = [2025, 2030, 2035, 2040, 2045, 2050];
+const fg = (p: Poz, y: number) => p.fg_pct[FG_YEARS.indexOf(y)];
+type Row = { h: string; cell: (p: Poz) => string; ok?: (p: Poz) => boolean };
+const rows: Row[] = [
+  { h: `EPBD, stanovanjske stavbe 2030: največ ${nf(e30.max)} kWh/(m²·a) (−16 % glede na 2020)`, cell: (p) => `${nf(p.kwh_m2[ix(2030)])} (−${nf(p.zmanjsanje_2030_pct, 1)} %)`, ok: (p) => p.epbd_2030 },
+  { h: `EPBD, stanovanjske stavbe 2035: največ ${nf(e35.max)} kWh/(m²·a) (−20 do −22 %)`, cell: (p) => `${nf(p.kwh_m2[ix(2035)])} (−${nf(p.zmanjsanje_2035_pct, 1)} %)`, ok: (p) => p.epbd_2035 },
+  { h: 'Delež površine v najslabših razredih F in G: največ 7 / 5 / 2 % (2030 / 2035 / 2050)', cell: (p) => FGY.map((y) => nf(fg(p, y), 1)).join(' / ') + ' %', ok: (p) => FGY.every((y, i) => fg(p, y) <= FGMAX[i]) },
+  { h: 'Končna energija vseh stavb 2050: najmanj −30 % glede na 2025', cell: (p) => `−${nf(p.zmanjsanje_2050_pct.fe, 0)} %`, ok: (p) => p.zmanjsanje_2050_pct.fe >= 30 },
+  { h: 'Primarna energija vseh stavb 2050: najmanj −34 % glede na 2025', cell: (p) => `−${nf(p.zmanjsanje_2050_pct.pe, 0)} %`, ok: (p) => p.zmanjsanje_2050_pct.pe >= 34 },
+  { h: 'Emisije TGP iz stavb 2050: −90 % glede na 2025 *', cell: (p) => `−${nf(p.zmanjsanje_2050_pct.co2, 0)} %`, ok: (p) => p.zmanjsanje_2050_pct.co2 >= 90 },
+  { h: 'Naložbe 2026–2050 (od tega 2026–2030), mrd €', cell: (p) => `${nf(p.nalozbe_mrd, 1)} (${nf(p.nalozbe_2026_2030_mrd, 1)})` },
+  { h: 'Javna nepovratna sredstva 2026–2050, mrd €', cell: (p) => nf(p.javna_mrd, 2) },
+];
+const npsDrop = (y: number) => nf(100 * (1 - (d.nps[ix(y)] as number) / (d.nps[0] as number)), 0);
 ---
 <figure class="drs" data-def={def}>
   <figcaption>
     <b>Kaj pa, če se stanovanjske stavbe prenavljajo hitreje ali počasneje?</b>
-    <span>Povprečna primarna energija stanovanjskih stavb, kWh/(m²·a); štirje zagoni modela RenRates, ki se razlikujejo samo v stopnji prenove hiš in blokov</span>
+    <span>Povprečna primarna energija stanovanjskih stavb, kWh/(m²·a), od ocenjenega stanja leta 2025 naprej; štirje zagoni modela RenRates, ki se razlikujejo samo v stopnji prenove hiš in blokov</span>
   </figcaption>
   <div class="drs-ctl js-only">
     <label for="drs-r">Dosežena stopnja prenove stanovanjskih stavb</label>
@@ -35,29 +61,39 @@ const ok = (p: Poz) => p.kwh_m2.every((v, i) => v <= d.nps[i]);
     <datalist id="drs-ticks">{d.polozaji.map((_, i) => <option value={i}></option>)}</datalist>
     <ol class="drs-lab" aria-hidden="true">{d.polozaji.map((p) => <li>{nf(p.stopnja_dosezena_pct, 2)} %{p.id === d.privzeto && <small>scenarij NPS</small>}</li>)}</ol>
   </div>
-  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Trajektorija povprečne primarne energije stanovanjskih stavb pri štirih stopnjah prenove; vrednosti so v preglednici pod grafom.">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Povprečna primarna energija stanovanjskih stavb pri štirih stopnjah prenove, z razponom ocene stanja leta 2025; vrednosti so v preglednici pod grafom.">
     {[140, 180, 220, 260].map((v) => <g><line x1={L} x2={W - R} y1={ys(v)} y2={ys(v)} class="gl" /><text x={L - 6} y={ys(v) + 4} text-anchor="end" class="ax">{v}</text></g>)}
     {d.years.filter((y) => y % 10 === 0).map((y) => <text x={xs(y)} y={H - 8} text-anchor="middle" class="ax">{y}</text>)}
-    {[e30, e35].map((e) => <g class="epbd"><line x1={xs(e.year) - 10} x2={xs(e.year) + 10} y1={ys(e.max)} y2={ys(e.max)} /><text x={xs(e.year)} y={ys(e.max) - 8} text-anchor="middle">EPBD {e.year}</text></g>)}
+    {d.polozaji.map((p, i) => <path d={band(p.kwh_m2_spodnja, p.kwh_m2_zgornja)} class={`bd${i === def ? ' on' : ''}`} data-i={i} />)}
     <path d={path(d.nps)} class="nps" />
-    {d.polozaji.map((p, i) => <path d={path(p.kwh_m2)} class={`ln${i === def ? ' on' : ''}${ok(p) ? '' : ' short'}`} data-i={i} />)}
-    {d.polozaji.map((p, i) => <g class={`pt${i === def ? ' on' : ''}${ok(p) ? '' : ' short'}`} data-i={i}>{p.kwh_m2.map((v, j) => d.years[j] >= 2030 && <circle cx={xs(d.years[j])} cy={ys(v)} r="3.5" />)}</g>)}
+    {d.polozaji.map((p, i) => <path d={path(p.kwh_m2)} class={`ln${i === def ? ' on' : ''}${p.epbd_2030 && p.epbd_2035 ? '' : ' short'}`} data-i={i} />)}
+    {[e30, e35].map((e) => <g class="epbd"><line x1={xs(e.year) - 10} x2={xs(e.year) + 10} y1={ys(e.max)} y2={ys(e.max)} /><text x={xs(e.year)} y={ys(e.max) - 8} text-anchor="middle">EPBD {e.year}</text></g>)}
+    {d.polozaji.map((p, i) => <g class={`pt${i === def ? ' on' : ''}${p.epbd_2030 && p.epbd_2035 ? '' : ' short'}`} data-i={i}>{p.kwh_m2.map((v, j) => d.years[j] >= 2025 && <circle cx={xs(d.years[j])} cy={ys(v)} r="3.5" />)}</g>)}
   </svg>
-  <p class="drs-leg"><span><i class="nps"></i>trajektorija NPS 2050 (cilj)</span><span><i class="on"></i>izbrana stopnja</span><span><i class="short"></i>nad ciljem NPS</span><span><i class="epbd"></i>najvišja vrednost po EPBD</span></p>
+  <p class="drs-leg"><span><i class="on"></i>izbrana stopnja: mejnika EPBD dosežena</span><span><i class="short"></i>mejnik EPBD ni dosežen</span><span><i class="bd"></i>razpon ocene stanja 2025</span><span><i class="nps"></i>trajektorija v osnutku NPS 2050</span><span><i class="epbd"></i>najvišja vrednost po EPBD</span></p>
   <p class="drs-txt" id="drs-txt" aria-live="polite">{stavek(d.polozaji[def])}</p>
+  <div class="tblwrap drs-cilji" tabindex="0" role="region" aria-label="Skladnost s cilji pri različnih stopnjah prenove">
+    <table>
+      <caption>Skladnost s cilji pri različnih stopnjah prenove</caption>
+      <thead><tr><th scope="col">Cilj</th>{d.polozaji.map((p, i) => <th scope="col" class={`num${i === def ? ' on' : ''}`} data-i={i}>{nf(p.stopnja_dosezena_pct, 2)} %{p.id === d.privzeto && <small>scenarij NPS</small>}</th>)}</tr></thead>
+      <tbody>{rows.map((r) => <tr><th scope="row">{r.h}</th>{d.polozaji.map((p, i) => <td class={`num${i === def ? ' on' : ''}${r.ok ? (r.ok(p) ? ' da' : ' ne') : ''}`} data-i={i}>{r.cell(p)}{r.ok && <span class="mk">{r.ok(p) ? ' ✓' : ' ✗'}</span>}</td>)}</tr>)}</tbody>
+    </table>
+    <p class="note">EPBD za stanovanjske stavbe: od ocenjenega stanja 2025 ({nf(d.ocena_2025.osrednja)} kWh/(m²·a)); drugi cilji so iz modela RenRates (vse stavbe, glede na leto 2025). Mejniki za razreda F in G so predlog NPS 2050. * Model ne vsebuje ločenega opuščanja kotlov na fosilna goriva (NPS, poglavje 6), zato cilja za emisije v modelu ne doseže noben položaj; doseže se z dodatnimi ukrepi in razogljičenjem oskrbe.</p>
+  </div>
   <template id="drs-stavki">{d.polozaji.map((p) => <p>{stavek(p)}</p>)}</template>
   <details>
-    <summary>Vrednosti v preglednici</summary>
+    <summary>Vrednosti v preglednici in metoda</summary>
     <div class="tblwrap" tabindex="0" role="region" aria-label="Vrednosti drsnika">
       <table>
-        <thead><tr><th scope="col">Dosežena stopnja 2026–2050</th><th scope="col">Vpisana stopnja 2026–2030 (hiše / bloki)</th>{d.years.filter((y) => y >= 2030).map((y) => <th scope="col" class="num">{y}</th>)}<th scope="col" class="num">Končna energija 2025–2050</th></tr></thead>
+        <thead><tr><th scope="col">Dosežena stopnja 2026–2050</th><th scope="col">Vpisana stopnja 2026–2030 (hiše / bloki)</th>{d.years.filter((y) => y >= 2025).map((y) => <th scope="col" class="num">{y}</th>)}<th scope="col" class="num">2030 glede na 2020</th><th scope="col" class="num">2035 glede na 2020</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Trajektorija NPS (cilj)</th><td></td>{d.nps.slice(2).map((v) => <td class="num">{nf(v)}</td>)}<td></td></tr>
-          {d.polozaji.map((p) => <tr><th scope="row">{nf(p.stopnja_dosezena_pct, 2)} % na leto{p.id === d.privzeto && ' (scenarij NPS)'}</th><td>{nf(p.stopnja_vpisana_2026_2030_pct.SFH, 2)} / {nf(p.stopnja_vpisana_2026_2030_pct.MFH, 2)} %</td>{p.kwh_m2.slice(2).map((v) => <td class="num">{nf(v)}</td>)}<td class="num">−{nf(p.fe_zmanjsanje_2050_pct)} %</td></tr>)}
+          <tr><th scope="row">Trajektorija v osnutku NPS 2050</th><td></td>{d.nps.slice(1).map((v) => <td class="num">{v === null ? '–' : nf(v)}</td>)}<td class="num">−{npsDrop(2030)} %</td><td class="num">−{npsDrop(2035)} %</td></tr>
+          {d.polozaji.map((p) => <tr><th scope="row">{nf(p.stopnja_dosezena_pct, 2)} % na leto{p.id === d.privzeto && ' (scenarij NPS)'}</th><td>{nf(p.stopnja_vpisana_2026_2030_pct.SFH, 2)} / {nf(p.stopnja_vpisana_2026_2030_pct.MFH, 2)} %</td>{p.kwh_m2.slice(1).map((v) => <td class="num">{nf(v)}</td>)}<td class="num">−{nf(p.zmanjsanje_2030_pct, 1)} %</td><td class="num">−{nf(p.zmanjsanje_2035_pct, 1)} %</td></tr>)}
         </tbody>
       </table>
     </div>
-    <p class="note">Model RenRates (uskladitev z NEPN 2024, 3. 10. 2026). Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb, vse drugo je kot v scenariju NPS 2050. Model prenavlja le stavbe razredov C–G po toplotnih potrebah, zato je dosežena stopnja nižja od vpisane in se pri visokih stopnjah ustavi: podvojitev vpisanih stopenj poveča doseženo le z {nf(d.polozaji.find((p) => p.faktor === 1)!.stopnja_dosezena_pct, 2)} na {nf(d.polozaji.at(-1)!.stopnja_dosezena_pct, 2)} % na leto. Vrednosti so na lestvici trajektorije NPS (trajektorija NPS × indeks položaja ÷ indeks scenarija NPS, primarna energija pri fiksnih faktorjih 2025). <a href={withBase('data/csv/drsnik.csv')} download>Prenesi CSV</a></p>
+    <p class="note"><b>Izhodišče in stanje 2025.</b> EPBD (člen 9(2)) zahteva, da se povprečje stanovanjskih stavb glede na leto 2020 (269 kWh/(m²·a) iz računskih izkaznic) zmanjša za najmanj 16 % do 2030 in za 20 do 22 % do 2035. Model RenRates se začne leta 2025, zato je stanje 2025 ocenjeno iz podatkov: (1) iz registrov – ukrepi v stanovanjskih stavbah v letih 2020–2025 (obnova fasade, strehe in oken v katastru, ukrepi Eko sklada za ovoj, okna, toplotne črpalke in kotle na biomaso), ovrednoteni z izkaznicami podobnih stavb in skupaj z novogradnjami: {nf(d.viri_2025.registri[0])}–{nf(d.viri_2025.registri[1])} kWh/(m²·a); (2) iz energetske bilance – primarna raba stanovanjskih stavb v letih 2020 in 2023 (NEPN 2024, izhodiščna preglednica osnutka), popravljena za vreme (stopinjski dnevi, Eurostat) in za rast površine (NEPN 2020 in 2024), do 2025 nadaljevana s tempom sedanje prakse: okoli {nf(d.viri_2025.bilanca)}. Krivulje so izračunane od {nf(d.ocena_2025.osrednja)} kWh/(m²·a), pas od {nf(d.ocena_2025.spodnja)} do {nf(d.ocena_2025.zgornja)}. Registri ne zajamejo prenov brez spodbude in brez vpisa v kataster, zato je ocena iz registrov prej previdna. Stanje bo preverjeno z vzorcem izkaznic leta 2028.</p>
+    <p class="note"><b>Model.</b> RenRates, usklajen z NEPN 2024 (3. 10. 2026). Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb; globina prenove in usmerjanje v najslabše stavbe ostaneta kot v scenariju NPS 2050. Model prenavlja le stavbe razredov C–G po toplotnih potrebah, zato je dosežena stopnja nižja od vpisane in se pri visokih stopnjah ustavi: podvojitev vpisanih stopenj poveča doseženo le z {nf(d.polozaji.find((p) => p.faktor === 1)!.stopnja_dosezena_pct, 2)} na {nf(d.polozaji.at(-1)!.stopnja_dosezena_pct, 2)} % na leto. Primarna energija pri fiksnih faktorjih. <a href={withBase('data/csv/drsnik.csv')} download>Prenesi CSV</a></p>
   </details>
 </figure>
 
@@ -75,21 +111,32 @@ const ok = (p: Poz) => p.kwh_m2.every((v, i) => v <= d.nps[i]);
   .drs svg { width: 100%; height: auto; display: block; }
   .drs .gl { stroke: var(--line); }
   .drs .ax { font-size: 11px; fill: var(--ink2); }
-  .drs .nps { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 6 4; }
-  .drs .ln { fill: none; stroke: var(--ink2); stroke-width: 1.2; opacity: .35; }
+  .drs .nps { fill: none; stroke: var(--ink2); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .drs .ln { fill: none; stroke: var(--ink2); stroke-width: 1.2; opacity: .3; }
   .drs .ln.on { stroke: var(--green); stroke-width: 3; opacity: 1; }
   .drs .ln.short.on { stroke: var(--amber); }
+  .drs .bd { display: none; fill: var(--green); opacity: .15; }
+  .drs .bd.on { display: inline; }
   .drs .pt { display: none; fill: var(--green); }
   .drs .pt.on { display: inline; }
+  .drs .pt.short { fill: var(--amber); }
   .drs .epbd line { stroke: var(--ink); stroke-width: 3; }
   .drs .epbd text { font-size: 11px; fill: var(--ink); font-weight: 700; }
-  .drs .pt.short { fill: var(--amber); }
   .drs-leg { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .8rem; color: var(--ink2); margin: .4rem 0; }
   .drs-leg i { display: inline-block; width: 18px; height: 0; border-top: 3px solid var(--green); margin-right: .35rem; vertical-align: middle; }
-  .drs-leg i.nps { border-top: 2px dashed var(--ink); }
   .drs-leg i.short { border-top-color: var(--amber); }
+  .drs-leg i.bd { border-top: 8px solid var(--green); opacity: .25; }
+  .drs-leg i.nps { border-top: 2px dashed var(--ink2); }
   .drs-leg i.epbd { border-top-color: var(--ink); width: 10px; }
   .drs-txt { font-size: .95rem; margin: .6rem 0; }
+  .drs-cilji { margin: .8rem 0; }
+  .drs-cilji table { font-size: .82rem; }
+  .drs-cilji caption { text-align: left; font-weight: 700; margin-bottom: .3rem; }
+  .drs-cilji th small { display: block; font-weight: 500; color: var(--ink2); letter-spacing: 0; text-transform: none; }
+  .drs-cilji .on { background: var(--greenbg); font-weight: 700; }
+  .drs-cilji td.da .mk { color: var(--green); font-weight: 800; }
+  .drs-cilji td.ne .mk { color: var(--amber); font-weight: 800; }
+  .drs .note { font-size: .82rem; color: var(--ink2); }
   :global(html:not(.js)) .drs .ln { opacity: .9; }
 </style>
 
