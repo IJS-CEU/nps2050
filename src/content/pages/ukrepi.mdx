@@ -10,7 +10,17 @@ import Orodja from '../../components/ukrepi/Orodja.astro';
 import KdoPlaca from '../../components/ukrepi/KdoPlaca.astro';
 import Financiranje from '../../components/charts/Financiranje.astro';
 import ViriFinanciranja from '../../components/ViriFinanciranja.astro';
+import NaTejStrani from '../../components/NaTejStrani.astro';
 import { pageUrl } from '../../i18n/routes';
+
+<NaTejStrani items={[
+  { href: '#kaj-so-ukrepi-in-zakaj-so-v-načrtu', icon: 'layers', label: 'Kaj so ukrepi', hint: 'pet vrst orodij' },
+  { href: '#od-cilja-do-ukrepa', icon: 'target', label: 'Od cilja do ukrepa', hint: 'kateri ukrepi služijo kateremu cilju' },
+  { href: '#pregled-vseh-ukrepov', icon: 'list-checks', label: 'Pregled vseh ukrepov', hint: 'ukrepi NEPN 2024 in novi ukrepi N1–N20' },
+  { href: '#opuščanje-kotlov-na-fosilna-goriva', icon: 'flame', label: 'Opuščanje fosilnih kotlov', hint: 'časovnica do leta 2040' },
+  { href: '#financiranje', icon: 'euro', label: 'Financiranje', hint: 'investicijske potrebe in kdo plača' },
+  { href: '#viri-financiranja-po-letu-2030', icon: 'landmark', label: 'Viri po letu 2030', hint: 'skladi in instrumenti' },
+]} />
 
 ## Kaj so ukrepi in zakaj so v načrtu
 

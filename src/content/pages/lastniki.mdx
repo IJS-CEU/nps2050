@@ -7,10 +7,20 @@ lead: 'Kaj načrt pomeni za vašo hišo ali stanovanje? Kratki odgovori na najpo
 import { pageUrl } from '../../i18n/routes';
 import NapacnaRazumevanja from '../../components/NapacnaRazumevanja.astro';
 import PaketiPovzetek from '../../components/PaketiPovzetek.astro';
+import NaTejStrani from '../../components/NaTejStrani.astro';
 import { loadData } from '../../lib/data';
 import { nf } from '../../lib/format';
 
 export const rv = loadData('revscina');
+
+<NaTejStrani items={[
+  { href: pageUrl('preveri'), icon: 'house-plus', label: 'Preverite svojo stavbo', hint: 'razred, pragovi in stanje po prenovi' },
+  { href: '#koliko-stane-prenova-in-kaj-prinese', icon: 'wallet', label: 'Koliko stane prenova', hint: 'paketi, spodbude in prihranki' },
+  { href: '#vprašanja-in-odgovori', icon: 'circle-help', label: 'Vprašanja in odgovori', hint: 'obveznosti, razredi, kotli, najemniki' },
+  { href: '#kaj-načrt-ne-pomeni', icon: 'circle-x', label: 'Kaj načrt ne pomeni', hint: 'pogoste poenostavitve' },
+  { href: '#najslabše-stavbe-najprej', icon: 'arrow-down-wide-narrow', label: 'Najslabše stavbe najprej', hint: 'skupina 43 % najmanj učinkovitih' },
+  { href: '#svetovanje-in-spodbude', icon: 'life-buoy', label: 'Svetovanje in spodbude', hint: 'ENSVET, Eko sklad, energetska revščina' },
+]} />
 
 <div class="card green">
   <p><strong>Preverite svojo stavbo.</strong> Z energetsko izkaznico ali brez nje poglejte, v kateri razred sodi stavba, katere pragove izpolnjuje in kam bi jo pripeljala prenova: <a href={pageUrl('preveri')}>Preveri stavbo</a></p>
