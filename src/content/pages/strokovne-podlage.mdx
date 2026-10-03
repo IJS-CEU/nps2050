@@ -13,12 +13,26 @@ import Kazalniki from '../../components/charts/Kazalniki.astro';
 import Sankey from '../../components/charts/Sankey.astro';
 import Zemljevid from '../../components/charts/Zemljevid.astro';
 import CiljiIzhodisca from '../../components/CiljiIzhodisca.astro';
+import NaTejStrani from '../../components/NaTejStrani.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
 import { loadData } from '../../lib/data';
 
 export const kz = Object.fromEntries(loadData('kazalniki').items.map((i) => [i.id, i]));
 
 {/* Grafi berejo public/data/*.json iz podatkovnega cevovoda (data/build_all.py). */}
+
+<NaTejStrani items={[
+  { href: '#stavbni-fond', icon: 'building-2', label: 'Stavbni fond', hint: 'kategorije EPBD, obdobja gradnje' },
+  { href: '#po-regijah-in-občinah', icon: 'map', label: 'Po regijah in občinah', hint: 'zemljevid stavbnega fonda' },
+  { href: '#scenariji', icon: 'git-compare-arrows', label: 'Scenariji', hint: 'scenarij NPS 2050 in primerjava S0–S2' },
+  { href: '#prehodi-med-energijskimi-razredi', icon: 'arrow-right-left', label: 'Prehodi med razredi', hint: 'kako se stavbe selijo v boljše razrede' },
+  { href: '#trajektorija', icon: 'trending-down', label: 'Trajektorija', hint: 'pot primarne energije do 2050 in zahteve EPBD' },
+  ...(features.drsnik ? [{ href: '#drsnik', icon: 'sliders-horizontal', label: 'Kaj pa, če?', hint: 'stopnje prenove, skladnost s cilji in stroški' }] : []),
+  { href: '#cilji-glede-na-leti-2020-in-2023', icon: 'target', label: 'Cilji 2020 in 2023', hint: 'ključni cilji glede na obe izhodišči' },
+  { href: '#metodologija', icon: 'book-open-text', label: 'Metodologija', hint: 'razredi, izhodišče, model, enote' },
+  { href: '#kazalniki', icon: 'list-checks', label: 'Kazalniki', hint: 'ključni cilji in kazalniki spremljanja' },
+  { href: '#podatkovne-priloge', icon: 'download', label: 'Podatkovne priloge', hint: 'vsi podatki v CSV' },
+]} />
 
 ## Stavbni fond
 

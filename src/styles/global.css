@@ -135,3 +135,6 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .reg-list li { border: 1px solid var(--line); border-radius: 10px; padding: .5rem .8rem; background: var(--panel); }
 .reg-list a { font-weight: 700; }
 .reg-list small { color: var(--ink2); }
+
+/* Sidra pod lepljivo glavo */
+.prose h2[id], .prose h3[id], .prose figure[id] { scroll-margin-top: 6rem; }

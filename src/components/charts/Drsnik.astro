@@ -53,7 +53,7 @@ const rows: Row[] = [
 ];
 const npsDrop = (y: number) => nf(100 * (1 - (d.nps[ix(y)] as number) / (d.nps[0] as number)), 0);
 ---
-<figure class="drs" data-def={def}>
+<figure class="drs" id="drsnik" data-def={def}>
   <figcaption>
     <b>Kaj pa, če se stanovanjske stavbe prenavljajo hitreje ali počasneje?</b>
     <span>Povprečna primarna energija stanovanjskih stavb, kWh/(m²·a), od ocenjenega stanja leta 2025 naprej; štirje zagoni modela RenRates, ki se razlikujejo samo v stopnji prenove hiš in blokov</span>
@@ -75,7 +75,15 @@ const npsDrop = (y: number) => nf(100 * (1 - (d.nps[ix(y)] as number) / (d.nps[0
     {[e30, e35].map((e) => <g class="epbd"><line x1={xs(e.year) - 10} x2={xs(e.year) + 10} y1={ys(e.max)} y2={ys(e.max)} /><text x={xs(e.year)} y={ys(e.max) - 8} text-anchor="middle">EPBD {e.year}</text></g>)}
     {d.polozaji.map((p, i) => <g class={`pt${i === def ? ' on' : ''}${p.epbd_2030 && p.epbd_2035 ? '' : ' short'}`} data-i={i}>{p.kwh_m2.map((v, j) => d.years[j] >= 2025 && <circle cx={xs(d.years[j])} cy={ys(v)} r="3.5" />)}</g>)}
   </svg>
-  <p class="drs-leg"><span><i class="on"></i>izbrana stopnja: mejnika EPBD dosežena</span><span><i class="short"></i>mejnik EPBD ni dosežen</span><span><i class="bd"></i>razpon ocene stanja 2025</span><span><i class="ref"></i>sedanja praksa (S0)</span><span><i class="nps"></i>trajektorija v osnutku NPS 2050</span><span><i class="epbd"></i>najvišja vrednost po EPBD</span></p>
+  <ul class="drs-leg">
+    <li><svg viewBox="0 0 24 10" aria-hidden="true"><line x1="0" y1="5" x2="24" y2="5" class="lg-on" /></svg>izbrana stopnja: mejnika EPBD dosežena</li>
+    <li><svg viewBox="0 0 24 10" aria-hidden="true"><line x1="0" y1="5" x2="24" y2="5" class="lg-short" /></svg>izbrana stopnja: mejnik ni dosežen</li>
+    <li><svg viewBox="0 0 24 10" aria-hidden="true"><rect x="0" y="1" width="24" height="8" class="lg-bd" /></svg>razpon ocene stanja 2025</li>
+    <li><svg viewBox="0 0 24 10" aria-hidden="true"><line x1="1" y1="5" x2="23" y2="5" class="lg-ref" /></svg>sedanja praksa (S0)</li>
+    <li><svg viewBox="0 0 24 10" aria-hidden="true"><line x1="0" y1="5" x2="24" y2="5" class="lg-nps" /></svg>trajektorija v osnutku NPS 2050</li>
+    <li><svg viewBox="0 0 24 10" aria-hidden="true"><line x1="6" y1="5" x2="18" y2="5" class="lg-epbd" /></svg>najvišja vrednost po EPBD</li>
+    <li><svg viewBox="0 0 24 10" aria-hidden="true"><line x1="0" y1="5" x2="24" y2="5" class="lg-oth" /></svg>druge stopnje</li>
+  </ul>
   <p class="drs-txt" id="drs-txt" aria-live="polite">{stavek(d.polozaji[def])}</p>
   <div class="tblwrap drs-cilji" tabindex="0" role="region" aria-label="Skladnost s cilji pri različnih stopnjah prenove">
     <table>
@@ -129,17 +137,20 @@ const npsDrop = (y: number) => nf(100 * (1 - (d.nps[ix(y)] as number) / (d.nps[0
   .drs .pt.short { fill: var(--amber); }
   .drs .epbd line { stroke: var(--ink); stroke-width: 3; }
   .drs .epbd text { font-size: 11px; fill: var(--ink); font-weight: 700; }
-  .drs-leg { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .8rem; color: var(--ink2); margin: .4rem 0; }
-  .drs-leg i { display: inline-block; width: 18px; height: 0; border-top: 3px solid var(--green); margin-right: .35rem; vertical-align: middle; }
-  .drs-leg i.short { border-top-color: var(--amber); }
-  .drs-leg i.bd { border-top: 8px solid var(--green); opacity: .25; }
-  .drs-leg i.nps { border-top: 2px dashed var(--ink2); }
-  .drs-leg i.epbd { border-top-color: var(--ink); width: 10px; }
-  .drs-txt { font-size: .95rem; margin: .6rem 0; }
-  .drs-bau { font-size: .9rem; background: var(--greenbg); border-radius: 8px; padding: .5rem .8rem; margin: 0 0 .6rem; }
+  .drs-txt { font-size: .95rem; margin: .6rem 0; max-width: none; }
+  .drs-leg { list-style: none; padding: 0; margin: .5rem 0; max-width: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: .25rem 1.2rem; font-size: .8rem; color: var(--ink2); }
+  .drs-leg li { display: flex; align-items: center; gap: .45rem; margin: 0; }
+  .drs-leg svg { flex: none; width: 24px; height: 10px; overflow: visible; }
+  .drs-leg .lg-on { stroke: var(--green); stroke-width: 3; }
+  .drs-leg .lg-short { stroke: var(--amber); stroke-width: 3; }
+  .drs-leg .lg-bd { fill: var(--green); opacity: .2; }
+  .drs-leg .lg-ref { stroke: var(--ink2); stroke-width: 2; stroke-dasharray: 1 4; stroke-linecap: round; }
+  .drs-leg .lg-nps { stroke: var(--ink2); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .drs-leg .lg-epbd { stroke: var(--ink); stroke-width: 3; }
+  .drs-leg .lg-oth { stroke: var(--ink2); stroke-width: 1.2; opacity: .4; }
+  .drs-bau { font-size: .92rem; background: var(--greenbg); border-radius: 8px; padding: .6rem .9rem; margin: 0 0 .8rem; max-width: none; }
   .drs .ref { fill: none; stroke: var(--ink2); stroke-width: 2; stroke-dasharray: 1 4; stroke-linecap: round; }
   .drs .reft { font-size: 11px; fill: var(--ink2); font-weight: 700; }
-  .drs-leg i.ref { border-top: 3px dotted var(--ink2); }
   .drs-cilji .ref { color: var(--ink2); }
   .drs-cilji { margin: .8rem 0; }
   .drs-cilji table { font-size: .82rem; }
