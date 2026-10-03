@@ -2,7 +2,7 @@
  "meta": {
   "draft": "NPS_v40",
   "draft_date": "2026-10-01",
-  "generated": "2026-10-02",
+  "generated": "2026-10-03",
   "sources": [
    "Seštevki občinskih podatkov (obcine_model.json, obcine_index.json, zemljevid.json)"
   ],
@@ -21,37 +21,37 @@
    "vse": {
     "pop": 112740,
     "fe_gwh": {
-     "res": 618.7,
-     "nres": 238.3,
-     "total": 857.2
+     "res": 621.0,
+     "nres": 224.3,
+     "total": 845.3
     },
     "tgp_kt": {
-     "res": 69.53,
-     "nres": 51.39,
-     "total": 120.9
+     "res": 69.85,
+     "nres": 48.25,
+     "total": 118.08
     },
     "ove_pct": {
-     "res": 71.7,
-     "nres": 28.3,
-     "total": 59.6
+     "res": 71.5,
+     "nres": 28.9,
+     "total": 60.2
     },
     "fe_mwh_preb": {
-     "res": 5.49,
-     "total": 7.6
+     "res": 5.51,
+     "total": 7.5
     },
     "tgp_t_preb": {
      "res": 0.62,
-     "total": 1.07
+     "total": 1.05
     }
    },
    "fe_kwh_m2": 133,
    "carriers_pct": {
-    "el": 14.0,
-    "amb": 9.2,
-    "gas": 7.7,
-    "elko": 9.9,
-    "bio": 56.8,
-    "dh": 2.4
+    "el": 13.8,
+    "amb": 9.0,
+    "gas": 8.1,
+    "elko": 9.8,
+    "bio": 56.9,
+    "dh": 2.5
    },
    "nps_pct": {
     "A": 1.6,
@@ -64,34 +64,34 @@
    },
    "above43_area_pct": 38.2,
    "dh_pot": {
-    "fe_gwh": 591.6,
-    "fe_pct": 12.8,
-    "fe_ha": 141
+    "fe_gwh": 584.8,
+    "fe_pct": 11.4,
+    "fe_ha": 133
    },
    "pot": {
     "2023": {
-     "fe_gwh": 857.2,
-     "tgp_kt": 120.9,
-     "ove_pct": 59.6,
-     "fossil_pct": 24.4
+     "fe_gwh": 845.3,
+     "tgp_kt": 118.08,
+     "ove_pct": 60.2,
+     "fossil_pct": 23.8
     },
     "2030": {
-     "fe_gwh": 711.9,
-     "tgp_kt": 103.21,
-     "ove_pct": 67.1,
-     "fossil_pct": 18.7
+     "fe_gwh": 700.2,
+     "tgp_kt": 100.51,
+     "ove_pct": 67.5,
+     "fossil_pct": 18.3
     },
     "2040": {
-     "fe_gwh": 610.7,
-     "tgp_kt": 32.28,
-     "ove_pct": 80.4,
-     "fossil_pct": 9.5
+     "fe_gwh": 598.8,
+     "tgp_kt": 31.81,
+     "ove_pct": 80.5,
+     "fossil_pct": 9.4
     },
     "2050": {
-     "fe_gwh": 565.3,
-     "tgp_kt": 11.66,
-     "ove_pct": 86.1,
-     "fossil_pct": 5.0
+     "fe_gwh": 553.2,
+     "tgp_kt": 11.61,
+     "ove_pct": 85.8,
+     "fossil_pct": 5.2
     }
    },
    "cilji": {
@@ -102,16 +102,16 @@
     "wpb_m2_leto": 82300,
     "meps_n_2030": 408,
     "elko_gwh": [
-     122.7,
-     70.7,
-     22.0,
-     4.1
+     114.6,
+     65.9,
+     20.1,
+     3.6
     ],
     "plin_gwh": [
-     86.2,
-     61.4,
-     33.0,
-     22.6
+     85.9,
+     61.8,
+     34.1,
+     23.2
     ]
    },
    "stevilke": {
@@ -149,7 +149,7 @@
      "pop": 8078,
      "fe_mwh_preb": 6.24,
      "tgp_t_preb": 0.72,
-     "ove_pct": 69.3,
+     "ove_pct": 69.5,
      "above43_area_pct": 36.7,
      "semafor": "pod ciljem"
     },
@@ -157,9 +157,9 @@
      "sifra": 152,
      "name": "Cankova",
      "pop": 1748,
-     "fe_mwh_preb": 7.53,
-     "tgp_t_preb": 0.94,
-     "ove_pct": 66.2,
+     "fe_mwh_preb": 7.34,
+     "tgp_t_preb": 0.89,
+     "ove_pct": 67.5,
      "above43_area_pct": 40.1,
      "semafor": "pod ciljem"
     },
@@ -167,9 +167,9 @@
      "sifra": 156,
      "name": "Dobrovnik",
      "pop": 1217,
-     "fe_mwh_preb": 7.19,
-     "tgp_t_preb": 0.87,
-     "ove_pct": 68.1,
+     "fe_mwh_preb": 7.16,
+     "tgp_t_preb": 0.85,
+     "ove_pct": 68.5,
      "above43_area_pct": 39.6,
      "semafor": "na poti"
     },
@@ -177,9 +177,9 @@
      "sifra": 29,
      "name": "Gornja Radgona",
      "pop": 8555,
-     "fe_mwh_preb": 6.82,
+     "fe_mwh_preb": 6.79,
      "tgp_t_preb": 1.01,
-     "ove_pct": 57.0,
+     "ove_pct": 57.2,
      "above43_area_pct": 36.4,
      "semafor": "pod ciljem"
     },
@@ -187,9 +187,9 @@
      "sifra": 31,
      "name": "Gornji Petrovci",
      "pop": 1918,
-     "fe_mwh_preb": 8.54,
-     "tgp_t_preb": 1.03,
-     "ove_pct": 67.9,
+     "fe_mwh_preb": 8.39,
+     "tgp_t_preb": 0.99,
+     "ove_pct": 68.7,
      "above43_area_pct": 46.7,
      "semafor": "ni podatka"
     },
@@ -197,9 +197,9 @@
      "sifra": 158,
      "name": "Grad",
      "pop": 1953,
-     "fe_mwh_preb": 7.14,
-     "tgp_t_preb": 0.74,
-     "ove_pct": 72.7,
+     "fe_mwh_preb": 6.96,
+     "tgp_t_preb": 0.7,
+     "ove_pct": 73.8,
      "above43_area_pct": 43.7,
      "semafor": "ni podatka"
     },
@@ -207,9 +207,9 @@
      "sifra": 161,
      "name": "Hodoš",
      "pop": 335,
-     "fe_mwh_preb": 7.27,
-     "tgp_t_preb": 1.0,
-     "ove_pct": 60.0,
+     "fe_mwh_preb": 6.85,
+     "tgp_t_preb": 0.9,
+     "ove_pct": 62.2,
      "above43_area_pct": 45.5,
      "semafor": "ni podatka"
     },
@@ -217,9 +217,9 @@
      "sifra": 47,
      "name": "Kobilje",
      "pop": 502,
-     "fe_mwh_preb": 6.79,
-     "tgp_t_preb": 0.86,
-     "ove_pct": 66.1,
+     "fe_mwh_preb": 6.74,
+     "tgp_t_preb": 0.85,
+     "ove_pct": 66.2,
      "above43_area_pct": 40.2,
      "semafor": "ni podatka"
     },
@@ -227,9 +227,9 @@
      "sifra": 166,
      "name": "Križevci",
      "pop": 3531,
-     "fe_mwh_preb": 5.98,
-     "tgp_t_preb": 0.79,
-     "ove_pct": 63.9,
+     "fe_mwh_preb": 5.95,
+     "tgp_t_preb": 0.78,
+     "ove_pct": 64.0,
      "above43_area_pct": 37.2,
      "semafor": "pod ciljem"
     },
@@ -237,9 +237,9 @@
      "sifra": 56,
      "name": "Kuzma",
      "pop": 1663,
-     "fe_mwh_preb": 5.88,
-     "tgp_t_preb": 0.75,
-     "ove_pct": 64.7,
+     "fe_mwh_preb": 5.76,
+     "tgp_t_preb": 0.73,
+     "ove_pct": 65.7,
      "above43_area_pct": 33.9,
      "semafor": "pod ciljem"
     },
@@ -247,9 +247,9 @@
      "sifra": 59,
      "name": "Lendava",
      "pop": 10088,
-     "fe_mwh_preb": 8.19,
-     "tgp_t_preb": 1.14,
-     "ove_pct": 60.0,
+     "fe_mwh_preb": 8.33,
+     "tgp_t_preb": 1.17,
+     "ove_pct": 59.2,
      "above43_area_pct": 42.0,
      "semafor": "na poti"
     },
@@ -257,9 +257,9 @@
      "sifra": 63,
      "name": "Ljutomer",
      "pop": 10850,
-     "fe_mwh_preb": 7.14,
+     "fe_mwh_preb": 7.15,
      "tgp_t_preb": 1.02,
-     "ove_pct": 60.0,
+     "ove_pct": 60.3,
      "above43_area_pct": 42.2,
      "semafor": "pod ciljem"
     },
@@ -267,9 +267,9 @@
      "sifra": 78,
      "name": "Moravske Toplice",
      "pop": 5967,
-     "fe_mwh_preb": 11.31,
-     "tgp_t_preb": 1.72,
-     "ove_pct": 53.9,
+     "fe_mwh_preb": 9.73,
+     "tgp_t_preb": 1.37,
+     "ove_pct": 59.5,
      "above43_area_pct": 29.9,
      "semafor": "pod ciljem"
     },
@@ -277,9 +277,9 @@
      "sifra": 80,
      "name": "Murska Sobota",
      "pop": 18317,
-     "fe_mwh_preb": 9.41,
-     "tgp_t_preb": 1.73,
-     "ove_pct": 42.9,
+     "fe_mwh_preb": 9.45,
+     "tgp_t_preb": 1.74,
+     "ove_pct": 42.6,
      "above43_area_pct": 42.4,
      "semafor": "na poti"
     },
@@ -287,8 +287,8 @@
      "sifra": 86,
      "name": "Odranci",
      "pop": 1609,
-     "fe_mwh_preb": 6.59,
-     "tgp_t_preb": 0.79,
+     "fe_mwh_preb": 6.63,
+     "tgp_t_preb": 0.8,
      "ove_pct": 67.8,
      "above43_area_pct": 29.8,
      "semafor": "pod ciljem"
@@ -298,8 +298,8 @@
      "name": "Puconci",
      "pop": 5800,
      "fe_mwh_preb": 6.7,
-     "tgp_t_preb": 0.73,
-     "ove_pct": 72.2,
+     "tgp_t_preb": 0.72,
+     "ove_pct": 72.6,
      "above43_area_pct": 35.9,
      "semafor": "pod ciljem"
     },
@@ -307,9 +307,9 @@
      "sifra": 100,
      "name": "Radenci",
      "pop": 5064,
-     "fe_mwh_preb": 7.76,
-     "tgp_t_preb": 1.17,
-     "ove_pct": 56.0,
+     "fe_mwh_preb": 7.36,
+     "tgp_t_preb": 1.08,
+     "ove_pct": 58.0,
      "above43_area_pct": 32.9,
      "semafor": "pod ciljem"
     },
@@ -317,9 +317,9 @@
      "sifra": 176,
      "name": "Razkrižje",
      "pop": 1231,
-     "fe_mwh_preb": 6.08,
-     "tgp_t_preb": 0.65,
-     "ove_pct": 72.2,
+     "fe_mwh_preb": 5.97,
+     "tgp_t_preb": 0.62,
+     "ove_pct": 73.3,
      "above43_area_pct": 43.9,
      "semafor": "ni podatka"
     },
@@ -327,9 +327,9 @@
      "sifra": 105,
      "name": "Rogašovci",
      "pop": 3027,
-     "fe_mwh_preb": 6.97,
-     "tgp_t_preb": 0.83,
-     "ove_pct": 67.9,
+     "fe_mwh_preb": 6.79,
+     "tgp_t_preb": 0.8,
+     "ove_pct": 69.2,
      "above43_area_pct": 32.4,
      "semafor": "pod ciljem"
     },
@@ -337,9 +337,9 @@
      "sifra": 116,
      "name": "Sveti Jurij ob Ščavnici",
      "pop": 2795,
-     "fe_mwh_preb": 6.34,
-     "tgp_t_preb": 0.74,
-     "ove_pct": 70.1,
+     "fe_mwh_preb": 6.43,
+     "tgp_t_preb": 0.76,
+     "ove_pct": 69.6,
      "above43_area_pct": 34.7,
      "semafor": "pod ciljem"
     },
@@ -347,9 +347,9 @@
      "sifra": 10,
      "name": "Tišina",
      "pop": 3908,
-     "fe_mwh_preb": 6.16,
+     "fe_mwh_preb": 6.15,
      "tgp_t_preb": 0.75,
-     "ove_pct": 68.7,
+     "ove_pct": 69.0,
      "above43_area_pct": 38.1,
      "semafor": "pod ciljem"
     },
@@ -357,9 +357,9 @@
      "sifra": 132,
      "name": "Turnišče",
      "pop": 3070,
-     "fe_mwh_preb": 6.47,
-     "tgp_t_preb": 0.68,
-     "ove_pct": 73.5,
+     "fe_mwh_preb": 6.51,
+     "tgp_t_preb": 0.69,
+     "ove_pct": 73.2,
      "above43_area_pct": 36.7,
      "semafor": "na poti"
     },
@@ -367,9 +367,9 @@
      "sifra": 187,
      "name": "Velika Polana",
      "pop": 1379,
-     "fe_mwh_preb": 7.37,
-     "tgp_t_preb": 0.73,
-     "ove_pct": 75.4,
+     "fe_mwh_preb": 7.52,
+     "tgp_t_preb": 0.75,
+     "ove_pct": 74.8,
      "above43_area_pct": 37.8,
      "semafor": "ni podatka"
     },
@@ -377,9 +377,9 @@
      "sifra": 188,
      "name": "Veržej",
      "pop": 1361,
-     "fe_mwh_preb": 8.1,
-     "tgp_t_preb": 1.14,
-     "ove_pct": 59.4,
+     "fe_mwh_preb": 7.64,
+     "tgp_t_preb": 1.03,
+     "ove_pct": 62.0,
      "above43_area_pct": 33.6,
      "semafor": "ni podatka"
     },
@@ -387,9 +387,9 @@
      "sifra": 15,
      "name": "Črenšovci",
      "pop": 3870,
-     "fe_mwh_preb": 6.91,
-     "tgp_t_preb": 0.79,
-     "ove_pct": 70.7,
+     "fe_mwh_preb": 6.85,
+     "tgp_t_preb": 0.77,
+     "ove_pct": 71.4,
      "above43_area_pct": 33.7,
      "semafor": "na poti"
     },
@@ -397,9 +397,9 @@
      "sifra": 33,
      "name": "Šalovci",
      "pop": 1342,
-     "fe_mwh_preb": 8.47,
-     "tgp_t_preb": 0.96,
-     "ove_pct": 71.0,
+     "fe_mwh_preb": 8.48,
+     "tgp_t_preb": 0.95,
+     "ove_pct": 70.9,
      "above43_area_pct": 49.8,
      "semafor": "ni podatka"
     }
@@ -416,36 +416,36 @@
    "vse": {
     "pop": 332747,
     "fe_gwh": {
-     "res": 1481.5,
-     "nres": 565.7,
-     "total": 2047.4
+     "res": 1487.0,
+     "nres": 569.5,
+     "total": 2056.9
     },
     "tgp_kt": {
-     "res": 214.64,
-     "nres": 119.68,
-     "total": 334.34
+     "res": 216.32,
+     "nres": 120.6,
+     "total": 336.94
     },
     "ove_pct": {
      "res": 60.5,
-     "nres": 30.9,
-     "total": 52.4
+     "nres": 30.7,
+     "total": 52.2
     },
     "fe_mwh_preb": {
-     "res": 4.45,
-     "total": 6.15
+     "res": 4.47,
+     "total": 6.18
     },
     "tgp_t_preb": {
      "res": 0.65,
-     "total": 1.0
+     "total": 1.01
     }
    },
    "fe_kwh_m2": 115,
    "carriers_pct": {
-    "el": 19.1,
+    "el": 19.4,
     "amb": 9.4,
-    "gas": 12.8,
-    "elko": 10.0,
-    "bio": 41.7,
+    "gas": 12.6,
+    "elko": 10.1,
+    "bio": 41.5,
     "dh": 7.1
    },
    "nps_pct": {
@@ -459,34 +459,34 @@
    },
    "above43_area_pct": 35.3,
    "dh_pot": {
-    "fe_gwh": 1322.5,
-    "fe_pct": 21.4,
+    "fe_gwh": 1326.5,
+    "fe_pct": 20.8,
     "fe_ha": 546
    },
    "pot": {
     "2023": {
-     "fe_gwh": 2047.4,
-     "tgp_kt": 334.34,
-     "ove_pct": 52.4,
+     "fe_gwh": 2056.9,
+     "tgp_kt": 336.94,
+     "ove_pct": 52.2,
      "fossil_pct": 25.6
     },
     "2030": {
-     "fe_gwh": 1722.3,
-     "tgp_kt": 272.47,
-     "ove_pct": 62.5,
+     "fe_gwh": 1729.3,
+     "tgp_kt": 274.69,
+     "ove_pct": 62.4,
      "fossil_pct": 18.6
     },
     "2040": {
-     "fe_gwh": 1495.2,
-     "tgp_kt": 88.85,
-     "ove_pct": 75.7,
+     "fe_gwh": 1501.4,
+     "tgp_kt": 89.43,
+     "ove_pct": 75.8,
      "fossil_pct": 10.1
     },
     "2050": {
-     "fe_gwh": 1387.8,
-     "tgp_kt": 33.06,
-     "ove_pct": 80.2,
-     "fossil_pct": 6.7
+     "fe_gwh": 1393.7,
+     "tgp_kt": 33.1,
+     "ove_pct": 80.3,
+     "fossil_pct": 6.6
     }
    },
    "cilji": {
@@ -497,16 +497,16 @@
     "wpb_m2_leto": 210900,
     "meps_n_2030": 1104,
     "elko_gwh": [
-     254.1,
-     143.4,
-     43.1,
-     7.5
+     258.6,
+     146.4,
+     44.3,
+     7.6
     ],
     "plin_gwh": [
-     270.4,
-     199.4,
-     118.4,
-     89.0
+     268.6,
+     197.6,
+     117.5,
+     87.7
     ]
    },
    "stevilke": {
@@ -533,8 +533,8 @@
      "name": "Benedikt",
      "pop": 2727,
      "fe_mwh_preb": 5.19,
-     "tgp_t_preb": 0.57,
-     "ove_pct": 71.1,
+     "tgp_t_preb": 0.58,
+     "ove_pct": 71.2,
      "above43_area_pct": 27.8,
      "semafor": "pod ciljem"
     },
@@ -542,9 +542,9 @@
      "sifra": 153,
      "name": "Cerkvenjak",
      "pop": 2250,
-     "fe_mwh_preb": 5.36,
+     "fe_mwh_preb": 5.38,
      "tgp_t_preb": 0.6,
-     "ove_pct": 71.4,
+     "ove_pct": 71.5,
      "above43_area_pct": 26.9,
      "semafor": "ni podatka"
     },
@@ -552,9 +552,9 @@
      "sifra": 196,
      "name": "Cirkulane",
      "pop": 2357,
-     "fe_mwh_preb": 6.64,
-     "tgp_t_preb": 0.86,
-     "ove_pct": 66.0,
+     "fe_mwh_preb": 6.57,
+     "tgp_t_preb": 0.85,
+     "ove_pct": 66.5,
      "above43_area_pct": 33.0,
      "semafor": "pod ciljem"
     },
@@ -562,9 +562,9 @@
      "sifra": 18,
      "name": "Destrnik",
      "pop": 2737,
-     "fe_mwh_preb": 5.1,
-     "tgp_t_preb": 0.63,
-     "ove_pct": 67.3,
+     "fe_mwh_preb": 5.13,
+     "tgp_t_preb": 0.64,
+     "ove_pct": 67.0,
      "above43_area_pct": 26.8,
      "semafor": "pod ciljem"
     },
@@ -572,9 +572,9 @@
      "sifra": 24,
      "name": "Dornava",
      "pop": 2915,
-     "fe_mwh_preb": 6.66,
-     "tgp_t_preb": 0.92,
-     "ove_pct": 61.8,
+     "fe_mwh_preb": 6.64,
+     "tgp_t_preb": 0.91,
+     "ove_pct": 62.0,
      "above43_area_pct": 34.6,
      "semafor": "pod ciljem"
     },
@@ -582,9 +582,9 @@
      "sifra": 26,
      "name": "Duplek",
      "pop": 7067,
-     "fe_mwh_preb": 5.51,
-     "tgp_t_preb": 0.66,
-     "ove_pct": 69.9,
+     "fe_mwh_preb": 5.59,
+     "tgp_t_preb": 0.68,
+     "ove_pct": 69.3,
      "above43_area_pct": 29.6,
      "semafor": "pod ciljem"
     },
@@ -592,9 +592,9 @@
      "sifra": 28,
      "name": "Gorišnica",
      "pop": 4212,
-     "fe_mwh_preb": 5.24,
-     "tgp_t_preb": 0.66,
-     "ove_pct": 65.7,
+     "fe_mwh_preb": 5.32,
+     "tgp_t_preb": 0.68,
+     "ove_pct": 65.1,
      "above43_area_pct": 25.2,
      "semafor": "pod ciljem"
     },
@@ -602,9 +602,9 @@
      "sifra": 159,
      "name": "Hajdina",
      "pop": 4092,
-     "fe_mwh_preb": 5.62,
-     "tgp_t_preb": 0.78,
-     "ove_pct": 63.0,
+     "fe_mwh_preb": 5.55,
+     "tgp_t_preb": 0.77,
+     "ove_pct": 63.4,
      "above43_area_pct": 27.8,
      "semafor": "pod ciljem"
     },
@@ -612,9 +612,9 @@
      "sifra": 160,
      "name": "Hoče-Slivnica",
      "pop": 12061,
-     "fe_mwh_preb": 6.67,
-     "tgp_t_preb": 1.11,
-     "ove_pct": 52.7,
+     "fe_mwh_preb": 6.68,
+     "tgp_t_preb": 1.12,
+     "ove_pct": 52.6,
      "above43_area_pct": 27.4,
      "semafor": "pod ciljem"
     },
@@ -622,9 +622,9 @@
      "sifra": 42,
      "name": "Juršinci",
      "pop": 2486,
-     "fe_mwh_preb": 5.56,
-     "tgp_t_preb": 0.61,
-     "ove_pct": 71.4,
+     "fe_mwh_preb": 5.64,
+     "tgp_t_preb": 0.63,
+     "ove_pct": 70.7,
      "above43_area_pct": 26.4,
      "semafor": "pod ciljem"
     },
@@ -632,9 +632,9 @@
      "sifra": 45,
      "name": "Kidričevo",
      "pop": 6606,
-     "fe_mwh_preb": 5.45,
-     "tgp_t_preb": 0.65,
-     "ove_pct": 68.5,
+     "fe_mwh_preb": 5.56,
+     "tgp_t_preb": 0.69,
+     "ove_pct": 67.3,
      "above43_area_pct": 29.7,
      "semafor": "pod ciljem"
     },
@@ -642,9 +642,9 @@
      "sifra": 55,
      "name": "Kungota",
      "pop": 5018,
-     "fe_mwh_preb": 6.06,
-     "tgp_t_preb": 0.74,
-     "ove_pct": 68.8,
+     "fe_mwh_preb": 6.14,
+     "tgp_t_preb": 0.76,
+     "ove_pct": 68.2,
      "above43_area_pct": 27.9,
      "semafor": "pod ciljem"
     },
@@ -652,9 +652,9 @@
      "sifra": 58,
      "name": "Lenart",
      "pop": 8674,
-     "fe_mwh_preb": 5.97,
-     "tgp_t_preb": 0.71,
-     "ove_pct": 68.9,
+     "fe_mwh_preb": 6.04,
+     "tgp_t_preb": 0.73,
+     "ove_pct": 68.7,
      "above43_area_pct": 30.0,
      "semafor": "pod ciljem"
     },
@@ -662,9 +662,9 @@
      "sifra": 167,
      "name": "Lovrenc na Pohorju",
      "pop": 2981,
-     "fe_mwh_preb": 5.23,
+     "fe_mwh_preb": 5.25,
      "tgp_t_preb": 0.61,
-     "ove_pct": 71.0,
+     "ove_pct": 70.4,
      "above43_area_pct": 42.3,
      "semafor": "ni podatka"
     },
@@ -672,9 +672,9 @@
      "sifra": 69,
      "name": "Majšperk",
      "pop": 4009,
-     "fe_mwh_preb": 5.96,
-     "tgp_t_preb": 0.72,
-     "ove_pct": 68.8,
+     "fe_mwh_preb": 5.94,
+     "tgp_t_preb": 0.71,
+     "ove_pct": 69.1,
      "above43_area_pct": 35.3,
      "semafor": "pod ciljem"
     },
@@ -682,9 +682,9 @@
      "sifra": 198,
      "name": "Makole",
      "pop": 2052,
-     "fe_mwh_preb": 5.69,
-     "tgp_t_preb": 0.53,
-     "ove_pct": 77.8,
+     "fe_mwh_preb": 5.74,
+     "tgp_t_preb": 0.54,
+     "ove_pct": 77.6,
      "above43_area_pct": 34.1,
      "semafor": "pod ciljem"
     },
@@ -692,9 +692,9 @@
      "sifra": 70,
      "name": "Maribor",
      "pop": 114872,
-     "fe_mwh_preb": 6.44,
+     "fe_mwh_preb": 6.43,
      "tgp_t_preb": 1.33,
-     "ove_pct": 35.5,
+     "ove_pct": 35.6,
      "above43_area_pct": 43.2,
      "semafor": "na poti"
     },
@@ -702,9 +702,9 @@
      "sifra": 168,
      "name": "Markovci",
      "pop": 4050,
-     "fe_mwh_preb": 5.74,
-     "tgp_t_preb": 0.7,
-     "ove_pct": 68.7,
+     "fe_mwh_preb": 5.84,
+     "tgp_t_preb": 0.73,
+     "ove_pct": 67.9,
      "above43_area_pct": 28.8,
      "semafor": "pod ciljem"
     },
@@ -712,9 +712,9 @@
      "sifra": 169,
      "name": "Miklavž na Dravskem polju",
      "pop": 7300,
-     "fe_mwh_preb": 5.63,
-     "tgp_t_preb": 0.85,
-     "ove_pct": 59.1,
+     "fe_mwh_preb": 5.73,
+     "tgp_t_preb": 0.88,
+     "ove_pct": 58.4,
      "above43_area_pct": 27.0,
      "semafor": "pod ciljem"
     },
@@ -722,9 +722,9 @@
      "sifra": 171,
      "name": "Oplotnica",
      "pop": 4203,
-     "fe_mwh_preb": 5.0,
-     "tgp_t_preb": 0.57,
-     "ove_pct": 70.3,
+     "fe_mwh_preb": 5.03,
+     "tgp_t_preb": 0.58,
+     "ove_pct": 70.0,
      "above43_area_pct": 31.6,
      "semafor": "pod ciljem"
     },
@@ -733,7 +733,7 @@
      "name": "Ormož",
      "pop": 11792,
      "fe_mwh_preb": 6.58,
-     "tgp_t_preb": 0.92,
+     "tgp_t_preb": 0.91,
      "ove_pct": 60.5,
      "above43_area_pct": 35.7,
      "semafor": "pod ciljem"
@@ -742,9 +742,9 @@
      "sifra": 89,
      "name": "Pesnica",
      "pop": 7879,
-     "fe_mwh_preb": 5.98,
-     "tgp_t_preb": 0.85,
-     "ove_pct": 62.3,
+     "fe_mwh_preb": 6.03,
+     "tgp_t_preb": 0.87,
+     "ove_pct": 61.9,
      "above43_area_pct": 28.8,
      "semafor": "pod ciljem"
     },
@@ -752,9 +752,9 @@
      "sifra": 172,
      "name": "Podlehnik",
      "pop": 1828,
-     "fe_mwh_preb": 7.24,
-     "tgp_t_preb": 0.89,
-     "ove_pct": 67.9,
+     "fe_mwh_preb": 7.32,
+     "tgp_t_preb": 0.9,
+     "ove_pct": 67.5,
      "above43_area_pct": 35.8,
      "semafor": "ni podatka"
     },
@@ -762,9 +762,9 @@
      "sifra": 200,
      "name": "Poljčane",
      "pop": 4327,
-     "fe_mwh_preb": 5.63,
+     "fe_mwh_preb": 5.61,
      "tgp_t_preb": 0.69,
-     "ove_pct": 67.6,
+     "ove_pct": 67.8,
      "above43_area_pct": 37.3,
      "semafor": "pod ciljem"
     },
@@ -772,9 +772,9 @@
      "sifra": 96,
      "name": "Ptuj",
      "pop": 23898,
-     "fe_mwh_preb": 7.02,
-     "tgp_t_preb": 1.17,
-     "ove_pct": 49.7,
+     "fe_mwh_preb": 7.13,
+     "tgp_t_preb": 1.19,
+     "ove_pct": 49.2,
      "above43_area_pct": 35.9,
      "semafor": "na poti"
     },
@@ -782,9 +782,9 @@
      "sifra": 98,
      "name": "Rače-Fram",
      "pop": 8363,
-     "fe_mwh_preb": 5.37,
-     "tgp_t_preb": 0.8,
-     "ove_pct": 62.3,
+     "fe_mwh_preb": 5.51,
+     "tgp_t_preb": 0.84,
+     "ove_pct": 61.4,
      "above43_area_pct": 24.8,
      "semafor": "pod ciljem"
     },
@@ -792,9 +792,9 @@
      "sifra": 108,
      "name": "Ruše",
      "pop": 7157,
-     "fe_mwh_preb": 5.84,
-     "tgp_t_preb": 0.94,
-     "ove_pct": 52.3,
+     "fe_mwh_preb": 5.76,
+     "tgp_t_preb": 0.92,
+     "ove_pct": 52.7,
      "above43_area_pct": 37.0,
      "semafor": "pod ciljem"
     },
@@ -802,9 +802,9 @@
      "sifra": 178,
      "name": "Selnica ob Dravi",
      "pop": 4359,
-     "fe_mwh_preb": 6.1,
+     "fe_mwh_preb": 6.12,
      "tgp_t_preb": 0.69,
-     "ove_pct": 71.5,
+     "ove_pct": 71.4,
      "above43_area_pct": 35.3,
      "semafor": "pod ciljem"
     },
@@ -812,9 +812,9 @@
      "sifra": 113,
      "name": "Slovenska Bistrica",
      "pop": 26363,
-     "fe_mwh_preb": 5.85,
-     "tgp_t_preb": 0.9,
-     "ove_pct": 56.2,
+     "fe_mwh_preb": 5.91,
+     "tgp_t_preb": 0.92,
+     "ove_pct": 55.8,
      "above43_area_pct": 30.7,
      "semafor": "pod ciljem"
     },
@@ -822,9 +822,9 @@
      "sifra": 202,
      "name": "Središče ob Dravi",
      "pop": 1827,
-     "fe_mwh_preb": 7.2,
-     "tgp_t_preb": 0.88,
-     "ove_pct": 65.5,
+     "fe_mwh_preb": 7.34,
+     "tgp_t_preb": 0.91,
+     "ove_pct": 64.4,
      "above43_area_pct": 49.0,
      "semafor": "ni podatka"
     },
@@ -832,9 +832,9 @@
      "sifra": 115,
      "name": "Starše",
      "pop": 4111,
-     "fe_mwh_preb": 5.9,
-     "tgp_t_preb": 0.74,
-     "ove_pct": 68.9,
+     "fe_mwh_preb": 5.95,
+     "tgp_t_preb": 0.75,
+     "ove_pct": 68.5,
      "above43_area_pct": 30.0,
      "semafor": "pod ciljem"
     },
@@ -842,9 +842,9 @@
      "sifra": 181,
      "name": "Sveta Ana",
      "pop": 2347,
-     "fe_mwh_preb": 6.4,
-     "tgp_t_preb": 0.75,
-     "ove_pct": 69.6,
+     "fe_mwh_preb": 6.38,
+     "tgp_t_preb": 0.74,
+     "ove_pct": 69.9,
      "above43_area_pct": 30.6,
      "semafor": "pod ciljem"
     },
@@ -852,9 +852,9 @@
      "sifra": 204,
      "name": "Sveta Trojica v Slovenskih goricah",
      "pop": 2297,
-     "fe_mwh_preb": 6.4,
-     "tgp_t_preb": 0.73,
-     "ove_pct": 71.8,
+     "fe_mwh_preb": 6.45,
+     "tgp_t_preb": 0.74,
+     "ove_pct": 71.6,
      "above43_area_pct": 30.3,
      "semafor": "ni podatka"
     },
@@ -862,9 +862,9 @@
      "sifra": 182,
      "name": "Sveti Andraž v Slov. goricah",
      "pop": 1191,
-     "fe_mwh_preb": 5.35,
+     "fe_mwh_preb": 5.34,
      "tgp_t_preb": 0.72,
-     "ove_pct": 62.5,
+     "ove_pct": 62.4,
      "above43_area_pct": 30.0,
      "semafor": "ni podatka"
     },
@@ -872,9 +872,9 @@
      "sifra": 210,
      "name": "Sveti Jurij v Slovenskih goricah",
      "pop": 2238,
-     "fe_mwh_preb": 5.35,
-     "tgp_t_preb": 0.54,
-     "ove_pct": 76.3,
+     "fe_mwh_preb": 5.46,
+     "tgp_t_preb": 0.56,
+     "ove_pct": 75.4,
      "above43_area_pct": 27.0,
      "semafor": "ni podatka"
     },
@@ -883,8 +883,8 @@
      "name": "Sveti Tomaž",
      "pop": 1966,
      "fe_mwh_preb": 6.17,
-     "tgp_t_preb": 0.67,
-     "ove_pct": 72.5,
+     "tgp_t_preb": 0.66,
+     "ove_pct": 72.6,
      "above43_area_pct": 35.1,
      "semafor": "pod ciljem"
     },
@@ -892,9 +892,9 @@
      "sifra": 185,
      "name": "Trnovska vas",
      "pop": 1400,
-     "fe_mwh_preb": 4.63,
-     "tgp_t_preb": 0.58,
-     "ove_pct": 66.5,
+     "fe_mwh_preb": 4.62,
+     "tgp_t_preb": 0.59,
+     "ove_pct": 66.3,
      "above43_area_pct": 24.5,
      "semafor": "ni podatka"
     },
@@ -902,9 +902,9 @@
      "sifra": 135,
      "name": "Videm",
      "pop": 5612,
-     "fe_mwh_preb": 5.58,
-     "tgp_t_preb": 0.66,
-     "ove_pct": 70.5,
+     "fe_mwh_preb": 5.61,
+     "tgp_t_preb": 0.67,
+     "ove_pct": 70.4,
      "above43_area_pct": 31.6,
      "semafor": "pod ciljem"
     },
@@ -912,9 +912,9 @@
      "sifra": 143,
      "name": "Zavrč",
      "pop": 1453,
-     "fe_mwh_preb": 5.78,
-     "tgp_t_preb": 0.61,
-     "ove_pct": 73.6,
+     "fe_mwh_preb": 5.91,
+     "tgp_t_preb": 0.63,
+     "ove_pct": 72.5,
      "above43_area_pct": 36.1,
      "semafor": "ni podatka"
     },
@@ -922,7 +922,7 @@
      "sifra": 118,
      "name": "Šentilj",
      "pop": 8371,
-     "fe_mwh_preb": 6.09,
+     "fe_mwh_preb": 6.1,
      "tgp_t_preb": 0.87,
      "ove_pct": 60.5,
      "above43_area_pct": 30.9,
@@ -932,9 +932,9 @@
      "sifra": 191,
      "name": "Žetale",
      "pop": 1299,
-     "fe_mwh_preb": 5.56,
-     "tgp_t_preb": 0.61,
-     "ove_pct": 72.4,
+     "fe_mwh_preb": 5.61,
+     "tgp_t_preb": 0.62,
+     "ove_pct": 71.9,
      "above43_area_pct": 32.6,
      "semafor": "ni podatka"
     }
@@ -951,27 +951,27 @@
    "vse": {
     "pop": 70174,
     "fe_gwh": {
-     "res": 312.2,
-     "nres": 100.1,
-     "total": 412.1
+     "res": 312.3,
+     "nres": 101.6,
+     "total": 414.0
     },
     "tgp_kt": {
-     "res": 38.38,
-     "nres": 20.18,
-     "total": 58.56
+     "res": 38.51,
+     "nres": 20.57,
+     "total": 59.07
     },
     "ove_pct": {
-     "res": 67.3,
-     "nres": 34.2,
-     "total": 59.3
+     "res": 67.2,
+     "nres": 33.8,
+     "total": 59.0
     },
     "fe_mwh_preb": {
      "res": 4.45,
-     "total": 5.87
+     "total": 5.9
     },
     "tgp_t_preb": {
      "res": 0.55,
-     "total": 0.83
+     "total": 0.84
     }
    },
    "fe_kwh_m2": 118,
@@ -980,8 +980,8 @@
     "amb": 11.2,
     "gas": 10.1,
     "elko": 6.5,
-    "bio": 48.3,
-    "dh": 8.7
+    "bio": 48.0,
+    "dh": 8.9
    },
    "nps_pct": {
     "A": 1.7,
@@ -994,32 +994,32 @@
    },
    "above43_area_pct": 37.1,
    "dh_pot": {
-    "fe_gwh": 278.7,
-    "fe_pct": 15.0,
-    "fe_ha": 105
+    "fe_gwh": 279.7,
+    "fe_pct": 14.3,
+    "fe_ha": 101
    },
    "pot": {
     "2023": {
-     "fe_gwh": 412.1,
-     "tgp_kt": 58.56,
-     "ove_pct": 59.3,
-     "fossil_pct": 20.0
+     "fe_gwh": 414.0,
+     "tgp_kt": 59.07,
+     "ove_pct": 59.0,
+     "fossil_pct": 20.3
     },
     "2030": {
-     "fe_gwh": 343.9,
-     "tgp_kt": 46.79,
-     "ove_pct": 67.7,
-     "fossil_pct": 14.4
+     "fe_gwh": 345.3,
+     "tgp_kt": 47.24,
+     "ove_pct": 67.5,
+     "fossil_pct": 14.6
     },
     "2040": {
-     "fe_gwh": 295.2,
-     "tgp_kt": 15.64,
-     "ove_pct": 77.7,
-     "fossil_pct": 8.0
+     "fe_gwh": 296.9,
+     "tgp_kt": 15.78,
+     "ove_pct": 77.6,
+     "fossil_pct": 8.1
     },
     "2050": {
-     "fe_gwh": 272.5,
-     "tgp_kt": 5.87,
+     "fe_gwh": 273.8,
+     "tgp_kt": 5.91,
      "ove_pct": 80.9,
      "fossil_pct": 5.5
     }
@@ -1032,16 +1032,16 @@
     "wpb_m2_leto": 45500,
     "meps_n_2030": 353,
     "elko_gwh": [
-     38.5,
-     22.1,
-     6.8,
+     39.4,
+     22.6,
+     6.9,
      1.3
     ],
     "plin_gwh": [
-     43.9,
-     32.6,
+     44.6,
+     32.8,
      19.4,
-     14.5
+     14.8
     ]
    },
    "stevilke": {
@@ -1067,9 +1067,9 @@
      "sifra": 25,
      "name": "Dravograd",
      "pop": 8773,
-     "fe_mwh_preb": 5.87,
-     "tgp_t_preb": 0.82,
-     "ove_pct": 60.4,
+     "fe_mwh_preb": 5.91,
+     "tgp_t_preb": 0.83,
+     "ove_pct": 60.1,
      "above43_area_pct": 33.9,
      "semafor": "pod ciljem"
     },
@@ -1077,9 +1077,9 @@
      "sifra": 74,
      "name": "Mežica",
      "pop": 3536,
-     "fe_mwh_preb": 5.11,
-     "tgp_t_preb": 0.87,
-     "ove_pct": 50.6,
+     "fe_mwh_preb": 5.08,
+     "tgp_t_preb": 0.85,
+     "ove_pct": 51.0,
      "above43_area_pct": 46.9,
      "semafor": "na poti"
     },
@@ -1087,9 +1087,9 @@
      "sifra": 76,
      "name": "Mislinja",
      "pop": 4489,
-     "fe_mwh_preb": 5.46,
-     "tgp_t_preb": 0.66,
-     "ove_pct": 67.6,
+     "fe_mwh_preb": 5.5,
+     "tgp_t_preb": 0.67,
+     "ove_pct": 67.1,
      "above43_area_pct": 31.7,
      "semafor": "pod ciljem"
     },
@@ -1097,9 +1097,9 @@
      "sifra": 81,
      "name": "Muta",
      "pop": 3329,
-     "fe_mwh_preb": 5.74,
-     "tgp_t_preb": 0.73,
-     "ove_pct": 64.9,
+     "fe_mwh_preb": 5.81,
+     "tgp_t_preb": 0.75,
+     "ove_pct": 64.3,
      "above43_area_pct": 33.1,
      "semafor": "pod ciljem"
     },
@@ -1108,8 +1108,8 @@
      "name": "Podvelka",
      "pop": 2242,
      "fe_mwh_preb": 6.69,
-     "tgp_t_preb": 0.73,
-     "ove_pct": 72.0,
+     "tgp_t_preb": 0.72,
+     "ove_pct": 71.8,
      "above43_area_pct": 45.7,
      "semafor": "pod ciljem"
     },
@@ -1117,9 +1117,9 @@
      "sifra": 175,
      "name": "Prevalje",
      "pop": 6668,
-     "fe_mwh_preb": 6.11,
-     "tgp_t_preb": 0.97,
-     "ove_pct": 52.5,
+     "fe_mwh_preb": 6.08,
+     "tgp_t_preb": 0.96,
+     "ove_pct": 52.7,
      "above43_area_pct": 46.3,
      "semafor": "pod ciljem"
     },
@@ -1127,9 +1127,9 @@
      "sifra": 101,
      "name": "Radlje ob Dravi",
      "pop": 6229,
-     "fe_mwh_preb": 5.64,
-     "tgp_t_preb": 0.76,
-     "ove_pct": 64.0,
+     "fe_mwh_preb": 5.77,
+     "tgp_t_preb": 0.79,
+     "ove_pct": 62.9,
      "above43_area_pct": 34.0,
      "semafor": "pod ciljem"
     },
@@ -1137,9 +1137,9 @@
      "sifra": 103,
      "name": "Ravne na Koroškem",
      "pop": 11179,
-     "fe_mwh_preb": 5.46,
-     "tgp_t_preb": 1.02,
-     "ove_pct": 42.2,
+     "fe_mwh_preb": 5.52,
+     "tgp_t_preb": 1.03,
+     "ove_pct": 41.9,
      "above43_area_pct": 39.8,
      "semafor": "na poti"
     },
@@ -1147,9 +1147,9 @@
      "sifra": 177,
      "name": "Ribnica na Pohorju",
      "pop": 1071,
-     "fe_mwh_preb": 7.5,
-     "tgp_t_preb": 0.88,
-     "ove_pct": 68.2,
+     "fe_mwh_preb": 7.17,
+     "tgp_t_preb": 0.81,
+     "ove_pct": 69.8,
      "above43_area_pct": 43.4,
      "semafor": "ni podatka"
     },
@@ -1157,9 +1157,9 @@
      "sifra": 112,
      "name": "Slovenj Gradec",
      "pop": 17063,
-     "fe_mwh_preb": 6.25,
-     "tgp_t_preb": 0.78,
-     "ove_pct": 65.2,
+     "fe_mwh_preb": 6.28,
+     "tgp_t_preb": 0.79,
+     "ove_pct": 64.9,
      "above43_area_pct": 30.8,
      "semafor": "pod ciljem"
     },
@@ -1167,9 +1167,9 @@
      "sifra": 141,
      "name": "Vuzenica",
      "pop": 2594,
-     "fe_mwh_preb": 5.94,
+     "fe_mwh_preb": 5.96,
      "tgp_t_preb": 0.7,
-     "ove_pct": 70.3,
+     "ove_pct": 70.0,
      "above43_area_pct": 38.8,
      "semafor": "ni podatka"
     },
@@ -1177,9 +1177,9 @@
      "sifra": 16,
      "name": "Črna na Koroškem",
      "pop": 3001,
-     "fe_mwh_preb": 5.69,
-     "tgp_t_preb": 0.93,
-     "ove_pct": 51.4,
+     "fe_mwh_preb": 5.52,
+     "tgp_t_preb": 0.9,
+     "ove_pct": 51.5,
      "above43_area_pct": 50.0,
      "semafor": "pod ciljem"
     }
@@ -1196,17 +1196,17 @@
    "vse": {
     "pop": 263107,
     "fe_gwh": {
-     "res": 1134.1,
-     "nres": 472.7,
-     "total": 1607.2
+     "res": 1134.2,
+     "nres": 473.7,
+     "total": 1608.0
     },
     "tgp_kt": {
-     "res": 144.87,
-     "nres": 99.72,
-     "total": 244.65
+     "res": 144.53,
+     "nres": 99.91,
+     "total": 244.47
     },
     "ove_pct": {
-     "res": 64.9,
+     "res": 65.0,
      "nres": 30.1,
      "total": 54.7
     },
@@ -1223,10 +1223,10 @@
    "carriers_pct": {
     "el": 13.6,
     "amb": 9.3,
-    "gas": 12.4,
-    "elko": 7.1,
+    "gas": 12.5,
+    "elko": 7.0,
     "bio": 48.2,
-    "dh": 9.5
+    "dh": 9.3
    },
    "nps_pct": {
     "A": 1.7,
@@ -1239,33 +1239,33 @@
    },
    "above43_area_pct": 38.2,
    "dh_pot": {
-    "fe_gwh": 1105.7,
-    "fe_pct": 21.5,
-    "fe_ha": 454
+    "fe_gwh": 1105.9,
+    "fe_pct": 20.8,
+    "fe_ha": 464
    },
    "pot": {
     "2023": {
-     "fe_gwh": 1607.2,
-     "tgp_kt": 244.65,
+     "fe_gwh": 1608.0,
+     "tgp_kt": 244.47,
      "ove_pct": 54.7,
-     "fossil_pct": 23.7
+     "fossil_pct": 23.8
     },
     "2030": {
-     "fe_gwh": 1351.0,
-     "tgp_kt": 205.5,
-     "ove_pct": 62.6,
-     "fossil_pct": 18.0
+     "fe_gwh": 1350.9,
+     "tgp_kt": 205.63,
+     "ove_pct": 62.7,
+     "fossil_pct": 18.1
     },
     "2040": {
-     "fe_gwh": 1172.4,
-     "tgp_kt": 68.07,
-     "ove_pct": 74.1,
-     "fossil_pct": 10.1
+     "fe_gwh": 1172.3,
+     "tgp_kt": 68.12,
+     "ove_pct": 74.2,
+     "fossil_pct": 10.2
     },
     "2050": {
-     "fe_gwh": 1088.4,
-     "tgp_kt": 26.08,
-     "ove_pct": 78.2,
+     "fe_gwh": 1088.6,
+     "tgp_kt": 26.18,
+     "ove_pct": 78.3,
      "fossil_pct": 6.7
     }
    },
@@ -1277,16 +1277,16 @@
     "wpb_m2_leto": 165200,
     "meps_n_2030": 631,
     "elko_gwh": [
-     165.1,
-     95.4,
-     29.5,
-     5.7
+     165.9,
+     95.6,
+     29.6,
+     5.9
     ],
     "plin_gwh": [
-     216.4,
-     157.4,
-     90.5,
-     65.8
+     217.5,
+     158.2,
+     91.7,
+     66.7
     ]
    },
    "stevilke": {
@@ -1312,9 +1312,9 @@
      "sifra": 151,
      "name": "Braslovče",
      "pop": 5908,
-     "fe_mwh_preb": 5.85,
-     "tgp_t_preb": 0.73,
-     "ove_pct": 67.3,
+     "fe_mwh_preb": 5.94,
+     "tgp_t_preb": 0.76,
+     "ove_pct": 66.5,
      "above43_area_pct": 32.7,
      "semafor": "pod ciljem"
     },
@@ -1322,8 +1322,8 @@
      "sifra": 11,
      "name": "Celje",
      "pop": 49802,
-     "fe_mwh_preb": 6.69,
-     "tgp_t_preb": 1.27,
+     "fe_mwh_preb": 6.81,
+     "tgp_t_preb": 1.29,
      "ove_pct": 39.1,
      "above43_area_pct": 47.3,
      "semafor": "na poti"
@@ -1332,9 +1332,9 @@
      "sifra": 154,
      "name": "Dobje",
      "pop": 965,
-     "fe_mwh_preb": 6.36,
-     "tgp_t_preb": 0.72,
-     "ove_pct": 69.5,
+     "fe_mwh_preb": 6.29,
+     "tgp_t_preb": 0.7,
+     "ove_pct": 70.3,
      "above43_area_pct": 37.8,
      "semafor": "ni podatka"
     },
@@ -1342,9 +1342,9 @@
      "sifra": 155,
      "name": "Dobrna",
      "pop": 2347,
-     "fe_mwh_preb": 8.48,
-     "tgp_t_preb": 1.41,
-     "ove_pct": 47.5,
+     "fe_mwh_preb": 7.56,
+     "tgp_t_preb": 1.23,
+     "ove_pct": 49.8,
      "above43_area_pct": 34.2,
      "semafor": "pod ciljem"
     },
@@ -1352,9 +1352,9 @@
      "sifra": 30,
      "name": "Gornji Grad",
      "pop": 2534,
-     "fe_mwh_preb": 7.18,
-     "tgp_t_preb": 0.85,
-     "ove_pct": 68.1,
+     "fe_mwh_preb": 7.05,
+     "tgp_t_preb": 0.82,
+     "ove_pct": 68.8,
      "above43_area_pct": 51.3,
      "semafor": "pod ciljem"
     },
@@ -1362,9 +1362,9 @@
      "sifra": 51,
      "name": "Kozje",
      "pop": 2996,
-     "fe_mwh_preb": 6.96,
-     "tgp_t_preb": 0.79,
-     "ove_pct": 69.5,
+     "fe_mwh_preb": 7.01,
+     "tgp_t_preb": 0.8,
+     "ove_pct": 69.0,
      "above43_area_pct": 40.6,
      "semafor": "pod ciljem"
     },
@@ -1372,9 +1372,9 @@
      "sifra": 57,
      "name": "Laško",
      "pop": 13023,
-     "fe_mwh_preb": 6.89,
-     "tgp_t_preb": 0.98,
-     "ove_pct": 56.5,
+     "fe_mwh_preb": 6.84,
+     "tgp_t_preb": 0.97,
+     "ove_pct": 56.6,
      "above43_area_pct": 38.9,
      "semafor": "pod ciljem"
     },
@@ -1382,9 +1382,9 @@
      "sifra": 62,
      "name": "Ljubno",
      "pop": 2476,
-     "fe_mwh_preb": 7.71,
+     "fe_mwh_preb": 7.7,
      "tgp_t_preb": 0.95,
-     "ove_pct": 65.9,
+     "ove_pct": 66.0,
      "above43_area_pct": 44.4,
      "semafor": "pod ciljem"
     },
@@ -1392,9 +1392,9 @@
      "sifra": 67,
      "name": "Luče",
      "pop": 1396,
-     "fe_mwh_preb": 7.79,
-     "tgp_t_preb": 0.83,
-     "ove_pct": 72.0,
+     "fe_mwh_preb": 7.49,
+     "tgp_t_preb": 0.75,
+     "ove_pct": 73.9,
      "above43_area_pct": 49.9,
      "semafor": "ni podatka"
     },
@@ -1402,9 +1402,9 @@
      "sifra": 79,
      "name": "Mozirje",
      "pop": 4438,
-     "fe_mwh_preb": 6.13,
-     "tgp_t_preb": 0.7,
-     "ove_pct": 71.5,
+     "fe_mwh_preb": 6.16,
+     "tgp_t_preb": 0.71,
+     "ove_pct": 70.9,
      "above43_area_pct": 32.1,
      "semafor": "na poti"
     },
@@ -1412,9 +1412,9 @@
      "sifra": 83,
      "name": "Nazarje",
      "pop": 2681,
-     "fe_mwh_preb": 6.21,
-     "tgp_t_preb": 0.55,
-     "ove_pct": 77.9,
+     "fe_mwh_preb": 6.34,
+     "tgp_t_preb": 0.56,
+     "ove_pct": 77.6,
      "above43_area_pct": 44.1,
      "semafor": "pod ciljem"
     },
@@ -1422,9 +1422,9 @@
      "sifra": 92,
      "name": "Podčetrtek",
      "pop": 3699,
-     "fe_mwh_preb": 9.32,
-     "tgp_t_preb": 1.37,
-     "ove_pct": 56.2,
+     "fe_mwh_preb": 8.71,
+     "tgp_t_preb": 1.24,
+     "ove_pct": 58.7,
      "above43_area_pct": 28.5,
      "semafor": "pod ciljem"
     },
@@ -1432,9 +1432,9 @@
      "sifra": 173,
      "name": "Polzela",
      "pop": 6668,
-     "fe_mwh_preb": 5.48,
-     "tgp_t_preb": 0.79,
-     "ove_pct": 59.7,
+     "fe_mwh_preb": 5.6,
+     "tgp_t_preb": 0.83,
+     "ove_pct": 58.9,
      "above43_area_pct": 26.8,
      "semafor": "pod ciljem"
     },
@@ -1442,9 +1442,9 @@
      "sifra": 174,
      "name": "Prebold",
      "pop": 5318,
-     "fe_mwh_preb": 4.85,
-     "tgp_t_preb": 0.69,
-     "ove_pct": 57.9,
+     "fe_mwh_preb": 4.9,
+     "tgp_t_preb": 0.7,
+     "ove_pct": 57.3,
      "above43_area_pct": 34.9,
      "semafor": "pod ciljem"
     },
@@ -1452,9 +1452,9 @@
      "sifra": 209,
      "name": "Rečica ob Savinji",
      "pop": 2300,
-     "fe_mwh_preb": 6.35,
-     "tgp_t_preb": 0.65,
-     "ove_pct": 74.2,
+     "fe_mwh_preb": 6.23,
+     "tgp_t_preb": 0.62,
+     "ove_pct": 75.3,
      "above43_area_pct": 42.4,
      "semafor": "na poti"
     },
@@ -1464,7 +1464,7 @@
      "pop": 3081,
      "fe_mwh_preb": 5.0,
      "tgp_t_preb": 0.68,
-     "ove_pct": 59.0,
+     "ove_pct": 58.6,
      "above43_area_pct": 38.1,
      "semafor": "na poti"
     },
@@ -1472,9 +1472,9 @@
      "sifra": 106,
      "name": "Rogaška Slatina",
      "pop": 11679,
-     "fe_mwh_preb": 7.32,
-     "tgp_t_preb": 1.15,
-     "ove_pct": 50.9,
+     "fe_mwh_preb": 7.03,
+     "tgp_t_preb": 1.09,
+     "ove_pct": 51.9,
      "above43_area_pct": 31.4,
      "semafor": "pod ciljem"
     },
@@ -1482,9 +1482,9 @@
      "sifra": 114,
      "name": "Slovenske Konjice",
      "pop": 15534,
-     "fe_mwh_preb": 5.49,
-     "tgp_t_preb": 0.67,
-     "ove_pct": 66.4,
+     "fe_mwh_preb": 5.56,
+     "tgp_t_preb": 0.68,
+     "ove_pct": 65.9,
      "above43_area_pct": 32.1,
      "semafor": "pod ciljem"
     },
@@ -1492,9 +1492,9 @@
      "sifra": 180,
      "name": "Solčava",
      "pop": 493,
-     "fe_mwh_preb": 14.18,
-     "tgp_t_preb": 2.23,
-     "ove_pct": 51.5,
+     "fe_mwh_preb": 12.35,
+     "tgp_t_preb": 1.82,
+     "ove_pct": 55.8,
      "above43_area_pct": 46.2,
      "semafor": "ni podatka"
     },
@@ -1502,9 +1502,9 @@
      "sifra": 184,
      "name": "Tabor",
      "pop": 1833,
-     "fe_mwh_preb": 5.17,
-     "tgp_t_preb": 0.51,
-     "ove_pct": 76.0,
+     "fe_mwh_preb": 5.25,
+     "tgp_t_preb": 0.53,
+     "ove_pct": 75.3,
      "above43_area_pct": 32.4,
      "semafor": "ni podatka"
     },
@@ -1512,9 +1512,9 @@
      "sifra": 133,
      "name": "Velenje",
      "pop": 33873,
-     "fe_mwh_preb": 4.98,
-     "tgp_t_preb": 0.94,
-     "ove_pct": 43.4,
+     "fe_mwh_preb": 4.97,
+     "tgp_t_preb": 0.93,
+     "ove_pct": 44.2,
      "above43_area_pct": 44.2,
      "semafor": "na poti"
     },
@@ -1524,7 +1524,7 @@
      "pop": 2200,
      "fe_mwh_preb": 5.71,
      "tgp_t_preb": 0.7,
-     "ove_pct": 66.7,
+     "ove_pct": 66.8,
      "above43_area_pct": 39.7,
      "semafor": "pod ciljem"
     },
@@ -1532,9 +1532,9 @@
      "sifra": 139,
      "name": "Vojnik",
      "pop": 9360,
-     "fe_mwh_preb": 5.88,
-     "tgp_t_preb": 0.81,
-     "ove_pct": 61.3,
+     "fe_mwh_preb": 5.98,
+     "tgp_t_preb": 0.83,
+     "ove_pct": 60.7,
      "above43_area_pct": 29.5,
      "semafor": "pod ciljem"
     },
@@ -1542,9 +1542,9 @@
      "sifra": 189,
      "name": "Vransko",
      "pop": 2792,
-     "fe_mwh_preb": 6.07,
+     "fe_mwh_preb": 6.06,
      "tgp_t_preb": 0.67,
-     "ove_pct": 70.2,
+     "ove_pct": 69.9,
      "above43_area_pct": 36.4,
      "semafor": "ni podatka"
     },
@@ -1552,9 +1552,9 @@
      "sifra": 144,
      "name": "Zreče",
      "pop": 6657,
-     "fe_mwh_preb": 7.01,
-     "tgp_t_preb": 1.1,
-     "ove_pct": 52.3,
+     "fe_mwh_preb": 6.7,
+     "tgp_t_preb": 1.05,
+     "ove_pct": 53.2,
      "above43_area_pct": 33.0,
      "semafor": "na poti"
     },
@@ -1562,9 +1562,9 @@
      "sifra": 120,
      "name": "Šentjur",
      "pop": 19757,
-     "fe_mwh_preb": 5.59,
-     "tgp_t_preb": 0.66,
-     "ove_pct": 67.4,
+     "fe_mwh_preb": 5.68,
+     "tgp_t_preb": 0.68,
+     "ove_pct": 66.7,
      "above43_area_pct": 32.7,
      "semafor": "pod ciljem"
     },
@@ -1572,9 +1572,9 @@
      "sifra": 124,
      "name": "Šmarje pri Jelšah",
      "pop": 10575,
-     "fe_mwh_preb": 5.64,
-     "tgp_t_preb": 0.6,
-     "ove_pct": 73.5,
+     "fe_mwh_preb": 5.77,
+     "tgp_t_preb": 0.63,
+     "ove_pct": 72.6,
      "above43_area_pct": 31.2,
      "semafor": "pod ciljem"
     },
@@ -1582,9 +1582,9 @@
      "sifra": 125,
      "name": "Šmartno ob Paki",
      "pop": 3436,
-     "fe_mwh_preb": 5.11,
-     "tgp_t_preb": 0.55,
-     "ove_pct": 73.2,
+     "fe_mwh_preb": 5.2,
+     "tgp_t_preb": 0.57,
+     "ove_pct": 72.5,
      "above43_area_pct": 31.2,
      "semafor": "pod ciljem"
     },
@@ -1592,9 +1592,9 @@
      "sifra": 126,
      "name": "Šoštanj",
      "pop": 9007,
-     "fe_mwh_preb": 6.46,
-     "tgp_t_preb": 1.03,
-     "ove_pct": 52.8,
+     "fe_mwh_preb": 6.32,
+     "tgp_t_preb": 1.0,
+     "ove_pct": 53.6,
      "above43_area_pct": 37.6,
      "semafor": "pod ciljem"
     },
@@ -1602,9 +1602,9 @@
      "sifra": 127,
      "name": "Štore",
      "pop": 4542,
-     "fe_mwh_preb": 4.74,
+     "fe_mwh_preb": 4.75,
      "tgp_t_preb": 0.62,
-     "ove_pct": 61.7,
+     "ove_pct": 61.6,
      "above43_area_pct": 45.0,
      "semafor": "ni podatka"
     },
@@ -1612,9 +1612,9 @@
      "sifra": 190,
      "name": "Žalec",
      "pop": 21737,
-     "fe_mwh_preb": 5.95,
-     "tgp_t_preb": 0.96,
-     "ove_pct": 51.8,
+     "fe_mwh_preb": 6.02,
+     "tgp_t_preb": 0.98,
+     "ove_pct": 51.2,
      "above43_area_pct": 38.3,
      "semafor": "pod ciljem"
     }
@@ -1631,37 +1631,37 @@
    "vse": {
     "pop": 56927,
     "fe_gwh": {
-     "res": 230.2,
-     "nres": 60.6,
-     "total": 290.7
+     "res": 226.8,
+     "nres": 62.5,
+     "total": 289.2
     },
     "tgp_kt": {
-     "res": 31.11,
-     "nres": 12.44,
-     "total": 43.54
+     "res": 30.14,
+     "nres": 12.95,
+     "total": 43.08
     },
     "ove_pct": {
-     "res": 63.8,
-     "nres": 33.9,
-     "total": 57.6
+     "res": 64.5,
+     "nres": 33.0,
+     "total": 57.7
     },
     "fe_mwh_preb": {
-     "res": 4.04,
-     "total": 5.11
+     "res": 3.98,
+     "total": 5.08
     },
     "tgp_t_preb": {
-     "res": 0.55,
+     "res": 0.53,
      "total": 0.76
     }
    },
-   "fe_kwh_m2": 120,
+   "fe_kwh_m2": 118,
    "carriers_pct": {
-    "el": 14.1,
-    "amb": 9.7,
+    "el": 13.9,
+    "amb": 9.8,
     "gas": 5.8,
     "elko": 8.5,
-    "bio": 44.6,
-    "dh": 17.2
+    "bio": 45.4,
+    "dh": 16.6
    },
    "nps_pct": {
     "A": 1.4,
@@ -1674,33 +1674,33 @@
    },
    "above43_area_pct": 45.9,
    "dh_pot": {
-    "fe_gwh": 204.3,
-    "fe_pct": 20.6,
-    "fe_ha": 98
+    "fe_gwh": 203.7,
+    "fe_pct": 19.4,
+    "fe_ha": 95
    },
    "pot": {
     "2023": {
-     "fe_gwh": 290.7,
-     "tgp_kt": 43.54,
-     "ove_pct": 57.6,
-     "fossil_pct": 16.2
+     "fe_gwh": 289.2,
+     "tgp_kt": 43.08,
+     "ove_pct": 57.7,
+     "fossil_pct": 16.6
     },
     "2030": {
-     "fe_gwh": 241.4,
-     "tgp_kt": 35.51,
-     "ove_pct": 63.3,
-     "fossil_pct": 11.6
+     "fe_gwh": 239.9,
+     "tgp_kt": 35.27,
+     "ove_pct": 63.5,
+     "fossil_pct": 11.9
     },
     "2040": {
-     "fe_gwh": 205.2,
-     "tgp_kt": 11.76,
-     "ove_pct": 71.8,
-     "fossil_pct": 5.8
+     "fe_gwh": 204.1,
+     "tgp_kt": 11.63,
+     "ove_pct": 72.1,
+     "fossil_pct": 5.9
     },
     "2050": {
-     "fe_gwh": 187.2,
-     "tgp_kt": 4.01,
-     "ove_pct": 74.4,
+     "fe_gwh": 187.0,
+     "tgp_kt": 4.02,
+     "ove_pct": 74.6,
      "fossil_pct": 3.6
     }
    },
@@ -1712,16 +1712,16 @@
     "wpb_m2_leto": 40700,
     "meps_n_2030": 191,
     "elko_gwh": [
-     29.0,
-     16.1,
-     4.7,
-     0.8
+     30.1,
+     16.8,
+     5.0,
+     0.9
     ],
     "plin_gwh": [
      17.9,
-     13.5,
-     8.3,
-     6.3
+     13.3,
+     8.1,
+     6.2
     ]
    },
    "stevilke": {
@@ -1747,9 +1747,9 @@
      "sifra": 34,
      "name": "Hrastnik",
      "pop": 8755,
-     "fe_mwh_preb": 5.02,
-     "tgp_t_preb": 0.76,
-     "ove_pct": 55.5,
+     "fe_mwh_preb": 4.95,
+     "tgp_t_preb": 0.74,
+     "ove_pct": 55.7,
      "above43_area_pct": 53.4,
      "semafor": "pod ciljem"
     },
@@ -1757,8 +1757,8 @@
      "sifra": 60,
      "name": "Litija",
      "pop": 15890,
-     "fe_mwh_preb": 4.98,
-     "tgp_t_preb": 0.67,
+     "fe_mwh_preb": 5.04,
+     "tgp_t_preb": 0.68,
      "ove_pct": 64.1,
      "above43_area_pct": 35.0,
      "semafor": "pod ciljem"
@@ -1767,9 +1767,9 @@
      "sifra": 129,
      "name": "Trbovlje",
      "pop": 15935,
-     "fe_mwh_preb": 5.03,
-     "tgp_t_preb": 1.01,
-     "ove_pct": 40.5,
+     "fe_mwh_preb": 4.97,
+     "tgp_t_preb": 0.99,
+     "ove_pct": 41.0,
      "above43_area_pct": 54.8,
      "semafor": "na poti"
     },
@@ -1777,9 +1777,9 @@
      "sifra": 142,
      "name": "Zagorje ob Savi",
      "pop": 16347,
-     "fe_mwh_preb": 5.35,
+     "fe_mwh_preb": 5.31,
      "tgp_t_preb": 0.62,
-     "ove_pct": 68.3,
+     "ove_pct": 68.2,
      "above43_area_pct": 44.7,
      "semafor": "pod ciljem"
     }
@@ -1796,23 +1796,23 @@
    "vse": {
     "pop": 76028,
     "fe_gwh": {
-     "res": 382.6,
-     "nres": 136.4,
-     "total": 519.1
+     "res": 384.1,
+     "nres": 136.5,
+     "total": 520.7
     },
     "tgp_kt": {
-     "res": 45.38,
-     "nres": 28.84,
-     "total": 74.23
+     "res": 45.64,
+     "nres": 28.98,
+     "total": 74.6
     },
     "ove_pct": {
-     "res": 69.1,
-     "nres": 29.9,
-     "total": 58.8
+     "res": 69.0,
+     "nres": 29.6,
+     "total": 58.6
     },
     "fe_mwh_preb": {
-     "res": 5.03,
-     "total": 6.83
+     "res": 5.05,
+     "total": 6.85
     },
     "tgp_t_preb": {
      "res": 0.6,
@@ -1821,12 +1821,12 @@
    },
    "fe_kwh_m2": 130,
    "carriers_pct": {
-    "el": 13.0,
-    "amb": 8.1,
-    "gas": 8.8,
+    "el": 12.8,
+    "amb": 8.0,
+    "gas": 9.0,
     "elko": 9.1,
     "bio": 55.4,
-    "dh": 5.6
+    "dh": 5.7
    },
    "nps_pct": {
     "A": 1.6,
@@ -1839,34 +1839,34 @@
    },
    "above43_area_pct": 38.2,
    "dh_pot": {
-    "fe_gwh": 371.2,
-    "fe_pct": 11.7,
-    "fe_ha": 81
+    "fe_gwh": 373.4,
+    "fe_pct": 11.9,
+    "fe_ha": 88
    },
    "pot": {
     "2023": {
-     "fe_gwh": 519.1,
-     "tgp_kt": 74.23,
-     "ove_pct": 58.8,
-     "fossil_pct": 21.6
+     "fe_gwh": 520.7,
+     "tgp_kt": 74.6,
+     "ove_pct": 58.6,
+     "fossil_pct": 22.0
     },
     "2030": {
-     "fe_gwh": 430.7,
-     "tgp_kt": 55.1,
+     "fe_gwh": 431.5,
+     "tgp_kt": 55.13,
      "ove_pct": 69.9,
-     "fossil_pct": 14.1
+     "fossil_pct": 14.4
     },
     "2040": {
-     "fe_gwh": 368.7,
-     "tgp_kt": 19.12,
-     "ove_pct": 78.2,
-     "fossil_pct": 7.9
+     "fe_gwh": 369.3,
+     "tgp_kt": 19.23,
+     "ove_pct": 78.3,
+     "fossil_pct": 8.2
     },
     "2050": {
-     "fe_gwh": 340.3,
-     "tgp_kt": 7.6,
-     "ove_pct": 80.7,
-     "fossil_pct": 5.4
+     "fe_gwh": 341.1,
+     "tgp_kt": 7.69,
+     "ove_pct": 80.9,
+     "fossil_pct": 5.6
     }
    },
    "cilji": {
@@ -1877,16 +1877,16 @@
     "wpb_m2_leto": 52100,
     "meps_n_2030": 239,
     "elko_gwh": [
-     60.1,
-     34.1,
-     10.3,
-     1.9
+     61.2,
+     34.7,
+     10.4,
+     1.8
     ],
     "plin_gwh": [
-     52.0,
-     37.7,
-     21.7,
-     15.6
+     53.3,
+     38.7,
+     22.3,
+     16.3
     ]
    },
    "stevilke": {
@@ -1912,8 +1912,8 @@
      "sifra": 149,
      "name": "Bistrica ob Sotli",
      "pop": 1334,
-     "fe_mwh_preb": 6.9,
-     "tgp_t_preb": 0.88,
+     "fe_mwh_preb": 6.89,
+     "tgp_t_preb": 0.87,
      "ove_pct": 65.6,
      "above43_area_pct": 42.4,
      "semafor": "ni podatka"
@@ -1922,9 +1922,9 @@
      "sifra": 9,
      "name": "Brežice",
      "pop": 24412,
-     "fe_mwh_preb": 7.98,
+     "fe_mwh_preb": 7.92,
      "tgp_t_preb": 1.23,
-     "ove_pct": 54.8,
+     "ove_pct": 54.9,
      "above43_area_pct": 37.0,
      "semafor": "pod ciljem"
     },
@@ -1932,9 +1932,9 @@
      "sifra": 197,
      "name": "Kostanjevica na Krki",
      "pop": 2424,
-     "fe_mwh_preb": 6.63,
-     "tgp_t_preb": 0.89,
-     "ove_pct": 63.1,
+     "fe_mwh_preb": 6.51,
+     "tgp_t_preb": 0.87,
+     "ove_pct": 63.7,
      "above43_area_pct": 36.9,
      "semafor": "pod ciljem"
     },
@@ -1942,9 +1942,9 @@
      "sifra": 54,
      "name": "Krško",
      "pop": 26210,
-     "fe_mwh_preb": 6.22,
-     "tgp_t_preb": 0.92,
-     "ove_pct": 57.4,
+     "fe_mwh_preb": 6.32,
+     "tgp_t_preb": 0.94,
+     "ove_pct": 56.9,
      "above43_area_pct": 38.1,
      "semafor": "pod ciljem"
     },
@@ -1952,9 +1952,9 @@
      "sifra": 99,
      "name": "Radeče",
      "pop": 4046,
-     "fe_mwh_preb": 6.58,
-     "tgp_t_preb": 0.9,
-     "ove_pct": 60.6,
+     "fe_mwh_preb": 6.55,
+     "tgp_t_preb": 0.89,
+     "ove_pct": 60.8,
      "above43_area_pct": 46.7,
      "semafor": "pod ciljem"
     },
@@ -1962,9 +1962,9 @@
      "sifra": 110,
      "name": "Sevnica",
      "pop": 17602,
-     "fe_mwh_preb": 6.22,
-     "tgp_t_preb": 0.74,
-     "ove_pct": 66.3,
+     "fe_mwh_preb": 6.25,
+     "tgp_t_preb": 0.75,
+     "ove_pct": 66.0,
      "above43_area_pct": 38.2,
      "semafor": "pod ciljem"
     }
@@ -1981,36 +1981,36 @@
    "vse": {
     "pop": 148903,
     "fe_gwh": {
-     "res": 696.3,
-     "nres": 225.0,
-     "total": 921.2
+     "res": 701.5,
+     "nres": 227.1,
+     "total": 928.7
     },
     "tgp_kt": {
-     "res": 68.27,
-     "nres": 44.64,
-     "total": 112.88
+     "res": 69.56,
+     "nres": 44.95,
+     "total": 114.55
     },
     "ove_pct": {
-     "res": 76.3,
-     "nres": 36.0,
-     "total": 66.4
+     "res": 75.9,
+     "nres": 35.9,
+     "total": 66.1
     },
     "fe_mwh_preb": {
-     "res": 4.68,
-     "total": 6.19
+     "res": 4.71,
+     "total": 6.24
     },
     "tgp_t_preb": {
-     "res": 0.46,
-     "total": 0.76
+     "res": 0.47,
+     "total": 0.77
     }
    },
-   "fe_kwh_m2": 123,
+   "fe_kwh_m2": 124,
    "carriers_pct": {
-    "el": 12.8,
-    "amb": 8.7,
-    "gas": 6.2,
-    "elko": 7.6,
-    "bio": 59.4,
+    "el": 13.1,
+    "amb": 8.6,
+    "gas": 6.4,
+    "elko": 7.5,
+    "bio": 59.1,
     "dh": 5.3
    },
    "nps_pct": {
@@ -2024,34 +2024,34 @@
    },
    "above43_area_pct": 34.5,
    "dh_pot": {
-    "fe_gwh": 655.0,
+    "fe_gwh": 659.5,
     "fe_pct": 12.4,
-    "fe_ha": 184
+    "fe_ha": 190
    },
    "pot": {
     "2023": {
-     "fe_gwh": 921.2,
-     "tgp_kt": 112.88,
-     "ove_pct": 66.4,
-     "fossil_pct": 18.5
+     "fe_gwh": 928.7,
+     "tgp_kt": 114.55,
+     "ove_pct": 66.1,
+     "fossil_pct": 18.6
     },
     "2030": {
-     "fe_gwh": 765.3,
-     "tgp_kt": 87.33,
-     "ove_pct": 75.6,
-     "fossil_pct": 12.2
+     "fe_gwh": 771.5,
+     "tgp_kt": 89.39,
+     "ove_pct": 75.0,
+     "fossil_pct": 12.5
     },
     "2040": {
-     "fe_gwh": 657.5,
-     "tgp_kt": 29.08,
-     "ove_pct": 84.7,
-     "fossil_pct": 6.4
+     "fe_gwh": 662.5,
+     "tgp_kt": 29.82,
+     "ove_pct": 84.3,
+     "fossil_pct": 6.6
     },
     "2050": {
-     "fe_gwh": 608.3,
-     "tgp_kt": 11.15,
-     "ove_pct": 88.0,
-     "fossil_pct": 4.0
+     "fe_gwh": 612.9,
+     "tgp_kt": 11.37,
+     "ove_pct": 87.7,
+     "fossil_pct": 4.1
     }
    },
    "cilji": {
@@ -2063,15 +2063,15 @@
     "meps_n_2030": 954,
     "elko_gwh": [
      100.4,
-     57.3,
+     57.6,
      17.7,
-     3.5
+     3.2
     ],
     "plin_gwh": [
-     70.4,
-     50.9,
-     28.4,
-     20.2
+     72.8,
+     52.2,
+     29.7,
+     21.0
     ]
    },
    "stevilke": {
@@ -2097,9 +2097,9 @@
      "sifra": 157,
      "name": "Dolenjske Toplice",
      "pop": 3666,
-     "fe_mwh_preb": 7.84,
-     "tgp_t_preb": 1.09,
-     "ove_pct": 59.7,
+     "fe_mwh_preb": 7.28,
+     "tgp_t_preb": 0.96,
+     "ove_pct": 62.8,
      "above43_area_pct": 30.9,
      "semafor": "pod ciljem"
     },
@@ -2107,9 +2107,9 @@
      "sifra": 165,
      "name": "Kostel",
      "pop": 604,
-     "fe_mwh_preb": 12.4,
-     "tgp_t_preb": 1.17,
-     "ove_pct": 76.4,
+     "fe_mwh_preb": 12.27,
+     "tgp_t_preb": 1.14,
+     "ove_pct": 76.8,
      "above43_area_pct": 45.0,
      "semafor": "ni podatka"
     },
@@ -2117,9 +2117,9 @@
      "sifra": 48,
      "name": "Kočevje",
      "pop": 15595,
-     "fe_mwh_preb": 5.6,
-     "tgp_t_preb": 0.47,
-     "ove_pct": 79.4,
+     "fe_mwh_preb": 5.62,
+     "tgp_t_preb": 0.48,
+     "ove_pct": 78.9,
      "above43_area_pct": 41.1,
      "semafor": "pod ciljem"
     },
@@ -2127,9 +2127,9 @@
      "sifra": 66,
      "name": "Loški Potok",
      "pop": 1839,
-     "fe_mwh_preb": 7.11,
+     "fe_mwh_preb": 7.12,
      "tgp_t_preb": 0.71,
-     "ove_pct": 74.5,
+     "ove_pct": 74.4,
      "above43_area_pct": 44.1,
      "semafor": "pod ciljem"
     },
@@ -2137,9 +2137,9 @@
      "sifra": 73,
      "name": "Metlika",
      "pop": 8552,
-     "fe_mwh_preb": 6.43,
-     "tgp_t_preb": 0.67,
-     "ove_pct": 73.9,
+     "fe_mwh_preb": 6.48,
+     "tgp_t_preb": 0.68,
+     "ove_pct": 73.7,
      "above43_area_pct": 41.2,
      "semafor": "pod ciljem"
     },
@@ -2147,9 +2147,9 @@
      "sifra": 212,
      "name": "Mirna",
      "pop": 2895,
-     "fe_mwh_preb": 5.41,
-     "tgp_t_preb": 0.64,
-     "ove_pct": 69.4,
+     "fe_mwh_preb": 5.49,
+     "tgp_t_preb": 0.67,
+     "ove_pct": 68.4,
      "above43_area_pct": 28.7,
      "semafor": "pod ciljem"
     },
@@ -2157,9 +2157,9 @@
      "sifra": 170,
      "name": "Mirna Peč",
      "pop": 3238,
-     "fe_mwh_preb": 5.72,
-     "tgp_t_preb": 0.71,
-     "ove_pct": 68.7,
+     "fe_mwh_preb": 5.78,
+     "tgp_t_preb": 0.72,
+     "ove_pct": 68.5,
      "above43_area_pct": 27.0,
      "semafor": "pod ciljem"
     },
@@ -2167,9 +2167,9 @@
      "sifra": 199,
      "name": "Mokronog-Trebelno",
      "pop": 3320,
-     "fe_mwh_preb": 5.72,
+     "fe_mwh_preb": 5.77,
      "tgp_t_preb": 0.64,
-     "ove_pct": 72.0,
+     "ove_pct": 71.7,
      "above43_area_pct": 32.0,
      "semafor": "pod ciljem"
     },
@@ -2177,9 +2177,9 @@
      "sifra": 85,
      "name": "Novo mesto",
      "pop": 38678,
-     "fe_mwh_preb": 6.46,
-     "tgp_t_preb": 1.11,
-     "ove_pct": 47.6,
+     "fe_mwh_preb": 6.61,
+     "tgp_t_preb": 1.14,
+     "ove_pct": 46.9,
      "above43_area_pct": 32.6,
      "semafor": "pod ciljem"
     },
@@ -2187,9 +2187,9 @@
      "sifra": 88,
      "name": "Osilnica",
      "pop": 326,
-     "fe_mwh_preb": 10.33,
-     "tgp_t_preb": 1.52,
-     "ove_pct": 57.9,
+     "fe_mwh_preb": 10.6,
+     "tgp_t_preb": 1.59,
+     "ove_pct": 56.3,
      "above43_area_pct": 42.4,
      "semafor": "ni podatka"
     },
@@ -2197,9 +2197,9 @@
      "sifra": 104,
      "name": "Ribnica",
      "pop": 9825,
-     "fe_mwh_preb": 6.21,
-     "tgp_t_preb": 0.59,
-     "ove_pct": 75.8,
+     "fe_mwh_preb": 6.25,
+     "tgp_t_preb": 0.6,
+     "ove_pct": 75.5,
      "above43_area_pct": 42.5,
      "semafor": "na poti"
     },
@@ -2207,9 +2207,9 @@
      "sifra": 109,
      "name": "Semič",
      "pop": 3780,
-     "fe_mwh_preb": 6.62,
-     "tgp_t_preb": 0.61,
-     "ove_pct": 77.5,
+     "fe_mwh_preb": 6.58,
+     "tgp_t_preb": 0.59,
+     "ove_pct": 78.0,
      "above43_area_pct": 36.0,
      "semafor": "pod ciljem"
     },
@@ -2217,9 +2217,9 @@
      "sifra": 179,
      "name": "Sodražica",
      "pop": 2354,
-     "fe_mwh_preb": 6.7,
-     "tgp_t_preb": 0.71,
-     "ove_pct": 72.8,
+     "fe_mwh_preb": 6.83,
+     "tgp_t_preb": 0.74,
+     "ove_pct": 71.8,
      "above43_area_pct": 39.1,
      "semafor": "pod ciljem"
     },
@@ -2227,9 +2227,9 @@
      "sifra": 203,
      "name": "Straža",
      "pop": 4000,
-     "fe_mwh_preb": 5.49,
-     "tgp_t_preb": 0.64,
-     "ove_pct": 70.7,
+     "fe_mwh_preb": 5.53,
+     "tgp_t_preb": 0.66,
+     "ove_pct": 70.2,
      "above43_area_pct": 36.7,
      "semafor": "pod ciljem"
     },
@@ -2237,9 +2237,9 @@
      "sifra": 130,
      "name": "Trebnje",
      "pop": 13855,
-     "fe_mwh_preb": 5.4,
-     "tgp_t_preb": 0.63,
-     "ove_pct": 70.8,
+     "fe_mwh_preb": 5.48,
+     "tgp_t_preb": 0.65,
+     "ove_pct": 70.4,
      "above43_area_pct": 26.2,
      "semafor": "pod ciljem"
     },
@@ -2247,9 +2247,9 @@
      "sifra": 17,
      "name": "Črnomelj",
      "pop": 14170,
-     "fe_mwh_preb": 6.72,
-     "tgp_t_preb": 0.64,
-     "ove_pct": 76.5,
+     "fe_mwh_preb": 6.8,
+     "tgp_t_preb": 0.65,
+     "ove_pct": 76.3,
      "above43_area_pct": 40.3,
      "semafor": "pod ciljem"
     },
@@ -2257,9 +2257,9 @@
      "sifra": 119,
      "name": "Šentjernej",
      "pop": 7446,
-     "fe_mwh_preb": 5.34,
-     "tgp_t_preb": 0.57,
-     "ove_pct": 73.3,
+     "fe_mwh_preb": 5.41,
+     "tgp_t_preb": 0.58,
+     "ove_pct": 73.0,
      "above43_area_pct": 27.6,
      "semafor": "pod ciljem"
     },
@@ -2267,9 +2267,9 @@
      "sifra": 211,
      "name": "Šentrupert",
      "pop": 2915,
-     "fe_mwh_preb": 5.25,
-     "tgp_t_preb": 0.65,
-     "ove_pct": 67.5,
+     "fe_mwh_preb": 5.34,
+     "tgp_t_preb": 0.68,
+     "ove_pct": 67.0,
      "above43_area_pct": 22.9,
      "semafor": "ni podatka"
     },
@@ -2277,9 +2277,9 @@
      "sifra": 121,
      "name": "Škocjan",
      "pop": 3531,
-     "fe_mwh_preb": 5.46,
+     "fe_mwh_preb": 5.5,
      "tgp_t_preb": 0.49,
-     "ove_pct": 78.3,
+     "ove_pct": 78.0,
      "above43_area_pct": 30.0,
      "semafor": "pod ciljem"
     },
@@ -2287,9 +2287,9 @@
      "sifra": 206,
      "name": "Šmarješke Toplice",
      "pop": 3606,
-     "fe_mwh_preb": 6.49,
-     "tgp_t_preb": 0.89,
-     "ove_pct": 60.2,
+     "fe_mwh_preb": 6.08,
+     "tgp_t_preb": 0.81,
+     "ove_pct": 62.8,
      "above43_area_pct": 24.3,
      "semafor": "pod ciljem"
     },
@@ -2297,9 +2297,9 @@
      "sifra": 193,
      "name": "Žužemberk",
      "pop": 4708,
-     "fe_mwh_preb": 6.7,
-     "tgp_t_preb": 0.65,
-     "ove_pct": 76.0,
+     "fe_mwh_preb": 6.66,
+     "tgp_t_preb": 0.64,
+     "ove_pct": 76.6,
      "above43_area_pct": 36.6,
      "semafor": "pod ciljem"
     }
@@ -2316,37 +2316,37 @@
    "vse": {
     "pop": 573209,
     "fe_gwh": {
-     "res": 2162.2,
-     "nres": 1138.5,
-     "total": 3300.7
+     "res": 2155.1,
+     "nres": 1190.8,
+     "total": 3345.8
     },
     "tgp_kt": {
-     "res": 388.19,
-     "nres": 250.41,
-     "total": 638.61
+     "res": 387.06,
+     "nres": 261.49,
+     "total": 648.58
     },
     "ove_pct": {
-     "res": 45.8,
-     "nres": 28.5,
-     "total": 39.8
+     "res": 45.9,
+     "nres": 28.4,
+     "total": 39.7
     },
     "fe_mwh_preb": {
-     "res": 3.77,
-     "total": 5.76
+     "res": 3.76,
+     "total": 5.84
     },
     "tgp_t_preb": {
      "res": 0.68,
-     "total": 1.11
+     "total": 1.13
     }
    },
    "fe_kwh_m2": 107,
    "carriers_pct": {
-    "el": 16.8,
-    "amb": 8.1,
-    "gas": 22.8,
-    "elko": 7.6,
+    "el": 16.9,
+    "amb": 8.2,
+    "gas": 22.5,
+    "elko": 7.7,
     "bio": 29.1,
-    "dh": 15.6
+    "dh": 15.7
    },
    "nps_pct": {
     "A": 1.9,
@@ -2359,34 +2359,34 @@
    },
    "above43_area_pct": 37.5,
    "dh_pot": {
-    "fe_gwh": 2163.1,
+    "fe_gwh": 2187.1,
     "fe_pct": 39.8,
-    "fe_ha": 1596
+    "fe_ha": 1629
    },
    "pot": {
     "2023": {
-     "fe_gwh": 3300.7,
-     "tgp_kt": 638.61,
-     "ove_pct": 39.8,
-     "fossil_pct": 27.9
+     "fe_gwh": 3345.8,
+     "tgp_kt": 648.58,
+     "ove_pct": 39.7,
+     "fossil_pct": 28.1
     },
     "2030": {
-     "fe_gwh": 2827.6,
-     "tgp_kt": 543.62,
+     "fe_gwh": 2869.6,
+     "tgp_kt": 553.25,
      "ove_pct": 48.8,
      "fossil_pct": 21.3
     },
     "2040": {
-     "fe_gwh": 2495.2,
-     "tgp_kt": 185.45,
-     "ove_pct": 60.6,
-     "fossil_pct": 12.9
+     "fe_gwh": 2535.0,
+     "tgp_kt": 187.38,
+     "ove_pct": 60.8,
+     "fossil_pct": 12.7
     },
     "2050": {
-     "fe_gwh": 2330.5,
-     "tgp_kt": 73.76,
-     "ove_pct": 63.7,
-     "fossil_pct": 9.8
+     "fe_gwh": 2368.1,
+     "tgp_kt": 74.27,
+     "ove_pct": 63.9,
+     "fossil_pct": 9.5
     }
    },
    "cilji": {
@@ -2397,16 +2397,16 @@
     "wpb_m2_leto": 350400,
     "meps_n_2030": 837,
     "elko_gwh": [
-     313.6,
-     179.8,
-     55.4,
-     10.1
+     332.9,
+     191.9,
+     59.4,
+     11.2
     ],
     "plin_gwh": [
-     608.6,
-     460.1,
-     291.9,
-     230.7
+     607.4,
+     458.4,
+     288.6,
+     226.7
     ]
    },
    "stevilke": {
@@ -2432,9 +2432,9 @@
      "sifra": 5,
      "name": "Borovnica",
      "pop": 4688,
-     "fe_mwh_preb": 4.6,
-     "tgp_t_preb": 0.61,
-     "ove_pct": 65.6,
+     "fe_mwh_preb": 4.56,
+     "tgp_t_preb": 0.6,
+     "ove_pct": 65.9,
      "above43_area_pct": 39.2,
      "semafor": "pod ciljem"
     },
@@ -2442,9 +2442,9 @@
      "sifra": 8,
      "name": "Brezovica",
      "pop": 13202,
-     "fe_mwh_preb": 5.18,
-     "tgp_t_preb": 0.79,
-     "ove_pct": 57.3,
+     "fe_mwh_preb": 5.26,
+     "tgp_t_preb": 0.81,
+     "ove_pct": 56.3,
      "above43_area_pct": 26.0,
      "semafor": "pod ciljem"
     },
@@ -2452,9 +2452,9 @@
      "sifra": 20,
      "name": "Dobrepolje",
      "pop": 3946,
-     "fe_mwh_preb": 6.23,
-     "tgp_t_preb": 0.74,
-     "ove_pct": 68.8,
+     "fe_mwh_preb": 6.31,
+     "tgp_t_preb": 0.75,
+     "ove_pct": 68.5,
      "above43_area_pct": 35.2,
      "semafor": "pod ciljem"
     },
@@ -2462,9 +2462,9 @@
      "sifra": 21,
      "name": "Dobrova-Polhov Gradec",
      "pop": 8068,
-     "fe_mwh_preb": 5.52,
+     "fe_mwh_preb": 5.5,
      "tgp_t_preb": 0.7,
-     "ove_pct": 65.8,
+     "ove_pct": 65.6,
      "above43_area_pct": 30.7,
      "semafor": "pod ciljem"
     },
@@ -2472,9 +2472,9 @@
      "sifra": 22,
      "name": "Dol pri Ljubljani",
      "pop": 6438,
-     "fe_mwh_preb": 4.97,
-     "tgp_t_preb": 0.81,
-     "ove_pct": 54.3,
+     "fe_mwh_preb": 5.13,
+     "tgp_t_preb": 0.85,
+     "ove_pct": 53.1,
      "above43_area_pct": 24.9,
      "semafor": "pod ciljem"
     },
@@ -2482,9 +2482,9 @@
      "sifra": 23,
      "name": "Domžale",
      "pop": 38326,
-     "fe_mwh_preb": 5.23,
-     "tgp_t_preb": 0.94,
-     "ove_pct": 45.8,
+     "fe_mwh_preb": 5.35,
+     "tgp_t_preb": 0.96,
+     "ove_pct": 45.3,
      "above43_area_pct": 35.0,
      "semafor": "na poti"
     },
@@ -2492,9 +2492,9 @@
      "sifra": 32,
      "name": "Grosuplje",
      "pop": 22276,
-     "fe_mwh_preb": 4.61,
-     "tgp_t_preb": 0.73,
-     "ove_pct": 56.8,
+     "fe_mwh_preb": 4.69,
+     "tgp_t_preb": 0.75,
+     "ove_pct": 56.5,
      "above43_area_pct": 28.3,
      "semafor": "pod ciljem"
     },
@@ -2502,9 +2502,9 @@
      "sifra": 162,
      "name": "Horjul",
      "pop": 3085,
-     "fe_mwh_preb": 5.63,
+     "fe_mwh_preb": 5.62,
      "tgp_t_preb": 0.7,
-     "ove_pct": 67.2,
+     "ove_pct": 67.1,
      "above43_area_pct": 33.0,
      "semafor": "pod ciljem"
     },
@@ -2512,9 +2512,9 @@
      "sifra": 37,
      "name": "Ig",
      "pop": 7974,
-     "fe_mwh_preb": 5.13,
-     "tgp_t_preb": 0.76,
-     "ove_pct": 57.7,
+     "fe_mwh_preb": 5.21,
+     "tgp_t_preb": 0.79,
+     "ove_pct": 56.9,
      "above43_area_pct": 22.9,
      "semafor": "pod ciljem"
     },
@@ -2522,9 +2522,9 @@
      "sifra": 39,
      "name": "Ivančna Gorica",
      "pop": 18272,
-     "fe_mwh_preb": 5.28,
-     "tgp_t_preb": 0.69,
-     "ove_pct": 65.9,
+     "fe_mwh_preb": 5.34,
+     "tgp_t_preb": 0.7,
+     "ove_pct": 65.6,
      "above43_area_pct": 29.3,
      "semafor": "pod ciljem"
     },
@@ -2532,7 +2532,7 @@
      "sifra": 43,
      "name": "Kamnik",
      "pop": 29830,
-     "fe_mwh_preb": 5.42,
+     "fe_mwh_preb": 5.4,
      "tgp_t_preb": 0.89,
      "ove_pct": 50.5,
      "above43_area_pct": 41.0,
@@ -2542,9 +2542,9 @@
      "sifra": 164,
      "name": "Komenda",
      "pop": 6800,
-     "fe_mwh_preb": 5.29,
-     "tgp_t_preb": 0.89,
-     "ove_pct": 50.1,
+     "fe_mwh_preb": 5.45,
+     "tgp_t_preb": 0.94,
+     "ove_pct": 49.0,
      "above43_area_pct": 23.7,
      "semafor": "pod ciljem"
     },
@@ -2552,9 +2552,9 @@
      "sifra": 61,
      "name": "Ljubljana",
      "pop": 302826,
-     "fe_mwh_preb": 6.27,
-     "tgp_t_preb": 1.4,
-     "ove_pct": 27.7,
+     "fe_mwh_preb": 6.35,
+     "tgp_t_preb": 1.42,
+     "ove_pct": 27.8,
      "above43_area_pct": 43.4,
      "semafor": "na poti"
     },
@@ -2562,9 +2562,9 @@
      "sifra": 208,
      "name": "Log-Dragomer",
      "pop": 3895,
-     "fe_mwh_preb": 5.43,
-     "tgp_t_preb": 0.85,
-     "ove_pct": 57.2,
+     "fe_mwh_preb": 5.55,
+     "tgp_t_preb": 0.89,
+     "ove_pct": 56.0,
      "above43_area_pct": 27.7,
      "semafor": "na poti"
     },
@@ -2572,9 +2572,9 @@
      "sifra": 64,
      "name": "Logatec",
      "pop": 15129,
-     "fe_mwh_preb": 5.05,
-     "tgp_t_preb": 0.68,
-     "ove_pct": 61.0,
+     "fe_mwh_preb": 5.12,
+     "tgp_t_preb": 0.69,
+     "ove_pct": 60.6,
      "above43_area_pct": 31.2,
      "semafor": "na poti"
     },
@@ -2592,9 +2592,9 @@
      "sifra": 71,
      "name": "Medvode",
      "pop": 17580,
-     "fe_mwh_preb": 5.38,
-     "tgp_t_preb": 0.84,
-     "ove_pct": 55.0,
+     "fe_mwh_preb": 5.39,
+     "tgp_t_preb": 0.85,
+     "ove_pct": 54.8,
      "above43_area_pct": 31.6,
      "semafor": "pod ciljem"
     },
@@ -2602,9 +2602,9 @@
      "sifra": 72,
      "name": "Mengeš",
      "pop": 8812,
-     "fe_mwh_preb": 4.85,
-     "tgp_t_preb": 0.81,
-     "ove_pct": 51.7,
+     "fe_mwh_preb": 5.05,
+     "tgp_t_preb": 0.86,
+     "ove_pct": 50.2,
      "above43_area_pct": 32.7,
      "semafor": "na poti"
     },
@@ -2612,9 +2612,9 @@
      "sifra": 77,
      "name": "Moravče",
      "pop": 5683,
-     "fe_mwh_preb": 5.37,
-     "tgp_t_preb": 0.63,
-     "ove_pct": 69.9,
+     "fe_mwh_preb": 5.42,
+     "tgp_t_preb": 0.65,
+     "ove_pct": 69.4,
      "above43_area_pct": 29.3,
      "semafor": "pod ciljem"
     },
@@ -2622,9 +2622,9 @@
      "sifra": 186,
      "name": "Trzin",
      "pop": 4000,
-     "fe_mwh_preb": 7.23,
-     "tgp_t_preb": 1.4,
-     "ove_pct": 37.3,
+     "fe_mwh_preb": 7.73,
+     "tgp_t_preb": 1.5,
+     "ove_pct": 36.4,
      "above43_area_pct": 22.6,
      "semafor": "pod ciljem"
     },
@@ -2632,9 +2632,9 @@
      "sifra": 134,
      "name": "Velike Lašče",
      "pop": 4546,
-     "fe_mwh_preb": 6.25,
-     "tgp_t_preb": 0.64,
-     "ove_pct": 74.9,
+     "fe_mwh_preb": 6.3,
+     "tgp_t_preb": 0.65,
+     "ove_pct": 74.6,
      "above43_area_pct": 33.0,
      "semafor": "pod ciljem"
     },
@@ -2642,9 +2642,9 @@
      "sifra": 138,
      "name": "Vodice",
      "pop": 5291,
-     "fe_mwh_preb": 5.27,
-     "tgp_t_preb": 0.69,
-     "ove_pct": 64.9,
+     "fe_mwh_preb": 5.37,
+     "tgp_t_preb": 0.73,
+     "ove_pct": 63.8,
      "above43_area_pct": 23.8,
      "semafor": "pod ciljem"
     },
@@ -2652,9 +2652,9 @@
      "sifra": 140,
      "name": "Vrhnika",
      "pop": 18296,
-     "fe_mwh_preb": 4.86,
-     "tgp_t_preb": 0.76,
-     "ove_pct": 54.1,
+     "fe_mwh_preb": 4.94,
+     "tgp_t_preb": 0.78,
+     "ove_pct": 53.8,
      "above43_area_pct": 31.9,
      "semafor": "pod ciljem"
     },
@@ -2662,9 +2662,9 @@
      "sifra": 123,
      "name": "Škofljica",
      "pop": 12199,
-     "fe_mwh_preb": 4.42,
-     "tgp_t_preb": 0.7,
-     "ove_pct": 54.2,
+     "fe_mwh_preb": 4.54,
+     "tgp_t_preb": 0.74,
+     "ove_pct": 53.2,
      "above43_area_pct": 23.5,
      "semafor": "pod ciljem"
     },
@@ -2672,7 +2672,7 @@
      "sifra": 194,
      "name": "Šmartno pri Litiji",
      "pop": 5854,
-     "fe_mwh_preb": 4.58,
+     "fe_mwh_preb": 4.6,
      "tgp_t_preb": 0.49,
      "ove_pct": 73.5,
      "above43_area_pct": 32.3,
@@ -2691,36 +2691,36 @@
    "vse": {
     "pop": 209939,
     "fe_gwh": {
-     "res": 893.2,
-     "nres": 368.9,
-     "total": 1262.1
+     "res": 892.5,
+     "nres": 351.5,
+     "total": 1244.2
     },
     "tgp_kt": {
-     "res": 130.02,
-     "nres": 80.56,
-     "total": 210.55
+     "res": 130.3,
+     "nres": 76.54,
+     "total": 206.83
     },
     "ove_pct": {
-     "res": 59.8,
-     "nres": 27.1,
-     "total": 50.3
+     "res": 59.6,
+     "nres": 27.5,
+     "total": 50.5
     },
     "fe_mwh_preb": {
      "res": 4.25,
-     "total": 6.01
+     "total": 5.93
     },
     "tgp_t_preb": {
      "res": 0.62,
-     "total": 1.0
+     "total": 0.99
     }
    },
    "fe_kwh_m2": 115,
    "carriers_pct": {
     "el": 16.9,
     "amb": 9.6,
-    "gas": 12.8,
-    "elko": 10.0,
-    "bio": 42.6,
+    "gas": 13.1,
+    "elko": 9.9,
+    "bio": 42.4,
     "dh": 8.1
    },
    "nps_pct": {
@@ -2734,34 +2734,34 @@
    },
    "above43_area_pct": 38.1,
    "dh_pot": {
-    "fe_gwh": 839.0,
-    "fe_pct": 21.4,
-    "fe_ha": 374
+    "fe_gwh": 826.5,
+    "fe_pct": 19.5,
+    "fe_ha": 352
    },
    "pot": {
     "2023": {
-     "fe_gwh": 1262.1,
-     "tgp_kt": 210.55,
-     "ove_pct": 50.3,
-     "fossil_pct": 27.8
+     "fe_gwh": 1244.2,
+     "tgp_kt": 206.83,
+     "ove_pct": 50.5,
+     "fossil_pct": 27.3
     },
     "2030": {
-     "fe_gwh": 1064.4,
-     "tgp_kt": 174.82,
-     "ove_pct": 59.9,
-     "fossil_pct": 20.9
+     "fe_gwh": 1046.3,
+     "tgp_kt": 170.94,
+     "ove_pct": 60.2,
+     "fossil_pct": 20.4
     },
     "2040": {
-     "fe_gwh": 925.4,
-     "tgp_kt": 56.76,
-     "ove_pct": 74.0,
-     "fossil_pct": 11.2
+     "fe_gwh": 907.7,
+     "tgp_kt": 55.95,
+     "ove_pct": 73.9,
+     "fossil_pct": 11.1
     },
     "2050": {
-     "fe_gwh": 859.4,
-     "tgp_kt": 20.93,
-     "ove_pct": 79.3,
-     "fossil_pct": 6.8
+     "fe_gwh": 842.0,
+     "tgp_kt": 20.8,
+     "ove_pct": 78.8,
+     "fossil_pct": 7.0
     }
    },
    "cilji": {
@@ -2772,16 +2772,16 @@
     "wpb_m2_leto": 136800,
     "meps_n_2030": 737,
     "elko_gwh": [
-     171.7,
-     98.6,
-     30.5,
-     5.6
+     160.4,
+     91.4,
+     27.8,
+     5.0
     ],
     "plin_gwh": [
-     179.7,
-     130.1,
-     74.2,
-     53.3
+     179.6,
+     130.5,
+     75.4,
+     54.7
     ]
    },
    "stevilke": {
@@ -2807,9 +2807,9 @@
      "sifra": 3,
      "name": "Bled",
      "pop": 8103,
-     "fe_mwh_preb": 11.73,
-     "tgp_t_preb": 2.21,
-     "ove_pct": 39.2,
+     "fe_mwh_preb": 10.53,
+     "tgp_t_preb": 1.95,
+     "ove_pct": 40.8,
      "above43_area_pct": 41.4,
      "semafor": "na poti"
     },
@@ -2817,9 +2817,9 @@
      "sifra": 4,
      "name": "Bohinj",
      "pop": 5216,
-     "fe_mwh_preb": 10.36,
-     "tgp_t_preb": 1.68,
-     "ove_pct": 52.4,
+     "fe_mwh_preb": 9.59,
+     "tgp_t_preb": 1.51,
+     "ove_pct": 54.7,
      "above43_area_pct": 43.0,
      "semafor": "pod ciljem"
     },
@@ -2827,9 +2827,9 @@
      "sifra": 12,
      "name": "Cerklje na Gorenjskem",
      "pop": 8029,
-     "fe_mwh_preb": 5.98,
+     "fe_mwh_preb": 5.9,
      "tgp_t_preb": 0.94,
-     "ove_pct": 54.5,
+     "ove_pct": 54.8,
      "above43_area_pct": 15.7,
      "semafor": "pod ciljem"
     },
@@ -2837,9 +2837,9 @@
      "sifra": 27,
      "name": "Gorenja vas-Poljane",
      "pop": 7739,
-     "fe_mwh_preb": 5.82,
-     "tgp_t_preb": 0.62,
-     "ove_pct": 73.1,
+     "fe_mwh_preb": 5.75,
+     "tgp_t_preb": 0.6,
+     "ove_pct": 73.7,
      "above43_area_pct": 34.2,
      "semafor": "pod ciljem"
     },
@@ -2847,9 +2847,9 @@
      "sifra": 207,
      "name": "Gorje",
      "pop": 2733,
-     "fe_mwh_preb": 7.19,
-     "tgp_t_preb": 0.88,
-     "ove_pct": 67.3,
+     "fe_mwh_preb": 7.07,
+     "tgp_t_preb": 0.85,
+     "ove_pct": 67.8,
      "above43_area_pct": 51.2,
      "semafor": "na poti"
     },
@@ -2857,9 +2857,9 @@
      "sifra": 41,
      "name": "Jesenice",
      "pop": 21769,
-     "fe_mwh_preb": 4.26,
+     "fe_mwh_preb": 4.29,
      "tgp_t_preb": 0.81,
-     "ove_pct": 42.1,
+     "ove_pct": 41.9,
      "above43_area_pct": 51.5,
      "semafor": "na poti"
     },
@@ -2867,9 +2867,9 @@
      "sifra": 163,
      "name": "Jezersko",
      "pop": 679,
-     "fe_mwh_preb": 10.1,
-     "tgp_t_preb": 1.62,
-     "ove_pct": 51.6,
+     "fe_mwh_preb": 9.15,
+     "tgp_t_preb": 1.4,
+     "ove_pct": 54.2,
      "above43_area_pct": 44.7,
      "semafor": "ni podatka"
     },
@@ -2877,9 +2877,9 @@
      "sifra": 52,
      "name": "Kranj",
      "pop": 57491,
-     "fe_mwh_preb": 5.52,
-     "tgp_t_preb": 1.08,
-     "ove_pct": 40.3,
+     "fe_mwh_preb": 5.56,
+     "tgp_t_preb": 1.09,
+     "ove_pct": 40.1,
      "above43_area_pct": 38.7,
      "semafor": "na poti"
     },
@@ -2887,9 +2887,9 @@
      "sifra": 53,
      "name": "Kranjska Gora",
      "pop": 5143,
-     "fe_mwh_preb": 12.13,
-     "tgp_t_preb": 2.13,
-     "ove_pct": 45.7,
+     "fe_mwh_preb": 10.85,
+     "tgp_t_preb": 1.86,
+     "ove_pct": 48.2,
      "above43_area_pct": 39.9,
      "semafor": "na poti"
     },
@@ -2897,9 +2897,9 @@
      "sifra": 82,
      "name": "Naklo",
      "pop": 5494,
-     "fe_mwh_preb": 6.19,
-     "tgp_t_preb": 0.92,
-     "ove_pct": 56.9,
+     "fe_mwh_preb": 6.28,
+     "tgp_t_preb": 0.94,
+     "ove_pct": 56.3,
      "above43_area_pct": 31.5,
      "semafor": "pod ciljem"
     },
@@ -2907,9 +2907,9 @@
      "sifra": 95,
      "name": "Preddvor",
      "pop": 3946,
-     "fe_mwh_preb": 5.81,
-     "tgp_t_preb": 0.77,
-     "ove_pct": 65.1,
+     "fe_mwh_preb": 5.71,
+     "tgp_t_preb": 0.75,
+     "ove_pct": 65.7,
      "above43_area_pct": 28.5,
      "semafor": "pod ciljem"
     },
@@ -2917,9 +2917,9 @@
      "sifra": 102,
      "name": "Radovljica",
      "pop": 19359,
-     "fe_mwh_preb": 6.26,
-     "tgp_t_preb": 1.02,
-     "ove_pct": 50.7,
+     "fe_mwh_preb": 6.25,
+     "tgp_t_preb": 1.01,
+     "ove_pct": 50.5,
      "above43_area_pct": 40.1,
      "semafor": "pod ciljem"
     },
@@ -2927,9 +2927,9 @@
      "sifra": 131,
      "name": "Tržič",
      "pop": 15044,
-     "fe_mwh_preb": 4.92,
+     "fe_mwh_preb": 4.94,
      "tgp_t_preb": 0.73,
-     "ove_pct": 58.2,
+     "ove_pct": 58.3,
      "above43_area_pct": 43.5,
      "semafor": "pod ciljem"
     },
@@ -2937,9 +2937,9 @@
      "sifra": 117,
      "name": "Šenčur",
      "pop": 9041,
-     "fe_mwh_preb": 5.4,
-     "tgp_t_preb": 0.78,
-     "ove_pct": 60.3,
+     "fe_mwh_preb": 5.48,
+     "tgp_t_preb": 0.81,
+     "ove_pct": 59.7,
      "above43_area_pct": 26.7,
      "semafor": "pod ciljem"
     },
@@ -2947,9 +2947,9 @@
      "sifra": 122,
      "name": "Škofja Loka",
      "pop": 23850,
-     "fe_mwh_preb": 5.18,
-     "tgp_t_preb": 0.85,
-     "ove_pct": 51.5,
+     "fe_mwh_preb": 5.22,
+     "tgp_t_preb": 0.86,
+     "ove_pct": 51.1,
      "above43_area_pct": 33.7,
      "semafor": "na poti"
     },
@@ -2957,9 +2957,9 @@
      "sifra": 146,
      "name": "Železniki",
      "pop": 6629,
-     "fe_mwh_preb": 5.94,
-     "tgp_t_preb": 0.55,
-     "ove_pct": 76.7,
+     "fe_mwh_preb": 5.84,
+     "tgp_t_preb": 0.54,
+     "ove_pct": 77.1,
      "above43_area_pct": 43.1,
      "semafor": "pod ciljem"
     },
@@ -2967,9 +2967,9 @@
      "sifra": 147,
      "name": "Žiri",
      "pop": 5159,
-     "fe_mwh_preb": 6.0,
-     "tgp_t_preb": 0.77,
-     "ove_pct": 66.4,
+     "fe_mwh_preb": 6.06,
+     "tgp_t_preb": 0.79,
+     "ove_pct": 65.9,
      "above43_area_pct": 37.8,
      "semafor": "pod ciljem"
     },
@@ -2979,7 +2979,7 @@
      "pop": 4515,
      "fe_mwh_preb": 5.81,
      "tgp_t_preb": 0.86,
-     "ove_pct": 57.1,
+     "ove_pct": 56.4,
      "above43_area_pct": 33.9,
      "semafor": "na poti"
     }
@@ -2996,37 +2996,37 @@
    "vse": {
     "pop": 53458,
     "fe_gwh": {
-     "res": 252.7,
-     "nres": 88.2,
-     "total": 340.8
+     "res": 252.8,
+     "nres": 85.7,
+     "total": 338.4
     },
     "tgp_kt": {
-     "res": 23.17,
-     "nres": 17.3,
-     "total": 40.46
+     "res": 23.07,
+     "nres": 17.02,
+     "total": 40.07
     },
     "ove_pct": {
-     "res": 78.9,
-     "nres": 37.4,
-     "total": 68.2
+     "res": 79.0,
+     "nres": 36.7,
+     "total": 68.3
     },
     "fe_mwh_preb": {
      "res": 4.73,
-     "total": 6.38
+     "total": 6.33
     },
     "tgp_t_preb": {
      "res": 0.43,
-     "total": 0.76
+     "total": 0.75
     }
    },
    "fe_kwh_m2": 117,
    "carriers_pct": {
-    "el": 12.3,
-    "amb": 7.2,
-    "gas": 4.7,
-    "elko": 8.7,
+    "el": 12.2,
+    "amb": 7.1,
+    "gas": 4.9,
+    "elko": 8.6,
     "bio": 64.2,
-    "dh": 2.8
+    "dh": 3.0
    },
    "nps_pct": {
     "A": 1.6,
@@ -3039,34 +3039,34 @@
    },
    "above43_area_pct": 39.6,
    "dh_pot": {
-    "fe_gwh": 245.5,
-    "fe_pct": 11.6,
-    "fe_ha": 76
+    "fe_gwh": 244.1,
+    "fe_pct": 11.0,
+    "fe_ha": 74
    },
    "pot": {
     "2023": {
-     "fe_gwh": 340.8,
-     "tgp_kt": 40.46,
-     "ove_pct": 68.2,
-     "fossil_pct": 19.5
+     "fe_gwh": 338.4,
+     "tgp_kt": 40.07,
+     "ove_pct": 68.3,
+     "fossil_pct": 19.4
     },
     "2030": {
-     "fe_gwh": 285.6,
-     "tgp_kt": 31.78,
-     "ove_pct": 77.7,
-     "fossil_pct": 13.6
+     "fe_gwh": 282.9,
+     "tgp_kt": 31.34,
+     "ove_pct": 77.8,
+     "fossil_pct": 13.5
     },
     "2040": {
-     "fe_gwh": 245.9,
-     "tgp_kt": 10.23,
+     "fe_gwh": 243.1,
+     "tgp_kt": 10.14,
      "ove_pct": 88.8,
-     "fossil_pct": 6.8
+     "fossil_pct": 6.9
     },
     "2050": {
-     "fe_gwh": 227.0,
+     "fe_gwh": 224.3,
      "tgp_kt": 3.76,
-     "ove_pct": 93.6,
-     "fossil_pct": 3.6
+     "ove_pct": 93.5,
+     "fossil_pct": 3.7
     }
    },
    "cilji": {
@@ -3077,16 +3077,16 @@
     "wpb_m2_leto": 39600,
     "meps_n_2030": 345,
     "elko_gwh": [
-     45.3,
-     26.3,
-     8.2,
-     1.6
+     44.7,
+     25.8,
+     8.1,
+     1.5
     ],
     "plin_gwh": [
      21.0,
-     15.0,
-     8.2,
-     5.6
+     14.9,
+     8.1,
+     5.8
     ]
    },
    "stevilke": {
@@ -3112,9 +3112,9 @@
      "sifra": 150,
      "name": "Bloke",
      "pop": 1563,
-     "fe_mwh_preb": 7.84,
-     "tgp_t_preb": 0.8,
-     "ove_pct": 73.6,
+     "fe_mwh_preb": 7.73,
+     "tgp_t_preb": 0.77,
+     "ove_pct": 74.4,
      "above43_area_pct": 38.7,
      "semafor": "pod ciljem"
     },
@@ -3122,9 +3122,9 @@
      "sifra": 13,
      "name": "Cerknica",
      "pop": 11899,
-     "fe_mwh_preb": 6.02,
-     "tgp_t_preb": 0.7,
-     "ove_pct": 69.4,
+     "fe_mwh_preb": 6.07,
+     "tgp_t_preb": 0.71,
+     "ove_pct": 69.3,
      "above43_area_pct": 36.8,
      "semafor": "pod ciljem"
     },
@@ -3132,8 +3132,8 @@
      "sifra": 38,
      "name": "Ilirska Bistrica",
      "pop": 13130,
-     "fe_mwh_preb": 7.17,
-     "tgp_t_preb": 0.82,
+     "fe_mwh_preb": 7.15,
+     "tgp_t_preb": 0.81,
      "ove_pct": 69.6,
      "above43_area_pct": 47.1,
      "semafor": "pod ciljem"
@@ -3142,9 +3142,9 @@
      "sifra": 65,
      "name": "Loška dolina",
      "pop": 3506,
-     "fe_mwh_preb": 6.06,
-     "tgp_t_preb": 0.68,
-     "ove_pct": 70.5,
+     "fe_mwh_preb": 6.12,
+     "tgp_t_preb": 0.69,
+     "ove_pct": 69.9,
      "above43_area_pct": 41.9,
      "semafor": "pod ciljem"
     },
@@ -3152,9 +3152,9 @@
      "sifra": 91,
      "name": "Pivka",
      "pop": 6168,
-     "fe_mwh_preb": 6.79,
-     "tgp_t_preb": 0.85,
-     "ove_pct": 65.6,
+     "fe_mwh_preb": 6.63,
+     "tgp_t_preb": 0.81,
+     "ove_pct": 66.5,
      "above43_area_pct": 37.1,
      "semafor": "pod ciljem"
     },
@@ -3162,9 +3162,9 @@
      "sifra": 94,
      "name": "Postojna",
      "pop": 17192,
-     "fe_mwh_preb": 5.8,
-     "tgp_t_preb": 0.73,
-     "ove_pct": 65.8,
+     "fe_mwh_preb": 5.69,
+     "tgp_t_preb": 0.71,
+     "ove_pct": 65.9,
      "above43_area_pct": 35.4,
      "semafor": "pod ciljem"
     }
@@ -3181,37 +3181,37 @@
    "vse": {
     "pop": 117783,
     "fe_gwh": {
-     "res": 617.6,
-     "nres": 228.5,
-     "total": 846.3
+     "res": 615.7,
+     "nres": 224.8,
+     "total": 840.6
     },
     "tgp_kt": {
-     "res": 65.15,
-     "nres": 49.37,
-     "total": 114.47
+     "res": 64.64,
+     "nres": 48.41,
+     "total": 113.03
     },
     "ove_pct": {
      "res": 73.7,
-     "nres": 28.5,
-     "total": 61.5
+     "nres": 28.7,
+     "total": 61.7
     },
     "fe_mwh_preb": {
-     "res": 5.24,
-     "total": 7.19
+     "res": 5.23,
+     "total": 7.14
     },
     "tgp_t_preb": {
      "res": 0.55,
-     "total": 0.97
+     "total": 0.96
     }
    },
-   "fe_kwh_m2": 124,
+   "fe_kwh_m2": 123,
    "carriers_pct": {
-    "el": 13.1,
-    "amb": 8.6,
-    "gas": 7.9,
-    "elko": 7.6,
-    "bio": 59.7,
-    "dh": 3.2
+    "el": 12.8,
+    "amb": 8.5,
+    "gas": 8.1,
+    "elko": 7.5,
+    "bio": 59.9,
+    "dh": 3.1
    },
    "nps_pct": {
     "A": 1.6,
@@ -3224,34 +3224,34 @@
    },
    "above43_area_pct": 44.4,
    "dh_pot": {
-    "fe_gwh": 595.8,
-    "fe_pct": 18.2,
-    "fe_ha": 245
+    "fe_gwh": 593.7,
+    "fe_pct": 17.4,
+    "fe_ha": 251
    },
    "pot": {
     "2023": {
-     "fe_gwh": 846.3,
-     "tgp_kt": 114.47,
-     "ove_pct": 61.5,
-     "fossil_pct": 22.1
+     "fe_gwh": 840.6,
+     "tgp_kt": 113.03,
+     "ove_pct": 61.7,
+     "fossil_pct": 22.0
     },
     "2030": {
-     "fe_gwh": 708.2,
-     "tgp_kt": 97.41,
-     "ove_pct": 68.9,
-     "fossil_pct": 16.8
+     "fe_gwh": 701.5,
+     "tgp_kt": 95.93,
+     "ove_pct": 69.0,
+     "fossil_pct": 16.9
     },
     "2040": {
-     "fe_gwh": 610.2,
-     "tgp_kt": 31.64,
-     "ove_pct": 80.5,
-     "fossil_pct": 8.9
+     "fe_gwh": 602.9,
+     "tgp_kt": 31.27,
+     "ove_pct": 80.6,
+     "fossil_pct": 9.0
     },
     "2050": {
-     "fe_gwh": 562.9,
-     "tgp_kt": 11.8,
-     "ove_pct": 85.2,
-     "fossil_pct": 5.0
+     "fe_gwh": 555.9,
+     "tgp_kt": 11.74,
+     "ove_pct": 85.3,
+     "fossil_pct": 5.2
     }
    },
    "cilji": {
@@ -3262,16 +3262,16 @@
     "wpb_m2_leto": 102400,
     "meps_n_2030": 690,
     "elko_gwh": [
-     101.6,
-     58.9,
-     18.5,
+     99.0,
+     57.3,
+     18.1,
      3.4
     ],
     "plin_gwh": [
-     84.8,
-     60.8,
-     33.2,
-     22.7
+     86.3,
+     61.7,
+     34.1,
+     23.4
     ]
    },
    "stevilke": {
@@ -3297,9 +3297,9 @@
      "sifra": 1,
      "name": "Ajdovščina",
      "pop": 19977,
-     "fe_mwh_preb": 5.88,
-     "tgp_t_preb": 0.72,
-     "ove_pct": 67.5,
+     "fe_mwh_preb": 6.0,
+     "tgp_t_preb": 0.74,
+     "ove_pct": 66.9,
      "above43_area_pct": 37.8,
      "semafor": "pod ciljem"
     },
@@ -3307,9 +3307,9 @@
      "sifra": 6,
      "name": "Bovec",
      "pop": 3052,
-     "fe_mwh_preb": 12.05,
-     "tgp_t_preb": 1.84,
-     "ove_pct": 55.2,
+     "fe_mwh_preb": 11.32,
+     "tgp_t_preb": 1.67,
+     "ove_pct": 57.2,
      "above43_area_pct": 44.0,
      "semafor": "pod ciljem"
     },
@@ -3317,9 +3317,9 @@
      "sifra": 7,
      "name": "Brda",
      "pop": 5564,
-     "fe_mwh_preb": 8.03,
-     "tgp_t_preb": 0.97,
-     "ove_pct": 67.9,
+     "fe_mwh_preb": 7.86,
+     "tgp_t_preb": 0.92,
+     "ove_pct": 69.1,
      "above43_area_pct": 41.0,
      "semafor": "pod ciljem"
     },
@@ -3327,9 +3327,9 @@
      "sifra": 14,
      "name": "Cerkno",
      "pop": 4445,
-     "fe_mwh_preb": 7.74,
-     "tgp_t_preb": 0.82,
-     "ove_pct": 71.8,
+     "fe_mwh_preb": 7.48,
+     "tgp_t_preb": 0.76,
+     "ove_pct": 73.3,
      "above43_area_pct": 48.4,
      "semafor": "pod ciljem"
     },
@@ -3337,9 +3337,9 @@
      "sifra": 36,
      "name": "Idrija",
      "pop": 11482,
-     "fe_mwh_preb": 6.31,
-     "tgp_t_preb": 0.86,
-     "ove_pct": 60.6,
+     "fe_mwh_preb": 6.3,
+     "tgp_t_preb": 0.85,
+     "ove_pct": 60.4,
      "above43_area_pct": 46.9,
      "semafor": "na poti"
     },
@@ -3347,9 +3347,9 @@
      "sifra": 44,
      "name": "Kanal",
      "pop": 5047,
-     "fe_mwh_preb": 7.42,
-     "tgp_t_preb": 0.75,
-     "ove_pct": 74.2,
+     "fe_mwh_preb": 7.31,
+     "tgp_t_preb": 0.73,
+     "ove_pct": 74.3,
      "above43_area_pct": 58.9,
      "semafor": "pod ciljem"
     },
@@ -3357,9 +3357,9 @@
      "sifra": 46,
      "name": "Kobarid",
      "pop": 3964,
-     "fe_mwh_preb": 9.13,
-     "tgp_t_preb": 0.96,
-     "ove_pct": 72.3,
+     "fe_mwh_preb": 8.92,
+     "tgp_t_preb": 0.9,
+     "ove_pct": 73.6,
      "above43_area_pct": 50.1,
      "semafor": "pod ciljem"
     },
@@ -3367,9 +3367,9 @@
      "sifra": 75,
      "name": "Miren-Kostanjevica",
      "pop": 5069,
-     "fe_mwh_preb": 6.23,
-     "tgp_t_preb": 0.75,
-     "ove_pct": 68.7,
+     "fe_mwh_preb": 6.19,
+     "tgp_t_preb": 0.73,
+     "ove_pct": 68.9,
      "above43_area_pct": 42.2,
      "semafor": "pod ciljem"
     },
@@ -3377,7 +3377,7 @@
      "sifra": 84,
      "name": "Nova Gorica",
      "pop": 31781,
-     "fe_mwh_preb": 6.97,
+     "fe_mwh_preb": 6.93,
      "tgp_t_preb": 1.12,
      "ove_pct": 51.8,
      "above43_area_pct": 42.7,
@@ -3387,9 +3387,9 @@
      "sifra": 201,
      "name": "Renče-Vogrsko",
      "pop": 4424,
-     "fe_mwh_preb": 6.02,
-     "tgp_t_preb": 0.68,
-     "ove_pct": 70.9,
+     "fe_mwh_preb": 5.97,
+     "tgp_t_preb": 0.67,
+     "ove_pct": 71.2,
      "above43_area_pct": 39.4,
      "semafor": "pod ciljem"
     },
@@ -3397,9 +3397,9 @@
      "sifra": 128,
      "name": "Tolmin",
      "pop": 10661,
-     "fe_mwh_preb": 8.32,
-     "tgp_t_preb": 0.92,
-     "ove_pct": 70.9,
+     "fe_mwh_preb": 8.14,
+     "tgp_t_preb": 0.87,
+     "ove_pct": 71.8,
      "above43_area_pct": 54.8,
      "semafor": "pod ciljem"
     },
@@ -3407,9 +3407,9 @@
      "sifra": 136,
      "name": "Vipava",
      "pop": 5866,
-     "fe_mwh_preb": 7.43,
-     "tgp_t_preb": 1.1,
-     "ove_pct": 56.4,
+     "fe_mwh_preb": 7.3,
+     "tgp_t_preb": 1.07,
+     "ove_pct": 57.2,
      "above43_area_pct": 36.3,
      "semafor": "pod ciljem"
     },
@@ -3417,9 +3417,9 @@
      "sifra": 183,
      "name": "Šempeter-Vrtojba",
      "pop": 6451,
-     "fe_mwh_preb": 8.48,
-     "tgp_t_preb": 1.44,
-     "ove_pct": 46.0,
+     "fe_mwh_preb": 8.83,
+     "tgp_t_preb": 1.51,
+     "ove_pct": 45.1,
      "above43_area_pct": 44.2,
      "semafor": "pod ciljem"
     }
@@ -3436,37 +3436,37 @@
    "vse": {
     "pop": 120092,
     "fe_gwh": {
-     "res": 535.1,
-     "nres": 273.2,
-     "total": 808.2
+     "res": 533.5,
+     "nres": 247.8,
+     "total": 781.4
     },
     "tgp_kt": {
-     "res": 90.16,
-     "nres": 58.42,
-     "total": 148.58
+     "res": 89.31,
+     "nres": 53.28,
+     "total": 142.59
     },
     "ove_pct": {
-     "res": 55.5,
-     "nres": 29.8,
-     "total": 46.8
+     "res": 55.7,
+     "nres": 30.0,
+     "total": 47.5
     },
     "fe_mwh_preb": {
-     "res": 4.46,
-     "total": 6.73
+     "res": 4.44,
+     "total": 6.51
     },
     "tgp_t_preb": {
-     "res": 0.75,
-     "total": 1.24
+     "res": 0.74,
+     "total": 1.19
     }
    },
    "fe_kwh_m2": 109,
    "carriers_pct": {
-    "el": 29.0,
-    "amb": 10.2,
-    "gas": 10.3,
+    "el": 28.3,
+    "amb": 10.3,
+    "gas": 10.4,
     "elko": 9.6,
-    "bio": 34.0,
-    "dh": 6.9
+    "bio": 34.4,
+    "dh": 7.1
    },
    "nps_pct": {
     "A": 2.1,
@@ -3479,34 +3479,34 @@
    },
    "above43_area_pct": 39.5,
    "dh_pot": {
-    "fe_gwh": 449.8,
-    "fe_pct": 28.7,
-    "fe_ha": 253
+    "fe_gwh": 438.1,
+    "fe_pct": 24.7,
+    "fe_ha": 229
    },
    "pot": {
     "2023": {
-     "fe_gwh": 808.2,
-     "tgp_kt": 148.58,
-     "ove_pct": 46.8,
-     "fossil_pct": 24.8
+     "fe_gwh": 781.4,
+     "tgp_kt": 142.59,
+     "ove_pct": 47.5,
+     "fossil_pct": 24.6
     },
     "2030": {
-     "fe_gwh": 691.1,
-     "tgp_kt": 123.25,
-     "ove_pct": 58.6,
+     "fe_gwh": 665.3,
+     "tgp_kt": 117.59,
+     "ove_pct": 59.2,
      "fossil_pct": 17.5
     },
     "2040": {
-     "fe_gwh": 610.6,
-     "tgp_kt": 37.9,
-     "ove_pct": 74.2,
-     "fossil_pct": 8.3
+     "fe_gwh": 584.5,
+     "tgp_kt": 36.29,
+     "ove_pct": 75.0,
+     "fossil_pct": 8.5
     },
     "2050": {
-     "fe_gwh": 571.8,
-     "tgp_kt": 13.18,
-     "ove_pct": 79.1,
-     "fossil_pct": 4.6
+     "fe_gwh": 545.3,
+     "tgp_kt": 12.52,
+     "ove_pct": 80.1,
+     "fossil_pct": 4.8
     }
    },
    "cilji": {
@@ -3517,15 +3517,15 @@
     "wpb_m2_leto": 89500,
     "meps_n_2030": 659,
     "elko_gwh": [
-     111.0,
-     64.4,
-     20.0,
-     3.8
+     106.5,
+     61.6,
+     19.2,
+     3.6
     ],
     "plin_gwh": [
-     89.4,
-     64.6,
-     36.5,
+     85.9,
+     62.2,
+     35.8,
      25.9
     ]
    },
@@ -3552,9 +3552,9 @@
      "sifra": 213,
      "name": "Ankaran",
      "pop": 3444,
-     "fe_mwh_preb": 9.29,
-     "tgp_t_preb": 1.87,
-     "ove_pct": 38.4,
+     "fe_mwh_preb": 8.39,
+     "tgp_t_preb": 1.67,
+     "ove_pct": 40.1,
      "above43_area_pct": 41.7,
      "semafor": "na poti"
     },
@@ -3562,7 +3562,7 @@
      "sifra": 19,
      "name": "Divača",
      "pop": 4604,
-     "fe_mwh_preb": 6.1,
+     "fe_mwh_preb": 6.08,
      "tgp_t_preb": 0.8,
      "ove_pct": 64.6,
      "above43_area_pct": 34.4,
@@ -3572,9 +3572,9 @@
      "sifra": 35,
      "name": "Hrpelje-Kozina",
      "pop": 5451,
-     "fe_mwh_preb": 6.58,
-     "tgp_t_preb": 0.91,
-     "ove_pct": 61.5,
+     "fe_mwh_preb": 6.54,
+     "tgp_t_preb": 0.9,
+     "ove_pct": 61.9,
      "above43_area_pct": 32.8,
      "semafor": "pod ciljem"
     },
@@ -3582,9 +3582,9 @@
      "sifra": 40,
      "name": "Izola",
      "pop": 16447,
-     "fe_mwh_preb": 6.01,
-     "tgp_t_preb": 1.2,
-     "ove_pct": 40.6,
+     "fe_mwh_preb": 5.8,
+     "tgp_t_preb": 1.14,
+     "ove_pct": 40.9,
      "above43_area_pct": 42.6,
      "semafor": "na poti"
     },
@@ -3592,9 +3592,9 @@
      "sifra": 49,
      "name": "Komen",
      "pop": 3476,
-     "fe_mwh_preb": 8.53,
-     "tgp_t_preb": 0.99,
-     "ove_pct": 69.2,
+     "fe_mwh_preb": 8.43,
+     "tgp_t_preb": 0.96,
+     "ove_pct": 69.6,
      "above43_area_pct": 47.6,
      "semafor": "pod ciljem"
     },
@@ -3602,9 +3602,9 @@
      "sifra": 50,
      "name": "Koper",
      "pop": 54795,
-     "fe_mwh_preb": 5.6,
-     "tgp_t_preb": 1.05,
-     "ove_pct": 47.8,
+     "fe_mwh_preb": 5.65,
+     "tgp_t_preb": 1.06,
+     "ove_pct": 47.9,
      "above43_area_pct": 38.6,
      "semafor": "pod ciljem"
     },
@@ -3612,9 +3612,9 @@
      "sifra": 90,
      "name": "Piran",
      "pop": 18206,
-     "fe_mwh_preb": 9.64,
-     "tgp_t_preb": 2.0,
-     "ove_pct": 36.8,
+     "fe_mwh_preb": 8.45,
+     "tgp_t_preb": 1.76,
+     "ove_pct": 37.9,
      "above43_area_pct": 42.1,
      "semafor": "na poti"
     },
@@ -3622,9 +3622,9 @@
      "sifra": 111,
      "name": "Sežana",
      "pop": 13669,
-     "fe_mwh_preb": 7.42,
-     "tgp_t_preb": 1.19,
-     "ove_pct": 53.0,
+     "fe_mwh_preb": 7.37,
+     "tgp_t_preb": 1.18,
+     "ove_pct": 53.1,
      "above43_area_pct": 36.7,
      "semafor": "pod ciljem"
     }

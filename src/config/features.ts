@@ -9,4 +9,6 @@ export const features = {
   paketi: true,
   /** 11.1 Koledar: povezave »Koledar za vas« na straneh Za lastnike in občin. */
   koledar: true,
+  /** 11.3 Drsnik »Kaj pa, če« pod trajektorijo na strani Strokovne podlage (do pregleda skrit). */
+  drsnik: true,
 } as const;

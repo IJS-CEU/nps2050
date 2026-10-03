@@ -8,7 +8,7 @@ Postopek (podrobno v docs/ODLOCITVE.md in na strani »Moja občina – metoda«)
 3. Uskladitev (raking): vsota po arhetipu in razredu se ujema z RenRates; po občinah se potreba po toploti nagne proti
    toplotni karti 2020 (omejeno), državna vsota ostane nespremenjena.
 4. Prostor dejanske porabe: vsaka stavba se prenese z istim operatorjem λ kot v kalibraciji RenRates (1_Calib), zato se
-   država točno ujema s kalibriranim RenRates (bilanca 2024, 33,54 PJ).
+   država točno ujema s kalibriranim RenRates (dobavljena energija 29,93 PJ) + toplota okolice in sonca = bilanca 2024, 33,54 PJ.
 5. Energenti: izkaznica ali Eko sklad, kjer sta znana; drugje mešanica arhetipa. Državne vsote po energentih se uskladijo
    s preglednico 30 osnutka (stanovanjske stavbe 2023).
 6. Razredi NPS 2050 in delež nad pragom 43 %: iz računskega prostora prek preslikave razred toplotnih potreb → razred NPS,
@@ -55,6 +55,12 @@ def load_renrates(ctx: Context) -> dict:
     inp = list(wb['1_Inputs'].iter_rows(values_only=True))
     lam = float(cal[4][1])
     lam_s = float(cal[5][1])
+    # Od uskladitve z NEPN 2024 (3. 10. 2026) je RenRates umerjen na dobavljeno energijo brez toplote okolice in sonca
+    # (1_Calib C5 = statistika × D52). Stran prikazuje vso končno energijo kot osnutek (s toploto okolice), zato se
+    # toplota okolice in sonca doda nazaj: statistika = C5 / D52 (33,54 PJ).
+    target_res = float(cal[4][2])
+    in_scope_res = float(cal[51][3])
+    ctx.check(0.8 < in_scope_res <= 1.0 and 25 < target_res < 40, f'model: RenRates cilj stanovanj {target_res:.2f} PJ, delež {in_scope_res:.3f}')
     arch, arch_all = {}, {}
     for i in range(30):
         r = inp[10 + i]
@@ -82,7 +88,8 @@ def load_renrates(ctx: Context) -> dict:
         ctx.check(np.abs(d['base'] @ T3 - d['final']).max() < 1e-6, f'model: operator λ reproducira kalibracijo RenRates ({d["name"]})')
     ok_s = all(np.abs(d['base'] @ T3s - d['final']).max() < 1e-6 for d in arch_all.values() if d['typ'] not in ('SFH', 'MFH') and d['stock'] > 0)
     ctx.check(ok_s, 'model: operator λ za storitve reproducira kalibracijo RenRates (vsi nestanovanjski arhetipi)')
-    return {'lam': lam, 'arch': arch, 'arch_all': arch_all, 'fe': fe, 'T3': T3, 'T3s': T3s}
+    return {'lam': lam, 'arch': arch, 'arch_all': arch_all, 'fe': fe, 'T3': T3, 'T3s': T3s, 'amb_scale': 1 / in_scope_res,
+            'target_res_pj': target_res, 'stat_res_pj': target_res / in_scope_res}
 
 
 def archetype(df: pd.DataFrame) -> pd.Series:
@@ -290,6 +297,7 @@ def run(ctx: Context, df: pd.DataFrame, rr: dict, fond: dict, tk: pd.Series | No
     Pe = P @ rr['T3']
     fe = rr['fe'][arch]  # n × 9 × 5
     FEc = np.einsum('nc,nck->nk', Pe, fe) * w[:, None]  # kWh po (el, gas, elko, bio, dh)
+    FEc *= rr['amb_scale']  # + toplota okolice in sonca (glej load_renrates); energente razporedi korak 5
     tot = FEc.sum(1)
 
     # 5: energenti (el, amb, gas, elko, bio, dh)

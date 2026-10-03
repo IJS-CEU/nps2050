@@ -2,7 +2,7 @@
  "meta": {
   "draft": "NPS_v40",
   "draft_date": "2026-10-01",
-  "generated": "2026-10-02",
+  "generated": "2026-10-03",
   "sources": [
    "NPS_v40: preglednice »Končna raba energije v stavbah v opazovanih letih«, »Primarna raba energije …«, »Emisije toplogrednih plinov …«, »Obnovljivi viri energije …« (pogl. 4.3–4.5)",
    "NPS_v40: preglednici »Opredelitev primerjanih strategij …« in »Rezultati primerjave strategij …« (pogl. 4.1.1)",
@@ -254,19 +254,19 @@
    "S1": [
     100,
     87,
-    70,
-    63
+    68,
+    59
    ],
    "S2": [
     100,
     86,
-    67,
-    58
+    65,
+    55
    ]
   },
   "pe_index_2050": {
-   "S0": 65,
-   "S1": 53,
+   "S0": 67,
+   "S1": 52,
    "S2": 49
   },
   "pe_res_fixed_index": {
@@ -280,27 +280,27 @@
    ],
    "S0": [
     100.0,
-    95.8,
-    92.0,
-    88.3,
-    84.9,
-    81.8
+    96.7,
+    93.6,
+    90.7,
+    88.1,
+    85.7
    ],
    "S1": [
     100.0,
-    90.3,
-    82.8,
-    77.1,
-    72.5,
-    68.6
+    91.1,
+    84.6,
+    79.6,
+    75.8,
+    72.5
    ],
    "S2": [
     100.0,
-    87.6,
-    79.0,
-    72.0,
-    66.6,
-    61.9
+    89.3,
+    81.9,
+    75.9,
+    71.5,
+    67.6
    ]
   },
   "worst_fg_share_pct": {
@@ -313,28 +313,28 @@
     2050
    ],
    "S0": [
-    11.6,
-    9.1,
-    7.9,
-    6.4,
-    5.7,
-    4.9
+    9.6,
+    4.4,
+    3.3,
+    2.7,
+    2.0,
+    1.5
    ],
    "S1": [
-    11.6,
-    7.0,
-    4.8,
-    2.9,
-    2.4,
-    1.9
+    9.6,
+    3.0,
+    1.7,
+    0.8,
+    0.1,
+    0.0
    ],
    "S2": [
-    11.6,
-    6.9,
-    4.5,
-    2.3,
-    1.7,
-    1.5
+    9.6,
+    3.0,
+    1.5,
+    0.7,
+    0.0,
+    0.0
    ]
   },
   "table": [
@@ -352,8 +352,8 @@
     "unit": "indeks",
     "values": {
      "S0": "86",
-     "S1": "70",
-     "S2": "67"
+     "S1": "68",
+     "S2": "65"
     }
    },
    {
@@ -361,16 +361,16 @@
     "unit": "indeks",
     "values": {
      "S0": "79",
-     "S1": "63",
-     "S2": "58"
+     "S1": "59",
+     "S2": "55"
     }
    },
    {
     "label": "Primarna raba energije 2050 (2025 = 100)",
     "unit": "indeks",
     "values": {
-     "S0": "65",
-     "S1": "53",
+     "S0": "67",
+     "S1": "52",
      "S2": "49"
     }
    },
@@ -378,107 +378,107 @@
     "label": "Emisije CO₂ 2050 pri zamrznjenih faktorjih 2025 (učinek prenov)",
     "unit": "% glede na 2025",
     "values": {
-     "S0": "−23",
-     "S1": "−38",
-     "S2": "−43"
+     "S0": "−20",
+     "S1": "−39",
+     "S2": "−42"
     }
    },
    {
     "label": "Kumulativna končna raba 2025–2050",
     "unit": "TWh",
     "values": {
-     "S0": "293",
-     "S1": "252",
-     "S2": "242"
+     "S0": "261",
+     "S1": "219",
+     "S2": "212"
     }
    },
    {
     "label": "Povprečna primarna energija stanovanjskih stavb 2030, fiksni faktorji (zahteva EPBD −16 %)",
     "unit": "% glede na 2025",
     "values": {
-     "S0": "−4,2",
-     "S1": "−9,7",
-     "S2": "−12,4"
+     "S0": "−3,3",
+     "S1": "−8,9",
+     "S2": "−10,7"
     }
    },
    {
     "label": "Povprečna primarna energija stanovanjskih stavb 2035, fiksni faktorji (zahteva −20 do −22 %)",
     "unit": "% glede na 2025",
     "values": {
-     "S0": "−8,0",
-     "S1": "−17,2",
-     "S2": "−21,0"
+     "S0": "−6,4",
+     "S1": "−15,4",
+     "S2": "−18,1"
     }
    },
    {
     "label": "Delež površine v razredih F in G 2030 / 2035 / 2050",
     "unit": "%",
     "values": {
-     "S0": "9,1 / 7,9 / 4,9",
-     "S1": "7,0 / 4,8 / 1,9",
-     "S2": "6,9 / 4,5 / 1,5"
+     "S0": "4,4 / 3,3 / 1,5",
+     "S1": "3,0 / 1,7 / 0,0",
+     "S2": "3,0 / 1,5 / 0,0"
     }
    },
    {
     "label": "Površina v razredu A leta 2050",
     "unit": "mio m²",
     "values": {
-     "S0": "20,9",
-     "S1": "27,5",
-     "S2": "27,0"
+     "S0": "22,6",
+     "S1": "32,7",
+     "S2": "32,6"
     }
    },
    {
     "label": "Prenovljena površina 2026–2050 (od tega celovito)",
     "unit": "mio m²",
     "values": {
-     "S0": "41,8 (10,0)",
-     "S1": "25,3 (17,7)",
-     "S2": "30,9 (18,4)"
+     "S0": "42,7 (10,4)",
+     "S1": "28,6 (19,8)",
+     "S2": "34,4 (20,6)"
     }
    },
    {
     "label": "Povprečna dosežena letna stopnja prenove 2026–2050",
     "unit": "% fonda",
     "values": {
-     "S0": "1,92",
-     "S1": "1,16",
-     "S2": "1,42"
+     "S0": "1,96",
+     "S1": "1,31",
+     "S2": "1,58"
     }
    },
    {
     "label": "Investicije 2026–2050 (od tega 2026–2030)",
     "unit": "mrd €",
     "values": {
-     "S0": "10,1 (2,2)",
-     "S1": "12,3 (3,4)",
-     "S2": "13,2 (3,7)"
+     "S0": "10,4 (2,2)",
+     "S1": "14,1 (3,4)",
+     "S2": "15,0 (3,8)"
     }
    },
    {
     "label": "Javna nepovratna sredstva 2026–2050",
     "unit": "mrd €",
     "values": {
-     "S0": "3,34",
-     "S1": "4,56",
-     "S2": "4,55"
+     "S0": "3,48",
+     "S1": "5,39",
+     "S2": "5,39"
     }
    },
    {
     "label": "Investicija na enoto prihranka končne energije 2050",
     "unit": "mio € na GWh/leto",
     "values": {
-     "S0": "3,56",
-     "S1": "2,48",
-     "S2": "2,36"
+     "S0": "4,24",
+     "S1": "2,94",
+     "S2": "2,86"
     }
    },
    {
     "label": "Izpolnjeni mejniki (od 12)",
     "unit": "št.",
     "values": {
-     "S0": "2",
-     "S1": "10",
+     "S0": "5",
+     "S1": "11",
      "S2": "11"
     }
    }

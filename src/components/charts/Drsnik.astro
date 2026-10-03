@@ -1,0 +1,111 @@
+---
+/**
+ * 11.3 »Kaj pa, če« drsnik na trajektoriji: štirje zagoni modela RenRates z različno stopnjo prenove stanovanjskih stavb.
+ * Podatki: public/data/drsnik.json (cevovod data/npsdata/drsnik.py). Graf je statični SVG; drsnik izbere krivuljo in stavek.
+ * Brez JavaScripta so vidne vse krivulje in preglednica.
+ */
+import { withBase } from '../../i18n/routes';
+import { loadData } from '../../lib/data';
+import { nf } from '../../lib/format';
+
+type Poz = { id: string; faktor: number; stopnja_dosezena_pct: number; stopnja_vpisana_2026_2030_pct: Record<string, number>; kwh_m2: number[]; fe_zmanjsanje_2050_pct: number; fe_twh: number[]; epbd_2030: boolean; epbd_2035: boolean };
+const d = loadData<{ years: number[]; nps: number[]; epbd_max: { year: number; max: number; min: number }[]; privzeto: string; polozaji: Poz[] }>('drsnik');
+const W = 640, H = 300, L = 46, R = 16, T = 16, B = 30;
+const y0 = 120, y1 = 280;
+const xs = (y: number) => L + ((y - 2020) / 30) * (W - L - R);
+const ys = (v: number) => T + (1 - (v - y0) / (y1 - y0)) * (H - T - B);
+const path = (vals: number[]) => vals.map((v, i) => `${i ? 'L' : 'M'}${xs(d.years[i]).toFixed(1)},${ys(v).toFixed(1)}`).join(' ');
+const def = d.polozaji.findIndex((p) => p.id === d.privzeto);
+const e30 = d.epbd_max.find((e) => e.year === 2030)!, e35 = d.epbd_max.find((e) => e.year === 2035)!;
+const stavek = (p: Poz) => {
+  const v30 = p.kwh_m2[d.years.indexOf(2030)], v50 = p.kwh_m2[d.years.indexOf(2050)];
+  const n30 = d.nps[d.years.indexOf(2030)], n50 = d.nps[d.years.indexOf(2050)];
+  return `Pri povprečni doseženi stopnji prenove stanovanjskih stavb ${nf(p.stopnja_dosezena_pct, 2)} % na leto dosežemo leta 2030 ${nf(v30)} kWh/(m²·a) (cilj NPS ${nf(n30)}, najvišja vrednost po EPBD ${nf(e30.max)}) in leta 2050 ${nf(v50)} kWh/(m²·a) (cilj NPS ${nf(n50)}). Končna energija vseh stavb se do leta 2050 zmanjša za ${nf(p.fe_zmanjsanje_2050_pct)} %.`;
+};
+const ok = (p: Poz) => p.kwh_m2.every((v, i) => v <= d.nps[i]);
+---
+<figure class="drs" data-def={def}>
+  <figcaption>
+    <b>Kaj pa, če se stanovanjske stavbe prenavljajo hitreje ali počasneje?</b>
+    <span>Povprečna primarna energija stanovanjskih stavb, kWh/(m²·a); štirje zagoni modela RenRates, ki se razlikujejo samo v stopnji prenove hiš in blokov</span>
+  </figcaption>
+  <div class="drs-ctl js-only">
+    <label for="drs-r">Dosežena stopnja prenove stanovanjskih stavb</label>
+    <input id="drs-r" type="range" min="0" max={d.polozaji.length - 1} step="1" value={def} list="drs-ticks" aria-describedby="drs-txt" aria-valuetext={`${nf(d.polozaji[def].stopnja_dosezena_pct, 2)} % na leto`} />
+    <datalist id="drs-ticks">{d.polozaji.map((_, i) => <option value={i}></option>)}</datalist>
+    <ol class="drs-lab" aria-hidden="true">{d.polozaji.map((p) => <li>{nf(p.stopnja_dosezena_pct, 2)} %{p.id === d.privzeto && <small>scenarij NPS</small>}</li>)}</ol>
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Trajektorija povprečne primarne energije stanovanjskih stavb pri štirih stopnjah prenove; vrednosti so v preglednici pod grafom.">
+    {[140, 180, 220, 260].map((v) => <g><line x1={L} x2={W - R} y1={ys(v)} y2={ys(v)} class="gl" /><text x={L - 6} y={ys(v) + 4} text-anchor="end" class="ax">{v}</text></g>)}
+    {d.years.filter((y) => y % 10 === 0).map((y) => <text x={xs(y)} y={H - 8} text-anchor="middle" class="ax">{y}</text>)}
+    {[e30, e35].map((e) => <g class="epbd"><line x1={xs(e.year) - 10} x2={xs(e.year) + 10} y1={ys(e.max)} y2={ys(e.max)} /><text x={xs(e.year)} y={ys(e.max) - 8} text-anchor="middle">EPBD {e.year}</text></g>)}
+    <path d={path(d.nps)} class="nps" />
+    {d.polozaji.map((p, i) => <path d={path(p.kwh_m2)} class={`ln${i === def ? ' on' : ''}${ok(p) ? '' : ' short'}`} data-i={i} />)}
+    {d.polozaji.map((p, i) => <g class={`pt${i === def ? ' on' : ''}${ok(p) ? '' : ' short'}`} data-i={i}>{p.kwh_m2.map((v, j) => d.years[j] >= 2030 && <circle cx={xs(d.years[j])} cy={ys(v)} r="3.5" />)}</g>)}
+  </svg>
+  <p class="drs-leg"><span><i class="nps"></i>trajektorija NPS 2050 (cilj)</span><span><i class="on"></i>izbrana stopnja</span><span><i class="short"></i>nad ciljem NPS</span><span><i class="epbd"></i>najvišja vrednost po EPBD</span></p>
+  <p class="drs-txt" id="drs-txt" aria-live="polite">{stavek(d.polozaji[def])}</p>
+  <template id="drs-stavki">{d.polozaji.map((p) => <p>{stavek(p)}</p>)}</template>
+  <details>
+    <summary>Vrednosti v preglednici</summary>
+    <div class="tblwrap" tabindex="0" role="region" aria-label="Vrednosti drsnika">
+      <table>
+        <thead><tr><th scope="col">Dosežena stopnja 2026–2050</th><th scope="col">Vpisana stopnja 2026–2030 (hiše / bloki)</th>{d.years.filter((y) => y >= 2030).map((y) => <th scope="col" class="num">{y}</th>)}<th scope="col" class="num">Končna energija 2025–2050</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Trajektorija NPS (cilj)</th><td></td>{d.nps.slice(2).map((v) => <td class="num">{nf(v)}</td>)}<td></td></tr>
+          {d.polozaji.map((p) => <tr><th scope="row">{nf(p.stopnja_dosezena_pct, 2)} % na leto{p.id === d.privzeto && ' (scenarij NPS)'}</th><td>{nf(p.stopnja_vpisana_2026_2030_pct.SFH, 2)} / {nf(p.stopnja_vpisana_2026_2030_pct.MFH, 2)} %</td>{p.kwh_m2.slice(2).map((v) => <td class="num">{nf(v)}</td>)}<td class="num">−{nf(p.fe_zmanjsanje_2050_pct)} %</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Model RenRates (uskladitev z NEPN 2024, 3. 10. 2026). Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb, vse drugo je kot v scenariju NPS 2050. Model prenavlja le stavbe razredov C–G po toplotnih potrebah, zato je dosežena stopnja nižja od vpisane in se pri visokih stopnjah ustavi: podvojitev vpisanih stopenj poveča doseženo le z {nf(d.polozaji.find((p) => p.faktor === 1)!.stopnja_dosezena_pct, 2)} na {nf(d.polozaji.at(-1)!.stopnja_dosezena_pct, 2)} % na leto. Vrednosti so na lestvici trajektorije NPS (trajektorija NPS × indeks položaja ÷ indeks scenarija NPS, primarna energija pri fiksnih faktorjih 2025). <a href={withBase('data/csv/drsnik.csv')} download>Prenesi CSV</a></p>
+  </details>
+</figure>
+
+<style>
+  .drs { margin: 1.5rem 0 2rem; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 1rem 1.2rem; }
+  .drs figcaption { display: grid; gap: .2rem; margin-bottom: .6rem; }
+  .drs figcaption span { font-size: .85rem; color: var(--ink2); }
+  .drs-ctl { display: grid; gap: .3rem; margin: .4rem 0 .6rem; }
+  .drs-ctl label { font-size: .85rem; font-weight: 700; }
+  .drs-ctl input { width: 100%; accent-color: var(--green); }
+  .drs-lab { list-style: none; padding: 0; margin: 0; display: flex; justify-content: space-between; font-size: .8rem; font-weight: 700; max-width: none; }
+  .drs-lab li { display: grid; justify-items: center; }
+  .drs-lab li:first-child { justify-items: start; } .drs-lab li:last-child { justify-items: end; }
+  .drs-lab small { font-weight: 500; color: var(--ink2); }
+  .drs svg { width: 100%; height: auto; display: block; }
+  .drs .gl { stroke: var(--line); }
+  .drs .ax { font-size: 11px; fill: var(--ink2); }
+  .drs .nps { fill: none; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 6 4; }
+  .drs .ln { fill: none; stroke: var(--ink2); stroke-width: 1.2; opacity: .35; }
+  .drs .ln.on { stroke: var(--green); stroke-width: 3; opacity: 1; }
+  .drs .ln.short.on { stroke: var(--amber); }
+  .drs .pt { display: none; fill: var(--green); }
+  .drs .pt.on { display: inline; }
+  .drs .epbd line { stroke: var(--ink); stroke-width: 3; }
+  .drs .epbd text { font-size: 11px; fill: var(--ink); font-weight: 700; }
+  .drs .pt.short { fill: var(--amber); }
+  .drs-leg { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .8rem; color: var(--ink2); margin: .4rem 0; }
+  .drs-leg i { display: inline-block; width: 18px; height: 0; border-top: 3px solid var(--green); margin-right: .35rem; vertical-align: middle; }
+  .drs-leg i.nps { border-top: 2px dashed var(--ink); }
+  .drs-leg i.short { border-top-color: var(--amber); }
+  .drs-leg i.epbd { border-top-color: var(--ink); width: 10px; }
+  .drs-txt { font-size: .95rem; margin: .6rem 0; }
+  :global(html:not(.js)) .drs .ln { opacity: .9; }
+</style>
+
+<script>
+  const fig = document.querySelector<HTMLElement>('.drs');
+  if (fig) {
+    const r = fig.querySelector<HTMLInputElement>('#drs-r')!;
+    const txt = fig.querySelector<HTMLElement>('#drs-txt')!;
+    const st = [...(fig.querySelector<HTMLTemplateElement>('#drs-stavki')!.content.querySelectorAll('p'))].map((p) => p.textContent!);
+    const labs = [...fig.querySelectorAll<HTMLElement>('.drs-lab li')].map((l) => l.firstChild!.textContent!.trim());
+    const set = () => {
+      const i = Number(r.value);
+      fig.querySelectorAll<SVGElement>('[data-i]').forEach((e) => e.classList.toggle('on', Number(e.dataset.i) === i));
+      txt.textContent = st[i];
+      r.setAttribute('aria-valuetext', `${labs[i]} na leto`);
+    };
+    r.addEventListener('input', set);
+  }
+</script>

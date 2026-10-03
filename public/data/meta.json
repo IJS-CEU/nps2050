@@ -1,7 +1,7 @@
 {
  "draft": "NPS_v40",
  "draft_date": "2026-10-01",
- "generated": "2026-10-02",
+ "generated": "2026-10-03",
  "sources": [
   "NPS_v40.docx",
   "Kataster_stavbe_EPBD_2026.csv.gz",
@@ -30,6 +30,7 @@
   "scenariji",
   "kazalniki",
   "trajektorija_zgodba",
+  "drsnik",
   "sankey",
   "zemljevid",
   "ukrepi",
@@ -43,5 +44,5 @@
   "arhetipi",
   "koledar"
  ],
- "checks": 919
+ "checks": 914
 }

@@ -95,7 +95,14 @@ def build(ctx: Context) -> dict:
     return data
 
 
+def _fmt(v, dec=0, sign=False):
+    t = f'{abs(v):,.{dec}f}'.replace(',', ' ').replace('.', ',').replace(' ', '.')
+    return ('−' if v < 0 else ('+' if sign and v > 0 else '')) + t
+
+
 def _comparison(ctx: Context) -> dict:
+    """Primerjava S0–S2 iz modela RenRates (Scenario_Compare). Model je novejši od preglednice v osnutku (pogl. 4.1.1):
+    po uskladitvi z NEPN 2024 (3. 10. 2026) gredo na stran vrednosti modela, neskladja z osnutkom pa se javijo avtorjem."""
     d = ctx.draft
     t27 = d.table(r'Opredelitev primerjanih strategij spodbujanja prenov')
     names = t27[0][1:4]
@@ -103,41 +110,47 @@ def _comparison(ctx: Context) -> dict:
     t28 = d.table(r'Rezultati primerjave strategij spodbujanja prenov')
     ctx.check([c[:2] for c in t28[0][2:5]] == SCEN, f'stolpci rezultatov so S0, S1, S2: {t28[0]}')
 
-    def three(pat):
-        r = row(t28, pat)
-        return r, r[2:5]  # S2s (stolpec 5) se izpusti
-
-    fe = {s: [100] for s in SCEN}
-    for y in (2030, 2040, 2050):
-        _, cells = three(rf'^Končna raba energije {y} \(2025 = 100\)')
-        for s, c in zip(SCEN, cells):
-            fe[s].append(num(c))
-    _, pe50 = three(r'^Primarna raba energije 2050 \(2025 = 100\)')
-    _, fg = three(r'^Delež površine v razredih F in G')
-
-    table = []
-    for r in t28[1:]:
-        table.append({'label': r[0], 'unit': r[1], 'values': dict(zip(SCEN, r[2:5]))})
-
     rr = _renrates(ctx)
-    # Kontrola, da je model RenRates ista različica, kot jo povzema osnutek.
-    for s, cells in zip(SCEN, fg):
-        exp = all_nums(cells)  # '9,1 / 7,9 / 4,9' → 2030, 2035, 2050
-        got = [round(rr['fg'][s][rr['years'].index(y)], 1) for y in (2030, 2035, 2050)]
-        ctx.check(got == exp, f'RenRates {s} delež F+G 2030/2035/2050 = osnutek ({got} = {exp})')
-    for y in (2030, 2035):
-        _, cells = three(rf'^Povprečna primarna energija stanovanjskih stavb {y}, fiksni')
-        for s, c in zip(SCEN, cells):
-            ctx.check_close(round(rr['pe_idx'][s][rr['years'].index(y)] - 100, 1), num(c),
-                            f'RenRates {s} primarna energija stanovanjskih {y} = osnutek', tol=0.05)
-    for s in SCEN:
-        for y_i, y in enumerate((2030, 2040, 2050), start=1):
-            ctx.check_close(round(rr['fe_idx'][s][y]), fe[s][y_i], f'RenRates {s} končna energija {y} (indeks) = osnutek', tol=0)
+    m = rr['m']
+    fe = {s: [100] + [round(rr['fe_idx'][s][y]) for y in (2030, 2040, 2050)] for s in SCEN}
+    pe50 = {s: round(100 * (1 - m[s]['pe_red'])) for s in SCEN}
+    yi = rr['years'].index
+    rows = [
+        ('Končna raba energije 2030 (2025 = 100)', 'indeks', lambda s: str(fe[s][1])),
+        ('Končna raba energije 2040 (2025 = 100)', 'indeks', lambda s: str(fe[s][2])),
+        ('Končna raba energije 2050 (2025 = 100)', 'indeks', lambda s: str(fe[s][3])),
+        ('Primarna raba energije 2050 (2025 = 100)', 'indeks', lambda s: str(pe50[s])),
+        ('Emisije CO₂ 2050 pri zamrznjenih faktorjih 2025 (učinek prenov)', '% glede na 2025', lambda s: _fmt(-100 * m[s]['co2_frozen_red'])),
+        ('Kumulativna končna raba 2025–2050', 'TWh', lambda s: _fmt(m[s]['cum_fe'])),
+        ('Povprečna primarna energija stanovanjskih stavb 2030, fiksni faktorji (zahteva EPBD −16 %)', '% glede na 2025',
+         lambda s: _fmt(rr['pe_idx'][s][yi(2030)] - 100, 1)),
+        ('Povprečna primarna energija stanovanjskih stavb 2035, fiksni faktorji (zahteva −20 do −22 %)', '% glede na 2025',
+         lambda s: _fmt(rr['pe_idx'][s][yi(2035)] - 100, 1)),
+        ('Delež površine v razredih F in G 2030 / 2035 / 2050', '%', lambda s: ' / '.join(_fmt(rr['fg'][s][yi(y)], 1) for y in (2030, 2035, 2050))),
+        ('Površina v razredu A leta 2050', 'mio m²', lambda s: _fmt(m[s]['class_a_2050'], 1)),
+        ('Prenovljena površina 2026–2050 (od tega celovito)', 'mio m²', lambda s: f"{_fmt(m[s]['renovated'], 1)} ({_fmt(m[s]['deep'], 1)})"),
+        ('Povprečna dosežena letna stopnja prenove 2026–2050', '% fonda', lambda s: _fmt(m[s]['rate'], 2)),
+        ('Investicije 2026–2050 (od tega 2026–2030)', 'mrd €', lambda s: f"{_fmt(m[s]['inv'], 1)} ({_fmt(m[s]['inv_2030'], 1)})"),
+        ('Javna nepovratna sredstva 2026–2050', 'mrd €', lambda s: _fmt(m[s]['public'], 2)),
+        ('Investicija na enoto prihranka končne energije 2050', 'mio € na GWh/leto', lambda s: _fmt(m[s]['inv_per_gwh'], 2)),
+        ('Izpolnjeni mejniki (od 12)', 'št.', lambda s: str(int(m[s]['met']))),
+    ]
+    table = [{'label': lab, 'unit': u, 'values': {s: f(s) for s in SCEN}} for lab, u, f in rows]
+
+    # Neskladja z osnutkom (preglednica »Rezultati primerjave strategij«) – za avtorje; na stran gre model.
+    for r in t28[1:]:
+        ours = next((t for t in table if t['label'] == r[0]), None)
+        if ours is None:
+            ctx.warnings.append(f'primerjava strategij: vrstice »{r[0]}« ni v izračunu iz modela')
+            continue
+        same = [str(c).strip() for c in r[2:5]] == [ours['values'][s] for s in SCEN]
+        ctx.warn_unless(same, f'primerjava strategij »{r[0]}«: osnutek {r[2:5]} ≠ model RenRates (NEPN 2024) '
+                              f'{[ours["values"][s] for s in SCEN]}')
 
     return {
         'scenarios': [{'id': s, 'name': n} for s, n in zip(SCEN, names)],
         'fe_index': {'years': [2025, 2030, 2040, 2050], **fe},
-        'pe_index_2050': dict(zip(SCEN, [num(c) for c in pe50])),
+        'pe_index_2050': pe50,
         'pe_res_fixed_index': {'years': rr['years'], **{s: rr['pe_idx'][s] for s in SCEN}},
         'worst_fg_share_pct': {'years': rr['years'], **{s: rr['fg'][s] for s in SCEN}},
         'table': table,
@@ -181,7 +194,33 @@ def _renrates(ctx: Context) -> dict:
         for y in (2030, 2040, 2050):
             fe_idx[s][y] = 100 * float(next(r for r in rows if r[0] == f'Final energy {y} [GWh/yr]')[c10[s]]) / base
 
+    def val(label, c, s, year=None):
+        for r in rows:
+            if r[0] and str(r[0]).strip() == label and (year is None or str(r[1]).strip() == str(year)):
+                return float(r[c[s]])
+        raise LookupError(f'RenRates Scenario_Compare: ni vrstice »{label}« {year or ""}')
+
+    hdr154 = next(r for r in rows if r[0] == 'Period')  # vrstica 155: B = S0, C = S1, D = S2, E = S2s
+    c154 = {s: [i for i, c in enumerate(hdr154[:6]) if c and re.match(rf'^{s} –', str(c))][0] for s in SCEN}
+    c77 = cols('Indicator')
+    m = {}
+    for s in SCEN:
+        m[s] = {
+            'pe_red': val('Primary energy reduction vs 2025', c10, s),
+            'co2_frozen_red': val('CO₂ reduction vs 2025 at frozen factors', c10, s),
+            'cum_fe': val('Cumulative final energy 2025–2050 [TWh]', c10, s),
+            'met': val('Targets met (of 12)', c10, s),
+            'rate': val('Povprečna letna stopnja prenove, dosežena 2026–2050 [%/leto celotnega fonda]', cols('Parameter'), s),
+            'renovated': val('Renovated floor area 2026–2050 [mio m²]', c77, s),
+            'deep': val('… of which deep [mio m²]', c77, s),
+            'inv_per_gwh': val('Cost per unit of 2050 final-energy saving [mio EUR per GWh/yr]', c77, s),
+            'inv': val('TOTAL investment [bn EUR2025] (brez eskalacije gradbenih stroškov)', c154, s),
+            'inv_2030': val('2026-2030', c154, s),
+            'public': val('javna sredstva skupaj 2026–2050', c170, s, 'mrd €'),
+            'class_a_2050': val('razred A', c170, s, 2050),
+        }
     return {
+        'm': m,
         'years': years,
         'pe_idx': {s: [round(100 * v[s] / pe[0][1][s], 1) for _, v in pe] for s in SCEN},
         'fg': {s: [round(100 * v[s], 1) for _, v in fg] for s in SCEN},

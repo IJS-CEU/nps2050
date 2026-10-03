@@ -7,6 +7,8 @@ lead: 'Analize, na katerih temeljijo cilji NPS 2050: stavbni fond, scenariji pre
 import Trajektorija from '../../components/charts/Trajektorija.astro';
 import StavbniFond from '../../components/charts/StavbniFond.astro';
 import Scenariji from '../../components/charts/Scenariji.astro';
+import Drsnik from '../../components/charts/Drsnik.astro';
+import { features } from '../../config/features';
 import Kazalniki from '../../components/charts/Kazalniki.astro';
 import Sankey from '../../components/charts/Sankey.astro';
 import Zemljevid from '../../components/charts/Zemljevid.astro';
@@ -72,6 +74,8 @@ Trajektorija se vrednoti pri faktorjih primarne energije iz leta 2020 (PURES 202
 
 <Trajektorija />
 
+{features.drsnik && <Drsnik />}
+
 ### Cilji glede na leti 2020 in 2023
 
 {/* Vir: NPS_v39, povzetek (preglednica ključnih ciljev, glede na 2023) in pogl. 2.2 (izhodiščna preglednica 2020). Odstotki glede na 2020 izpeljani v data/npsdata/trajektorija_zgodba.py. */}
@@ -94,7 +98,7 @@ Evropska komisija cilje primerja glede na leti 2020 in 2023, zato so prikazani o
 
 **Enote.** Načrt navaja energijo v ktoe (tisoč ton ekvivalenta nafte), ker tako poroča Evropski komisiji. Na tej strani so vrednosti preračunane v TWh oziroma GWh po faktorju 1 ktoe = 11,63 GWh (IEA); v izvozih CSV so zaradi primerljivosti z načrtom tudi vrednosti v enotah načrta.
 
-**Primerjava strategij.** Model RenRates prenove stavb spremlja po arhetipih in energijskih razredih v petletnih korakih od 2025 do 2050. Ker ima drugačne absolutne vrednosti kot projekcija NPS 2050, so rezultati prikazani kot indeksi (2025 = 100).
+**Primerjava strategij.** Model RenRates prenove stavb spremlja po arhetipih in energijskih razredih v petletnih korakih od 2025 do 2050. Ker ima drugačne absolutne vrednosti kot projekcija NPS 2050, so rezultati prikazani kot indeksi (2025 = 100). Model je umerjen na dobavljeno energijo petih rab po EPBD (ogrevanje, topla voda, hlajenje, prezračevanje, razsvetljava) brez toplote okolice in sončne energije: 29,93 PJ v stanovanjskih in 12,33 PJ v storitvenih stavbah (bilanca 33,54 in 14,04 PJ, zmanjšana za toploto okolice in sonca po NEPN 2024). Struktura energentov v stanovanjskih stavbah je usklajena z NEPN 2024 (scenarij z dodatnimi ukrepi). Rezultati primerjave so iz modela, usklajenega z NEPN 2024 (3. 10. 2026), zato se lahko razlikujejo od preglednice v poglavju 4.1.1 osnutka.
 
 ## Kazalniki
 
