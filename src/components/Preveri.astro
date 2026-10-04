@@ -213,6 +213,11 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
     // Obrazec na naslovni strani pošlje ?kat=…&pe=… – izpolni polji in takoj preveri.
     const q = new URLSearchParams(location.search);
     const pre = () => {
+      if (q.get('nacin') === 'tip') {
+        const r = form.querySelector<HTMLInputElement>('input[name="chk-mode"][value="tip"]')!;
+        r.checked = true;
+        r.dispatchEvent(new Event('change'));
+      }
       if (q.get('kat') && q.get('pe')) {
         cat.value = q.get('kat')!;
         pe.value = q.get('pe')!;

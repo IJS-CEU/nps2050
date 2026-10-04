@@ -8,8 +8,18 @@ import ObcineZemljevid from '../../components/obcine/ObcineZemljevid.astro';
 import ObcineSeznam from '../../components/obcine/ObcineSeznam.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
 import { regije, regijaSlug } from '../../lib/regije';
+import NaTejStrani from '../../components/NaTejStrani.astro';
 
 {/* Vir: CLAUDE.md §10.1. Kataster nepremičnin GURS (30. 8. 2026), register energetskih izkaznic (28. 9. 2026), Eko sklad (do 2025); meje razredov in pragovi NPS_v39, pogl. 3 in 4.7. Številke bere cevovod data/npsdata/obcine.py. */}
+
+<NaTejStrani items={[
+  { href: '#graf-obcine', icon: 'map', label: 'Zemljevid občin', hint: 'kazalniki in tempo prenove, občine ali regije' },
+  { href: '#obs-t', icon: 'list', label: 'Vse občine', hint: 'preglednica z iskanjem' },
+  { href: pageUrl('primerjava'), icon: 'git-compare-arrows', label: 'Primerjava občin', hint: 'izbrane občine druga ob drugi' },
+  { href: '#regije', icon: 'layers', label: 'Kartice regij', hint: '12 statističnih regij, PDF in CSV' },
+  { href: '#kaj-je-na-strani-občine', icon: 'circle-help', label: 'Kaj je na strani občine', hint: 'stavbe, razredi, prenove' },
+  { href: '#metoda', icon: 'book-open-text', label: 'Metoda', hint: 'kako je ocenjena raba energije' },
+]} />
 
 <ObcineZemljevid />
 
