@@ -12,14 +12,14 @@ const cols: { k: keyof (typeof rows)[number]; label: string; pct?: boolean; dec?
   { k: 'k_ove_pct', label: 'OVE', pct: true },
   { k: 'ei_area_res_pct', label: 'Z izkaznico', pct: true },
   { k: 'pre1981_res_area_pct', label: 'Pred 1981', pct: true },
-  { k: 'es_res_any_pct', label: 'Z ukrepom Eko sklada', pct: true },
-  { k: 'obnova_res_since2010_pct', label: 'Vpisana obnova od 2010', pct: true },
+  { k: 'es_res_any_pct', label: 'S spodbudo Eko sklada', pct: true },
+  { k: 'obnova_res_since2010_pct', label: 'Obnova od 2010 (kataster)', pct: true },
 ];
 const cell = (v: unknown, pct?: boolean, dec?: number) => (v === null || v === undefined ? '–' : pct ? `${nf(v as number, 1)} %` : nf(v as number, dec));
 ---
 <section class="obs" aria-labelledby="obs-t">
   <h2 id="obs-t">Vse občine</h2>
-  <p class="obs-exp"><b>MWh na preb.</b> in <b>OVE</b> sta ocena za vse stavbe (raba končne energije na prebivalca, delež obnovljivih virov). Drugi deleži veljajo za stanovanjske stavbe: <b>z izkaznico</b> – delež površine z veljavno energetsko izkaznico; <b>pred 1981</b> – delež površine, zgrajene pred letom 1981; <b>z ukrepom Eko sklada</b> – delež stavb z vsaj eno podprto naložbo; <b>vpisana obnova</b> – delež stavb z vpisanim letom obnove strehe, fasade ali oken.</p>
+  <p class="obs-exp"><b>MWh na preb.</b> in <b>OVE</b> sta ocena za vse stavbe (raba končne energije na prebivalca, delež obnovljivih virov). Drugi deleži veljajo za stanovanjske stavbe: <b>z izkaznico</b> – delež površine z veljavno energetsko izkaznico; <b>pred 1981</b> – delež površine, zgrajene pred letom 1981; <b>s spodbudo Eko sklada</b> – delež stavb z vsaj eno naložbo, ki jo je Eko sklad podprl v letih 2011–2025: izolacija, okna, toplotna črpalka, kotel na biomaso, sončna elektrarna ali prezračevanje z vračanjem toplote (v Sloveniji {nf(d.si.es_res_any_pct, 1)} % stavb, od tega za izolacijo ali okna le {nf((d.si as any).es_res_ovoj_okna_pct, 1)} %; pri drugih gre za ogrevanje, elektrarno ali prezračevanje); <b>obnova od 2010 (kataster)</b> – delež stavb, pri katerih je v katastru nepremičnin vpisana obnova strehe, fasade ali oken leta 2010 ali pozneje. Vpis je podatek lastnika in ni nujno energetska prenova (lahko je npr. le nova kritina); spodbudo Eko sklada za izolacijo ali okna ima okoli {nf((d.si as any).obnova2010_z_es_ovoj_okna_pct, 0)} % teh stavb. Kazalnika se zato le delno prekrivata.</p>
   <label class="obs-q js-only"><span>Poišči občino</span><input type="search" id="obs-q" placeholder="npr. Kranj" autocomplete="off" /></label>
   <p class="obs-n" id="obs-n" aria-live="polite"></p>
   <div class="tblwrap" tabindex="0" role="region" aria-labelledby="obs-t">

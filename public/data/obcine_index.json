@@ -2,7 +2,7 @@
  "meta": {
   "draft": "NPS_v40",
   "draft_date": "2026-10-01",
-  "generated": "2026-10-03",
+  "generated": "2026-10-04",
   "sources": [
    "Kataster nepremičnin GURS, stavbe in deli stavb, 30. 8. 2026 (razvrstitev v kategorije EPBD kot v osnutku NPS 2050)",
    "Register energetskih izkaznic, veljavne izkaznice na dan 28. 9. 2026",
@@ -268,6 +268,8 @@
    }
   },
   "ei_area_res_pct": 25.7,
+  "es_res_ovoj_okna_pct": 5.8,
+  "obnova2010_z_es_ovoj_okna_pct": 30,
   "pre1981_res_area_pct": 56.5,
   "model_fe_kwh_m2": 116,
   "model_above43_pct": 37.9,

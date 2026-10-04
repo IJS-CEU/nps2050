@@ -165,6 +165,8 @@ def build(ctx: Context) -> dict:
     ctx.check(sum(x['buildings'] for x in index) == len(df), 'občine: vsota stavb po občinah = vse stavbe')
 
     res_all = df[df.seg.isin(['hise', 'bloki'])]
+    es_env = res_all.es_ovoj.notna() | res_all.es_okna.notna()
+    k10 = (res_all[['obnova_streha', 'obnova_fasada', 'obnova_okna']].apply(pd.to_numeric, errors='coerce') >= 2010).any(axis=1)
     data = {
         'meta': ctx.meta(_sources(), note=_NOTE),
         'min_cell': MIN_CELL, 'min_ei': MIN_EI, 'classes': CLS, 'class_groups': list(GROUPS), 'periods': PERIODS,
@@ -172,6 +174,9 @@ def build(ctx: Context) -> dict:
         'es_groups': [{'id': k, 'name': ES_NAMES[k]} for k in ES_SHOW],
         'categories': [{'id': c[0], 'name': c[1]} for c in CATS],
         'si': {**si, 'ei_area_res_pct': round(100 * res_all[res_all.ei_any].m2.sum() / res_all.m2.sum(), 1),
+               # za opis kazalnikov: spodbude Eko sklada za ovoj ali okna in prekrivanje z vpisi obnov v katastru
+               'es_res_ovoj_okna_pct': round(100 * es_env.mean(), 1),
+               'obnova2010_z_es_ovoj_okna_pct': round(100 * (k10 & es_env).sum() / k10.sum()),
                'pre1981_res_area_pct': round(100 * res_all[res_all.year < 1981].m2.sum() / res_all.m2.sum(), 1)},
         'municipalities': index,
     }

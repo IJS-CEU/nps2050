@@ -96,7 +96,7 @@ const PEER: [keyof typeof row, string, number, string][] = [
   ['model_fe_kwh_m2', 'Raba končne energije v stanovanjskih stavbah na m²', 0, ' kWh/m²'],
   ['pre1981_res_area_pct', 'Stanovanjska površina, zgrajena pred 1981', 0, ' %'],
   ['ei_area_res_pct', 'Stanovanjska površina z energetsko izkaznico', 0, ' %'],
-  ['es_res_any_pct', 'Stanovanjske stavbe z ukrepom Eko sklada', 0, ' %'],
+  ['es_res_any_pct', 'Stanovanjske stavbe s spodbudo Eko sklada (2011–2025)', 0, ' %'],
 ];
 const peerRows = PEER.map(([k, l, d, u]) => ({ l, d, u, o: row[k] as number | null, n: mean(nb.map((r) => r[k] as number | null)), g: median(grp.map((r) => r[k] as number | null)), s: si[k as keyof typeof si] as unknown as number | null }));
 const rank = [...grp].sort((a, b) => a.k_res_fe_mwh_preb - b.k_res_fe_mwh_preb).findIndex((r) => String(r.sifra) === String(sifra)) + 1;
@@ -392,7 +392,7 @@ const description = `Stavbe, raba energije, emisije, obnovljivi viri in cilji NP
     <p class="note">Deleži med stavbami z veljavno računsko izkaznico. Pragovi iz osnutka: za hiše {nf(320)} in za bloke {nf(222)} kWh/(m²·a) primarne energije; za nestanovanjske stavbe po kategorijah (glej <a href={pageUrl('preveri')}>Preverite svojo stavbo</a>).</p>
 
     <h2 id="reg-eko">Prenove, ki jih je podprl Eko sklad</h2>
-    <p>Delež stanovanjskih stavb v občini, v katerih je Eko sklad podprl vsaj eno naložbo posamezne vrste (vsa leta do 2025). Skupaj ima vsaj en tak ukrep {pct(o.es_res_any_pct) ?? '–'} stanovanjskih stavb (Slovenija {nf(si.es_res_any_pct, 1)} %).</p>
+    <p>Delež stanovanjskih stavb v občini, v katerih je Eko sklad podprl vsaj eno naložbo posamezne vrste (2011–2025). Skupaj ima vsaj en tak ukrep {pct(o.es_res_any_pct) ?? '–'} stanovanjskih stavb (Slovenija {nf(si.es_res_any_pct, 1)} %).</p>
     <div class="tblwrap" tabindex="0" role="region" aria-label="Ukrepi Eko sklada">
       <table class="ob-es">
         <thead><tr><th scope="col">Ukrep</th><th scope="col" class="num">Stavbe</th><th scope="col">Delež stanovanjskih stavb: občina / Slovenija</th></tr></thead>

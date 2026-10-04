@@ -44,8 +44,8 @@ const d = loadData<ObcineIndex>('obcine_index');
         <optgroup label="Stanovanjske stavbe – registri">
           <option value="ei_area_res_pct">Pokritost z izkaznicami</option>
           <option value="pre1981_res_area_pct">Zgrajeno pred 1981</option>
-          <option value="es_res_any_pct">Ukrepi Eko sklada</option>
-          <option value="obnova_res_since2010_pct">Vpisane obnove od 2010</option>
+          <option value="es_res_any_pct">S spodbudo Eko sklada</option>
+          <option value="obnova_res_since2010_pct">Obnova od 2010 (kataster)</option>
         </optgroup>
       </select>
     </label>
@@ -89,8 +89,8 @@ const d = loadData<ObcineIndex>('obcine_index');
     k_dh_pot_pct: { label: 'Potrebna toplota na območjih z gostoto vsaj 250 MWh/ha', si: (d) => d.si.k_dh_pot_pct, cap: 'Delež potrebne toplote za ogrevanje vseh stavb v občini, ki leži v celicah toplotne karte (100 × 100 m) z gostoto vsaj 250 MWh/ha na leto. Večji delež pomeni več območij, primernih za daljinsko ogrevanje.' },
     ei_area_res_pct: { label: 'Stanovanjska površina z veljavno izkaznico', si: (d) => d.si.ei_area_res_pct, cap: 'Delež uporabne površine stanovanjskih stavb, ki imajo vsaj eno veljavno energetsko izkaznico.' },
     pre1981_res_area_pct: { label: 'Stanovanjska površina, zgrajena pred 1981', si: (d) => d.si.pre1981_res_area_pct, cap: 'Delež uporabne površine stanovanjskih stavb, zgrajenih pred prvimi toplotnimi predpisi (1981).' },
-    es_res_any_pct: { label: 'Stanovanjske stavbe z ukrepom Eko sklada', si: (d) => d.si.es_res_any_pct, cap: 'Delež stanovanjskih stavb z vsaj eno naložbo, ki jo je podprl Eko sklad (izolacija, okna, ogrevanje, sončna elektrarna, prezračevanje).' },
-    obnova_res_since2010_pct: { label: 'Stanovanjske stavbe z vpisano obnovo od 2010', si: (d) => d.si.obnova_res_since2010_pct, dec: 1, cap: 'Delež stanovanjskih stavb, pri katerih je v katastru vpisana obnova strehe, fasade ali oken leta 2010 ali pozneje. Novejše obnove so večinoma povezane z ukrepi za učinkovito rabo energije in obnovljive vire; starejši vpisi pogosto pomenijo le barvanje fasade ali menjavo kritine.' },
+    es_res_any_pct: { label: 'Stanovanjske stavbe s spodbudo Eko sklada (2011–2025)', si: (d) => d.si.es_res_any_pct, cap: 'Delež stanovanjskih stavb z vsaj eno naložbo, ki jo je Eko sklad podprl v letih 2011–2025 (izolacija, okna, toplotna črpalka, kotel na biomaso, sončna elektrarna, prezračevanje z vračanjem toplote). Pri večini stavb gre za ogrevanje, elektrarno ali prezračevanje; spodbudo za izolacijo ali okna ima okoli četrtina teh stavb.' },
+    obnova_res_since2010_pct: { label: 'Stanovanjske stavbe z obnovo strehe, fasade ali oken od 2010 (vpis v katastru)', si: (d) => d.si.obnova_res_since2010_pct, dec: 1, cap: 'Delež stanovanjskih stavb, pri katerih je v katastru nepremičnin vpisana obnova strehe, fasade ali oken leta 2010 ali pozneje. Vpis je podatek lastnika in ni nujno energetska prenova (lahko je npr. le nova kritina); spodbudo Eko sklada za izolacijo ali okna ima okoli 30 % teh stavb. Starejši vpisi so izpuščeni, ker pogosto pomenijo le vzdrževanje.' },
     model_fe_kwh_m2: { label: 'Ocenjena raba končne energije na m²', si: (d) => d.si.model_fe_kwh_m2, unit: ' kWh/m²', cap: 'Ocena modela: letna raba končne energije v stanovanjskih stavbah na m² uporabne površine (ogrevanje, topla voda, prezračevanje, razsvetljava).' },
     t_semafor: { label: 'Tempo prenove stanovanjskih stavb', si: () => null, cap: 'Semafor: ali se stanovanjske stavbe prenavljajo vsaj s sorazmernim deležem cilja NPS 2050. Tempo prenove (delež stanovanjske površine z vpisano obnovo fasade, strehe ali oken v katastru ali ukrepom Eko sklada na ovoju, 2023–2025) je primerjan s slovenskim; »na poti«, če je razmerje vsaj tolikšno kot razmerje zahtevanega tempa občine in Slovenije. Semafor je relativen: Slovenija kot celota se prenavlja s približno polovico potrebnega tempa. »Ni podatka« pri manj kot 10 prenovah v treh letih.' },
     model_above43_pct: { label: 'Ocenjena površina nad pragom 43 %', si: (d) => d.si.model_above43_pct, cap: 'Ocena modela: delež stanovanjske površine nad pragom 43 % energetsko najmanj učinkovitih stavb.' },
