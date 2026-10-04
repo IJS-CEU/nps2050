@@ -4,6 +4,7 @@ import { ui as t } from '../i18n/ui';
 import { features } from '../config/features';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
+import { skupine } from '../lib/zemljevid-strani';
 
 // Različica osnutka pride iz podatkovnega cevovoda (public/data/meta.json), ne iz besedila.
 const publicDir = resolve(process.cwd(), 'public');
@@ -20,12 +21,20 @@ if (existsSync(metaPath)) {
 // Izvirniki logotipov so v design/logos/; v public/logos/ so samo uporabljene različice.
 ---
 <footer>
+  <nav class="wrap fmap" aria-label="Zemljevid strani">
+    {skupine().map((g) => (
+      <div>
+        <p class="fmap-t">{g.naslov}</p>
+        <ul>{g.povezave.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      </div>
+    ))}
+  </nav>
   <div class="wrap foot">
     <div>
       <p>{t.footerBy}</p>
       {draftDate && <p class="ver">{t.footerVersion} {draftDate}.{features.dnevnik && <> <a href={pageUrl('dnevnik')}>Dnevnik sprememb</a></>}</p>}
       <p class="ver">Kontakt: <a href="mailto:ceu@ijs.si">{'ceu@ijs.si'}</a></p>
-      <p class="ver"><a href={pageUrl('mediji')}>Za medije</a> · <a href={pageUrl('preveri')}>Preverite svojo stavbo</a> · <a href={pageUrl('revscina')}>Energetska revščina</a> · <a href={pageUrl('slovar')}>Slovar izrazov</a> · <a href={pageUrl('napacna')}>Kaj NPS 2050 ne pomeni</a> · <a href={withBase('nps2050-povzetek.pdf')}>Povzetek (PDF)</a> · Podatki: CC BY 4.0</p>
+      <p class="ver">Besedilo in podatki: CC BY 4.0, z navedbo vira »IJS CEU, strokovne podlage NPS 2050«.</p>
     </div>
     <div class="logos">
       <img class="ijs" src={withBase('logos/ijs.png')} alt={t.logoIjs} width="173" height="28" />
@@ -37,6 +46,12 @@ if (existsSync(metaPath)) {
 
 <style>
   footer { border-top: 1px solid var(--line); padding-block: 2rem; font-size: .85rem; color: var(--ink2); margin-top: 2rem; }
+  .fmap { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem 1.5rem; padding-bottom: 1.6rem; margin-bottom: 1.6rem; border-bottom: 1px solid var(--line); }
+  .fmap-t { font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin: 0 0 .4rem; }
+  .fmap ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .2rem; }
+  .fmap li { margin: 0; }
+  .fmap a { color: var(--ink2); text-decoration: none; font-size: .85rem; }
+  .fmap a:hover { color: var(--green); text-decoration: underline; }
   .foot { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; }
   .foot p { max-width: 60ch; }
   .ver { font-size: .8rem; }

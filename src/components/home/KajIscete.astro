@@ -1,0 +1,26 @@
+---
+/** Naslovnica: »Kaj iščete?« – povezave na vse dele strani po skupinah obiskovalcev (nadomešča pas »Več o načrtu«). */
+import Icon from '../Icon.astro';
+import { skupine } from '../../lib/zemljevid-strani';
+---
+<div class="ki">
+  {skupine().map((g) => (
+    <section class="ki-c" aria-labelledby={`ki-${g.id}`}>
+      <h3 id={`ki-${g.id}`}><span class="ki-ic"><Icon name={g.icon} size={20} /></span>{g.naslov}</h3>
+      <ul>{g.povezave.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </section>
+  ))}
+</div>
+
+<style>
+  .ki { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1rem; margin: 1rem 0 1.4rem; }
+  .ki-c { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--green); border-radius: 14px; padding: 1.1rem 1.2rem 1.2rem; }
+  .ki-c h3 { display: flex; align-items: center; gap: .55rem; margin: 0 0 .7rem; font-size: 1.1rem; }
+  .ki-ic { flex: none; width: 2.1rem; height: 2.1rem; border-radius: 9px; display: grid; place-items: center; background: var(--greenbg); color: var(--green); }
+  .ki-c ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .1rem; }
+  .ki-c li { margin: 0; }
+  .ki-c a { display: block; padding: .3rem 0; font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line); }
+  .ki-c li:last-child a { border-bottom: 0; }
+  .ki-c a::after { content: ' →'; color: var(--green); }
+  .ki-c a:hover { color: var(--green); }
+</style>

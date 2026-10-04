@@ -23,6 +23,14 @@ export const pages = [
 ] as const;
 
 export type PageId = (typeof pages)[number]['id'];
+
+/** Nadrejena rubrika podstrani zunaj glavne navigacije (drobtinice). */
+export const parent: Partial<Record<PageId, PageId>> = {
+  preveri: 'lastniki', paketi: 'lastniki', revscina: 'lastniki',
+  napacna: 'kaj-je-nps', koledar: 'kaj-je-nps',
+  primerjava: 'obcine',
+  slovar: 'dokumenti', dnevnik: 'dokumenti',
+};
 export const pageIds = pages.map((p) => p.id) as [PageId, ...PageId[]];
 
 /** Pot z upoštevanim `base` (deluje na GitHub Pages v podmapi in na lastni domeni). */

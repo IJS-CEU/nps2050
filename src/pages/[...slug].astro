@@ -1,7 +1,8 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import { pages } from '../i18n/routes';
+import { pages, pageUrl, parent } from '../i18n/routes';
+import { nav } from '../i18n/ui';
 import Hero from '../components/home/Hero.astro';
 
 export async function getStaticPaths() {
@@ -15,12 +16,14 @@ export async function getStaticPaths() {
 const { entry } = Astro.props as { entry: CollectionEntry<'pages'> };
 const { Content } = await render(entry);
 const { page, title, description, lead, draft } = entry.data;
+const up = parent[page];
 ---
 <Base page={page} title={title} description={description} noindex={draft || page === 'iskanje'}>
   {page === 'domov' ? (
     <Hero title={title} lead={lead} />
   ) : (
     <div class="wrap page-head">
+      {up && <p class="crumb"><a href={pageUrl(up)}>{nav[up]}</a> <span aria-hidden="true">/</span> {title}</p>}
       <h1>{title}</h1>
       {lead && <p class="lead">{lead}</p>}
     </div>

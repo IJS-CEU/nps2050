@@ -47,6 +47,9 @@ Vse je primerjano s Slovenijo. Objavljeni so samo seštevki, podatki o posamezni
 
 {/* Vir: model RenRates (arhetipi, kalibracija λ na dobavljeno energijo 29,93 PJ + toplota okolice in sonca = bilanca 2024; uskladitev z NEPN 2024, 3. 10. 2026), NPS_v39 preglednici končne in primarne rabe po segmentih ter po energentih (stanovanjske stavbe, 2023), register izkaznic 28. 9. 2026, Eko sklad do 2025, kataster 30. 8. 2026, toplotna karta 2020. Postopek v data/npsdata/model_obcine.py. */}
 
+<details class="metoda">
+<summary>Pokaži metodo: arhetipi, uskladitev z bilanco, energenti, nestanovanjske stavbe, emisije</summary>
+
 Izkaznico ima le vsaka dvanajsta stanovanjska stavba, veliko prenov pa se izvede brez spodbude Eko sklada. Zato raba energije po občinah ni izmerjena, ampak ocenjena z modelom. Model je zgrajen tako, da se vsota za vso Slovenijo točno ujema z energetsko bilanco in z osnutkom NPS 2050.
 
 1. **Vsaka stavba iz katastra dobi tipično stavbo** (arhetip) iz modela RenRates, s katerim so izračunani scenariji načrta: enostanovanjska hiša ali blok ter obdobje gradnje. Arhetip pove, kako so take stavbe v Sloveniji razporejene po razredih toplotnih potreb.
@@ -69,3 +72,5 @@ Za javne in zasebne storitvene stavbe je postopek enak, z arhetipi RenRates za p
 **Kaj ocena pomeni in česa ne.** Ocena je najboljši približek za občino kot celoto, ne za posamezno stavbo. Največja negotovost je pri stavbah brez vseh podatkov (38 % stanovanjskih stavb) in pri ogrevanju tam, kjer ni izkaznic. Razpon ob končni rabi kaže različice brez toplotne karte in z njenim močnejšim vplivom. Rezultati za posamezne stavbe se ne objavijo in ne zapustijo izračuna.
 
 <p class="note">Kontrole ob vsakem izračunu: končna raba stanovanjskih stavb 9,32 TWh in primarna raba 12,82 TWh (osnutek NPS 2050, izhodiščno leto 2023), razdelitev po energentih po preglednici osnutka, v razredu G okoli 15 % površine. Podatki za prenos: <a href={withBase('data/csv/obcine_model.csv')} download>CSV (ocena po občinah)</a>.</p>
+
+</details>
