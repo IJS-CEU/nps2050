@@ -8,7 +8,7 @@ import { loadData } from '../lib/data';
 import { nf } from '../lib/format';
 import Icon from './Icon.astro';
 
-type Paket = { id: string; ime: string; strosek: number; razred_po: string; prihranek_eur: number; spodbuda_eko_eur: number | null; spodbuda_eko_pct: number | null; spodbuda_dod_eur: number; spodbuda_dod_pct: number };
+type Paket = { id: string; ime: string; strosek: number; strosek_p25: number | null; strosek_p75: number | null; razred_po: string; prihranek_eur: number; spodbuda_eko_eur: number | null; spodbuda_eko_pct: number | null; spodbuda_dod_eur: number; spodbuda_dod_pct: number };
 type Tip = { id: string; ime: string; tip: string; povrsina: number; variante: { id: string; ogrevanje: string; razred_pred: string; paketi: Paket[] }[] };
 const d = loadData<{ tipi: Tip[] }>('paketi_prenove');
 const t = d.tipi[0];
@@ -26,7 +26,7 @@ const href = (tid: string) => `${pageUrl('paketi')}?tip=${tid}`;
       <a class={`pp-c ${k.id}`} href={`${href(t.id)}&ogrevanje=${v.id}`}>
         <span class="pp-h"><span class="pp-ic"><Icon name={ICON[k.id]} size={20} /></span>{k.ime}</span>
         <span class="pp-cls"><span class="pp-b" style={badge(v.razred_pred)}>{v.razred_pred}</span><Icon name="arrow-right" size={16} /><span class="pp-b" style={badge(k.razred_po)}>{k.razred_po}</span></span>
-        <span class="pp-cost">okoli <b>{nf(k.strosek)} €</b></span>
+        <span class="pp-cost">{k.strosek_p25 ? <><b>{nf(k.strosek_p25)}–{nf(k.strosek_p75)} €</b></> : <>okoli <b>{nf(k.strosek)} €</b></>}</span>
         <span class="pp-row"><span>Spodbuda Eko sklada danes</span><b>{k.spodbuda_eko_eur === null ? '–' : `${nf(k.spodbuda_eko_eur)} €`}</b></span>
         <span class="pp-row"><span>Spodbuda po predlogu N1</span><b>{nf(k.spodbuda_dod_eur)} €</b></span>
         <span class="pp-row"><span>Manj stroškov za energijo</span><b>{nf(k.prihranek_eur)} € na leto</b></span>
@@ -36,7 +36,7 @@ const href = (tid: string) => `${pageUrl('paketi')}?tip=${tid}`;
   <p class="pp-more"><span>Poglejte za svoj tip stavbe:</span>
     {d.tipi.map((x) => <a class="btn" href={href(x.id)}><Icon name={x.tip === 'SFH' ? 'house' : 'building-2'} size={16} /> {x.tip === 'SFH' ? 'Hiša' : 'Stanovanje v bloku'}, {x.ime.split(', ')[1].replace('zgrajena ', '').replace('zgrajenem ', '')}</a>)}
   </p>
-  <p class="note">Tipične vrednosti iz stroškov naložb Eko sklada 2023–2025 in dejanske rabe energije; ne izračun za vašo stavbo. Podrobnosti, druge vrste ogrevanja, strošek prihranjene kWh in metoda: <a href={pageUrl('paketi')}>Paketi prenove</a>.</p>
+  <p class="note">Tipične vrednosti iz priznanih stroškov naložb Eko sklada in dejanske rabe energije; ne izračun za vašo stavbo. Zneski so priznani stroški naložb, ki jih je podprl Eko sklad. Dejanska naložba je višja: ne vključujejo projektiranja, del, ki niso upravičena do spodbude, potresne utrditve in prenove inštalacij. Celovita prenova ovoja in sistemov je seštevek posameznih ukrepov, ne prenova do sNES. Podrobnosti, druge vrste ogrevanja, strošek prihranjene kWh in metoda: <a href={pageUrl('paketi')}>Paketi prenove</a>.</p>
 </div>
 
 <style>

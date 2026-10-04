@@ -226,14 +226,14 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
   <div class="in">
     <p class="kicker">Prenova v praksi</p>
     <h2 class="big">Koliko stane prenova in kdaj kaj začne veljati</h2>
-    <p>Paketi prenove so izračunani iz dejanskih stroškov naložb, ki jih je Eko sklad podprl v letih 2023–2025, in iz realne rabe energije pred prenovo. Celovita prenova pripelje stavbo v razred A. Spodbude: danes po veljavnih pozivih Eko sklada, predlog NPS 2050 po ukrepu N1.</p>
+    <p>Paketi prenove so izračunani iz priznanih stroškov naložb, ki jih je podprl Eko sklad, in iz realne rabe energije pred prenovo. Dejanska naložba je višja (projektiranje, neupravičena dela, potresna utrditev, inštalacije). Celovita prenova ovoja in sistemov je seštevek ukrepov in pripelje stavbo v razred A; prenova do sNES je prikazana posebej.</p>
     <table class="t pk">
-      <thead><tr><th>Paket</th><th class="n">Naložba</th><th class="n">Razred</th><th class="n">Prihranek<br />na leto</th><th class="n">Spodbuda<br />danes → po N1</th><th class="n">€ na prihranjeno<br />kWh*</th></tr></thead>
+      <thead><tr><th>Paket</th><th class="n">Priznani stroški<br />(razpon)</th><th class="n">Razred</th><th class="n">Prihranek<br />na leto</th><th class="n">Spodbuda<br />danes → po N1</th><th class="n">€ na prihranjeno<br />kWh*</th></tr></thead>
       <tbody>
         <tr class="grp"><th colspan="6">{hisaT.ime}, {nf(hisaT.povrsina)} m², ogrevanje na {hisaV.ogrevanje}</th></tr>
-        {pakRows.filter((r) => r.t === 'hisa').map(({ x }) => <tr><th>{x.ime}<small>{x.ukrepi.join(', ')}</small></th><td class="n">{eur(x.strosek)}</td><td class="n">{hisaV.razred_pred} → {x.razred_po}</td><td class="n">{eur(x.prihranek_eur)}</td><td class="n">{eur(x.spodbuda_eko_eur)} → {eur(x.spodbuda_dod_eur)}</td><td class="n">{kwh(x.eur_kwh_eko)} / {kwh(x.eur_kwh_dod)}</td></tr>)}
+        {pakRows.filter((r) => r.t === 'hisa').map(({ x }) => <tr><th>{x.ime}<small>{x.ukrepi.join(', ')}</small></th><td class="n">{x.strosek_p25 ? <>{eur(x.strosek_p25)}–{eur(x.strosek_p75)}</> : eur(x.strosek)}</td><td class="n">{hisaV.razred_pred} → {x.razred_po}</td><td class="n">{eur(x.prihranek_eur)}</td><td class="n">{eur(x.spodbuda_eko_eur)} → {eur(x.spodbuda_dod_eur)}</td><td class="n">{kwh(x.eur_kwh_eko)} / {kwh(x.eur_kwh_dod)}</td></tr>)}
         <tr class="grp"><th colspan="6">{blokT.ime}, {nf(blokT.povrsina)} m², daljinsko ogrevanje</th></tr>
-        {pakRows.filter((r) => r.t === 'blok').map(({ x }) => <tr><th>{x.ime}<small>{x.ukrepi.join(', ')}</small></th><td class="n">{eur(x.strosek)}</td><td class="n">{blokV.razred_pred} → {x.razred_po}</td><td class="n">{eur(x.prihranek_eur)}</td><td class="n">{eur(x.spodbuda_eko_eur)} → {eur(x.spodbuda_dod_eur)}</td><td class="n">{kwh(x.eur_kwh_eko)} / {kwh(x.eur_kwh_dod)}</td></tr>)}
+        {pakRows.filter((r) => r.t === 'blok').map(({ x }) => <tr><th>{x.ime}<small>{x.ukrepi.join(', ')}</small></th><td class="n">{x.strosek_p25 ? <>{eur(x.strosek_p25)}–{eur(x.strosek_p75)}</> : eur(x.strosek)}</td><td class="n">{blokV.razred_pred} → {x.razred_po}</td><td class="n">{eur(x.prihranek_eur)}</td><td class="n">{eur(x.spodbuda_eko_eur)} → {eur(x.spodbuda_dod_eur)}</td><td class="n">{kwh(x.eur_kwh_eko)} / {kwh(x.eur_kwh_dod)}</td></tr>)}
       </tbody>
     </table>
     <p class="small">* Naložba po odbitku spodbude, deljena s prihranjeno kupljeno energijo v {pk.predpostavke.zivljenjska_doba} letih: s spodbudo danes / s spodbudo po N1. Za primerjavo: kWh elektrike stane okoli {nf(pk.cene.elektrika ?? 0.20, 2)} €. Cene energije SURS 2025. Vsi paketi, tudi za hiše na plin in les ter novejše stavbe: {link('paketi')}</p>
@@ -241,14 +241,13 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
     <div class="cols2">
       <div class="box green">
         <h3>Nimate energetske izkaznice?</h3>
-        <p>Orodje <b>Preverite svojo stavbo</b> oceni razred iz vrste stavbe, obdobja gradnje, izolacije, oken in ogrevanja, na podlagi izkaznic podobnih stavb, ter razred po prenovi. {link('preveri')}</p>
+        <p>Orodje <b>Preverite svojo stavbo</b> oceni razred iz izkaznic podobnih stavb. {link('preveri')}</p>
       </div>
       <div class="box">
         <h3>Pred prenovo</h3>
         <ul class="dots">
           <li>Brezplačno energetsko svetovanje ENSVET.</li>
           <li>Pogoje poziva Eko sklada preverite pred deli; vloga se odda <b>po zaključku</b> del.</li>
-          <li>Prenovo načrtujte celovito, tudi če jo izvedete v korakih.</li>
         </ul>
       </div>
     </div>

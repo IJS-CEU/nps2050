@@ -1,9 +1,13 @@
-"""11.4 Tipični paketi prenove s stroški: delna, celovita (do razreda A po primarni energiji) in celovita ZEB prenova.
+"""11.4 Tipični paketi prenove s stroški: delna, celovita prenova ovoja in sistemov (do razreda A po primarni energiji)
+in prenova do skoraj nič-energijske stavbe (sNES).
 
 Viri (potrdil Gašper 2. 10. 2026):
 - stroški: Eko sklad 2023–2025, priznani stroški na m² ogrevane uporabne površine po GURS (analiza Stroski_EUR_m2);
-  delna in celovita prenova iz dejanskih kombinacij ukrepov pri isti stavbi, celovita ZEB iz ukrepa »celovita obnova
-  stanovanjske stavbe« in »sNES+ prenova« 2024–2025;
+  delna in celovita prenova iz dejanskih kombinacij ukrepov pri isti stavbi (seštevek priznanih stroškov ukrepov, ne sNES);
+  prenova do sNES (glavni vir Eko sklad, odločitev 4. 10. 2026): ukrepa »celovita obnova stanovanjske stavbe« in
+  »sNES+ prenova« 2022–2025, priznani stroški na m² ogrevane površine iz vloge, za tipično hišo × kondicionirana površina iz izkaznic;
+- vsi stroški so PRIZNANI stroški Eko sklada (z DDV, nominalno); dejanska naložba je višja (projektiranje, neupravičena dela,
+  potresna utrditev, prenova inštalacij); prikazan je razpon 25.–75. percentila;
 - raba končne energije po razredih toplotnih potreb: osnutek, preglednica 23 (model RenRates) – za učinek delne prenove;
 - stanje pred prenovo: mediana primarne energije neprenovljenih stavb z računsko izkaznico po glavnem ogrevanju;
   tipična površina: mediana kondicionirane površine iz izkaznic (hiše) oziroma povprečna površina stanovanja (bloki);
@@ -40,7 +44,7 @@ TYPES = [
 UKREPI = {
     ('SFH', 'delna'): ['izolacija fasade', 'zamenjava oken'],
     ('SFH', 'celovita'): ['izolacija fasade in strehe', 'zamenjava oken', 'toplotna črpalka', 'prezračevanje z vračanjem toplote'],
-    ('SFH', 'zeb'): ['vse iz celovite prenove', 'izolacija tal', 'sončna elektrarna', 'zahteve brezemisijske stavbe (sNES+)'],
+    ('SFH', 'zeb'): ['celovita prenova ovoja in sistemov', 'izolacija tal', 'sončna elektrarna', 'zahteve skoraj nič-energijske stavbe (Eko sklad)'],
     ('MFH', 'delna'): ['izolacija fasade', 'zamenjava oken'],
     ('MFH', 'celovita'): ['izolacija fasade in strehe', 'zamenjava oken', 'prezračevanje z vračanjem toplote', 'ogrevanje ostane daljinsko'],
 }
@@ -65,7 +69,8 @@ POZIV_UKREPI = {
 }
 PAKET_UKREPI = {('SFH', 'delna'): ['fasada', 'okna_vrata'], ('SFH', 'celovita'): ['fasada', 'okna_vrata', 'streha', 'tczv', 'prezrac_centr'],
                 ('MFH', 'delna'): ['fasada', 'okna_vrata'], ('MFH', 'celovita'): ['fasada', 'okna_vrata', 'streha', 'prezrac_lok']}
-NAME = {'delna': 'Delna prenova', 'celovita': 'Celovita prenova', 'zeb': 'Celovita ZEB prenova'}
+NAME = {'delna': 'Delna prenova', 'celovita': 'Celovita prenova ovoja in sistemov', 'zeb': 'Prenova do skoraj nič-energijske stavbe (sNES)'}
+SNES_OD = 2022  # sNES: projekti od tega leta (novejše cene, dovolj primerov)
 HC = ['A1', 'A2', 'B1', 'B2', 'C', 'D', 'E', 'F', 'G']
 
 
@@ -133,6 +138,22 @@ def _eko_costs(ctx: Context) -> dict:
     return out
 
 
+def _snes_costs(ctx: Context):
+    """Eko sklad: »celovita obnova stanovanjske stavbe« in »sNES+ prenova« od SNES_OD dalje; priznani stroški na m² ogrevane
+    površine iz vloge (SumOfKolicina, m²). Vrne (€/m² po projektih, dejanski delež spodbude)."""
+    frames = [pd.read_excel(ctx.files['es_2025'], sheet_name='Podatki').assign(L=2025)]
+    for y in range(SNES_OD, 2025):
+        frames.append(pd.read_excel(ctx.files['es_letni'], sheet_name=str(y)).assign(L=y))
+    d = pd.concat(frames)
+    x = d[d.Parameter.astype(str).str.contains(r'celovita obnova|sNES\+ prenova', case=False)].copy()
+    num = lambda v: pd.to_numeric(v.astype(str).str.replace(',', '.'), errors='coerce')
+    for k in ('PriznaniStroski', 'ZnesekSpodbude', 'SumOfKolicina', 'TipStavbe'):
+        x[k] = num(x[k])
+    x = x[x.TipStavbe.isin([1, 2, 3, 4, 5, 19]) & x.SumOfKolicina.between(50, 1000)]
+    ctx.check(len(x) >= 25, f'paketi: sNES iz {len(x)} projektov Eko sklada {SNES_OD}–2025')
+    return x.PriznaniStroski / x.SumOfKolicina, float(x.ZnesekSpodbude.sum() / x.PriznaniStroski.sum())
+
+
 def _areas(ctx: Context, df: pd.DataFrame) -> dict:
     """(površina za energijo, površina za stroške): hiše – mediana kondicionirane površine iz računskih izkaznic (cela stavba)
     in mediana uporabne površine po katastru za iste stavbe; bloki – površina stanovanja (kataster) in preračun na izkaznico."""
@@ -174,6 +195,10 @@ def build(ctx: Context) -> dict:
     prices = _surs_prices()
     ctx.check(0.1 < prices['elektrika'] < 0.4 and 0.05 < prices['kurilno_olje'] < 0.2, f'cene SURS 2025: {prices}')
     eko = _eko_costs(ctx)
+    snes, snes_spodbuda = _snes_costs(ctx)
+    eko[('SFH', 'zeb')] = (snes, f'Eko sklad: celovita obnova stanovanjske stavbe in sNES+ prenova {SNES_OD}–2025, priznani stroški na m² ogrevane površine iz vloge')
+    eko[('SFH', 'eko25_zeb')] = snes_spodbuda
+    eko[('SFH', 'zeb_spodbuda')] = snes_spodbuda
     area = _areas(ctx, df)
     # dejanska raba po modelu občin (usklajena z bilanco), na m² uporabne površine po katastru
     mfe = json.loads((DATA_DIR / 'raw' / 'model_fe_tipi.json').read_text(encoding='utf-8'))
@@ -240,8 +265,10 @@ def build(ctx: Context) -> dict:
                     pe1 = q * FP['dh'] + AUX * FP['el']
                     cost1 = (q * DH_EUR_KWH + AUX * prices['elektrika']) * k_a
                     buy1 = (q + AUX) * k_a
-                # strošek na m² ogrevane površine po katastru (kot Eko sklad); energija na m² kondicionirane površine iz izkaznic
-                cost = eur * a_kat
+                # strošek: delna in celovita na m² ogrevane površine po katastru (kot analiza Eko sklada), sNES na m² površine iz vloge
+                # (≈ kondicionirana površina iz izkaznic); energija na m² kondicionirane površine iz izkaznic
+                a_cost = a_ei if pid == 'zeb' else a_kat
+                cost = eur * a_cost
                 sav = (fe0 * price0 - cost1) * a_kat
                 # spodbuda po veljavnih pozivih (delna in celovita prenova): stroški ukrepov sorazmerno z medianami Eko sklada
                 poziv_eur = None
@@ -265,7 +292,8 @@ def build(ctx: Context) -> dict:
                 paketi.append({
                     'id': pid, 'ime': NAME[pid], 'na_voljo': True, 'ukrepi': UKREPI[(t, pid)],
                     'eur_m2': round(eur), 'eur_m2_p25': round(p25) if p25 else None, 'eur_m2_p75': round(p75) if p75 else None, 'n': nn, 'vir_stroska': src,
-                    'strosek': round(cost, -2), 'razred_po': cls(cat, pe1), 'pe_po': round(pe1), 'fe_po': round(fe1),
+                    'strosek': round(cost, -2), 'strosek_p25': round(p25 * a_cost, -2) if p25 else None, 'strosek_p75': round(p75 * a_cost, -2) if p75 else None,
+                    'povrsina_stroska': round(a_cost), 'razred_po': cls(cat, pe1), 'pe_po': round(pe1), 'fe_po': round(fe1),
                     'prihranek_fe_pct': round(100 * (fe0 - fe1) / fe0), 'prihranek_pe_pct': round(100 * (pe0 - pe1) / pe0),
                     'fe_pred_leto': round(fe0 * a_kat, -2), 'fe_po_leto': round(fe1 * a_kat, -2), 'stroski_pred_leto': round(fe0 * a_kat * price0, -1),
                     'prihranek_eur': round(sav, -1), 'spodbuda_osn_pct': s_osn, 'spodbuda_dod_pct': s_dod, 'spodbuda_dod_eur': round(cost * s_dod / 100, -2),
@@ -289,10 +317,10 @@ def build(ctx: Context) -> dict:
                'BLOKI': {'delna_faktor': round(float(np.median(faktor['BLOKI'])), 2), 'celovita_pe': round(q * FP['dh'] + AUX * FP['el']), 'zeb_pe': None}}
 
     data = {
-        'meta': ctx.meta(['Eko sklad, priznani stroški naložb 2023–2025 (analiza IJS CEU, 2. 10. 2026)', prices['vir'], WOOD_VIR, DH_VIR,
+        'meta': ctx.meta(['Eko sklad, priznani stroški naložb 2023–2025 (analiza IJS CEU, 2. 10. 2026); sNES: celovite obnove in sNES+ prenove 2022–2025', prices['vir'], WOOD_VIR, DH_VIR,
                           f'{ctx.draft.name}: preglednica 23 (raba končne energije po razredih), preglednica 26 (predlog spodbud N1), meje razredov',
                           'Register energetskih izkaznic in kataster nepremičnin (stanje pred prenovo, površine)'],
-                         note='Tipične vrednosti za ponazoritev, ne izračun za konkretno stavbo.'),
+                         note='Tipične vrednosti za ponazoritev, ne izračun za konkretno stavbo. Stroški so priznani stroški Eko sklada; dejanska naložba je višja.'),
         'cene': {'kurilno_olje': prices['kurilno_olje'], 'elektrika': prices['elektrika'], 'plin': prices['plin'], 'les': WOOD_EUR_KWH, 'daljinska_toplota': DH_EUR_KWH},
         'preveri': preveri,
         'poziv': POZIV,

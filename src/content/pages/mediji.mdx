@@ -37,13 +37,15 @@ export const kol = loadData('koledar').vnosi.filter((v) => v.leto !== null && v.
 
 ### Za lastnike v treh številkah
 
-{/* Vir: public/data/paketi_prenove.json (11.4: stroški Eko sklad 2023–2025, cene SURS 2025) in koledar.json (11.1). */}
+{/* Vir: public/data/paketi_prenove.json (11.4: priznani stroški Eko sklad 2023–2025, sNES 2022–2025, cene SURS 2025) in koledar.json (11.1). */}
 
 <div class="tiles">
-  <div class="tile"><div class="v">{r100(cel.strosek)} €</div><div class="l">stane celovita prenova hiše, zgrajene do leta 1980 ({nf(ht.povrsina)} m², {nf(cel.eur_m2)} €/m²), ki jo pripelje iz razreda {hv.razred_pred} v razred {cel.razred_po}</div></div>
+  <div class="tile"><div class="v">{r100(cel.strosek_p25)}–{r100(cel.strosek_p75)} €</div><div class="l">priznani stroški celovite prenove ovoja in sistemov hiše, zgrajene do leta 1980 (fasada, streha, okna, toplotna črpalka, prezračevanje), ki jo pripelje iz razreda {hv.razred_pred} v razred {cel.razred_po}; prenova do skoraj nič-energijske stavbe (sNES) {r100(zeb.strosek_p25)}–{r100(zeb.strosek_p75)} €</div></div>
   <div class="tile"><div class="v">{r100(cel.spodbuda_eko_eur)} → {r100(cel.spodbuda_dod_eur)} €</div><div class="l">spodbuda za tako prenovo danes (Eko sklad) in po predlogu NPS 2050 (ukrep N1, stopnjevane spodbude)</div></div>
-  <div class="tile"><div class="v">{nf(Math.round(cel.prihranek_eur / 100) * 100)} €</div><div class="l">manj stroškov za energijo na leto pri hiši na kurilno olje; celovita ZEB prenova s sončno elektrarno stane okoli {nf(zeb.eur_m2)} €/m²</div></div>
+  <div class="tile"><div class="v">{nf(Math.round(cel.prihranek_eur / 100) * 100)} €</div><div class="l">manj stroškov za energijo na leto pri hiši na kurilno olje po celoviti prenovi</div></div>
 </div>
+
+<p class="note">Zneski prenove so priznani stroški naložb, ki jih je podprl Eko sklad (razpon od četrtine najcenejših do četrtine najdražjih primerov). Dejanska naložba je višja: ne vključujejo projektiranja, del, ki niso upravičena do spodbude, potresne utrditve in prenove inštalacij. Celovita prenova ovoja in sistemov je seštevek posameznih ukrepov, ne prenova do sNES.</p>
 
 **Kdaj kaj začne veljati za lastnike hiš:**
 

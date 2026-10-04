@@ -65,7 +65,7 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
   </form>
 
   <div class="chk-out" id="chk-out" aria-live="polite"></div>
-  {features.paketi && <p class="chk-pk"><a href={pageUrl('paketi')}>Tipični paketi prenove: koliko stane in kaj prinese delna, celovita ali celovita ZEB prenova</a></p>}
+  {features.paketi && <p class="chk-pk"><a href={pageUrl('paketi')}>Tipični paketi prenove: koliko stane in kaj prinese delna prenova, celovita prenova ovoja in sistemov ali prenova do sNES</a></p>}
 
   <noscript><p>Za interaktivno preverjanje je potreben JavaScript. Pragovi so v preglednici spodaj.</p></noscript>
 
@@ -281,7 +281,7 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
       if (po) {
         const opts: [string, string, number][] = [['delna', 'po delni prenovi (fasada, okna)', v * po.delna_faktor],
           ['celovita', c.id === 'HISA' ? 'po celoviti prenovi (ovoj, toplotna črpalka, prezračevanje)' : 'po celoviti prenovi (ovoj, prezračevanje, daljinsko ogrevanje)', Math.min(v, po.celovita_pe)]];
-        if (po.zeb_pe !== null) opts.push(['zeb', 'po celoviti ZEB prenovi (še izolacija tal, sončna elektrarna)', Math.min(v, po.zeb_pe)]);
+        if (po.zeb_pe !== null) opts.push(['zeb', 'po prenovi do sNES (še izolacija tal, sončna elektrarna)', Math.min(v, po.zeb_pe)]);
         const fs = el('fieldset', undefined, 'chk-po');
         fs.append(el('legend', 'Stanje po prenovi'));
         const txt = el('p', undefined, 'chk-po-t');
@@ -298,7 +298,7 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
           mark2.style.left = `${pos(c, o[2]) * 100}%`;
           txt.replaceChildren(`Ocena ${o[1]}: okoli ${nf(o[2], 0)} kWh/(m²·a), `, el('b', `razred ${k2}`), '.');
         };
-        for (const [id, lab] of [['ne', 'brez prenove'], ...opts.map((o) => [o[0], { delna: 'delna', celovita: 'celovita', zeb: 'celovita ZEB' }[o[0]]!])] as [string, string][]) {
+        for (const [id, lab] of [['ne', 'brez prenove'], ...opts.map((o) => [o[0], { delna: 'delna', celovita: 'celovita', zeb: 'do sNES' }[o[0]]!])] as [string, string][]) {
           const l = el('label');
           const r = document.createElement('input');
           r.type = 'radio'; r.name = 'chk-po'; r.value = id; r.checked = id === 'ne';
