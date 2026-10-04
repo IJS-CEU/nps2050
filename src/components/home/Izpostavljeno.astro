@@ -1,6 +1,6 @@
 ---
 /**
- * Pas »Izpostavljeno« na naslovni strani: kartice z ikono do orodja, energetske revščine, PDF povzetka, strani za medije in koledarja.
+ * Pas »Izpostavljeno« na naslovni strani: kartice z ikono do orodja, energetske revščine, PDF povzetka, drsnika »Kaj pa, če?« in koledarja.
  * Nadomešča samostojni obrazec za preverjanje stavbe (orodje je zdaj ena od kartic).
  */
 import { existsSync, statSync } from 'node:fs';
@@ -16,13 +16,13 @@ const pdfMb = existsSync(pdf) ? (statSync(pdf).size / 1e6).toFixed(1).replace('.
 
 const cards = [
   { href: pageUrl('preveri'), icon: 'house', kicker: 'Orodje', title: 'Preverite svojo stavbo',
-    text: 'V kateri razred sodi vaša stavba, katere pragove izpolnjuje in koliko energije bi prihranila celovita prenova.' },
+    text: 'Z energetsko izkaznico ali brez nje: v kateri razred sodi vaša stavba, ali je med najslabšimi in kam bi jo pripeljala delna ali celovita prenova.' },
   { href: pageUrl('revscina'), icon: 'hand-heart', kicker: 'Tema', title: 'Energetska revščina',
     text: 'Koliko gospodinjstev je prizadetih, kakšni so cilji do leta 2050 in katere spodbude so na voljo.' },
   { href: withBase('nps2050-povzetek.pdf'), icon: 'file-text', kicker: pdfMb ? `PDF · ${pdfMb} MB` : 'PDF', title: 'Povzetek na šestih straneh',
     text: 'Cilji, kaj načrt pomeni za lastnike, ukrepi, denar in energetska revščina – za tisk ali sestanek.', download: true },
-  { href: pageUrl('mediji'), icon: 'newspaper', kicker: 'Za novinarje', title: 'Za medije',
-    text: 'Ključne številke, grafi za prosto uporabo z navedbo vira in kontakt.' },
+  { href: `${pageUrl('strokovne-podlage')}#drsnik`, icon: 'sliders-horizontal', kicker: 'Kaj pa, če?', title: 'Stopnje prenove in cilji',
+    text: 'Kako hitro in kako globoko se morajo prenavljati hiše in bloki, da dosežemo mejnike EPBD, in koliko to stane.' },
   { href: pageUrl('koledar'), icon: 'calendar-days', kicker: `${kol.vnosi.length} datumov`, title: 'Koledar 2026–2050',
     text: 'Kdaj začne kaj veljati: obveznosti, cilji in mejniki za stavbe, ločeno, kaj že velja in kaj je predlagano.' },
 ];

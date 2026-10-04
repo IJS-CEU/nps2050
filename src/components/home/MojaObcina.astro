@@ -35,8 +35,8 @@ const lab = (m: (typeof METRICS)[number]) => { const f = (v: number) => nf(v, m.
 const GETS = [
   { icon: 'gauge', t: 'Stanje in primerjava', d: 'raba energije, emisije in obnovljivi viri ob sosednjih in podobnih občinah' },
   { icon: 'trending-down', t: 'Pot do leta 2050', d: 'kaj cilji NPS 2050 pomenijo za stavbe v občini' },
-  { icon: 'file-text', t: 'Kartica občine', d: 'PDF in CSV za lokalni energetski koncept' },
-  { icon: 'flame', t: 'Daljinsko ogrevanje', d: 'kje je odjem dovolj gost' },
+  { icon: 'timer', t: 'Tempo prenove', d: 'ali se stavbe prenavljajo dovolj hitro (semafor)' },
+  { icon: 'file-text', t: 'Kartica občine in regije', d: 'PDF in CSV za lokalni energetski koncept' },
 ];
 const sorted = [...ix.municipalities].sort((a, b) => a.name.localeCompare(b.name, 'sl'));
 ---
