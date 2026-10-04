@@ -1,0 +1,273 @@
+// Infografični posnetek »NPS 2050 v eni minuti« (64 s, brez govora, s podnapisi): node tests/video.mjs
+// Številke iz public/data/*.json; vsaka sličica se izriše deterministično (render(t)) in posname, ffmpeg sestavi MP4
+// z nevtralno podlago, ustvarjeno iz čistih tonov (brez avtorskih pravic). Izhod v public/mediji/:
+//   nps2050-v-eni-minuti.mp4 (1920×1080), nps2050-v-eni-minuti-kvadrat.mp4 (1080×1080), .vtt (podnapisi), -poster.jpg.
+// Zaženi po vsaki osvežitvi podatkov (traja nekaj minut). FFMPEG: pot do ffmpeg.exe (privzeto namestitev winget).
+import { chromium } from 'playwright';
+import { execFileSync } from 'node:child_process';
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+const root = process.cwd();
+const J = (n) => JSON.parse(readFileSync(resolve(root, 'public/data', `${n}.json`), 'utf-8'));
+const FFMPEG = process.env.FFMPEG || (() => {
+  const base = resolve(process.env.LOCALAPPDATA || '', 'Microsoft/WinGet/Packages');
+  const pkg = existsSync(base) && readdirSync(base).find((d) => d.startsWith('Gyan.FFmpeg'));
+  if (!pkg) return 'ffmpeg';
+  const sub = readdirSync(resolve(base, pkg)).find((d) => d.startsWith('ffmpeg-'));
+  return resolve(base, pkg, sub, 'bin', 'ffmpeg.exe');
+})();
+const FPS = 25, DUR = 64;
+const nf = (v, d = 0) => v.toLocaleString('sl-SI', { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: 'always' });
+
+// ---------------------------------------------------------------- podatki
+const sf = J('stavbni_fond'), ix = J('obcine_index'), tr = J('trajektorija'), kz = J('kazalniki'), pk = J('paketi_prenove'), dr = J('drsnik'), meta = J('meta');
+const em = kz.items.find((i) => i.id === 'emisije');
+const emis50 = em.values.at(-1).value;
+const emis23 = em.baseline.value;
+const traj = tr.kwh_m2; const wpb = tr.zgodba.wpb;
+const hisa = sf.categories.find((c) => c.id === 'HISA'), blok = sf.categories.find((c) => c.id === 'BLOKI');
+const T = pk.tipi.find((t) => t.id === 'hisa_do1980'), V = T.variante.find((v) => v.id === 'olje'), C = V.paketi.find((p) => p.id === 'celovita');
+const S0 = dr.referenca, M30 = dr.polozaji.find((p) => p.epbd_2030);
+const D = {
+  stavb: sf.segments.skupaj.buildings, povrsina: sf.segments.skupaj.area_mio_m2, pre81: ix.si.pre1981_res_area_pct,
+  pe20: traj.nps[0], pe50: traj.nps.at(-1), red: Math.round(100 * (1 - traj.nps.at(-1) / traj.nps[0])), emRed: Math.round(100 * (1 - emis50 / emis23)),
+  thrH: hisa.worst_43.threshold, thrB: blok.worst_43.threshold, wpbA: wpb.area_mio_m2, wpbPE: wpb.avg_pe_2020, wpbY: wpb.years, wpbP: wpb.renovated_pct,
+  pov: T.povrsina, ogr: V.ogrevanje, rp: V.razred_pred, pep: V.pe_pred, rpo: C.razred_po, pepo: C.pe_po,
+  s25: Math.round(C.strosek_p25 / 1000), s75: Math.round(C.strosek_p75 / 1000), sp0: Math.round(C.spodbuda_eko_eur / 1000), sp1: Math.round(C.spodbuda_dod_eur / 1000),
+  prih: Math.round(C.prihranek_eur / 10) * 10, pred: Math.round(V.paketi[0].stroski_pred_leto / 10) * 10,
+  s0: S0.stopnja_2026_2030_pct, s0c: S0.celovito_2026_2030_pct, m: M30.stopnja_2026_2030_pct, mc: M30.celovito_2026_2030_pct,
+  krat: Math.round(M30.celovito_2026_2030_pct / S0.celovito_2026_2030_pct),
+};
+const [dy, dm] = meta.draft_date.split('-');
+const MES = ['januar', 'februar', 'marec', 'april', 'maj', 'junij', 'julij', 'avgust', 'september', 'oktober', 'november', 'december'];
+const datum = `${MES[Number(dm) - 1]} ${dy}`;
+
+// Podnapisi: [začetek, konec, besedilo]
+const CAPS = [
+  [0.6, 5.2, `Slovenija ima ${nf(Math.round(D.stavb / 1000))} tisoč stavb s ${nf(D.povrsina, 1)} mio m² uporabne površine.`],
+  [5.4, 9.8, `Več kot polovica stanovanjske površine je nastala pred prvimi toplotnimi predpisi leta 1981.`],
+  [10.4, 15.2, `NPS 2050 določa pot prenove stavbnega fonda do leta 2050.`],
+  [15.4, 19.8, `Raba primarne energije stanovanjskih stavb na m² naj se zmanjša za ${D.red} %, emisije iz stavb za ${D.emRed} %.`],
+  [20.4, 25.2, `Prednost imajo energetsko najslabše stavbe – 43 % stanovanjskih stavb z najvišjo rabo energije.`],
+  [25.4, 29.8, `Do leta 2030 naj bo prenovljenih ${D.wpbP[0]} % teh stavb, do leta 2050 vse.`],
+  [30.4, 35.6, `Tipična hiša, zgrajena pred letom 1980, je danes v razredu ${D.rp}.`],
+  [35.8, 41.8, `Celovita prenova ovoja in sistemov jo pripelje v razred ${D.rpo} in prihrani več kot tisoč evrov na leto. Stroški so priznani stroški Eko sklada, dejanski so višji.`],
+  [42.4, 47.6, `Danes se prenovi okoli ${nf(D.s0, 1)} % stanovanjske površine na leto, a le ${nf(D.s0c, 1)} % celovito.`],
+  [47.8, 53.8, `Za evropski mejnik leta 2030 bo treba celovitih prenov približno ${D.krat}-krat več kot danes.`],
+  [54.4, 63.6, `Preverite svojo stavbo, poglejte svojo občino in raziščite, kaj bi prinesla hitrejša prenova.`],
+];
+const SCENES = [[0, 10], [10, 20], [20, 30], [30, 42], [42, 54], [54, 64]];
+
+// ---------------------------------------------------------------- HTML
+const data = (p, type) => `data:${type};base64,${readFileSync(resolve(root, p)).toString('base64')}`;
+const font = (p) => data(`node_modules/@fontsource-variable/${p}`, 'font/woff2');
+const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+const COL = { A: '#0B7A45', B: '#62B044', C: '#D9C92B', D: '#F0AE2E', E: '#EC842B', F: '#DE5A2B', G: '#C4302C' };
+
+function html(sq) {
+  const W = sq ? 1080 : 1920, H = 1080;
+  const P = sq ? 70 : 120;                // rob
+  const inner = W - 2 * P;
+  // trajektorija (SVG)
+  const tw = sq ? inner : inner - 520, th = sq ? 330 : 420;
+  const xs = (y) => ((y - 2020) / 30) * (tw - 80) + 40, ys = (v) => th - 40 - ((v - 120) / 170) * (th - 80);
+  const tpath = traj.years.map((y, i) => `${i ? 'L' : 'M'}${xs(y).toFixed(1)},${ys(traj.nps[i]).toFixed(1)}`).join(' ');
+  const dots = Array.from({ length: sq ? 100 : 200 }, (_, i) => `<i data-i="${i}"></i>`).join('');
+  return `<!doctype html><html lang="sl"><head><meta charset="utf-8"><style>
+@font-face { font-family: M; src: url(${font('manrope/files/manrope-latin-ext-wght-normal.woff2')}); font-weight: 200 800; }
+@font-face { font-family: M; src: url(${font('manrope/files/manrope-latin-wght-normal.woff2')}); font-weight: 200 800; unicode-range: U+0000-00FF; }
+@font-face { font-family: S; src: url(${font('source-serif-4/files/source-serif-4-latin-ext-wght-normal.woff2')}); font-weight: 200 900; }
+@font-face { font-family: S; src: url(${font('source-serif-4/files/source-serif-4-latin-wght-normal.woff2')}); font-weight: 200 900; unicode-range: U+0000-00FF; }
+* { margin: 0; box-sizing: border-box; }
+body { width: ${W}px; height: ${H}px; background: #333D22; color: #F5F2E8; font-family: M; overflow: hidden; position: relative; }
+.sc { position: absolute; inset: 0; opacity: 0; }
+.k { position: absolute; left: ${P}px; top: ${sq ? 70 : 90}px; font-size: ${sq ? 22 : 26}px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #D6B25E; }
+h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; font-family: S; font-weight: 700; font-size: ${sq ? 60 : 80}px; line-height: 1.05; }
+.sub { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 250 : 250}px; font-size: ${sq ? 28 : 34}px; color: #DAD8C9; }
+.sig { position: absolute; right: ${P}px; top: ${sq ? 30 : 92}px; font-size: ${sq ? 18 : 22}px; color: #DAD8C9; font-weight: 700; letter-spacing: .06em; }
+.cap { position: absolute; left: 0; right: 0; bottom: 0; height: ${sq ? 150 : 120}px; background: rgba(0,0,0,.45); display: grid; place-items: center; font-size: ${sq ? 28 : 32}px; padding: 0 ${sq ? 60 : 140}px; text-align: center; line-height: 1.3; }
+.prog { position: absolute; left: ${P}px; right: ${P}px; bottom: ${sq ? 160 : 132}px; display: flex; gap: 8px; }
+.prog b { flex: 1; height: 4px; border-radius: 2px; background: rgba(245,242,232,.18); position: relative; overflow: hidden; }
+.prog b i { position: absolute; inset: 0; background: #D6B25E; transform-origin: left; transform: scaleX(0); }
+.big { font-family: S; font-weight: 700; color: #F5F2E8; }
+.gold { color: #D6B25E; }
+/* 1 */
+#s1 .num { position: absolute; left: ${P}px; top: ${sq ? 270 : 330}px; font-size: ${sq ? 120 : 150}px; }
+#s1 .num small { font-family: M; font-size: ${sq ? 34 : 40}px; color: #D6B25E; font-weight: 700; margin-left: 16px; }
+#s1 .dots { position: absolute; left: ${P}px; top: ${sq ? 480 : 540}px; width: ${inner}px; display: grid; grid-template-columns: repeat(${sq ? 20 : 40}, 1fr); gap: ${sq ? 8 : 10}px; }
+#s1 .dots i { display: block; aspect-ratio: 1; border-radius: 50%; background: #F5F2E8; opacity: 0; }
+#s1 .leg { position: absolute; left: ${P}px; top: ${sq ? 790 : 830}px; font-size: ${sq ? 26 : 30}px; color: #DAD8C9; }
+#s1 .leg i { display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: #EC842B; vertical-align: -3px; margin-right: 10px; }
+/* 2 */
+#s2 svg { position: absolute; left: ${P}px; top: ${sq ? 330 : 330}px; width: ${tw}px; height: ${th}px; overflow: visible; }
+#s2 .tl { fill: none; stroke: #8FD19E; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+#s2 .ax { font-size: 26px; fill: #DAD8C9; font-family: M; }
+#s2 .vl { font-size: 40px; fill: #F5F2E8; font-family: S; font-weight: 700; }
+#s2 .chips { position: absolute; ${sq ? `left: ${P}px; top: 690px;` : `right: ${P}px; top: 300px;`} display: flex; ${sq ? '' : 'flex-direction: column;'} gap: 24px; }
+.chip { background: rgba(245,242,232,.08); border: 2px solid rgba(214,178,94,.55); border-radius: 22px; padding: 22px 30px; opacity: 0; }
+.chip b { display: block; font-family: S; font-size: ${sq ? 56 : 72}px; line-height: 1; }
+.chip span { font-size: ${sq ? 22 : 26}px; color: #DAD8C9; }
+/* 3 */
+#s3 .grid { position: absolute; left: ${P}px; top: ${sq ? 270 : 330}px; width: ${sq ? inner : 900}px; display: grid; grid-template-columns: repeat(20, 1fr); gap: 8px; }
+#s3 .grid i { display: block; aspect-ratio: 1; border-radius: 4px; background: rgba(245,242,232,.25); }
+#s3 .grid i.w { background: rgba(245,242,232,.25); }
+#s3 .info { position: absolute; ${sq ? `left: ${P}px; right: ${P}px; top: 530px;` : `left: ${P + 960}px; top: 330px; width: ${inner - 960}px;`} font-size: ${sq ? 26 : 30}px; color: #DAD8C9; line-height: 1.4; }
+#s3 .info b { color: #F5F2E8; }
+#s3 .bars { position: absolute; ${sq ? `left: ${P}px; top: 640px; width: ${inner}px;` : `left: ${P + 960}px; top: 560px; width: ${inner - 960}px;`} }
+#s3 .bar { display: grid; grid-template-columns: 90px 1fr 100px; align-items: center; gap: 14px; margin: ${sq ? 6 : 12}px 0; font-size: 26px; }
+#s3 .bar s { display: block; height: 22px; background: rgba(245,242,232,.15); border-radius: 11px; overflow: hidden; text-decoration: none; }
+#s3 .bar s i { display: block; height: 100%; background: #DE5A2B; width: 0; }
+/* 4 */
+#s4 .scale { position: absolute; left: ${P + (sq ? 0 : 140)}px; top: 400px; width: ${sq ? inner : 1400}px; height: 90px; display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+#s4 .scale span { display: grid; place-items: center; font-weight: 800; font-size: 40px; color: #fff; border-radius: 8px; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
+#s4 .mk { position: absolute; top: 342px; width: 0; }
+#s4 .mk b { position: absolute; left: 0; transform: translateX(-50%); white-space: nowrap; font-size: ${sq ? 24 : 28}px; font-weight: 800; }
+#s4 .mk i { position: absolute; left: -3px; top: 42px; width: 6px; height: 18px; background: #F5F2E8; border-radius: 3px; }
+#s4 .m1 b { color: #8FD19E; } ${sq ? '#s4 .mk b { transform: translateX(-30px); }' : ''} #s4 .m1 i { background: #8FD19E; }
+#s4 .lab { position: absolute; left: ${P}px; right: ${P}px; top: 515px; text-align: center; font-size: ${sq ? 24 : 30}px; color: #DAD8C9; }
+#s4 .cards { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 580 : 610}px; display: grid; grid-template-columns: ${sq ? '1fr' : 'repeat(3, 1fr)'}; gap: ${sq ? 14 : 36}px; }
+.card { background: rgba(245,242,232,.08); border: 2px solid rgba(214,178,94,.55); border-radius: 22px; padding: ${sq ? '14px 26px' : '34px 38px'}; opacity: 0; ${sq ? 'display: flex; align-items: baseline; gap: 20px;' : ''} }
+.card .v { font-family: S; font-weight: 700; font-size: ${sq ? 40 : 64}px; line-height: 1.05; white-space: nowrap; }
+.card .v small { font-family: M; font-size: ${sq ? 22 : 30}px; font-weight: 700; color: #D6B25E; }
+.card .l { font-size: ${sq ? 20 : 26}px; color: #DAD8C9; margin-top: ${sq ? 0 : 12}px; line-height: 1.3; }
+/* 5 */
+#s5 .cols { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 330 : 330}px; height: ${sq ? 440 : 470}px; display: grid; grid-template-columns: 1fr 1fr; gap: ${sq ? 40 : 160}px; align-items: end; padding: 0 ${sq ? 20 : 220}px; }
+#s5 .col { display: grid; justify-items: center; align-self: end; gap: 14px; }
+#s5 .stk { width: ${sq ? 200 : 260}px; display: flex; flex-direction: column-reverse; border-radius: 12px 12px 0 0; overflow: hidden; }
+#s5 .stk .d { background: #8FD19E; } #s5 .stk .p { background: rgba(245,242,232,.35); }
+#s5 .v { font-family: S; font-weight: 700; font-size: ${sq ? 44 : 56}px; }
+#s5 .t { font-size: ${sq ? 24 : 28}px; color: #DAD8C9; text-align: center; }
+#s5 .leg { position: absolute; left: ${P}px; top: ${sq ? 800 : 830}px; font-size: ${sq ? 21 : 28}px; color: #DAD8C9; }
+#s5 .leg i { display: inline-block; width: 22px; height: 22px; border-radius: 4px; vertical-align: -3px; margin: 0 10px 0 24px; }
+/* 6 */
+#s6 .btns { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 330 : 340}px; display: grid; gap: 22px; justify-items: start; }
+#s6 .btn { font-size: ${sq ? 40 : 48}px; font-weight: 800; padding: 18px 40px; border-radius: 999px; background: #D6B25E; color: #333D22; opacity: 0; }
+#s6 .url { position: absolute; left: ${P}px; top: ${sq ? 720 : 720}px; font-family: S; font-size: ${sq ? 46 : 64}px; font-weight: 700; opacity: 0; }
+#s6 .note { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 800 : 820}px; font-size: ${sq ? 20 : 24}px; color: #DAD8C9; opacity: 0; }
+</style></head><body>
+<p class="sig">IJS CEU · strokovne podlage NPS 2050 · osnutek, ${datum}</p>
+
+<section class="sc" id="s1"><p class="k">Izhodišče</p><h1>Stavbe v Sloveniji</h1>
+  <p class="num big"><span id="cnt">0</span><small>stavb · ${nf(D.povrsina, 1)} mio m²</small></p>
+  <div class="dots">${dots}</div>
+  <p class="leg"><i></i>zgrajeno pred letom 1981: ${nf(D.pre81, 0)} % stanovanjske površine</p></section>
+
+<section class="sc" id="s2"><p class="k">Cilj</p><h1>Pot do leta 2050</h1>
+  <svg viewBox="0 0 ${tw} ${th}">
+    <path class="tl" d="${tpath}" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" id="tpath"/>
+    <text class="vl" x="${xs(2020)}" y="${ys(D.pe20) - 24}" text-anchor="start">${D.pe20}</text>
+    <text class="vl" id="t50" x="${xs(2050)}" y="${ys(D.pe50) + 62}" text-anchor="end" opacity="0">${D.pe50} kWh/(m²·a)</text>
+    ${[2020, 2030, 2040, 2050].map((y) => `<text class="ax" x="${xs(y)}" y="${th}" text-anchor="middle">${y}</text>`).join('')}
+  </svg>
+  <div class="chips"><div class="chip" id="ch1"><b>−${D.red} %</b><span>primarne energije na m²<br>v stanovanjskih stavbah</span></div><div class="chip" id="ch2"><b>−${D.emRed} %</b><span>emisij toplogrednih plinov<br>iz stavb</span></div></div></section>
+
+<section class="sc" id="s3"><p class="k">Najslabše najprej</p><h1>43 % stavb z najvišjo rabo</h1>
+  <div class="grid">${Array.from({ length: 100 }, (_, i) => `<i data-i="${i}"></i>`).join('')}</div>
+  <p class="info">Hiše nad <b>${D.thrH}</b>, bloki nad <b>${D.thrB} kWh/(m²·a)</b> primarne energije: <b>${nf(D.wpbA, 1)} mio m²</b>, povprečno <b>${D.wpbPE} kWh/(m²·a)</b>.</p>
+  <div class="bars">${D.wpbY.map((y, i) => `<div class="bar"><span>${y}</span><s><i data-p="${D.wpbP[i]}"></i></s><b>${D.wpbP[i]} %</b></div>`).join('')}</div></section>
+
+<section class="sc" id="s4"><p class="k">Kaj to pomeni za vašo hišo</p><h1>Celovita prenova stare hiše</h1>
+  <p class="sub">Hiša, zgrajena do leta 1980 · ${D.pov} m² · ogrevanje na ${D.ogr}</p>
+  <div class="scale">${CLS.map((x) => `<span style="background:${COL[x]}">${x}</span>`).join('')}</div>
+  <div class="mk m0"><b>danes: ${D.pep} kWh/(m²·a)</b><i></i></div>
+  <div class="mk m1"><b>po prenovi: ${D.pepo} kWh/(m²·a)</b><i></i></div>
+  <p class="lab">izolacija fasade in strehe · nova okna · toplotna črpalka · prezračevanje</p>
+  <div class="cards">
+    <div class="card"><div class="v">${D.s25}–${D.s75} <small>tisoč €</small></div><div class="l">priznani stroški (Eko sklad);${sq ? ' ' : '<br>'}dejanski so višji</div></div>
+    <div class="card"><div class="v">${D.sp0} → ${D.sp1} <small>tisoč €</small></div><div class="l">spodbuda danes → po predlogu NPS</div></div>
+    <div class="card"><div class="v">${nf(D.prih)} <small>€ na leto</small></div><div class="l">manj za energijo${sq ? ' ' : '<br>'}(danes okoli ${nf(D.pred)} €)</div></div>
+  </div></section>
+
+<section class="sc" id="s5"><p class="k">Hitreje in globlje</p><h1>Celovitih prenov ${D.krat}-krat več</h1>
+  <div class="cols">
+    <div class="col"><span class="v" id="v1">${nf(D.s0, 1)} %</span><div class="stk" id="k1"><i class="d"></i><i class="p"></i></div><span class="t">danes (sedanja praksa)</span></div>
+    <div class="col"><span class="v" id="v2">${nf(D.m, 1)} %</span><div class="stk" id="k2"><i class="d"></i><i class="p"></i></div><span class="t">za mejnik EPBD 2030</span></div>
+  </div>
+  <p class="leg">prenovljena stanovanjska površina na leto, 2026–2030:<i style="background:#8FD19E"></i>celovito<i style="background:rgba(245,242,232,.35)"></i>posamezni ukrepi</p></section>
+
+<section class="sc" id="s6"><p class="k">Kje najdete več</p><h1>Strokovne podlage NPS 2050</h1>
+  <div class="btns"><span class="btn">Preverite svojo stavbo</span><span class="btn">Moja občina</span><span class="btn">Kaj pa, če?</span></div>
+  <p class="url">ijs-ceu.github.io/nps2050</p>
+  <p class="note">Številke iz osnutka NPS 2050 (${datum}) in strokovnih podlag IJS CEU; do sprejema načrta se lahko spremenijo.</p></section>
+
+<div class="prog">${SCENES.map(() => '<b><i></i></b>').join('')}</div>
+<div class="cap"><span id="cap"></span></div>
+<script>
+const SC = ${JSON.stringify(SCENES)}, CAPS = ${JSON.stringify(CAPS)}, D = ${JSON.stringify(D)}, SQ = ${sq};
+const cl = (x) => Math.max(0, Math.min(1, x)), ease = (x) => { x = cl(x); return x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; };
+const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
+const fadeUp = (el, t, t0, d = .6) => { const p = ease((t - t0) / d); el.style.opacity = p; el.style.transform = 'translateY(' + (1 - p) * 24 + 'px)'; };
+const scW = SQ ? ${inner} : 1400, scL = ${P} + (SQ ? 0 : 140);
+window.render = (t) => {
+  SC.forEach(([a, b], i) => { const el = $('#s' + (i + 1)); const o = Math.min(cl((t - a) / .5), i === SC.length - 1 ? 1 : cl((b - t) / .5)); el.style.opacity = o; el.style.visibility = o > 0 ? 'visible' : 'hidden';
+    $$('.prog i')[i].style.transform = 'scaleX(' + cl((t - a) / (b - a)) + ')'; });
+  const c = CAPS.find(([a, b]) => t >= a && t <= b); const cap = $('#cap'); cap.textContent = c ? c[2] : '';
+  cap.style.opacity = c ? Math.min(cl((t - c[0]) / .3), cl((c[1] - t) / .3)) : 0;
+  // 1
+  { const a = 0; $('#cnt').textContent = Math.round(D.stavb * ease((t - a - .8) / 2.5)).toLocaleString('sl-SI');
+    const dd = $$('#s1 .dots i'), n = dd.length; dd.forEach((d, i) => { d.style.opacity = cl((t - a - 1 - i * 2.4 / n) / .3); const old = i < Math.round(n * D.pre81 / 100);
+      d.style.background = old && t > a + 5.6 + i * 2 / n ? '#EC842B' : '#F5F2E8'; });
+    fadeUp($('#s1 .leg'), t, a + 6); }
+  // 2
+  { const a = 10; $('#tpath').setAttribute('stroke-dashoffset', 1 - ease((t - a - 1) / 4)); $('#t50').setAttribute('opacity', cl((t - a - 4.8) / .5));
+    fadeUp($('#ch1'), t, a + 5.4); fadeUp($('#ch2'), t, a + 6.2); }
+  // 3
+  { const a = 20; $$('#s3 .grid i').forEach((d, i) => { const w = i >= 57; d.style.background = w && t > a + 1.5 + (i - 57) * .03 ? '#DE5A2B' : 'rgba(245,242,232,.25)'; });
+    fadeUp($('#s3 .info'), t, a + 2.5); $$('#s3 .bar i').forEach((b, i) => { b.style.width = (b.dataset.p * ease((t - a - 4.5 - i * .4) / .8)) + '%'; }); }
+  // 4
+  { const a = 30, x = (k) => scL + (k + .5) * scW / 7, i0 = 'ABCDEFG'.indexOf(D.rp), i1 = 'ABCDEFG'.indexOf(D.rpo);
+    const m0 = $('#s4 .m0'), m1 = $('#s4 .m1'); m0.style.left = x(i0) + 'px'; m0.style.opacity = Math.min(cl((t - a - 1.5) / .5), t > a + 5 ? .35 : 1);
+    m1.style.left = (x(i0) + (x(i1) - x(i0)) * ease((t - a - 4) / 1.6)) + 'px'; m1.style.opacity = cl((t - a - 3.6) / .3);
+    fadeUp($('#s4 .lab'), t, a + 5.6); $$('#s4 .card').forEach((c, i) => fadeUp(c, t, a + 6.2 + i * .9)); }
+  // 5
+  { const a = 42, H = SQ ? 300 : 340, mx = D.m;
+    [[1, D.s0, D.s0c, a + 1.5], [2, D.m, D.mc, a + 6]].forEach(([n, tot, deep, t0]) => { const p = ease((t - t0) / 1.4), k = $('#k' + n);
+      k.children[0].style.height = (H * deep / mx * p) + 'px'; k.children[1].style.height = (H * (tot - deep) / mx * p) + 'px'; $('#v' + n).style.opacity = cl((t - t0 - 1) / .4); });
+    fadeUp($('#s5 .leg'), t, a + 2); }
+  // 6
+  { const a = 54; $$('#s6 .btn').forEach((b, i) => fadeUp(b, t, a + .8 + i * .6)); fadeUp($('#s6 .url'), t, a + 3); fadeUp($('#s6 .note'), t, a + 3.8); }
+};
+render(0);
+</script></body></html>`;
+}
+
+// ---------------------------------------------------------------- izris in sestava
+const out = resolve(root, 'public/mediji'); mkdirSync(out, { recursive: true });
+const tmp = resolve(root, 'tests/_video_frames'); rmSync(tmp, { recursive: true, force: true }); mkdirSync(tmp, { recursive: true });
+const vtt = 'WEBVTT\n\n' + CAPS.map(([a, b, s], i) => `${i + 1}\n${ts(a)} --> ${ts(b)}\n${s}\n`).join('\n');
+function ts(s) { const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = (s % 60).toFixed(3).padStart(6, '0'); return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${x}`; }
+writeFileSync(resolve(out, 'nps2050-v-eni-minuti.vtt'), vtt, 'utf-8');
+
+// nevtralna podlaga: počasi utripajoč akord iz čistih tonov (A–C#–E–A), z mehkim začetkom in koncem
+const audio = resolve(tmp, 'podlaga.wav');
+const expr = ['110', '164.81', '220', '277.18'].map((f, i) => `0.035*sin(2*PI*${f}*t)*(0.65+0.35*sin(2*PI*${(0.05 + i * 0.013).toFixed(3)}*t))`).join('+');
+execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', `aevalsrc=${expr}:s=48000:d=${DUR}`, '-af', `lowpass=f=1200,afade=t=in:d=3,afade=t=out:st=${DUR - 4}:d=4`, audio]);
+
+const browser = await chromium.launch();
+if (process.env.STILLS) {   // predogled: STILLS=3,14,25 node tests/video.mjs → tests/_video_tNN.png
+  for (const sq of [false, true]) {
+    const page = await browser.newPage({ viewport: { width: sq ? 1080 : 1920, height: 1080 } });
+    await page.setContent(html(sq), { waitUntil: 'load' }); await page.evaluate(() => document.fonts.ready);
+    for (const t of process.env.STILLS.split(',').map(Number)) { await page.evaluate((x) => window.render(x), t); await page.screenshot({ path: resolve(root, `tests/_video_${sq ? 'k' : 'w'}${t}.png`) }); }
+  }
+  await browser.close(); process.exit(0);
+}
+for (const [sq, name] of [[false, 'nps2050-v-eni-minuti'], [true, 'nps2050-v-eni-minuti-kvadrat']]) {
+  const page = await browser.newPage({ viewport: { width: sq ? 1080 : 1920, height: 1080 } });
+  await page.setContent(html(sq), { waitUntil: 'load' });
+  await page.evaluate(() => document.fonts.ready);
+  const dir = resolve(tmp, name); mkdirSync(dir);
+  for (let f = 0; f < FPS * DUR; f++) {
+    await page.evaluate((t) => window.render(t), f / FPS);
+    await page.screenshot({ path: resolve(dir, `f${String(f).padStart(5, '0')}.jpg`), type: 'jpeg', quality: 92 });
+  }
+  if (!sq) { await page.evaluate((t) => window.render(t), 38.5); await page.screenshot({ path: resolve(out, 'nps2050-v-eni-minuti-poster.jpg'), type: 'jpeg', quality: 85 }); }
+  await page.close();
+  execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-framerate', String(FPS), '-i', resolve(dir, 'f%05d.jpg'), '-i', audio,
+    '-c:v', 'libx264', '-preset', 'slow', '-crf', '23', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '96k', '-shortest', '-movflags', '+faststart',
+    resolve(out, `${name}.mp4`)]);
+  console.log(`public/mediji/${name}.mp4`);
+}
+await browser.close();
+rmSync(tmp, { recursive: true, force: true });

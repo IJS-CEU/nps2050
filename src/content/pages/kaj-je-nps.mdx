@@ -5,6 +5,7 @@ description: 'Okvir Nacionalnega načrta prenove stavb: člen 3 EPBD, nadomestit
 lead: 'Nacionalni načrt prenove stavb do leta 2050 (NPS 2050) določa, kako Slovenija do leta 2050 prenovi stavbni fond v energetsko učinkovit in razogljičen fond brezemisijskih stavb.'
 ---
 import Icon from '../../components/Icon.astro';
+import Posnetek from '../../components/Posnetek.astro';
 import { loadData } from '../../lib/data';
 import { nf } from '../../lib/format';
 import { pageUrl } from '../../i18n/routes';
@@ -29,6 +30,8 @@ export const sf = loadData('stavbni_fond').segments;
 <li><span class="kj-ic"><Icon name="flag" size={20} /></span><span><b>Do leta 2050</b>brezemisijski stavbni fond</span></li>
 </ul>
 </div>
+
+<Posnetek compact />
 
 ## Kaj je novega
 

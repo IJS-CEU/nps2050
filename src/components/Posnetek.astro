@@ -1,0 +1,28 @@
+---
+// Infografični posnetek »NPS 2050 v eni minuti« (izdela tests/video.mjs v public/mediji/).
+// Na Za medije s prenosi, na Kaj je NPS 2050 kompaktno.
+import { pageUrl, withBase } from '../i18n/routes';
+
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+const f = (x: string) => withBase(`mediji/nps2050-v-eni-minuti${x}`);
+---
+<figure class:list={['posnetek', { compact }]}>
+  <video controls preload="none" playsinline poster={f('-poster.jpg')} width="1920" height="1080">
+    <source src={f('.mp4')} type="video/mp4" />
+    <track kind="captions" srclang="sl" label="Slovenščina" src={f(".vtt")} />
+  </video>
+  <figcaption>
+    <strong>NPS 2050 v eni minuti</strong> · 64 s, brez govora, s podnapisi.
+    {compact
+      ? <span> Za prenos in kvadratno različico za družbena omrežja glejte stran <a href={pageUrl('mediji')}>Za medije</a>.</span>
+      : <span> Prenos: <a href={f('.mp4')} download>MP4, 16 : 9</a> · <a href={f('-kvadrat.mp4')} download>MP4, 1 : 1 (družbena omrežja)</a> · <a href={f('.vtt')} download>podnapisi (VTT)</a></span>}
+  </figcaption>
+</figure>
+
+<style>
+  .posnetek { margin: 1rem 0 1.8rem; }
+  .posnetek video { width: 100%; height: auto; display: block; border-radius: 12px; background: #333D22; }
+  .posnetek.compact { max-width: 640px; }
+  .posnetek figcaption { font-size: .88rem; color: var(--ink2); margin-top: .5rem; }
+</style>

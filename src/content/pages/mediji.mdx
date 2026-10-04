@@ -5,6 +5,7 @@ description: 'Ključne številke NPS 2050, grafi za prosto uporabo z navedbo vir
 lead: 'Ključne številke, grafi za prosto uporabo in kontakt. Vse gradivo je iz osnutka NPS 2050 in se lahko do sprejema načrta še spremeni.'
 ---
 import Tiles from '../../components/Tiles.astro';
+import Posnetek from '../../components/Posnetek.astro';
 import NapacnaRazumevanja from '../../components/NapacnaRazumevanja.astro';
 import { pageUrl, withBase } from '../../i18n/routes';
 import { loadData } from '../../lib/data';
@@ -62,6 +63,14 @@ Povzetek načrta na šestih straneh za tisk: <a href={withBase('nps2050-povzetek
 Pri poročanju o načrtu se pogosto pojavijo trditve, ki ne držijo. Kratka pojasnila (tudi na samostojni strani <a href={pageUrl('napacna')}>Kaj NPS 2050 ne pomeni</a>):
 
 <NapacnaRazumevanja />
+
+## Posnetek »NPS 2050 v eni minuti«
+
+{/* Izdela tests/video.mjs iz public/data; ob novem osnutku ga je treba izdelati znova. */}
+
+Kratek infografični posnetek o izhodišču, ciljih in pomenu načrta za lastnike. Številke so iz osnutka NPS 2050 in strokovnih podlag IJS CEU. Uporaba je prosta z navedbo vira (CC BY 4.0), podnapisi so tudi v ločeni datoteki.
+
+<Posnetek />
 
 ## Grafi za prenos
 
