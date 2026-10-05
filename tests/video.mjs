@@ -28,7 +28,7 @@ const emis23 = em.baseline.value;
 const traj = tr.kwh_m2; const wpb = tr.zgodba.wpb;
 const hisa = sf.categories.find((c) => c.id === 'HISA'), blok = sf.categories.find((c) => c.id === 'BLOKI');
 const T = pk.tipi.find((t) => t.id === 'hisa_do1980'), V = T.variante.find((v) => v.id === 'olje'), C = V.paketi.find((p) => p.id === 'celovita');
-const S0 = dr.referenca, M30 = dr.polozaji.find((p) => p.epbd_2030);
+const S0 = dr.referenca, M30 = dr.polozaji.find((p) => p.id === dr.privzeto);  // scenarij NPS (doseže mejnik EPBD 2030)
 // Prizor 2: kje smo na poti do mejnika EPBD 2030 (drsnik: ocena stanja 2025 iz registrov in bilance, sedanja praksa S0)
 const G = { b: dr.nps[0], n: dr.ocena_2025.osrednja, lo: dr.ocena_2025.spodnja, hi: dr.ocena_2025.zgornja,
   c: dr.epbd_max.find((e) => e.year === 2030).max, s0: S0.kwh_m2[dr.years.indexOf(2030)] };
@@ -66,7 +66,7 @@ const CAPS = [
   [30.4, 35.6, `Tipična hiša, zgrajena pred letom 1980, je danes v razredu ${D.rp}.`],
   [35.8, 41.8, `Celovita prenova ovoja in sistemov jo pripelje v razred ${D.rpo} in prihrani več kot tisoč evrov na leto. Stroški so priznani stroški Eko sklada, dejanski so višji.`],
   [42.4, 47.6, `Danes prenovimo ${nf(D.s0, 1)} % stanovanjske površine na leto, a le ${nf(D.s0c, 1)} % celovito – zato pristanemo daleč od cilja.`],
-  [47.8, 53.8, `Cilj za 2030 dosežemo šele s približno ${nf(D.m, 0)} % prenov na leto, od tega ${nf(D.mc, 1)} % celovitih – ${D.krat}-krat več celovitih kot danes.`],
+  [47.8, 53.8, `Scenarij NPS 2050 cilj doseže: ${nf(D.m, 1)} % prenov na leto, od tega ${nf(D.mc, 1)} % celovitih – ${D.krat}-krat več celovitih kot danes.`],
   [54.4, 63.6, `Preverite svojo stavbo, poglejte svojo občino in raziščite, kaj bi prinesla hitrejša prenova.`],
 ];
 const SCENES = [[0, 10], [10, 20], [20, 30], [30, 42], [42, 54], [54, 64]];
@@ -82,6 +82,7 @@ function html(sq) {
   const P = sq ? 70 : 120;                // rob
   const inner = W - 2 * P;
   // trajektorija (SVG)
+  const RH = Math.min(sq ? 92 : 94, Math.floor((sq ? 470 : 480) / D.RR.length * 1.0) + (D.RR.length > 5 ? 2 : 0));
   const gx = (v) => (100 * (G.b - v) / (G.b - G.c)).toFixed(2) + '%';
   const dots = Array.from({ length: sq ? 100 : 200 }, (_, i) => `<i data-i="${i}"></i>`).join('');
   return `<!doctype html><html lang="sl"><head><meta charset="utf-8"><style>
@@ -155,7 +156,7 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
 #s5 .hd i { display: inline-block; width: 18px; height: 18px; border-radius: 4px; vertical-align: -2px; margin: 0 6px 0 14px; }
 #s5 .h1 { left: ${P}px; width: ${sq ? 420 : 870}px; } #s5 .h2 { left: ${P + (sq ? 450 : 880)}px; right: ${P}px; }
 #s5 .rows { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 360 : 370}px; }
-#s5 .row { position: relative; height: ${sq ? 92 : 94}px; opacity: 0; }
+#s5 .row { position: relative; height: ${RH}px; opacity: 0; }
 #s5 .rt { position: absolute; left: 0; top: 4px; font-family: S; font-weight: 700; font-size: ${sq ? 36 : 44}px; }
 #s5 .rs { position: absolute; left: 330px; top: 58px; font-size: 20px; color: #B9B7A8; }
 #s5 .rt small { font-family: M; font-size: ${sq ? 18 : 22}px; font-weight: 600; color: #DAD8C9; margin-left: 8px; }
@@ -166,9 +167,9 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
 #s5 .ln { position: absolute; top: ${sq ? 44 : 38}px; height: 4px; background: rgba(245,242,232,.25); left: 0; }
 #s5 .dt { position: absolute; top: ${sq ? 32 : 26}px; z-index: 1; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; }
 #s5 .dv { position: absolute; top: ${sq ? -10 : -22}px; font-family: S; font-weight: 700; font-size: ${sq ? 28 : 34}px; white-space: nowrap; }
-#s5 .tl { position: absolute; top: ${sq ? 340 : 360}px; height: ${sq ? 470 : 480}px; width: 4px; margin-left: -2px; background: #D6B25E; opacity: 0; }
+#s5 .tl { position: absolute; top: ${sq ? 340 : 360}px; height: ${RH * D.RR.length + (sq ? 10 : 0)}px; width: 4px; margin-left: -2px; background: #D6B25E; opacity: 0; }
 #s5 .tl b { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); white-space: nowrap; color: #D6B25E; font-size: ${sq ? 20 : 24}px; padding-bottom: 4px; }
-#s5 .ok { position: absolute; top: ${sq ? 340 : 360}px; height: ${sq ? 470 : 480}px; right: ${P}px; background: rgba(143,209,158,.10); opacity: 0; }
+#s5 .ok { position: absolute; top: ${sq ? 340 : 360}px; height: ${RH * D.RR.length + (sq ? 10 : 0)}px; right: ${P}px; background: rgba(143,209,158,.10); opacity: 0; }
 /* 6 */
 #s6 .btns { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 330 : 340}px; display: grid; gap: 22px; justify-items: start; }
 #s6 .btn { font-size: ${sq ? 40 : 48}px; font-weight: 800; padding: 18px 40px; border-radius: 999px; background: #D6B25E; color: #333D22; opacity: 0; }

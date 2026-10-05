@@ -10,6 +10,7 @@ import openpyxl
 
 from .context import Context, write_csv, write_json
 from .draft import row
+from .drsnik import BASE_2020, OCENA_2025
 from . import enote
 from .numbers import all_nums, num
 
@@ -100,6 +101,12 @@ def _fmt(v, dec=0, sign=False):
     return ('−' if v < 0 else ('+' if sign and v > 0 else '')) + t
 
 
+ROW_EPBD = ('Povprečna primarna energija stanovanjskih stavb 2030, fiksni faktorji (zahteva EPBD −16 %)',
+            'Povprečna primarna energija stanovanjskih stavb 2035, fiksni faktorji (zahteva −20 do −22 %)')
+# vrstice osnutka, ki jih stran prikazuje z drugačno osnovo (osnutek: glede na 2025; EPBD: glede na 2020)
+ALIAS = {}
+
+
 def _comparison(ctx: Context) -> dict:
     """Primerjava S0–S2 iz modela RenRates (Scenario_Compare). Model je novejši od preglednice v osnutku (pogl. 4.1.1):
     po uskladitvi z NEPN 2024 (3. 10. 2026) gredo na stran vrednosti modela, neskladja z osnutkom pa se javijo avtorjem."""
@@ -122,10 +129,10 @@ def _comparison(ctx: Context) -> dict:
         ('Primarna raba energije 2050 (2025 = 100)', 'indeks', lambda s: str(pe50[s])),
         ('Emisije CO₂ 2050 pri zamrznjenih faktorjih 2025 (učinek prenov)', '% glede na 2025', lambda s: _fmt(-100 * m[s]['co2_frozen_red'])),
         ('Kumulativna končna raba 2025–2050', 'TWh', lambda s: _fmt(m[s]['cum_fe'])),
-        ('Povprečna primarna energija stanovanjskih stavb 2030, fiksni faktorji (zahteva EPBD −16 %)', '% glede na 2025',
-         lambda s: _fmt(rr['pe_idx'][s][yi(2030)] - 100, 1)),
-        ('Povprečna primarna energija stanovanjskih stavb 2035, fiksni faktorji (zahteva −20 do −22 %)', '% glede na 2025',
-         lambda s: _fmt(rr['pe_idx'][s][yi(2035)] - 100, 1)),
+        # EPBD meri zmanjšanje glede na 2020 (osnutek v tej vrstici navaja zmanjšanje glede na 2025): ocenjeno stanje 2025 × indeks
+        # modela, kot v drsniku (drsnik.py)
+        (ROW_EPBD[0], '% glede na 2020', lambda s: _fmt(100 * (round(OCENA_2025['osrednja'] * rr['pe_idx_raw'][s][yi(2030)] / 100) / BASE_2020 - 1), 1)),
+        (ROW_EPBD[1], '% glede na 2020', lambda s: _fmt(100 * (round(OCENA_2025['osrednja'] * rr['pe_idx_raw'][s][yi(2035)] / 100) / BASE_2020 - 1), 1)),
         ('Delež površine v razredih F in G 2030 / 2035 / 2050', '%', lambda s: ' / '.join(_fmt(rr['fg'][s][yi(y)], 1) for y in (2030, 2035, 2050))),
         ('Površina v razredu A leta 2050', 'mio m²', lambda s: _fmt(m[s]['class_a_2050'], 1)),
         ('Prenovljena površina 2026–2050 (od tega celovito)', 'mio m²', lambda s: f"{_fmt(m[s]['renovated'], 1)} ({_fmt(m[s]['deep'], 1)})"),
@@ -139,7 +146,7 @@ def _comparison(ctx: Context) -> dict:
 
     # Neskladja z osnutkom (preglednica »Rezultati primerjave strategij«) – za avtorje; na stran gre model.
     for r in t28[1:]:
-        ours = next((t for t in table if t['label'] == r[0]), None)
+        ours = next((t for t in table if t['label'] == ALIAS.get(r[0], r[0])), None)
         if ours is None:
             ctx.warnings.append(f'primerjava strategij: vrstice »{r[0]}« ni v izračunu iz modela')
             continue
@@ -223,6 +230,7 @@ def _renrates(ctx: Context) -> dict:
         'm': m,
         'years': years,
         'pe_idx': {s: [round(100 * v[s] / pe[0][1][s], 1) for _, v in pe] for s in SCEN},
+        'pe_idx_raw': {s: [100 * v[s] / pe[0][1][s] for _, v in pe] for s in SCEN},
         'fg': {s: [round(100 * v[s], 1) for _, v in fg] for s in SCEN},
         'fe_idx': fe_idx,
     }

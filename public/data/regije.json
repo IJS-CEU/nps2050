@@ -2,7 +2,7 @@
  "meta": {
   "draft": "NPS_v40",
   "draft_date": "2026-10-01",
-  "generated": "2026-10-04",
+  "generated": "2026-10-05",
   "sources": [
    "Seštevki občinskih podatkov (obcine_model.json, obcine_index.json, zemljevid.json)"
   ],
@@ -76,20 +76,20 @@
      "fossil_pct": 23.8
     },
     "2030": {
-     "fe_gwh": 700.2,
-     "tgp_kt": 100.51,
+     "fe_gwh": 699.4,
+     "tgp_kt": 100.45,
      "ove_pct": 67.5,
      "fossil_pct": 18.3
     },
     "2040": {
-     "fe_gwh": 598.8,
-     "tgp_kt": 31.81,
+     "fe_gwh": 597.1,
+     "tgp_kt": 31.72,
      "ove_pct": 80.5,
      "fossil_pct": 9.4
     },
     "2050": {
-     "fe_gwh": 553.2,
-     "tgp_kt": 11.61,
+     "fe_gwh": 551.5,
+     "tgp_kt": 11.55,
      "ove_pct": 85.8,
      "fossil_pct": 5.2
     }
@@ -471,20 +471,20 @@
      "fossil_pct": 25.6
     },
     "2030": {
-     "fe_gwh": 1729.3,
-     "tgp_kt": 274.69,
+     "fe_gwh": 1730.1,
+     "tgp_kt": 274.75,
      "ove_pct": 62.4,
      "fossil_pct": 18.6
     },
     "2040": {
-     "fe_gwh": 1501.4,
-     "tgp_kt": 89.43,
+     "fe_gwh": 1504.5,
+     "tgp_kt": 89.57,
      "ove_pct": 75.8,
-     "fossil_pct": 10.1
+     "fossil_pct": 10.0
     },
     "2050": {
-     "fe_gwh": 1393.7,
-     "tgp_kt": 33.1,
+     "fe_gwh": 1397.6,
+     "tgp_kt": 33.15,
      "ove_pct": 80.3,
      "fossil_pct": 6.6
     }
@@ -1006,19 +1006,19 @@
      "fossil_pct": 20.3
     },
     "2030": {
-     "fe_gwh": 345.3,
+     "fe_gwh": 345.4,
      "tgp_kt": 47.24,
      "ove_pct": 67.5,
      "fossil_pct": 14.6
     },
     "2040": {
-     "fe_gwh": 296.9,
-     "tgp_kt": 15.78,
+     "fe_gwh": 296.5,
+     "tgp_kt": 15.76,
      "ove_pct": 77.6,
      "fossil_pct": 8.1
     },
     "2050": {
-     "fe_gwh": 273.8,
+     "fe_gwh": 273.9,
      "tgp_kt": 5.91,
      "ove_pct": 80.9,
      "fossil_pct": 5.5
@@ -1251,20 +1251,20 @@
      "fossil_pct": 23.8
     },
     "2030": {
-     "fe_gwh": 1350.9,
-     "tgp_kt": 205.63,
-     "ove_pct": 62.7,
+     "fe_gwh": 1350.7,
+     "tgp_kt": 205.55,
+     "ove_pct": 62.6,
      "fossil_pct": 18.1
     },
     "2040": {
-     "fe_gwh": 1172.3,
-     "tgp_kt": 68.12,
+     "fe_gwh": 1171.6,
+     "tgp_kt": 68.03,
      "ove_pct": 74.2,
      "fossil_pct": 10.2
     },
     "2050": {
-     "fe_gwh": 1088.6,
-     "tgp_kt": 26.18,
+     "fe_gwh": 1088.4,
+     "tgp_kt": 26.17,
      "ove_pct": 78.3,
      "fossil_pct": 6.7
     }
@@ -1687,19 +1687,19 @@
     },
     "2030": {
      "fe_gwh": 239.9,
-     "tgp_kt": 35.27,
-     "ove_pct": 63.5,
+     "tgp_kt": 35.26,
+     "ove_pct": 63.4,
      "fossil_pct": 11.9
     },
     "2040": {
-     "fe_gwh": 204.1,
-     "tgp_kt": 11.63,
+     "fe_gwh": 203.2,
+     "tgp_kt": 11.58,
      "ove_pct": 72.1,
      "fossil_pct": 5.9
     },
     "2050": {
-     "fe_gwh": 187.0,
-     "tgp_kt": 4.02,
+     "fe_gwh": 185.9,
+     "tgp_kt": 4.0,
      "ove_pct": 74.6,
      "fossil_pct": 3.6
     }
@@ -1851,21 +1851,21 @@
      "fossil_pct": 22.0
     },
     "2030": {
-     "fe_gwh": 431.5,
-     "tgp_kt": 55.13,
+     "fe_gwh": 431.3,
+     "tgp_kt": 55.1,
      "ove_pct": 69.9,
      "fossil_pct": 14.4
     },
     "2040": {
-     "fe_gwh": 369.3,
-     "tgp_kt": 19.23,
+     "fe_gwh": 368.4,
+     "tgp_kt": 19.2,
      "ove_pct": 78.3,
      "fossil_pct": 8.2
     },
     "2050": {
-     "fe_gwh": 341.1,
-     "tgp_kt": 7.69,
-     "ove_pct": 80.9,
+     "fe_gwh": 340.2,
+     "tgp_kt": 7.67,
+     "ove_pct": 80.8,
      "fossil_pct": 5.6
     }
    },
@@ -2036,20 +2036,20 @@
      "fossil_pct": 18.6
     },
     "2030": {
-     "fe_gwh": 771.5,
-     "tgp_kt": 89.39,
+     "fe_gwh": 771.6,
+     "tgp_kt": 89.41,
      "ove_pct": 75.0,
      "fossil_pct": 12.5
     },
     "2040": {
-     "fe_gwh": 662.5,
-     "tgp_kt": 29.82,
+     "fe_gwh": 663.1,
+     "tgp_kt": 29.85,
      "ove_pct": 84.3,
      "fossil_pct": 6.6
     },
     "2050": {
-     "fe_gwh": 612.9,
-     "tgp_kt": 11.37,
+     "fe_gwh": 614.1,
+     "tgp_kt": 11.41,
      "ove_pct": 87.7,
      "fossil_pct": 4.1
     }
@@ -2372,20 +2372,20 @@
     },
     "2030": {
      "fe_gwh": 2869.6,
-     "tgp_kt": 553.25,
+     "tgp_kt": 553.22,
      "ove_pct": 48.8,
      "fossil_pct": 21.3
     },
     "2040": {
-     "fe_gwh": 2535.0,
-     "tgp_kt": 187.38,
+     "fe_gwh": 2538.3,
+     "tgp_kt": 187.52,
      "ove_pct": 60.8,
      "fossil_pct": 12.7
     },
     "2050": {
-     "fe_gwh": 2368.1,
-     "tgp_kt": 74.27,
-     "ove_pct": 63.9,
+     "fe_gwh": 2372.2,
+     "tgp_kt": 74.32,
+     "ove_pct": 64.0,
      "fossil_pct": 9.5
     }
    },
@@ -2746,20 +2746,20 @@
      "fossil_pct": 27.3
     },
     "2030": {
-     "fe_gwh": 1046.3,
-     "tgp_kt": 170.94,
+     "fe_gwh": 1046.8,
+     "tgp_kt": 170.96,
      "ove_pct": 60.2,
      "fossil_pct": 20.4
     },
     "2040": {
-     "fe_gwh": 907.7,
-     "tgp_kt": 55.95,
-     "ove_pct": 73.9,
+     "fe_gwh": 907.8,
+     "tgp_kt": 55.97,
+     "ove_pct": 73.8,
      "fossil_pct": 11.1
     },
     "2050": {
-     "fe_gwh": 842.0,
-     "tgp_kt": 20.8,
+     "fe_gwh": 842.1,
+     "tgp_kt": 20.81,
      "ove_pct": 78.8,
      "fossil_pct": 7.0
     }
@@ -3051,20 +3051,20 @@
      "fossil_pct": 19.4
     },
     "2030": {
-     "fe_gwh": 282.9,
-     "tgp_kt": 31.34,
-     "ove_pct": 77.8,
+     "fe_gwh": 283.0,
+     "tgp_kt": 31.36,
+     "ove_pct": 77.9,
      "fossil_pct": 13.5
     },
     "2040": {
-     "fe_gwh": 243.1,
+     "fe_gwh": 242.8,
      "tgp_kt": 10.14,
      "ove_pct": 88.8,
      "fossil_pct": 6.9
     },
     "2050": {
-     "fe_gwh": 224.3,
-     "tgp_kt": 3.76,
+     "fe_gwh": 223.8,
+     "tgp_kt": 3.75,
      "ove_pct": 93.5,
      "fossil_pct": 3.7
     }
@@ -3236,21 +3236,21 @@
      "fossil_pct": 22.0
     },
     "2030": {
-     "fe_gwh": 701.5,
-     "tgp_kt": 95.93,
+     "fe_gwh": 701.2,
+     "tgp_kt": 95.91,
      "ove_pct": 69.0,
      "fossil_pct": 16.9
     },
     "2040": {
-     "fe_gwh": 602.9,
-     "tgp_kt": 31.27,
-     "ove_pct": 80.6,
+     "fe_gwh": 600.2,
+     "tgp_kt": 31.16,
+     "ove_pct": 80.5,
      "fossil_pct": 9.0
     },
     "2050": {
-     "fe_gwh": 555.9,
-     "tgp_kt": 11.74,
-     "ove_pct": 85.3,
+     "fe_gwh": 551.8,
+     "tgp_kt": 11.66,
+     "ove_pct": 85.2,
      "fossil_pct": 5.2
     }
    },
@@ -3491,19 +3491,19 @@
      "fossil_pct": 24.6
     },
     "2030": {
-     "fe_gwh": 665.3,
-     "tgp_kt": 117.59,
+     "fe_gwh": 665.2,
+     "tgp_kt": 117.63,
      "ove_pct": 59.2,
      "fossil_pct": 17.5
     },
     "2040": {
-     "fe_gwh": 584.5,
-     "tgp_kt": 36.29,
+     "fe_gwh": 584.4,
+     "tgp_kt": 36.31,
      "ove_pct": 75.0,
      "fossil_pct": 8.5
     },
     "2050": {
-     "fe_gwh": 545.3,
+     "fe_gwh": 544.7,
      "tgp_kt": 12.52,
      "ove_pct": 80.1,
      "fossil_pct": 4.8

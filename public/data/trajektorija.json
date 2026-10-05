@@ -2,7 +2,7 @@
  "meta": {
   "draft": "NPS_v40",
   "draft_date": "2026-10-01",
-  "generated": "2026-10-04",
+  "generated": "2026-10-05",
   "sources": [
    "NPS_v40: preglednica »Nacionalna trajektorija prenove stanovanjskega fonda« (pogl. 4.7.1)",
    "NPS_v40: preglednica »Primarna raba energije v stavbah po scenariju NPS 2050« (pogl. 4.3)"
@@ -130,20 +130,20 @@
    "S0": [
     269,
     243,
-    235,
-    227,
-    215,
-    212,
-    208
+    241,
+    237,
+    226,
+    225,
+    220
    ],
    "S1": [
     269,
     243,
-    221,
-    206,
-    189,
-    182,
-    176
+    223,
+    208,
+    192,
+    187,
+    180
    ],
    "S2": [
     269,

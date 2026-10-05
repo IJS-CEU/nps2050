@@ -2,9 +2,9 @@
  "meta": {
   "draft": "NPS_v40",
   "draft_date": "2026-10-01",
-  "generated": "2026-10-04",
+  "generated": "2026-10-05",
   "sources": [
-   "Model RenRates_SI (uskladitev z NEPN 2024, 3. 10. 2026): štirje zagoni z različnimi stopnjami prenove stanovanjskih stavb",
+   "Model RenRates_SI (uskladitev z NEPN 2024, 3. 10. 2026; scenarij NPS s stopnjami × 1,25, 5. 10. 2026): pet zagonov z različnimi stopnjami prenove stanovanjskih stavb",
    "NPS_v40: nacionalna trajektorija stanovanjskega fonda in najvišje vrednosti po EPBD"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
@@ -40,11 +40,11 @@
    "min": 210
   }
  ],
- "privzeto": "k100",
+ "privzeto": "k125",
  "polozaji": [
   {
    "id": "k070",
-   "faktor": 0.7,
+   "faktor": 0.56,
    "stopnja_dosezena_pct": 1.08,
    "stopnja_vpisana_2026_2030_pct": {
     "SFH": 1.44,
@@ -141,7 +141,7 @@
   },
   {
    "id": "k100",
-   "faktor": 1.0,
+   "faktor": 0.8,
    "stopnja_dosezena_pct": 1.44,
    "stopnja_vpisana_2026_2030_pct": {
     "SFH": 2.06,
@@ -237,8 +237,105 @@
    ]
   },
   {
+   "id": "k125",
+   "faktor": 1.0,
+   "stopnja_dosezena_pct": 1.68,
+   "stopnja_vpisana_2026_2030_pct": {
+    "SFH": 2.58,
+    "MFH": 3.23
+   },
+   "kwh_m2": [
+    269,
+    255,
+    222,
+    200,
+    184,
+    172,
+    163
+   ],
+   "kwh_m2_spodnja": [
+    269,
+    252,
+    219,
+    198,
+    182,
+    170,
+    161
+   ],
+   "kwh_m2_zgornja": [
+    269,
+    260,
+    226,
+    204,
+    187,
+    175,
+    166
+   ],
+   "zmanjsanje_2030_pct": 17.5,
+   "zmanjsanje_2035_pct": 25.7,
+   "indeks_pe": [
+    100.0,
+    87.0,
+    78.5,
+    72.1,
+    67.4,
+    63.9
+   ],
+   "fe_twh": [
+    11.74,
+    9.82,
+    8.38,
+    7.27,
+    6.52,
+    6.13
+   ],
+   "fe_zmanjsanje_2050_pct": 48,
+   "fg_pct": [
+    9.6,
+    2.9,
+    1.4,
+    0.7,
+    0.0,
+    0
+   ],
+   "epbd_2030": true,
+   "epbd_2035": true,
+   "zmanjsanje_2050_pct": {
+    "fe": 47.8,
+    "pe": 53.4,
+    "co2": 78.9
+   },
+   "nalozbe_mrd": 16.6,
+   "nalozbe_2026_2030_mrd": 4.3,
+   "javna_mrd": 5.82,
+   "stopnja_2026_2030_pct": 2.58,
+   "celovito_2026_2030_pct": 1.36,
+   "stopnje_obdobja_pct": [
+    2.58,
+    1.9,
+    1.53,
+    1.31,
+    1.09
+   ],
+   "celovito_obdobja_pct": [
+    1.36,
+    1.28,
+    1.02,
+    0.77,
+    0.61
+   ],
+   "hise_2026_2030_pct": [
+    2.45,
+    1.23
+   ],
+   "bloki_2026_2030_pct": [
+    2.91,
+    1.7
+   ]
+  },
+  {
    "id": "k150",
-   "faktor": 1.5,
+   "faktor": 1.2,
    "stopnja_dosezena_pct": 1.8,
    "stopnja_vpisana_2026_2030_pct": {
     "SFH": 3.09,
@@ -335,7 +432,7 @@
   },
   {
    "id": "k200",
-   "faktor": 2.0,
+   "faktor": 1.6,
    "stopnja_dosezena_pct": 1.87,
    "stopnja_vpisana_2026_2030_pct": {
     "SFH": 4.12,

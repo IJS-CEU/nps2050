@@ -1,6 +1,6 @@
 ---
 /**
- * 11.3 »Kaj pa, če« drsnik na trajektoriji: štirje zagoni modela RenRates z različno stopnjo prenove stanovanjskih stavb.
+ * 11.3 »Kaj pa, če« drsnik na trajektoriji: pet zagonov modela RenRates z različno stopnjo prenove stanovanjskih stavb.
  * Krivulje: ocenjeno stanje 2025 (registri 2020–2025 in energetska bilanca s popravkom za vreme) × indeks iz modela; pas = razpon ocene 2025.
  * Podatki: public/data/drsnik.json (cevovod data/npsdata/drsnik.py). Graf je statični SVG; drsnik izbere krivuljo in stavek.
  * Brez JavaScripta so vidne vse krivulje in preglednica.
@@ -56,16 +56,16 @@ const npsDrop = (y: number) => nf(100 * (1 - (d.nps[ix(y)] as number) / (d.nps[0
 <figure class="drs" id="drsnik" data-def={def}>
   <figcaption>
     <b>Kaj pa, če se stanovanjske stavbe prenavljajo hitreje ali počasneje?</b>
-    <span>Povprečna primarna energija stanovanjskih stavb, kWh/(m²·a), od ocenjenega stanja leta 2025 naprej; štirje zagoni modela RenRates, ki se razlikujejo samo v stopnji prenove hiš in blokov</span>
+    <span>Povprečna primarna energija stanovanjskih stavb, kWh/(m²·a), od ocenjenega stanja leta 2025 naprej; pet zagonov modela RenRates, ki se razlikujejo samo v stopnji prenove hiš in blokov</span>
   </figcaption>
-  <p class="drs-bau"><b>Danes:</b> prenovi se okoli {nf(s0.stopnja_2026_2030_pct, 1)} % stanovanjske površine na leto, a le {nf(s0.celovito_2026_2030_pct, 1)} % celovito (sedanja praksa, S0). <b>Za mejnik EPBD 2030:</b> okoli {nf(d.polozaji.find((p) => p.epbd_2030)!.stopnja_2026_2030_pct, 0)} % na leto, od tega {nf(d.polozaji.find((p) => p.epbd_2030)!.celovito_2026_2030_pct, 1)} % celovito.</p>
+  <p class="drs-bau"><b>Danes:</b> prenovi se okoli {nf(s0.stopnja_2026_2030_pct, 1)} % stanovanjske površine na leto, a le {nf(s0.celovito_2026_2030_pct, 1)} % celovito (sedanja praksa, S0). <b>Scenarij NPS 2050{d.polozaji[def].epbd_2030 && ', ki doseže mejnik EPBD 2030'}:</b> {nf(d.polozaji[def].stopnja_2026_2030_pct, 1)} % na leto, od tega {nf(d.polozaji[def].celovito_2026_2030_pct, 1)} % celovito.</p>
   <div class="drs-ctl js-only">
     <label for="drs-r">Stopnja prenove stanovanjskih stavb 2026–2030 (% površine na leto)</label>
     <input id="drs-r" type="range" min="0" max={d.polozaji.length - 1} step="1" value={def} list="drs-ticks" aria-describedby="drs-txt" aria-valuetext={`${lab(d.polozaji[def])} na leto, od tega ${nf(d.polozaji[def].celovito_2026_2030_pct, 1)} % celovito`} />
     <datalist id="drs-ticks">{d.polozaji.map((_, i) => <option value={i}></option>)}</datalist>
     <ol class="drs-lab" aria-hidden="true">{d.polozaji.map((p) => <li>{lab(p)}<small>od tega {nf(p.celovito_2026_2030_pct, 1)} % celovito{p.id === d.privzeto && <><br />scenarij NPS</>}</small></li>)}</ol>
   </div>
-  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Povprečna primarna energija stanovanjskih stavb pri štirih stopnjah prenove, z razponom ocene stanja leta 2025; vrednosti so v preglednici pod grafom.">
+  <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Povprečna primarna energija stanovanjskih stavb pri petih stopnjah prenove, z razponom ocene stanja leta 2025; vrednosti so v preglednici pod grafom.">
     {[140, 180, 220, 260].map((v) => <g><line x1={L} x2={W - R} y1={ys(v)} y2={ys(v)} class="gl" /><text x={L - 6} y={ys(v) + 4} text-anchor="end" class="ax">{v}</text></g>)}
     {d.years.filter((y) => y % 10 === 0).map((y) => <text x={xs(y)} y={H - 8} text-anchor="middle" class="ax">{y}</text>)}
     {d.polozaji.map((p, i) => <path d={band(p.kwh_m2_spodnja, p.kwh_m2_zgornja)} class={`bd${i === def ? ' on' : ''}`} data-i={i} />)}
@@ -107,7 +107,7 @@ const npsDrop = (y: number) => nf(100 * (1 - (d.nps[ix(y)] as number) / (d.nps[0
     </div>
     <p class="note"><b>Izhodišče in stanje 2025.</b> EPBD (člen 9(2)) zahteva, da se povprečje stanovanjskih stavb glede na leto 2020 (269 kWh/(m²·a) iz računskih izkaznic) zmanjša za najmanj 16 % do 2030 in za 20 do 22 % do 2035. Model RenRates se začne leta 2025, zato je stanje 2025 ocenjeno iz podatkov: (1) iz registrov – ukrepi v stanovanjskih stavbah v letih 2020–2025 (obnova fasade, strehe in oken v katastru, ukrepi Eko sklada za ovoj, okna, toplotne črpalke in kotle na biomaso), ovrednoteni z izkaznicami podobnih stavb in skupaj z novogradnjami: {nf(d.viri_2025.registri[0])}–{nf(d.viri_2025.registri[1])} kWh/(m²·a); (2) iz energetske bilance – primarna raba stanovanjskih stavb v letih 2020 in 2023 (NEPN 2024, izhodiščna preglednica osnutka), popravljena za vreme (stopinjski dnevi, Eurostat) in za rast površine (NEPN 2020 in 2024), do 2025 nadaljevana s tempom sedanje prakse: okoli {nf(d.viri_2025.bilanca)}. Krivulje so izračunane od {nf(d.ocena_2025.osrednja)} kWh/(m²·a), pas od {nf(d.ocena_2025.spodnja)} do {nf(d.ocena_2025.zgornja)}. Registri ne zajamejo prenov brez spodbude in brez vpisa v kataster, zato je ocena iz registrov prej previdna. Stanje bo preverjeno z vzorcem izkaznic leta 2028.</p>
     <p class="note"><b>Stopnja prenove</b> je prenovljena stanovanjska površina (delna, celovita in celovita s potresno utrditvijo) na leto, deljena s površino hiš in blokov skupaj (tehtano s površino); ločeno za hiše in bloke je v preglednici. Celovita prenova pomeni prenovo ovoja in sistemov do razreda toplotnih potreb A ali B. Sedanja praksa (S0) je zagon modela z opazovanimi stopnjami 2019–2023 in pretežno posameznimi ukrepi.</p>
-    <p class="note"><b>Model.</b> RenRates, usklajen z NEPN 2024 (3. 10. 2026). Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb; globina prenove in usmerjanje v najslabše stavbe ostaneta kot v scenariju NPS 2050. Model prenavlja le stavbe razredov C–G po toplotnih potrebah, zato je dosežena stopnja nižja od vpisane in se pri visokih stopnjah ustavi: podvojitev vpisanih stopenj poveča povprečno stopnjo 2026–2050 le z {nf(d.polozaji.find((p) => p.faktor === 1)!.stopnja_dosezena_pct, 2)} na {nf(d.polozaji.at(-1)!.stopnja_dosezena_pct, 2)} % na leto. Primarna energija pri fiksnih faktorjih. <a href={withBase('data/csv/drsnik.csv')} download>Prenesi CSV</a></p>
+    <p class="note"><b>Model.</b> RenRates, usklajen z NEPN 2024 (3. 10. 2026). Scenarij NPS ima od 5. 10. 2026 stopnje prenove hiš in blokov za četrtino višje kot prej, da doseže mejnik EPBD 2030 v celotnem razponu ocene stanja 2025. Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb; globina prenove in usmerjanje v najslabše stavbe ostaneta kot v scenariju NPS 2050. Model prenavlja le stavbe razredov C–G po toplotnih potrebah, zato je dosežena stopnja nižja od vpisane in se pri visokih stopnjah ustavi: podvojitev vpisanih stopenj poveča povprečno stopnjo 2026–2050 le z {nf(d.polozaji.find((p) => p.id === 'k100')!.stopnja_dosezena_pct, 2)} na {nf(d.polozaji.at(-1)!.stopnja_dosezena_pct, 2)} % na leto. Primarna energija pri fiksnih faktorjih. <a href={withBase('data/csv/drsnik.csv')} download>Prenesi CSV</a></p>
   </details>
 </figure>
 

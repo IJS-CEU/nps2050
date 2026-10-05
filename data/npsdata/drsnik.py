@@ -1,7 +1,9 @@
 """11.3 Drsnik »Kaj pa, če«: kje pristane trajektorija stanovanjskih stavb pri drugačni stopnji prenove.
 
-Vir: štirje zagoni modela RenRates_SI (RenRates_SI_drsnik_k070 … k200.xlsx ob RenRates_SI_NPS_scenariji.xlsx), ki se od
-scenarija S2 razlikujejo samo v stopnjah prenove enostanovanjskih in večstanovanjskih stavb (3_Rates F6:J7, faktor 0,7–2,0).
+Vir: pet zagonov modela RenRates_SI (RenRates_SI_drsnik_k070 … k200.xlsx ob RenRates_SI_NPS_scenariji.xlsx), ki se razlikujejo
+samo v stopnjah prenove enostanovanjskih in večstanovanjskih stavb (3_Rates F6:J7). Ime k… je faktor glede na scenarij S2 pred
+5. 10. 2026; od takrat je scenarij NPS (S2) zagon k125 (stopnje hiš in blokov × 1,25, da doseže mejnik EPBD 2030 v celotnem razponu
+ocene stanja 2025), faktor v podatkih pa je glede na novi S2.
 Krivulje se ne interpolirajo in ne izmišljujejo (CLAUDE.md §11.3).
 
 - Povprečna primarna energija stanovanjskih stavb pri fiksnih faktorjih 2025: energenti SFH + MFH (8_SFH_Charts) × faktorji PE
@@ -20,7 +22,7 @@ import openpyxl
 
 from .context import OUT, Context, write_csv, write_json
 
-POS = [('k070', 0.7), ('k100', 1.0), ('k150', 1.5), ('k200', 2.0)]
+POS = [('k070', 0.56), ('k100', 0.8), ('k125', 1.0), ('k150', 1.2), ('k200', 1.6)]
 OCENA_2025 = {'osrednja': 255, 'spodnja': 252, 'zgornja': 260}  # kWh/(m²·a), glej opis zgoraj
 VIRI_2025 = {'registri': [254, 256], 'bilanca': 257}  # data/raw/ocena_2020_2025.py (okni 2020–2025 in 2021–2025); bilanca s popravkom za vreme
 BASE_2020 = 269
@@ -93,10 +95,10 @@ def build(ctx: Context) -> dict:
         p = base.with_name(f'RenRates_SI_drsnik_{k}.xlsx')
         ctx.check(p.exists(), f'drsnik: datoteka {p.name}')
         runs[k] = _run(p)
-    # k100 je scenarij S2: mora se ujemati z živim modelom v RenRates_SI_NPS_scenariji.xlsx
+    # k125 je scenarij S2: mora se ujemati z živim modelom v RenRates_SI_NPS_scenariji.xlsx
     s2 = openpyxl.load_workbook(base, read_only=True, data_only=True)['Scenario_Compare']
     fe50_s2 = next(r[1] for r in s2.iter_rows(min_row=12, max_row=20, max_col=2, values_only=True) if r[0] == 'Final energy 2050 [GWh/yr]')
-    ctx.check(abs(runs['k100']['fe_2050_live'] - fe50_s2) < 0.01, f'drsnik: k100 = S2 (končna energija 2050 {runs["k100"]["fe_2050_live"]:.1f} = {fe50_s2:.1f} GWh)')
+    ctx.check(abs(runs['k125']['fe_2050_live'] - fe50_s2) < 0.01, f'drsnik: k125 = S2 (končna energija 2050 {runs["k125"]["fe_2050_live"]:.1f} = {fe50_s2:.1f} GWh)')
     ctx.check(all(runs[a]['fe_gwh'][5] > runs[b]['fe_gwh'][5] for (a, _), (b, _) in zip(POS, POS[1:])), 'drsnik: višja stopnja → nižja končna energija 2050')
 
     tr = json.loads((OUT / 'trajektorija.json').read_text(encoding='utf-8'))
@@ -130,7 +132,7 @@ def build(ctx: Context) -> dict:
     ctx.check(p0.exists(), f'drsnik: datoteka {p0.name}')
     runs['S0'] = _run(p0, s0=True)
     idx['S0'] = [100 * v / runs['S0']['pe_fixed'][0] for v in runs['S0']['pe_fixed']]
-    ctx.check(abs(runs['S0']['pe_fixed'][0] - runs['k100']['pe_fixed'][0]) < 1e-6, 'drsnik: S0 in položaji imajo isto izhodišče 2025')
+    ctx.check(abs(runs['S0']['pe_fixed'][0] - runs['k125']['pe_fixed'][0]) < 1e-6, 'drsnik: S0 in položaji imajo isto izhodišče 2025')
     ref = None
     for key in ['S0'] + [k for k, _ in POS]:
         r = runs[key]
@@ -153,12 +155,12 @@ def build(ctx: Context) -> dict:
               f"drsnik: S0 {ref['stopnja_2026_2030_pct']} % na leto, od tega celovito {ref['celovito_2026_2030_pct']} %")
     ctx.check(nps[2020] == BASE_2020, f'drsnik: izhodišče 2020 = {BASE_2020} kWh/(m²·a)')
     data = {
-        'meta': ctx.meta(['Model RenRates_SI (uskladitev z NEPN 2024, 3. 10. 2026): štirje zagoni z različnimi stopnjami prenove stanovanjskih stavb',
+        'meta': ctx.meta(['Model RenRates_SI (uskladitev z NEPN 2024, 3. 10. 2026; scenarij NPS s stopnjami × 1,25, 5. 10. 2026): pet zagonov z različnimi stopnjami prenove stanovanjskih stavb',
                           f'{ctx.draft.name}: nacionalna trajektorija stanovanjskega fonda in najvišje vrednosti po EPBD'],
                          note='kWh/(m²·a): ocenjeno stanje 2025 (registri 2020–2025 in energetska bilanca s popravkom za vreme; 255, razpon 252–260) × indeks položaja iz modela. '
                               'Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb; vse drugo je kot v scenariju NPS 2050.'),
         'years': [2020] + YEARS, 'nps': [nps[2020]] + [None if y == 2025 else nps[y] for y in YEARS], 'epbd_max': k['epbd_max'],
-        'privzeto': 'k100', 'polozaji': out, 'referenca': ref, 'ocena_2025': OCENA_2025, 'viri_2025': VIRI_2025,
+        'privzeto': 'k125', 'polozaji': out, 'referenca': ref, 'ocena_2025': OCENA_2025, 'viri_2025': VIRI_2025,
     }
     write_json('drsnik', data)
     write_csv('drsnik', ['položaj', 'stopnja prenove stanovanjskih stavb 2026–2030 [%/leto]', 'od tega celovito [%/leto]', 'hiše 2026–2030 [%/leto]', 'bloki 2026–2030 [%/leto]',
