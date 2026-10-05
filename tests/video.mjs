@@ -29,9 +29,15 @@ const traj = tr.kwh_m2; const wpb = tr.zgodba.wpb;
 const hisa = sf.categories.find((c) => c.id === 'HISA'), blok = sf.categories.find((c) => c.id === 'BLOKI');
 const T = pk.tipi.find((t) => t.id === 'hisa_do1980'), V = T.variante.find((v) => v.id === 'olje'), C = V.paketi.find((p) => p.id === 'celovita');
 const S0 = dr.referenca, M30 = dr.polozaji.find((p) => p.epbd_2030);
+// Prizor 2: kje smo na poti do mejnika EPBD 2030 (drsnik: ocena stanja 2025 iz registrov in bilance, sedanja praksa S0)
+const G = { b: dr.nps[0], n: dr.ocena_2025.osrednja, lo: dr.ocena_2025.spodnja, hi: dr.ocena_2025.zgornja,
+  c: dr.epbd_max.find((e) => e.year === 2030).max, s0: S0.kwh_m2[dr.years.indexOf(2030)] };
+G.pot = Math.round(100 * (G.b - G.n) / (G.b - G.c));
+G.dosl = Math.round(100 * (1 - G.n / G.b)); G.cilj = Math.round(100 * (1 - G.c / G.b)); G.se = Math.round(100 * (1 - G.c / G.n));
+G.ime = G.pot >= 30 && G.pot <= 37 ? ['tretjina', 'tretjino', 'dve tretjini'] : [`${G.pot} %`, `${G.pot} %`, `${100 - G.pot} %`];
 const D = {
   stavb: sf.segments.skupaj.buildings, povrsina: sf.segments.skupaj.area_mio_m2, pre81: ix.si.pre1981_res_area_pct,
-  pe20: traj.nps[0], pe50: traj.nps.at(-1), red: Math.round(100 * (1 - traj.nps.at(-1) / traj.nps[0])), emRed: Math.round(100 * (1 - emis50 / emis23)),
+  G, pe20: traj.nps[0], pe50: traj.nps.at(-1), red: Math.round(100 * (1 - traj.nps.at(-1) / traj.nps[0])), emRed: Math.round(100 * (1 - emis50 / emis23)),
   thrH: hisa.worst_43.threshold, thrB: blok.worst_43.threshold, wpbA: wpb.area_mio_m2, wpbPE: wpb.avg_pe_2020, wpbY: wpb.years, wpbP: wpb.renovated_pct,
   pov: T.povrsina, ogr: V.ogrevanje, rp: V.razred_pred, pep: V.pe_pred, rpo: C.razred_po, pepo: C.pe_po,
   s25: Math.round(C.strosek_p25 / 1000), s75: Math.round(C.strosek_p75 / 1000), sp0: Math.round(C.spodbuda_eko_eur / 1000), sp1: Math.round(C.spodbuda_dod_eur / 1000),
@@ -47,8 +53,8 @@ const datum = `${MES[Number(dm) - 1]} ${dy}`;
 const CAPS = [
   [0.6, 5.2, `Slovenija ima ${nf(Math.round(D.stavb / 1000))} tisoč stavb s ${nf(D.povrsina, 1)} mio m² uporabne površine.`],
   [5.4, 9.8, `Več kot polovica stanovanjske površine je nastala pred prvimi toplotnimi predpisi leta 1981.`],
-  [10.4, 15.2, `NPS 2050 določa pot prenove stavbnega fonda do leta 2050.`],
-  [15.4, 19.8, `Raba primarne energije stanovanjskih stavb na m² naj se zmanjša za ${D.red} %, emisije iz stavb za ${D.emRed} %.`],
+  [10.4, 15.2, `Do leta 2030 mora raba energije stanovanjskih stavb na m² pasti za ${G.cilj} %. V petih letih smo prehodili šele ${G.ime[1]} poti.`],
+  [15.4, 19.8, `S sedanjim tempom prenove bomo cilj zgrešili. Za ${G.ime[2]} poti nam ostane pet let.`],
   [20.4, 25.2, `Prednost imajo energetsko najslabše stavbe – 43 % stanovanjskih stavb z najvišjo rabo energije.`],
   [25.4, 29.8, `Do leta 2030 naj bo prenovljenih ${D.wpbP[0]} % teh stavb, do leta 2050 vse.`],
   [30.4, 35.6, `Tipična hiša, zgrajena pred letom 1980, je danes v razredu ${D.rp}.`],
@@ -70,9 +76,7 @@ function html(sq) {
   const P = sq ? 70 : 120;                // rob
   const inner = W - 2 * P;
   // trajektorija (SVG)
-  const tw = sq ? inner : inner - 520, th = sq ? 330 : 420;
-  const xs = (y) => ((y - 2020) / 30) * (tw - 80) + 40, ys = (v) => th - 40 - ((v - 120) / 170) * (th - 80);
-  const tpath = traj.years.map((y, i) => `${i ? 'L' : 'M'}${xs(y).toFixed(1)},${ys(traj.nps[i]).toFixed(1)}`).join(' ');
+  const gx = (v) => (100 * (G.b - v) / (G.b - G.c)).toFixed(2) + '%';
   const dots = Array.from({ length: sq ? 100 : 200 }, (_, i) => `<i data-i="${i}"></i>`).join('');
   return `<!doctype html><html lang="sl"><head><meta charset="utf-8"><style>
 @font-face { font-family: M; src: url(${font('manrope/files/manrope-latin-ext-wght-normal.woff2')}); font-weight: 200 800; }
@@ -100,14 +104,23 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
 #s1 .leg { position: absolute; left: ${P}px; top: ${sq ? 790 : 830}px; font-size: ${sq ? 26 : 30}px; color: #DAD8C9; }
 #s1 .leg i { display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: #EC842B; vertical-align: -3px; margin-right: 10px; }
 /* 2 */
-#s2 svg { position: absolute; left: ${P}px; top: ${sq ? 330 : 330}px; width: ${tw}px; height: ${th}px; overflow: visible; }
-#s2 .tl { fill: none; stroke: #8FD19E; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
-#s2 .ax { font-size: 26px; fill: #DAD8C9; font-family: M; }
-#s2 .vl { font-size: 40px; fill: #F5F2E8; font-family: S; font-weight: 700; }
-#s2 .chips { position: absolute; ${sq ? `left: ${P}px; top: 690px;` : `right: ${P}px; top: 300px;`} display: flex; ${sq ? '' : 'flex-direction: column;'} gap: 24px; }
 .chip { background: rgba(245,242,232,.08); border: 2px solid rgba(214,178,94,.55); border-radius: 22px; padding: 22px 30px; opacity: 0; }
 .chip b { display: block; font-family: S; font-size: ${sq ? 56 : 72}px; line-height: 1; }
 .chip span { font-size: ${sq ? 22 : 26}px; color: #DAD8C9; }
+#s2 .trk { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 440 : 450}px; height: 44px; border-radius: 22px; background: rgba(245,242,232,.15); }
+#s2 .trk > i { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 22px; }
+#s2 .f { background: #8FD19E; width: 0; }
+#s2 .z { border: 3px dashed rgba(245,242,232,.7); background: none !important; opacity: 0; }
+#s2 .r { background: repeating-linear-gradient(135deg, #DE5A2B 0 12px, #C4302C 12px 24px); opacity: 0; border-radius: 0 22px 22px 0 !important; }
+#s2 .lb { position: absolute; white-space: nowrap; font-size: ${sq ? 24 : 28}px; color: #DAD8C9; opacity: 0; }
+#s2 .lb b { font-family: S; font-size: ${sq ? 38 : 46}px; color: #F5F2E8; margin-left: 8px; }
+#s2 .up { bottom: 62px; } #s2 .dn { top: 62px; }
+#s2 .lb.gold, #s2 .lb.gold b { color: #D6B25E; }
+#s2 .lb.red b { color: #EC842B; }
+#s2 .cs { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 640 : 680}px; display: grid; grid-template-columns: 1fr 1fr; gap: ${sq ? 20 : 36}px; }
+#s2 .chip b { font-size: ${sq ? 52 : 64}px; }
+#s2 .chip.red b { color: #EC842B; }
+#s2 .nt { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 850 : 860}px; font-size: ${sq ? 19 : 22}px; color: #B9B7A8; opacity: 0; }
 /* 3 */
 #s3 .grid { position: absolute; left: ${P}px; top: ${sq ? 270 : 330}px; width: ${sq ? inner : 900}px; display: grid; grid-template-columns: repeat(20, 1fr); gap: 8px; }
 #s3 .grid i { display: block; aspect-ratio: 1; border-radius: 4px; background: rgba(245,242,232,.25); }
@@ -153,14 +166,18 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
   <div class="dots">${dots}</div>
   <p class="leg"><i></i>zgrajeno pred letom 1981: ${nf(D.pre81, 0)} % stanovanjske površine</p></section>
 
-<section class="sc" id="s2"><p class="k">Cilj</p><h1>Pot do leta 2050</h1>
-  <svg viewBox="0 0 ${tw} ${th}">
-    <path class="tl" d="${tpath}" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" id="tpath"/>
-    <text class="vl" x="${xs(2020)}" y="${ys(D.pe20) - 24}" text-anchor="start">${D.pe20}</text>
-    <text class="vl" id="t50" x="${xs(2050)}" y="${ys(D.pe50) + 62}" text-anchor="end" opacity="0">${D.pe50} kWh/(m²·a)</text>
-    ${[2020, 2030, 2040, 2050].map((y) => `<text class="ax" x="${xs(y)}" y="${th}" text-anchor="middle">${y}</text>`).join('')}
-  </svg>
-  <div class="chips"><div class="chip" id="ch1"><b>−${D.red} %</b><span>primarne energije na m²<br>v stanovanjskih stavbah</span></div><div class="chip" id="ch2"><b>−${D.emRed} %</b><span>emisij toplogrednih plinov<br>iz stavb</span></div></div></section>
+<section class="sc" id="s2"><p class="k">Cilj 2030</p><h1>${G.pot >= 30 && G.pot <= 37 ? 'Prehodili smo šele tretjino poti' : `Prehodili smo šele ${G.pot} % poti`}</h1>
+  <div class="trk">
+    <i class="f" id="gf"></i>
+    <i class="z" id="gz" style="left:${gx(G.n)};width:calc(${gx(G.s0)} - ${gx(G.n)})"></i>
+    <i class="r" id="gr" style="left:${gx(G.s0)};right:0"></i>
+    <span class="lb dn" id="l0" style="left:0">2020<b>${G.b}</b></span>
+    <span class="lb up" id="l1" style="left:${gx(G.n)};transform:translateX(-50%)">danes<b>${G.n}</b></span>
+    <span class="lb up gold" id="l2" style="right:0">cilj EPBD 2030<b>${G.c}</b></span>
+    <span class="lb dn red" id="l3" style="left:${gx(G.s0)};transform:translateX(-${sq ? 50 : 30}%)">s sedanjim tempom 2030<b>${G.s0}</b></span>
+  </div>
+  <div class="cs"><div class="chip" id="ch1"><b>−${G.dosl} %</b><span>doseženo 2020–2025</span></div><div class="chip red" id="ch2"><b>−${G.se} %</b><span>potrebno 2025–2030</span></div></div>
+  <p class="nt" id="gn">kWh/(m²·a) primarne energije, stanovanjske stavbe. Danes: ocena IJS CEU iz registrov in energetske bilance (razpon ${G.lo}–${G.hi}). Cilj: najvišja vrednost po EPBD.</p></section>
 
 <section class="sc" id="s3"><p class="k">Najslabše najprej</p><h1>43 % stavb z najvišjo rabo</h1>
   <div class="grid">${Array.from({ length: 100 }, (_, i) => `<i data-i="${i}"></i>`).join('')}</div>
@@ -210,8 +227,10 @@ window.render = (t) => {
       d.style.background = old && t > a + 5.6 + i * 2 / n ? '#EC842B' : '#F5F2E8'; });
     fadeUp($('#s1 .leg'), t, a + 6); }
   // 2
-  { const a = 10; $('#tpath').setAttribute('stroke-dashoffset', 1 - ease((t - a - 1) / 4)); $('#t50').setAttribute('opacity', cl((t - a - 4.8) / .5));
-    fadeUp($('#ch1'), t, a + 5.4); fadeUp($('#ch2'), t, a + 6.2); }
+  { const a = 10; $('#l0').style.opacity = cl((t - a - .6) / .4); $('#l2').style.opacity = cl((t - a - 1) / .4);
+    $('#gf').style.width = 'calc(' + D.G.pot * ease((t - a - 1.5) / 2) + '% + ' + (1 - ease((t - a - 1.5) / 2)) * 0 + 'px)'; $('#l1').style.opacity = cl((t - a - 3.3) / .4);
+    fadeUp($('#ch1'), t, a + 3.6); $('#gz').style.opacity = cl((t - a - 5.4) / .5); $('#l3').style.opacity = cl((t - a - 5.6) / .5);
+    $('#gr').style.opacity = cl((t - a - 6.4) / .5); fadeUp($('#ch2'), t, a + 6.8); $('#gn').style.opacity = cl((t - a - 7.4) / .5); }
   // 3
   { const a = 20; $$('#s3 .grid i').forEach((d, i) => { const w = i >= 57; d.style.background = w && t > a + 1.5 + (i - 57) * .03 ? '#DE5A2B' : 'rgba(245,242,232,.25)'; });
     fadeUp($('#s3 .info'), t, a + 2.5); $$('#s3 .bar i').forEach((b, i) => { b.style.width = (b.dataset.p * ease((t - a - 4.5 - i * .4) / .8)) + '%'; }); }
