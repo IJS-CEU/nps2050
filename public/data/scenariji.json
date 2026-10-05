@@ -1,11 +1,11 @@
 {
  "meta": {
-  "draft": "NPS_v40",
-  "draft_date": "2026-10-01",
+  "draft": "NPS_v41",
+  "draft_date": "2026-10-05",
   "generated": "2026-10-05",
   "sources": [
-   "NPS_v40: preglednice »Končna raba energije v stavbah v opazovanih letih«, »Primarna raba energije …«, »Emisije toplogrednih plinov …«, »Obnovljivi viri energije …« (pogl. 4.3–4.5)",
-   "NPS_v40: preglednici »Opredelitev primerjanih strategij …« in »Rezultati primerjave strategij …« (pogl. 4.1.1)",
+   "NPS_v41: preglednice »Končna raba energije v stavbah v opazovanih letih«, »Primarna raba energije …«, »Emisije toplogrednih plinov …«, »Obnovljivi viri energije …« (pogl. 4.3–4.5)",
+   "NPS_v41: preglednici »Opredelitev primerjanih strategij …« in »Rezultati primerjave strategij …« (pogl. 4.1.1)",
    "Model RenRates_SI, list Scenario_Compare (5-letne serije S0–S2)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",

@@ -1,14 +1,14 @@
 {
  "meta": {
-  "draft": "NPS_v40",
-  "draft_date": "2026-10-01",
+  "draft": "NPS_v41",
+  "draft_date": "2026-10-05",
   "generated": "2026-10-05",
   "sources": [
    "Eko sklad, priznani stroški naložb 2023–2025 (analiza IJS CEU, 2. 10. 2026); sNES: celovite obnove in sNES+ prenove 2022–2025",
    "SURS, tabela H028S Cene energentov (gospodinjski odjemalci), povprečje četrtletij 2025; kurilno olje preračunano s 10 kWh/l",
    "Gozdarski inštitut Slovenije, cene lesnih goriv (drva, oktober 2024: 195 €/t), preračunano s 4,0 kWh/kg",
    "Agencija za energijo, Analiza cen toplote iz distribucijskih sistemov za leto 2025 (povprečje GJS, značilni odjemalec v večstanovanjski stavbi, s prispevki in DDV)",
-   "NPS_v40: preglednica 23 (raba končne energije po razredih), preglednica 26 (predlog spodbud N1), meje razredov",
+   "NPS_v41: preglednica 23 (raba končne energije po razredih), preglednica 26 (predlog spodbud N1), meje razredov",
    "Register energetskih izkaznic in kataster nepremičnin (stanje pred prenovo, površine)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",

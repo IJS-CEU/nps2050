@@ -1,7 +1,7 @@
 {
  "meta": {
-  "draft": "NPS_v40",
-  "draft_date": "2026-10-01",
+  "draft": "NPS_v41",
+  "draft_date": "2026-10-05",
   "generated": "2026-10-05",
   "sources": [
    "Seštevki občinskih podatkov (obcine_model.json, obcine_index.json, zemljevid.json)"
@@ -96,8 +96,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 115700,
-     "2031_2040": 118800
+     "2026_2030": 137100,
+     "2031_2040": 136500
     },
     "wpb_m2_leto": 82300,
     "meps_n_2030": 408,
@@ -115,16 +115,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 729,
-    "stanovanja_leto": 180,
+    "hise_leto": 913,
+    "stanovanja_leto": 222,
     "javne_leto": 32,
     "zasebne_leto": 43,
-    "nalozba_eur_leto": 45600000,
-    "spodbude_eur_leto": 7400000.0,
+    "nalozba_eur_leto": 52900000,
+    "spodbude_eur_leto": 8500000.0,
     "semafor": "pod ciljem",
     "indeks_tempo": 0.93,
     "stopnja_dejanska_pct": 0.97,
-    "stopnja_zahtevana_pct": 1.84,
+    "stopnja_zahtevana_pct": 2.3,
     "prenov_registri": 847,
     "obcine_semafor": {
      "na poti": 5,
@@ -491,8 +491,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 326000,
-     "2031_2040": 323000
+     "2026_2030": 387000,
+     "2031_2040": 371500
     },
     "wpb_m2_leto": 210900,
     "meps_n_2030": 1104,
@@ -510,16 +510,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 1605,
-    "stanovanja_leto": 1147,
+    "hise_leto": 2010,
+    "stanovanja_leto": 1435,
     "javne_leto": 49,
     "zasebne_leto": 81,
-    "nalozba_eur_leto": 126600000,
-    "spodbude_eur_leto": 21100000.0,
+    "nalozba_eur_leto": 147300000,
+    "spodbude_eur_leto": 24000000.0,
     "semafor": "pod ciljem",
     "indeks_tempo": 0.8,
     "stopnja_dejanska_pct": 0.85,
-    "stopnja_zahtevana_pct": 1.89,
+    "stopnja_zahtevana_pct": 2.36,
     "prenov_registri": 1380,
     "obcine_semafor": {
      "na poti": 2,
@@ -1026,8 +1026,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 66400,
-     "2031_2040": 65600
+     "2026_2030": 78900,
+     "2031_2040": 75600
     },
     "wpb_m2_leto": 45500,
     "meps_n_2030": 353,
@@ -1045,16 +1045,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 300,
-    "stanovanja_leto": 243,
+    "hise_leto": 375,
+    "stanovanja_leto": 303,
     "javne_leto": 14,
     "zasebne_leto": 20,
-    "nalozba_eur_leto": 25700000,
-    "spodbude_eur_leto": 4300000.0,
+    "nalozba_eur_leto": 30000000,
+    "spodbude_eur_leto": 4900000.0,
     "semafor": "pod ciljem",
     "indeks_tempo": 0.79,
     "stopnja_dejanska_pct": 0.85,
-    "stopnja_zahtevana_pct": 1.88,
+    "stopnja_zahtevana_pct": 2.35,
     "prenov_registri": 292,
     "obcine_semafor": {
      "na poti": 2,
@@ -1271,8 +1271,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 239600,
-     "2031_2040": 243000
+     "2026_2030": 283600,
+     "2031_2040": 278100
     },
     "wpb_m2_leto": 165200,
     "meps_n_2030": 631,
@@ -1290,16 +1290,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 1237,
-    "stanovanja_leto": 793,
+    "hise_leto": 1547,
+    "stanovanja_leto": 992,
     "javne_leto": 39,
     "zasebne_leto": 70,
-    "nalozba_eur_leto": 94800000,
-    "spodbude_eur_leto": 15600000.0,
+    "nalozba_eur_leto": 109700000,
+    "spodbude_eur_leto": 17700000.0,
     "semafor": "na poti",
     "indeks_tempo": 1.05,
     "stopnja_dejanska_pct": 1.12,
-    "stopnja_zahtevana_pct": 1.88,
+    "stopnja_zahtevana_pct": 2.35,
     "prenov_registri": 1238,
     "obcine_semafor": {
      "na poti": 6,
@@ -1706,8 +1706,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 46800,
-     "2031_2040": 44300
+     "2026_2030": 56000,
+     "2031_2040": 51400
     },
     "wpb_m2_leto": 40700,
     "meps_n_2030": 191,
@@ -1725,16 +1725,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 210,
-    "stanovanja_leto": 255,
+    "hise_leto": 263,
+    "stanovanja_leto": 318,
     "javne_leto": 8,
     "zasebne_leto": 13,
-    "nalozba_eur_leto": 17700000,
-    "spodbude_eur_leto": 3000000.0,
+    "nalozba_eur_leto": 20800000,
+    "spodbude_eur_leto": 3400000.0,
     "semafor": "pod ciljem",
     "indeks_tempo": 0.9,
     "stopnja_dejanska_pct": 0.98,
-    "stopnja_zahtevana_pct": 1.91,
+    "stopnja_zahtevana_pct": 2.39,
     "prenov_registri": 217,
     "obcine_semafor": {
      "na poti": 1,
@@ -1871,8 +1871,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 74800,
-     "2031_2040": 76600
+     "2026_2030": 88400,
+     "2031_2040": 87800
     },
     "wpb_m2_leto": 52100,
     "meps_n_2030": 239,
@@ -1890,16 +1890,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 466,
-    "stanovanja_leto": 139,
+    "hise_leto": 581,
+    "stanovanja_leto": 173,
     "javne_leto": 15,
     "zasebne_leto": 26,
-    "nalozba_eur_leto": 29300000,
-    "spodbude_eur_leto": 5000000.0,
+    "nalozba_eur_leto": 33900000,
+    "spodbude_eur_leto": 5600000.0,
     "semafor": "pod ciljem",
     "indeks_tempo": 0.67,
     "stopnja_dejanska_pct": 0.7,
-    "stopnja_zahtevana_pct": 1.84,
+    "stopnja_zahtevana_pct": 2.31,
     "prenov_registri": 398,
     "obcine_semafor": {
      "na poti": 0,
@@ -2056,8 +2056,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 139300,
-     "2031_2040": 140300
+     "2026_2030": 165500,
+     "2031_2040": 161700
     },
     "wpb_m2_leto": 90200,
     "meps_n_2030": 954,
@@ -2075,16 +2075,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 832,
-    "stanovanja_leto": 287,
+    "hise_leto": 1042,
+    "stanovanja_leto": 358,
     "javne_leto": 31,
     "zasebne_leto": 45,
-    "nalozba_eur_leto": 54000000,
-    "spodbude_eur_leto": 9000000.0,
+    "nalozba_eur_leto": 62900000,
+    "spodbude_eur_leto": 10300000.0,
     "semafor": "pod ciljem",
     "indeks_tempo": 0.58,
     "stopnja_dejanska_pct": 0.61,
-    "stopnja_zahtevana_pct": 1.85,
+    "stopnja_zahtevana_pct": 2.31,
     "prenov_registri": 626,
     "obcine_semafor": {
      "na poti": 1,
@@ -2391,8 +2391,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 553100,
-     "2031_2040": 562000
+     "2026_2030": 650800,
+     "2031_2040": 637000
     },
     "wpb_m2_leto": 350400,
     "meps_n_2030": 837,
@@ -2410,16 +2410,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 1806,
-    "stanovanja_leto": 2703,
+    "hise_leto": 2255,
+    "stanovanja_leto": 3382,
     "javne_leto": 69,
     "zasebne_leto": 101,
-    "nalozba_eur_leto": 222600000,
-    "spodbude_eur_leto": 36900000.0,
+    "nalozba_eur_leto": 255700000,
+    "spodbude_eur_leto": 41500000.0,
     "semafor": "na poti",
     "indeks_tempo": 1.43,
     "stopnja_dejanska_pct": 1.57,
-    "stopnja_zahtevana_pct": 1.93,
+    "stopnja_zahtevana_pct": 2.42,
     "prenov_registri": 2318,
     "obcine_semafor": {
      "na poti": 6,
@@ -2766,8 +2766,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 195700,
-     "2031_2040": 195000
+     "2026_2030": 232400,
+     "2031_2040": 224000
     },
     "wpb_m2_leto": 136800,
     "meps_n_2030": 737,
@@ -2785,16 +2785,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 836,
-    "stanovanja_leto": 735,
+    "hise_leto": 1045,
+    "stanovanja_leto": 920,
     "javne_leto": 30,
     "zasebne_leto": 55,
-    "nalozba_eur_leto": 76600000,
-    "spodbude_eur_leto": 12600000.0,
+    "nalozba_eur_leto": 89000000,
+    "spodbude_eur_leto": 14300000.0,
     "semafor": "pod ciljem",
-    "indeks_tempo": 0.99,
+    "indeks_tempo": 0.98,
     "stopnja_dejanska_pct": 1.05,
-    "stopnja_zahtevana_pct": 1.89,
+    "stopnja_zahtevana_pct": 2.36,
     "prenov_registri": 1144,
     "obcine_semafor": {
      "na poti": 7,
@@ -3071,8 +3071,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 54700,
-     "2031_2040": 54900
+     "2026_2030": 64800,
+     "2031_2040": 63000
     },
     "wpb_m2_leto": 39600,
     "meps_n_2030": 345,
@@ -3090,16 +3090,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 268,
-    "stanovanja_leto": 146,
+    "hise_leto": 335,
+    "stanovanja_leto": 184,
     "javne_leto": 12,
     "zasebne_leto": 18,
-    "nalozba_eur_leto": 21200000,
-    "spodbude_eur_leto": 3600000.0,
+    "nalozba_eur_leto": 24600000,
+    "spodbude_eur_leto": 4100000.0,
     "semafor": "pod ciljem",
     "indeks_tempo": 0.71,
     "stopnja_dejanska_pct": 0.75,
-    "stopnja_zahtevana_pct": 1.87,
+    "stopnja_zahtevana_pct": 2.33,
     "prenov_registri": 268,
     "obcine_semafor": {
      "na poti": 0,
@@ -3256,8 +3256,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 126800,
-     "2031_2040": 128600
+     "2026_2030": 150100,
+     "2031_2040": 147400
     },
     "wpb_m2_leto": 102400,
     "meps_n_2030": 690,
@@ -3275,16 +3275,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 637,
-    "stanovanja_leto": 323,
+    "hise_leto": 793,
+    "stanovanja_leto": 404,
     "javne_leto": 29,
     "zasebne_leto": 45,
-    "nalozba_eur_leto": 49800000,
-    "spodbude_eur_leto": 8300000.0,
+    "nalozba_eur_leto": 57700000,
+    "spodbude_eur_leto": 9400000.0,
     "semafor": "pod ciljem",
     "indeks_tempo": 0.72,
     "stopnja_dejanska_pct": 0.76,
-    "stopnja_zahtevana_pct": 1.87,
+    "stopnja_zahtevana_pct": 2.33,
     "prenov_registri": 518,
     "obcine_semafor": {
      "na poti": 1,
@@ -3511,8 +3511,8 @@
    },
    "cilji": {
     "prenova_m2_leto": {
-     "2026_2030": 128200,
-     "2031_2040": 129500
+     "2026_2030": 151600,
+     "2031_2040": 147800
     },
     "wpb_m2_leto": 89500,
     "meps_n_2030": 659,
@@ -3530,16 +3530,16 @@
     ]
    },
    "stevilke": {
-    "hise_leto": 507,
-    "stanovanja_leto": 586,
+    "hise_leto": 635,
+    "stanovanja_leto": 731,
     "javne_leto": 21,
     "zasebne_leto": 39,
-    "nalozba_eur_leto": 51500000,
-    "spodbude_eur_leto": 8200000.0,
+    "nalozba_eur_leto": 59400000,
+    "spodbude_eur_leto": 9300000.0,
     "semafor": "pod ciljem",
-    "indeks_tempo": 0.87,
+    "indeks_tempo": 0.86,
     "stopnja_dejanska_pct": 0.94,
-    "stopnja_zahtevana_pct": 1.91,
+    "stopnja_zahtevana_pct": 2.39,
     "prenov_registri": 374,
     "obcine_semafor": {
      "na poti": 3,

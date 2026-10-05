@@ -1,10 +1,10 @@
 {
  "meta": {
-  "draft": "NPS_v40",
-  "draft_date": "2026-10-01",
+  "draft": "NPS_v41",
+  "draft_date": "2026-10-05",
   "generated": "2026-10-05",
   "sources": [
-   "NPS_v40: pogl. 6 (preglednice »Pregled vsebin …«, »Pregled obstoječih ukrepov …«, »Pregled novih ukrepov …«, »Novi ukrepi za izpolnitev zahtev EPBD (N1–N20)«, »Časovni načrt opuščanja kotlov …«), pogl. 7 (»Investicijske potrebe …«, »Viri financiranja … 2031–2050«)"
+   "NPS_v41: pogl. 6 (preglednice »Pregled vsebin …«, »Pregled obstoječih ukrepov …«, »Pregled novih ukrepov …«, »Novi ukrepi za izpolnitev zahtev EPBD (N1–N20)«, »Časovni načrt opuščanja kotlov …«), pogl. 7 (»Investicijske potrebe …«, »Viri financiranja … 2031–2050«)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
   "note": "Novi ukrepi N1–N20 so v osnutku predlog za odločanje; roki in nosilci se uskladijo ob posodobitvi NEPN. Investicije v mio EUR; obdobja od 2031 dalje so petletne vsote."
@@ -1822,55 +1822,55 @@
    },
    "Stanovanjske stavbe": {
     "needs": [
-     507,
-     508,
-     515,
-     511,
-     523,
-     2049,
-     1963,
-     1770,
-     1801
+     634,
+     635,
+     644,
+     639,
+     654,
+     2561,
+     2454,
+     2213,
+     2251
     ],
     "leveraged": [
-     328,
-     401,
-     376,
-     395,
-     443,
+     410,
+     501,
+     470,
+     494,
+     554,
      null,
      null,
      null,
      null
     ],
     "grants": [
-     67,
-     82,
-     68,
-     67,
-     74,
+     84,
+     102,
+     85,
+     83,
+     92,
      null,
      null,
      null,
      null
     ],
     "private": [
-     260,
-     319,
-     308,
-     328,
-     369,
+     326,
+     399,
+     385,
+     411,
+     462,
      null,
      null,
      null,
      null
     ],
     "gap": [
-     -180,
-     -107,
-     -139,
-     -116,
-     -80,
+     -224,
+     -134,
+     -174,
+     -145,
+     -100,
      null,
      null,
      null,
@@ -1935,9 +1935,9 @@
     ]
    }
   },
-  "total_2026_2030": 4073,
-  "total_2026_2050": 19185,
-  "gap_2026_2030": 1169
+  "total_2026_2030": 4715,
+  "total_2026_2050": 21723,
+  "gap_2026_2030": 1324
  },
  "sources": [
   {

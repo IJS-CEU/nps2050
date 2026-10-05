@@ -1,10 +1,10 @@
 {
  "meta": {
-  "draft": "NPS_v40",
-  "draft_date": "2026-10-01",
+  "draft": "NPS_v41",
+  "draft_date": "2026-10-05",
   "generated": "2026-10-05",
   "sources": [
-   "NPS_v40: preglednica 54 »Vhodni parametri ocene investicijskih potreb« (pogl. 7)",
+   "NPS_v41: preglednica 54 »Vhodni parametri ocene investicijskih potreb« (pogl. 7)",
    "Kataster nepremičnin GURS (povprečne površine), Eko sklad (ukrepi 2023–2025)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
@@ -20,7 +20,7 @@
   "javne": 0.4,
   "zasebne": 0.1
  },
- "drzavni_obseg_m2_leto": 2067100.0,
+ "drzavni_obseg_m2_leto": 2446000,
  "semafor": {
   "metoda": "B (relativna)",
   "min_prenov": 10

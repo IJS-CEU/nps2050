@@ -13,7 +13,7 @@ const pct = (a: number, b: number) => Math.round(((b - a) / a) * 100);
 const lead = (s: string) => Number(s.replace(/\s*\(.*$/, '').replace(/[≈≤\s]/g, '').replace('.', '').replace(',', '.'));
 
 const traj = k.trajektorija, emi = k.emisije, rev = k.energetska_revscina, rate = k.stopnja_prenove, inv = k.investicije;
-const inv30 = inv.values.find((v) => v.year === 2030)!.text;   // »4,07 (2026–2030)«
+const inv30 = inv.values.find((v) => v.year === 2030)!.text;   // npr. »4,72 (2026–2030)«
 const inv40 = inv.values.find((v) => v.year === 2040)!.text;   // »≈ 19 (2026–2050)«
 const tiles = [
   { v: `${nf(pct(traj.baseline.value!, v2050('trajektorija').value!))} %`, l: `manj primarne energije na m² stanovanjskih stavb do leta 2050 (${nf(traj.baseline.value)} → ${nf(v2050('trajektorija').value)} kWh/(m²·a))` },

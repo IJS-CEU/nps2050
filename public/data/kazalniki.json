@@ -1,10 +1,10 @@
 {
  "meta": {
-  "draft": "NPS_v40",
-  "draft_date": "2026-10-01",
+  "draft": "NPS_v41",
+  "draft_date": "2026-10-05",
   "generated": "2026-10-05",
   "sources": [
-   "NPS_v40: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)"
+   "NPS_v41: preglednica »Ključni cilji in kazalniki NPS 2050« (povzetek)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
   "note": "Vrednosti so zapisane kot v načrtu (text); value je številka za mali graf, pri razponu zgornja meja."
@@ -212,17 +212,17 @@
    "values": [
     {
      "year": 2030,
-     "text": "2,2 (2020–2030)",
+     "text": "2,6 (2020–2030)",
      "value": null
     },
     {
      "year": 2040,
-     "text": "2,0 (2031–2040)",
+     "text": "2,3 (2031–2040)",
      "value": null
     },
     {
      "year": 2050,
-     "text": "2,0 (2041–2050)",
+     "text": "2,2 (2041–2050)",
      "value": null
     }
    ],
@@ -240,17 +240,17 @@
    "values": [
     {
      "year": 2030,
-     "text": "1,52 / 0,29 / 0,26",
+     "text": "1,90 / 0,29 / 0,26",
      "value": null
     },
     {
      "year": 2040,
-     "text": "1,20 / 0,38 / 0,50",
+     "text": "1,50 / 0,38 / 0,50",
      "value": null
     },
     {
      "year": 2050,
-     "text": "1,14 / 0,47 / 0,69",
+     "text": "1,42 / 0,47 / 0,69",
      "value": null
     }
    ],
@@ -268,8 +268,8 @@
    "values": [
     {
      "year": 2030,
-     "text": "217 (−19 %, EPBD ≥ −16 %)",
-     "value": 217
+     "text": "222 (−17,5 %, EPBD ≥ −16 %)",
+     "value": 222
     },
     {
      "year": 2040,
@@ -412,12 +412,12 @@
    "values": [
     {
      "year": 2030,
-     "text": "4,07 (2026–2030)",
+     "text": "4,72 (2026–2030)",
      "value": null
     },
     {
      "year": 2040,
-     "text": "≈ 19 (2026–2050)",
+     "text": "≈ 21,5 (2026–2050)",
      "value": null
     },
     {
@@ -440,7 +440,7 @@
    "values": [
     {
      "year": 2030,
-     "text": "1,17 (2026–2030)",
+     "text": "1,33 (2026–2030)",
      "value": null
     },
     {
@@ -468,7 +468,7 @@
    "values": [
     {
      "year": 2030,
-     "text": "162–242 / 12–14,5",
+     "text": "162–242 / 14–17",
      "value": null
     },
     {

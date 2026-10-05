@@ -1,11 +1,11 @@
 {
  "meta": {
-  "draft": "NPS_v40",
-  "draft_date": "2026-10-01",
+  "draft": "NPS_v41",
+  "draft_date": "2026-10-05",
   "generated": "2026-10-05",
   "sources": [
-   "NPS_v40: preglednica »Nacionalna trajektorija prenove stanovanjskega fonda« (pogl. 4.7.1)",
-   "NPS_v40: preglednica »Primarna raba energije v stavbah po scenariju NPS 2050« (pogl. 4.3)"
+   "NPS_v41: preglednica »Nacionalna trajektorija prenove stanovanjskega fonda« (pogl. 4.7.1)",
+   "NPS_v41: preglednica »Primarna raba energije v stavbah po scenariju NPS 2050« (pogl. 4.3)"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
   "note": "kwh_m2: stanovanjski fond, fiksni faktorji primarne energije (PURES 2021). twh: vse stavbe v obsegu EPBD, pretvorjeno iz enot načrta (1 TWh = 1000 GWh); total pri faktorjih, veljavnih v posameznem letu (DU-OVE), total_fixed pri faktorjih 2025."
@@ -22,15 +22,15 @@
   ],
   "nps": [
    269,
-   217,
-   199,
+   222,
+   200,
    180,
    172,
    164
   ],
   "reduction_pct": [
    null,
-   19,
+   17.5,
    26,
    33,
    36,
@@ -50,8 +50,8 @@
   ],
   "nps_valid_factors": [
    269,
-   207,
-   187,
+   211,
+   188,
    167,
    158,
    148
@@ -129,27 +129,27 @@
    ],
    "S0": [
     269,
-    243,
-    241,
-    237,
+    246,
+    247,
+    238,
     226,
     225,
     220
    ],
    "S1": [
     269,
-    243,
-    223,
-    208,
+    246,
+    228,
+    209,
     192,
     187,
     180
    ],
    "S2": [
     269,
-    243,
-    217,
-    199,
+    246,
+    222,
+    200,
     180,
     172,
     164

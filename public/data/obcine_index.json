@@ -1,7 +1,7 @@
 {
  "meta": {
-  "draft": "NPS_v40",
-  "draft_date": "2026-10-01",
+  "draft": "NPS_v41",
+  "draft_date": "2026-10-05",
   "generated": "2026-10-05",
   "sources": [
    "Kataster nepremičnin GURS, stavbe in deli stavb, 30. 8. 2026 (razvrstitev v kategorije EPBD kot v osnutku NPS 2050)",
@@ -288,7 +288,7 @@
   "w_nres_reg_n": 3469,
   "pop": 2135107,
   "t_dej_pct": 1.07,
-  "t_zah_pct": 1.89,
+  "t_zah_pct": 2.36,
   "t_semafor_n": {
    "pod ciljem": 147,
    "na poti": 34,
@@ -329,7 +329,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.56,
    "t_dej_pct": 0.58,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 73
   },
   {
@@ -365,7 +365,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.54,
    "t_dej_pct": 1.71,
-   "t_zah_pct": 1.96,
+   "t_zah_pct": 2.45,
    "t_n": 12
   },
   {
@@ -401,7 +401,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.65,
    "t_dej_pct": 0.66,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 22
   },
   {
@@ -437,7 +437,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.78,
    "t_dej_pct": 0.79,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 61
   },
   {
@@ -473,7 +473,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.43,
    "t_dej_pct": 0.45,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 12
   },
   {
@@ -509,7 +509,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.51,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 6
   },
   {
@@ -545,7 +545,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.03,
    "t_dej_pct": 1.09,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 62
   },
   {
@@ -581,7 +581,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.45,
    "t_dej_pct": 0.47,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.28,
    "t_n": 11
   },
   {
@@ -617,7 +617,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.88,
    "t_dej_pct": 0.92,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.33,
    "t_n": 60
   },
   {
@@ -653,7 +653,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.92,
    "t_dej_pct": 0.97,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 30
   },
   {
@@ -689,7 +689,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.45,
    "t_dej_pct": 0.48,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 24
   },
   {
@@ -725,7 +725,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.75,
    "t_dej_pct": 0.76,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 41
   },
   {
@@ -761,7 +761,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.5,
    "t_dej_pct": 0.51,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 26
   },
   {
@@ -797,7 +797,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.55,
    "t_dej_pct": 0.57,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 65
   },
   {
@@ -833,7 +833,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.7,
    "t_dej_pct": 0.72,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 170
   },
   {
@@ -869,7 +869,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.92,
    "t_dej_pct": 0.94,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 15
   },
   {
@@ -905,7 +905,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.46,
    "t_dej_pct": 1.61,
-   "t_zah_pct": 1.96,
+   "t_zah_pct": 2.45,
    "t_n": 205
   },
   {
@@ -941,7 +941,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.64,
    "t_dej_pct": 0.66,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 45
   },
   {
@@ -977,7 +977,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.61,
    "t_dej_pct": 0.63,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 64
   },
   {
@@ -1013,7 +1013,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.61,
    "t_dej_pct": 0.63,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 34
   },
   {
@@ -1049,7 +1049,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.52,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 8
   },
   {
@@ -1085,7 +1085,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.38,
    "t_dej_pct": 0.38,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 12
   },
   {
@@ -1121,7 +1121,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.54,
    "t_dej_pct": 0.55,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 12
   },
   {
@@ -1157,7 +1157,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.26,
    "t_dej_pct": 0.27,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.32,
    "t_n": 11
   },
   {
@@ -1193,7 +1193,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.19,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 3
   },
   {
@@ -1229,7 +1229,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.58,
    "t_dej_pct": 0.6,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 21
   },
   {
@@ -1265,7 +1265,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.54,
    "t_dej_pct": 0.57,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 10
   },
   {
@@ -1301,7 +1301,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.76,
    "t_dej_pct": 0.78,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 48
   },
   {
@@ -1337,7 +1337,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.54,
    "t_dej_pct": 1.58,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 24
   },
   {
@@ -1373,7 +1373,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.67,
    "t_dej_pct": 0.69,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 29
   },
   {
@@ -1409,7 +1409,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.31,
    "t_dej_pct": 0.32,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 11
   },
   {
@@ -1445,7 +1445,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.11,
    "t_dej_pct": 1.18,
-   "t_zah_pct": 1.88,
+   "t_zah_pct": 2.35,
    "t_n": 139
   },
   {
@@ -1481,7 +1481,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.56,
    "t_dej_pct": 0.57,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 11
   },
   {
@@ -1517,7 +1517,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.52,
    "t_dej_pct": 0.55,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.33,
    "t_n": 22
   },
   {
@@ -1553,7 +1553,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.6,
    "t_dej_pct": 0.61,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 35
   },
   {
@@ -1589,7 +1589,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.65,
    "t_dej_pct": 0.66,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 41
   },
   {
@@ -1625,7 +1625,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.53,
    "t_dej_pct": 0.55,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 17
   },
   {
@@ -1661,7 +1661,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.03,
    "t_dej_pct": 1.07,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 23
   },
   {
@@ -1697,7 +1697,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.91,
    "t_dej_pct": 0.96,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.33,
    "t_n": 51
   },
   {
@@ -1733,7 +1733,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.57,
    "t_dej_pct": 0.59,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 13
   },
   {
@@ -1769,7 +1769,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.35,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 8
   },
   {
@@ -1805,7 +1805,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.43,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 9
   },
   {
@@ -1841,7 +1841,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.6,
    "t_dej_pct": 0.63,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.32,
    "t_n": 81
   },
   {
@@ -1877,7 +1877,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 1.0,
    "t_dej_pct": 1.02,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 23
   },
   {
@@ -1913,7 +1913,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.1,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 1
   },
   {
@@ -1949,7 +1949,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.42,
    "t_dej_pct": 0.43,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 12
   },
   {
@@ -1985,7 +1985,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.7,
    "t_dej_pct": 0.72,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 68
   },
   {
@@ -2021,7 +2021,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.43,
    "t_dej_pct": 0.47,
-   "t_zah_pct": 1.93,
+   "t_zah_pct": 2.42,
    "t_n": 26
   },
   {
@@ -2057,7 +2057,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.27,
    "t_dej_pct": 0.28,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 12
   },
   {
@@ -2093,7 +2093,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.1,
    "t_dej_pct": 1.18,
-   "t_zah_pct": 1.91,
+   "t_zah_pct": 2.38,
    "t_n": 72
   },
   {
@@ -2129,7 +2129,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.38,
    "t_dej_pct": 0.4,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 24
   },
   {
@@ -2165,7 +2165,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.58,
    "t_dej_pct": 0.61,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 64
   },
   {
@@ -2201,7 +2201,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.41,
    "t_dej_pct": 0.42,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 66
   },
   {
@@ -2237,7 +2237,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.14,
    "t_dej_pct": 1.28,
-   "t_zah_pct": 1.99,
+   "t_zah_pct": 2.49,
    "t_n": 48
   },
   {
@@ -2273,7 +2273,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.09,
    "t_dej_pct": 1.22,
-   "t_zah_pct": 1.99,
+   "t_zah_pct": 2.49,
    "t_n": 61
   },
   {
@@ -2309,7 +2309,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.54,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 5
   },
   {
@@ -2345,7 +2345,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.38,
    "t_dej_pct": 0.39,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 13
   },
   {
@@ -2381,7 +2381,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.0,
    "t_dej_pct": 1.07,
-   "t_zah_pct": 1.89,
+   "t_zah_pct": 2.36,
    "t_n": 135
   },
   {
@@ -2417,7 +2417,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.34,
    "t_dej_pct": 0.36,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 10
   },
   {
@@ -2453,7 +2453,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.39,
    "t_dej_pct": 0.4,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 26
   },
   {
@@ -2489,7 +2489,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.63,
    "t_dej_pct": 0.65,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.28,
    "t_n": 28
   },
   {
@@ -2525,7 +2525,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.33,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 3
   },
   {
@@ -2561,7 +2561,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.33,
    "t_dej_pct": 0.34,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 15
   },
   {
@@ -2597,7 +2597,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.87,
    "t_dej_pct": 0.9,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 41
   },
   {
@@ -2633,7 +2633,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.91,
    "t_dej_pct": 0.98,
-   "t_zah_pct": 1.91,
+   "t_zah_pct": 2.39,
    "t_n": 163
   },
   {
@@ -2669,7 +2669,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.34,
    "t_dej_pct": 0.35,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 10
   },
   {
@@ -2705,7 +2705,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.24,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 3
   },
   {
@@ -2741,7 +2741,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.51,
    "t_dej_pct": 0.52,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 14
   },
   {
@@ -2777,7 +2777,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.85,
    "t_dej_pct": 0.91,
-   "t_zah_pct": 1.89,
+   "t_zah_pct": 2.36,
    "t_n": 78
   },
   {
@@ -2813,7 +2813,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.17,
    "t_dej_pct": 1.26,
-   "t_zah_pct": 1.92,
+   "t_zah_pct": 2.4,
    "t_n": 265
   },
   {
@@ -2849,7 +2849,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.26,
    "t_dej_pct": 1.36,
-   "t_zah_pct": 1.92,
+   "t_zah_pct": 2.4,
    "t_n": 50
   },
   {
@@ -2885,7 +2885,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.59,
    "t_dej_pct": 0.61,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.28,
    "t_n": 20
   },
   {
@@ -2921,7 +2921,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.83,
    "t_dej_pct": 0.86,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 127
   },
   {
@@ -2957,7 +2957,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.38,
    "t_dej_pct": 0.39,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 22
   },
   {
@@ -2993,7 +2993,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.99,
    "t_dej_pct": 1.01,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 17
   },
   {
@@ -3029,7 +3029,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.58,
    "t_dej_pct": 0.61,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 52
   },
   {
@@ -3065,7 +3065,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.5,
    "t_dej_pct": 0.52,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 35
   },
   {
@@ -3101,7 +3101,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.22,
    "t_dej_pct": 1.27,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 97
   },
   {
@@ -3137,7 +3137,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.6,
    "t_dej_pct": 0.63,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.33,
    "t_n": 66
   },
   {
@@ -3173,7 +3173,7 @@
    "t_semafor": "na poti",
    "t_indeks": 2.0,
    "t_dej_pct": 2.26,
-   "t_zah_pct": 2.01,
+   "t_zah_pct": 2.51,
    "t_n": 1084
   },
   {
@@ -3209,7 +3209,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.67,
    "t_dej_pct": 0.69,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 15
   },
   {
@@ -3245,7 +3245,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.54,
    "t_dej_pct": 0.56,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 56
   },
   {
@@ -3281,7 +3281,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.17,
    "t_dej_pct": 1.2,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 37
   },
   {
@@ -3317,7 +3317,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.13,
    "t_dej_pct": 1.19,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 99
   },
   {
@@ -3353,7 +3353,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.32,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.31,
    "t_n": 6
   },
   {
@@ -3389,7 +3389,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.38,
    "t_dej_pct": 0.39,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 13
   },
   {
@@ -3425,7 +3425,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.52,
    "t_dej_pct": 0.53,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 10
   },
   {
@@ -3461,7 +3461,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.4,
    "t_dej_pct": 0.41,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 21
   },
   {
@@ -3497,7 +3497,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.54,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 7
   },
   {
@@ -3533,7 +3533,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.31,
    "t_dej_pct": 0.32,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 11
   },
   {
@@ -3569,7 +3569,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.31,
    "t_dej_pct": 0.31,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 10
   },
   {
@@ -3605,7 +3605,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.17,
    "t_dej_pct": 1.31,
-   "t_zah_pct": 1.98,
+   "t_zah_pct": 2.48,
    "t_n": 397
   },
   {
@@ -3641,7 +3641,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.64,
    "t_dej_pct": 0.65,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 29
   },
   {
@@ -3677,7 +3677,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.9,
    "t_dej_pct": 0.93,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 98
   },
   {
@@ -3713,7 +3713,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.36,
    "t_dej_pct": 1.44,
-   "t_zah_pct": 1.88,
+   "t_zah_pct": 2.35,
    "t_n": 53
   },
   {
@@ -3749,7 +3749,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.37,
    "t_dej_pct": 0.39,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 30
   },
   {
@@ -3785,7 +3785,7 @@
    "t_semafor": "na poti",
    "t_indeks": 2.41,
    "t_dej_pct": 2.63,
-   "t_zah_pct": 1.94,
+   "t_zah_pct": 2.42,
    "t_n": 23
   },
   {
@@ -3821,7 +3821,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.56,
    "t_dej_pct": 0.58,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 33
   },
   {
@@ -3857,7 +3857,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.89,
    "t_dej_pct": 0.92,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.28,
    "t_n": 25
   },
   {
@@ -3893,7 +3893,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.65,
    "t_dej_pct": 0.68,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.33,
    "t_n": 17
   },
   {
@@ -3929,7 +3929,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.3,
    "t_dej_pct": 0.3,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.26,
    "t_n": 10
   },
   {
@@ -3965,7 +3965,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.69,
    "t_dej_pct": 0.71,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.29,
    "t_n": 29
   },
   {
@@ -4001,7 +4001,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.24,
    "t_dej_pct": 0.25,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 11
   },
   {
@@ -4037,7 +4037,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.73,
    "t_dej_pct": 0.75,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.28,
    "t_n": 59
   },
   {
@@ -4073,7 +4073,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.3,
    "t_dej_pct": 0.3,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 16
   },
   {
@@ -4109,7 +4109,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.02,
    "t_dej_pct": 1.06,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 39
   },
   {
@@ -4145,7 +4145,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.73,
    "t_dej_pct": 1.85,
-   "t_zah_pct": 1.89,
+   "t_zah_pct": 2.37,
    "t_n": 149
   },
   {
@@ -4181,7 +4181,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.53,
    "t_dej_pct": 0.55,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.32,
    "t_n": 14
   },
   {
@@ -4217,7 +4217,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.53,
    "t_dej_pct": 0.55,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 26
   },
   {
@@ -4253,7 +4253,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.68,
    "t_dej_pct": 0.71,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 17
   },
   {
@@ -4289,7 +4289,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.94,
    "t_dej_pct": 1.01,
-   "t_zah_pct": 1.9,
+   "t_zah_pct": 2.38,
    "t_n": 102
   },
   {
@@ -4325,7 +4325,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.64,
    "t_dej_pct": 0.68,
-   "t_zah_pct": 1.88,
+   "t_zah_pct": 2.35,
    "t_n": 147
   },
   {
@@ -4361,7 +4361,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.95,
    "t_dej_pct": 0.97,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 12
   },
   {
@@ -4397,7 +4397,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.45,
    "t_dej_pct": 0.47,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 14
   },
   {
@@ -4433,7 +4433,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.7,
    "t_dej_pct": 0.72,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 71
   },
   {
@@ -4469,7 +4469,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.54,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 3
   },
   {
@@ -4505,7 +4505,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.41,
    "t_dej_pct": 0.42,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.28,
    "t_n": 29
   },
   {
@@ -4541,7 +4541,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.17,
    "t_dej_pct": 1.28,
-   "t_zah_pct": 1.94,
+   "t_zah_pct": 2.43,
    "t_n": 65
   },
   {
@@ -4577,7 +4577,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.87,
    "t_dej_pct": 0.91,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 39
   },
   {
@@ -4613,7 +4613,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.29,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 8
   },
   {
@@ -4649,7 +4649,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.84,
    "t_dej_pct": 0.88,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 12
   },
   {
@@ -4685,7 +4685,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.6,
    "t_dej_pct": 0.63,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 23
   },
   {
@@ -4721,7 +4721,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.39,
    "t_dej_pct": 0.41,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.32,
    "t_n": 17
   },
   {
@@ -4757,7 +4757,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.67,
    "t_dej_pct": 0.7,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 41
   },
   {
@@ -4793,7 +4793,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.95,
    "t_dej_pct": 1.03,
-   "t_zah_pct": 1.92,
+   "t_zah_pct": 2.4,
    "t_n": 77
   },
   {
@@ -4829,7 +4829,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.55,
    "t_dej_pct": 0.58,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 26
   },
   {
@@ -4865,7 +4865,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.58,
    "t_dej_pct": 0.6,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 24
   },
   {
@@ -4901,7 +4901,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.51,
    "t_dej_pct": 0.55,
-   "t_zah_pct": 1.9,
+   "t_zah_pct": 2.37,
    "t_n": 25
   },
   {
@@ -4937,7 +4937,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.29,
    "t_dej_pct": 1.38,
-   "t_zah_pct": 1.9,
+   "t_zah_pct": 2.37,
    "t_n": 130
   },
   {
@@ -4973,7 +4973,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.71,
    "t_dej_pct": 0.72,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 46
   },
   {
@@ -5009,7 +5009,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.95,
    "t_dej_pct": 0.99,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 49
   },
   {
@@ -5045,7 +5045,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.64,
    "t_dej_pct": 0.68,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.33,
    "t_n": 15
   },
   {
@@ -5081,7 +5081,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.35,
    "t_dej_pct": 0.37,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 20
   },
   {
@@ -5117,7 +5117,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.86,
    "t_dej_pct": 0.91,
-   "t_zah_pct": 1.88,
+   "t_zah_pct": 2.35,
    "t_n": 110
   },
   {
@@ -5153,7 +5153,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.32,
    "t_dej_pct": 1.45,
-   "t_zah_pct": 1.95,
+   "t_zah_pct": 2.43,
    "t_n": 41
   },
   {
@@ -5189,7 +5189,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.85,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.25,
    "t_n": 9
   },
   {
@@ -5225,7 +5225,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.45,
    "t_dej_pct": 0.46,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 38
   },
   {
@@ -5261,7 +5261,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.65,
    "t_dej_pct": 0.67,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 21
   },
   {
@@ -5297,7 +5297,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.17,
    "t_dej_pct": 1.2,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 23
   },
   {
@@ -5333,7 +5333,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.15,
    "t_dej_pct": 1.2,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 73
   },
   {
@@ -5369,7 +5369,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.57,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 9
   },
   {
@@ -5405,7 +5405,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.08,
    "t_dej_pct": 1.13,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 16
   },
   {
@@ -5441,7 +5441,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.66,
    "t_dej_pct": 0.69,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.32,
    "t_n": 47
   },
   {
@@ -5477,7 +5477,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.64,
    "t_dej_pct": 0.65,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 16
   },
   {
@@ -5513,7 +5513,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.41,
    "t_dej_pct": 0.44,
-   "t_zah_pct": 1.9,
+   "t_zah_pct": 2.37,
    "t_n": 28
   },
   {
@@ -5549,7 +5549,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.45,
    "t_dej_pct": 0.47,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 19
   },
   {
@@ -5585,7 +5585,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.34,
    "t_dej_pct": 0.35,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 18
   },
   {
@@ -5621,7 +5621,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.49,
    "t_dej_pct": 0.51,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 70
   },
   {
@@ -5657,7 +5657,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.44,
    "t_dej_pct": 0.46,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.33,
    "t_n": 48
   },
   {
@@ -5693,7 +5693,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.71,
    "t_dej_pct": 0.75,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 71
   },
   {
@@ -5729,7 +5729,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.68,
    "t_dej_pct": 0.71,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 113
   },
   {
@@ -5765,7 +5765,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.79,
    "t_dej_pct": 0.83,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.33,
    "t_n": 67
   },
   {
@@ -5801,7 +5801,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.66,
    "t_dej_pct": 0.68,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 16
   },
   {
@@ -5837,7 +5837,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.24,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 1
   },
   {
@@ -5873,7 +5873,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.48,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 7
   },
   {
@@ -5909,7 +5909,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.47,
    "t_dej_pct": 0.48,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 18
   },
   {
@@ -5945,7 +5945,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.54,
    "t_dej_pct": 0.56,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 11
   },
   {
@@ -5981,7 +5981,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.62,
    "t_dej_pct": 0.63,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 13
   },
   {
@@ -6017,7 +6017,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.37,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 9
   },
   {
@@ -6053,7 +6053,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.29,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 3
   },
   {
@@ -6089,7 +6089,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.42,
    "t_dej_pct": 0.43,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.26,
    "t_n": 14
   },
   {
@@ -6125,7 +6125,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.38,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 8
   },
   {
@@ -6161,7 +6161,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.53,
    "t_dej_pct": 0.54,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 13
   },
   {
@@ -6197,7 +6197,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.47,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 9
   },
   {
@@ -6233,7 +6233,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.55,
    "t_dej_pct": 0.56,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.26,
    "t_n": 18
   },
   {
@@ -6269,7 +6269,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.6,
    "t_dej_pct": 0.63,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.32,
    "t_n": 55
   },
   {
@@ -6305,7 +6305,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.54,
    "t_dej_pct": 1.73,
-   "t_zah_pct": 1.98,
+   "t_zah_pct": 2.48,
    "t_n": 62
   },
   {
@@ -6341,7 +6341,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.27,
    "t_dej_pct": 0.28,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 33
   },
   {
@@ -6377,7 +6377,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.56,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 5
   },
   {
@@ -6413,7 +6413,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.96,
    "t_dej_pct": 1.01,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 25
   },
   {
@@ -6449,7 +6449,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.9,
    "t_dej_pct": 0.96,
-   "t_zah_pct": 1.9,
+   "t_zah_pct": 2.38,
    "t_n": 72
   },
   {
@@ -6485,7 +6485,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.01,
    "t_dej_pct": 1.03,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.27,
    "t_n": 26
   },
   {
@@ -6521,7 +6521,7 @@
    "t_semafor": "na poti",
    "t_indeks": 2.52,
    "t_dej_pct": 2.78,
-   "t_zah_pct": 1.96,
+   "t_zah_pct": 2.45,
    "t_n": 123
   },
   {
@@ -6557,7 +6557,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.67,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 9
   },
   {
@@ -6593,7 +6593,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.38,
    "t_dej_pct": 0.39,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 14
   },
   {
@@ -6629,7 +6629,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.49,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 9
   },
   {
@@ -6665,7 +6665,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.39,
    "t_dej_pct": 0.4,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 22
   },
   {
@@ -6701,7 +6701,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.43,
    "t_dej_pct": 0.45,
-   "t_zah_pct": 1.85,
+   "t_zah_pct": 2.31,
    "t_n": 20
   },
   {
@@ -6737,7 +6737,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.7,
    "t_dej_pct": 0.72,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.29,
    "t_n": 11
   },
   {
@@ -6773,7 +6773,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.52,
    "t_dej_pct": 0.53,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 22
   },
   {
@@ -6809,7 +6809,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.55,
    "t_dej_pct": 0.57,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 45
   },
   {
@@ -6845,7 +6845,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.32,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.31,
    "t_n": 9
   },
   {
@@ -6881,7 +6881,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.81,
    "t_dej_pct": 0.85,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 103
   },
   {
@@ -6917,7 +6917,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.4,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 9
   },
   {
@@ -6953,7 +6953,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.83,
    "t_dej_pct": 0.88,
-   "t_zah_pct": 1.88,
+   "t_zah_pct": 2.36,
    "t_n": 63
   },
   {
@@ -6989,7 +6989,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.27,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 4
   },
   {
@@ -7025,7 +7025,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.31,
    "t_dej_pct": 1.37,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.32,
    "t_n": 33
   },
   {
@@ -7061,7 +7061,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.08,
    "t_dej_pct": 1.1,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 42
   },
   {
@@ -7097,7 +7097,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.79,
    "t_dej_pct": 0.86,
-   "t_zah_pct": 1.93,
+   "t_zah_pct": 2.41,
    "t_n": 17
   },
   {
@@ -7133,7 +7133,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.6,
    "t_dej_pct": 0.62,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 55
   },
   {
@@ -7169,7 +7169,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.33,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 5
   },
   {
@@ -7205,7 +7205,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.83,
    "t_dej_pct": 0.87,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.33,
    "t_n": 28
   },
   {
@@ -7241,7 +7241,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.38,
    "t_dej_pct": 0.39,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 23
   },
   {
@@ -7277,7 +7277,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.6,
    "t_dej_pct": 0.62,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.27,
    "t_n": 36
   },
   {
@@ -7313,7 +7313,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.5,
    "t_dej_pct": 0.51,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.28,
    "t_n": 87
   },
   {
@@ -7349,7 +7349,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.33,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 9
   },
   {
@@ -7385,7 +7385,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.8,
    "t_dej_pct": 0.82,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 51
   },
   {
@@ -7421,7 +7421,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.56,
    "t_dej_pct": 0.57,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 16
   },
   {
@@ -7457,7 +7457,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.22,
    "t_dej_pct": 1.3,
-   "t_zah_pct": 1.88,
+   "t_zah_pct": 2.35,
    "t_n": 138
   },
   {
@@ -7493,7 +7493,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.31,
    "t_dej_pct": 0.33,
-   "t_zah_pct": 1.86,
+   "t_zah_pct": 2.33,
    "t_n": 29
   },
   {
@@ -7529,7 +7529,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.45,
    "t_dej_pct": 0.46,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.28,
    "t_n": 52
   },
   {
@@ -7565,7 +7565,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.62,
    "t_dej_pct": 0.64,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.28,
    "t_n": 24
   },
   {
@@ -7601,7 +7601,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.95,
    "t_dej_pct": 0.98,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 19
   },
   {
@@ -7637,7 +7637,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.52,
    "t_dej_pct": 0.53,
-   "t_zah_pct": 1.83,
+   "t_zah_pct": 2.29,
    "t_n": 26
   },
   {
@@ -7673,7 +7673,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.92,
    "t_dej_pct": 0.97,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.34,
    "t_n": 38
   },
   {
@@ -7709,7 +7709,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 1.01,
-   "t_zah_pct": 1.9,
+   "t_zah_pct": 2.37,
    "t_n": 9
   },
   {
@@ -7745,7 +7745,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.89,
    "t_dej_pct": 0.94,
-   "t_zah_pct": 1.87,
+   "t_zah_pct": 2.33,
    "t_n": 143
   },
   {
@@ -7781,7 +7781,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.73,
    "t_dej_pct": 0.76,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.3,
    "t_n": 38
   },
   {
@@ -7817,7 +7817,7 @@
    "t_semafor": "ni podatka",
    "t_indeks": null,
    "t_dej_pct": 0.54,
-   "t_zah_pct": 1.8,
+   "t_zah_pct": 2.25,
    "t_n": 8
   },
   {
@@ -7853,7 +7853,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.72,
    "t_dej_pct": 0.75,
-   "t_zah_pct": 1.84,
+   "t_zah_pct": 2.29,
    "t_n": 34
   },
   {
@@ -7889,7 +7889,7 @@
    "t_semafor": "na poti",
    "t_indeks": 1.04,
    "t_dej_pct": 1.08,
-   "t_zah_pct": 1.82,
+   "t_zah_pct": 2.28,
    "t_n": 39
   },
   {
@@ -7925,7 +7925,7 @@
    "t_semafor": "pod ciljem",
    "t_indeks": 0.45,
    "t_dej_pct": 0.46,
-   "t_zah_pct": 1.81,
+   "t_zah_pct": 2.26,
    "t_n": 15
   }
  ]

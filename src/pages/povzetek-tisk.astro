@@ -48,10 +48,9 @@ const nNepn = up.measures.filter((m) => m.group !== 'nps').length, nNew = up.mea
 const hisa = sf.categories.find((c) => c.id === 'HISA')!, blok = sf.categories.find((c) => c.id === 'BLOKI')!;
 // Paketi prenove (11.4) in koledar za lastnike (11.1)
 const pk = loadData<any>('paketi_prenove');
-// Scenarij NPS v strokovnih podlagah (drsnik: privzeti položaj) in razlika glede na stopnje iz osnutka (k100)
+// Scenarij NPS (drsnik: privzeti položaj) – stopnja prenove stanovanjskih stavb 2026–2030
 const dr = loadData<any>('drsnik');
-const nps = dr.polozaji.find((p: any) => p.id === dr.privzeto), osn = dr.polozaji.find((p: any) => p.id === 'k100');
-const dInv30 = nps.nalozbe_2026_2030_mrd - osn.nalozbe_2026_2030_mrd, dInv = nps.nalozbe_mrd - osn.nalozbe_mrd;
+const nps = dr.polozaji.find((p: any) => p.id === dr.privzeto);
 const hisaT = pk.tipi.find((t: any) => t.id === 'hisa_do1980'), hisaV = hisaT.variante.find((v: any) => v.id === 'olje');
 const blokT = pk.tipi.find((t: any) => t.id === 'blok_do1980'), blokV = blokT.variante[0];
 const pakRows = [
@@ -96,7 +95,7 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
       <div><b>{nf(nps.stopnja_2026_2030_pct, 1)} %</b><span>stanovanjske površine se prenovi vsako leto 2026–2030, od tega {nf(nps.celovito_2026_2030_pct, 1)} % celovito</span></div>
       <div><b>−90 %</b><span>emisij toplogrednih plinov iz stavb do 2050 glede na 2023</span></div>
       <div><b>≤ {nf(rv.share.target_2050, 1)} %</b><span>energetsko revnih gospodinjstev do 2050 ({nf(rv.share.base, 1)} % leta {rv.share.base_year})</span></div>
-      <div><b>{txt('investicije', 2030).split(' ')[0]} mrd €</b><span>naložb v obdobju 2026–2030 po osnutku, z višjimi stopnjami prenove okoli {nf(dInv30, 1)} mrd € več</span></div>
+      <div><b>{txt('investicije', 2030).split(' ')[0]} mrd €</b><span>naložb v obdobju 2026–2030, približno {txt('investicije', 2040).replace(/^≈\s*/, '').split(' ')[0]} mrd € do 2050</span></div>
     </div>
     <h2>V tem povzetku</h2>
     <ol class="toc">
@@ -156,7 +155,6 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
         <tr><th>Raba kurilnega olja / fosilnega plina glede na 2020, %</th><td class="n">{K.fosilna_goriva.baseline.text}</td><td class="n">{txt('fosilna_goriva', 2030)}</td><td class="n">{txt('fosilna_goriva', 2040)}</td><td class="n">{txt('fosilna_goriva', 2050)}</td></tr>
       </tbody>
     </table>
-    <p class="note">Stopnje in površine prenove so iz osnutka. Strokovne podlage IJS CEU (5. 10. 2026) za stanovanjske stavbe v letih 2026–2030 predvidevajo {nf(nps.stopnja_2026_2030_pct, 1)} % na leto (od tega {nf(nps.celovito_2026_2030_pct, 1)} % celovito; osnutek {nf(osn.stopnja_2026_2030_pct, 1)} %), da je ob oceni stanja leta 2025 dosežen mejnik EPBD 2030: {nf(nps.kwh_m2[2])} kWh/(m²·a) oziroma −{nf(nps.zmanjsanje_2030_pct, 1)} % glede na 2020 (zahteva −16 %).</p>
 
     <div class="cols2 mini">
       {[[`Končna energija, ${K.koncna_energija.unit}`, fe, '#1F7A57', K.koncna_energija.dec ?? 0], ['Emisije TGP, kt CO₂ ekv.', em, '#8F5A08', 0]].map(([title, data, col, dec]) => {
@@ -287,7 +285,7 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
       </tbody>
     </table>
     <h3>Koliko stane</h3>
-    <p>Investicijske potrebe za energetsko prenovo stavb znašajo <b>{nf(up.investments.total_2026_2030 / 1000, 2)} mrd €</b> v obdobju 2026–2030 in okoli <b>{nf(Math.round(up.investments.total_2026_2050 / 1000))} mrd €</b> do leta 2050 (osnutek; z višjimi stopnjami prenove stanovanjskih stavb po strokovnih podlagah okoli {nf(dInv30, 1)} mrd € več v obdobju 2026–2030 in {nf(dInv, 1)} mrd € več do leta 2050). Ob obstoječih virih v obdobju 2026–2030 ostaja nepokritih {nf(up.investments.gap_2026_2030 / 1000, 2)} mrd € – naložbe, za katere finančni instrument še ni določen (npr. energetsko pogodbeništvo, zelena posojila, garancijska shema).</p>
+    <p>Investicijske potrebe za energetsko prenovo stavb znašajo <b>{nf(up.investments.total_2026_2030 / 1000, 2)} mrd €</b> v obdobju 2026–2030 in okoli <b>{nf(Math.round(up.investments.total_2026_2050 / 1000))} mrd €</b> do leta 2050. Ob obstoječih virih v obdobju 2026–2030 ostaja nepokritih {nf(up.investments.gap_2026_2030 / 1000, 2)} mrd € – naložbe, za katere finančni instrument še ni določen (npr. energetsko pogodbeništvo, zelena posojila, garancijska shema).</p>
     <div class="pay">
       <p class="leg"><i class="g"></i>nepovratna javna sredstva <i class="p"></i>zasebna sredstva <i class="x"></i>še nepokrito</p>
       {pay.map((r) => (
@@ -298,7 +296,7 @@ const CLS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'], CV: Record<string, string> = { 
       ))}
       <p class="small">Investicijske potrebe 2026–2030 po segmentih.</p>
     </div>
-    <p>Za nepovratni delež 16 do 25 % naložb je po letu 2030 potrebnih 120 do 190 mio € javnih sredstev na leto. Pomembni viri so Podnebni sklad, evropska kohezijska politika, Socialni sklad za podnebje in prihodki iz trgovanja z emisijami (ETS2).</p>
+    <p>Za nepovratni delež 16 do 25 % naložb je po letu 2030 potrebnih 135 do 210 mio € javnih sredstev na leto. Pomembni viri so Podnebni sklad, evropska kohezijska politika, Socialni sklad za podnebje in prihodki iz trgovanja z emisijami (ETS2).</p>
     <h3>Koristi</h3>
     <p>Nižji računi za energijo: <b>{txt('koristi', 2030).split(' / ')[0]} mio € na leto</b> do leta 2030 in 12.000 do 14.500 podprtih delovnih mest na leto. Poleg tega čistejši zrak, bolj zdravo bivanje in manjša odvisnost od uvoza energije.</p>
   </div>

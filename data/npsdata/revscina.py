@@ -35,6 +35,11 @@ def build(ctx: Context) -> dict:
     ty_year = int(ty[0][1])
     # povprečje za leto razčlenitve po tipu (za poudarek tipov nad povprečjem)
     ty_avg = base[0] if int(base[1]) == ty_year else (base_v if base_y == ty_year else None)
+    if ty_avg is None:  # v41: kazalnik je že za 2025, razčlenitev po tipu pa za 2024 – povprečje iz besedila pogl. 4.6
+        from .draft import _text
+        body = ' '.join(_text(p._p) for p in ctx.draft.doc.paragraphs)
+        m = re.search(r'leta %d zajemala ([\d,]+)\s*%%' % ty_year, body)
+        ty_avg = num(m.group(1)) if m else None
     ctx.check(ty_avg is not None, f'energetska revščina: povprečje za leto razčlenitve po tipu {ty_year}')
     ctx.check(len(types) == 8 and max(t['pct'] for t in types) == 14.3, 'delež po tipu gospodinjstva: 8 tipov, največ 14,3 %')
 

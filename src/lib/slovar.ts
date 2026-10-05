@@ -35,7 +35,7 @@ export const izrazi: Izraz[] = [
   { id: 'uporabna-povrsina', term: 'uporabna površina', re: 'uporabn\\p{L}* površin\\p{L}*',
     def: 'Površina prostorov v stavbi po katastru nepremičnin, brez zunanjih zidov. Na njej temeljijo podatki o stavbnem fondu.' },
   { id: 'stopnja-prenove', term: 'stopnja prenove', re: 'stopnj\\p{L}* (?:energetske )?prenov\\p{L}*',
-    def: 'Delež površine stavb, ki se v enem letu energetsko prenovi. NPS 2050 predvideva okoli 2 % na leto.' },
+    def: 'Delež površine stavb, ki se v enem letu energetsko prenovi. NPS 2050 predvideva okoli 2,5 % na leto do leta 2030 in nato okoli 2,2 %.' },
   { id: 'trajektorija', term: 'trajektorija', re: 'trajektorij\\p{L}*',
     def: 'Pot zmanjševanja povprečne rabe primarne energije vseh stanovanjskih stavb od leta 2020 do 2050 z vmesnimi mejniki, kot jo zahteva člen 9(2) EPBD.' },
   { id: 'najmanj-ucinkovite', term: '43 % energetsko najmanj učinkovitih stavb', re: '43 % (?:energetsko |energijsko )?najmanj učinkovit\\p{L}*',

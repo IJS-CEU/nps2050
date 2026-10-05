@@ -27,10 +27,10 @@ class Draft:
 
     @property
     def date(self) -> date:
+        # Kasnejši od datuma v lastnostih dokumenta in datuma spremembe datoteke (nekatera orodja lastnosti ne posodobijo).
+        ft = datetime.fromtimestamp(self.path.stat().st_mtime).date()
         mod = self.doc.core_properties.modified
-        if isinstance(mod, datetime):
-            return mod.date()
-        return datetime.fromtimestamp(self.path.stat().st_mtime).date()
+        return max(mod.date(), ft) if isinstance(mod, datetime) else ft
 
     def _index(self):
         caption = None

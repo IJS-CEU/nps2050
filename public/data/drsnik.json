@@ -1,11 +1,11 @@
 {
  "meta": {
-  "draft": "NPS_v40",
-  "draft_date": "2026-10-01",
+  "draft": "NPS_v41",
+  "draft_date": "2026-10-05",
   "generated": "2026-10-05",
   "sources": [
    "Model RenRates_SI (uskladitev z NEPN 2024, 3. 10. 2026; scenarij NPS s stopnjami × 1,25, 5. 10. 2026): pet zagonov z različnimi stopnjami prenove stanovanjskih stavb",
-   "NPS_v40: nacionalna trajektorija stanovanjskega fonda in najvišje vrednosti po EPBD"
+   "NPS_v41: nacionalna trajektorija stanovanjskega fonda in najvišje vrednosti po EPBD"
   ],
   "license": "CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), vir: IJS CEU, strokovne podlage NPS 2050",
   "note": "kWh/(m²·a): ocenjeno stanje 2025 (registri 2020–2025 in energetska bilanca s popravkom za vreme; 255, razpon 252–260) × indeks položaja iz modela. Spreminjajo se samo stopnje prenove enostanovanjskih in večstanovanjskih stavb; vse drugo je kot v scenariju NPS 2050."
@@ -22,8 +22,8 @@
  "nps": [
   269,
   null,
-  217,
-  199,
+  222,
+  200,
   180,
   172,
   164

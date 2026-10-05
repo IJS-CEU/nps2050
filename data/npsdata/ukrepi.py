@@ -115,10 +115,17 @@ def build(ctx: Context) -> dict:
     three = ['Stanovanjske stavbe', 'Stavbe javnega sektorja', 'Stavbe zasebnega storitvenega sektorja']
     first5 = sum(sum(segs[s]['needs'][:5]) for s in three)
     total = sum(sum(v for v in segs[s]['needs'] if v) for s in three)
-    ctx.check_close(first5 / 1000, 4.07, 'investicije 2026–2030 = 4,07 mrd € (povzetek)', tol=0.01)
-    ctx.check_close(total / 1000, 19.0, 'investicije 2026–2050 ≈ 19 mrd € (povzetek)', tol=0.3)
+    # Preglednica investicij se mora ujemati s povzetkom osnutka (zneski se berejo iz besedila povzetka, ne vpisujejo).
+    import re as _re
+    from .draft import _text
+    body = ' '.join(_text(p._p) for p in ctx.draft.doc.paragraphs)
+    m = _re.search(r'Investicijske potrebe za energetsko prenovo znašajo ([\d,]+)\s*mrd €.*?približno ([\d,]+)\s*mrd € do leta 2050\. Ob obstoječih virih ostaja v obdobju 2026–2030 nepokritih ([\d,]+)\s*mrd €', body, _re.S)
+    ctx.check(m is not None, 'investicije: zneski v povzetku osnutka')
+    p30, p50, pgap = (float(x.replace(',', '.')) for x in m.groups())
+    ctx.check_close(first5 / 1000, p30, f'investicije 2026–2030 = {m.group(1)} mrd € (povzetek)', tol=0.01)
+    ctx.check_close(total / 1000, p50, f'investicije 2026–2050 ≈ {m.group(2)} mrd € (povzetek)', tol=0.6)
     gap = -sum(sum(v for v in segs[s]['gap'][:5] if v is not None) for s in three)
-    ctx.check_close(gap / 1000, 1.17, 'nepokrite potrebe 2026–2030 = 1,17 mrd € (povzetek)', tol=0.01)
+    ctx.check_close(gap / 1000, pgap, f'nepokrite potrebe 2026–2030 = {m.group(3)} mrd € (povzetek)', tol=0.01)
 
     # Viri financiranja 2031–2050 (preglednica 56), brez internih opomb
     t56 = d.table(r'Viri financiranja energetske prenove stavb v obdobju 2031–2050')
