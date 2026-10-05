@@ -1,6 +1,6 @@
 // Infografični posnetek »Moja občina« (90 s, brez govora, s podnapisi): node tests/video_obcine.mjs
 // Za medije in promocijo (ne za stran Moja občina). Zemljevidi: zbirni podatki iz public/data/obcine_index.json in obrisi iz
-// zemljevid_obcine.geojson. Prizora 4 in 5: primera občin s številkami in grafi (OBC4, privzeto Ljubljana; OBC5, privzeto Velenje).
+// zemljevid_obcine.geojson. Prizora 4 in 5: primera občin s številkami in grafi (OBC4, privzeto Ljubljana; OBC5, privzeto Ribnica).
 // Izhod v public/mediji/: nps2050-moja-obcina.mp4 (1920×1080), …-kvadrat.mp4 (1080×1080), .vtt, -poster.jpg.
 // Glasba kot pri tests/video.mjs: MUSIC=… MUSIC_CREDIT='…' [MUSIC_START=…]; predogled: STILLS=5,20 node tests/video_obcine.mjs
 import { chromium } from 'playwright';
@@ -22,12 +22,13 @@ const nf = (v, d = 0) => v.toLocaleString('sl-SI', { minimumFractionDigits: d, m
 
 // ---------------------------------------------------------------- podatki
 const ix = J('obcine_index.json'), geo = J('zemljevid_obcine.geojson'), meta = J('meta.json'), mo = J('obcine_model.json');
-// Primera v prizorih 4 in 5 (OBC4, OBC5): Ljubljana in občina z dobrimi kazalniki (Velenje: najhitrejši tempo prenove, nizke emisije)
+// Primera v prizorih 4 in 5 (OBC4, OBC5): Ljubljana in občina z dobrimi kazalniki (Ribnica: 76 % obnovljivih virov, nizke emisije)
 const obc = (name) => { const i = ix.municipalities.find((m) => m.name === name), m = Object.values(mo.municipalities).find((x) => x.name === name);
   if (!i || !m) throw new Error('ni občine ' + name); return { ...i, ...m }; };
 const SIM = mo.si;
-const O4 = obc(process.env.OBC4 || 'Ljubljana'), O5 = obc(process.env.OBC5 || 'Velenje');
+const O4 = obc(process.env.OBC4 || 'Ljubljana'), O5 = obc(process.env.OBC5 || 'Ribnica');
 const CAR = { el: ['elektrika', '#2A6FC9'], amb: ['toplota okolice', '#8FD19E'], gas: ['plin', '#9AA0A6'], elko: ['kurilno olje', '#5B4636'], bio: ['lesna biomasa', '#62B044'], dh: ['daljinska toplota', '#D6B25E'] };
+const TOPC5 = Object.entries(O5.carriers_pct).sort((a, b) => b[1] - a[1])[0];
 const tempo = (o) => o.t_dej_pct >= o.t_zah_pct ? 'več, kot zahteva NPS 2050' : `blizu potrebnih ${nf(o.t_zah_pct, 1)} %`;
 const M = ix.municipalities, SI = ix.si;
 const byEid = Object.fromEntries(M.map((m) => [m.eid, m]));
@@ -52,7 +53,7 @@ const CAPS = [
   [47, 54, `Primer: ${O4.name}. Kartica občine pokaže rabo energije, emisije, energente in energijske razrede.`],
   [54.5, 61.5, `${O4.name} prenovi okoli ${nf(O4.t_dej_pct, 1)} % stanovanjske površine na leto – ${tempo(O4)}.`],
   [63, 69.5, `Primer: ${O5.name}. Energetsko-podnebna kartica je izvleček za lokalni energetski koncept.`],
-  [70, 76, `${O5.name} prenovi okoli ${nf(O5.t_dej_pct, 1)} % stanovanjske površine na leto – ${tempo(O5)}.`],
+  [70, 76, `${O5.name}: obnovljivi viri pokrivajo ${nf(O5.vse.ove_pct.total, 0)} % rabe energije v stavbah, emisije na prebivalca so ${nf(O5.vse.tgp_t_preb.total, 1)} t (Slovenija ${nf(SIM.vse.tgp_t_preb.total, 1)} t).`],
   [77.5, 89.5, 'Poiščite svojo občino na strani Moja občina.'],
 ];
 CAPS.forEach((c) => { c[2] = c[2].replace(/ %/g, ' %'); });
@@ -67,7 +68,7 @@ const MAPW = 1000, MAPH = Math.round(MAPW / ASP);
 const px = ([lo, la]) => [((lo - lon0) * KX) / ((lon1 - lon0) * KX) * MAPW, ((lat1 - la) / (lat1 - lat0)) * MAPH];
 const mix = (a, b, t) => '#' + [0, 2, 4].map((i) => Math.round(parseInt(a.slice(1 + i, 3 + i), 16) * (1 - t) + parseInt(b.slice(1 + i, 3 + i), 16) * t).toString(16).padStart(2, '0')).join('');
 const ramp = (stops, t) => { t = Math.max(0, Math.min(1, t)); const n = stops.length - 1, i = Math.min(n - 1, Math.floor(t * n)); return mix(stops[i], stops[i + 1], t * n - i); };
-const PRE = ['#F5F2E8', '#F0AE2E', '#C4302C'], OVE = ['#4B5A3A', '#62B044', '#BFE6C6'];
+const PRE = ['#F5F2E8', '#F0AE2E', '#C4302C'], OVE = ['#E3F2DF', '#62B044', '#0B5E33'];
 const SEM = { 'na poti': '#8FD19E', 'pod ciljem': '#E3B65C', 'ni podatka': '#6E7660' };
 const shapes = geo.features.map((f) => {
   const m = byEid[f.properties.id];
@@ -207,9 +208,9 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
     <div class="sec"><h5>Kaj to pomeni na leto (2026–2030)</h5><div class="row"><span><b>${nf(O5.stevilke.hise_leto)}</b>hiš</span><span><b>${nf(O5.stevilke.stanovanja_leto)}</b>stanovanj</span><span><b>${nf(O5.stevilke.nalozba_eur_leto / 1e6, 1)} mio €</b>naložb</span></div></div>
     <p class="ft"><span>IJS CEU · strokovne podlage NPS 2050</span><span>CC BY-NC-ND</span></p></div>
   <div class="side">
-    <div class="chip"><b>${nf(O5.t_dej_pct, 1)} %</b>stanovanjske površine se prenovi na leto${sq ? '' : ` (za NPS 2050 potrebno ${nf(O5.t_zah_pct, 1)} %)`}</div>
+    <div class="chip"><b>${nf(O5.vse.ove_pct.total, 0)} %</b>obnovljivih virov v rabi energije v stavbah (Slovenija ${nf(SIM.vse.ove_pct.total, 0)} %)</div>
     <div class="chip"><b>${nf(O5.vse.tgp_t_preb.total, 1)} t</b>CO₂ ekv. na prebivalca (Slovenija ${nf(SIM.vse.tgp_t_preb.total, 1)} t)</div>
-    <div class="chip"><b>${nf(O5.carriers_pct.dh, 0)} %</b>rabe energije v stanovanjskih stavbah pokrije daljinska toplota</div></div></section>
+    <div class="chip"><b>${nf(TOPC5[1], 0)} %</b>rabe energije v stanovanjskih stavbah pokrije ${CAR[TOPC5[0]][0]}</div></section>
 
 <section class="sc" id="s6"><p class="k">Kje najdete več</p><h1>Moja občina</h1>
   <div class="btns"><span class="btn">Kartica vaše občine</span><span class="btn">Primerjava občin</span><span class="btn">Energetsko-podnebna kartica</span></div>
