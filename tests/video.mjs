@@ -35,9 +35,14 @@ const G = { b: dr.nps[0], n: dr.ocena_2025.osrednja, lo: dr.ocena_2025.spodnja, 
 G.pot = Math.round(100 * (G.b - G.n) / (G.b - G.c));
 G.dosl = Math.round(100 * (1 - G.n / G.b)); G.cilj = Math.round(100 * (1 - G.c / G.b)); G.se = Math.round(100 * (1 - G.c / G.n));
 G.ime = G.pot >= 30 && G.pot <= 37 ? ['tretjina', 'tretjino', 'dve tretjini'] : [`${G.pot} %`, `${G.pot} %`, `${100 - G.pot} %`];
+// Prizor 5: stopnja prenove 2026–2030 → raba energije leta 2030 (drsnik, ocena stanja 2025)
+const i30 = dr.years.indexOf(2030);
+const RR = [{ ...S0, tag: 'danes' }, ...dr.polozaji.map((p) => ({ ...p, tag: p.id === dr.privzeto ? 'NPS' : '' }))]
+  .map((p) => ({ tot: p.stopnja_2026_2030_pct, deep: p.celovito_2026_2030_pct, v: p.kwh_m2[i30], ok: p.kwh_m2[i30] <= G.c, tag: p.tag }))
+  .sort((x, y) => x.tot - y.tot);
 const D = {
   stavb: sf.segments.skupaj.buildings, povrsina: sf.segments.skupaj.area_mio_m2, pre81: ix.si.pre1981_res_area_pct,
-  G, pe20: traj.nps[0], pe50: traj.nps.at(-1), red: Math.round(100 * (1 - traj.nps.at(-1) / traj.nps[0])), emRed: Math.round(100 * (1 - emis50 / emis23)),
+  G, RR, pe20: traj.nps[0], pe50: traj.nps.at(-1), red: Math.round(100 * (1 - traj.nps.at(-1) / traj.nps[0])), emRed: Math.round(100 * (1 - emis50 / emis23)),
   thrH: hisa.worst_43.threshold, thrB: blok.worst_43.threshold, wpbA: wpb.area_mio_m2, wpbPE: wpb.avg_pe_2020, wpbY: wpb.years, wpbP: wpb.renovated_pct,
   pov: T.povrsina, ogr: V.ogrevanje, rp: V.razred_pred, pep: V.pe_pred, rpo: C.razred_po, pepo: C.pe_po,
   s25: Math.round(C.strosek_p25 / 1000), s75: Math.round(C.strosek_p75 / 1000), sp0: Math.round(C.spodbuda_eko_eur / 1000), sp1: Math.round(C.spodbuda_dod_eur / 1000),
@@ -59,8 +64,8 @@ const CAPS = [
   [25.4, 29.8, `Do leta 2030 naj bo prenovljenih ${D.wpbP[0]} % teh stavb, do leta 2050 vse.`],
   [30.4, 35.6, `Tipična hiša, zgrajena pred letom 1980, je danes v razredu ${D.rp}.`],
   [35.8, 41.8, `Celovita prenova ovoja in sistemov jo pripelje v razred ${D.rpo} in prihrani več kot tisoč evrov na leto. Stroški so priznani stroški Eko sklada, dejanski so višji.`],
-  [42.4, 47.6, `Danes se prenovi okoli ${nf(D.s0, 1)} % stanovanjske površine na leto, a le ${nf(D.s0c, 1)} % celovito.`],
-  [47.8, 53.8, `Za evropski mejnik leta 2030 bo treba celovitih prenov približno ${D.krat}-krat več kot danes.`],
+  [42.4, 47.6, `Danes prenovimo ${nf(D.s0, 1)} % stanovanjske površine na leto, a le ${nf(D.s0c, 1)} % celovito – zato pristanemo daleč od cilja.`],
+  [47.8, 53.8, `Cilj za 2030 dosežemo šele s približno ${nf(D.m, 0)} % prenov na leto, od tega ${nf(D.mc, 1)} % celovitih – ${D.krat}-krat več celovitih kot danes.`],
   [54.4, 63.6, `Preverite svojo stavbo, poglejte svojo občino in raziščite, kaj bi prinesla hitrejša prenova.`],
 ];
 const SCENES = [[0, 10], [10, 20], [20, 30], [30, 42], [42, 54], [54, 64]];
@@ -145,14 +150,24 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
 .card .v small { font-family: M; font-size: ${sq ? 22 : 30}px; font-weight: 700; color: #D6B25E; }
 .card .l { font-size: ${sq ? 20 : 26}px; color: #DAD8C9; margin-top: ${sq ? 0 : 12}px; line-height: 1.3; }
 /* 5 */
-#s5 .cols { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 330 : 330}px; height: ${sq ? 440 : 470}px; display: grid; grid-template-columns: 1fr 1fr; gap: ${sq ? 40 : 160}px; align-items: end; padding: 0 ${sq ? 20 : 220}px; }
-#s5 .col { display: grid; justify-items: center; align-self: end; gap: 14px; }
-#s5 .stk { width: ${sq ? 200 : 260}px; display: flex; flex-direction: column-reverse; border-radius: 12px 12px 0 0; overflow: hidden; }
-#s5 .stk .d { background: #8FD19E; } #s5 .stk .p { background: rgba(245,242,232,.35); }
-#s5 .v { font-family: S; font-weight: 700; font-size: ${sq ? 44 : 56}px; }
-#s5 .t { font-size: ${sq ? 24 : 28}px; color: #DAD8C9; text-align: center; }
-#s5 .leg { position: absolute; left: ${P}px; top: ${sq ? 800 : 830}px; font-size: ${sq ? 21 : 28}px; color: #DAD8C9; }
-#s5 .leg i { display: inline-block; width: 22px; height: 22px; border-radius: 4px; vertical-align: -3px; margin: 0 10px 0 24px; }
+#s5 .hd { position: absolute; top: ${sq ? 268 : 290}px; font-size: ${sq ? 19 : 24}px; color: #DAD8C9; line-height: 1.3; }
+#s5 .hd i { display: inline-block; width: 18px; height: 18px; border-radius: 4px; vertical-align: -2px; margin: 0 6px 0 14px; }
+#s5 .h1 { left: ${P}px; width: ${sq ? 420 : 870}px; } #s5 .h2 { left: ${P + (sq ? 450 : 880)}px; right: ${P}px; }
+#s5 .rows { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 360 : 370}px; }
+#s5 .row { position: relative; height: ${sq ? 92 : 94}px; opacity: 0; }
+#s5 .rt { position: absolute; left: 0; top: 4px; font-family: S; font-weight: 700; font-size: ${sq ? 36 : 44}px; }
+#s5 .rs { position: absolute; left: 330px; top: 58px; font-size: 20px; color: #B9B7A8; }
+#s5 .rt small { font-family: M; font-size: ${sq ? 18 : 22}px; font-weight: 600; color: #DAD8C9; margin-left: 8px; }
+#s5 .tg { display: inline-block; font-family: M; font-size: ${sq ? 15 : 18}px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; margin-left: 10px; vertical-align: 6px; background: #D6B25E; color: #333D22; }
+#s5 .rb { position: absolute; left: ${sq ? 0 : 330}px; top: ${sq ? 54 : 18}px; height: ${sq ? 20 : 30}px; display: flex; border-radius: 6px; overflow: hidden; }
+#s5 .rb .d { background: #8FD19E; } #s5 .rb .p { background: rgba(245,242,232,.35); }
+#s5 .sc2 { position: absolute; left: ${sq ? 450 : 880}px; right: 0; top: 0; bottom: 0; }
+#s5 .ln { position: absolute; top: ${sq ? 44 : 38}px; height: 4px; background: rgba(245,242,232,.25); left: 0; }
+#s5 .dt { position: absolute; top: ${sq ? 32 : 26}px; z-index: 1; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; }
+#s5 .dv { position: absolute; top: ${sq ? -10 : -22}px; font-family: S; font-weight: 700; font-size: ${sq ? 28 : 34}px; transform: translateX(-50%); }
+#s5 .tl { position: absolute; top: ${sq ? 340 : 360}px; height: ${sq ? 470 : 480}px; width: 4px; margin-left: -2px; background: #D6B25E; opacity: 0; }
+#s5 .tl b { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); white-space: nowrap; color: #D6B25E; font-size: ${sq ? 20 : 24}px; padding-bottom: 4px; }
+#s5 .ok { position: absolute; top: ${sq ? 340 : 360}px; height: ${sq ? 470 : 480}px; right: ${P}px; background: rgba(143,209,158,.10); opacity: 0; }
 /* 6 */
 #s6 .btns { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 330 : 340}px; display: grid; gap: 22px; justify-items: start; }
 #s6 .btn { font-size: ${sq ? 40 : 48}px; font-weight: 800; padding: 18px 40px; border-radius: 999px; background: #D6B25E; color: #333D22; opacity: 0; }
@@ -197,11 +212,13 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
   </div></section>
 
 <section class="sc" id="s5"><p class="k">Hitreje in globlje</p><h1>Celovitih prenov ${D.krat}-krat več</h1>
-  <div class="cols">
-    <div class="col"><span class="v" id="v1">${nf(D.s0, 1)} %</span><div class="stk" id="k1"><i class="d"></i><i class="p"></i></div><span class="t">danes (sedanja praksa)</span></div>
-    <div class="col"><span class="v" id="v2">${nf(D.m, 1)} %</span><div class="stk" id="k2"><i class="d"></i><i class="p"></i></div><span class="t">za mejnik EPBD 2030</span></div>
-  </div>
-  <p class="leg">prenovljena stanovanjska površina na leto, 2026–2030:<i style="background:#8FD19E"></i>celovito<i style="background:rgba(245,242,232,.35)"></i>posamezni ukrepi</p></section>
+  <p class="hd h1">prenovljena površina na leto, 2026–2030${sq ? '<br>' : ':'}<i style="background:#8FD19E;margin-left:${sq ? 0 : 14}px"></i>celovito<i style="background:rgba(245,242,232,.35)"></i>posamezni ukrepi</p>
+  <p class="hd h2">raba energije leta 2030${sq ? '<br>' : ', '}kWh/(m²·a)</p>
+  <div class="ok" id="s5ok"></div><div class="tl" id="s5tl"><b>cilj ${G.c}</b></div>
+  <div class="rows">${D.RR.map((r, i) => `<div class="row" id="r${i}">
+    ${sq ? '' : `<span class="rs">od tega ${nf(r.deep, 1)} % celovito</span>`}<span class="rt">${nf(r.tot, 1)} %${r.tag ? `<span class="tg">${r.tag}</span>` : ''}</span>
+    <span class="rb"><i class="d"></i><i class="p"></i></span>
+    <span class="sc2"><i class="ln"></i><i class="dt" style="background:${r.ok ? '#8FD19E' : '#EC842B'}"></i><b class="dv" style="color:${r.ok ? '#8FD19E' : '#EC842B'}">${r.v}</b></span></div>`).join('')}</div></section>
 
 <section class="sc" id="s6"><p class="k">Kje najdete več</p><h1>Strokovne podlage NPS 2050</h1>
   <div class="btns"><span class="btn">Preverite svojo stavbo</span><span class="btn">Moja občina</span><span class="btn">Kaj pa, če?</span></div>
@@ -240,10 +257,19 @@ window.render = (t) => {
     m1.style.left = (x(i0) + (x(i1) - x(i0)) * ease((t - a - 4) / 1.6)) + 'px'; m1.style.opacity = cl((t - a - 3.6) / .3);
     fadeUp($('#s4 .lab'), t, a + 5.6); $$('#s4 .card').forEach((c, i) => fadeUp(c, t, a + 6.2 + i * .9)); }
   // 5
-  { const a = 42, H = SQ ? 300 : 340, mx = D.m;
-    [[1, D.s0, D.s0c, a + 1.5], [2, D.m, D.mc, a + 6]].forEach(([n, tot, deep, t0]) => { const p = ease((t - t0) / 1.4), k = $('#k' + n);
-      k.children[0].style.height = (H * deep / mx * p) + 'px'; k.children[1].style.height = (H * (tot - deep) / mx * p) + 'px'; $('#v' + n).style.opacity = cl((t - t0 - 1) / .4); });
-    fadeUp($('#s5 .leg'), t, a + 2); }
+  { const a = 42, BW = SQ ? 400 : 520, x0 = ${P} + (SQ ? 450 : 880), SW = ${W} - ${P} - x0;
+    const sx = (v) => (v > 255 ? 0 : (255 - v) / 55) * SW, tx = x0 + sx(D.G.c);
+    $$('#s5 .hd').forEach((h) => fadeUp(h, t, a + .6));
+    $('#s5tl').style.left = tx + 'px'; $('#s5tl').style.opacity = cl((t - a - 1) / .5);
+    $('#s5ok').style.left = tx + 'px'; $('#s5ok').style.opacity = cl((t - a - 1) / .5);
+    // vrstni red: najprej »danes«, nato ostale
+    const ord = D.RR.map((r, i) => i).sort((i, j) => (D.RR[j].tag === 'danes') - (D.RR[i].tag === 'danes'));
+    ord.forEach((i, k) => { const r = D.RR[i], t0 = a + 1.4 + (k === 0 ? 0 : 4.6 + (k - 1) * .5), row = $('#r' + i);
+      row.style.opacity = cl((t - t0) / .4);
+      const p = ease((t - t0 - .2) / 1), q = ease((t - t0 - .9) / 1.2);
+      row.querySelector('.d').style.width = BW * r.deep / 4.2 * p + 'px'; row.querySelector('.p').style.width = BW * (r.tot - r.deep) / 4.2 * p + 'px';
+      const x = sx(255 + (r.v - 255) * q); row.querySelector('.dt').style.left = x + 'px'; row.querySelector('.ln').style.width = x + 'px';
+      const dv = row.querySelector('.dv'); dv.style.left = x + 'px'; dv.style.opacity = cl((t - t0 - 2) / .3); }); }
   // 6
   { const a = 54; $$('#s6 .btn').forEach((b, i) => fadeUp(b, t, a + .8 + i * .6)); fadeUp($('#s6 .url'), t, a + 3); fadeUp($('#s6 .note'), t, a + 3.8); }
 };
