@@ -1,6 +1,6 @@
 // Infografični posnetek »Moja občina« (90 s, brez govora, s podnapisi): node tests/video_obcine.mjs
-// Za medije in promocijo (ne za stran Moja občina). Zbirni podatki iz public/data/obcine_index.json in obrisi iz
-// zemljevid_obcine.geojson; nobena občina ni izpostavljena po imenu, kartici sta splošni postavitvi brez številk.
+// Za medije in promocijo (ne za stran Moja občina). Zemljevidi: zbirni podatki iz public/data/obcine_index.json in obrisi iz
+// zemljevid_obcine.geojson. Prizora 4 in 5: primera občin s številkami in grafi (OBC4, privzeto Ljubljana; OBC5, privzeto Velenje).
 // Izhod v public/mediji/: nps2050-moja-obcina.mp4 (1920×1080), …-kvadrat.mp4 (1080×1080), .vtt, -poster.jpg.
 // Glasba kot pri tests/video.mjs: MUSIC=… MUSIC_CREDIT='…' [MUSIC_START=…]; predogled: STILLS=5,20 node tests/video_obcine.mjs
 import { chromium } from 'playwright';
@@ -21,7 +21,14 @@ const FPS = 25, DUR = 90, NAME = 'nps2050-moja-obcina';
 const nf = (v, d = 0) => v.toLocaleString('sl-SI', { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: 'always' });
 
 // ---------------------------------------------------------------- podatki
-const ix = J('obcine_index.json'), geo = J('zemljevid_obcine.geojson'), meta = J('meta.json');
+const ix = J('obcine_index.json'), geo = J('zemljevid_obcine.geojson'), meta = J('meta.json'), mo = J('obcine_model.json');
+// Primera v prizorih 4 in 5 (OBC4, OBC5): Ljubljana in občina z dobrimi kazalniki (Velenje: najhitrejši tempo prenove, nizke emisije)
+const obc = (name) => { const i = ix.municipalities.find((m) => m.name === name), m = Object.values(mo.municipalities).find((x) => x.name === name);
+  if (!i || !m) throw new Error('ni občine ' + name); return { ...i, ...m }; };
+const SIM = mo.si;
+const O4 = obc(process.env.OBC4 || 'Ljubljana'), O5 = obc(process.env.OBC5 || 'Velenje');
+const CAR = { el: ['elektrika', '#2A6FC9'], amb: ['toplota okolice', '#8FD19E'], gas: ['plin', '#9AA0A6'], elko: ['kurilno olje', '#5B4636'], bio: ['lesna biomasa', '#62B044'], dh: ['daljinska toplota', '#D6B25E'] };
+const tempo = (o) => o.t_dej_pct >= o.t_zah_pct ? 'več, kot zahteva NPS 2050' : `blizu potrebnih ${nf(o.t_zah_pct, 1)} %`;
 const M = ix.municipalities, SI = ix.si;
 const byEid = Object.fromEntries(M.map((m) => [m.eid, m]));
 const rng = (k) => { const v = M.map((m) => m[k]).filter((x) => x != null); return [Math.min(...v), Math.max(...v)]; };
@@ -42,10 +49,10 @@ const CAPS = [
   [23.5, 30.5, `V ${D.sem['na poti']} občinah je prenova že na dobri poti, v večini drugih jo bo treba še pospešiti.`],
   [32, 38.5, `Tudi viri toplote so različni: obnovljivi viri pokrivajo od ${D.ove[0]} do ${D.ove[1]} % rabe energije v stavbah.`],
   [39, 45.5, 'Kjer so stavbe gosto skupaj, je smiselno daljinsko ogrevanje.'],
-  [47, 54, 'Za vsako občino je pripravljena kartica: raba energije, emisije, energijski razredi in pot do leta 2050.'],
-  [54.5, 61.5, 'Občino lahko primerjate s sosednjimi občinami in s Slovenijo.'],
-  [63, 69.5, 'Za občinske službe je na voljo energetsko-podnebna kartica – izvleček za lokalni energetski koncept.'],
-  [70, 76, 'Dodana sta koledar obveznosti za občine in paket podatkov za prenos.'],
+  [47, 54, `Primer: ${O4.name}. Kartica občine pokaže rabo energije, emisije, energente in energijske razrede.`],
+  [54.5, 61.5, `${O4.name} prenovi okoli ${nf(O4.t_dej_pct, 1)} % stanovanjske površine na leto – ${tempo(O4)}.`],
+  [63, 69.5, `Primer: ${O5.name}. Energetsko-podnebna kartica je izvleček za lokalni energetski koncept.`],
+  [70, 76, `${O5.name} prenovi okoli ${nf(O5.t_dej_pct, 1)} % stanovanjske površine na leto – ${tempo(O5)}.`],
   [77.5, 89.5, 'Poiščite svojo občino na strani Moja občina.'],
 ];
 CAPS.forEach((c) => { c[2] = c[2].replace(/ %/g, ' %'); });
@@ -117,25 +124,42 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
 .note { font-size: ${sq ? 17 : 21}px; color: #B9B7A8; line-height: 1.35; margin-top: ${sq ? 6 : 26}px; opacity: 0; }
 .chip { background: rgba(245,242,232,.08); border: 2px solid rgba(214,178,94,.55); border-radius: 20px; padding: ${sq ? '12px 20px' : '20px 26px'}; margin-top: ${sq ? 8 : 26}px; opacity: 0; font-size: ${sq ? 20 : 25}px; color: #DAD8C9; line-height: 1.3; }
 .chip b { display: block; font-family: S; font-size: ${sq ? 30 : 44}px; color: #F5F2E8; }
-/* kartica občine (splošna) */
-.card { position: absolute; left: ${P}px; top: ${sq ? 250 : 280}px; width: ${inner}px; height: ${sq ? 610 : 600}px; background: #F5F2E8; border-radius: 22px; color: #333D22; padding: ${sq ? 28 : 36}px; display: grid; grid-template-columns: ${sq ? '1fr 1fr' : '1fr 1fr 1fr'}; grid-template-rows: auto; grid-auto-rows: 1fr; gap: ${sq ? 16 : 22}px; opacity: 0; }
-.card .hd { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; }
-.card .hd b { font-family: S; font-size: ${sq ? 36 : 46}px; }
-.ph { display: inline-block; height: .55em; border-radius: 8px; background: #CFCBB8; vertical-align: middle; }
-.tile { background: #FFFFFF; border: 2px solid #E4E0CF; border-radius: 16px; padding: ${sq ? 14 : 20}px; opacity: 0; display: flex; flex-direction: column; gap: 10px; }
-.tile h4 { font-size: ${sq ? 18 : 22}px; font-weight: 800; color: #4B5A3A; }
-.tile .bar { display: flex; height: ${sq ? 18 : 24}px; border-radius: 6px; overflow: hidden; }
-.tile svg { width: 100%; height: ${sq ? 60 : 90}px; }
-.tile .l { display: block; height: 12px; border-radius: 6px; background: #E4E0CF; }
-/* energetsko-podnebna kartica (A4) */
-.a4 { position: absolute; left: ${P}px; top: ${sq ? 240 : 270}px; width: ${sq ? 440 : 520}px; height: ${sq ? 622 : 640}px; background: #FFFFFF; border-radius: 10px; color: #333D22; padding: ${sq ? 24 : 30}px; opacity: 0; box-shadow: 0 18px 40px rgba(0,0,0,.35); }
-.a4 .t { font-family: S; font-weight: 700; font-size: ${sq ? 25 : 30}px; line-height: 1.15; }
-.a4 .s { font-size: ${sq ? 14 : 16}px; color: #6E7660; margin: 6px 0 14px; }
-.a4 .sec { border-top: 2px solid #E4E0CF; padding-top: ${sq ? 6 : 9}px; margin-top: ${sq ? 6 : 10}px; opacity: 0; }
-.a4 .sec h5 { font-size: ${sq ? 14 : 16}px; font-weight: 800; color: #1F7A57; margin-bottom: 8px; }
-.a4 .sec .l { display: block; height: 9px; border-radius: 5px; background: #E4E0CF; margin: 6px 0; }
-.a4 .ft { position: absolute; left: ${sq ? 24 : 30}px; right: ${sq ? 24 : 30}px; bottom: 18px; font-size: 13px; color: #6E7660; display: flex; justify-content: space-between; }
-.side { position: absolute; left: ${P + (sq ? 470 : 600)}px; right: ${P}px; top: ${sq ? 240 : 270}px; }
+/* kartica občine (primer) */
+.card { position: absolute; left: ${P}px; top: ${sq ? 230 : 270}px; width: ${inner}px; height: ${sq ? 640 : 630}px; background: #F5F2E8; border-radius: 22px; color: #333D22; padding: ${sq ? 24 : 32}px; display: grid; grid-template-columns: ${sq ? '1fr 1fr' : '1fr 1fr 1fr'}; grid-template-rows: auto; grid-auto-rows: 1fr; gap: ${sq ? 14 : 20}px; opacity: 0; }
+.card .hd { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+.card .hd b { font-family: S; font-size: ${sq ? 38 : 48}px; }
+.card .hd span { font-size: ${sq ? 18 : 22}px; color: #6E7660; }
+.tile { background: #FFFFFF; border: 2px solid #E4E0CF; border-radius: 16px; padding: ${sq ? '12px 14px' : '16px 20px'}; opacity: 0; display: flex; flex-direction: column; gap: ${sq ? 4 : 8}px; overflow: hidden; }
+.tile h4 { font-size: ${sq ? 15 : 19}px; font-weight: 800; color: #4B5A3A; }
+.tile .v { font-family: S; font-weight: 700; font-size: ${sq ? 30 : 52}px; line-height: 1.05; }
+.tile .v small { font-family: M; font-size: ${sq ? 15 : 19}px; color: #6E7660; font-weight: 700; margin-left: 6px; }
+.tile .s { font-size: ${sq ? 14 : 19}px; color: #6E7660; line-height: 1.3; }
+.bar { display: flex; height: ${sq ? 16 : 22}px; border-radius: 6px; overflow: hidden; margin-top: 4px; }
+.bar i { display: block; height: 100%; }
+.bars { display: flex; align-items: flex-end; gap: ${sq ? 8 : 12}px; height: ${sq ? 64 : 92}px; margin-top: 4px; }
+.bars span { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; font-size: ${sq ? 12 : 15}px; color: #6E7660; }
+.bars i { display: block; width: 100%; background: #8F5A08; border-radius: 4px 4px 0 0; flex-shrink: 0; }
+.bars { --bh: ${sq ? 38 : 60}px; }
+.a4 .bars { --bh: ${sq ? 26 : 40}px; }
+.bars b { font-size: ${sq ? 12 : 15}px; color: #333D22; }
+.tile .pr { height: ${sq ? 12 : 16}px; border-radius: 8px; background: #E4E0CF; position: relative; margin-top: 6px; }
+.tile .pr i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 8px; background: #1F7A57; }
+.tile .pr u { position: absolute; top: -6px; bottom: -6px; width: 3px; background: #333D22; }
+.dot { display: inline-block; width: .7em; height: .7em; border-radius: 50%; background: #8FD19E; margin-right: 6px; }
+/* energetsko-podnebna kartica (primer, A4) */
+.a4 { position: absolute; left: ${P}px; top: ${sq ? 230 : 262}px; width: ${sq ? 470 : 600}px; height: ${sq ? 640 : 660}px; background: #FFFFFF; border-radius: 10px; color: #333D22; padding: ${sq ? '20px 22px' : '26px 30px'}; opacity: 0; box-shadow: 0 18px 40px rgba(0,0,0,.35); }
+.a4 .t { font-family: S; font-weight: 700; font-size: ${sq ? 22 : 28}px; line-height: 1.15; }
+.a4 .s { font-size: ${sq ? 13 : 15}px; color: #6E7660; margin: 4px 0 8px; }
+.a4 .sec { border-top: 2px solid #E4E0CF; padding-top: ${sq ? 6 : 8}px; margin-top: ${sq ? 6 : 10}px; opacity: 0; }
+.a4 .sec h5 { font-size: ${sq ? 13 : 15}px; font-weight: 800; color: #1F7A57; margin-bottom: 4px; }
+.a4 .row { display: flex; gap: ${sq ? 14 : 24}px; font-size: ${sq ? 13 : 15}px; color: #6E7660; }
+.a4 .row b { display: block; font-family: S; font-size: ${sq ? 20 : 26}px; color: #333D22; }
+.a4 .bar { height: ${sq ? 13 : 16}px; }
+.a4 .lgd { font-size: ${sq ? 11 : 13}px; color: #6E7660; margin-top: 3px; }
+.a4 .bars { height: ${sq ? 52 : 70}px; }
+.a4 .bars span, .a4 .bars b { font-size: ${sq ? 11 : 13}px; }
+.a4 .ft { position: absolute; left: ${sq ? 22 : 30}px; right: ${sq ? 22 : 30}px; bottom: 14px; font-size: 12px; color: #6E7660; display: flex; justify-content: space-between; }
+.side { position: absolute; left: ${P + (sq ? 500 : 680)}px; right: ${P}px; top: ${sq ? 230 : 262}px; }
 .side .chip { margin-top: 0; margin-bottom: ${sq ? 14 : 22}px; }
 /* zaključek */
 .btns { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 330 : 340}px; display: grid; gap: 22px; justify-items: start; }
@@ -164,24 +188,28 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
   <div class="col"><div class="lg" id="l3">Delež obnovljivih virov v rabi energije v stavbah${leg(OVE, D.ove[0], D.ove[1], D.oveSI, '%')}</div>
     <div class="chip" id="c3"${sq ? ' style="display:none"' : ''}><b>${D.dh} %</b>potrebne toplote v Sloveniji je na območjih, kjer so stavbe dovolj gosto za daljinsko ogrevanje${sq ? '' : ` (v nekaterih občinah do ${D.dhMax} %)`}</div></div></section>
 
-<section class="sc" id="s4"><p class="k">Kartica občine</p><h1>Kaj najdete o svoji občini</h1>
-  <div class="card" id="cd"><div class="hd"><b>Občina</b><span class="ph" style="width:${sq ? 220 : 320}px"></span></div>
-    <div class="tile"><h4>Raba energije v stavbah</h4><span class="l" style="width:80%"></span><span class="l" style="width:55%"></span></div>
-    <div class="tile"><h4>Emisije toplogrednih plinov</h4><span class="l" style="width:70%"></span><span class="l" style="width:45%"></span></div>
-    <div class="tile"><h4>Energijski razredi</h4><span class="bar">${CLS.map((c) => `<i style="background:${COL[c]};width:${housesCls[c]}%"></i>`).join('')}</span></div>
-    <div class="tile"><h4>Pot do leta 2050</h4><svg viewBox="0 0 200 60" preserveAspectRatio="none"><path d="M0,8 C60,20 110,40 200,52" fill="none" stroke="#1F7A57" stroke-width="4"/></svg></div>
-    <div class="tile"><h4>Primerjava s sosednjimi občinami</h4><span class="l" style="width:90%"></span><span class="l" style="width:65%"></span><span class="l" style="width:75%"></span></div>
-    ${sq ? '' : '<div class="tile"><h4>Obnovljivi viri in energenti</h4><span class="l" style="width:60%"></span><span class="l" style="width:85%"></span></div>'}
+<section class="sc" id="s4"><p class="k">Kartica občine · primer</p><h1>Kaj najdete o svoji občini</h1>
+  <div class="card" id="cd"><div class="hd"><b>${O4.name}</b><span>${nf(O4.pop)} prebivalcev · ${nf(O4.buildings)} stavb</span></div>
+    <div class="tile"><h4>Raba energije v stavbah</h4><p class="v">${nf(O4.vse.fe_gwh.total)}<small>GWh na leto</small></p><p class="s">${nf(O4.vse.fe_mwh_preb.total, 1)} MWh na prebivalca · Slovenija ${nf(SIM.vse.fe_mwh_preb.total, 1)}</p></div>
+    <div class="tile"><h4>Emisije toplogrednih plinov</h4><p class="v">${nf(O4.vse.tgp_kt.total)}<small>kt CO₂ ekv.</small></p><p class="s">${nf(O4.vse.tgp_t_preb.total, 1)} t na prebivalca · Slovenija ${nf(SIM.vse.tgp_t_preb.total, 1)}</p></div>
+    <div class="tile"><h4>Energenti v stanovanjskih stavbah</h4><span class="bar">${Object.entries(O4.carriers_pct).filter(([, v]) => v > 0).map(([k, v]) => `<i style="background:${CAR[k][1]};width:${v}%"></i>`).join('')}</span><p class="s">${Object.entries(O4.carriers_pct).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k, v]) => `${CAR[k][0]} ${nf(v, 0)} %`).join(' · ')}</p></div>
+    <div class="tile"><h4>Energijski razredi stanovanjskih stavb</h4><span class="bar">${CLS.map((c) => `<i style="background:${COL[c]};width:${O4.nps_pct[c]}%"></i>`).join('')}</span><p class="s">od A do G · v razredih F in G ${nf(O4.nps_pct.F + O4.nps_pct.G, 0)} % površine</p></div>
+    <div class="tile"><h4>Emisije do leta 2050, kt CO₂ ekv.</h4><div class="bars">${['2023', '2030', '2040', '2050'].map((y) => `<span><b>${nf(O4.pot[y].tgp_kt, O4.pot['2023'].tgp_kt < 100 ? 1 : 0)}</b><i style="height:calc(var(--bh) * ${(O4.pot[y].tgp_kt / O4.pot['2023'].tgp_kt).toFixed(3)})"></i>${y}</span>`).join('')}</div></div>
+    <div class="tile"><h4>Tempo prenove stanovanjskih stavb</h4><p class="v">${nf(O4.t_dej_pct, 1)} %<small>na leto</small></p><div class="pr"><i style="width:${Math.min(100, 100 * O4.t_dej_pct / 3.2)}%"></i><u style="left:${100 * O4.t_zah_pct / 3.2}%"></u></div><p class="s"><span class="dot"></span>${O4.t_semafor === 'na poti' ? 'na dobri poti' : 'tempo je treba povečati'} · potrebno ${nf(O4.t_zah_pct, 1)} %</p></div>
   </div></section>
 
-<section class="sc" id="s5"><p class="k">Za občinske službe</p><h1>Energetsko-podnebna kartica</h1>
-  <div class="a4" id="a4"><p class="t">Energetsko-podnebna kartica občine</p><p class="s">stavbe · izvleček za lokalni energetski koncept</p>
-    ${['Stanje 2023', 'Pot do leta 2050 po scenariju NPS 2050', 'Kaj to pomeni na leto (2026–2030)', 'Primerjava in daljinsko ogrevanje', 'Mesto občine med vsemi občinami', 'Koledar za občine in javni sektor'].map((h, i) => `<div class="sec"><h5>${h}</h5><span class="l" style="width:${[92, 80, 70, 84, 66, 86][i]}%"></span><span class="l" style="width:${[60, 74, 55, 48, 72, 62][i]}%"></span></div>`).join('')}
+<section class="sc" id="s5"><p class="k">Za občinske službe · primer</p><h1>Energetsko-podnebna kartica</h1>
+  <div class="a4" id="a4"><p class="t">Energetsko-podnebna kartica občine ${O5.name}</p><p class="s">stavbe · izvleček za lokalni energetski koncept</p>
+    <div class="sec"><h5>Stanje 2023</h5><div class="row"><span><b>${nf(O5.vse.fe_gwh.total)} GWh</b>raba energije</span><span><b>${nf(O5.vse.tgp_kt.total, 1)} kt</b>emisije CO₂ ekv.</span><span><b>${nf(O5.vse.ove_pct.total, 0)} %</b>obnovljivi viri</span></div></div>
+    <div class="sec"><h5>Energenti v stanovanjskih stavbah</h5><span class="bar">${Object.entries(O5.carriers_pct).filter(([, v]) => v > 0).map(([k, v]) => `<i style="background:${CAR[k][1]};width:${v}%"></i>`).join('')}</span><p class="lgd">${Object.entries(O5.carriers_pct).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([k, v]) => `${CAR[k][0]} ${nf(v, 0)} %`).join(' · ')}</p></div>
+    <div class="sec"><h5>Pot do leta 2050 po scenariju NPS 2050: emisije, kt CO₂ ekv.</h5><div class="bars">${['2023', '2030', '2040', '2050'].map((y) => `<span><b>${nf(O5.pot[y].tgp_kt, O5.pot['2023'].tgp_kt < 100 ? 1 : 0)}</b><i style="height:calc(var(--bh) * ${(O5.pot[y].tgp_kt / O5.pot['2023'].tgp_kt).toFixed(3)})"></i>${y}</span>`).join('')}</div></div>
+    <div class="sec"><h5>Energijski razredi stanovanjskih stavb</h5><span class="bar">${CLS.map((c) => `<i style="background:${COL[c]};width:${O5.nps_pct[c]}%"></i>`).join('')}</span><p class="lgd">od A do G · v razredih F in G ${nf(O5.nps_pct.F + O5.nps_pct.G, 0)} % površine</p></div>
+    <div class="sec"><h5>Kaj to pomeni na leto (2026–2030)</h5><div class="row"><span><b>${nf(O5.stevilke.hise_leto)}</b>hiš</span><span><b>${nf(O5.stevilke.stanovanja_leto)}</b>stanovanj</span><span><b>${nf(O5.stevilke.nalozba_eur_leto / 1e6, 1)} mio €</b>naložb</span></div></div>
     <p class="ft"><span>IJS CEU · strokovne podlage NPS 2050</span><span>CC BY-NC-ND</span></p></div>
   <div class="side">
-    <div class="chip"><b>Za tisk in PDF</b>izvleček podatkov o stavbah za lokalni energetski koncept</div>
-    <div class="chip"><b>Koledar</b>obveznosti za občine in javni sektor do leta 2050</div>
-    <div class="chip"><b>Podatki</b>paket CSV za vsako občino</div></div></section>
+    <div class="chip"><b>${nf(O5.t_dej_pct, 1)} %</b>stanovanjske površine se prenovi na leto${sq ? '' : ` (za NPS 2050 potrebno ${nf(O5.t_zah_pct, 1)} %)`}</div>
+    <div class="chip"><b>${nf(O5.vse.tgp_t_preb.total, 1)} t</b>CO₂ ekv. na prebivalca (Slovenija ${nf(SIM.vse.tgp_t_preb.total, 1)} t)</div>
+    <div class="chip"><b>${nf(O5.carriers_pct.dh, 0)} %</b>rabe energije v stanovanjskih stavbah pokrije daljinska toplota</div></div></section>
 
 <section class="sc" id="s6"><p class="k">Kje najdete več</p><h1>Moja občina</h1>
   <div class="btns"><span class="btn">Kartica vaše občine</span><span class="btn">Primerjava občin</span><span class="btn">Energetsko-podnebna kartica</span></div>
@@ -209,9 +237,9 @@ window.render = (t) => {
   paint('m2', t, 17, 3.5); fadeUp($('#l2'), t, 20); fadeUp($('#n2'), t, 24);
   paint('m3', t, 33, 3); fadeUp($('#l3'), t, 36); fadeUp($('#c3'), t, 39.5);
   // 4: kartica občine
-  fadeUp($('#cd'), t, 47.5); $$('#cd .tile').forEach((x, i) => fadeUp(x, t, 49 + i * 1.3));
+  fadeUp($('#cd'), t, 47.5); $$('#cd .tile').forEach((x, i) => fadeUp(x, t, 48.8 + i * 1.4));
   // 5: energetsko-podnebna kartica
-  fadeUp($('#a4'), t, 63.5); $$('#a4 .sec').forEach((x, i) => fadeUp(x, t, 65 + i * .8)); $$('.side .chip').forEach((x, i) => fadeUp(x, t, 66.5 + i * 2.2));
+  fadeUp($('#a4'), t, 63.5); $$('#a4 .sec').forEach((x, i) => fadeUp(x, t, 64.8 + i * 1)); $$('.side .chip').forEach((x, i) => fadeUp(x, t, 66.5 + i * 2.2));
   // 6
   $$('.btn').forEach((x, i) => fadeUp(x, t, 78.5 + i * .9)); fadeUp($('.url'), t, 82); fadeUp($('.fin'), t, 83.5);
   const mu = $('.mus'); if (mu) mu.style.opacity = cl((t - 85) / 1);
