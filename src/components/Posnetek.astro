@@ -1,11 +1,11 @@
 ---
-// Infografični posnetek »NPS 2050 v eni minuti« (izdela tests/video.mjs v public/mediji/).
-// Na Za medije s prenosi, na Kaj je NPS 2050 kompaktno.
+// Infografična posnetka (izdelata tests/video.mjs in tests/video_obcine.mjs v public/mediji/).
+// »NPS 2050 na kratko« na Za medije s prenosi in na Kaj je NPS 2050 kompaktno; »Moja občina« samo na Za medije.
 import { pageUrl, withBase } from '../i18n/routes';
 
-interface Props { compact?: boolean }
-const { compact = false } = Astro.props;
-const f = (x: string) => withBase(`mediji/nps2050-v-eni-minuti${x}`);
+interface Props { compact?: boolean; ime?: string; naslov?: string }
+const { compact = false, ime = 'nps2050-v-eni-minuti', naslov = 'NPS 2050 na kratko' } = Astro.props;
+const f = (x: string) => withBase(`mediji/${ime}${x}`);
 ---
 <figure class:list={['posnetek', { compact }]}>
   <video controls preload="none" playsinline poster={f('-poster.jpg')} width="1920" height="1080">
@@ -13,7 +13,7 @@ const f = (x: string) => withBase(`mediji/nps2050-v-eni-minuti${x}`);
     <track kind="captions" srclang="sl" label="Slovenščina" src={f(".vtt")} />
   </video>
   <figcaption>
-    <strong>NPS 2050 na kratko</strong> · 1,5 minute, brez govora, s podnapisi.
+    <strong>{naslov}</strong> · 1,5 minute, brez govora, s podnapisi.
     {compact
       ? <span> Za prenos in kvadratno različico za družbena omrežja glejte stran <a href={pageUrl('mediji')}>Za medije</a>.</span>
       : <span> Prenos: <a href={f('.mp4')} download>MP4, 16 : 9</a> · <a href={f('-kvadrat.mp4')} download>MP4, 1 : 1 (družbena omrežja)</a> · <a href={f('.vtt')} download>podnapisi (VTT)</a></span>}
