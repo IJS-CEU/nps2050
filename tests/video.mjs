@@ -33,6 +33,7 @@ const S0 = dr.referenca, M30 = dr.polozaji.find((p) => p.epbd_2030);
 const G = { b: dr.nps[0], n: dr.ocena_2025.osrednja, lo: dr.ocena_2025.spodnja, hi: dr.ocena_2025.zgornja,
   c: dr.epbd_max.find((e) => e.year === 2030).max, s0: S0.kwh_m2[dr.years.indexOf(2030)] };
 G.pot = Math.round(100 * (G.b - G.n) / (G.b - G.c));
+const zm = (v) => Math.round(100 * (1 - v / G.b)); G.zm = zm;
 G.dosl = Math.round(100 * (1 - G.n / G.b)); G.cilj = Math.round(100 * (1 - G.c / G.b)); G.se = Math.round(100 * (1 - G.c / G.n));
 G.ime = G.pot >= 30 && G.pot <= 37 ? ['tretjina', 'tretjino', 'dve tretjini'] : [`${G.pot} %`, `${G.pot} %`, `${100 - G.pot} %`];
 // Prizor 5: stopnja prenove 2026–2030 → raba energije leta 2030 (drsnik, ocena stanja 2025)
@@ -164,7 +165,7 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
 #s5 .sc2 { position: absolute; left: ${sq ? 450 : 880}px; right: 0; top: 0; bottom: 0; }
 #s5 .ln { position: absolute; top: ${sq ? 44 : 38}px; height: 4px; background: rgba(245,242,232,.25); left: 0; }
 #s5 .dt { position: absolute; top: ${sq ? 32 : 26}px; z-index: 1; width: 28px; height: 28px; margin-left: -14px; border-radius: 50%; }
-#s5 .dv { position: absolute; top: ${sq ? -10 : -22}px; font-family: S; font-weight: 700; font-size: ${sq ? 28 : 34}px; transform: translateX(-50%); }
+#s5 .dv { position: absolute; top: ${sq ? -10 : -22}px; font-family: S; font-weight: 700; font-size: ${sq ? 28 : 34}px; white-space: nowrap; }
 #s5 .tl { position: absolute; top: ${sq ? 340 : 360}px; height: ${sq ? 470 : 480}px; width: 4px; margin-left: -2px; background: #D6B25E; opacity: 0; }
 #s5 .tl b { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); white-space: nowrap; color: #D6B25E; font-size: ${sq ? 20 : 24}px; padding-bottom: 4px; }
 #s5 .ok { position: absolute; top: ${sq ? 340 : 360}px; height: ${sq ? 470 : 480}px; right: ${P}px; background: rgba(143,209,158,.10); opacity: 0; }
@@ -186,13 +187,13 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
     <i class="f" id="gf"></i>
     <i class="z" id="gz" style="left:${gx(G.n)};width:calc(${gx(G.s0)} - ${gx(G.n)})"></i>
     <i class="r" id="gr" style="left:${gx(G.s0)};right:0"></i>
-    <span class="lb dn" id="l0" style="left:0">2020<b>${G.b}</b></span>
-    <span class="lb up" id="l1" style="left:${gx(G.n)};transform:translateX(-50%)">danes<b>${G.n}</b></span>
-    <span class="lb up gold" id="l2" style="right:0">cilj EPBD 2030<b>${G.c}</b></span>
-    <span class="lb dn red" id="l3" style="left:${gx(G.s0)};transform:translateX(-${sq ? 50 : 30}%)">s sedanjim tempom 2030<b>${G.s0}</b></span>
+    <span class="lb dn" id="l0" style="left:0">izhodišče<b>2020</b></span>
+    <span class="lb up" id="l1" style="left:${gx(G.n)};transform:translateX(-50%)">danes<b>−${zm(G.n)} %</b></span>
+    <span class="lb up gold" id="l2" style="right:0">cilj 2030<b>−${zm(G.c)} %</b></span>
+    <span class="lb dn red" id="l3" style="left:${gx(G.s0)};transform:translateX(-${sq ? 50 : 30}%)">s sedanjim tempom 2030<b>−${zm(G.s0)} %</b></span>
   </div>
   <div class="cs"><div class="chip" id="ch1"><b>−${G.dosl} %</b><span>doseženo 2020–2025</span></div><div class="chip red" id="ch2"><b>−${G.se} %</b><span>potrebno 2025–2030</span></div></div>
-  <p class="nt" id="gn">kWh/(m²·a) primarne energije, stanovanjske stavbe. Danes: ocena IJS CEU iz registrov in energetske bilance (razpon ${G.lo}–${G.hi}). Cilj: najvišja vrednost po EPBD.</p></section>
+  <p class="nt" id="gn">Raba energije stanovanjskih stavb na kvadratni meter v primerjavi z letom 2020, kot jo meri evropska direktiva o stavbah (EPBD). Danes: ocena IJS CEU za leto 2025 (razpon −${zm(G.hi)} do −${zm(G.lo)} %).</p></section>
 
 <section class="sc" id="s3"><p class="k">Najslabše najprej</p><h1>43 % stavb z najvišjo rabo</h1>
   <div class="grid">${Array.from({ length: 100 }, (_, i) => `<i data-i="${i}"></i>`).join('')}</div>
@@ -213,12 +214,12 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
 
 <section class="sc" id="s5"><p class="k">Hitreje in globlje</p><h1>Celovitih prenov ${D.krat}-krat več</h1>
   <p class="hd h1">prenovljena površina na leto, 2026–2030${sq ? '<br>' : ':'}<i style="background:#8FD19E;margin-left:${sq ? 0 : 14}px"></i>celovito<i style="background:rgba(245,242,232,.35)"></i>posamezni ukrepi</p>
-  <p class="hd h2">raba energije leta 2030${sq ? '<br>' : ', '}kWh/(m²·a)</p>
-  <div class="ok" id="s5ok"></div><div class="tl" id="s5tl"><b>cilj ${G.c}</b></div>
+  <p class="hd h2">manj energije na m² leta 2030${sq ? '<br>' : ' '}(glede na 2020)</p>
+  <div class="ok" id="s5ok"></div><div class="tl" id="s5tl"><b>cilj −${zm(G.c)} %</b></div>
   <div class="rows">${D.RR.map((r, i) => `<div class="row" id="r${i}">
     ${sq ? '' : `<span class="rs">od tega ${nf(r.deep, 1)} % celovito</span>`}<span class="rt">${nf(r.tot, 1)} %${r.tag ? `<span class="tg">${r.tag}</span>` : ''}</span>
     <span class="rb"><i class="d"></i><i class="p"></i></span>
-    <span class="sc2"><i class="ln"></i><i class="dt" style="background:${r.ok ? '#8FD19E' : '#EC842B'}"></i><b class="dv" style="color:${r.ok ? '#8FD19E' : '#EC842B'}">${r.v}</b></span></div>`).join('')}</div></section>
+    <span class="sc2"><i class="ln"></i><i class="dt" style="background:${r.ok ? '#8FD19E' : '#EC842B'}"></i><b class="dv" style="color:${r.ok ? '#8FD19E' : '#EC842B'};transform:translateX(${r.ok ? -25 : -80}%)">−${zm(r.v)} %</b></span></div>`).join('')}</div></section>
 
 <section class="sc" id="s6"><p class="k">Kje najdete več</p><h1>Strokovne podlage NPS 2050</h1>
   <div class="btns"><span class="btn">Preverite svojo stavbo</span><span class="btn">Moja občina</span><span class="btn">Kaj pa, če?</span></div>
