@@ -1,4 +1,4 @@
-// Infografični posnetek »NPS 2050 v eni minuti« (64 s, brez govora, s podnapisi): node tests/video.mjs
+// Infografični posnetek »NPS 2050 v eni minuti« (90 s, brez govora, s podnapisi): node tests/video.mjs
 // Številke iz public/data/*.json; vsaka sličica se izriše deterministično (render(t)) in posname, ffmpeg sestavi MP4
 // z nevtralno podlago, ustvarjeno iz čistih tonov (brez avtorskih pravic). Izhod v public/mediji/:
 //   nps2050-v-eni-minuti.mp4 (1920×1080), nps2050-v-eni-minuti-kvadrat.mp4 (1080×1080), .vtt (podnapisi), -poster.jpg.
@@ -17,7 +17,8 @@ const FFMPEG = process.env.FFMPEG || (() => {
   const sub = readdirSync(resolve(base, pkg)).find((d) => d.startsWith('ffmpeg-'));
   return resolve(base, pkg, sub, 'bin', 'ffmpeg.exe');
 })();
-const FPS = 25, DUR = 64;
+// Časovnica prizorov je zapisana za 64 s; SLOW jo enakomerno raztegne (animacije, prehodi in podnapisi), privzeto na 90 s.
+const FPS = 25, BASE = 64, DUR = Number(process.env.DUR || 90), SLOW = DUR / BASE;
 const nf = (v, d = 0) => v.toLocaleString('sl-SI', { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: 'always' });
 
 // ---------------------------------------------------------------- podatki
@@ -237,7 +238,7 @@ const cl = (x) => Math.max(0, Math.min(1, x)), ease = (x) => { x = cl(x); return
 const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
 const fadeUp = (el, t, t0, d = .6) => { const p = ease((t - t0) / d); el.style.opacity = p; el.style.transform = 'translateY(' + (1 - p) * 24 + 'px)'; };
 const scW = SQ ? ${inner} : 1400, scL = ${P} + (SQ ? 0 : 140);
-window.render = (t) => {
+window.render = (T) => { const t = T / ${SLOW};
   SC.forEach(([a, b], i) => { const el = $('#s' + (i + 1)); const o = Math.min(cl((t - a) / .5), i === SC.length - 1 ? 1 : cl((b - t) / .5)); el.style.opacity = o; el.style.visibility = o > 0 ? 'visible' : 'hidden';
     $$('.prog i')[i].style.transform = 'scaleX(' + cl((t - a) / (b - a)) + ')'; });
   const c = CAPS.find(([a, b]) => t >= a && t <= b); const cap = $('#cap'); cap.textContent = c ? c[2] : '';
@@ -284,15 +285,15 @@ render(0);
 // ---------------------------------------------------------------- izris in sestava
 const out = resolve(root, 'public/mediji'); mkdirSync(out, { recursive: true });
 const tmp = resolve(root, 'tests/_video_frames'); rmSync(tmp, { recursive: true, force: true }); mkdirSync(tmp, { recursive: true });
-const vtt = 'WEBVTT\n\n' + CAPS.map(([a, b, s], i) => `${i + 1}\n${ts(a)} --> ${ts(b)}\n${s}\n`).join('\n');
+const vtt = 'WEBVTT\n\n' + CAPS.map(([a, b, s], i) => `${i + 1}\n${ts(a * SLOW)} --> ${ts(b * SLOW)}\n${s}\n`).join('\n');
 function ts(s) { const h = Math.floor(s / 3600), m = Math.floor(s / 60) % 60, x = (s % 60).toFixed(3).padStart(6, '0'); return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${x}`; }
 writeFileSync(resolve(out, 'nps2050-v-eni-minuti.vtt'), vtt, 'utf-8');
 
 // nevtralna podlaga: počasi utripajoč akord iz čistih tonov (A–C#–E–A), z mehkim začetkom in koncem
 const audio = resolve(tmp, 'podlaga.wav');
 const expr = ['110', '164.81', '220', '277.18'].map((f, i) => `0.035*sin(2*PI*${f}*t)*(0.65+0.35*sin(2*PI*${(0.05 + i * 0.013).toFixed(3)}*t))`).join('+');
-// MUSIC=pot/do/skladbe.mp3 [MUSIC_START=6] [MUSIC_CREDIT='Avtor – Naslov (vir)']: namesto tonov odsek skladbe (licenca mora dovoljevati objavo na spletu)
-if (process.env.MUSIC) execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-ss', process.env.MUSIC_START || '6', '-t', String(DUR), '-i', process.env.MUSIC,
+// MUSIC=pot/do/skladbe.mp3 [MUSIC_START=1: okrepitev skladbe pri 1:00 pade na začetek prizora 5] [MUSIC_CREDIT='Avtor – Naslov (vir)']: namesto tonov odsek skladbe (licenca mora dovoljevati objavo na spletu)
+if (process.env.MUSIC) execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-ss', process.env.MUSIC_START || '1', '-t', String(DUR), '-i', process.env.MUSIC,
   '-af', `afade=t=in:d=1.5,afade=t=out:st=${DUR - 4.5}:d=4.5,loudnorm=I=-20:TP=-2:LRA=11`, '-ar', '48000', audio]);
 else execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', `aevalsrc=${expr}:s=48000:d=${DUR}`, '-af', `lowpass=f=1200,afade=t=in:d=3,afade=t=out:st=${DUR - 4}:d=4`, audio]);
 
@@ -314,7 +315,7 @@ for (const [sq, name] of [[false, 'nps2050-v-eni-minuti'], [true, 'nps2050-v-eni
     await page.evaluate((t) => window.render(t), f / FPS);
     await page.screenshot({ path: resolve(dir, `f${String(f).padStart(5, '0')}.jpg`), type: 'jpeg', quality: 92 });
   }
-  if (!sq) { await page.evaluate((t) => window.render(t), 38.5); await page.screenshot({ path: resolve(out, 'nps2050-v-eni-minuti-poster.jpg'), type: 'jpeg', quality: 85 }); }
+  if (!sq) { await page.evaluate((t) => window.render(t), 38.5 * SLOW); await page.screenshot({ path: resolve(out, 'nps2050-v-eni-minuti-poster.jpg'), type: 'jpeg', quality: 85 }); }
   await page.close();
   execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-framerate', String(FPS), '-i', resolve(dir, 'f%05d.jpg'), '-i', audio,
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '23', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', process.env.MUSIC ? '160k' : '96k', '-shortest', '-movflags', '+faststart',

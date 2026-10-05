@@ -13,7 +13,7 @@ const f = (x: string) => withBase(`mediji/nps2050-v-eni-minuti${x}`);
     <track kind="captions" srclang="sl" label="Slovenščina" src={f(".vtt")} />
   </video>
   <figcaption>
-    <strong>NPS 2050 v eni minuti</strong> · 64 s, brez govora, s podnapisi.
+    <strong>NPS 2050 na kratko</strong> · 1,5 minute, brez govora, s podnapisi.
     {compact
       ? <span> Za prenos in kvadratno različico za družbena omrežja glejte stran <a href={pageUrl('mediji')}>Za medije</a>.</span>
       : <span> Prenos: <a href={f('.mp4')} download>MP4, 16 : 9</a> · <a href={f('-kvadrat.mp4')} download>MP4, 1 : 1 (družbena omrežja)</a> · <a href={f('.vtt')} download>podnapisi (VTT)</a></span>}
