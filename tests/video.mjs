@@ -173,6 +173,7 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
 #s6 .btns { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 330 : 340}px; display: grid; gap: 22px; justify-items: start; }
 #s6 .btn { font-size: ${sq ? 40 : 48}px; font-weight: 800; padding: 18px 40px; border-radius: 999px; background: #D6B25E; color: #333D22; opacity: 0; }
 #s6 .url { position: absolute; left: ${P}px; top: ${sq ? 720 : 720}px; font-family: S; font-size: ${sq ? 46 : 64}px; font-weight: 700; opacity: 0; }
+#s6 .mus { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 862 : 872}px; font-size: ${sq ? 17 : 19}px; color: #A9A797; opacity: 0; }
 #s6 .note { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 800 : 820}px; font-size: ${sq ? 20 : 24}px; color: #DAD8C9; opacity: 0; }
 </style></head><body>
 <p class="sig">IJS CEU · strokovne podlage NPS 2050 · osnutek, ${datum}</p>
@@ -224,7 +225,8 @@ h1 { position: absolute; left: ${P}px; right: ${P}px; top: ${sq ? 112 : 138}px; 
 <section class="sc" id="s6"><p class="k">Kje najdete več</p><h1>Strokovne podlage NPS 2050</h1>
   <div class="btns"><span class="btn">Preverite svojo stavbo</span><span class="btn">Moja občina</span><span class="btn">Kaj pa, če?</span></div>
   <p class="url">ijs-ceu.github.io/nps2050</p>
-  <p class="note">Številke iz osnutka NPS 2050 (${datum}) in strokovnih podlag IJS CEU; do sprejema načrta se lahko spremenijo.</p></section>
+  <p class="note">Številke iz osnutka NPS 2050 (${datum}) in strokovnih podlag IJS CEU; do sprejema načrta se lahko spremenijo.</p>
+  ${process.env.MUSIC_CREDIT ? `<p class="mus">Glasba: ${process.env.MUSIC_CREDIT}</p>` : ''}</section>
 
 <div class="prog">${SCENES.map(() => '<b><i></i></b>').join('')}</div>
 <div class="cap"><span id="cap"></span></div>
@@ -272,7 +274,7 @@ window.render = (t) => {
       const x = sx(255 + (r.v - 255) * q); row.querySelector('.dt').style.left = x + 'px'; row.querySelector('.ln').style.width = x + 'px';
       const dv = row.querySelector('.dv'); dv.style.left = x + 'px'; dv.style.opacity = cl((t - t0 - 2) / .3); }); }
   // 6
-  { const a = 54; $$('#s6 .btn').forEach((b, i) => fadeUp(b, t, a + .8 + i * .6)); fadeUp($('#s6 .url'), t, a + 3); fadeUp($('#s6 .note'), t, a + 3.8); }
+  { const a = 54; $$('#s6 .btn').forEach((b, i) => fadeUp(b, t, a + .8 + i * .6)); fadeUp($('#s6 .url'), t, a + 3); fadeUp($('#s6 .note'), t, a + 3.8); const mu = $('#s6 .mus'); if (mu) mu.style.opacity = cl((t - a - 6) / .8); }
 };
 render(0);
 </script></body></html>`;
@@ -288,7 +290,10 @@ writeFileSync(resolve(out, 'nps2050-v-eni-minuti.vtt'), vtt, 'utf-8');
 // nevtralna podlaga: počasi utripajoč akord iz čistih tonov (A–C#–E–A), z mehkim začetkom in koncem
 const audio = resolve(tmp, 'podlaga.wav');
 const expr = ['110', '164.81', '220', '277.18'].map((f, i) => `0.035*sin(2*PI*${f}*t)*(0.65+0.35*sin(2*PI*${(0.05 + i * 0.013).toFixed(3)}*t))`).join('+');
-execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', `aevalsrc=${expr}:s=48000:d=${DUR}`, '-af', `lowpass=f=1200,afade=t=in:d=3,afade=t=out:st=${DUR - 4}:d=4`, audio]);
+// MUSIC=pot/do/skladbe.mp3 [MUSIC_START=6] [MUSIC_CREDIT='Avtor – Naslov (vir)']: namesto tonov odsek skladbe (licenca mora dovoljevati objavo na spletu)
+if (process.env.MUSIC) execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-ss', process.env.MUSIC_START || '6', '-t', String(DUR), '-i', process.env.MUSIC,
+  '-af', `afade=t=in:d=1.5,afade=t=out:st=${DUR - 4.5}:d=4.5,loudnorm=I=-20:TP=-2:LRA=11`, '-ar', '48000', audio]);
+else execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', `aevalsrc=${expr}:s=48000:d=${DUR}`, '-af', `lowpass=f=1200,afade=t=in:d=3,afade=t=out:st=${DUR - 4}:d=4`, audio]);
 
 const browser = await chromium.launch();
 if (process.env.STILLS) {   // predogled: STILLS=3,14,25 node tests/video.mjs → tests/_video_tNN.png
@@ -311,7 +316,7 @@ for (const [sq, name] of [[false, 'nps2050-v-eni-minuti'], [true, 'nps2050-v-eni
   if (!sq) { await page.evaluate((t) => window.render(t), 38.5); await page.screenshot({ path: resolve(out, 'nps2050-v-eni-minuti-poster.jpg'), type: 'jpeg', quality: 85 }); }
   await page.close();
   execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-framerate', String(FPS), '-i', resolve(dir, 'f%05d.jpg'), '-i', audio,
-    '-c:v', 'libx264', '-preset', 'slow', '-crf', '23', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '96k', '-shortest', '-movflags', '+faststart',
+    '-c:v', 'libx264', '-preset', 'slow', '-crf', '23', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', process.env.MUSIC ? '160k' : '96k', '-shortest', '-movflags', '+faststart',
     resolve(out, `${name}.mp4`)]);
   console.log(`public/mediji/${name}.mp4`);
 }
