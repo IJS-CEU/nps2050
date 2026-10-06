@@ -233,24 +233,24 @@
   },
   "qhnd_kwh_m2": {
    "pred_1980": {
-    "neizoliran": 51,
-    "delno": 40,
-    "izoliran": 28,
-    "celovita": 15
+    "neizoliran": 100,
+    "delno": 60,
+    "izoliran": 53,
+    "celovita": 35
    },
    "1981_2002": {
-    "neizoliran": 53,
-    "delno": 42,
-    "izoliran": 30,
-    "celovita": 15
+    "neizoliran": 62,
+    "delno": 50,
+    "izoliran": 50,
+    "celovita": 35
    },
    "po_2002": {
-    "neizoliran": 35,
-    "delno": 30,
-    "izoliran": 25,
-    "celovita": 15
+    "neizoliran": 37,
+    "delno": 35,
+    "izoliran": 33,
+    "celovita": 30
    },
-   "opomba": "končna energija za ogrevanje na m² stanovanja: paketi prenove (izkaznice blokov, 66 oziroma 68 kWh/m² skupaj s toplo vodo 15 kWh/m²); stanje po celoviti prenovi ovoja umerjeno na pakete prenove (fasada in okna okoli 300 € prihranka na leto pri 59 m²)"
+   "opomba": "potrebna toplota za ogrevanje Qh,nd [kWh/(m²·a)]: mediane računskih energetskih izkaznic večstanovanjskih stavb (register 28. 9. 2026), povezanih s katastrom (obnova fasade, strehe, oken 2010+ ali Eko sklad); do 1980: neizolirano 100 (n = 6.272), samo streha 56, fasada 54 (n = 2.279), fasada in okna 52; 1981–2002: neizolirano 62, fasada 52; po 2002: 37; celovita prenova brez centralnega prezračevanja z vračanjem toplote okoli razreda B2 (mediana 34, n = 1.610). Skript data/raw/qhnd_izkaznice.py."
   },
   "ukrepi": {
    "fasada": {
@@ -313,8 +313,6 @@
   }
  },
  "referencni_rezultati_blok_59m2_pred1980_daljinsko": {
-  "fasada_okna_brez": 43,
-  "vir": "Paketi prenove, stanovanje v bloku do 1980, delna prenova (13.500 €, prihranek 310 € na leto)",
-  "toleranca": "±20 %"
+  "opomba": "po Qh,nd iz izkaznic (6. 10. 2026) fasada in okna okoli 27 let brez spodbude; stran Paketi prenove računa z nižjo rabo (66 kWh/m² dovedene energije s toplo vodo) in kaže 43 let"
  }
 }

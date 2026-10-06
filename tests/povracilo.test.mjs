@@ -65,9 +65,9 @@ test('vsota prihrankov ukrepov na ovoju je enaka prihranku paketa (hiša 1981–
   assert.ok(r.paket.brez && r.paket.brez.ukrepi.includes('okna'), 'paket brez oken');
   assert.ok(r.paket.brez.doba[1] < r.paket.doba[1]);
 });
-test('stanovanje v bloku do 1980, daljinsko: fasada in okna okoli 43 let brez spodbude (kot paketi prenove)', () => {
+test('stanovanje v bloku do 1980, daljinsko: fasada in okna okoli 27 let brez spodbude (Qh,nd iz izkaznic)', () => {
   const r = izracun(D, { tip: 'blok', povrsina: 59, obdobje: 'pred_1980', stanje: 'neizoliran', energent: 'daljinska_toplota', ukrepi: ['fasada', 'okna', 'tc', 'plosca_podstrehe'] });
   assert.deepEqual(r.rezultati.map((x) => x.ukrep), ['fasada', 'okna'], 'v bloku ni črpalke in plošče');
-  v(r.paket.doba[0], [43, 43], 'blok fasada + okna');
+  v(r.paket.doba[0], [24, 30], 'blok fasada + okna');
   assert.ok(r.paket.doba[2] < r.paket.doba[1]);
 });
