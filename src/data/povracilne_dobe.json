@@ -1,0 +1,228 @@
+{
+ "verzija": "2026-10-06",
+ "vir": "Eko sklad zbirka izplačil 2023–2025 (mediane, občani), javni poziv 126SUB-OB26, SURS, analiza 6 TČ vgradnja, osnutek NPS 2050",
+ "cene_energentov_eur_kwh": {
+  "elektrika": 0.196,
+  "zemeljski_plin": 0.087,
+  "kurilno_olje": 0.12,
+  "peleti": 0.07,
+  "polena": 0.045,
+  "daljinska_toplota": 0.1,
+  "vir": "SURS 2. četrtletje 2025 (elektrika, plin); ostalo ocena oktober 2026"
+ },
+ "model": {
+  "kKh_ucinkoviti": 45,
+  "izkoristek_sistema_ovoj": 0.85,
+  "ure_h_polna_obremenitev": 1800,
+  "qhnd_kwh_m2": {
+   "pred_1980": {
+    "neizoliran": 150,
+    "delno": 90,
+    "izoliran": 50,
+    "celovita": 35
+   },
+   "1981_2002": {
+    "neizoliran": 120,
+    "delno": 75,
+    "izoliran": 45,
+    "celovita": 35
+   },
+   "po_2002": {
+    "neizoliran": 60,
+    "delno": 50,
+    "izoliran": 40,
+    "celovita": 30
+   }
+  },
+  "scop": {
+   "neizoliran": 2.6,
+   "delno": 3.0,
+   "izoliran": 3.4,
+   "celovita": 3.6,
+   "zemlja_voda_dodatek": 0.5
+  },
+  "izkoristek_kotla": {
+   "kurilno_olje": 0.85,
+   "zemeljski_plin": 0.85,
+   "peleti": 0.8,
+   "polena": 0.65,
+   "elektrika": 1.0,
+   "daljinska_toplota": 0.95
+  },
+  "faktor_prihranka_po_stanju_ovoja": {
+   "neizoliran": 1.0,
+   "delno": 0.5,
+   "izoliran": 0.15
+  }
+ },
+ "ukrepi": {
+  "fasada": {
+   "ime": "Toplotna izolacija fasade",
+   "povrsina_na_m2_tlorisa": 2.3,
+   "u_pred": 1.0,
+   "u_po": 0.2,
+   "strosek_eur_m2": 80,
+   "strosek_trzni_eur_m2": 110,
+   "zivljenjska_doba": 35,
+   "mediana_kolicina_m2": 250,
+   "mediana_strosek_eur": 18200,
+   "strosek_eur_m2_tlorisa": 172
+  },
+  "streha": {
+   "ime": "Toplotna izolacija poševne strehe",
+   "povrsina_na_m2_tlorisa": 0.95,
+   "u_pred": 1.0,
+   "u_po": 0.18,
+   "strosek_eur_m2": 120,
+   "strosek_trzni_eur_m2": 150,
+   "zivljenjska_doba": 35,
+   "mediana_kolicina_m2": 110,
+   "mediana_strosek_eur": 13200,
+   "strosek_eur_m2_tlorisa": 108
+  },
+  "plosca_podstrehe": {
+   "ime": "Toplotna izolacija plošče proti neogrevani podstrehi",
+   "povrsina_na_m2_tlorisa": 0.76,
+   "u_pred": 0.9,
+   "u_po": 0.18,
+   "strosek_eur_m2": 60,
+   "strosek_trzni_eur_m2": 60,
+   "zivljenjska_doba": 35,
+   "mediana_kolicina_m2": 92,
+   "mediana_strosek_eur": 5400,
+   "strosek_eur_m2_tlorisa": 45
+  },
+  "okna": {
+   "ime": "Zamenjava oken",
+   "povrsina_na_m2_tlorisa": 0.13,
+   "u_pred": 2.8,
+   "u_po": 1.0,
+   "strosek_eur_m2": 830,
+   "strosek_trzni_eur_m2": 900,
+   "zivljenjska_doba": 30,
+   "mediana_kolicina_m2": 12,
+   "mediana_strosek_eur": 9700,
+   "strosek_eur_m2_tlorisa": 101
+  },
+  "prezracevanje_lokalno": {
+   "ime": "Lokalno prezračevanje z vračanjem toplote",
+   "strosek_eur": 2200,
+   "prihranek_kwh": 430,
+   "zivljenjska_doba": 18
+  },
+  "prezracevanje_centralno": {
+   "ime": "Centralno prezračevanje z vračanjem toplote",
+   "strosek_eur": 8000,
+   "prihranek_kwh": 820,
+   "zivljenjska_doba": 18
+  },
+  "tc_zrak_voda": {
+   "ime": "Toplotna črpalka zrak-voda",
+   "strosek_eur_kw": 1000,
+   "strosek_trzni_eur": 14000,
+   "zivljenjska_doba": 18,
+   "mediana_moc_kw": 10,
+   "mediana_strosek_eur": 10000
+  },
+  "tc_zemlja_voda": {
+   "ime": "Toplotna črpalka zemlja-voda / voda-voda",
+   "strosek_eur_kw": 1550,
+   "zivljenjska_doba": 20,
+   "mediana_moc_kw": 12,
+   "mediana_strosek_eur": 18700
+  },
+  "soncna_elektrarna": {
+   "ime": "Sončna elektrarna za samooskrbo",
+   "strosek_eur_kw": 1150,
+   "mediana_moc_kw": 12,
+   "zivljenjska_doba": 25,
+   "opomba": "spodbude po letu 2024 ni; informativno"
+  }
+ },
+ "spodbude": {
+  "poziv_2026_126SUB-OB26": {
+   "datum": "2026-04-16",
+   "ovoj": {
+    "delez": 0.4,
+    "najvec_eur_m2": 35
+   },
+   "okna": {
+    "delez": 0.4,
+    "najvec_eur_m2": 300
+   },
+   "prezracevanje": {
+    "delez": 0.4
+   },
+   "tc_zrak_voda": {
+    "delez": 0.5,
+    "najvec_eur": 4500
+   },
+   "tc_zemlja_voda": {
+    "delez": 0.5,
+    "najvec_eur": 8000
+   }
+  },
+  "poziv_2024_114SUB-OB24_ucinkovito": {
+   "fasada": 0.28,
+   "streha": 0.21,
+   "plosca_podstrehe": 0.21,
+   "okna": 0.26,
+   "prezracevanje": 0.29,
+   "tc": 0.25,
+   "vir": "izplačila 2025"
+  },
+  "predlog_NPS_N1": {
+   "osnova": "poziv 2026",
+   "bonus_razred_E": 0.1,
+   "bonus_razred_F_G": 0.2,
+   "bonus_celovita": 0.1,
+   "bonus_korak_izkaz": 0.05,
+   "najvec": 0.7,
+   "ZER": 1.0,
+   "status": "predlog, v uskladitvi z Eko skladom in MzIE"
+  }
+ },
+ "referencni_rezultati_110m2_pred1980_neizoliran": {
+  "fasada": [
+   16,
+   9,
+   6
+  ],
+  "plosca_podstrehe": [
+   20,
+   12,
+   8
+  ],
+  "streha": [
+   22,
+   15,
+   11
+  ],
+  "okna": [
+   ">50",
+   ">50",
+   ">36"
+  ],
+  "tc_olje": [
+   10,
+   5.5,
+   3.5
+  ],
+  "tc_plin": [
+   20,
+   11,
+   7
+  ],
+  "tc_peleti": [
+   44,
+   24,
+   16
+  ],
+  "tc_polena": [
+   "brez",
+   "brez",
+   "brez"
+  ],
+  "opomba": "brez / poziv 2026 / NPS F in G; toleranca ±15 %"
+ }
+}

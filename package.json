@@ -13,7 +13,8 @@
     "test:snap": "node tests/snap.mjs http://localhost:4321/",
     "media": "node tests/media.mjs http://localhost:4321/",
     "og": "node tests/og.mjs",
-    "pdf": "node tests/pdf.mjs http://localhost:4321/"
+    "pdf": "node tests/pdf.mjs http://localhost:4321/",
+    "test:unit": "node --test tests/povracilo.test.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

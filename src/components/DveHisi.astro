@@ -1,0 +1,97 @@
+---
+/**
+ * Zgodba »Dve hiši, ista ulica« (Za lastnike): enaka hiša iz leta 1975, različen vrstni red prenove (najprej toplotna črpalka
+ * ali najprej fasada), kumulativni stroški 20 let. Izračun ob gradnji: dveHisi() v src/scripts/povracilo.ts, podatki
+ * src/data/dve_hisi.json in povracilne_dobe.json (tržne cene, spodbude po pozivu 126SUB-OB26).
+ */
+import D from '../data/povracilne_dobe.json';
+import S from '../data/dve_hisi.json';
+import { dveHisi } from '../scripts/povracilo';
+import { nf } from '../lib/format';
+
+const r = dveHisi(D, S);
+const [A, B] = r.scenariji;
+const eur = (v: number) => `${nf(Math.round(v / 100) * 100)} €`;
+const IME: Record<string, string> = { tc: 'toplotna črpalka', fasada: 'toplotna izolacija fasade' };
+const W = 640, H = 300, L = 72, R = 16, T = 14, Bm = 34;
+const max = Math.ceil(Math.max(...r.brez, A.skupaj, B.skupaj) / 10000) * 10000;
+const x = (y: number) => L + (y / S.let) * (W - L - R);
+const y = (v: number) => T + (1 - v / max) * (H - T - Bm);
+const line = (s: number[]) => s.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+const ticks = Array.from({ length: max / 10000 + 1 }, (_, i) => i * 10000);
+type Dog = { leto: number; ukrep: string; strosek: number; spodbuda: number; moc?: number };
+const korak = (sc: typeof A) => sc.dogodki.map((d: Dog) => ({ ...d, txt: `${d.leto === 0 ? 'Takoj' : `Po ${d.leto} ${d.leto === 1 ? 'letu' : 'letih'}`}: ${IME[d.ukrep]}${d.moc ? ` ${d.moc} kW` : ''}`, cena: `${eur(d.strosek)}, spodbuda ${eur(d.spodbuda)}` }));
+const razlika = A.skupaj - B.skupaj;
+---
+<figure class="dh" aria-labelledby="dh-t">
+  <figcaption id="dh-t"><b>Dve hiši, ista ulica.</b> Enaki hiši iz leta {S.hisa.leto_gradnje}, {S.hisa.povrsina} m², ogrevani s kurilnim oljem. Lastnika naredita isto prenovo, le v drugem vrstnem redu.</figcaption>
+  <div class="dh-cols">
+    {[A, B].map((sc, i) => (
+      <div class={`dh-col dh-${sc.id}`}>
+        <svg viewBox="0 0 120 92" class="dh-house" aria-hidden="true">
+          <path d="M14 46 L60 12 L106 46" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round" />
+          <rect x="22" y="44" width="76" height="42" rx="2" fill="var(--panel2)" stroke={i === 1 ? '#2F8B67' : 'var(--ink2)'} stroke-width={i === 1 ? 7 : 2} />
+          <rect x="34" y="56" width="16" height="14" fill="var(--panel)" stroke="var(--ink2)" stroke-width="1.5" />
+          <rect x="68" y="60" width="14" height="26" fill="var(--panel)" stroke="var(--ink2)" stroke-width="1.5" />
+          <rect x="100" y="62" width="16" height="22" rx="2" fill={i === 0 ? '#B7791F' : '#2F8B67'} opacity=".85" />
+          <text x="108" y="77" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">{sc.moc}</text>
+        </svg>
+        <h4>Hiša {sc.id}: {sc.ime.toLowerCase()}</h4>
+        <ol>
+          {korak(sc).map((d: Dog & { txt: string; cena: string }) => <li><b>{d.txt}</b><span>{d.cena}</span></li>)}
+        </ol>
+        <p class="dh-sum"><b>{eur(sc.skupaj)}</b> v {S.let} letih (naložbe po odbitku spodbude in energija) · črpalka {sc.moc} kW · {nf(Math.round(sc.elektrika_kwh / 1000))} MWh elektrike</p>
+      </div>
+    ))}
+  </div>
+  <svg viewBox={`0 0 ${W} ${H}`} class="dh-chart" role="img" aria-label={`Kumulativni stroški v ${S.let} letih: hiša A ${eur(A.skupaj)}, hiša B ${eur(B.skupaj)}, brez prenove ${eur(r.brez.at(-1)!)}.`}>
+    {ticks.map((t) => <g><line x1={L} x2={W - R} y1={y(t)} y2={y(t)} class="g" /><text x={L - 6} y={y(t) + 4} text-anchor="end">{t ? `${t / 1000} tisoč €` : '0'}</text></g>)}
+    {[0, 5, 10, 15, 20].map((t) => <text x={x(t)} y={H - 12} text-anchor="middle">{t === 0 ? 'leto 0' : `${t}`}</text>)}
+    <path d={line(r.brez)} class="l0" />
+    <path d={line(A.serija)} class="la" />
+    <path d={line(B.serija)} class="lb" />
+    <text x={W - R} y={y(r.brez.at(-1)!) - 6} text-anchor="end" class="t0">brez prenove {eur(r.brez.at(-1)!)}</text>
+    <text x={W - R} y={y(A.skupaj) + 16} text-anchor="end" class="ta">A {eur(A.skupaj)}</text>
+    <text x={W - R} y={y(B.skupaj) + 16} text-anchor="end" class="tb">B {eur(B.skupaj)}</text>
+  </svg>
+  <p class="dh-msg">Na koncu sta hiši enaki – izolirana fasada in toplotna črpalka. Hiša B, ki je začela s fasado, je v {S.let} letih porabila okoli <b>{eur(razlika)} manj</b>, ima <b>črpalko za {B.moc} kW namesto {A.moc} kW</b> in porabi okoli {nf(Math.round((A.elektrika_kwh - B.elektrika_kwh) / 1000))} MWh manj elektrike, kar razbremeni tudi omrežje v najhladnejših dneh. Hiša A ostane s preveliko črpalko, ki jo je izbrala za neizolirano hišo.</p>
+  <details class="metoda">
+    <summary>Kako je izračunano</summary>
+    <p>Tržne cene: toplotna črpalka zrak-voda okoli {nf(S.tc_trzni_eur_kw)} € na kW z vgradnjo (moč = potrebna toplota ÷ {nf(D.model.ure_h_polna_obremenitev)} ur, zaokroženo na 2 kW), fasada okoli {nf(D.ukrepi.fasada.strosek_trzni_eur_m2)} €/m² ({nf(Math.round(S.hisa.povrsina * D.ukrepi.fasada.povrsina_na_m2_tlorisa))} m² fasade). Spodbude po pozivu 126SUB-OB26 (fasada 40 %, največ 35 €/m²; črpalka 50 %, največ 4.500 €). Potrebna toplota za ogrevanje {nf(D.model.qhnd_kwh_m2.pred_1980.neizoliran)} kWh/m² pred prenovo in {nf(D.model.qhnd_kwh_m2.pred_1980.delno)} kWh/m² po izolaciji fasade, SCOP črpalke {nf(D.model.scop.neizoliran, 1)} v neizolirani in {nf(D.model.scop.delno, 1)} v delno izolirani hiši, kurilno olje {nf(D.cene_energentov_eur_kwh.kurilno_olje, 2)} €/kWh pri izkoristku {nf(D.model.izkoristek_kotla.kurilno_olje, 2)}, elektrika {nf(D.cene_energentov_eur_kwh.elektrika, 3)} €/kWh. Cene so stalne, brez diskontiranja; zamenjava črpalke po izteku življenjske dobe ni upoštevana.</p>
+    <table>
+      <caption class="visually-hidden">Kumulativni stroški po letih</caption>
+      <thead><tr><th scope="col">Leto</th><th scope="col" class="num">Hiša A</th><th scope="col" class="num">Hiša B</th><th scope="col" class="num">Brez prenove</th></tr></thead>
+      <tbody>{[1, 2, 5, 6, 10, 15, 20].map((t) => <tr><th scope="row">{t}</th><td class="num">{eur(A.serija[t])}</td><td class="num">{eur(B.serija[t])}</td><td class="num">{eur(r.brez[t])}</td></tr>)}</tbody>
+    </table>
+  </details>
+</figure>
+
+<style>
+  .dh { margin: 1.5rem 0 2rem; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: 1rem 1.2rem; }
+  .dh figcaption { margin-bottom: .8rem; }
+  .dh-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.5rem; }
+  .dh-col { border-radius: 12px; padding: .8rem 1rem; background: var(--bg); }
+  .dh-house { width: 120px; height: auto; color: var(--ink2); display: block; }
+  .dh-col h4 { margin: .4rem 0; font-size: 1rem; }
+  .dh-col ol { margin: 0; padding-left: 1.2rem; display: grid; gap: .35rem; }
+  .dh-col li { margin: 0; }
+  .dh-col li b { display: block; font-size: .92rem; }
+  .dh-col li span { font-size: .82rem; color: var(--ink2); }
+  .dh-sum { margin: .6rem 0 0; font-size: .88rem; }
+  .dh-sum b { font-size: 1.2rem; }
+  .dh-A .dh-sum b { color: #8F5A08; }
+  .dh-B .dh-sum b { color: var(--green); }
+  .dh-chart { width: 100%; height: auto; margin-top: 1rem; font-size: 11px; fill: var(--ink2); }
+  .dh-chart .g { stroke: var(--line); }
+  .dh-chart path { fill: none; stroke-width: 3; }
+  .dh-chart .l0 { stroke: var(--ink2); stroke-dasharray: 5 4; stroke-width: 2; }
+  .dh-chart .la { stroke: #B7791F; }
+  .dh-chart .lb { stroke: var(--green2); }
+  .dh-chart .ta { fill: #8F5A08; font-weight: 700; }
+  .dh-chart .tb { fill: var(--green); font-weight: 700; }
+  .dh-chart .t0 { font-weight: 700; }
+  .dh-msg { margin: .6rem 0; }
+  .dh table { font-size: .85rem; margin-top: .5rem; }
+  .dh .num { text-align: right; font-variant-numeric: tabular-nums; }
+  @media (max-width: 640px) { .dh-cols { grid-template-columns: 1fr; } }
+</style>

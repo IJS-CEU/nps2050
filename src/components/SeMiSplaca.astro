@@ -1,0 +1,289 @@
+---
+/**
+ * Kalkulator »Se mi splača?« (Za lastnike): povračilne dobe ukrepov za enodružinsko hišo brez spodbude, s spodbudo po pozivu
+ * 126SUB-OB26 in po predlogu NPS 2050 (N1), s pasom življenjske dobe, vsoto za paket in drsniki »kaj če«.
+ * Računski model: src/scripts/povracilo.ts (testi tests/povracilo.test.mjs), podatki src/data/povracilne_dobe.json.
+ * Vse se računa v brskalniku, vnosi se ne shranjujejo. Iz orodja Preveri stavbo se predizpolni prek ?obdobje=&stanje=&energent=&razred=&nad43=.
+ */
+import D from '../data/povracilne_dobe.json';
+import { nf } from '../lib/format';
+
+const U = D.ukrepi;
+const C = D.cene_energentov_eur_kwh;
+const UKREPI = [
+  ['fasada', U.fasada.ime, 'okoli 80 €/m² fasade'],
+  ['streha', U.streha.ime, 'okoli 120 €/m² strehe'],
+  ['plosca_podstrehe', U.plosca_podstrehe.ime, 'okoli 60 €/m²'],
+  ['okna', U.okna.ime, 'okoli 830 €/m² okna'],
+  ['prezracevanje', 'Prezračevanje z vračanjem toplote', 'lokalno 2.200 €, centralno 8.000 €'],
+  ['tc', 'Toplotna črpalka', 'okoli 1.000 €/kW (zrak-voda)'],
+] as const;
+---
+<section class="sms" id="se-mi-splaca-kalkulator" aria-labelledby="sms-h">
+  <h3 id="sms-h" class="visually-hidden">Kalkulator povračilnih dob</h3>
+  <form class="sms-form" novalidate>
+    <fieldset class="sms-step">
+      <legend><span class="sms-n">1</span> Moja hiša</legend>
+      <p class="sms-help">Kalkulator velja za enodružinske hiše. Za stanovanja v blokih glejte tipične pakete prenove spodaj.</p>
+      <div class="sms-grid">
+        <label>Ogrevana površina
+          <span class="sms-rng"><input type="range" id="sms-a" min="60" max="300" step="5" value="110" aria-describedby="sms-a-u" /><input type="number" id="sms-a-n" min="60" max="300" step="5" value="110" aria-label="Ogrevana površina v m²" /><span id="sms-a-u">m²</span></span>
+        </label>
+        <label>Leto gradnje
+          <select id="sms-ob"><option value="pred_1980">do 1980</option><option value="1981_2002">1981–2002</option><option value="po_2002">po 2002</option></select>
+        </label>
+        <label>Izolacija ovoja
+          <select id="sms-st"><option value="neizoliran">ni izolirana</option><option value="delno">delno (npr. streha ali okna)</option><option value="izoliran">izolirana</option></select>
+        </label>
+        <label>Ogrevanje danes
+          <select id="sms-en"><option value="kurilno_olje">kurilno olje</option><option value="zemeljski_plin">zemeljski plin</option><option value="peleti">peleti</option><option value="polena">polena</option><option value="elektrika">elektrika (neposredno)</option><option value="daljinska_toplota">daljinska toplota</option></select>
+        </label>
+        <label>Letna raba energenta (neobvezno)
+          <span class="sms-rng"><input type="number" id="sms-raba" min="0" step="100" placeholder="ocena" /><span>kWh</span></span>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset class="sms-step">
+      <legend><span class="sms-n">2</span> Ukrepi</legend>
+      <ul class="sms-uk">
+        {UKREPI.map(([id, ime, hint]) => (
+          <li data-u={id}>
+            <label class="sms-chk"><input type="checkbox" value={id} checked={id === 'fasada' || id === 'tc'} /> {ime}</label>
+            {id === 'prezracevanje' && <select class="sms-sub" id="sms-prez" aria-label="Vrsta prezračevanja"><option value="lokalno">lokalno</option><option value="centralno">centralno</option></select>}
+            {id === 'tc' && <select class="sms-sub" id="sms-tcv" aria-label="Vrsta toplotne črpalke"><option value="zrak_voda">zrak-voda</option><option value="zemlja_voda">zemlja-voda ali voda-voda</option></select>}
+            <span class="sms-def"><span data-def={id}></span> <span class="sms-hint">({hint})</span></span>
+            <label class="sms-own">vaša ponudba <input type="number" min="0" step="100" data-own={id} placeholder="€" /> €</label>
+          </li>
+        ))}
+        <li class="sms-pv"><span><strong>Sončna elektrarna</strong>: spodbude od leta 2025 ni, prihranek je odvisen od rabe elektrike v hiši, zato je ne vključujemo (okoli {nf(U.soncna_elektrarna.strosek_eur_kw)} €/kW, življenjska doba {U.soncna_elektrarna.zivljenjska_doba} let).</span></li>
+      </ul>
+    </fieldset>
+
+    <fieldset class="sms-step sms-res-wrap">
+      <legend><span class="sms-n">3</span> Rezultat: v koliko letih se povrne</legend>
+      <ul class="sms-leg" aria-hidden="true">
+        <li><i class="m m0"></i>brez spodbude</li>
+        <li><i class="m m1"></i><span id="sms-leg1">s spodbudo po pozivu 2026</span></li>
+        <li><i class="m m2"></i><span id="sms-leg2">s spodbudo po predlogu NPS 2050</span></li>
+        <li><i class="band"></i>življenjska doba</li>
+      </ul>
+      <div id="sms-out" aria-live="polite"></div>
+      <div id="sms-pkt" class="sms-pkt"></div>
+      <div class="sms-btns"><button type="button" class="btn" id="sms-copy">Kopiraj povzetek</button><span id="sms-copied" class="sms-hint" aria-live="polite"></span></div>
+    </fieldset>
+
+    <fieldset class="sms-step">
+      <legend>Kaj če?</legend>
+      <p class="sms-help">Premaknite drsnike in poglejte, kako se spremenijo povračilne dobe.</p>
+      <div class="sms-grid sms-kaj">
+        <label>Cena elektrike <output id="sms-pel-o"></output>
+          <span class="sms-rng"><input type="range" id="sms-pel" min="-50" max="50" step="5" value="0" /><input type="number" id="sms-pel-n" min="-50" max="50" step="5" value="0" aria-label="Sprememba cene elektrike v odstotkih" /><span>%</span></span>
+        </label>
+        <label>Cena sedanjega energenta <output id="sms-pen-o"></output>
+          <span class="sms-rng"><input type="range" id="sms-pen" min="-50" max="50" step="5" value="0" /><input type="number" id="sms-pen-n" min="-50" max="50" step="5" value="0" aria-label="Sprememba cene sedanjega energenta v odstotkih" /><span>%</span></span>
+        </label>
+        <label>Strošek naložbe <output id="sms-cst-o"></output>
+          <span class="sms-rng"><input type="range" id="sms-cst" min="-40" max="40" step="5" value="0" /><input type="number" id="sms-cst-n" min="-40" max="40" step="5" value="0" aria-label="Sprememba stroška naložbe v odstotkih" /><span>%</span></span>
+        </label>
+        <div class="sms-lbl"><label for="sms-sp">Delež spodbude</label>
+          <span class="sms-rng"><span class="sms-rw"><input type="range" id="sms-sp" min="0" max="70" step="1" value="40" list="sms-sp-t" /><span class="sms-ticks" aria-hidden="true"><span style="left:37.1%">2024</span><span style="left:57.1%">2026</span><span style="left:85.7%">NPS</span></span></span><input type="number" id="sms-sp-n" min="0" max="70" step="1" value="40" aria-label="Delež spodbude v odstotkih" /><span>%</span></span>
+          <datalist id="sms-sp-t"><option value="26" label="poziv 2024"></option><option value="40" label="poziv 2026"></option><option value="60" label="predlog NPS F, G"></option></datalist>
+          <span class="sms-hint">oznake: poziv 2024 (dejansko okoli 26 %), poziv 2026 (40 %), predlog NPS za razreda F in G (60 %)</span>
+          <label class="sms-chk sms-pz"><input type="checkbox" id="sms-poziv" checked /> pravila poziva 2026 (ovoj 40 %, toplotna črpalka 50 %, z zgornjimi mejami)</label>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  <p class="note">Ocena za orientacijo, ne nadomešča energetskega pregleda. Spodbude po javnem pozivu 126SUB-OB26 veljajo do porabe sredstev; stopnjevane spodbude so predlog iz osnutka NPS 2050 in še niso sprejete. Stroški so mediane priznanih stroškov Eko sklada 2023–2025, ki so za 20 do 40 % nižje od polnih tržnih cen (fasada okoli {nf(U.fasada.strosek_trzni_eur_m2)} €/m², toplotna črpalka z vgradnjo okoli {nf(U.tc_zrak_voda.strosek_trzni_eur)} €); vnesete lahko svojo ponudbo. Cene energentov (€/kWh): elektrika {nf(C.elektrika, 3)}, plin {nf(C.zemeljski_plin, 3)}, kurilno olje {nf(C.kurilno_olje, 2)}, peleti {nf(C.peleti, 2)}, polena {nf(C.polena, 3)}, daljinska toplota {nf(C.daljinska_toplota, 2)} ({C.vir}). Povračilna doba je nediskontirana: strošek, zmanjšan za spodbudo, deljen z letnim prihrankom.</p>
+</section>
+
+<style>
+  .sms { margin: 1rem 0 2rem; }
+  .sms-form { display: grid; gap: 1rem; }
+  .sms-step { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: .9rem 1.1rem 1.1rem; margin: 0; min-width: 0; }
+  .sms-step legend { font-weight: 800; padding: 0 .4rem; color: var(--ink); }
+  .sms-n { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--green); color: var(--on-green); font-size: .85em; margin-right: .35rem; }
+  .sms-help { color: var(--ink2); font-size: .9rem; margin: .2rem 0 .7rem; }
+  .sms-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .8rem 1.2rem; }
+  .sms-grid { align-items: start; }
+  .sms-kaj .sms-lbl { grid-column: 1 / -1; max-width: 40rem; }
+  .sms-grid > label, .sms-grid > .sms-lbl { align-content: start; display: grid; gap: .3rem; font-size: .9rem; font-weight: 700; color: var(--ink); position: relative; }
+  .sms-grid select, .sms-grid input[type=number] { font: inherit; font-weight: 400; padding: .35rem .5rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); }
+  .sms-rng { display: flex; align-items: center; gap: .5rem; font-weight: 400; }
+  .sms-rng input[type=range] { flex: 1; accent-color: var(--green); }
+  .sms-rng input[type=number] { width: 5.5rem; }
+  .sms-uk { list-style: none; padding: 0; margin: 0; display: grid; gap: .45rem; }
+  .sms-uk li { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem .8rem; padding: .35rem 0; border-bottom: 1px solid var(--line); }
+  .sms-chk { font-weight: 700; display: inline-flex; gap: .4rem; align-items: center; min-width: 16rem; }
+  .sms-chk input { accent-color: var(--green); width: 1.1rem; height: 1.1rem; }
+  .sms-sub { font: inherit; font-size: .85rem; padding: .2rem .4rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
+  .sms-def { font-size: .88rem; color: var(--ink); }
+  .sms-hint { color: var(--ink2); font-size: .82rem; }
+  .sms-own { margin-left: auto; font-size: .82rem; color: var(--ink2); }
+  .sms-own input { width: 6.5rem; font: inherit; padding: .2rem .4rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
+  .sms-pv { font-size: .85rem; color: var(--ink2); border-bottom: 0 !important; }
+  .sms-leg { list-style: none; padding: 0; margin: .2rem 0 .8rem; display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .85rem; color: var(--ink2); }
+  .sms-leg li { display: inline-flex; align-items: center; gap: .4rem; margin: 0; }
+  .m { display: inline-block; width: 13px; height: 13px; }
+  .m0 { border-radius: 50%; border: 2.5px solid var(--ink2); background: var(--panel); }
+  .m1 { background: var(--green); border-radius: 2px; }
+  .m2 { width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom: 14px solid #B7791F; }
+  .band { display: inline-block; width: 26px; height: 12px; background: var(--greenbg); border-radius: 3px; }
+  :global(.sms-row) { display: grid; grid-template-columns: minmax(11rem, 17rem) 1fr; gap: .3rem 1rem; padding: .7rem 0; border-top: 1px solid var(--line); align-items: center; }
+  :global(.sms-row h4) { margin: 0; font-size: .95rem; }
+  :global(.sms-row .sms-meta) { font-size: .8rem; color: var(--ink2); line-height: 1.35; margin: .15rem 0 0; }
+  :global(.sms-track) { position: relative; height: 34px; }
+  :global(.sms-track .axis) { position: absolute; left: 0; right: 0; top: 16px; height: 2px; background: var(--line); }
+  :global(.sms-track .life) { position: absolute; left: 0; top: 7px; height: 20px; background: var(--greenbg); border-radius: 4px; }
+  :global(.sms-track .lifel) { position: absolute; top: -3px; font-size: .7rem; color: var(--green); transform: translateX(-100%); white-space: nowrap; padding-right: 4px; }
+  :global(.sms-track .mk) { position: absolute; top: 10px; transform: translateX(-50%); }
+  :global(.sms-track .mk.c0) { width: 14px; height: 14px; border-radius: 50%; border: 2.5px solid var(--ink2); background: var(--panel); top: 10px; }
+  :global(.sms-track .mk.c1) { width: 14px; height: 14px; background: var(--green); border-radius: 2px; }
+  :global(.sms-track .mk.c2) { width: 0; height: 0; border-left: 9px solid transparent; border-right: 9px solid transparent; border-bottom: 15px solid #B7791F; top: 9px; }
+  :global(.sms-track .over) { position: absolute; right: 0; top: 0; font-size: .75rem; color: var(--ink2); }
+  :global(.sms-vals) { grid-column: 2; display: flex; flex-wrap: wrap; gap: .2rem 1rem; font-size: .82rem; color: var(--ink); }
+  :global(.sms-vals b) { font-variant-numeric: tabular-nums; }
+  :global(.sms-row details) { grid-column: 1 / -1; font-size: .8rem; color: var(--ink2); }
+  :global(.sms-row details summary) { cursor: pointer; color: var(--green); }
+  :global(.sms-warn) { grid-column: 1 / -1; font-size: .85rem; color: #8F5A08; margin: 0; }
+  :global(.sms-tcnote) { grid-column: 1 / -1; font-size: .85rem; background: var(--greenbg); border-radius: 8px; padding: .45rem .7rem; margin: .2rem 0 0; }
+  :global(.sms-axis) { display: grid; grid-template-columns: minmax(11rem, 17rem) 1fr; gap: 1rem; font-size: .72rem; color: var(--ink2); }
+  :global(.sms-axis .ax) { position: relative; height: 1rem; }
+  :global(.sms-axis .ax span) { position: absolute; transform: translateX(-50%); }
+  .sms-pkt:not(:empty) { margin-top: .8rem; border: 2px solid var(--green); border-radius: 12px; padding: .8rem 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: .6rem 1rem; }
+  :global(.sms-pkt h4) { grid-column: 1 / -1; margin: 0; font-size: 1rem; }
+  :global(.sms-pkt .k b) { display: block; font-size: 1.35rem; color: var(--green); font-variant-numeric: tabular-nums; }
+  :global(.sms-pkt .k span) { font-size: .82rem; color: var(--ink2); }
+  .sms-btns { margin-top: .8rem; display: flex; gap: .8rem; align-items: center; }
+  .sms-rw { flex: 1; display: grid; }
+  .sms-rw input { width: 100%; accent-color: var(--green); }
+  .sms-ticks { position: relative; height: 1rem; margin: 0 8px; font-size: .7rem; color: var(--ink2); font-weight: 400; }
+  .sms-ticks span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+  .sms-lbl .sms-hint { font-weight: 400; }
+  .sms-pz { font-weight: 400; font-size: .82rem; min-width: 0; margin-top: .3rem; }
+  output { font-weight: 400; color: var(--ink2); font-size: .85rem; }
+  @media (max-width: 640px) { :global(.sms-row), :global(.sms-axis) { grid-template-columns: 1fr; } :global(.sms-vals) { grid-column: 1; } .sms-own { margin-left: 0; } }
+</style>
+
+<script>
+  import D from '../data/povracilne_dobe.json';
+  import { izracun, strosekUkrepa, mocTC, potrebnaToplota, PRIVZETO, type Vhod, type Nastavitve, type Ukrep } from '../scripts/povracilo';
+
+  const root = document.getElementById('se-mi-splaca-kalkulator') as HTMLElement;
+  if (root) {
+    const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+    const nf = (v: number, d = 0) => v.toLocaleString('sl-SI', { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: 'always' } as Intl.NumberFormatOptions);
+    const eur = (v: number) => `${nf(Math.round(v / 100) * 100)} €`;
+    const let_ = (x: number | null) => {
+      if (x == null) return 'se ne povrne';
+      if (x > 50) return 'več kot 50 let';
+      const t = nf(x, x < 10 ? 1 : 0);
+      if (t.includes(',')) return `${t} leta`;   // decimalna števila: »2,4 leta«
+      const k = Number(t) % 100;
+      return `${t} ${k === 1 ? 'leto' : k === 2 ? 'leti' : k === 3 || k === 4 ? 'leta' : 'let'}`;
+    };
+    const MAX = 50;
+    const pos = (x: number) => `${Math.min(100, (100 * x) / MAX)}%`;
+    const out = $('sms-out'), pkt = $('sms-pkt');
+
+    // povezava drsnika in številčnega polja
+    const pair = (a: string) => {
+      const r = $<HTMLInputElement>(a), n = $<HTMLInputElement>(`${a}-n`);
+      r.addEventListener('input', () => { n.value = r.value; run(); });
+      n.addEventListener('input', () => { r.value = n.value; run(); });
+    };
+
+    // predizpolnitev iz orodja Preveri stavbo
+    const q = new URLSearchParams(location.search);
+    const setIf = (id: string, v: string | null) => { if (v && $<HTMLSelectElement>(id).querySelector(`option[value="${v}"]`)) $<HTMLSelectElement>(id).value = v; };
+    setIf('sms-ob', q.get('obdobje')); setIf('sms-st', q.get('stanje')); setIf('sms-en', q.get('energent'));
+    const razred = q.get('razred'), nad43 = q.get('nad43');
+    if (q.get('povrsina')) { $<HTMLInputElement>('sms-a').value = $<HTMLInputElement>('sms-a-n').value = q.get('povrsina')!; }
+
+    const vhod = (): Vhod => {
+      const ukrepi = [...root.querySelectorAll<HTMLInputElement>('.sms-uk input[type=checkbox]:checked')].map((x) => x.value as Ukrep);
+      const stroski: Partial<Record<Ukrep, number>> = {};
+      root.querySelectorAll<HTMLInputElement>('[data-own]').forEach((x) => { const v = Number(x.value); if (v > 0) stroski[x.dataset.own as Ukrep] = v; });
+      const raba = Number($<HTMLInputElement>('sms-raba').value);
+      return {
+        povrsina: Math.min(300, Math.max(60, Number($<HTMLInputElement>('sms-a-n').value) || 110)),
+        obdobje: $<HTMLSelectElement>('sms-ob').value as Vhod['obdobje'], stanje: $<HTMLSelectElement>('sms-st').value as Vhod['stanje'],
+        energent: $<HTMLSelectElement>('sms-en').value as Vhod['energent'], raba_kwh: raba > 0 ? raba : null, ukrepi, stroski,
+        tc_vrsta: $<HTMLSelectElement>('sms-tcv').value as Vhod['tc_vrsta'], prezracevanje: $<HTMLSelectElement>('sms-prez').value as Vhod['prezracevanje'],
+        razred: razred || null, nad43: nad43 == null ? null : nad43 === '1',
+      };
+    };
+    const nast = (): Nastavitve => ({
+      cena_el: 1 + Number($<HTMLInputElement>('sms-pel').value) / 100, cena_en: 1 + Number($<HTMLInputElement>('sms-pen').value) / 100,
+      strosek: 1 + Number($<HTMLInputElement>('sms-cst').value) / 100,
+      spodbuda: $<HTMLInputElement>('sms-poziv').checked ? null : Number($<HTMLInputElement>('sms-sp').value) / 100,
+    });
+
+    let povzetek = '';
+    function run() {
+      const v = vhod(), n = nast();
+      const nps = (b: number) => b >= 0.2 ? 'stavbe v razredih F in G ali med 43 % najslabših' : b >= 0.1 ? 'stavbe v razredu E' : 'brez dodatka za razred';
+      const r = izracun(D, v, n);
+      // privzeti stroški ob ukrepih
+      const Q0 = potrebnaToplota(D, v);
+      root.querySelectorAll<HTMLElement>('[data-def]').forEach((el) => {
+        const u = el.dataset.def as Ukrep;
+        const c = strosekUkrepa(D, u, { ...v, stroski: {} }, PRIVZETO, u === 'tc' ? mocTC(D, Q0) : undefined);
+        el.textContent = `privzeto ${eur(c)}${u === 'tc' ? ` (${mocTC(D, Q0)} kW)` : ''}`;
+      });
+      $('sms-leg1').textContent = n.spodbuda == null ? 's spodbudo po pozivu 2026' : `s spodbudo ${nf(n.spodbuda * 100)} %`;
+      $('sms-leg2').textContent = `po predlogu NPS 2050 (${nps(r.bonus)}${r.celovita ? ', celovita prenova' : ''})`;
+      ['pel', 'pen', 'cst'].forEach((k) => { const x = Number($<HTMLInputElement>(`sms-${k}`).value); $(`sms-${k}-o`).textContent = x ? `${x > 0 ? '+' : ''}${x} %` : 'privzeto'; });
+      $<HTMLInputElement>('sms-sp').disabled = $<HTMLInputElement>('sms-sp-n').disabled = $<HTMLInputElement>('sms-poziv').checked;
+
+      out.replaceChildren();
+      if (!r.rezultati.length) { out.append(Object.assign(document.createElement('p'), { className: 'sms-help', textContent: 'Izberite vsaj en ukrep.' })); pkt.replaceChildren(); return; }
+      const ax = document.createElement('div'); ax.className = 'sms-axis'; ax.setAttribute('aria-hidden', 'true');
+      ax.innerHTML = `<span></span><span class="ax">${[0, 10, 20, 30, 40, 50].map((y) => `<span style="left:${pos(y)}">${y}${y === 50 ? '+ let' : ''}</span>`).join('')}</span>`;
+      out.append(ax);
+      const lines: string[] = [];
+      for (const x of r.rezultati) {
+        const row = document.createElement('div'); row.className = 'sms-row';
+        const lbl = x.doba.map(let_);
+        const opis = `${x.ime}: brez spodbude ${lbl[0]}, ${n.spodbuda == null ? 'po pozivu 2026' : `s spodbudo ${nf(n.spodbuda * 100)} %`} ${lbl[1]}, po predlogu NPS ${lbl[2]}; življenjska doba ${x.zivljenjska_doba} let.`;
+        lines.push(`– ${opis} Strošek ${eur(x.strosek)}, prihranek ${nf(Math.round(x.prihranek_eur / 10) * 10)} € na leto.`);
+        const marks = x.doba.map((d, i) => d == null ? '' : `<i class="mk c${i}" style="left:${pos(d)}" title="${['brez spodbude', 'z izbrano spodbudo', 'po predlogu NPS'][i]}: ${let_(d)}"></i>`).join('');
+        row.innerHTML = `<div><h4>${x.ime}</h4><p class="sms-meta">strošek ${eur(x.strosek)} · spodbuda ${eur(x.spodbuda_izbrana)} (NPS ${eur(x.spodbuda_nps)}) · prihranek ${x.prihranek_eur > 0 ? `${nf(Math.round(x.prihranek_eur / 10) * 10)} € na leto` : 'ni prihranka'}</p></div>
+          <div class="sms-track" role="img" aria-label="${opis}"><span class="axis"></span><span class="life" style="width:${pos(x.zivljenjska_doba)}"></span><span class="lifel" style="left:${pos(x.zivljenjska_doba)}">življenjska doba ${x.zivljenjska_doba} let</span>${marks}${x.doba.some((d) => d != null && d > MAX) ? '<span class="over">več kot 50 let →</span>' : ''}</div>
+          <p class="sms-vals"><span>○ brez: <b>${lbl[0]}</b></span><span>■ ${n.spodbuda == null ? 'poziv 2026' : `${nf(n.spodbuda * 100)} %`}: <b>${lbl[1]}</b></span><span>▲ NPS: <b>${lbl[2]}</b></span></p>`;
+        if (x.doba[0] == null || (x.doba[1] ?? Infinity) > x.zivljenjska_doba) {
+          const w = document.createElement('p'); w.className = 'sms-warn';
+          w.textContent = x.doba[0] == null ? 'Prihranka ni: sedanje ogrevanje je cenejše od ogrevanja s toplotno črpalko. Motiv sta udobje in manj dela z gorivom.' : 'Se energetsko ne povrne v življenjski dobi – motiv sta udobje in zdravje.';
+          row.append(w);
+        }
+        if (x.ukrep === 'tc' && x.moc_brez_ovoja_kw && x.moc_kw && x.moc_kw < x.moc_brez_ovoja_kw) {
+          const t = document.createElement('p'); t.className = 'sms-tcnote';
+          t.textContent = `Z ukrepi na ovoju potrebujete toplotno črpalko za okoli ${x.moc_kw} kW namesto ${x.moc_brez_ovoja_kw} kW, nakup je okoli ${eur((x.strosek_brez_ovoja ?? 0) - x.strosek)} cenejši. Zato najprej ovoj, nato črpalka.`;
+          row.append(t);
+        }
+        const det = document.createElement('details');
+        det.innerHTML = `<summary>Od kod ta številka</summary><p>${x.formula}. Povračilna doba = (strošek − spodbuda) ÷ letni prihranek = (${nf(Math.round(x.strosek))} − ${nf(Math.round(x.spodbuda_izbrana))}) ÷ ${nf(Math.round(x.prihranek_eur))}. Spodbuda po pozivu 126SUB-OB26: ${eur(x.spodbuda_poziv)}; po predlogu NPS (N1): ${eur(x.spodbuda_nps)}.</p>`;
+        row.append(det);
+        out.append(row);
+      }
+      const P = r.paket, pl = P.doba.map(let_);
+      pkt.innerHTML = r.rezultati.length > 1 ? `<h4>Paket izbranih ukrepov</h4>
+        <p class="k"><b>${eur(P.strosek)}</b><span>skupni strošek</span></p>
+        <p class="k"><b>${eur(P.spodbuda)}</b><span>spodbuda ${n.spodbuda == null ? 'po pozivu 2026' : `${nf(n.spodbuda * 100)} %`} (po predlogu NPS ${eur(P.spodbuda_nps)})</span></p>
+        <p class="k"><b>${nf(Math.round(P.prihranek_eur / 10) * 10)} € na leto</b><span>manj za ogrevanje (danes okoli ${nf(Math.round(P.stroski_danes / 10) * 10)} €)</span></p>
+        <p class="k"><b>${pl[1]}</b><span>povračilna doba paketa (brez spodbude ${pl[0]}, po predlogu NPS ${pl[2]})</span></p>` : '';
+      povzetek = [`Se mi splača? Hiša ${v.povrsina} m², ${$<HTMLSelectElement>('sms-ob').selectedOptions[0].text}, izolacija: ${$<HTMLSelectElement>('sms-st').selectedOptions[0].text}, ogrevanje: ${$<HTMLSelectElement>('sms-en').selectedOptions[0].text}.`,
+        ...lines, r.rezultati.length > 1 ? `Paket: strošek ${eur(P.strosek)}, spodbuda ${eur(P.spodbuda)}, prihranek ${nf(Math.round(P.prihranek_eur / 10) * 10)} € na leto, povračilna doba ${pl[1]}.` : '',
+        'Ocena za orientacijo (strokovne podlage NPS 2050, IJS CEU); spodbude NPS so predlog. ' + location.href.split('#')[0] + '#se-mi-splaca'].filter(Boolean).join('\n');
+    }
+
+    root.querySelectorAll('select, input[type=checkbox], [data-own], #sms-raba').forEach((el) => el.addEventListener('input', run));
+    root.querySelectorAll('select, input[type=checkbox]').forEach((el) => el.addEventListener('change', run));
+    ['sms-a', 'sms-pel', 'sms-pen', 'sms-cst', 'sms-sp'].forEach(pair);
+    $('sms-copy').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(povzetek); $('sms-copied').textContent = 'Povzetek je kopiran.'; } catch { $('sms-copied').textContent = 'Kopiranje ni uspelo.'; }
+    });
+    run();
+  }
+</script>

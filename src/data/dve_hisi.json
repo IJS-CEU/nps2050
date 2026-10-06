@@ -1,0 +1,10 @@
+{
+  "opis": "Zgodba »Dve hiši, ista ulica«: enaka hiša, različen vrstni red prenove. Tržne cene (navodila, razdelek 4), spodbude po pozivu 126SUB-OB26, cene energentov iz povracilne_dobe.json.",
+  "hisa": { "leto_gradnje": 1975, "povrsina": 110, "obdobje": "pred_1980", "stanje": "neizoliran", "energent": "kurilno_olje" },
+  "let": 20,
+  "tc_trzni_eur_kw": 1400,
+  "scenariji": [
+    { "id": "A", "ime": "Najprej toplotna črpalka", "koraki": [ { "leto": 0, "ukrep": "tc" }, { "leto": 5, "ukrep": "fasada" } ] },
+    { "id": "B", "ime": "Najprej fasada", "koraki": [ { "leto": 0, "ukrep": "fasada" }, { "leto": 1, "ukrep": "tc" } ] }
+  ]
+}

@@ -17,7 +17,7 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
 ---
 <section class="chk" id="preveri" aria-labelledby="chk-t">
   <h2 id="chk-t" class="visually-hidden">Preverite stavbo</h2>
-  <form class="chk-form js-only" id="chk-form" novalidate>
+  <form class="chk-form js-only" id="chk-form" novalidate data-sms={`${pageUrl('lastniki')}#se-mi-splača`}>
     <fieldset class="chk-field chk-mode">
       <legend>Kako želite preveriti stavbo?</legend>
       <label><input type="radio" name="chk-mode" value="ei" checked /> Imam energetsko izkaznico</label>
@@ -342,6 +342,21 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
         li(ul, goal());
         li(ul, ['Obvezne prenove posamezne stanovanjske stavbe načrt ne določa. Priporočljivo je, da vsako prenovo načrtujete kot korak k brezemisijski stavbi.']);
         box.append(ul);
+        if (c.id === 'HISA') {
+          // Povezava na kalkulator »Se mi splača?« (Za lastnike) z razredom in, pri oceni po tipični stavbi, z lastnostmi hiše
+          const p = new URLSearchParams({ razred: k, nad43: v > w.threshold ? '1' : '0' });
+          if (mode() === 'tip') {
+            const per = $('chk-t-per').value;
+            p.set('obdobje', ['do 1945', '1946–1970', '1971–1980'].includes(per) ? 'pred_1980' : ['1981–1990', '1991–2002'].includes(per) ? '1981_2002' : 'po_2002');
+            p.set('stanje', ({ neizolirano: 'neizoliran', delno: 'delno', izolirano: 'izoliran' } as Record<string, string>)[$('chk-t-ovoj').value] ?? 'neizoliran');
+            const en = ({ olje: 'kurilno_olje', plin: 'zemeljski_plin', daljinsko: 'daljinska_toplota', elektrika: 'elektrika' } as Record<string, string>)[$('chk-t-og').value];
+            if (en) p.set('energent', en);
+          }
+          const [base, hash] = (form.dataset.sms ?? '').split('#');
+          const a = el('a', 'Se mi splača? Izračunajte, v koliko letih se vam povrnejo ukrepi in koliko spodbude vam pripada') as HTMLAnchorElement;
+          a.href = `${base}?${p}#${hash}`;
+          const pp = el('p', undefined, 'chk-sms'); pp.append(a); box.append(pp);
+        }
       }
       box.append(el('p', 'Rezultat je informativen in temelji na predlogu v osnutku NPS 2050. Ni uradna ugotovitev. Pragovi se lahko do sprejema načrta in ob rekalibraciji razredov še spremenijo.', 'note'));
       const pf = el('div', undefined, 'chk-pf');

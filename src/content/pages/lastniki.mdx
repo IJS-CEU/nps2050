@@ -9,6 +9,8 @@ import NapacnaRazumevanja from '../../components/NapacnaRazumevanja.astro';
 import PaketiPovzetek from '../../components/PaketiPovzetek.astro';
 import NaTejStrani from '../../components/NaTejStrani.astro';
 import HitroPreveri from '../../components/home/HitroPreveri.astro';
+import SeMiSplaca from '../../components/SeMiSplaca.astro';
+import DveHisi from '../../components/DveHisi.astro';
 import { loadData } from '../../lib/data';
 import { nf } from '../../lib/format';
 
@@ -17,6 +19,7 @@ export const rv = loadData('revscina');
 <HitroPreveri />
 
 <NaTejStrani items={[
+  { href: '#se-mi-splača', icon: 'calculator', label: 'Se mi splača?', hint: 'povračilne dobe ukrepov in spodbude' },
   { href: '#koliko-stane-prenova-in-kaj-prinese', icon: 'wallet', label: 'Koliko stane prenova', hint: 'paketi, spodbude in prihranki' },
   { href: '#vprašanja-in-odgovori', icon: 'circle-help', label: 'Vprašanja in odgovori', hint: 'obveznosti, razredi, kotli, najemniki' },
   { href: '#kaj-načrt-ne-pomeni', icon: 'circle-x', label: 'Kaj načrt ne pomeni', hint: 'pogoste poenostavitve' },
@@ -24,6 +27,20 @@ export const rv = loadData('revscina');
   { href: '#svetovanje-in-spodbude', icon: 'life-buoy', label: 'Svetovanje in spodbude', hint: 'ENSVET, Eko sklad, energetska revščina' },
 ]} />
 
+
+## Se mi splača?
+
+{/* Vir: src/data/povracilne_dobe.json (Eko sklad 2023–2025, poziv 126SUB-OB26, SURS, osnutek NPS 2050), model src/scripts/povracilo.ts. */}
+
+V koliko letih se prenova povrne in koliko k temu prispeva spodbuda? Izberite svojo hišo in ukrepe. Pri toplotni črpalki je povračilna doba odvisna predvsem od energenta, ki ga zamenja; ukrepi na ovoju se povrnejo v četrtini do polovici svoje življenjske dobe in hkrati zmanjšajo potrebno moč črpalke.
+
+<SeMiSplaca />
+
+### Najprej ovoj, nato črpalka
+
+{/* Vir: src/data/dve_hisi.json, izračun dveHisi() v src/scripts/povracilo.ts. */}
+
+<DveHisi />
 
 ## Koliko stane prenova in kaj prinese
 
