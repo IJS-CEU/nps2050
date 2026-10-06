@@ -1,61 +1,28 @@
 ---
 /**
- * Povzetek paketov prenove za stran Za lastnike: tri stopnje prenove za tipično hišo, zgrajeno do leta 1980 (ogrevanje na
- * kurilno olje), in povezave na vse tipe stavb. Številke iz public/data/paketi_prenove.json.
+ * Povezava na tipične pakete prenove za stran Za lastnike: gumbi za štiri tipe stavb (hiše in bloki, do 1980 in 1981–2002).
+ * Konkretni primeri so v kalkulatorju »Se mi splača?« in na strani Paketi prenove, tu jih ne ponavljamo.
  */
 import { pageUrl } from '../i18n/routes';
 import { loadData } from '../lib/data';
-import { nf } from '../lib/format';
 import Icon from './Icon.astro';
 
-type Paket = { id: string; ime: string; strosek: number; strosek_p25: number | null; strosek_p75: number | null; razred_po: string; prihranek_eur: number; spodbuda_eko_eur: number | null; spodbuda_eko_pct: number | null; spodbuda_dod_eur: number; spodbuda_dod_pct: number };
-type Tip = { id: string; ime: string; tip: string; povrsina: number; variante: { id: string; ogrevanje: string; razred_pred: string; paketi: Paket[] }[] };
+type Tip = { id: string; ime: string; tip: string };
 const d = loadData<{ tipi: Tip[] }>('paketi_prenove');
-const t = d.tipi[0];
-const v = t.variante[0];
-const CV: Record<string, string> = { A: 'A1', B: 'B1', C: 'C', D: 'D', E: 'E', F: 'F', G: 'G' };
-const DARK = new Set(['B', 'C', 'D', 'E']);
-const badge = (k: string) => `background:var(--cls-${CV[k]});color:${DARK.has(k) ? '#1B2622' : '#fff'}`;
-const ICON: Record<string, string> = { delna: 'layers', celovita: 'house', zeb: 'sun' };
 const href = (tid: string) => `${pageUrl('paketi')}?tip=${tid}`;
 ---
 <div class="pp">
-  <p class="pp-lead">Primer: <strong>{t.ime.toLowerCase()}</strong>, {nf(t.povrsina)} m², ogrevanje na {v.ogrevanje}, danes razred <span class="pp-b" style={badge(v.razred_pred)}>{v.razred_pred}</span></p>
-  <div class="pp-grid">
-    {v.paketi.map((k) => (
-      <a class={`pp-c ${k.id}`} href={`${href(t.id)}&ogrevanje=${v.id}`}>
-        <span class="pp-h"><span class="pp-ic"><Icon name={ICON[k.id]} size={20} /></span>{k.ime}</span>
-        <span class="pp-cls"><span class="pp-b" style={badge(v.razred_pred)}>{v.razred_pred}</span><Icon name="arrow-right" size={16} /><span class="pp-b" style={badge(k.razred_po)}>{k.razred_po}</span></span>
-        <span class="pp-cost">{k.strosek_p25 ? <><b>{nf(k.strosek_p25)}–{nf(k.strosek_p75)} €</b></> : <>okoli <b>{nf(k.strosek)} €</b></>}</span>
-        <span class="pp-row"><span>Spodbuda Eko sklada danes</span><b>{k.spodbuda_eko_eur === null ? '–' : `${nf(k.spodbuda_eko_eur)} €`}</b></span>
-        <span class="pp-row"><span>Spodbuda po predlogu N1</span><b>{nf(k.spodbuda_dod_eur)} €</b></span>
-        <span class="pp-row"><span>Manj stroškov za energijo</span><b>{nf(k.prihranek_eur)} € na leto</b></span>
-      </a>
-    ))}
-  </div>
-  <p class="pp-more"><span>Poglejte za svoj tip stavbe:</span>
+  <p class="pp-more"><span>Izberite svoj tip stavbe:</span>
     {d.tipi.map((x) => <a class="btn" href={href(x.id)}><Icon name={x.tip === 'SFH' ? 'house' : 'building-2'} size={16} /> {x.tip === 'SFH' ? 'Hiša' : 'Stanovanje v bloku'}, {x.ime.split(', ')[1].replace('zgrajena ', '').replace('zgrajenem ', '')}</a>)}
   </p>
-  <p class="note">Tipične vrednosti iz priznanih stroškov naložb Eko sklada in dejanske rabe energije; ne izračun za vašo stavbo. Zneski so priznani stroški naložb, ki jih je podprl Eko sklad. Dejanska naložba je višja: ne vključujejo projektiranja, del, ki niso upravičena do spodbude, potresne utrditve in prenove inštalacij. Celovita prenova ovoja in sistemov je seštevek posameznih ukrepov, ne prenova do sNES. Podrobnosti, druge vrste ogrevanja, strošek prihranjene kWh in metoda: <a href={pageUrl('paketi')}>Paketi prenove</a>.</p>
+  <p class="note">Tipične vrednosti iz priznanih stroškov naložb Eko sklada; ne izračun za vašo stavbo. Za svojo hišo ali stanovanje uporabite kalkulator <a href="#se-mi-splača">Se mi splača?</a> zgoraj.</p>
 </div>
 
 <style>
-  .pp { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--green); border-radius: 16px; padding: 1.3rem 1.4rem; margin: 1rem 0 2rem; }
-  .pp-lead { margin: 0 0 1rem; max-width: none; }
-  .pp-lead .pp-b { vertical-align: middle; margin-left: .2rem; }
-  .pp-b { display: inline-grid; place-items: center; width: 1.7rem; height: 1.7rem; border-radius: 5px; font-weight: 800; font-size: .95rem; }
-  .pp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .8rem; }
-  .pp-c { display: grid; gap: .45rem; align-content: start; text-decoration: none; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: .9rem 1rem; }
-  .pp-c:hover { border-color: var(--green); box-shadow: 0 2px 10px rgba(0, 0, 0, .06); }
-  .pp-h { display: flex; align-items: center; gap: .5rem; font-family: var(--font-serif); font-weight: 700; font-size: 1.08rem; }
-  .pp-ic { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 8px; background: var(--greenbg); color: var(--green); }
-  .pp-cls { display: flex; align-items: center; gap: .35rem; }
-  .pp-cost { font-size: .9rem; color: var(--ink2); }
-  .pp-cost b { font-family: var(--font-serif); font-size: 1.45rem; color: var(--ink); }
-  .pp-row { display: flex; justify-content: space-between; gap: .6rem; font-size: .84rem; border-top: 1px solid var(--line); padding-top: .35rem; }
-  .pp-row span { color: var(--ink2); }
-  .pp-more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; margin: 1.1rem 0 .4rem; max-width: none; font-size: .9rem; }
+  .pp { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--green); border-radius: 16px; padding: 1rem 1.4rem; margin: 1rem 0 2rem; }
+  .pp-more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; margin: 0 0 .4rem; max-width: none; font-size: .9rem; }
   .pp-more > span { grid-column: 1 / -1; color: var(--ink2); }
   @media (max-width: 760px) { .pp-more { grid-template-columns: 1fr 1fr; } }
   .pp-more .btn { display: flex; gap: .35rem; align-items: center; justify-content: center; font-size: .85rem; padding: .4rem .6rem; text-align: center; }
+  .pp .note { margin: .5rem 0 0; }
 </style>

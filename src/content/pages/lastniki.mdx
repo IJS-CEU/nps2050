@@ -19,40 +19,14 @@ export const rv = loadData('revscina');
 <HitroPreveri />
 
 <NaTejStrani items={[
+  { href: '#vprašanja-in-odgovori', icon: 'circle-help', label: 'Vprašanja in odgovori', hint: 'obveznosti, razredi, kotli, najemniki' },
   { href: '#se-mi-splača', icon: 'calculator', label: 'Se mi splača?', hint: 'povračilne dobe ukrepov in spodbude' },
   { href: '#koliko-stane-prenova-in-kaj-prinese', icon: 'wallet', label: 'Koliko stane prenova', hint: 'paketi, spodbude in prihranki' },
-  { href: '#vprašanja-in-odgovori', icon: 'circle-help', label: 'Vprašanja in odgovori', hint: 'obveznosti, razredi, kotli, najemniki' },
   { href: '#kaj-načrt-ne-pomeni', icon: 'circle-x', label: 'Kaj načrt ne pomeni', hint: 'pogoste poenostavitve' },
   { href: '#najslabše-stavbe-najprej', icon: 'arrow-down-wide-narrow', label: 'Najslabše stavbe najprej', hint: 'skupina 43 % najmanj učinkovitih' },
   { href: '#svetovanje-in-spodbude', icon: 'life-buoy', label: 'Svetovanje in spodbude', hint: 'ENSVET, Eko sklad, energetska revščina' },
 ]} />
 
-
-## Se mi splača?
-
-{/* Vir: src/data/povracilne_dobe.json (Eko sklad 2023–2025, poziv 126SUB-OB26, SURS, osnutek NPS 2050), model src/scripts/povracilo.ts. */}
-
-V koliko letih se prenova povrne in koliko k temu prispeva spodbuda? Izberite hišo ali stanovanje v bloku in ukrepe. Pri toplotni črpalki je povračilna doba odvisna predvsem od energenta, ki ga zamenja; ukrepi na ovoju se povrnejo v četrtini do polovici svoje življenjske dobe in hkrati zmanjšajo potrebno moč črpalke.
-
-<SeMiSplaca />
-
-### Najprej ovoj, nato črpalka
-
-{/* Vir: src/data/dve_hisi.json, izračun dveHisi() v src/scripts/povracilo.ts. */}
-
-<DveHisi />
-
-## Koliko stane prenova in kaj prinese
-
-{/* Vir: public/data/paketi_prenove.json (cevovod data/npsdata/paketi.py). */}
-
-Tri stopnje prenove: delna (fasada in okna), celovita prenova ovoja in sistemov (ovoj, toplotna črpalka, prezračevanje – do razreda A) in prenova do skoraj nič-energijske stavbe (sNES, še sončna elektrarna in izolacija tal). Ob vsaki je primerjava današnje spodbude Eko sklada s predlogom iz osnutka NPS 2050.
-
-<PaketiPovzetek />
-
-<div class="card green">
-  <p><strong>Koledar za vas.</strong> Kdaj začnejo veljati obveznosti in cilji, ki zadevajo vašo stavbo – na primer prepovedi fosilnih kotlov in roki za sončne elektrarne –, ločeno, kaj že velja in kaj je šele predlagano: <a href={`${pageUrl('koledar')}?za=hise`}>za lastnike hiš</a> · <a href={`${pageUrl('koledar')}?za=stanovanja`}>za lastnike stanovanj in upravnike</a></p>
-</div>
 
 ## Vprašanja in odgovori
 
@@ -159,6 +133,32 @@ Načrt za energetsko revna gospodinjstva predvideva do 100-odstotno financiranje
 Za stavbe kulturne dediščine načrt ne predvideva splošne izjeme, ampak milejše zahteve glede na vrsto varstva. Spomeniki so izvzeti iz številčnih pragov, a morajo izvesti ukrepe, ki jih varstvo dopušča. Druga dediščina mora do leta 2050 doseči najmanj razred C namesto razreda B.
 </details>
 
+</div>
+
+## Se mi splača?
+
+{/* Vir: src/data/povracilne_dobe.json (Eko sklad 2023–2025, poziv 126SUB-OB26, SURS, osnutek NPS 2050), model src/scripts/povracilo.ts. */}
+
+V koliko letih se prenova povrne in koliko k temu prispeva spodbuda? Izberite hišo ali stanovanje v bloku in ukrepe. Pri toplotni črpalki je povračilna doba odvisna predvsem od energenta, ki ga zamenja; ukrepi na ovoju se povrnejo v četrtini do polovici svoje življenjske dobe in hkrati zmanjšajo potrebno moč črpalke.
+
+<SeMiSplaca />
+
+### Najprej ovoj, nato črpalka
+
+{/* Vir: src/data/dve_hisi.json, izračun dveHisi() v src/scripts/povracilo.ts. */}
+
+<DveHisi />
+
+## Koliko stane prenova in kaj prinese
+
+{/* Vir: public/data/paketi_prenove.json (cevovod data/npsdata/paketi.py). */}
+
+Na strani Paketi prenove so za tipične hiše in stanovanja v blokih primerjane tri stopnje prenove: delna (fasada in okna), celovita prenova ovoja in sistemov (do razreda A) in prenova do skoraj nič-energijske stavbe – s stroški, prihranki, razredom po prenovi ter današnjo spodbudo Eko sklada in predlogom iz osnutka NPS 2050.
+
+<PaketiPovzetek />
+
+<div class="card green">
+  <p><strong>Koledar za vas.</strong> Kdaj začnejo veljati obveznosti in cilji, ki zadevajo vašo stavbo – na primer prepovedi fosilnih kotlov in roki za sončne elektrarne –, ločeno, kaj že velja in kaj je šele predlagano: <a href={`${pageUrl('koledar')}?za=hise`}>za lastnike hiš</a> · <a href={`${pageUrl('koledar')}?za=stanovanja`}>za lastnike stanovanj in upravnike</a></p>
 </div>
 
 ## Kaj načrt ne pomeni

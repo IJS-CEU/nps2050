@@ -28,7 +28,7 @@
    "zeb_pe": 36
   },
   "BLOKI": {
-   "delna_faktor": 0.72,
+   "delna_faktor": 0.59,
    "celovita_pe": 71,
    "zeb_pe": null
   }
@@ -1042,48 +1042,6 @@
      "razred_toplota_pred": "C",
      "n_izkaznic": 307,
      "paketi": [
-      {
-       "id": "delna",
-       "ime": "Delna prenova",
-       "na_voljo": true,
-       "ukrepi": [
-        "izolacija fasade",
-        "zamenjava oken"
-       ],
-       "eur_m2": 228,
-       "eur_m2_p25": null,
-       "eur_m2_p75": null,
-       "n": null,
-       "vir_stroska": "vsota median posameznih ukrepov (premalo dejanskih kombinacij)",
-       "strosek": 14400.0,
-       "strosek_p25": null,
-       "strosek_p75": null,
-       "povrsina_stroska": 63,
-       "razred_po": "C",
-       "pe_po": 152,
-       "fe_po": 68,
-       "prihranek_fe_pct": 16,
-       "prihranek_pe_pct": 16,
-       "fe_pred_leto": 5100.0,
-       "fe_po_leto": 4300.0,
-       "stroski_pred_leto": 860.0,
-       "prihranek_eur": 140.0,
-       "spodbuda_osn_pct": 30,
-       "spodbuda_dod_pct": 30,
-       "spodbuda_dod_eur": 4300.0,
-       "spodbuda_razlog": null,
-       "vracilo_brez": 106.3,
-       "vracilo_osn": 74.4,
-       "vracilo_dod": 74.4,
-       "spodbuda_eko_pct": 32,
-       "spodbuda_eko_eur": 4600.0,
-       "spodbuda_eko_vir": "poziv",
-       "eur_kwh_eko": 0.411,
-       "prihranjeno_kwh_leto": 800.0,
-       "eur_kwh_brez": 0.602,
-       "eur_kwh_dod": 0.422,
-       "cena_energije_pred": 0.16998
-      },
       {
        "id": "celovita",
        "ime": "Celovita prenova ovoja in sistemov",

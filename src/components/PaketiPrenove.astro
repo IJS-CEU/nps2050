@@ -44,6 +44,7 @@ const c = d.cene, p = d.predpostavke, K = KALK.bloki.qhnd_kwh_m2;
           <h3 class="pk-vh">{OGR[v.id]}</h3>
           <p class="pk-pred"><span class="pk-b" style={badge(v.razred_pred)}>{v.razred_pred}</span>
             <span>Tipično stanje pred prenovo: razred {v.razred_pred} na izkaznici ({nf(v.pe_pred)} kWh/(m²·a) primarne energije), {t.tip === 'SFH' ? `hiša s ${nf(t.povrsina)} m²` : `stanovanje s ${nf(t.povrsina)} m²`} ogrevane površine. Stroški ogrevanja danes okoli <b>{nf(v.paketi[0].stroski_pred_leto)} € na leto</b>.</span></p>
+          {t.tip === 'MFH' && !v.paketi.some((k) => k.id === 'delna') && <p class="pk-nd">Delne prenove za bloke iz tega obdobja ne prikazujemo: po energetskih izkaznicah izolacija fasade in nova okna potrebno toploto za ogrevanje zmanjšata le z okoli {nf(K['1981_2002'].neizoliran)} na {nf(K['1981_2002'].izoliran)} kWh/m², zato se sama po sebi ne povrneta v življenjski dobi. Smiselna je celovita prenova.</p>}
           <div class="pk-grid">
             {v.paketi.map((k) => (
               <article class={`pk-c ${k.id}`}>
@@ -121,6 +122,7 @@ const c = d.cene, p = d.predpostavke, K = KALK.bloki.qhnd_kwh_m2;
   .pk-src { font-size: .76rem; color: var(--ink2); margin: 0; }
   .pk-note { font-size: .86rem; color: var(--ink2); border-top: 1px solid var(--line); padding-top: 1rem; }
 
+  .pk-nd { font-size: .9rem; color: var(--ink2); margin: .2rem 0 .8rem; }
 </style>
 
 <script>

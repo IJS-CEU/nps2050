@@ -77,7 +77,10 @@ POZIV_UKREPI = {
 PAKET_UKREPI = {('SFH', 'delna'): ['fasada', 'okna_vrata'], ('SFH', 'celovita'): ['fasada', 'okna_vrata', 'streha', 'tczv', 'prezrac_centr'],
                 ('MFH', 'delna'): ['fasada', 'okna_vrata'], ('MFH', 'celovita'): ['fasada', 'okna_vrata', 'streha', 'prezrac_lok']}
 NAME = {'delna': 'Delna prenova', 'celovita': 'Celovita prenova ovoja in sistemov', 'zeb': 'Prenova do skoraj nič-energijske stavbe (sNES)'}
-SNES_OD = 2022  # sNES: projekti od tega leta (novejše cene, dovolj primerov)
+SNES_OD = 2022
+# paketov, ki jih ne prikazujemo (Gašper 6. 10. 2026): v blokih 1981–2002 fasada in okna po izkaznicah zmanjšata potrebno
+# toploto le z 62 na 50 kWh/m², zato se delna prenova ne povrne v življenjski dobi
+SKRIJ = {('blok_1981_2002', 'delna')}  # sNES: projekti od tega leta (novejše cene, dovolj primerov)
 HC = ['A1', 'A2', 'B1', 'B2', 'C', 'D', 'E', 'F', 'G']
 
 
@@ -242,7 +245,7 @@ def build(ctx: Context) -> dict:
             hc = hc if hc in FE[t] else 'C'
             paketi = []
             for pid in ('delna', 'celovita', 'zeb'):
-                if (t, pid) not in UKREPI:
+                if (t, pid) not in UKREPI or (tid, pid) in SKRIJ:
                     continue
                 v, src = eko.get((t, pid), (None, None))
                 if pid == 'celovita' and t == 'SFH' and v is not None:

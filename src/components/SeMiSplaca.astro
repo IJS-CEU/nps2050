@@ -79,9 +79,8 @@ const UKREPI = [
       <div class="sms-btns"><button type="button" class="btn" id="sms-copy">Kopiraj povzetek</button><span id="sms-copied" class="sms-hint" aria-live="polite"></span></div>
     </fieldset>
 
-    <fieldset class="sms-step">
-      <legend>Kaj če?</legend>
-      <p class="sms-help">Premaknite drsnike in poglejte, kako se spremenijo povračilne dobe.</p>
+    <details class="sms-step sms-kajce">
+      <summary>Kaj če? Spremenite cene energije, strošek naložbe ali delež spodbude</summary>
       <div class="sms-grid sms-kaj">
         <label>Cena elektrike <output id="sms-pel-o"></output>
           <span class="sms-rng"><input type="range" id="sms-pel" min="-50" max="50" step="5" value="0" /><input type="number" id="sms-pel-n" min="-50" max="50" step="5" value="0" aria-label="Sprememba cene elektrike v odstotkih" /><span>%</span></span>
@@ -99,7 +98,7 @@ const UKREPI = [
           <label class="sms-chk sms-pz"><input type="checkbox" id="sms-poziv" checked /> pravila poziva 2026 (ovoj 40 %, toplotna črpalka 50 %, z zgornjimi mejami)</label>
         </div>
       </div>
-    </fieldset>
+    </details>
   </form>
   <p class="note">Ocena za orientacijo, ne nadomešča energetskega pregleda. Spodbude po javnih pozivih 126SUB-OB26 in 124SUB-OBPO25 (skupni deli večstanovanjskih stavb) veljajo do porabe sredstev; stopnjevane spodbude so predlog iz osnutka NPS 2050 in še niso sprejete. Stroški so mediane priznanih stroškov Eko sklada 2023–2025, ki so za 20 do 40 % nižje od polnih tržnih cen (fasada okoli {nf(U.fasada.strosek_trzni_eur_m2)} €/m², toplotna črpalka z vgradnjo okoli {nf(U.tc_zrak_voda.strosek_trzni_eur)} €); vnesete lahko svojo ponudbo. Za stanovanja v blokih je cena daljinske toplote {nf(D.bloki.cene_energentov_eur_kwh.daljinska_toplota, 3)} €/kWh s prispevki in DDV (Agencija za energijo 2025). Cene energentov (€/kWh): elektrika {nf(C.elektrika, 3)}, plin {nf(C.zemeljski_plin, 3)}, kurilno olje {nf(C.kurilno_olje, 2)}, peleti {nf(C.peleti, 2)}, polena {nf(C.polena, 3)}, daljinska toplota {nf(C.daljinska_toplota, 2)} ({C.vir}). Povračilna doba je nediskontirana: strošek, zmanjšan za spodbudo, deljen z letnim prihrankom.</p>
 </section>
@@ -110,6 +109,8 @@ const UKREPI = [
   .sms-form { display: grid; gap: 1rem; }
   .sms-step { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: .9rem 1.1rem 1.1rem; margin: 0; min-width: 0; }
   .sms-step legend { font-weight: 800; padding: 0 .4rem; color: var(--ink); }
+  .sms-kajce summary { font-weight: 800; cursor: pointer; }
+  .sms-kajce[open] summary { margin-bottom: .8rem; }
   .sms-n { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--green); color: var(--on-green); font-size: .85em; margin-right: .35rem; }
   .sms-tip { display: flex; gap: 1.2rem; margin: .1rem 0 .7rem; font-weight: 700; }
   .sms-tip label { display: inline-flex; gap: .4rem; align-items: center; }
