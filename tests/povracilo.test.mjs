@@ -17,7 +17,7 @@ const v = (x, [lo, hi], what) => {
 const REF = {
   fasada: [[16, 19], [9, 11], [6, 8]],
   plosca_podstrehe: [[16, 20], [9, 12], [6, 8]],
-  streha: [[22, 28], [15, 20], [11, 11]],
+  streha: [[22, 28], [15, 20], [11, 15]],   // NPS: referenca 11 je brez zgornje meje na m², kalkulator mejo poveča sorazmerno (52,5 €/m²)
 };
 for (const [u, r] of Object.entries(REF)) {
   test(`ovoj: ${u}`, () => { const d = doba(u); r.forEach((rr, i) => v(d[i], rr, `${u} [${i}]`)); });
@@ -56,4 +56,18 @@ test('dve hiši: najprej fasada je ceneje in z manjšo črpalko', async () => {
   assert.ok(b.skupaj < a.skupaj, `${b.skupaj} < ${a.skupaj}`);
   assert.ok(b.moc < a.moc && b.elektrika_kwh < a.elektrika_kwh);
   assert.ok(b.skupaj < r.brez.at(-1), 'prenova je cenejša od neprenovljene hiše v 20 letih');
+});
+
+test('vsota prihrankov ukrepov na ovoju je enaka prihranku paketa (hiša 1981–2002, delno izolirana)', () => {
+  const r = izracun(D, { povrsina: 110, obdobje: '1981_2002', stanje: 'delno', energent: 'kurilno_olje', ukrepi: ['fasada', 'plosca_podstrehe', 'okna'] });
+  const vsota = r.rezultati.reduce((s, x) => s + x.prihranek_eur, 0);
+  assert.ok(Math.abs(vsota - r.paket.prihranek_eur) < 1, `${vsota.toFixed(0)} = ${r.paket.prihranek_eur.toFixed(0)}`);
+  assert.ok(r.paket.brez && r.paket.brez.ukrepi.includes('okna'), 'paket brez oken');
+  assert.ok(r.paket.brez.doba[1] < r.paket.doba[1]);
+});
+test('stanovanje v bloku do 1980, daljinsko: fasada in okna okoli 43 let brez spodbude (kot paketi prenove)', () => {
+  const r = izracun(D, { tip: 'blok', povrsina: 59, obdobje: 'pred_1980', stanje: 'neizoliran', energent: 'daljinska_toplota', ukrepi: ['fasada', 'okna', 'tc', 'plosca_podstrehe'] });
+  assert.deepEqual(r.rezultati.map((x) => x.ukrep), ['fasada', 'okna'], 'v bloku ni črpalke in plošče');
+  v(r.paket.doba[0], [43, 43], 'blok fasada + okna');
+  assert.ok(r.paket.doba[2] < r.paket.doba[1]);
 });

@@ -342,9 +342,9 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
         li(ul, goal());
         li(ul, ['Obvezne prenove posamezne stanovanjske stavbe načrt ne določa. Priporočljivo je, da vsako prenovo načrtujete kot korak k brezemisijski stavbi.']);
         box.append(ul);
-        if (c.id === 'HISA') {
+        if (c.id === 'HISA' || c.id === 'BLOKI') {
           // Povezava na kalkulator »Se mi splača?« (Za lastnike) z razredom in, pri oceni po tipični stavbi, z lastnostmi hiše
-          const p = new URLSearchParams({ razred: k, nad43: v > w.threshold ? '1' : '0' });
+          const p = new URLSearchParams({ razred: k, nad43: v > w.threshold ? '1' : '0', ...(c.id === 'BLOKI' ? { tip: 'blok' } : {}) });
           if (mode() === 'tip') {
             const per = $('chk-t-per').value;
             p.set('obdobje', ['do 1945', '1946–1970', '1971–1980'].includes(per) ? 'pred_1980' : ['1981–1990', '1991–2002'].includes(per) ? '1981_2002' : 'po_2002');

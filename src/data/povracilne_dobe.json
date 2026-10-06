@@ -224,5 +224,97 @@
    "brez"
   ],
   "opomba": "brez / poziv 2026 / NPS F in G; toleranca ±15 %"
+ },
+ "bloki": {
+  "opis": "Stanovanje v večstanovanjski stavbi: stroški skupnih delov (fasada, streha) so delež lastnika po m² stanovanja. Mediane priznanih stroškov Eko sklada 2023–2025 (MFH) na m² ogrevane površine stanovanja; količine ukrepov na m² stanovanja in spodbude kot v cevovodu paketov prenove (data/npsdata/paketi.py).",
+  "cene_energentov_eur_kwh": {
+   "daljinska_toplota": 0.16998,
+   "vir_daljinska": "Agencija za energijo, Analiza cen toplote 2025 (povprečje GJS, značilni odjemalec v večstanovanjski stavbi, s prispevki in DDV)"
+  },
+  "qhnd_kwh_m2": {
+   "pred_1980": {
+    "neizoliran": 51,
+    "delno": 40,
+    "izoliran": 28,
+    "celovita": 15
+   },
+   "1981_2002": {
+    "neizoliran": 53,
+    "delno": 42,
+    "izoliran": 30,
+    "celovita": 15
+   },
+   "po_2002": {
+    "neizoliran": 35,
+    "delno": 30,
+    "izoliran": 25,
+    "celovita": 15
+   },
+   "opomba": "končna energija za ogrevanje na m² stanovanja: paketi prenove (izkaznice blokov, 66 oziroma 68 kWh/m² skupaj s toplo vodo 15 kWh/m²); stanje po celoviti prenovi ovoja umerjeno na pakete prenove (fasada in okna okoli 300 € prihranka na leto pri 59 m²)"
+  },
+  "ukrepi": {
+   "fasada": {
+    "ime": "Toplotna izolacija fasade (vaš delež)",
+    "povrsina_na_m2_tlorisa": 0.976,
+    "u_pred": 1.0,
+    "u_po": 0.2,
+    "strosek_eur_m2_stanovanja": 122.7,
+    "zivljenjska_doba": 35,
+    "skupni_del": true
+   },
+   "streha": {
+    "ime": "Toplotna izolacija strehe (vaš delež)",
+    "povrsina_na_m2_tlorisa": 0.263,
+    "u_pred": 1.0,
+    "u_po": 0.18,
+    "strosek_eur_m2_stanovanja": 16.2,
+    "zivljenjska_doba": 35,
+    "skupni_del": true
+   },
+   "okna": {
+    "ime": "Zamenjava oken v stanovanju",
+    "povrsina_na_m2_tlorisa": 0.154,
+    "u_pred": 2.8,
+    "u_po": 1.0,
+    "strosek_eur_m2_stanovanja": 105.5,
+    "zivljenjska_doba": 30
+   },
+   "prezracevanje": {
+    "ime": "Lokalno prezračevanje z vračanjem toplote",
+    "strosek_eur_m2_stanovanja": 35.0,
+    "naprav_na_m2": 0.038,
+    "prihranek_kwh_m2": 7,
+    "zivljenjska_doba": 18
+   }
+  },
+  "spodbude": {
+   "poziv_2025_124SUB-OBPO25_skupni_deli": {
+    "fasada": {
+     "delez": 0.3,
+     "najvec_eur_m2": 50,
+     "brez_ddv": 1.22
+    },
+    "streha": {
+     "delez": 0.3,
+     "najvec_eur_m2": 50,
+     "brez_ddv": 1.22
+    }
+   },
+   "poziv_2026_126SUB-OB26_stanovanje": {
+    "okna": {
+     "delez": 0.4,
+     "najvec_eur_m2": 300
+    },
+    "prezracevanje": {
+     "delez": 0.3,
+     "najvec_eur_naprava": 600
+    }
+   }
+  }
+ },
+ "referencni_rezultati_blok_59m2_pred1980_daljinsko": {
+  "fasada_okna_brez": 43,
+  "vir": "Paketi prenove, stanovanje v bloku do 1980, delna prenova (13.500 €, prihranek 310 € na leto)",
+  "toleranca": "±20 %"
  }
 }
