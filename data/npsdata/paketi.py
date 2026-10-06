@@ -13,7 +13,10 @@ Viri (potrdil Gašper 2. 10. 2026):
   tipična površina: mediana kondicionirane površine iz izkaznic (hiše) oziroma povprečna površina stanovanja (bloki);
 - cene energentov za gospodinjstva: SURS (tabela H028S, povprečje četrtletij 2025); drva: Gozdarski inštitut Slovenije;
   daljinska toplota: Agencija za energijo, Analiza cen toplote 2025;
-- spodbude: predlog ukrepa N1 (osnutek, preglednica 26).
+- spodbude: predlog ukrepa N1 (osnutek, preglednica 26);
+- bloki (Gašper 6. 10. 2026): raba za ogrevanje pred in po prenovi iz potrebne toplote Qh,nd po energetskih izkaznicah
+  (src/data/povracilne_dobe.json, bloki.qhnd_kwh_m2, enako kot kalkulator »Se mi splača?«) z izkoristkom daljinskega
+  ogrevanja v stanovanju in toplo vodo; dejanska raba po modelu občin za bloke podceni prihranke.
 """
 import json
 import urllib.request
@@ -22,6 +25,10 @@ import numpy as np
 import pandas as pd
 
 from .context import DATA_DIR, Context, write_json
+
+KALK = json.loads((DATA_DIR.parent / 'src' / 'data' / 'povracilne_dobe.json').read_text(encoding='utf-8'))
+QHND_BLOK = {'do1980': KALK['bloki']['qhnd_kwh_m2']['pred_1980'], '1981_2002': KALK['bloki']['qhnd_kwh_m2']['1981_2002']}
+ETA_DH = KALK['model']['izkoristek_kotla']['daljinska_toplota']
 
 CACHE = DATA_DIR / 'raw' / 'surs_cene_2025.json'
 KWH_PER_L_OLJE = 10.0           # kurilna vrednost ekstra lahkega kurilnega olja, kWh/l
@@ -228,6 +235,9 @@ def build(ctx: Context) -> dict:
             m = mfe[f'{cat}|{pg}|{code}']
             ctx.check(m['n'] >= 500, f'paketi: model {cat}/{pg}/{code} {m["n"]} stavb')
             fe0 = m['fe_kwh_m2']                 # dejanska raba končne energije na m² (kataster)
+            qb = QHND_BLOK[pg] if t == 'MFH' else None
+            if qb:                               # bloki: potrebna toplota iz izkaznic (kot kalkulator) + topla voda
+                fe0 = qb['neizoliran'] / ETA_DH + DHW
             hc = sorted(g.ei_razred, key=HC.index)[len(g) // 2]
             hc = hc if hc in FE[t] else 'C'
             paketi = []
@@ -245,7 +255,14 @@ def build(ctx: Context) -> dict:
                     src = 'vsota median posameznih ukrepov (premalo dejanskih kombinacij)'
                 # stanje po prenovi: energija na m² površine po katastru (računska raba celovite prenove je na m² izkaznice)
                 k_a = a_ei / a_kat
-                if pid == 'delna':
+                if pid == 'delna' and qb:  # fasada in okna: stanje »izoliran« iz izkaznic
+                    fe1 = qb['izoliran'] / ETA_DH + DHW
+                    rr = fe1 / fe0
+                    pe1 = pe0 * rr
+                    cost1 = fe1 * price0
+                    buy1 = fe1
+                    faktor.setdefault(cat, []).append(rr)
+                elif pid == 'delna':
                     h1 = ORDER[min(ORDER.index(hc) + 2, ORDER.index('B2'))]
                     rr = FE[t][h1] / FE[t][hc]
                     fe1, pe1 = fe0 * rr, pe0 * rr
@@ -260,11 +277,12 @@ def build(ctx: Context) -> dict:
                         pe1 *= (1 - PV_SHARE); el *= (1 - PV_SHARE)
                     cost1 = el * prices['elektrika']
                     buy1 = el
-                else:  # blok ostane na daljinskem ogrevanju
-                    fe1 = (q + AUX) * k_a
-                    pe1 = q * FP['dh'] + AUX * FP['el']
-                    cost1 = (q * DH_EUR_KWH + AUX * prices['elektrika']) * k_a
-                    buy1 = (q + AUX) * k_a
+                else:  # blok ostane na daljinskem ogrevanju; po celoviti prenovi ovoja Qh,nd »celovita« iz izkaznic
+                    qc = qb['celovita'] / ETA_DH + DHW
+                    fe1 = (qc + AUX) * k_a
+                    pe1 = qc * FP['dh'] + AUX * FP['el']
+                    cost1 = (qc * DH_EUR_KWH + AUX * prices['elektrika']) * k_a
+                    buy1 = (qc + AUX) * k_a
                 # strošek: delna in celovita na m² ogrevane površine po katastru (kot analiza Eko sklada), sNES na m² površine iz vloge
                 # (≈ kondicionirana površina iz izkaznic); energija na m² kondicionirane površine iz izkaznic
                 a_cost = a_ei if pid == 'zeb' else a_kat
@@ -314,7 +332,7 @@ def build(ctx: Context) -> dict:
     # za orodje Preveri stavbo: stanje po prenovi stavbe z izkaznico
     pe_cel_sfh = q / SCOP * FP['el'] + q * (1 - 1 / SCOP) * FP['amb'] + AUX * FP['el']
     preveri = {'HISA': {'delna_faktor': round(float(np.median(faktor['HISA'])), 2), 'celovita_pe': round(pe_cel_sfh), 'zeb_pe': round(pe_cel_sfh * (1 - PV_SHARE))},
-               'BLOKI': {'delna_faktor': round(float(np.median(faktor['BLOKI'])), 2), 'celovita_pe': round(q * FP['dh'] + AUX * FP['el']), 'zeb_pe': None}}
+               'BLOKI': {'delna_faktor': round(float(np.median(faktor['BLOKI'])), 2), 'celovita_pe': round((QHND_BLOK['do1980']['celovita'] / ETA_DH + DHW) * FP['dh'] + AUX * FP['el']), 'zeb_pe': None}}
 
     data = {
         'meta': ctx.meta(['Eko sklad, priznani stroški naložb 2023–2025 (analiza IJS CEU, 2. 10. 2026); sNES: celovite obnove in sNES+ prenove 2022–2025', prices['vir'], WOOD_VIR, DH_VIR,
