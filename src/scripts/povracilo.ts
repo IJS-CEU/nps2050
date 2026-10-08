@@ -45,6 +45,8 @@ export interface Nastavitve {
   strosek: number;                // faktor stroška naložbe
   spodbuda: number | null;        // enoten delež spodbude (0–0,7) namesto pravil poziva; null = pravila pozivov
   odkup?: number | null;          // odkupna cena presežkov elektrike [€/kWh]; null = privzeta
+  rast?: number | null;           // rast cen energije na leto (0,02 = 2 %) za stroške v več letih; null = privzeta
+  ets2?: number | null;           // cena CO₂ v ETS2 [€/t] od leta uvedbe za kurilno olje in plin; null = privzeta, 0 = brez
 }
 export const PRIVZETO: Nastavitve = { cena_el: 1, cena_en: 1, strosek: 1, spodbuda: null };
 
@@ -310,7 +312,7 @@ export function umeritevPE(D: any, v: Vhod): number {
 export function primarna(D: any, v: Vhod, r: any) {
   const M = D.model, A = v.povrsina, fp = M.fp, tc = v.ukrepi.includes('tc');
   const { pe: pe0, elM } = primarnaModel(D, v, r);
-  const w = ({ neizoliran: 1, delno: 1, izoliran: 0.5, celovita: 0 } as Record<Stanje, number>)[r.stanje_po as Stanje];
+  const w = ({ neizoliran: 1, delno: 1, izoliran: 0, celovita: 0 } as Record<Stanje, number>)[r.stanje_po as Stanje];
   let pe = pe0 * (1 + (umeritevPE(D, v) - 1) * w);
   const pvKwh = r.pv ? vsota(r.pv.proizvodnja.map((p: number, m: number) => Math.min(p, elM[m]))) : 0;
   pe -= pvKwh * fp.elektrika;
@@ -363,12 +365,20 @@ export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: 
   const naenkrat = new Set(koraki.map((k) => k.leto)).size <= 1;
   const bonusKorak = cel ? B.bonus_celovita : naenkrat ? 0 : B.bonus_korak_izkaz;
   const npsDelez = (u: Ukrep) => Math.min(B.najvec, pravilo(D, u, v).delez + bonusNPS(D, v) + bonusKorak);
+  // stroški energije v letu y: današnje cene × (1 + rast)^y, za kurilno olje in plin od uvedbe ETS2 še cena CO₂ (z DDV)
+  const M = D.model, E2 = M.ets2, g = n.rast ?? M.rast_cen_energije, co2 = n.ets2 ?? E2.cena_eur_t;
+  const ef = E2.emisije_kg_kwh[v.energent] ?? 0, pEn = cena(D, v.energent, n, v);
   const stanje = (inst: Ukrep[]) => {
     const r = izracun(D, { ...v, ukrepi: inst }, n);
-    return { r, energija: r.paket.stroski_danes - r.paket.prihranek_eur + gosp - (r.pv ? r.pv.rezimi[obracun].prihranek_eur : 0) };
+    const ogr = r.paket.stroski_danes - r.paket.prihranek_eur;
+    const gorivo = !inst.includes('tc') && ef ? ogr / pEn : 0;   // kWh kurilnega olja ali plina na leto
+    return { r, gorivo, energija: ogr + gosp - (r.pv ? r.pv.rezimi[obracun].prihranek_eur : 0) };
   };
+  const vLetu = (s: { energija: number; gorivo: number }, y: number) =>
+    (s.energija + (M.zacetno_leto + y >= E2.od_leta ? s.gorivo * ef * co2 / 1000 * E2.ddv : 0)) * (1 + g) ** y;
   const s0 = stanje([]);
-  const brez = Array.from({ length: let_ + 1 }, (_, y) => Math.round(y * s0.energija));
+  const brez = [0];
+  for (let y = 0; y < let_; y++) brez.push(Math.round(brez[y] + vLetu(s0, y)));
   const dogodki: any[] = [];
   const serija = { poziv: [0], nps: [0] };
   let inst: Ukrep[] = [], kp = 0, kn = 0, cur = s0;
@@ -405,7 +415,8 @@ export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: 
         dogodki.push({ leto: y, ukrep: u, ime, strosek: c, spodbuda: sp, spodbuda_nps: sn, moc, toplota_m2: cur.r.Q1 / v.povrsina, pe_m2: pe.pe_m2, energija: cur.energija });
       }
     }
-    kp += cur.energija; kn += cur.energija;
+    const e = vLetu(cur, y);
+    kp += e; kn += e;
     serija.poziv.push(Math.round(kp)); serija.nps.push(Math.round(kn));
   }
   // preostala vrednost ukrepov ob koncu obdobja (linearno po življenjski dobi): serija so izdatki, skupaj = izdatki − preostala vrednost

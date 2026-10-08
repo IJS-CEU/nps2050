@@ -145,3 +145,20 @@ test('stanovanje v bloku: razred umerjen na izkaznice kot paketi prenove (do 198
   assert.equal(razred(c.konec.pe_m2, M), 'A');
   assert.ok(c.konec.zeb);
 });
+
+test('fasada, streha, črpalka in elektrarna: razred A in ZEB; brez elektrarne ne', async () => {
+  const { nacrt, razred, PRIVZETO } = await import('../src/scripts/povracilo.ts');
+  const M = [75, 166, 257, 347, 438, 529];
+  const k = (uk) => nacrt(D, { ...base, ukrepi: [] }, PRIVZETO, uk.map((u) => ({ ukrep: u, leto: 0 })));
+  const a = k(['fasada', 'streha', 'tc', 'pv']), b = k(['fasada', 'streha', 'tc']);
+  assert.equal(razred(a.konec.pe_m2, M), 'A'); assert.ok(a.konec.zeb);
+  assert.ok(!b.konec.zeb, `brez elektrarne ${b.konec.pe_m2}`);
+});
+test('rast cen in ETS2 podražita hišo brez prenove na kurilno olje', async () => {
+  const { nacrt, PRIVZETO } = await import('../src/scripts/povracilo.ts');
+  const kor = [{ ukrep: 'fasada', leto: 0 }];
+  const s = (n) => nacrt(D, { ...base, ukrepi: [] }, { ...PRIVZETO, ...n }, kor).brez.at(-1);
+  const stalne = s({ rast: 0, ets2: 0 }), ets = s({ rast: 0 }), oboje = s({});
+  assert.ok(stalne < ets && ets < oboje, `${stalne} < ${ets} < ${oboje}`);
+  assert.ok(Math.abs(stalne - 20 * nacrt(D, { ...base, ukrepi: [] }, { ...PRIVZETO, rast: 0, ets2: 0 }, kor).energija_zacetek) < 20, 'brez rasti in ETS2 = 20 × današnji stroški');
+});
