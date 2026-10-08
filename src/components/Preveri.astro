@@ -65,7 +65,18 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
   </form>
 
   <div class="chk-out" id="chk-out" aria-live="polite"></div>
-  {features.paketi && <p class="chk-pk"><a href={pageUrl('paketi')}>Tipični paketi prenove: koliko stane in kaj prinese delna prenova, celovita prenova ovoja in sistemov ali prenova do sNES</a></p>}
+  <div class="chk-pk">
+    <a class="chk-card chk-card-k" id="chk-kalk" href={`${pageUrl('lastniki')}#se-mi-splača`}>
+      <span class="chk-card-h">Se mi splača? Kalkulator prenove</span>
+      <span>V koliko letih se povrnejo izolacija, okna, toplotna črpalka in sončna elektrarna, koliko spodbude vam pripada, prenova po korakih in okvirni načrt prenove za tisk (A4). Za hiše in stanovanja v blokih.</span>
+      <span class="chk-card-b">Odpri kalkulator →</span>
+    </a>
+    {features.paketi && <a class="chk-card" id="chk-paketi" href={pageUrl('paketi')}>
+      <span class="chk-card-h">Tipični paketi prenove</span>
+      <span>Koliko stane in kaj prinese delna prenova, celovita prenova ovoja in sistemov ali prenova do sNES.</span>
+      <span class="chk-card-b">Paketi prenove →</span>
+    </a>}
+  </div>
 
   <noscript><p>Za interaktivno preverjanje je potreben JavaScript. Pragovi so v preglednici spodaj.</p></noscript>
 
@@ -134,6 +145,15 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
   .chk-no { color: var(--amber); font-weight: 700; }
   .chk-ph, .chk-pf { display: none; }
   .chk-act { margin: .8rem 0 0; font-size: .88rem; color: var(--ink2); }
+  .chk-pk { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: .8rem; margin: 1.2rem 0; }
+  .chk-card { display: grid; gap: .35rem; align-content: start; padding: .9rem 1.1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); color: var(--ink); text-decoration: none; font-size: .9rem; }
+  .chk-card:hover { border-color: var(--green); box-shadow: 0 2px 10px rgba(0, 0, 0, .06); }
+  .chk-card-k { border-top: 4px solid var(--green); }
+  .chk-card-h { font-family: var(--font-serif); font-weight: 700; font-size: 1.08rem; }
+  .chk-card-b { color: var(--green); font-weight: 700; margin-top: .2rem; }
+  :global(.chk-sms) { margin: 1rem 0 .4rem; padding: .9rem 1.1rem; border: 2px solid var(--green); border-radius: 12px; background: var(--greenbg); }
+  :global(.chk-sms h4) { margin: 0 0 .3rem; font-size: 1rem; }
+  :global(.chk-sms p) { margin: 0 0 .6rem; font-size: .92rem; max-width: none; }
   .chk-act .btn { cursor: pointer; font: inherit; font-weight: 700; margin-right: .5rem; }
   /* Izpis rezultata: samo rezultat z vnosom in naslednjimi koraki (CLAUDE.md §11, nadgradnja 9). */
   @media print {
@@ -353,9 +373,15 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
             if (en) p.set('energent', en);
           }
           const [base, hash] = (form.dataset.sms ?? '').split('#');
-          const a = el('a', 'Se mi splača? Izračunajte, v koliko letih se vam povrnejo ukrepi in koliko spodbude vam pripada') as HTMLAnchorElement;
-          a.href = `${base}?${p}#${hash}`;
-          const pp = el('p', undefined, 'chk-sms'); pp.append(a); box.append(pp);
+          const url = `${base}?${p}#${hash}`;
+          const kalk = document.getElementById('chk-kalk') as HTMLAnchorElement | null;
+          if (kalk) kalk.href = url;
+          const cta = el('div', undefined, 'chk-sms');
+          cta.append(el('h4', 'Naslednji korak: izračunajte prenovo svoje stavbe'),
+            el('p', `Kalkulator »Se mi splača?« je že izpolnjen z razredom ${mode() === 'tip' ? 'in lastnostmi ' : ''}vaše ${c.id === 'BLOKI' ? 'stavbe (stanovanje v bloku)' : 'hiše'}. Pokaže, v koliko letih se povrnejo posamezni ukrepi, koliko spodbude vam pripada danes in po predlogu NPS 2050, kako prenovo izvesti po korakih in ali stavba doseže brezemisijsko raven. Pripravi tudi okvirni načrt prenove za tisk ali PDF.`));
+          const a = el('a', 'Odpri kalkulator Se mi splača? →', 'btn primary') as HTMLAnchorElement;
+          a.href = url;
+          cta.append(a); box.append(cta);
         }
       }
       box.append(el('p', 'Rezultat je informativen in temelji na predlogu v osnutku NPS 2050. Ni uradna ugotovitev. Pragovi se lahko do sprejema načrta in ob rekalibraciji razredov še spremenijo.', 'note'));
@@ -366,7 +392,8 @@ const ar = loadData<{ obdobja: string[] }>('arhetipi');
         'Brezplačno energetsko svetovanje ENSVET: svetovalec pregleda stavbo in pomaga izbrati ukrepe. Ta izpis vzemite s seboj.',
         'Spodbude Eko sklada (www.ekosklad.si): preverite pogoje javnega poziva; vlogo oddate po zaključku del, z računi in dokazili.',
         'Energetska izkaznica določi dejanski razred stavbe; potrebna je tudi ob prodaji ali oddaji.',
-        `Tipični paketi prenove s stroški in spodbudami: ${location.origin}${document.querySelector<HTMLAnchorElement>('.chk-pk a')?.getAttribute('href') ?? ''}`,
+        `Kalkulator »Se mi splača?« – povračilne dobe, spodbude in okvirni načrt prenove: ${location.origin}${document.querySelector<HTMLAnchorElement>('#chk-kalk')?.getAttribute('href') ?? ''}`,
+        `Tipični paketi prenove s stroški in spodbudami: ${location.origin}${document.querySelector<HTMLAnchorElement>('#chk-paketi')?.getAttribute('href') ?? ''}`,
       ]) nx.append(el('li', t));
       pf.append(nx, el('p', `Vir: IJS CEU, strokovne podlage NPS 2050 (osnutek). ${location.origin}${location.pathname}`, 'note'));
       box.append(pf);
