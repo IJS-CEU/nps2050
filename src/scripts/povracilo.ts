@@ -273,16 +273,11 @@ export function soncna(D: any, v: Vhod, n: Nastavitve, el_ogrevanje: number) {
   return { kw, strosek, zivljenjska_doba: S.zivljenjska_doba as number, proizvodnja: P, raba: C, proizvodnja_kwh: Py, raba_kwh: Cy, rezimi, pokritost_zima, pEl, odkup: odk as number };
 }
 
-/** Ocena skupne primarne energije [kWh/(m²·a)] za ogrevanje, toplo vodo in pomožno elektriko po izbranih ukrepih (r = izracun),
- *  z izgubami razvoda, oddaje in regulacije kot v računski metodi energetske izkaznice;
- *  elektrarna zmanjša elektriko za stavbo v mesecu, ko jo proizvede (mesečna bilanca). Pogoji za brezemisijsko stavbo (ZEB):
- *  pod mejo razreda A, brez fosilnih goriv v stavbi, izoliran ovoj (fasada in streha ali plošča). */
-export function primarna(D: any, v: Vhod, r: any) {
+/** Primarna energija po modelu kalkulatorja [kWh/leto] brez elektrarne in mesečna elektrika za stavbo. */
+function primarnaModel(D: any, v: Vhod, r: any) {
   const M = D.model, A = v.povrsina, fp = M.fp;
   const tc = v.ukrepi.includes('tc');
-  const fr = M.izkoristek_razvoda_oddaje;
-  const dhw = M.topla_voda_kwh_m2 * A / fr, aux = M.pomozna_el_kwh_m2 * A, hdd = HDD(D);
-  r = { ...r, Qnet: r.Qnet / fr };
+  const dhw = M.topla_voda_kwh_m2 * A, aux = M.pomozna_el_kwh_m2 * A, hdd = HDD(D);
   let pe: number, elM: number[];
   if (tc) {
     const s = scop(D, r.stanje_po, v), el = (r.Qnet + dhw) / s;
@@ -293,6 +288,30 @@ export function primarna(D: any, v: Vhod, r: any) {
     pe = ((r.Qnet + dhw) / eta) * fp[v.energent] + aux * fp.elektrika;
     elM = hdd.map((h) => (v.energent === 'elektrika' ? r.Qnet * h + dhw / 12 : 0) + aux / 12);
   }
+  return { pe, elM };
+}
+
+const VIR_IZK: Record<string, string> = { kurilno_olje: 'olje', zemeljski_plin: 'plin', polena: 'les', peleti: 'les' };
+/** Umeritev ocene na izkaznice: mediana primarne energije neprenovljenih hiš (obdobje × ogrevanje) ÷ ocena modela za neizolirano hišo. */
+export function umeritevPE(D: any, v: Vhod): number {
+  const R = D.model.pe_izkaznice_neprenovljene?.[v.obdobje];
+  if (blok(v) || !R) return 1;
+  const vals = Object.values(R) as number[];
+  const ref = R[VIR_IZK[v.energent]] ?? vals.reduce((a, b) => a + b, 0) / vals.length;
+  const v0: Vhod = { ...v, stanje: 'neizoliran', ukrepi: [], raba_kwh: null };
+  const m = primarnaModel(D, v0, izracun(D, v0)).pe / v.povrsina;
+  return Math.min(2, Math.max(0.7, ref / m));
+}
+
+/** Ocena skupne primarne energije [kWh/(m²·a)] za ogrevanje, toplo vodo in pomožno elektriko po izbranih ukrepih (r = izracun),
+ *  umerjena na izkaznice neprenovljenih hiš (umeritev se s stanjem ovoja zmanjšuje in po celoviti prenovi izgine); elektrarna jo zmanjša
+ *  za elektriko stavbe v mesecu, ko jo proizvede (mesečna bilanca). Pogoji za brezemisijsko stavbo (ZEB): pod mejo razreda A,
+ *  brez fosilnih goriv v stavbi, izoliran ovoj (fasada in streha ali plošča). */
+export function primarna(D: any, v: Vhod, r: any) {
+  const M = D.model, A = v.povrsina, fp = M.fp, tc = v.ukrepi.includes('tc');
+  const { pe: pe0, elM } = primarnaModel(D, v, r);
+  const w = ({ neizoliran: 1, delno: 1, izoliran: 0.5, celovita: 0 } as Record<Stanje, number>)[r.stanje_po as Stanje];
+  let pe = pe0 * (1 + (umeritevPE(D, v) - 1) * w);
   const pvKwh = r.pv ? vsota(r.pv.proizvodnja.map((p: number, m: number) => Math.min(p, elM[m]))) : 0;
   pe -= pvKwh * fp.elektrika;
   const pe_m2 = pe / A;
@@ -333,7 +352,8 @@ export interface Korak { ukrep: Ukrep; leto: number }
 export const PRIPOROCEN: Record<Ukrep, number> = { fasada: 0, streha: 0, plosca_podstrehe: 0, okna: 2, prezracevanje: 2, tc: 3, pv: 4 };
 
 /** Prenova po korakih: ukrepi v različnih letih. Kumulativni stroški (naložbe po odbitku spodbude + energija za ogrevanje in elektriko
- *  gospodinjstva − vrednost elektrike iz elektrarne) za načrt in brez prenove. Spodbuda NPS za načrt po izkazu o prenovi: +10 za vse
+ *  gospodinjstva − vrednost elektrike iz elektrarne) za načrt in brez prenove; ukrep, ki se izteče pred koncem obdobja (toplotna črpalka
+ *  po 18 letih), se zamenja, preostala vrednost ukrepov ob koncu obdobja se odšteje v zadnjem letu. Spodbuda NPS za načrt po izkazu o prenovi: +10 za vse
  *  korake, če se konča s celovito prenovo, sicer +5 za korak; vse naenkrat brez dodatka za korak. */
 export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: Obracun = 'nova', let_ = 20) {
   const B = D.spodbude.predlog_NPS_N1;
@@ -352,38 +372,57 @@ export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: 
   const dogodki: any[] = [];
   const serija = { poziv: [0], nps: [0] };
   let inst: Ukrep[] = [], kp = 0, kn = 0, cur = s0;
+  // vgrajeni ukrepi: leto (zadnje) vgradnje, neto strošek in življenjska doba – za zamenjave in preostalo vrednost
+  const vgr: { ukrep: Ukrep; leto: number; netP: number; netN: number; zd: number }[] = [];
   for (let y = 0; y < let_; y++) {
+    for (const g of vgr.filter((x) => x.leto + x.zd === y)) {
+      // zamenjava po izteku življenjske dobe (črpalka po stanju ovoja v tem letu)
+      const row = g.ukrep === 'pv' ? null : cur.r.rezultati.find((x: Rezultat) => x.ukrep === g.ukrep);
+      const c = row ? row.strosek : cur.r.pv.strosek;
+      const sp = row ? (n.spodbuda == null ? spodbuda(D, g.ukrep, c, v) : spodbuda(D, g.ukrep, c, v, n.spodbuda)) : 0;
+      const sn = row ? spodbuda(D, g.ukrep, c, v, Math.min(B.najvec, pravilo(D, g.ukrep, v).delez + bonusNPS(D, v))) : 0;
+      kp += c - sp; kn += c - sn;
+      Object.assign(g, { leto: y, netP: c - sp, netN: c - sn });
+      dogodki.push({ leto: y, ukrep: g.ukrep, ime: `Zamenjava: ${(row ? row.ime : 'sončna elektrarna').toLowerCase()}${row?.moc_kw ? ` ${row.moc_kw} kW` : ''}`, strosek: c, spodbuda: sp, spodbuda_nps: sn,
+        moc: row?.moc_kw, zamenjava: true, toplota_m2: cur.r.Q1 / v.povrsina, pe_m2: primarna(D, { ...v, ukrepi: inst }, cur.r).pe_m2, energija: cur.energija });
+    }
     const nova = koraki.filter((k) => k.leto === y).map((k) => k.ukrep);
     if (nova.length) {
       inst = [...inst, ...nova];
       cur = stanje(inst);
       const pe = primarna(D, { ...v, ukrepi: inst }, cur.r);
       for (const u of nova) {
-        let c: number, sp = 0, sn = 0, moc: number | undefined, ime: string;
-        if (u === 'pv') { c = cur.r.pv.strosek; ime = `Sončna elektrarna ${cur.r.pv.kw} kW`; }
+        let c: number, sp = 0, sn = 0, moc: number | undefined, ime: string, zd: number;
+        if (u === 'pv') { c = cur.r.pv.strosek; ime = `Sončna elektrarna ${cur.r.pv.kw} kW`; zd = cur.r.pv.zivljenjska_doba; }
         else {
           const row = cur.r.rezultati.find((x: Rezultat) => x.ukrep === u);
-          c = row.strosek; moc = row.moc_kw; ime = row.ime + (moc ? ` ${moc} kW` : '');
+          c = row.strosek; moc = row.moc_kw; ime = row.ime + (moc ? ` ${moc} kW` : ''); zd = row.zivljenjska_doba;
           sp = n.spodbuda == null ? spodbuda(D, u, c, v) : spodbuda(D, u, c, v, n.spodbuda);
           sn = spodbuda(D, u, c, v, npsDelez(u));
         }
         kp += c - sp; kn += c - sn;
+        vgr.push({ ukrep: u, leto: y, netP: c - sp, netN: c - sn, zd });
         dogodki.push({ leto: y, ukrep: u, ime, strosek: c, spodbuda: sp, spodbuda_nps: sn, moc, toplota_m2: cur.r.Q1 / v.povrsina, pe_m2: pe.pe_m2, energija: cur.energija });
       }
     }
     kp += cur.energija; kn += cur.energija;
     serija.poziv.push(Math.round(kp)); serija.nps.push(Math.round(kn));
   }
+  // preostala vrednost ukrepov ob koncu obdobja (linearno po življenjski dobi) se odšteje v zadnjem letu
+  const ost = (k: 'netP' | 'netN') => vsota(vgr.map((g) => g[k] * Math.max(0, g.zd - (let_ - g.leto)) / g.zd));
+  const ostanek = { poziv: ost('netP'), nps: ost('netN') };
+  serija.poziv[let_] = Math.round(serija.poziv[let_] - ostanek.poziv); serija.nps[let_] = Math.round(serija.nps[let_] - ostanek.nps);
   const konec = primarna(D, { ...v, ukrepi: inst }, cur.r), zacetek = primarna(D, { ...v, ukrepi: [] }, s0.r);
   // črpalka, vgrajena pred zadnjim ukrepom na ovoju, je na koncu prevelika
   const tcK = koraki.find((k) => k.ukrep === 'tc');
+  const prvi = dogodki.filter((d) => !d.zamenjava);
   const zadnjiOvoj = Math.max(-1, ...koraki.filter((k) => OVOJ.includes(k.ukrep)).map((k) => k.leto));
-  const tcKonec = cur.r.rezultati.find((x: Rezultat) => x.ukrep === 'tc'), tcDog = dogodki.find((d) => d.ukrep === 'tc');
+  const tcKonec = cur.r.rezultati.find((x: Rezultat) => x.ukrep === 'tc'), tcDog = prvi.find((d) => d.ukrep === 'tc');
   const prevelika = tcK && tcDog && tcKonec && tcK.leto < zadnjiOvoj && tcDog.moc > tcKonec.moc_kw ? { moc: tcDog.moc as number, moc_konec: tcKonec.moc_kw as number } : null;
   return {
-    dogodki, serija, brez, skupaj: { poziv: serija.poziv.at(-1)!, nps: serija.nps.at(-1)!, brez: brez.at(-1)! }, celovita: cel, naenkrat, bonus_korak: bonusKorak,
-    spodbuda: { poziv: vsota(dogodki.map((d) => d.spodbuda)), nps: vsota(dogodki.map((d) => d.spodbuda_nps)) },
-    nalozbe: vsota(dogodki.map((d) => d.strosek)), energija_zacetek: s0.energija, energija_konec: cur.energija, zacetek, konec, prevelika,
+    dogodki, serija, brez, ostanek, skupaj: { poziv: serija.poziv.at(-1)!, nps: serija.nps.at(-1)!, brez: brez.at(-1)! }, celovita: cel, naenkrat, bonus_korak: bonusKorak,
+    spodbuda: { poziv: vsota(prvi.map((d) => d.spodbuda)), nps: vsota(prvi.map((d) => d.spodbuda_nps)) },
+    nalozbe: vsota(prvi.map((d) => d.strosek)), zamenjave: dogodki.filter((d) => d.zamenjava), energija_zacetek: s0.energija, energija_konec: cur.energija, zacetek, konec, prevelika,
   };
 }
 

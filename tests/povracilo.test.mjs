@@ -111,3 +111,22 @@ test('izpis prenove: delne prenove, naenkrat, najprej URE in najprej OVE; najpre
   assert.equal(razred(60, M), 'A'); assert.equal(razred(300, M), 'D'); assert.equal(razred(600, M), 'G');
   assert.equal(variante(D, { ...base, ukrepi: ['fasada', 'plosca_podstrehe', 'okna', 'prezracevanje', 'tc', 'pv'] }, PRIVZETO).filter((x) => x.skupina === 'delna').length, 14, 'ovoj kot ena enota');
 });
+
+test('razred: kalkulator je umerjen na izkaznice kot paketi prenove (olje do 1980: D, po fasadi in oknih C; celovita s prezračevanjem in črpalko A)', async () => {
+  const { nacrt, razred, PRIVZETO } = await import('../src/scripts/povracilo.ts');
+  const P = JSON.parse(readFileSync(new URL('../public/data/paketi_prenove.json', import.meta.url), 'utf-8'));
+  const h = P.tipi.find((t) => t.id === 'hisa_do1980').variante.find((x) => x.id === 'olje');
+  assert.equal(D.model.pe_izkaznice_neprenovljene.pred_1980.olje, h.pe_pred, 'kopija iz paketov prenove je aktualna');
+  const M = [75, 166, 257, 347, 438, 529];
+  const k = (uk, extra = {}) => nacrt(D, { ...base, ...extra, ukrepi: [] }, PRIVZETO, uk.map((u) => ({ ukrep: u, leto: 0 })));
+  const a = k(['fasada', 'okna']);
+  assert.equal(razred(a.zacetek.pe_m2, M), h.razred_pred);
+  assert.equal(razred(a.konec.pe_m2, M), h.paketi.find((x) => x.id === 'delna').razred_po);
+  assert.equal(razred(k(['fasada', 'streha', 'okna', 'prezracevanje', 'tc'], { prezracevanje: 'centralno' }).konec.pe_m2, M), 'A');
+});
+test('stroški v 20 letih: zamenjava črpalke po 18 letih in preostala vrednost ovoja', async () => {
+  const { nacrt, PRIVZETO } = await import('../src/scripts/povracilo.ts');
+  const n = nacrt(D, { ...base, ukrepi: [] }, PRIVZETO, [{ ukrep: 'fasada', leto: 0 }, { ukrep: 'tc', leto: 0 }]);
+  assert.equal(n.zamenjave.length, 1); assert.equal(n.zamenjave[0].leto, 18);
+  assert.ok(n.ostanek.poziv > 0);
+});

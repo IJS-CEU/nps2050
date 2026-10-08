@@ -102,7 +102,7 @@ import { loadData, type StavbniFond } from '../lib/data';
       <legend><span class="sms-n">5</span> Izpis prenove: primerjava različic</legend>
       <p class="sms-help">Iz izbranih ukrepov kalkulator sestavi vse delne prenove, izvedbo vseh ukrepov naenkrat in postopno prenovo v dveh vrstnih redih – najprej ukrepi za učinkovito rabo energije (URE) ali najprej obnovljivi viri (OVE) – in jih primerja v {SEZ} letih.</p>
       <div id="sms-iout" aria-live="polite"></div>
-      <div class="sms-btns"><button type="button" class="btn" id="sms-itisk">Natisni ali shrani izpis</button></div>
+      <div class="sms-btns"><button type="button" class="btn primary" id="sms-itisk">Izpis prenove (PDF)</button><span class="sms-hint">odpre dokument A4 za tisk ali shranjevanje kot PDF</span></div>
     </fieldset>
 
     <details class="sms-step sms-kajce">
@@ -364,8 +364,8 @@ import { loadData, type StavbniFond } from '../lib/data';
     let izpisHtml = '', izpisVhod = '';
     function izrisiIzpis(v: Vhod, n: Nastavitve) {
       const o = $('sms-iout');
-      if (v.tip === 'blok') { o.replaceChildren(); izpisHtml = ''; return; }
-      if (v.ukrepi.length < 2) { o.innerHTML = '<p class="sms-help">Izberite vsaj dva ukrepa za primerjavo.</p>'; izpisHtml = ''; return; }
+      if (v.tip === 'blok') { o.replaceChildren(); izpisHtml = ''; zadnji = null; return; }
+      if (v.ukrepi.length < 2) { o.innerHTML = '<p class="sms-help">Izberite vsaj dva ukrepa za primerjavo.</p>'; izpisHtml = ''; zadnji = null; return; }
       const ob = $<HTMLSelectElement>('sms-nob').value as Obracun;
       const V = variante(D, v, n, ob);
       const N0 = V[0].N, Y = N0.brez.length - 1;
@@ -400,26 +400,94 @@ import { loadData, type StavbniFond } from '../lib/data';
         ug.push(`Toplotna črpalka za neprenovljeno hišo potrebuje ${tcMoc(tcSam.N)} kW, po izolaciji pa ${tcMoc(vse.N)} kW.`);
       const ure = V.find((x) => x.skupina === 'ure'), ove = V.find((x) => x.skupina === 'ove');
       if (ure && ove) ug.push(`Če najprej vgradite obnovljive vire in šele nato izolirate, stane prenova v ${Y} letih okoli ${eur(ove.N.skupaj.poziv - ure.N.skupaj.poziv)} ${ove.N.skupaj.poziv >= ure.N.skupaj.poziv ? 'več' : 'manj'} kot po vrstnem redu najprej URE${ove.N.prevelika ? `, toplotna črpalka pa ostane prevelika (${ove.N.prevelika.moc} kW namesto ${ove.N.prevelika.moc_konec} kW) in dela z nižjim izkoristkom` : ''}.`);
+      const drazje = V.filter((x) => x.skupina === 'delna' && x.N.skupaj.poziv > N0.brez.at(-1)!);
+      if (drazje.length) ug.push(`${drazje.map((x) => seznam(x.ukrepi)).join('; ').replace(/^./, (c) => c.toUpperCase())}: v ${Y} letih ${drazje.length > 1 ? 'stanejo' : 'stane'} več kot hiša brez prenove, ker se energetsko ne ${drazje.length > 1 ? 'povrnejo' : 'povrne'} (upoštevana je preostala vrednost ob koncu obdobja). Razlog zanje so udobje, zdravje in vrednost hiše – ali del celovite prenove, kjer jih spodbuda in skupni prihranek naredita smiselne.`);
       const nx = V.find((x) => x.N.skupaj.poziv === naj)!;
       ug.push(`Najnižji stroški v ${Y} letih: ${nx.skupina === 'delna' ? seznam(nx.ukrepi) : SKUP[nx.skupina].toLowerCase()} (${eur(naj)}, brez prenove ${eur(N0.brez.at(-1)!)}).${V.some((x) => x.N.konec.zeb) ? ` Brezemisijska raven (ZEB) je dosežena pri: ${V.filter((x) => x.N.konec.zeb).map((x) => x.skupina === 'delna' ? seznam(x.ukrepi) : SKUP[x.skupina].toLowerCase()).join('; ')}.` : ' Nobena različica ne doseže brezemisijske ravni (ZEB); praviloma so potrebni izoliran ovoj, toplotna črpalka in sončna elektrarna.'}`);
 
       izpisVhod = `Hiša ${v.povrsina} m², ${$<HTMLSelectElement>('sms-ob').selectedOptions[0].text}, izolacija: ${$<HTMLSelectElement>('sms-st').selectedOptions[0].text}, ogrevanje: ${$<HTMLSelectElement>('sms-en').selectedOptions[0].text}; izbrani ukrepi: ${seznam(v.ukrepi)}${v.ukrepi.includes('pv') ? `; elektrarna: ${OBI[ob]}` : ''}.`;
+      const opomba = `Naložba po privzetih ali vaših cenah; spodbuda po pozivu 2026 / po predlogu NPS 2050 (pri postopni prenovi z dodatkom za korak po izkazu o prenovi). Energija na leto: ogrevanje in elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` po odbitku vrednosti elektrike iz elektrarne (${OBI[ob]})` : ''}. Stroški v ${Y} letih: naložbe po odbitku spodbude po pozivu 2026, energija in zamenjava ukrepov, ki se iztečejo prej (toplotna črpalka po 18 letih), zmanjšano za preostalo vrednost ukrepov ob koncu obdobja (fasada 35 let, okna 30 let); brez diskontiranja. Po korakih – najprej URE: ovoj takoj, okna in prezračevanje po 2 letih, toplotna črpalka po 3, elektrarna po 4 letih; najprej OVE: toplotna črpalka takoj, elektrarna po 1 letu, okna in prezračevanje po 3, ovoj po 5 letih. Primarna energija v kWh/(m²·a) in razred: poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko, umerjena na energetske izkaznice neprenovljenih hiš, po mejah za enostanovanjske hiše; ni razred na energetski izkaznici. ZEB: pod mejo razreda A, brez fosilnih goriv, izoliran ovoj.`;
       izpisHtml = `${tabela}
         <h4>Najprej učinkovita raba energije, nato obnovljivi viri</h4>
         <ul class="sms-ug">${ug.map((x) => `<li>${x}</li>`).join('')}</ul>
-        <p class="note">Naložba po privzetih ali vaših cenah; spodbuda po pozivu 2026 / po predlogu NPS 2050 (pri postopni prenovi z dodatkom za korak po izkazu o prenovi). Energija na leto: ogrevanje in elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` po odbitku vrednosti elektrike iz elektrarne (${OBI[ob]})` : ''}. Stroški v ${Y} letih: naložbe po odbitku spodbude po pozivu 2026 in energija, brez diskontiranja. Po korakih – najprej URE: ovoj takoj, okna in prezračevanje po 2 letih, toplotna črpalka po 3, elektrarna po 4 letih; najprej OVE: toplotna črpalka takoj, elektrarna po 1 letu, okna in prezračevanje po 3, ovoj po 5 letih. Primarna energija v kWh/(m²·a) in razred sta poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko po mejah za enostanovanjske hiše, ne razred na energetski izkaznici; ZEB: pod mejo razreda A, brez fosilnih goriv, izoliran ovoj.</p>`;
+        <p class="note">${opomba}</p>`;
       o.innerHTML = `<p class="sms-meta">${izpisVhod}</p>${izpisHtml}`;
+      zadnji = { V, N0, Y, ug, tabela, opomba, ob, ime: (x: (typeof V)[number]) => x.skupina === 'delna' ? seznam(x.ukrepi) : SKUP[x.skupina] };
+    }
+    let zadnji: any = null;
+
+    // dokument A4: prva stran ključne informacije in grafika, druga stran tabela vseh različic
+    const BARVA: Record<string, string> = { A: '#0B7A45', B: '#62B044', C: '#D9C92B', D: '#F0AE2E', E: '#EC842B', F: '#DE5A2B', G: '#C4302C' };
+    const TEMNA = new Set(['C', 'D']);
+    const znak = (k: string, vel = 22) => `<span class="rz" style="background:${BARVA[k]};color:${TEMNA.has(k) ? '#1B2622' : '#fff'};width:${vel}px;height:${vel}px;font-size:${Math.round(vel * 0.6)}px">${k}</span>`;
+    function dokument(): string {
+      const { V, N0, Y, ug, tabela, opomba, ime } = zadnji;
+      const rz = (pe: number) => razredPE(pe, MEJE);
+      const pot = V.find((x: any) => x.skupina === 'ure') ?? V.find((x: any) => x.skupina === 'naenkrat');
+      const P = pot.N, r0 = rz(N0.zacetek.pe_m2), r1 = rz(P.konec.pe_m2);
+      const koraki = P.dogodki.filter((d: any) => !d.zamenjava).map((d: any) => `<li><b>${d.leto === 0 ? 'takoj' : `po ${d.leto} ${d.leto === 1 ? 'letu' : 'letih'}`}</b>${d.ime}<small>${eur(d.strosek)}, spodbuda ${eur(d.spodbuda)}</small></li>`).join('');
+      // stolpci: brez prenove, tri najcenejše delne, vse naenkrat, najprej URE, najprej OVE
+      const delne = V.filter((x: any) => x.skupina === 'delna').sort((a: any, b: any) => a.N.skupaj.poziv - b.N.skupaj.poziv).slice(0, 3);
+      const izb = [...delne, ...V.filter((x: any) => x.skupina !== 'delna')];
+      const vrst = [{ ime: 'Brez prenove', s: N0.brez.at(-1), r: r0, b: '#9AA5A0' },
+        ...izb.map((x: any) => ({ ime: x.skupina === 'delna' ? `Delna: ${ime(x)}` : ime(x), s: x.N.skupaj.poziv, r: rz(x.N.konec.pe_m2), zeb: x.N.konec.zeb,
+          b: { delna: '#A9CDB6', naenkrat: '#2F8B67', ure: '#0B5A3A', ove: '#C98A1B' }[x.skupina as string] }))];
+      const W = 680, L = 250, R = 110, H = 26, max = Math.max(...vrst.map((x) => x.s)) * 1.02;
+      const sx = (s: number) => (s / max) * (W - L - R);
+      const graf = `<svg viewBox="0 0 ${W} ${vrst.length * H + 8}" class="graf">${vrst.map((x, i) => `
+        <text x="${L - 8}" y="${i * H + 17}" text-anchor="end">${x.ime.length > 42 ? x.ime.slice(0, 41) + '…' : x.ime}</text>
+        <rect x="${L}" y="${i * H + 4}" width="${sx(x.s)}" height="${H - 9}" rx="3" fill="${x.b}"/>
+        <text x="${L + sx(x.s) + 6}" y="${i * H + 17}" font-weight="700">${eur(x.s)}</text>
+        <rect x="${W - 30}" y="${i * H + 4}" width="18" height="18" rx="3" fill="${BARVA[x.r]}"/><text x="${W - 21}" y="${i * H + 17}" text-anchor="middle" font-weight="800" fill="${TEMNA.has(x.r) ? '#1B2622' : '#fff'}" font-size="11">${x.r}</text>
+        ${(x as any).zeb ? `<text x="${W - 36}" y="${i * H + 17}" text-anchor="end" font-size="10" fill="#0B7A45" font-weight="700">ZEB</text>` : ''}`).join('')}
+        <line x1="${L + sx(N0.brez.at(-1))}" x2="${L + sx(N0.brez.at(-1))}" y1="0" y2="${vrst.length * H + 4}" stroke="#555" stroke-dasharray="3 3"/></svg>`;
+      const kpi = (n: string, v1: string, v2 = '') => `<div class="kpi"><span>${n}</span><b>${v1}</b>${v2 ? `<small>${v2}</small>` : ''}</div>`;
+      const datum = new Date().toLocaleDateString('sl-SI');
+      return `<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>Izpis prenove – Se mi splača?</title><style>
+        @page { size: A4; margin: 13mm 14mm; }
+        * { box-sizing: border-box; } body { font: 12px/1.45 system-ui, 'Segoe UI', sans-serif; color: #1B2622; margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        .glava { background: #0B5A3A; color: #fff; border-radius: 10px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: end; }
+        .glava h1 { margin: 0; font-size: 22px; } .glava p { margin: 2px 0 0; opacity: .85; font-size: 11px; }
+        .hisa { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; margin: 12px 0; padding: 10px 14px; border: 1px solid #D5DDD8; border-radius: 10px; }
+        .hisa small, .kpi small, .pot small { color: #5B6660; }
+        .rz { display: inline-grid; place-items: center; border-radius: 5px; font-weight: 800; vertical-align: middle; }
+        .pot { border: 2px solid #2F8B67; border-radius: 10px; padding: 10px 14px; }
+        .pot h2 { margin: 0 0 6px; font-size: 15px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .pot ol { list-style: none; padding: 0; margin: 6px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 6px; }
+        .pot li { background: #EEF5F0; border-radius: 8px; padding: 6px 8px; } .pot li b { display: block; color: #0B5A3A; font-size: 11px; } .pot li small { display: block; }
+        .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0; }
+        .kpi { border: 1px solid #D5DDD8; border-radius: 10px; padding: 8px 10px; } .kpi span { display: block; font-size: 10.5px; color: #5B6660; } .kpi b { display: block; font-size: 17px; margin: 2px 0; }
+        h3 { font-size: 14px; margin: 14px 0 4px; } .graf { width: 100%; font-size: 11px; fill: #1B2622; }
+        .zakaj { background: #FBF3E4; border-left: 4px solid #C98A1B; border-radius: 8px; padding: 8px 12px; margin-top: 10px; } .zakaj h3 { margin: 0 0 4px; } .zakaj ul { margin: 0; padding-left: 16px; } .zakaj li { margin: 3px 0; }
+        .stran2 { break-before: page; } table { border-collapse: collapse; width: 100%; font-size: 10.5px; } th, td { border-bottom: 1px solid #D5DDD8; padding: 3px 5px; text-align: left; vertical-align: top; }
+        .num { text-align: right; } tr.grp th { background: #EEF5F0; } tr.naj td { background: #F4F9F5; } small { color: #5B6660; } .visually-hidden { display: none; } .sms-tw { overflow: visible; }
+        .note { color: #5B6660; font-size: 10px; } .noga { margin-top: 10px; font-size: 10px; color: #5B6660; border-top: 1px solid #D5DDD8; padding-top: 6px; }
+        @media screen { body { max-width: 210mm; margin: 12px auto; padding: 0 12px; } .stran2 { margin-top: 28px; border-top: 2px dashed #D5DDD8; padding-top: 16px; } }
+      </style></head><body>
+        <div class="glava"><div><h1>Izpis prenove</h1><p>Se mi splača? · Strokovne podlage za Nacionalni načrt prenove stavb 2050</p></div><p>${datum}</p></div>
+        <div class="hisa"><div><b>Vaša hiša</b><br>${izpisVhod}</div><div style="text-align:center">${znak(r0, 44)}<br><small>danes, ocena ${nf(Math.round(N0.zacetek.pe_m2))} kWh/(m²·a)</small></div></div>
+        <div class="pot"><h2>Vaš načrt: ${ime(pot).toLowerCase().replace('po korakih: ', 'po korakih – ')} ${znak(r0)} → ${znak(r1)}${P.konec.zeb ? ' <span style="color:#0B7A45">brezemisijska hiša (ZEB)</span>' : ''}</h2>
+          <ol>${koraki}</ol></div>
+        <div class="kpis">
+          ${kpi('Naložba', eur(P.nalozbe), `spodbuda ${eur(P.spodbuda.poziv)} (po predlogu NPS ${eur(P.spodbuda.nps)})`)}
+          ${kpi('Energija na leto', `${eur(N0.energija_zacetek)} → ${eur(P.energija_konec)}`, 'ogrevanje in elektrika')}
+          ${kpi(`Stroški v ${Y} letih`, eur(P.skupaj.poziv), `brez prenove ${eur(N0.brez.at(-1))}`)}
+          ${kpi('Razred (ocena)', `${r0} → ${r1}`, `${nf(Math.round(N0.zacetek.pe_m2))} → ${nf(Math.round(P.konec.pe_m2))} kWh/(m²·a)`)}
+        </div>
+        <h3>Stroški v ${Y} letih po različicah in razred po prenovi</h3>
+        ${graf}
+        <p class="note">Naložbe po odbitku spodbude po pozivu 2026, energija in zamenjave, zmanjšano za preostalo vrednost ukrepov; črtkana črta: hiša brez prenove.</p>
+        <div class="zakaj"><h3>Najprej učinkovita raba energije, nato obnovljivi viri</h3><ul>${ug.map((x: string) => `<li>${x}</li>`).join('')}</ul></div>
+        <div class="stran2"><h3>Vse različice</h3>${tabela}<p class="note">${opomba}</p></div>
+        <p class="noga">Ocena za orientacijo, ne nadomešča energetskega pregleda ali svetovanja ENSVET. Spodbude po predlogu NPS 2050 še niso sprejete. Strokovne podlage NPS 2050, IJS CEU. ${location.href.split('#')[0]}</p>
+      </body></html>`;
     }
     $('sms-itisk').addEventListener('click', () => {
+      if (!zadnji) return;
       const w = window.open('', '_blank');
       if (!w) return;
-      w.document.write(`<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>Izpis prenove – Se mi splača?</title><style>
-        body{font:13px/1.45 system-ui,sans-serif;color:#1B2622;margin:24px;} h1{font-size:20px;margin:0 0 4px} h4{font-size:15px;margin:18px 0 6px}
-        table{border-collapse:collapse;width:100%;font-size:12px} th,td{border-bottom:1px solid #ccc;padding:4px 6px;text-align:left;vertical-align:top} .num{text-align:right}
-        tr.grp th{background:#eef3ef;font-weight:700} tr.naj td{background:#f4f9f5} small{color:#555} .note{color:#555;font-size:11px} .visually-hidden{display:none}</style></head><body>
-        <h1>Izpis prenove – Se mi splača?</h1><p>${izpisVhod}</p>${izpisHtml}
-        <p class="note">Ocena za orientacijo, ne nadomešča energetskega pregleda. Strokovne podlage NPS 2050, IJS CEU, ${new Date().toLocaleDateString('sl-SI')}. ${location.href.split('#')[0]}</p></body></html>`);
-      w.document.close(); w.focus(); w.print();
+      w.document.open(); w.document.write(dokument()); w.document.close();
+      w.focus(); setTimeout(() => w.print(), 300);
     });
 
     // prenova po korakih
@@ -454,7 +522,7 @@ import { loadData, type StavbniFond } from '../lib/data';
           ${isti ? '' : `<text x="${W - R}" y="${y(A.serija[sp].at(-1)!) + (A.serija[sp].at(-1)! > N.serija[sp].at(-1)! ? -6 : 16)}" text-anchor="end" fill="#8F5A08" font-weight="700">vse naenkrat ${kum(A.serija[sp])}</text>`}
           <text x="${W - R}" y="${y(N.serija[sp].at(-1)!) + (A.serija[sp].at(-1)! > N.serija[sp].at(-1)! || isti ? 16 : -6)}" text-anchor="end" fill="var(--green)" font-weight="700">${isti ? 'vse naenkrat' : 'po korakih'} ${kum(N.serija[sp])}</text>
         </svg>
-        <p>V ${Y} letih ${isti ? 'stane prenova naenkrat' : 'stane prenova po korakih'} okoli <b>${kum(N.serija[sp])}</b> (naložbe po odbitku spodbude ${sp === 'nps' ? 'po predlogu NPS' : 'po pozivu 2026'} in energija za ogrevanje in elektriko)${isti ? '' : `, vse naenkrat ${kum(A.serija[sp])}`}, hiša brez prenove ${kum(N.brez)}. Spodbuda po pozivu 2026 skupaj ${eur(N.spodbuda.poziv)}, po predlogu NPS ${eur(N.spodbuda.nps)}${N.bonus_korak ? ` (vključno z dodatkom +${nf(N.bonus_korak * 100)} odstotnih točk ${N.celovita ? 'za celovito prenovo po izkazu o prenovi' : 'za korak po izkazu o prenovi'})` : ''}.</p>
+        <p>V ${Y} letih ${isti ? 'stane prenova naenkrat' : 'stane prenova po korakih'} okoli <b>${kum(N.serija[sp])}</b> (naložbe po odbitku spodbude ${sp === 'nps' ? 'po predlogu NPS' : 'po pozivu 2026'}, energija za ogrevanje in elektriko ter zamenjave, zmanjšano za preostalo vrednost ukrepov)${isti ? '' : `, vse naenkrat ${kum(A.serija[sp])}`}, hiša brez prenove ${kum(N.brez)}. Spodbuda po pozivu 2026 skupaj ${eur(N.spodbuda.poziv)}, po predlogu NPS ${eur(N.spodbuda.nps)}${N.bonus_korak ? ` (vključno z dodatkom +${nf(N.bonus_korak * 100)} odstotnih točk ${N.celovita ? 'za celovito prenovo po izkazu o prenovi' : 'za korak po izkazu o prenovi'})` : ''}.</p>
         ${N.prevelika ? `<p class="sms-warn">Toplotna črpalka je vgrajena pred izolacijo ovoja: izbrana je za ${N.prevelika.moc} kW, po koncu prenove bi zadostovala za ${N.prevelika.moc_konec} kW. Premaknite jo za ukrepe na ovoju.</p>` : ''}
         <p class="sms-zeb ${N.konec.zeb ? 'da' : 'ne'}">${N.konec.zeb
           ? `<b>Na koncu načrta je hiša brezemisijska (ZEB):</b> ocena primarne energije okoli ${nf(Math.round(N.konec.pe_m2))} kWh/(m²·a) (danes ${nf(Math.round(N.zacetek.pe_m2))}), pod mejo ${nf(N.konec.meja)}, brez fosilnih goriv, z izoliranim ovojem.`
@@ -462,7 +530,7 @@ import { loadData, type StavbniFond } from '../lib/data';
         <div class="sms-tw"><table><caption class="visually-hidden">Koraki prenove</caption><thead><tr><th scope="col">Leto</th><th scope="col">Ukrep</th><th scope="col" class="num">Strošek</th><th scope="col" class="num">Spodbuda (poziv / NPS)</th><th scope="col" class="num">Toplota po koraku</th><th scope="col" class="num">Razred primarne energije</th><th scope="col" class="num">Energija na leto</th></tr></thead>
         <tbody><tr><td>danes</td><td>brez prenove</td><td></td><td></td><td class="num">${nf(Math.round(potrebnaToplota(D, v) / v.povrsina))} kWh/m²</td><td class="num">${razredPE(N.zacetek.pe_m2, MEJE)}</td><td class="num">${eur(N.energija_zacetek)}</td></tr>
         ${N.dogodki.map((d: any) => `<tr><td>${d.leto === 0 ? 'takoj' : d.leto}</td><td>${d.ime}</td><td class="num">${eur(d.strosek)}</td><td class="num">${d.ukrep === 'pv' ? '–' : `${eur(d.spodbuda)} / ${eur(d.spodbuda_nps)}`}</td><td class="num">${nf(Math.round(d.toplota_m2))} kWh/m²</td><td class="num">${razredPE(d.pe_m2, MEJE)}</td><td class="num">${eur(d.energija)}</td></tr>`).join('')}</tbody></table></div>
-        <p class="note">Energija na leto: ogrevanje, elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` in vrednost elektrike iz elektrarne (${OBI[ob]})` : ''} po stanju po koraku. Razred primarne energije: poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko z izgubami razvoda in oddaje toplote po mejah za enostanovanjske hiše, ne razred na energetski izkaznici. Ker se šteje tudi toplota okolice, toplotna črpalka v slabo izolirani hiši oceno lahko celo zviša; odpravi pa fosilna goriva, z elektrarno pa se ocena zniža. Cene so stalne, brez diskontiranja.</p>`;
+        <p class="note">Toplotna črpalka, ki se izteče pred koncem obdobja (18 let), se zamenja; v zadnjem letu se odšteje preostala vrednost ukrepov (zato graf ob koncu pade). Energija na leto: ogrevanje, elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` in vrednost elektrike iz elektrarne (${OBI[ob]})` : ''} po stanju po koraku. Razred primarne energije: poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko z izgubami razvoda in oddaje toplote po mejah za enostanovanjske hiše, ne razred na energetski izkaznici. Ker se šteje tudi toplota okolice, toplotna črpalka v slabo izolirani hiši oceno lahko celo zviša; odpravi pa fosilna goriva, z elektrarno pa se ocena zniža. Cene so stalne, brez diskontiranja.</p>`;
     }
     $('sms-nacrt').addEventListener('toggle', () => run());
 

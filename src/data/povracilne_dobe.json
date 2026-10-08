@@ -82,8 +82,19 @@
    0.182
   ],
   "vir_hdd": "Eurostat nrg_chddr2_m, Slovenija, stopinjski dnevi ogrevanja 2015–2024, delež po mesecih",
-  "izkoristek_razvoda_oddaje": 0.8,
-  "opomba_razvod": "izgube razvoda, oddaje in regulacije pri oceni primarne energije in razreda (kot računska metoda energetske izkaznice); stroški energije temeljijo na tabeli Qh,nd brez teh izgub (umerjeno na dejansko rabo)"
+  "pe_izkaznice_neprenovljene": {
+   "pred_1980": {
+    "olje": 343,
+    "plin": 252,
+    "les": 463
+   },
+   "1981_2002": {
+    "olje": 246,
+    "plin": 168,
+    "les": 311
+   }
+  },
+  "opomba_pe_izkaznice": "mediana primarne energije neprenovljenih hiš z računsko izkaznico po obdobju in glavnem ogrevanju (iz public/data/paketi_prenove.json, cevovod paketov prenove); kalkulator nanjo umeri oceno razreda pred prenovo, umeritev se s stanjem ovoja zmanjšuje (neizoliran in delno 100 %, izoliran 50 %, celovita prenova 0 %), ker so računske potrebe slabo izoliranih stavb višje od dejanskih"
  },
  "ukrepi": {
   "fasada": {
