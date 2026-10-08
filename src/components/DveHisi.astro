@@ -2,7 +2,7 @@
 /**
  * Zgodba »Dve hiši, ista ulica« (Za lastnike): enaka hiša iz leta 1975, različen vrstni red prenove (najprej toplotna črpalka
  * ali najprej fasada), kumulativni stroški 20 let. Izračun ob gradnji: dveHisi() v src/scripts/povracilo.ts, podatki
- * src/data/dve_hisi.json in povracilne_dobe.json (tržne cene, spodbude po pozivu 126SUB-OB26).
+ * src/data/dve_hisi.json in povracilne_dobe.json (stroški in spodbude kot v kalkulatorju, poziv 126SUB-OB26).
  */
 import D from '../data/povracilne_dobe.json';
 import S from '../data/dve_hisi.json';
@@ -57,7 +57,7 @@ const razlika = A.skupaj - B.skupaj;
   <p class="dh-msg">Na koncu sta hiši enaki – izolirana fasada in toplotna črpalka. Hiša B, ki je začela s fasado, je v {S.let} letih porabila okoli <b>{eur(razlika)} manj</b>, ima <b>črpalko za {B.moc} kW namesto {A.moc} kW</b> in porabi okoli {nf(Math.round((A.elektrika_kwh - B.elektrika_kwh) / 1000))} MWh manj elektrike, kar razbremeni tudi omrežje v najhladnejših dneh. Hiša A ostane s preveliko črpalko, ki jo je izbrala za neizolirano hišo.</p>
   <details class="metoda">
     <summary>Kako je izračunano</summary>
-    <p>Tržne cene: toplotna črpalka zrak-voda okoli {nf(S.tc_trzni_eur_kw)} € na kW z vgradnjo (moč = potrebna toplota ÷ {nf(D.model.ure_h_polna_obremenitev)} ur, zaokroženo na 2 kW), fasada okoli {nf(D.ukrepi.fasada.strosek_trzni_eur_m2)} €/m² ({nf(Math.round(S.hisa.povrsina * D.ukrepi.fasada.povrsina_na_m2_tlorisa))} m² fasade). Spodbude po pozivu 126SUB-OB26 (fasada 40 %, največ 35 €/m²; črpalka 50 %, največ 4.500 €). Potrebna toplota za ogrevanje {nf(D.model.qhnd_kwh_m2.pred_1980.neizoliran)} kWh/m² pred prenovo in {nf(D.model.qhnd_kwh_m2.pred_1980.delno)} kWh/m² po izolaciji fasade, SCOP črpalke {nf(D.model.scop.neizoliran, 1)} v neizolirani in {nf(D.model.scop.delno, 1)} v delno izolirani hiši, kurilno olje {nf(D.cene_energentov_eur_kwh.kurilno_olje, 2)} €/kWh pri izkoristku {nf(D.model.izkoristek_kotla.kurilno_olje, 2)}, elektrika {nf(D.cene_energentov_eur_kwh.elektrika, 3)} €/kWh. Cene so stalne, brez diskontiranja; zamenjava črpalke po izteku življenjske dobe ni upoštevana.</p>
+    <p>Stroški kot v kalkulatorju zgoraj (mediane priznanih stroškov Eko sklada): toplotna črpalka zrak-voda okoli {nf(D.ukrepi.tc_zrak_voda.strosek_eur_kw)} € na kW z vgradnjo (moč = potrebna toplota ÷ {nf(D.model.ure_h_polna_obremenitev)} ur, zaokroženo na 2 kW), fasada okoli {nf(D.ukrepi.fasada.strosek_eur_m2)} €/m² ({nf(Math.round(S.hisa.povrsina * D.ukrepi.fasada.povrsina_na_m2_tlorisa))} m² fasade). Spodbude po pozivu 126SUB-OB26 (fasada 40 %, največ 35 €/m²; črpalka 50 %, največ 4.500 €). Potrebna toplota za ogrevanje {nf(D.model.qhnd_kwh_m2.pred_1980.neizoliran)} kWh/m² pred prenovo in {nf(D.model.qhnd_kwh_m2.pred_1980.delno)} kWh/m² po izolaciji fasade, SCOP črpalke {nf(D.model.scop.neizoliran, 1)} v neizolirani in {nf(D.model.scop.delno, 1)} v delno izolirani hiši, kurilno olje {nf(D.cene_energentov_eur_kwh.kurilno_olje, 2)} €/kWh pri izkoristku {nf(D.model.izkoristek_kotla.kurilno_olje, 2)}, elektrika {nf(D.cene_energentov_eur_kwh.elektrika, 3)} €/kWh. Cene so stalne, brez diskontiranja; zamenjava črpalke po izteku življenjske dobe ni upoštevana.</p>
     <table>
       <caption class="visually-hidden">Kumulativni stroški po letih</caption>
       <thead><tr><th scope="col">Leto</th><th scope="col" class="num">Hiša A</th><th scope="col" class="num">Hiša B</th><th scope="col" class="num">Brez prenove</th></tr></thead>

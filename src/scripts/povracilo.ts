@@ -222,7 +222,7 @@ export function izracun(D: any, v: Vhod, n: Nastavitve = PRIVZETO): any {
 export const zaokrozi = (x: number) => Math.round(x * 10) / 10;
 
 /** Zgodba »Dve hiši, ista ulica«: kumulativni stroški (naložbe po odbitku spodbude po pozivu 2026 + energija) po letih za vsak
- *  vrstni red ukrepov in za hišo brez prenove. Tržne cene: fasada strosek_trzni_eur_m2, črpalka tc_trzni_eur_kw × moč ob vgradnji. */
+ *  vrstni red ukrepov in za hišo brez prenove. Stroški kot v kalkulatorju (strosekUkrepa: priznani stroški Eko sklada), črpalka po moči ob vgradnji. */
 export function dveHisi(D: any, S: any) {
   const v0: Vhod = { ...S.hisa, ukrepi: [] };
   const pEn = D.cene_energentov_eur_kwh[v0.energent], pEl = D.cene_energentov_eur_kwh.elektrika, eta = D.model.izkoristek_kotla[v0.energent];
@@ -235,9 +235,9 @@ export function dveHisi(D: any, S: any) {
         let c: number, sp: number;
         if (k.ukrep === 'tc') {
           moc = mocTC(D, potrebnaToplota(D, v0, stanje));
-          c = moc * S.tc_trzni_eur_kw; sp = spodbuda(D, 'tc', c, v0);
+          c = strosekUkrepa(D, 'tc', v0, { strosek: 1 } as Nastavitve, moc); sp = spodbuda(D, 'tc', c, v0);
         } else {
-          c = v0.povrsina * D.ukrepi[k.ukrep].povrsina_na_m2_tlorisa * D.ukrepi[k.ukrep].strosek_trzni_eur_m2; sp = spodbuda(D, k.ukrep, c, v0);
+          c = strosekUkrepa(D, k.ukrep, v0, { strosek: 1 } as Nastavitve); sp = spodbuda(D, k.ukrep, c, v0);
           stanje = stanjePo(stanje, [k.ukrep]);
         }
         nalozbe += c; spodbude += sp; kum += c - sp;
