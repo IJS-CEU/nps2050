@@ -85,7 +85,8 @@ import { loadData, type StavbniFond } from '../lib/data';
       <div id="sms-out" aria-live="polite"></div>
       <div id="sms-pvres" class="sms-pvres" hidden></div>
       <div id="sms-pkt" class="sms-pkt"></div>
-      <div class="sms-btns"><button type="button" class="btn" id="sms-copy">Kopiraj povzetek</button><span id="sms-copied" class="sms-hint" aria-live="polite"></span></div>
+      <div class="sms-btns"><button type="button" class="btn primary" id="sms-itisk">Okvirni načrt prenove (A4, PDF)</button><button type="button" class="btn" id="sms-copy">Kopiraj povzetek</button><span id="sms-copied" class="sms-hint" aria-live="polite"></span></div>
+      <p class="sms-hint sms-ihint">Okvirni načrt primerja različice iz izbranih ukrepov in se odpre v novem zavihku, kjer ga natisnete ali shranite kot PDF.</p>
     </fieldset>
 
     <details class="sms-step sms-nacrt" id="sms-nacrt" data-hisa>
@@ -102,7 +103,6 @@ import { loadData, type StavbniFond } from '../lib/data';
     <details class="sms-step sms-izpis" id="sms-izpis">
       <summary><span class="sms-n">5</span> Okvirni načrt prenove: primerjava različic in izpis</summary>
       <p class="sms-help">Iz izbranih ukrepov kalkulator sestavi delne prenove (vsak ukrep posebej, vse ukrepe na ovoju skupaj in vse obnovljive vire skupaj), izvedbo vseh ukrepov naenkrat in postopno prenovo – najprej ukrepi za učinkovito rabo energije (URE) ali najprej obnovljivi viri (OVE) – in jih primerja v {SEZ} letih.</p>
-      <div class="sms-btns"><button type="button" class="btn primary" id="sms-itisk">Odpri okvirni načrt prenove (A4)</button><span class="sms-hint">dokument se odpre v novem zavihku, kjer ga lahko natisnete ali shranite kot PDF</span></div>
       <div id="sms-iout" aria-live="polite"></div>
     </details>
 
@@ -230,7 +230,8 @@ import { loadData, type StavbniFond } from '../lib/data';
   :global(.sms-pkt h4) { grid-column: 1 / -1; margin: 0; font-size: 1rem; }
   :global(.sms-pkt .k b) { display: block; font-size: 1.35rem; color: var(--green); font-variant-numeric: tabular-nums; }
   :global(.sms-pkt .k span) { font-size: .82rem; color: var(--ink2); }
-  .sms-btns { margin-top: .8rem; display: flex; gap: .8rem; align-items: center; }
+  .sms-btns { margin-top: .8rem; display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; }
+  .sms-ihint { margin: .4rem 0 0; }
   .sms-rw { flex: 1; display: grid; }
   .sms-rw input { width: 100%; accent-color: var(--green); }
   .sms-ticks { position: relative; height: 1rem; margin: 0 8px; font-size: .7rem; color: var(--ink2); font-weight: 400; }
@@ -495,7 +496,7 @@ import { loadData, type StavbniFond } from '../lib/data';
     }
     $('sms-itisk').addEventListener('click', () => {
       zahtevan = true; run(); zahtevan = false;
-      if (!zadnji) return;
+      if (!zadnji) { $('sms-copied').textContent = 'Za okvirni načrt izberite vsaj dva ukrepa.'; return; }
       const w = window.open('', '_blank');
       if (!w) return;
       w.document.open(); w.document.write(dokument()); w.document.close();
