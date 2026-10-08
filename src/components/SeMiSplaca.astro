@@ -252,7 +252,7 @@ import { loadData, type StavbniFond } from '../lib/data';
 
 <script>
   import D from '../data/povracilne_dobe.json';
-  import { izracun, strosekUkrepa, mocTC, potrebnaToplota, privzetaMocPV, opozorila, nacrt, variante, razred as razredPE, PRIPOROCEN, PRIVZETO, type Vhod, type Nastavitve, type Ukrep, type Rezultat, type Obracun } from '../scripts/povracilo';
+  import { izracun, strosekUkrepa, mocTC, potrebnaToplota, privzetaMocPV, opozorila, nacrt, variante, razred as razredPE, PRIPOROCEN, OVE_PRVO, PRIVZETO, type Vhod, type Nastavitve, type Ukrep, type Rezultat, type Obracun } from '../scripts/povracilo';
 
   const root = document.getElementById('se-mi-splaca-kalkulator') as HTMLElement;
   if (root) {
@@ -373,7 +373,9 @@ import { loadData, type StavbniFond } from '../lib/data';
 
     // izpis prenove: primerjava različic iz izbranih ukrepov
     const KRATKO: Record<string, string> = { fasada: 'fasada', streha: 'streha', plosca_podstrehe: 'strop proti podstrešju', okna: 'okna', prezracevanje: 'prezračevanje', tc: 'toplotna črpalka', pv: 'sončna elektrarna' };
-    const SKUP: Record<string, string> = { delna: 'Delne prenove', naenkrat: 'Vsi izbrani ukrepi naenkrat', ure: 'Po korakih: najprej URE', ove: 'Po korakih: najprej OVE' };
+    const SKUP: Record<string, string> = { delna: 'Delne prenove', naenkrat: 'Vsi izbrani ukrepi naenkrat', nacrt: 'Vaš načrt po korakih', ure: 'Po korakih: najprej URE', ove: 'Po korakih: najprej OVE' };
+    const BARVA_SK: Record<string, string> = { brez: '#7A8681', naenkrat: '#2F8B67', nacrt: '#2B6CB0', ure: '#0B5A3A', ove: '#C98A1B' };
+    const SEZ_LET = 20;
     const seznam = (uk: string[]) => uk.map((u) => KRATKO[u]).join(' + ');
     let izpisHtml = '', izpisVhod = '';
     function izrisiIzpis(v: Vhod, n: Nastavitve) {
@@ -384,7 +386,7 @@ import { loadData, type StavbniFond } from '../lib/data';
       if (v.ukrepi.length < 2) { o.innerHTML = '<p class="sms-help">Izberite vsaj dva ukrepa za primerjavo.</p>'; izpisHtml = ''; zadnji = null; return; }
       const ob = $<HTMLSelectElement>('sms-nob').value as Obracun;
       if (!$<HTMLDetailsElement>('sms-izpis').open && !zahtevan) { o.replaceChildren(); return; }
-      const V = variante(D, v, n, ob);
+      const V = variante(D, v, n, ob, SEZ_LET, b ? undefined : leta as any);
       const N0 = V[0].N, Y = N0.brez.length - 1;
       const prih = (x: typeof N0) => x.energija_zacetek - x.energija_konec;
       const doba = (x: typeof N0) => let_(prih(x) > 0 ? (x.nalozbe - x.spodbuda.poziv) / prih(x) : null);
@@ -394,14 +396,14 @@ import { loadData, type StavbniFond } from '../lib/data';
         const N = x.N, m = tcMoc(N);
         return `<tr${N.skupaj.poziv === naj ? ' class="naj"' : ''}><td>${x.skupina === 'delna' ? seznam(x.ukrepi) : SKUP[x.skupina]}${N.celovita && x.skupina !== 'delna' ? ' <small class="sms-hint">celovita prenova</small>' : ''}${m ? ` <small class="sms-hint">(črpalka ${m} kW${N.prevelika ? `, na koncu bi zadostovala ${N.prevelika.moc_konec} kW` : ''})</small>` : ''}</td>
           <td class="num">${eur(N.nalozbe)}</td><td class="num">${eur(N.spodbuda.poziv)} / ${eur(N.spodbuda.nps)}</td><td class="num">${eur(N.energija_konec)}</td>
-          <td class="num">${x.skupina === 'ure' || x.skupina === 'ove' ? '–' : doba(N)}</td><td class="num"><b>${eur(N.skupaj.poziv)}</b></td>
+          <td class="num">${x.skupina === 'delna' || x.skupina === 'naenkrat' ? doba(N) : '–'}</td><td class="num"><b>${eur(N.skupaj.poziv)}</b></td><td class="num">${eur(N.ostanek.poziv)}</td>
           <td class="num">${nf(Math.round(N.konec.pe_m2))}</td><td class="num"><b>${razredPE(N.konec.pe_m2, MEJE)}</b></td><td>${N.konec.zeb ? 'da' : 'ne'}</td></tr>`;
       };
-      const skupine = ['delna', 'naenkrat', 'ure', 'ove'].filter((g) => V.some((x) => x.skupina === g));
+      const skupine = ['delna', 'naenkrat', 'nacrt', 'ure', 'ove'].filter((g) => V.some((x) => x.skupina === g));
       const tabela = `<div class="sms-tw"><table class="sms-itab"><caption class="visually-hidden">Primerjava različic prenove</caption>
-        <thead><tr><th scope="col">Različica</th><th scope="col" class="num">Naložba</th><th scope="col" class="num">Spodbuda (poziv / NPS)</th><th scope="col" class="num">Stroški energije na leto</th><th scope="col" class="num">Povračilna doba</th><th scope="col" class="num">Skupaj v ${Y} letih: naložbe in energija</th><th scope="col" class="num">Primarna energija</th><th scope="col" class="num">Razred</th><th scope="col">ZEB</th></tr></thead>
-        <tbody><tr><td>Brez prenove</td><td class="num">–</td><td class="num">–</td><td class="num">${eur(N0.energija_zacetek)}</td><td class="num">–</td><td class="num"><b>${eur(N0.brez.at(-1)!)}</b></td><td class="num">${nf(Math.round(N0.zacetek.pe_m2))}</td><td class="num"><b>${razredPE(N0.zacetek.pe_m2, MEJE)}</b></td><td>ne</td></tr>
-        ${skupine.map((g) => `<tr class="grp"><th colspan="9" scope="rowgroup">${SKUP[g]}</th></tr>${V.filter((x) => x.skupina === g).map(vrsta).join('')}`).join('')}</tbody></table></div>`;
+        <thead><tr><th scope="col">Različica</th><th scope="col" class="num">Naložba</th><th scope="col" class="num">Spodbuda (poziv / NPS)</th><th scope="col" class="num">Stroški energije na leto</th><th scope="col" class="num">Povračilna doba</th><th scope="col" class="num">Izdatki v ${Y} letih: naložbe in energija</th><th scope="col" class="num">Preostala vrednost ukrepov</th><th scope="col" class="num">Primarna energija</th><th scope="col" class="num">Razred</th><th scope="col">ZEB</th></tr></thead>
+        <tbody><tr><td>Brez prenove</td><td class="num">–</td><td class="num">–</td><td class="num">${eur(N0.energija_zacetek)}</td><td class="num">–</td><td class="num"><b>${eur(N0.brez.at(-1)!)}</b></td><td class="num">–</td><td class="num">${nf(Math.round(N0.zacetek.pe_m2))}</td><td class="num"><b>${razredPE(N0.zacetek.pe_m2, MEJE)}</b></td><td>ne</td></tr>
+        ${skupine.map((g) => `<tr class="grp"><th colspan="10" scope="rowgroup">${SKUP[g]}</th></tr>${V.filter((x) => x.skupina === g).map(vrsta).join('')}`).join('')}</tbody></table></div>`;
 
       // ugotovitve iz rezultatov: zakaj najprej URE
       const ug: string[] = [];
@@ -418,12 +420,12 @@ import { loadData, type StavbniFond } from '../lib/data';
       const ure = V.find((x) => x.skupina === 'ure'), ove = V.find((x) => x.skupina === 'ove');
       if (ure && ove) ug.push(`Če najprej vgradite obnovljive vire in šele nato izolirate, stane prenova v ${Y} letih okoli ${eur(ove.N.skupaj.poziv - ure.N.skupaj.poziv)} ${ove.N.skupaj.poziv >= ure.N.skupaj.poziv ? 'več' : 'manj'} kot po vrstnem redu najprej URE${ove.N.prevelika ? `, toplotna črpalka pa ostane prevelika (${ove.N.prevelika.moc} kW namesto ${ove.N.prevelika.moc_konec} kW) in dela z nižjim izkoristkom` : ''}.`);
       const drazje = V.filter((x) => x.skupina === 'delna' && x.N.skupaj.poziv > N0.brez.at(-1)!);
-      if (drazje.length) ug.push(`${drazje.map((x) => seznam(x.ukrepi)).join('; ').replace(/^./, (c) => c.toUpperCase())}: v ${Y} letih skupaj z energijo ${drazje.length > 1 ? 'stanejo' : 'stane'} več kot ${st} brez prenove, ker se energetsko ne ${drazje.length > 1 ? 'povrnejo' : 'povrne'} (upoštevana je preostala vrednost ob koncu obdobja). Razlog zanje so udobje, zdravje in vrednost ${b ? 'stanovanja' : 'hiše'} – ali del celovite prenove, kjer jih spodbuda in skupni prihranek naredita smiselne.`);
+      if (drazje.length) ug.push(`${drazje.map((x) => seznam(x.ukrepi)).join('; ').replace(/^./, (c) => c.toUpperCase())}: izdatki za naložbo in energijo v ${Y} letih so večji kot pri ${b ? 'stanovanju' : 'hiši'} brez prenove, ker se ${drazje.length > 1 ? 'ti ukrepi' : 'ta ukrep'} energetsko ne ${drazje.length > 1 ? 'povrnejo' : 'povrne'} v ${Y} letih (po ${Y} letih ${drazje.length > 1 ? 'imajo' : 'ima'} še preostalo vrednost). Razlog zanje so udobje, zdravje in vrednost ${b ? 'stanovanja' : 'hiše'} – ali del celovite prenove, kjer jih spodbuda in skupni prihranek naredita smiselne.`);
       const nx = V.find((x) => x.N.skupaj.poziv === naj)!;
-      ug.push(`Najnižji skupni stroški naložb in energije v ${Y} letih: ${nx.skupina === 'delna' ? seznam(nx.ukrepi) : SKUP[nx.skupina].toLowerCase()} (${eur(naj)}, brez prenove ${eur(N0.brez.at(-1)!)} samo za energijo).${V.some((x) => x.N.konec.zeb) ? ` Brezemisijska raven (ZEB) je dosežena pri: ${V.filter((x) => x.N.konec.zeb).map((x) => x.skupina === 'delna' ? seznam(x.ukrepi) : SKUP[x.skupina].toLowerCase()).join('; ')}.` : (b ? ' Nobena različica ne doseže brezemisijske ravni (ZEB); v bloku so za to potrebni izolacija fasade in strehe, nova okna in ogrevanje brez fosilnih goriv.' : ' Nobena različica ne doseže brezemisijske ravni (ZEB); praviloma so potrebni izoliran ovoj, toplotna črpalka in sončna elektrarna.')}`);
+      ug.push(`Najnižji izdatki za naložbe in energijo v ${Y} letih: ${nx.skupina === 'delna' ? seznam(nx.ukrepi) : SKUP[nx.skupina].toLowerCase()} (${eur(naj)}, brez prenove ${eur(N0.brez.at(-1)!)} samo za energijo).${V.some((x) => x.N.konec.zeb) ? ` Brezemisijska raven (ZEB) je dosežena pri: ${V.filter((x) => x.N.konec.zeb).map((x) => x.skupina === 'delna' ? seznam(x.ukrepi) : SKUP[x.skupina].toLowerCase()).join('; ')}.` : (b ? ' Nobena različica ne doseže brezemisijske ravni (ZEB); v bloku so za to potrebni izolacija fasade in strehe, nova okna in ogrevanje brez fosilnih goriv.' : ' Nobena različica ne doseže brezemisijske ravni (ZEB); praviloma so potrebni izoliran ovoj, toplotna črpalka in sončna elektrarna.')}`);
 
       izpisVhod = `${b ? 'Stanovanje v bloku' : 'Hiša'} ${v.povrsina} m², ${$<HTMLSelectElement>('sms-ob').selectedOptions[0].text}, izolacija: ${$<HTMLSelectElement>('sms-st').selectedOptions[0].text}, ogrevanje: ${$<HTMLSelectElement>('sms-en').selectedOptions[0].text}; izbrani ukrepi: ${seznam(v.ukrepi)}${v.ukrepi.includes('pv') ? `; elektrarna: ${OBI[ob]}` : ''}.`;
-      const opomba = `Naložba po privzetih ali vaših cenah; spodbuda po pozivu 2026 / po predlogu NPS 2050 (pri postopni prenovi z dodatkom za korak po izkazu o prenovi). Stroški energije na leto: ogrevanje in elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` po odbitku vrednosti elektrike iz elektrarne (${OBI[ob]})` : ''}. Skupaj v ${Y} letih: naložbe po odbitku spodbude po pozivu 2026, stroški energije in zamenjava ukrepov, ki se iztečejo prej (${b ? 'prezračevanje po 18 letih' : 'toplotna črpalka po 18 letih'}), zmanjšano za preostalo vrednost ukrepov ob koncu obdobja (fasada 35 let, okna 30 let); pri različici brez prenove so to samo stroški energije; cene energije rastejo za ${nf((n.rast ?? D.model.rast_cen_energije) * 100, 1)} % na leto${(n.ets2 ?? D.model.ets2.cena_eur_t) ? `, od leta ${D.model.ets2.od_leta} je kurilno olje in plin dražji za ceno CO₂ v ETS2 (${nf(n.ets2 ?? D.model.ets2.cena_eur_t)} €/t z DDV)` : ''}; brez diskontiranja; stroški energije na leto in povračilna doba so po današnjih cenah. ${b ? 'Po korakih – najprej URE: fasada in streha takoj, okna in prezračevanje po 2 letih; ukrepe na skupnih delih (fasada, streha) sprejmejo etažni lastniki skupaj.' : 'Po korakih – najprej URE: ovoj takoj, okna in prezračevanje po 2 letih, toplotna črpalka po 3, elektrarna po 4 letih; najprej OVE: toplotna črpalka takoj, elektrarna po 1 letu, okna in prezračevanje po 3, ovoj po 5 letih.'} Primarna energija v kWh/(m²·a) in razred: poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko, umerjena na energetske izkaznice neprenovljenih ${b ? 'blokov, po mejah za večstanovanjske stavbe' : 'hiš, po mejah za enostanovanjske hiše'}; ni razred na energetski izkaznici. ZEB: pod mejo razreda A, brez fosilnih goriv, izoliran ovoj.`;
+      const opomba = `Naložba po privzetih ali vaših cenah; spodbuda po pozivu 2026 / po predlogu NPS 2050 (pri postopni prenovi z dodatkom za korak po izkazu o prenovi). Stroški energije na leto: ogrevanje in elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` po odbitku vrednosti elektrike iz elektrarne (${OBI[ob]})` : ''}. Izdatki v ${Y} letih: naložbe po odbitku spodbude po pozivu 2026, stroški energije in zamenjava ukrepov, ki se iztečejo prej (${b ? 'prezračevanje po 18 letih' : 'toplotna črpalka po 18 letih'}); pri različici brez prenove samo stroški energije. Preostala vrednost: del naložbe, ki ga ukrepi po ${Y} letih še niso porabili (fasada in streha trajata 35 let, okna 30), linearno; cene energije rastejo za ${nf((n.rast ?? D.model.rast_cen_energije) * 100, 1)} % na leto${(n.ets2 ?? D.model.ets2.cena_eur_t) ? `, od leta ${D.model.ets2.od_leta} je kurilno olje in plin dražji za ceno CO₂ v ETS2 (${nf(n.ets2 ?? D.model.ets2.cena_eur_t)} €/t z DDV)` : ''}; brez diskontiranja; stroški energije na leto in povračilna doba so po današnjih cenah. ${b ? 'Po korakih – najprej URE: fasada in streha takoj, okna in prezračevanje po 2 letih; ukrepe na skupnih delih (fasada, streha) sprejmejo etažni lastniki skupaj.' : 'Po korakih – najprej URE: ovoj takoj, okna in prezračevanje po 2 letih, toplotna črpalka po 3, elektrarna po 4 letih; najprej OVE: toplotna črpalka takoj, elektrarna po 1 letu, okna in prezračevanje po 3, ovoj po 5 letih.'} Primarna energija v kWh/(m²·a) in razred: poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko, umerjena na energetske izkaznice neprenovljenih ${b ? 'blokov, po mejah za večstanovanjske stavbe' : 'hiš, po mejah za enostanovanjske hiše'}; ni razred na energetski izkaznici. ZEB: pod mejo razreda A, brez fosilnih goriv, izoliran ovoj.`;
       izpisHtml = `${tabela}
         <h4>${b ? 'Ugotovitve' : 'Najprej učinkovita raba energije, nato obnovljivi viri'}</h4>
         <ul class="sms-ug">${ug.map((x) => `<li>${x}</li>`).join('')}</ul>
@@ -440,20 +442,19 @@ import { loadData, type StavbniFond } from '../lib/data';
     function dokument(): string {
       const { V, N0, Y, ug, tabela, opomba, ime, b } = zadnji;
       const rz = (pe: number) => razredPE(pe, MEJE);
-      const pot = V.find((x: any) => x.skupina === 'ure') ?? V.find((x: any) => x.skupina === 'naenkrat');
+      const pot = V.find((x: any) => x.skupina === 'nacrt') ?? V.find((x: any) => x.skupina === 'ure') ?? V.find((x: any) => x.skupina === 'naenkrat');
       const P = pot.N, r0 = rz(N0.zacetek.pe_m2), r1 = rz(P.konec.pe_m2);
       const koraki = P.dogodki.filter((d: any) => !d.zamenjava).map((d: any) => `<li><b>${d.leto === 0 ? 'takoj' : `po ${d.leto} ${d.leto === 1 ? 'letu' : 'letih'}`}</b>${d.ime}<small>${eur(d.strosek)}, spodbuda ${eur(d.spodbuda)}</small></li>`).join('');
-      // stolpci: brez prenove, tri najcenejše delne, vse naenkrat, najprej URE, najprej OVE
-      const delne = V.filter((x: any) => x.skupina === 'delna').sort((a: any, b: any) => a.N.skupaj.poziv - b.N.skupaj.poziv).slice(0, 3);
-      const izb = [...delne, ...V.filter((x: any) => x.skupina !== 'delna')];
-      const vrst = [{ ime: 'Brez prenove', s: N0.brez.at(-1), r: r0, b: '#9AA5A0' },
-        ...izb.map((x: any) => ({ ime: x.skupina === 'delna' ? `Delna: ${ime(x)}` : ime(x), s: x.N.skupaj.poziv, r: rz(x.N.konec.pe_m2), zeb: x.N.konec.zeb,
-          b: { delna: '#A9CDB6', naenkrat: '#2F8B67', ure: '#0B5A3A', ove: '#C98A1B' }[x.skupina as string] }))];
+      // stolpci: brez prenove, vse naenkrat, vaš načrt, najprej URE, najprej OVE (enako kot graf v koraku 4)
+      const izb = V.filter((x: any) => x.skupina !== 'delna');
+      const vrst = [{ ime: 'Brez prenove', s: N0.brez.at(-1), o: 0, r: r0, b: BARVA_SK.brez },
+        ...izb.map((x: any) => ({ ime: ime(x), s: x.N.skupaj.poziv, o: x.N.ostanek.poziv, r: rz(x.N.konec.pe_m2), zeb: x.N.konec.zeb, b: BARVA_SK[x.skupina] }))];
       const W = 680, L = 250, R = 110, H = 26, max = Math.max(...vrst.map((x) => x.s)) * 1.02;
       const sx = (s: number) => (s / max) * (W - L - R);
       const graf = `<svg viewBox="0 0 ${W} ${vrst.length * H + 8}" class="graf">${vrst.map((x, i) => `
         <text x="${L - 8}" y="${i * H + 17}" text-anchor="end">${x.ime.length > 42 ? x.ime.slice(0, 41) + '…' : x.ime}</text>
         <rect x="${L}" y="${i * H + 4}" width="${sx(x.s)}" height="${H - 9}" rx="3" fill="${x.b}"/>
+        ${x.o ? `<rect x="${L + sx(x.s - x.o)}" y="${i * H + 4}" width="${sx(x.o)}" height="${H - 9}" rx="3" fill="#fff" opacity=".45"/>` : ''}
         <text x="${L + sx(x.s) + 6}" y="${i * H + 17}" font-weight="700">${eur(x.s)}</text>
         <rect x="${W - 30}" y="${i * H + 4}" width="18" height="18" rx="3" fill="${BARVA[x.r]}"/><text x="${W - 21}" y="${i * H + 17}" text-anchor="middle" font-weight="800" fill="${TEMNA.has(x.r) ? '#1B2622' : '#fff'}" font-size="11">${x.r}</text>
         ${(x as any).zeb ? `<text x="${W - 36}" y="${i * H + 17}" text-anchor="end" font-size="10" fill="#0B7A45" font-weight="700">ZEB</text>` : ''}`).join('')}
@@ -487,17 +488,17 @@ import { loadData, type StavbniFond } from '../lib/data';
       </style></head><body>
         <div class="glava"><div><h1>Okvirni načrt energetske prenove</h1><p>Informativni izpis kalkulatorja »Se mi splača?« · ni izkaz o prenovi stavbe · Strokovne podlage za NPS 2050</p></div><p>${datum}</p></div>
         <div class="hisa"><div><b>${b ? 'Vaše stanovanje' : 'Vaša hiša'}</b><br>${izpisVhod}</div><div style="text-align:center">${znak(r0, 44)}<br><small>danes, ocena ${nf(Math.round(N0.zacetek.pe_m2))} kWh/(m²·a)</small></div></div>
-        <div class="pot"><h2>Vaš načrt: ${ime(pot).toLowerCase().replace('po korakih: ', 'po korakih – ')} ${znak(r0)} → ${znak(r1)}${P.konec.zeb ? ` <span style="color:#0B7A45">brezemisijska ${b ? 'stavba' : 'hiša'} (ZEB)</span>` : ''}</h2>
+        <div class="pot"><h2>${pot.skupina === 'nacrt' ? 'Vaš načrt po korakih' : `Vaš načrt: ${ime(pot).toLowerCase().replace('po korakih: ', 'po korakih – ')}`} ${znak(r0)} → ${znak(r1)}${P.konec.zeb ? ` <span style="color:#0B7A45">brezemisijska ${b ? 'stavba' : 'hiša'} (ZEB)</span>` : ''}</h2>
           <ol>${koraki}</ol></div>
         <div class="kpis">
           ${kpi('Naložba', eur(P.nalozbe), `spodbuda ${eur(P.spodbuda.poziv)} (po predlogu NPS ${eur(P.spodbuda.nps)})`)}
           ${kpi('Stroški energije na leto', `${eur(N0.energija_zacetek)} → ${eur(P.energija_konec)}`, 'ogrevanje in elektrika, danes → po prenovi')}
-          ${kpi(`Skupaj v ${Y} letih`, eur(P.skupaj.poziv), `naložbe in energija; brez prenove samo energija ${eur(N0.brez.at(-1))}`)}
+          ${kpi(`Izdatki v ${Y} letih`, eur(P.skupaj.poziv), `naložbe in energija; brez prenove samo energija ${eur(N0.brez.at(-1))}; ukrepom ostane še ${eur(P.ostanek.poziv)} vrednosti`)}
           ${kpi('Razred (ocena)', `${r0} → ${r1}`, `${nf(Math.round(N0.zacetek.pe_m2))} → ${nf(Math.round(P.konec.pe_m2))} kWh/(m²·a)`)}
         </div>
-        <h3>Skupni stroški naložb in energije v ${Y} letih po različicah ter razred po prenovi</h3>
+        <h3>Izdatki za naložbe in energijo v ${Y} letih ter razred po prenovi</h3>
         ${graf}
-        <p class="note">Naložbe po odbitku spodbude po pozivu 2026, stroški energije in zamenjave, zmanjšano za preostalo vrednost ukrepov; brez prenove: samo stroški energije (črtkana črta).</p>
+        <p class="note">Naložbe po odbitku spodbude po pozivu 2026, stroški energije in zamenjave; brez prenove samo stroški energije (črtkana črta). Svetlejši del stolpca: preostala vrednost ukrepov po ${Y} letih. Enake vrednosti kaže graf v koraku 4 kalkulatorja.</p>
         <div class="zakaj"><h3>${b ? 'Ugotovitve' : 'Najprej učinkovita raba energije, nato obnovljivi viri'}</h3><ul>${ug.map((x: string) => `<li>${x}</li>`).join('')}</ul></div>
         <div class="stran2"><h3>Vse različice</h3>${tabela}<p class="note">${opomba}</p></div>
         <p class="noga">Ocena za orientacijo, ne nadomešča energetskega pregleda, izkaza o prenovi stavbe ali svetovanja ENSVET. Spodbude po predlogu NPS 2050 še niso sprejete. Strokovne podlage NPS 2050, IJS CEU. ${location.href.split('#')[0]}</p>
@@ -528,26 +529,34 @@ import { loadData, type StavbniFond } from '../lib/data';
       if (!det.open) return;
       const ob = $<HTMLSelectElement>('sms-nob').value as Obracun, sp = $<HTMLSelectElement>('sms-nsp').value as 'poziv' | 'nps';
       const vh = { ...v, ukrepi: [] as Ukrep[] };
-      const N = nacrt(D, vh, n, v.ukrepi.map((u) => ({ ukrep: u, leto: leta[u] ?? 0 })), ob);
-      const A = nacrt(D, vh, n, v.ukrepi.map((u) => ({ ukrep: u, leto: 0 })), ob);
-      const W = 640, H = 260, L = 80, R = 12, T = 12, B = 30, Y = N.brez.length - 1;
-      const max = Math.ceil(Math.max(...N.brez, ...N.serija[sp], ...A.serija[sp]) / 10000) * 10000;
+      const po = (f: (u: Ukrep) => number) => nacrt(D, vh, n, v.ukrepi.map((u) => ({ ukrep: u, leto: f(u) })), ob);
+      const N = po((u) => leta[u] ?? 0);
+      // iste različice kot v okvirnem načrtu prenove: vse naenkrat, najprej URE, najprej OVE in vaš načrt, če se razlikuje
+      const ure = v.ukrepi.some((u) => !['tc', 'pv'].includes(u)), ove = v.ukrepi.some((u) => ['tc', 'pv'].includes(u));
+      const enako = (f: (u: Ukrep) => number) => v.ukrepi.every((u) => (leta[u] ?? 0) === f(u));
+      const crte: { ime: string; s: number[]; b: string; w: number; d?: string }[] = [{ ime: 'brez prenove', s: N.brez, b: BARVA_SK.brez, w: 2, d: '5 4' }];
+      if (v.ukrepi.length > 1) {
+        crte.push({ ime: 'vse naenkrat', s: po(() => 0).serija[sp], b: BARVA_SK.naenkrat, w: 2.5 });
+        if (new Set(v.ukrepi.map((u) => PRIPOROCEN[u])).size > 1) crte.push({ ime: 'po korakih: najprej URE', s: po((u) => PRIPOROCEN[u]).serija[sp], b: BARVA_SK.ure, w: 2.5 });
+        if (ure && ove) crte.push({ ime: 'po korakih: najprej OVE', s: po((u) => OVE_PRVO[u]).serija[sp], b: BARVA_SK.ove, w: 2.5 });
+      }
+      const lasten = !enako(() => 0) && !enako((u) => PRIPOROCEN[u]) && !enako((u) => OVE_PRVO[u]);
+      if (lasten || v.ukrepi.length === 1) crte.push({ ime: 'vaš načrt', s: N.serija[sp], b: BARVA_SK.nacrt, w: 3.5 });
+      const W = 640, H = 280, L = 80, R = 200, T = 12, B = 30, Y = N.brez.length - 1;
+      const max = Math.ceil(Math.max(...crte.flatMap((c) => c.s)) / 10000) * 10000;
       const x = (t: number) => L + (t / Y) * (W - L - R), y = (val: number) => T + (1 - val / max) * (H - T - B);
       const line = (a: number[]) => a.map((val, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(val).toFixed(1)}`).join(' ');
       const ticks = Array.from({ length: max / 10000 + 1 }, (_, i) => i * 10000).filter((_t, i, a) => a.length < 9 || i % 2 === 0);
-      const kum = (a: number[]) => eur(a.at(-1)!);
-      const isti = N.naenkrat;
-      o.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Izdatki za naložbe in energijo v ${Y} letih: po korakih ${kum(N.serija[sp])}, vse naenkrat ${kum(A.serija[sp])}, brez prenove ${kum(N.brez)}.">
+      // oznake na desni, razmaknjene najmanj 15 px
+      const oz = crte.map((c) => ({ c, yy: y(c.s.at(-1)!) + 4 })).sort((a, b) => a.yy - b.yy);
+      for (let i = 1; i < oz.length; i++) oz[i].yy = Math.max(oz[i].yy, oz[i - 1].yy + 15);
+      o.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Izdatki za naložbe in energijo v ${Y} letih: ${crte.map((c) => `${c.ime} ${eur(c.s.at(-1)!)}`).join(', ')}.">
           ${ticks.map((t) => `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${t ? `${nf(t / 1000)} tisoč €` : '0'}</text>`).join('')}
           ${[0, 5, 10, 15, 20].filter((t) => t <= Y).map((t) => `<text x="${x(t)}" y="${H - 10}" text-anchor="middle">${t === 0 ? 'leto 0' : t}</text>`).join('')}
-          <path d="${line(N.brez)}" fill="none" stroke="var(--ink2)" stroke-width="2" stroke-dasharray="5 4"/>
-          ${isti ? '' : `<path d="${line(A.serija[sp])}" fill="none" stroke="#B7791F" stroke-width="2.5"/>`}
-          <path d="${line(N.serija[sp])}" fill="none" stroke="var(--green2)" stroke-width="3"/>
-          <text x="${W - R}" y="${y(N.brez.at(-1)!) - 6}" text-anchor="end" font-weight="700">brez prenove ${kum(N.brez)}</text>
-          ${isti ? '' : `<text x="${W - R}" y="${y(A.serija[sp].at(-1)!) + (A.serija[sp].at(-1)! > N.serija[sp].at(-1)! ? -6 : 16)}" text-anchor="end" fill="#8F5A08" font-weight="700">vse naenkrat ${kum(A.serija[sp])}</text>`}
-          <text x="${W - R}" y="${y(N.serija[sp].at(-1)!) + (A.serija[sp].at(-1)! > N.serija[sp].at(-1)! || isti ? 16 : -6)}" text-anchor="end" fill="var(--green)" font-weight="700">${isti ? 'vse naenkrat' : 'po korakih'} ${kum(N.serija[sp])}</text>
+          ${crte.map((c) => `<path d="${line(c.s)}" fill="none" stroke="${c.b}" stroke-width="${c.w}"${c.d ? ` stroke-dasharray="${c.d}"` : ''}/>`).join('')}
+          ${oz.map(({ c, yy }) => `<text x="${W - R + 8}" y="${yy}" fill="${c.b}" font-weight="700">${c.ime} ${eur(c.s.at(-1)!)}</text>`).join('')}
         </svg>
-        <p>V ${Y} letih ${isti ? 'so pri prenovi naenkrat' : 'so pri prenovi po korakih'} izdatki za naložbe (po odbitku spodbude ${sp === 'nps' ? 'po predlogu NPS' : 'po pozivu 2026'}) in energijo okoli <b>${kum(N.serija[sp])}</b>${isti ? '' : `, pri prenovi naenkrat ${kum(A.serija[sp])}`}; hiša brez prenove porabi ${kum(N.brez)} samo za energijo. Po ${Y} letih imajo ukrepi še okoli ${eur(N.ostanek[sp])} preostale vrednosti (fasada in streha trajata 35 let, okna 30), zato so neto stroški okoli ${eur(N.skupaj[sp])}. Spodbuda po pozivu 2026 skupaj ${eur(N.spodbuda.poziv)}, po predlogu NPS ${eur(N.spodbuda.nps)}${N.bonus_korak ? ` (vključno z dodatkom +${nf(N.bonus_korak * 100)} odstotnih točk ${N.celovita ? 'za celovito prenovo po izkazu o prenovi' : 'za korak po izkazu o prenovi'})` : ''}.</p>
+        <p>Izdatki za naložbe (po odbitku spodbude ${sp === 'nps' ? 'po predlogu NPS' : 'po pozivu 2026'}) in energijo v ${Y} letih: ${crte.map((c) => `${c.ime} <b>${eur(c.s.at(-1)!)}</b>`).join(', ')}${crte[0].ime === 'brez prenove' ? ' (brez prenove samo energija)' : ''}. Po ${Y} letih imajo ukrepi vašega načrta še okoli ${eur(N.ostanek[sp])} preostale vrednosti (fasada in streha trajata 35 let, okna 30). Spodbuda za vaš načrt po pozivu 2026 skupaj ${eur(N.spodbuda.poziv)}, po predlogu NPS ${eur(N.spodbuda.nps)}${N.bonus_korak ? ` (vključno z dodatkom +${nf(N.bonus_korak * 100)} odstotnih točk ${N.celovita ? 'za celovito prenovo po izkazu o prenovi' : 'za korak po izkazu o prenovi'})` : ''}.</p>
         ${N.prevelika ? `<p class="sms-warn">Toplotna črpalka je vgrajena pred izolacijo ovoja: izbrana je za ${N.prevelika.moc} kW, po koncu prenove bi zadostovala za ${N.prevelika.moc_konec} kW. Premaknite jo za ukrepe na ovoju.</p>` : ''}
         <p class="sms-zeb ${N.konec.zeb ? 'da' : 'ne'}">${N.konec.zeb
           ? `<b>Na koncu načrta je hiša brezemisijska (ZEB):</b> ocena primarne energije okoli ${nf(Math.round(N.konec.pe_m2))} kWh/(m²·a) (danes ${nf(Math.round(N.zacetek.pe_m2))}), pod mejo ${nf(N.konec.meja)}, brez fosilnih goriv, z izoliranim ovojem.`
@@ -555,7 +564,7 @@ import { loadData, type StavbniFond } from '../lib/data';
         <div class="sms-tw"><table><caption class="visually-hidden">Koraki prenove</caption><thead><tr><th scope="col">Leto</th><th scope="col">Ukrep</th><th scope="col" class="num">Strošek</th><th scope="col" class="num">Spodbuda (poziv / NPS)</th><th scope="col" class="num">Toplota po koraku</th><th scope="col" class="num">Razred primarne energije</th><th scope="col" class="num">Stroški energije na leto</th></tr></thead>
         <tbody><tr><td>danes</td><td>brez prenove</td><td></td><td></td><td class="num">${nf(Math.round(potrebnaToplota(D, v) / v.povrsina))} kWh/m²</td><td class="num">${razredPE(N.zacetek.pe_m2, MEJE)}</td><td class="num">${eur(N.energija_zacetek)}</td></tr>
         ${N.dogodki.map((d: any) => `<tr><td>${d.leto === 0 ? 'takoj' : d.leto}</td><td>${d.ime}</td><td class="num">${eur(d.strosek)}</td><td class="num">${d.ukrep === 'pv' ? '–' : `${eur(d.spodbuda)} / ${eur(d.spodbuda_nps)}`}</td><td class="num">${nf(Math.round(d.toplota_m2))} kWh/m²</td><td class="num">${razredPE(d.pe_m2, MEJE)}</td><td class="num">${eur(d.energija)}</td></tr>`).join('')}</tbody></table></div>
-        <p class="note">Graf kaže izdatke: naložbe po odbitku spodbude in stroške energije; toplotna črpalka se po 18 letih zamenja (strmina v grafu). Stroški energije na leto: ogrevanje, elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` in vrednost elektrike iz elektrarne (${OBI[ob]})` : ''} po stanju po koraku. Razred primarne energije: poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko umerjena na energetske izkaznice neprenovljenih hiš, po mejah za enostanovanjske hiše, ne razred na energetski izkaznici. Ker se šteje tudi toplota okolice, toplotna črpalka v slabo izolirani hiši oceno lahko celo zviša; odpravi pa fosilna goriva, z elektrarno pa se ocena zniža. Stroški energije na leto so po današnjih cenah; v grafu cene rastejo za ${nf((n.rast ?? D.model.rast_cen_energije) * 100, 1)} % na leto${(n.ets2 ?? D.model.ets2.cena_eur_t) ? `, od leta ${D.model.ets2.od_leta} še ETS2 za kurilno olje in plin (${nf(n.ets2 ?? D.model.ets2.cena_eur_t)} €/t CO₂)` : ''}; brez diskontiranja.</p>`;
+        <p class="note">Graf kaže izdatke: naložbe po odbitku spodbude in stroške energije; toplotna črpalka se po 18 letih zamenja (strmina v grafu). Enake različice in vrednosti so v okvirnem načrtu prenove. Tabela kaže vaš načrt. Stroški energije na leto: ogrevanje, elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` in vrednost elektrike iz elektrarne (${OBI[ob]})` : ''} po stanju po koraku. Razred primarne energije: poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko umerjena na energetske izkaznice neprenovljenih hiš, po mejah za enostanovanjske hiše, ne razred na energetski izkaznici. Ker se šteje tudi toplota okolice, toplotna črpalka v slabo izolirani hiši oceno lahko celo zviša; odpravi pa fosilna goriva, z elektrarno pa se ocena zniža. Stroški energije na leto so po današnjih cenah; v grafu cene rastejo za ${nf((n.rast ?? D.model.rast_cen_energije) * 100, 1)} % na leto${(n.ets2 ?? D.model.ets2.cena_eur_t) ? `, od leta ${D.model.ets2.od_leta} še ETS2 za kurilno olje in plin (${nf(n.ets2 ?? D.model.ets2.cena_eur_t)} €/t CO₂)` : ''}; brez diskontiranja.</p>`;
     }
     $('sms-nacrt').addEventListener('toggle', () => run());
 

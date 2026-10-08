@@ -419,7 +419,7 @@ export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: 
     kp += e; kn += e;
     serija.poziv.push(Math.round(kp)); serija.nps.push(Math.round(kn));
   }
-  // preostala vrednost ukrepov ob koncu obdobja (linearno po življenjski dobi): serija so izdatki, skupaj = izdatki − preostala vrednost
+  // preostala vrednost ukrepov ob koncu obdobja (linearno po življenjski dobi), prikazana ločeno; serija in skupaj so izdatki
   const ost = (k: 'netP' | 'netN') => vsota(vgr.map((g) => g[k] * Math.max(0, g.zd - (let_ - g.leto)) / g.zd));
   const ostanek = { poziv: ost('netP'), nps: ost('netN') };
   const konec = primarna(D, { ...v, ukrepi: inst }, cur.r), zacetek = primarna(D, { ...v, ukrepi: [] }, s0.r);
@@ -431,7 +431,7 @@ export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: 
   const prevelika = tcK && tcDog && tcKonec && tcK.leto < zadnjiOvoj && tcDog.moc > tcKonec.moc_kw ? { moc: tcDog.moc as number, moc_konec: tcKonec.moc_kw as number } : null;
   return {
     dogodki, serija, brez, ostanek, izdatki: { poziv: serija.poziv.at(-1)!, nps: serija.nps.at(-1)! },
-    skupaj: { poziv: Math.round(serija.poziv.at(-1)! - ostanek.poziv), nps: Math.round(serija.nps.at(-1)! - ostanek.nps), brez: brez.at(-1)! }, celovita: cel, naenkrat, bonus_korak: bonusKorak,
+    skupaj: { poziv: serija.poziv.at(-1)!, nps: serija.nps.at(-1)!, brez: brez.at(-1)! }, celovita: cel, naenkrat, bonus_korak: bonusKorak,
     spodbuda: { poziv: vsota(prvi.map((d) => d.spodbuda)), nps: vsota(prvi.map((d) => d.spodbuda_nps)) },
     nalozbe: vsota(prvi.map((d) => d.strosek)), zamenjave: dogodki.filter((d) => d.zamenjava), energija_zacetek: s0.energija, energija_konec: cur.energija, zacetek, konec, prevelika,
   };
@@ -481,13 +481,13 @@ const URE: Ukrep[] = ['fasada', 'streha', 'plosca_podstrehe', 'okna', 'prezracev
 /** Izpis prenove: različice iz izbranih ukrepov – delne prenove (vsak ukrep posebej, vsi URE skupaj, vsi OVE skupaj; pri več kot štirih
  *  ukrepih je ovoj ena enota),
  *  vsi ukrepi naenkrat, po korakih najprej URE (PRIPOROCEN) in po korakih najprej OVE (OVE_PRVO). */
-export function variante(D: any, v: Vhod, n: Nastavitve, obracun: Obracun = 'nova', let_ = 20) {
+export function variante(D: any, v: Vhod, n: Nastavitve, obracun: Obracun = 'nova', let_ = 20, lastna?: Partial<Record<Ukrep, number>>) {
   const sel = v.ukrepi.filter((u) => u !== 'pv' || !blok(v));
   const ovoj = sel.filter((u) => OVOJ.includes(u));
   const enote: Ukrep[][] = sel.length > 4 && ovoj.length > 1 ? [ovoj, ...sel.filter((u) => !OVOJ.includes(u)).map((u) => [u])] : sel.map((u) => [u]);
   const vh = { ...v, ukrepi: [] as Ukrep[] };
   const run = (uk: Ukrep[], leta: (u: Ukrep) => number) => nacrt(D, vh, n, uk.map((u) => ({ ukrep: u, leto: leta(u) })), obracun, let_);
-  const out: { skupina: 'delna' | 'naenkrat' | 'ure' | 'ove'; ukrepi: Ukrep[]; N: ReturnType<typeof nacrt> }[] = [];
+  const out: { skupina: 'delna' | 'naenkrat' | 'nacrt' | 'ure' | 'ove'; ukrepi: Ukrep[]; N: ReturnType<typeof nacrt> }[] = [];
   // delne prenove: vsak ukrep posebej ter vsi ukrepi URE skupaj in vsi OVE skupaj (preglednost namesto vseh kombinacij)
   const kljuc = (a: Ukrep[]) => [...a].sort().join('+');
   const vsi = kljuc(sel), podm: Ukrep[][] = [];
@@ -497,6 +497,12 @@ export function variante(D: any, v: Vhod, n: Nastavitve, obracun: Obracun = 'nov
   dodaj(sel.filter((u) => !URE.includes(u)));
   for (const uk of podm) out.push({ skupina: 'delna', ukrepi: uk, N: run(uk, () => 0) });
   if (sel.length) out.push({ skupina: 'naenkrat', ukrepi: sel, N: run(sel, () => 0) });
+  // uporabnikov načrt (leta iz koraka 4), če se razlikuje od vsega naenkrat in od priporočenega vrstnega reda
+  if (lastna && sel.length > 1) {
+    const ln = (u: Ukrep) => lastna[u] ?? 0;
+    const enako = (f: (u: Ukrep) => number) => sel.every((u) => ln(u) === f(u));
+    if (!enako(() => 0) && !enako((u) => PRIPOROCEN[u]) && !enako((u) => OVE_PRVO[u])) out.push({ skupina: 'nacrt', ukrepi: sel, N: run(sel, ln) });
+  }
   const imaUre = sel.some((u) => URE.includes(u)), imaOve = sel.some((u) => !URE.includes(u));
   if (sel.length > 1 && new Set(sel.map((u) => PRIPOROCEN[u])).size > 1) out.push({ skupina: 'ure', ukrepi: sel, N: run(sel, (u) => PRIPOROCEN[u]) });
   if (imaUre && imaOve) out.push({ skupina: 'ove', ukrepi: sel, N: run(sel, (u) => OVE_PRVO[u]) });
