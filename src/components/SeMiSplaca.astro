@@ -19,7 +19,10 @@ const UKREPI = [
   ['okna', U.okna.ime, 'okoli 830 €/m² okna', UB.okna.ime, `okoli ${nf(Math.round(UB.okna.strosek_eur_m2_stanovanja))} €/m² stanovanja`],
   ['prezracevanje', 'Prezračevanje z vračanjem toplote', 'lokalno 2.200 €, centralno 8.000 €', UB.prezracevanje.ime, `okoli ${nf(Math.round(UB.prezracevanje.strosek_eur_m2_stanovanja))} €/m² stanovanja`],
   ['tc', 'Toplotna črpalka', 'okoli 1.000 €/kW (zrak-voda)', '', ''],
+  ['pv', 'Sončna elektrarna', `okoli ${nf(U.soncna_elektrarna.strosek_eur_kw)} €/kW, spodbude ni`, '', ''],
 ] as const;
+const PV = U.soncna_elektrarna;
+const SEZ = 20;
 ---
 <section class="sms" id="se-mi-splaca-kalkulator" aria-labelledby="sms-h">
   <h3 id="sms-h" class="visually-hidden">Kalkulator povračilnih dob</h3>
@@ -57,17 +60,18 @@ const UKREPI = [
           <li data-u={id} data-ime-hisa={ime} data-ime-blok={imeB} data-hint-hisa={hint} data-hint-blok={hintB}>
             <label class="sms-chk"><input type="checkbox" value={id} checked={id === 'fasada' || id === 'tc'} /> <span class="sms-ime">{ime}</span></label>
             {id === 'prezracevanje' && <select class="sms-sub" id="sms-prez" aria-label="Vrsta prezračevanja"><option value="lokalno">lokalno</option><option value="centralno">centralno</option></select>}
+            {id === 'pv' && <span class="sms-pvin"><label>moč <input type="number" id="sms-pvkw" min="1" max="30" step="0.5" placeholder="samodejno" /> kW</label><label>raba elektrike brez ogrevanja <input type="number" id="sms-gosp" min="500" max="15000" step="100" placeholder={nf(PV.raba_gospodinjstva_kwh)} /> kWh/leto</label></span>}
             {id === 'tc' && <select class="sms-sub" id="sms-tcv" aria-label="Vrsta toplotne črpalke"><option value="zrak_voda">zrak-voda</option><option value="zemlja_voda">zemlja-voda ali voda-voda</option></select>}
             <span class="sms-def"><span data-def={id}></span> <span class="sms-hint">(<span class="sms-hint-t">{hint}</span>)</span></span>
             <label class="sms-own">vaša ponudba <input type="number" min="0" step="100" data-own={id} placeholder="€" /> €</label>
           </li>
         ))}
-        <li class="sms-pv" data-hisa><span><strong>Sončna elektrarna</strong>: spodbude od leta 2025 ni, prihranek je odvisen od rabe elektrike v hiši, zato je ne vključujemo (okoli {nf(U.soncna_elektrarna.strosek_eur_kw)} €/kW, življenjska doba {U.soncna_elektrarna.zivljenjska_doba} let).</span></li>
       </ul>
     </fieldset>
 
     <fieldset class="sms-step sms-res-wrap">
       <legend><span class="sms-n">3</span> Rezultat: v koliko letih se povrne</legend>
+      <div id="sms-ure" class="sms-ure" aria-live="polite" hidden></div>
       <ul class="sms-leg" aria-hidden="true">
         <li><i class="m m0"></i>brez spodbude</li>
         <li><i class="m m1"></i><span id="sms-leg1">s spodbudo po pozivu 2026</span></li>
@@ -75,9 +79,21 @@ const UKREPI = [
         <li><i class="band"></i>življenjska doba</li>
       </ul>
       <div id="sms-out" aria-live="polite"></div>
+      <div id="sms-pvres" class="sms-pvres" hidden></div>
       <div id="sms-pkt" class="sms-pkt"></div>
       <div class="sms-btns"><button type="button" class="btn" id="sms-copy">Kopiraj povzetek</button><span id="sms-copied" class="sms-hint" aria-live="polite"></span></div>
     </fieldset>
+
+    <details class="sms-step sms-nacrt" id="sms-nacrt" data-hisa>
+      <summary><span class="sms-n">4</span> Prenova po korakih: razporedite izbrane ukrepe po letih</summary>
+      <p class="sms-help">Celovite prenove ni treba narediti naenkrat. Izberite, v katerem letu izvedete posamezen ukrep, in primerjajte stroške v {SEZ} letih z izvedbo vsega naenkrat in s hišo brez prenove. Po predlogu NPS 2050 bi koraki po izkazu o prenovi dobili +5 odstotnih točk spodbude, če se načrt konča s celovito prenovo, pa vsi koraki +10 kot celovita prenova.</p>
+      <div class="sms-nbtn"><button type="button" class="btn" id="sms-npri">Priporočen vrstni red</button><button type="button" class="btn" id="sms-nvse">Vse naenkrat</button>
+        <label class="sms-nsel">Spodbuda v grafu <select id="sms-nsp"><option value="poziv">po pozivu 2026</option><option value="nps">po predlogu NPS 2050</option></select></label>
+        <label class="sms-nsel" id="sms-nob-l">Obračun elektrarne <select id="sms-nob"><option value="brez">brez net meteringa (nove elektrarne)</option><option value="mesecni">mesečni net metering</option><option value="letni">letni net metering</option></select></label>
+      </div>
+      <ol id="sms-nkor" class="sms-nkor"></ol>
+      <div id="sms-nout" aria-live="polite"></div>
+    </details>
 
     <details class="sms-step sms-kajce">
       <summary>Kaj če? Spremenite cene energije, strošek naložbe ali delež spodbude</summary>
@@ -91,6 +107,9 @@ const UKREPI = [
         <label>Strošek naložbe <output id="sms-cst-o"></output>
           <span class="sms-rng"><input type="range" id="sms-cst" min="-40" max="40" step="5" value="0" /><input type="number" id="sms-cst-n" min="-40" max="40" step="5" value="0" aria-label="Sprememba stroška naložbe v odstotkih" /><span>%</span></span>
         </label>
+        <label>Odkupna cena presežkov elektrike <output id="sms-odk-o"></output>
+          <span class="sms-rng"><input type="range" id="sms-odk" min="0" max="15" step="1" value={Math.round(PV.odkupna_cena_eur_kwh * 100)} /><input type="number" id="sms-odk-n" min="0" max="15" step="1" value={Math.round(PV.odkupna_cena_eur_kwh * 100)} aria-label="Odkupna cena presežkov v centih na kWh" /><span>c/kWh</span></span>
+        </label>
         <div class="sms-lbl"><label for="sms-sp">Delež spodbude</label>
           <span class="sms-rng"><span class="sms-rw"><input type="range" id="sms-sp" min="0" max="70" step="1" value="40" list="sms-sp-t" /><span class="sms-ticks" aria-hidden="true"><span style="left:37.1%">2024</span><span style="left:57.1%">2026</span><span style="left:85.7%">NPS</span></span></span><input type="number" id="sms-sp-n" min="0" max="70" step="1" value="40" aria-label="Delež spodbude v odstotkih" /><span>%</span></span>
           <datalist id="sms-sp-t"><option value="26" label="poziv 2024"></option><option value="40" label="poziv 2026"></option><option value="60" label="predlog NPS F, G"></option></datalist>
@@ -100,7 +119,7 @@ const UKREPI = [
       </div>
     </details>
   </form>
-  <p class="note">Ocena za orientacijo, ne nadomešča energetskega pregleda. Spodbude po javnih pozivih 126SUB-OB26 in 124SUB-OBPO25 (skupni deli večstanovanjskih stavb) veljajo do porabe sredstev; stopnjevane spodbude so predlog iz osnutka NPS 2050 in še niso sprejete. Stroški so mediane priznanih stroškov Eko sklada 2023–2025, ki so za 20 do 40 % nižje od polnih tržnih cen (fasada okoli {nf(U.fasada.strosek_trzni_eur_m2)} €/m², toplotna črpalka z vgradnjo okoli {nf(U.tc_zrak_voda.strosek_trzni_eur)} €); vnesete lahko svojo ponudbo. Za stanovanja v blokih je cena daljinske toplote {nf(D.bloki.cene_energentov_eur_kwh.daljinska_toplota, 3)} €/kWh s prispevki in DDV (Agencija za energijo 2025). Cene energentov (€/kWh): elektrika {nf(C.elektrika, 3)}, plin {nf(C.zemeljski_plin, 3)}, kurilno olje {nf(C.kurilno_olje, 2)}, peleti {nf(C.peleti, 2)}, polena {nf(C.polena, 3)}, daljinska toplota {nf(C.daljinska_toplota, 2)} ({C.vir}). Povračilna doba je nediskontirana: strošek, zmanjšan za spodbudo, deljen z letnim prihrankom.</p>
+  <p class="note">Ocena za orientacijo, ne nadomešča energetskega pregleda. Spodbude po javnih pozivih 126SUB-OB26 in 124SUB-OBPO25 (skupni deli večstanovanjskih stavb) veljajo do porabe sredstev; stopnjevane spodbude so predlog iz osnutka NPS 2050 in še niso sprejete. Stroški so mediane priznanih stroškov Eko sklada 2023–2025, ki so za 20 do 40 % nižje od polnih tržnih cen (fasada okoli {nf(U.fasada.strosek_trzni_eur_m2)} €/m², toplotna črpalka z vgradnjo okoli {nf(U.tc_zrak_voda.strosek_trzni_eur)} €); vnesete lahko svojo ponudbo. Za stanovanja v blokih je cena daljinske toplote {nf(D.bloki.cene_energentov_eur_kwh.daljinska_toplota, 3)} €/kWh s prispevki in DDV (Agencija za energijo 2025). Cene energentov (€/kWh): elektrika {nf(C.elektrika, 3)}, plin {nf(C.zemeljski_plin, 3)}, kurilno olje {nf(C.kurilno_olje, 2)}, peleti {nf(C.peleti, 2)}, polena {nf(C.polena, 3)}, daljinska toplota {nf(C.daljinska_toplota, 2)} ({C.vir}). Povračilna doba je nediskontirana: strošek, zmanjšan za spodbudo, deljen z letnim prihrankom. Sončna elektrarna: proizvodnja {nf(PV.proizvodnja_kwh_kw_mesec.reduce((a: number, b: number) => a + b, 0))} kWh na kW na leto po mesecih ({PV.vir_proizvodnje}), raba elektrike gospodinjstva privzeto {nf(PV.raba_gospodinjstva_kwh)} kWh na leto, elektrika za ogrevanje po mesecih po stopinjskih dnevih (Eurostat 2015–2024). Pokrita kWh je vredna toliko kot kupljena elektrika, presežek se proda po odkupni ceni. Letni net metering velja za elektrarne, priključene do konca leta 2023; mesečni net metering je različica za razpravo; brez net meteringa (nove elektrarne od leta 2024) se sproti porabi okoli {nf(PV.delez_sproti * 100)} % proizvodnje (brez hranilnika). Obračun omrežnine po moči ni upoštevan. Prenova po korakih: primarna energija je ocena skupne primarne energije za ogrevanje, toplo vodo in pomožno elektriko (z energijo okolice pri toplotni črpalki), elektrarna jo zmanjša za elektriko, ki jo stavba v istem mesecu porabi; meja za brezemisijsko stavbo je meja razreda A ({nf(D.model.zeb_meja_pe_kwh_m2)} kWh/(m²·a)).</p>
 </section>
 
 <style>
@@ -109,7 +128,6 @@ const UKREPI = [
   .sms-form { display: grid; gap: 1rem; }
   .sms-step { border: 1px solid var(--line); border-radius: 14px; background: var(--panel); padding: .9rem 1.1rem 1.1rem; margin: 0; min-width: 0; }
   .sms-step legend { font-weight: 800; padding: 0 .4rem; color: var(--ink); }
-  .sms-kajce summary { font-weight: 800; cursor: pointer; }
   .sms-kajce[open] summary { margin-bottom: .8rem; }
   .sms-n { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--green); color: var(--on-green); font-size: .85em; margin-right: .35rem; }
   .sms-tip { display: flex; gap: 1.2rem; margin: .1rem 0 .7rem; font-weight: 700; }
@@ -134,7 +152,34 @@ const UKREPI = [
   .sms-hint { color: var(--ink2); font-size: .82rem; }
   .sms-own { margin-left: auto; font-size: .82rem; color: var(--ink2); }
   .sms-own input { width: 6.5rem; font: inherit; padding: .2rem .4rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
-  .sms-pv { font-size: .85rem; color: var(--ink2); border-bottom: 0 !important; }
+  .sms-pvin { display: inline-flex; flex-wrap: wrap; gap: .3rem .8rem; font-size: .82rem; color: var(--ink2); }
+  .sms-pvin input { width: 5.5rem; font: inherit; padding: .2rem .4rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
+  .sms-ure:not([hidden]) { border-left: 4px solid #B7791F; background: #FBF3E4; border-radius: 8px; padding: .6rem .9rem; margin: 0 0 .9rem; font-size: .9rem; color: #3D2A06; }
+  :global(.sms-ure h4) { margin: 0 0 .3rem; font-size: .95rem; }
+  :global(.sms-ure p) { margin: .25rem 0; max-width: none; }
+  :global(.sms-ure .btn) { margin-top: .4rem; font-size: .85rem; }
+  .sms-pvres:not([hidden]) { border-top: 1px solid var(--line); padding: .8rem 0 0; margin-top: .3rem; }
+  :global(.sms-pvres h4) { margin: 0 0 .2rem; font-size: .95rem; }
+  :global(.sms-tw) { overflow-x: auto; }
+  :global(.sms-pvres .sms-meta) { font-size: .82rem; color: var(--ink2); margin: 0 0 .4rem; }
+  :global(.sms-pvres .sms-leg) { list-style: none; padding: 0; margin: .2rem 0 .4rem; display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .82rem; color: var(--ink2); }
+  :global(.sms-pvres .sms-leg li) { display: inline-flex; align-items: center; gap: .4rem; margin: 0; }
+  :global(.sms-pvres .sms-leg i) { display: inline-block; width: 13px; height: 13px; }
+  :global(.sms-pvres table), :global(.sms-nout table) { font-size: .85rem; margin: .5rem 0; width: 100%; }
+  :global(.sms-pvres td.num), :global(.sms-pvres th.num), :global(.sms-nout .num) { text-align: right; font-variant-numeric: tabular-nums; }
+  :global(.sms-pvres svg), :global(.sms-nout svg) { width: 100%; height: auto; max-width: 640px; display: block; font-size: 11px; fill: var(--ink2); }
+  :global(.sms-pvres .note), :global(.sms-nout .note) { font-size: .82rem; }
+  .sms-nacrt summary, .sms-kajce summary { font-weight: 800; cursor: pointer; }
+  .sms-nacrt[open] summary { margin-bottom: .6rem; }
+  .sms-nbtn { display: flex; flex-wrap: wrap; gap: .5rem .8rem; align-items: center; margin: .3rem 0 .6rem; }
+  .sms-nsel { font-size: .85rem; color: var(--ink2); display: inline-flex; gap: .4rem; align-items: center; }
+  .sms-nsel select { font: inherit; padding: .2rem .4rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
+  .sms-nkor { margin: 0 0 .6rem; padding-left: 1.3rem; display: grid; gap: .3rem; font-size: .9rem; }
+  :global(.sms-nkor li) { display: flex; flex-wrap: wrap; gap: .3rem .8rem; align-items: center; margin: 0; }
+  :global(.sms-nkor select) { font: inherit; padding: .15rem .4rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--ink); }
+  :global(.sms-zeb) { border-radius: 8px; padding: .5rem .8rem; margin: .5rem 0; font-size: .9rem; }
+  :global(.sms-zeb.da) { background: var(--greenbg); }
+  :global(.sms-zeb.ne) { background: #FBF3E4; color: #3D2A06; }
   .sms-leg { list-style: none; padding: 0; margin: .2rem 0 .8rem; display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .85rem; color: var(--ink2); }
   .sms-leg li { display: inline-flex; align-items: center; gap: .4rem; margin: 0; }
   .m { display: inline-block; width: 13px; height: 13px; }
@@ -180,7 +225,7 @@ const UKREPI = [
 
 <script>
   import D from '../data/povracilne_dobe.json';
-  import { izracun, strosekUkrepa, mocTC, potrebnaToplota, PRIVZETO, type Vhod, type Nastavitve, type Ukrep, type Rezultat } from '../scripts/povracilo';
+  import { izracun, strosekUkrepa, mocTC, potrebnaToplota, privzetaMocPV, opozorila, nacrt, PRIPOROCEN, PRIVZETO, type Vhod, type Nastavitve, type Ukrep, type Rezultat, type Obracun } from '../scripts/povracilo';
 
   const root = document.getElementById('se-mi-splaca-kalkulator') as HTMLElement;
   if (root) {
@@ -252,13 +297,92 @@ const UKREPI = [
         energent: $<HTMLSelectElement>('sms-en').value as Vhod['energent'], raba_kwh: raba > 0 ? raba : null, ukrepi, stroski,
         tc_vrsta: $<HTMLSelectElement>('sms-tcv').value as Vhod['tc_vrsta'], prezracevanje: $<HTMLSelectElement>('sms-prez').value as Vhod['prezracevanje'],
         razred: razred || null, nad43: nad43 == null ? null : nad43 === '1',
+        pv_kw: Number($<HTMLInputElement>('sms-pvkw').value) || null, raba_gosp_kwh: Number($<HTMLInputElement>('sms-gosp').value) || null,
       };
     };
     const nast = (): Nastavitve => ({
       cena_el: 1 + Number($<HTMLInputElement>('sms-pel').value) / 100, cena_en: 1 + Number($<HTMLInputElement>('sms-pen').value) / 100,
       strosek: 1 + Number($<HTMLInputElement>('sms-cst').value) / 100,
       spodbuda: $<HTMLInputElement>('sms-poziv').checked ? null : Number($<HTMLInputElement>('sms-sp').value) / 100,
+      odkup: Number($<HTMLInputElement>('sms-odk').value) / 100,
     });
+
+    // sončna elektrarna: trije načini obračuna in mesečna bilanca
+    const OB: Obracun[] = ['letni', 'mesecni', 'brez'];
+    const OBI: Record<Obracun, string> = { letni: 'letni net metering', mesecni: 'mesečni net metering', brez: 'brez net meteringa' };
+    const OBO: Record<Obracun, string> = { letni: 'elektrarne, priključene do konca 2023', mesecni: 'različica za razpravo', brez: 'nove elektrarne od 2024' };
+    const MES = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'avg', 'sep', 'okt', 'nov', 'dec'];
+    const kwh = (x: number) => `${nf(Math.round(x / 10) * 10)} kWh`;
+    function izrisiPV(r: any) {
+      const box = $('sms-pvres'), P = r.pv;
+      box.hidden = !P;
+      if (!P) { box.replaceChildren(); return; }
+      const W = 640, H = 190, L = 48, B = 22, T = 8, bw = (W - L - 8) / 12;
+      const max = Math.max(...P.proizvodnja, ...P.raba) * 1.08;
+      const y = (x: number) => T + (1 - x / max) * (H - T - B);
+      const step = max > 1500 ? 500 : max > 600 ? 200 : 100;
+      const ticks = Array.from({ length: Math.floor(max / step) + 1 }, (_, i) => i * step);
+      const gosp = P.raba.map((c: number, m: number) => c - r.el_ogrevanje * D.model.hdd_delez_mesec[m]);
+      const svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Proizvodnja elektrarne in raba elektrike po mesecih: ${MES.map((m, i) => `${m} ${Math.round(P.proizvodnja[i])} in ${Math.round(P.raba[i])} kWh`).join(', ')}.">
+        ${ticks.map((t) => `<line x1="${L}" x2="${W - 4}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${L - 5}" y="${y(t) + 4}" text-anchor="end">${nf(t)}</text>`).join('')}
+        ${MES.map((m, i) => { const x = L + i * bw + 3, w = (bw - 6) / 2;
+          return `<rect x="${x}" y="${y(P.proizvodnja[i])}" width="${w}" height="${y(0) - y(P.proizvodnja[i])}" fill="#E0A100" rx="2"/>
+            <rect x="${x + w}" y="${y(gosp[i])}" width="${w}" height="${y(0) - y(gosp[i])}" fill="var(--ink2)" opacity=".45" rx="2"/>
+            <rect x="${x + w}" y="${y(P.raba[i])}" width="${w}" height="${y(gosp[i]) - y(P.raba[i])}" fill="#B7791F" rx="2"/>
+            <text x="${x + w}" y="${H - 6}" text-anchor="middle">${m}</text>`; }).join('')}
+      </svg>`;
+      box.innerHTML = `<h4>Sončna elektrarna ${nf(P.kw, P.kw % 1 ? 1 : 0)} kW</h4>
+        <p class="sms-meta">strošek ${eur(P.strosek)} · proizvodnja okoli ${kwh(P.proizvodnja_kwh)} na leto · raba elektrike okoli ${kwh(P.raba_kwh)} na leto${r.el_ogrevanje > 0 ? `, od tega za ogrevanje ${kwh(r.el_ogrevanje)}` : ''} · življenjska doba ${P.zivljenjska_doba} let</p>
+        <ul class="sms-leg" aria-hidden="true"><li><i class="m" style="background:#E0A100;border-radius:2px"></i>proizvodnja</li><li><i class="m" style="background:var(--ink2);opacity:.45;border-radius:2px"></i>raba gospodinjstva</li>${r.el_ogrevanje > 0 ? '<li><i class="m" style="background:#B7791F;border-radius:2px"></i>raba za ogrevanje</li>' : ''}</ul>
+        ${svg}
+        <div class="sms-tw"><table><thead><tr><th scope="col">Način obračuna</th><th scope="col" class="num">Pokrita lastna raba</th><th scope="col" class="num">Prodani presežek</th><th scope="col" class="num">Prihranek na leto</th><th scope="col" class="num">Povračilna doba</th></tr></thead>
+        <tbody>${OB.map((o) => { const x = P.rezimi[o]; return `<tr><th scope="row">${OBI[o]}<br><small class="sms-hint">${OBO[o]}</small></th><td class="num">${kwh(x.pokrito_kwh)}</td><td class="num">${kwh(x.prodano_kwh)}</td><td class="num">${nf(Math.round(x.prihranek_eur / 10) * 10)} €</td><td class="num"><b>${let_(x.doba)}</b></td></tr>`; }).join('')}</tbody></table></div>
+        <p class="note">Pozimi, ko toplotna črpalka porabi največ, elektrarna proizvede najmanj. Pri letnem net meteringu se poletni presežek prenese v zimo, pri mesečnem le znotraj meseca, brez net meteringa pa se presežek proda po ${nf(Math.round(P.odkup * 100))} c/kWh, kupljena elektrika pa stane ${nf(P.pEl, 3)} €/kWh. Elektrarna ni vključena v paket ogrevanja spodaj.</p>`;
+    }
+
+    // prenova po korakih
+    const leta: Record<string, number> = { ...PRIPOROCEN };
+    const LETA = Array.from({ length: 16 }, (_, i) => i);
+    function izrisiNacrt(v: Vhod, n: Nastavitve) {
+      const det = $<HTMLDetailsElement>('sms-nacrt'), kor = $('sms-nkor'), o = $('sms-nout');
+      $('sms-nob-l').hidden = !v.ukrepi.includes('pv');
+      if (v.tip === 'blok' || !v.ukrepi.length) { kor.replaceChildren(); o.innerHTML = v.tip === 'blok' ? '' : '<p class="sms-help">Izberite ukrepe zgoraj.</p>'; return; }
+      const ime = (u: Ukrep) => root.querySelector<HTMLElement>(`.sms-uk li[data-u="${u}"] .sms-ime`)!.textContent!;
+      kor.innerHTML = v.ukrepi.map((u) => `<li><label>${ime(u)} <select data-leto="${u}" aria-label="Leto izvedbe: ${ime(u)}">${LETA.map((y) => `<option value="${y}"${(leta[u] ?? 0) === y ? ' selected' : ''}>${y === 0 ? 'takoj' : `po ${y} ${y === 1 ? 'letu' : 'letih'}`}</option>`).join('')}</select></label></li>`).join('');
+      kor.querySelectorAll<HTMLSelectElement>('select').forEach((s) => s.addEventListener('change', () => { leta[s.dataset.leto!] = Number(s.value); run(); }));
+      if (!det.open) return;
+      const ob = $<HTMLSelectElement>('sms-nob').value as Obracun, sp = $<HTMLSelectElement>('sms-nsp').value as 'poziv' | 'nps';
+      const vh = { ...v, ukrepi: [] as Ukrep[] };
+      const N = nacrt(D, vh, n, v.ukrepi.map((u) => ({ ukrep: u, leto: leta[u] ?? 0 })), ob);
+      const A = nacrt(D, vh, n, v.ukrepi.map((u) => ({ ukrep: u, leto: 0 })), ob);
+      const W = 640, H = 260, L = 80, R = 12, T = 12, B = 30, Y = N.brez.length - 1;
+      const max = Math.ceil(Math.max(...N.brez, ...N.serija[sp], ...A.serija[sp]) / 10000) * 10000;
+      const x = (t: number) => L + (t / Y) * (W - L - R), y = (val: number) => T + (1 - val / max) * (H - T - B);
+      const line = (a: number[]) => a.map((val, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(val).toFixed(1)}`).join(' ');
+      const ticks = Array.from({ length: max / 10000 + 1 }, (_, i) => i * 10000).filter((_t, i, a) => a.length < 9 || i % 2 === 0);
+      const kum = (a: number[]) => eur(a.at(-1)!);
+      const isti = N.naenkrat;
+      o.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kumulativni stroški v ${Y} letih: po korakih ${kum(N.serija[sp])}, vse naenkrat ${kum(A.serija[sp])}, brez prenove ${kum(N.brez)}.">
+          ${ticks.map((t) => `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${t ? `${nf(t / 1000)} tisoč €` : '0'}</text>`).join('')}
+          ${[0, 5, 10, 15, 20].filter((t) => t <= Y).map((t) => `<text x="${x(t)}" y="${H - 10}" text-anchor="middle">${t === 0 ? 'leto 0' : t}</text>`).join('')}
+          <path d="${line(N.brez)}" fill="none" stroke="var(--ink2)" stroke-width="2" stroke-dasharray="5 4"/>
+          ${isti ? '' : `<path d="${line(A.serija[sp])}" fill="none" stroke="#B7791F" stroke-width="2.5"/>`}
+          <path d="${line(N.serija[sp])}" fill="none" stroke="var(--green2)" stroke-width="3"/>
+          <text x="${W - R}" y="${y(N.brez.at(-1)!) - 6}" text-anchor="end" font-weight="700">brez prenove ${kum(N.brez)}</text>
+          ${isti ? '' : `<text x="${W - R}" y="${y(A.serija[sp].at(-1)!) + (A.serija[sp].at(-1)! > N.serija[sp].at(-1)! ? -6 : 16)}" text-anchor="end" fill="#8F5A08" font-weight="700">vse naenkrat ${kum(A.serija[sp])}</text>`}
+          <text x="${W - R}" y="${y(N.serija[sp].at(-1)!) + (A.serija[sp].at(-1)! > N.serija[sp].at(-1)! || isti ? 16 : -6)}" text-anchor="end" fill="var(--green)" font-weight="700">${isti ? 'vse naenkrat' : 'po korakih'} ${kum(N.serija[sp])}</text>
+        </svg>
+        <p>V ${Y} letih ${isti ? 'stane prenova naenkrat' : 'stane prenova po korakih'} okoli <b>${kum(N.serija[sp])}</b> (naložbe po odbitku spodbude ${sp === 'nps' ? 'po predlogu NPS' : 'po pozivu 2026'} in energija za ogrevanje in elektriko)${isti ? '' : `, vse naenkrat ${kum(A.serija[sp])}`}, hiša brez prenove ${kum(N.brez)}. Spodbuda po pozivu 2026 skupaj ${eur(N.spodbuda.poziv)}, po predlogu NPS ${eur(N.spodbuda.nps)}${N.bonus_korak ? ` (vključno z dodatkom +${nf(N.bonus_korak * 100)} odstotnih točk ${N.celovita ? 'za celovito prenovo po izkazu o prenovi' : 'za korak po izkazu o prenovi'})` : ''}.</p>
+        ${N.prevelika ? `<p class="sms-warn">Toplotna črpalka je vgrajena pred izolacijo ovoja: izbrana je za ${N.prevelika.moc} kW, po koncu prenove bi zadostovala za ${N.prevelika.moc_konec} kW. Premaknite jo za ukrepe na ovoju.</p>` : ''}
+        <p class="sms-zeb ${N.konec.zeb ? 'da' : 'ne'}">${N.konec.zeb
+          ? `<b>Na koncu načrta je hiša brezemisijska (ZEB):</b> ocena primarne energije okoli ${nf(Math.round(N.konec.pe_m2))} kWh/(m²·a) (danes ${nf(Math.round(N.zacetek.pe_m2))}), pod mejo ${nf(N.konec.meja)}, brez fosilnih goriv, z izoliranim ovojem.`
+          : `<b>Na koncu načrta hiša še ni brezemisijska:</b> ${[N.konec.fosil ? 'ogreva se s fosilnim gorivom (dodajte toplotno črpalko)' : '', !N.konec.ovoj ? 'ovoj ni izoliran (dodajte fasado in streho ali strop)' : '', N.konec.pe_m2 > N.konec.meja ? `ocena primarne energije okoli ${nf(Math.round(N.konec.pe_m2))} kWh/(m²·a) je nad mejo ${nf(N.konec.meja)}${v.ukrepi.includes('pv') ? '' : ' (pogosto pomaga sončna elektrarna)'}` : ''].filter(Boolean).join('; ')}.`}</p>
+        <div class="sms-tw"><table><caption class="visually-hidden">Koraki prenove</caption><thead><tr><th scope="col">Leto</th><th scope="col">Ukrep</th><th scope="col" class="num">Strošek</th><th scope="col" class="num">Spodbuda (poziv / NPS)</th><th scope="col" class="num">Toplota po koraku</th><th scope="col" class="num">Primarna energija</th><th scope="col" class="num">Energija na leto</th></tr></thead>
+        <tbody><tr><td>danes</td><td>brez prenove</td><td></td><td></td><td class="num">${nf(Math.round(potrebnaToplota(D, v) / v.povrsina))} kWh/m²</td><td class="num">${nf(Math.round(N.zacetek.pe_m2))}</td><td class="num">${eur(N.energija_zacetek)}</td></tr>
+        ${N.dogodki.map((d: any) => `<tr><td>${d.leto === 0 ? 'takoj' : d.leto}</td><td>${d.ime}</td><td class="num">${eur(d.strosek)}</td><td class="num">${d.ukrep === 'pv' ? '–' : `${eur(d.spodbuda)} / ${eur(d.spodbuda_nps)}`}</td><td class="num">${nf(Math.round(d.toplota_m2))} kWh/m²</td><td class="num">${nf(Math.round(d.pe_m2))}</td><td class="num">${eur(d.energija)}</td></tr>`).join('')}</tbody></table></div>
+        <p class="note">Energija na leto: ogrevanje, elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` in vrednost elektrike iz elektrarne (${OBI[ob]})` : ''} po stanju po koraku. Primarna energija v kWh/(m²·a): poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko, ne razred na energetski izkaznici. Ker se šteje tudi toplota okolice, toplotna črpalka v slabo izolirani hiši oceno lahko celo zviša; odpravi pa fosilna goriva, z elektrarno pa se ocena zniža. Cene so stalne, brez diskontiranja.</p>`;
+    }
+    $('sms-nacrt').addEventListener('toggle', () => run());
 
     let povzetek = '';
     function run() {
@@ -269,17 +393,28 @@ const UKREPI = [
       const Q0 = potrebnaToplota(D, v);
       root.querySelectorAll<HTMLElement>('.sms-uk li:not([hidden]) [data-def]').forEach((el) => {
         const u = el.dataset.def as Ukrep;
-        const c = strosekUkrepa(D, u, { ...v, stroski: {} }, PRIVZETO, u === 'tc' ? mocTC(D, Q0) : undefined);
-        el.textContent = `privzeto ${eur(c)}${u === 'tc' ? ` (${mocTC(D, Q0)} kW)` : ''}`;
+        const kw = u === 'pv' ? (v.pv_kw || privzetaMocPV(D, r.el_ogrevanje, v.raba_gosp_kwh)) : undefined;
+        const c = strosekUkrepa(D, u, { ...v, stroski: {}, pv_kw: kw }, PRIVZETO, u === 'tc' ? mocTC(D, Q0) : undefined);
+        el.textContent = `privzeto ${eur(c)}${u === 'tc' ? ` (${mocTC(D, Q0)} kW)` : u === 'pv' ? ` (${nf(kw!, kw! % 1 ? 1 : 0)} kW)` : ''}`;
       });
       const poz = v.tip === 'blok' ? 'po pozivih 2025 in 2026' : 'po pozivu 2026';
       $('sms-leg1').textContent = n.spodbuda == null ? `s spodbudo ${poz}` : `s spodbudo ${nf(n.spodbuda * 100)} %`;
       $('sms-leg2').textContent = `po predlogu NPS 2050 (${nps(r.bonus)}${r.celovita ? ', celovita prenova' : ''})`;
+      $('sms-odk-o').textContent = `${nf(Number($<HTMLInputElement>('sms-odk').value))} c/kWh`;
       ['pel', 'pen', 'cst'].forEach((k) => { const x = Number($<HTMLInputElement>(`sms-${k}`).value); $(`sms-${k}-o`).textContent = x ? `${x > 0 ? '+' : ''}${x} %` : 'privzeto'; });
       $<HTMLInputElement>('sms-sp').disabled = $<HTMLInputElement>('sms-sp-n').disabled = $<HTMLInputElement>('sms-poziv').checked;
 
+      // opozorila: najprej učinkovita raba energije, nato obnovljivi viri
+      const op = opozorila(D, v, n, r), ure = $('sms-ure');
+      ure.hidden = !op.length;
+      ure.innerHTML = op.length ? `<h4>Najprej zmanjšajte potrebo po energiji</h4>${op.map((o) => `<p>${o.besedilo}</p>`).join('')}<button type="button" class="btn" data-dodaj-ovoj>Dodaj izolacijo fasade in stropa ter primerjaj</button>` : '';
+      ure.querySelector('[data-dodaj-ovoj]')?.addEventListener('click', () => {
+        ['fasada', 'plosca_podstrehe'].forEach((u) => { root.querySelector<HTMLInputElement>(`.sms-uk input[value="${u}"]`)!.checked = true; });
+        run();
+      });
+      izrisiPV(r);
       out.replaceChildren();
-      if (!r.rezultati.length) { out.append(Object.assign(document.createElement('p'), { className: 'sms-help', textContent: 'Izberite vsaj en ukrep.' })); pkt.replaceChildren(); return; }
+      if (!r.rezultati.length) { if (!r.pv) out.append(Object.assign(document.createElement('p'), { className: 'sms-help', textContent: 'Izberite vsaj en ukrep.' })); pkt.replaceChildren(); izrisiNacrt(v, n); return; }
       const ax = document.createElement('div'); ax.className = 'sms-axis'; ax.setAttribute('aria-hidden', 'true');
       ax.innerHTML = `<span></span><span class="ax">${[0, 10, 20, 30, 40, 50].map((y) => `<span style="left:${pos(y)}">${y}${y === 50 ? '+ let' : ''}</span>`).join('')}</span>`;
       out.append(ax);
@@ -315,14 +450,17 @@ const UKREPI = [
         <p class="k"><b>${nf(Math.round(P.prihranek_eur / 10) * 10)} € na leto</b><span>manj za ogrevanje (danes okoli ${nf(Math.round(P.stroski_danes / 10) * 10)} €)</span></p>
         <p class="k"><b>${pl[1]}</b><span>povračilna doba paketa (brez spodbude ${pl[0]}, po predlogu NPS ${pl[2]})</span></p>
         <p class="brez">Povračilna doba paketa ni vsota povračilnih dob ukrepov: je skupni strošek, zmanjšan za spodbudo, deljen s skupnim letnim prihrankom.${P.brez ? ` Brez ukrepov, ki se v življenjski dobi ne povrnejo (${P.brez.ukrepi.map((u: string) => r.rezultati.find((x: any) => x.ukrep === u)?.ime.toLowerCase()).join(', ')}), bi se paket za ${eur(P.brez.strosek)} povrnil v <b>${let_(P.brez.doba[1])}</b> (po predlogu NPS ${let_(P.brez.doba[2])}).` : ''}</p>` : '';
+      izrisiNacrt(v, n);
       povzetek = [`Se mi splača? ${v.tip === 'blok' ? 'Stanovanje v bloku' : 'Hiša'} ${v.povrsina} m², ${$<HTMLSelectElement>('sms-ob').selectedOptions[0].text}, izolacija: ${$<HTMLSelectElement>('sms-st').selectedOptions[0].text}, ogrevanje: ${$<HTMLSelectElement>('sms-en').selectedOptions[0].text}.`,
-        ...lines, r.rezultati.length > 1 ? `Paket: strošek ${eur(P.strosek)}, spodbuda ${eur(P.spodbuda)}, prihranek ${nf(Math.round(P.prihranek_eur / 10) * 10)} € na leto, povračilna doba ${pl[1]}.` : '',
+        ...lines, r.pv ? `– Sončna elektrarna ${nf(r.pv.kw, r.pv.kw % 1 ? 1 : 0)} kW, ${eur(r.pv.strosek)}: povračilna doba ${OB.map((o) => `${OBI[o]} ${let_(r.pv.rezimi[o].doba)}`).join(', ')}.` : '', r.rezultati.length > 1 ? `Paket: strošek ${eur(P.strosek)}, spodbuda ${eur(P.spodbuda)}, prihranek ${nf(Math.round(P.prihranek_eur / 10) * 10)} € na leto, povračilna doba ${pl[1]}.` : '',
         'Ocena za orientacijo (strokovne podlage NPS 2050, IJS CEU); spodbude NPS so predlog. ' + location.href.split('#')[0] + '#se-mi-splaca'].filter(Boolean).join('\n');
     }
 
-    root.querySelectorAll('select, input[type=checkbox], [data-own], #sms-raba').forEach((el) => el.addEventListener('input', run));
+    root.querySelectorAll('select, input[type=checkbox], [data-own], #sms-raba, #sms-pvkw, #sms-gosp').forEach((el) => el.addEventListener('input', run));
+    $('sms-npri').addEventListener('click', () => { Object.assign(leta, PRIPOROCEN); run(); });
+    $('sms-nvse').addEventListener('click', () => { (Object.keys(leta) as Ukrep[]).forEach((u) => { leta[u] = 0; }); run(); });
     root.querySelectorAll('select, input[type=checkbox]').forEach((el) => el.addEventListener('change', run));
-    ['sms-a', 'sms-pel', 'sms-pen', 'sms-cst', 'sms-sp'].forEach(pair);
+    ['sms-a', 'sms-pel', 'sms-pen', 'sms-cst', 'sms-sp', 'sms-odk'].forEach(pair);
     $('sms-copy').addEventListener('click', async () => {
       try { await navigator.clipboard.writeText(povzetek); $('sms-copied').textContent = 'Povzetek je kopiran.'; } catch { $('sms-copied').textContent = 'Kopiranje ni uspelo.'; }
     });

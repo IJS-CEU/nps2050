@@ -53,7 +53,35 @@
    "neizoliran": 1.0,
    "delno": 0.5,
    "izoliran": 0.15
-  }
+  },
+  "fp": {
+   "kurilno_olje": 1.1,
+   "zemeljski_plin": 1.1,
+   "peleti": 1.2,
+   "polena": 1.2,
+   "elektrika": 2.5,
+   "daljinska_toplota": 1.23,
+   "okolica": 1.0,
+   "opomba": "faktorji skupne primarne energije (kot v cevovodu paketov prenove in osnutku); toplota okolice pri toplotni črpalki s faktorjem 1,0"
+  },
+  "topla_voda_kwh_m2": 15,
+  "pomozna_el_kwh_m2": 3,
+  "zeb_meja_pe_kwh_m2": 75,
+  "hdd_delez_mesec": [
+   0.196,
+   0.149,
+   0.132,
+   0.082,
+   0.036,
+   0.004,
+   0.001,
+   0.002,
+   0.022,
+   0.066,
+   0.13,
+   0.182
+  ],
+  "vir_hdd": "Eurostat nrg_chddr2_m, Slovenija, stopinjski dnevi ogrevanja 2015–2024, delež po mesecih"
  },
  "ukrepi": {
   "fasada": {
@@ -136,7 +164,40 @@
    "strosek_eur_kw": 1150,
    "mediana_moc_kw": 12,
    "zivljenjska_doba": 25,
-   "opomba": "spodbude po letu 2024 ni; informativno"
+   "opomba": "spodbude Eko sklada od leta 2025 ni",
+   "proizvodnja_kwh_kw_mesec": [
+    55,
+    68,
+    106,
+    120,
+    129,
+    139,
+    147,
+    135,
+    108,
+    78,
+    43,
+    39
+   ],
+   "vir_proizvodnje": "PVGIS-SARAH3 (JRC), Ljubljana, naklon 30°, jug, sistemske izgube 14 %: 1.167 kWh na kW na leto",
+   "raba_gospodinjstva_kwh": 3500,
+   "profil_gospodinjstva_mesec": [
+    1.15,
+    1.08,
+    1.0,
+    0.95,
+    0.92,
+    0.9,
+    0.92,
+    0.92,
+    0.93,
+    1.0,
+    1.08,
+    1.15
+   ],
+   "delez_sproti": 0.3,
+   "odkupna_cena_eur_kwh": 0.06,
+   "opomba_obracun": "letni net metering: elektrarne, priključene do konca leta 2023 (samooskrba po uredbi iz leta 2019, prehodno obdobje do 2038); mesečni net metering: različica za razpravo; brez net meteringa: nove elektrarne od leta 2024 – sproti porabljena elektrika (privzeto 30 % proizvodnje brez hranilnika), presežek prodan po odkupni ceni. Vrednost pokrite kWh = cena elektrike za gospodinjstva; vpliv obračuna omrežnine po moči ni upoštevan."
   }
  },
  "spodbude": {

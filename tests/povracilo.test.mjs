@@ -71,3 +71,31 @@ test('stanovanje v bloku do 1980, daljinsko: fasada in okna okoli 27 let brez sp
   v(r.paket.doba[0], [24, 30], 'blok fasada + okna');
   assert.ok(r.paket.doba[2] < r.paket.doba[1]);
 });
+
+test('sončna elektrarna: letni net metering ≥ mesečni ≥ brez net meteringa; pozimi pokrije manj kot tretjino elektrike s črpalko', async () => {
+  const r = izracun(D, { ...base, ukrepi: ['tc', 'pv'] });
+  const z = r.pv.rezimi;
+  assert.ok(z.letni.prihranek_eur >= z.mesecni.prihranek_eur && z.mesecni.prihranek_eur > z.brez.prihranek_eur, `${z.letni.prihranek_eur} ≥ ${z.mesecni.prihranek_eur} > ${z.brez.prihranek_eur}`);
+  assert.ok(Math.abs(r.pv.proizvodnja_kwh / r.pv.kw - 1167) < 2, 'PVGIS 1.167 kWh/kW');
+  assert.ok(r.pv.pokritost_zima < 0.35, `zima ${r.pv.pokritost_zima}`);
+});
+test('opozorilo URE: črpalka ali elektrarna na neizolirani hiši brez ovoja, ne pa z ovojem', async () => {
+  const { opozorila, PRIVZETO } = await import('../src/scripts/povracilo.ts');
+  const o = (uk) => opozorila(D, { ...base, ukrepi: uk }, PRIVZETO, izracun(D, { ...base, ukrepi: uk })).map((x) => x.tip);
+  assert.deepEqual(o(['tc']), ['tc', 'najslabse']);
+  assert.ok(o(['pv']).includes('pv'));
+  assert.deepEqual(o(['fasada', 'tc', 'pv']), []);
+});
+test('prenova po korakih: celovita prenova z elektrarno doseže ZEB, brez elektrarne ne; črpalka pred ovojem je prevelika', async () => {
+  const { nacrt, PRIPOROCEN, PRIVZETO } = await import('../src/scripts/povracilo.ts');
+  const uk = ['fasada', 'plosca_podstrehe', 'okna', 'tc'];
+  const k = (u) => u.map((x) => ({ ukrep: x, leto: PRIPOROCEN[x] }));
+  const a = nacrt(D, { ...base, ukrepi: [] }, PRIVZETO, k(uk));
+  const b = nacrt(D, { ...base, ukrepi: [] }, PRIVZETO, k([...uk, 'pv']));
+  assert.ok(!a.konec.zeb && b.konec.zeb, `${a.konec.pe_m2} / ${b.konec.pe_m2}`);
+  assert.equal(a.bonus_korak, D.spodbude.predlog_NPS_N1.bonus_celovita);
+  assert.ok(a.skupaj.poziv < a.skupaj.brez, 'prenova je v 20 letih cenejša od hiše brez prenove');
+  const c = nacrt(D, { ...base, ukrepi: [] }, PRIVZETO, [{ ukrep: 'tc', leto: 0 }, { ukrep: 'fasada', leto: 5 }]);
+  assert.ok(c.prevelika && c.prevelika.moc > c.prevelika.moc_konec);
+  assert.equal(c.bonus_korak, D.spodbude.predlog_NPS_N1.bonus_korak_izkaz);
+});

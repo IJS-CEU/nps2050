@@ -6,12 +6,18 @@
 // sorazmerno zmanjšan tako, da vsi ukrepi na ovoju skupaj ne prihranijo več od razlike do stanja po celoviti prenovi (tabela Qh,nd).
 // Tako se vsota prihrankov posameznih ukrepov ujema s prihrankom paketa, pri novejših in že delno izoliranih stavbah pa
 // prihranek ni precenjen (dejanska raba je nižja od računske).
+//
+// Sončna elektrarna (samo hiše): mesečna bilanca proizvodnje (PVGIS) in rabe elektrike (gospodinjstvo + ogrevanje po stopinjskih
+// dnevih) za tri načine obračuna – letni in mesečni net metering ter samooskrba brez net meteringa. Prenova po korakih (nacrt):
+// kumulativni stroški, ko se ukrepi izvedejo v različnih letih, ocena primarne energije in pogojev za brezemisijsko stavbo (ZEB).
 
 export type Tip = 'hisa' | 'blok';
 export type Obdobje = 'pred_1980' | '1981_2002' | 'po_2002';
 export type Stanje = 'neizoliran' | 'delno' | 'izoliran' | 'celovita';
 export type Energent = 'kurilno_olje' | 'zemeljski_plin' | 'peleti' | 'polena' | 'elektrika' | 'daljinska_toplota';
-export type Ukrep = 'fasada' | 'streha' | 'plosca_podstrehe' | 'okna' | 'prezracevanje' | 'tc';
+export type Ukrep = 'fasada' | 'streha' | 'plosca_podstrehe' | 'okna' | 'prezracevanje' | 'tc' | 'pv';
+export type Obracun = 'letni' | 'mesecni' | 'brez';
+export const OBRACUNI: Obracun[] = ['letni', 'mesecni', 'brez'];
 export const OVOJ: Ukrep[] = ['fasada', 'streha', 'plosca_podstrehe', 'okna'];
 export const UKREPI_BLOK: Ukrep[] = ['fasada', 'streha', 'okna', 'prezracevanje'];
 
@@ -28,6 +34,8 @@ export interface Vhod {
   stroski?: Partial<Record<Ukrep, number>>;   // uporabnikova ponudba v €
   razred?: string | null;         // iz orodja Preveri stavbo (A–G)
   nad43?: boolean | null;         // stavba med 43 % najmanj učinkovitimi
+  pv_kw?: number | null;          // moč sončne elektrarne (privzeto po rabi elektrike)
+  raba_gosp_kwh?: number | null;  // raba elektrike v gospodinjstvu brez ogrevanja
 }
 
 export interface Nastavitve {
@@ -35,6 +43,7 @@ export interface Nastavitve {
   cena_en: number;                // faktor cene sedanjega energenta
   strosek: number;                // faktor stroška naložbe
   spodbuda: number | null;        // enoten delež spodbude (0–0,7) namesto pravil poziva; null = pravila pozivov
+  odkup?: number | null;          // odkupna cena presežkov elektrike [€/kWh]; null = privzeta
 }
 export const PRIVZETO: Nastavitve = { cena_el: 1, cena_en: 1, strosek: 1, spodbuda: null };
 
@@ -93,6 +102,7 @@ export function strosekUkrepa(D: any, u: Ukrep, v: Vhod, n: Nastavitve, moc?: nu
   let c: number;
   if (blok(v)) c = v.povrsina * D.bloki.ukrepi[u].strosek_eur_m2_stanovanja;
   else if (OVOJ.includes(u)) c = v.povrsina * D.ukrepi[u].povrsina_na_m2_tlorisa * D.ukrepi[u].strosek_eur_m2;
+  else if (u === 'pv') c = (v.pv_kw || 5) * D.ukrepi.soncna_elektrarna.strosek_eur_kw;
   else if (u === 'prezracevanje') c = D.ukrepi[`prezracevanje_${v.prezracevanje || 'lokalno'}`].strosek_eur;
   else c = (moc ?? 10) * D.ukrepi[`tc_${v.tc_vrsta || 'zrak_voda'}`].strosek_eur_kw;
   return c * n.strosek;
@@ -216,8 +226,158 @@ export function izracun(D: any, v: Vhod, n: Nastavitve = PRIVZETO): any {
     const r2 = izracun(D, { ...v, ukrepi: v.ukrepi.filter((u) => !ne.includes(u)) }, n);
     paket.brez = { ukrepi: ne, doba: r2.paket.doba, strosek: r2.paket.strosek, prihranek_eur: r2.paket.prihranek_eur };
   }
-  return { Q0: Math.round(Q0), Q1: Math.round(Q1), stanje_po: st1, umeritev: k, rezultati: out, paket, bonus: bonusNPS(D, v), celovita: celovita(v) };
+  const Qnet = Math.max(0, Q1 - vent * eta);
+  const el_ogrevanje = tc ? Qnet / scop(D, st1, v) : v.energent === 'elektrika' ? Qnet / eta : 0;
+  const pv = !blok(v) && v.ukrepi.includes('pv') ? soncna(D, v, n, el_ogrevanje) : null;
+  return { Q0: Math.round(Q0), Q1: Math.round(Q1), Qnet, el_ogrevanje, stanje_po: st1, umeritev: k, rezultati: out, paket, pv, bonus: bonusNPS(D, v), celovita: celovita(v) };
 }
+
+const HDD = (D: any): number[] => D.model.hdd_delez_mesec;
+const PROF = (D: any): number[] => { const p = D.ukrepi.soncna_elektrarna.profil_gospodinjstva_mesec; const s = p.reduce((a: number, b: number) => a + b, 0); return p.map((x: number) => x / s); };
+const vsota = (a: number[]) => a.reduce((x, y) => x + y, 0);
+
+/** Privzeta moč elektrarne [kW]: letna proizvodnja ≈ letna raba elektrike (gospodinjstvo in ogrevanje), 3–15 kW. */
+export function privzetaMocPV(D: any, el_ogrevanje: number, raba_gosp?: number | null): number {
+  const E = (raba_gosp || D.ukrepi.soncna_elektrarna.raba_gospodinjstva_kwh) + el_ogrevanje;
+  return Math.min(15, Math.max(3, Math.round(E / vsota(D.ukrepi.soncna_elektrarna.proizvodnja_kwh_kw_mesec))));
+}
+
+/** Sončna elektrarna: mesečna proizvodnja in raba, prihranek in povračilna doba za tri načine obračuna (presežek po odkupni ceni). */
+export function soncna(D: any, v: Vhod, n: Nastavitve, el_ogrevanje: number) {
+  const S = D.ukrepi.soncna_elektrarna;
+  const kw = v.pv_kw || privzetaMocPV(D, el_ogrevanje, v.raba_gosp_kwh);
+  const gosp = v.raba_gosp_kwh || S.raba_gospodinjstva_kwh;
+  const P: number[] = S.proizvodnja_kwh_kw_mesec.map((x: number) => x * kw);
+  const prof = PROF(D), hdd = HDD(D);
+  const C = prof.map((p, m) => gosp * p + el_ogrevanje * hdd[m]);
+  const pEl = cena(D, 'elektrika', n), odk = n.odkup ?? S.odkupna_cena_eur_kwh;
+  const Py = vsota(P), Cy = vsota(C);
+  const pokrito: Record<Obracun, number> = {
+    letni: Math.min(Py, Cy),
+    mesecni: vsota(P.map((p, m) => Math.min(p, C[m]))),
+    brez: vsota(P.map((p, m) => Math.min(p * S.delez_sproti, C[m]))),
+  };
+  const strosek = v.stroski?.pv || kw * S.strosek_eur_kw * n.strosek;
+  const rezimi = Object.fromEntries(OBRACUNI.map((o) => {
+    const eur = pokrito[o] * pEl + (Py - pokrito[o]) * odk;
+    return [o, { pokrito_kwh: pokrito[o], prodano_kwh: Py - pokrito[o], prihranek_eur: eur, doba: povracilo(strosek, 0, eur) }];
+  })) as Record<Obracun, { pokrito_kwh: number; prodano_kwh: number; prihranek_eur: number; doba: number | null }>;
+  const zima = [11, 0, 1];
+  const pokritost_zima = vsota(zima.map((m) => Math.min(P[m], C[m]))) / vsota(zima.map((m) => C[m]));
+  return { kw, strosek, zivljenjska_doba: S.zivljenjska_doba as number, proizvodnja: P, raba: C, proizvodnja_kwh: Py, raba_kwh: Cy, rezimi, pokritost_zima, pEl, odkup: odk as number };
+}
+
+/** Ocena skupne primarne energije [kWh/(m²·a)] za ogrevanje, toplo vodo in pomožno elektriko po izbranih ukrepih (r = izracun);
+ *  elektrarna zmanjša elektriko za stavbo v mesecu, ko jo proizvede (mesečna bilanca). Pogoji za brezemisijsko stavbo (ZEB):
+ *  pod mejo razreda A, brez fosilnih goriv v stavbi, izoliran ovoj (fasada in streha ali plošča). */
+export function primarna(D: any, v: Vhod, r: any) {
+  const M = D.model, A = v.povrsina, fp = M.fp;
+  const tc = v.ukrepi.includes('tc');
+  const dhw = M.topla_voda_kwh_m2 * A, aux = M.pomozna_el_kwh_m2 * A, hdd = HDD(D);
+  let pe: number, elM: number[];
+  if (tc) {
+    const s = scop(D, r.stanje_po, v), el = (r.Qnet + dhw) / s;
+    pe = el * fp.elektrika + (r.Qnet + dhw - el) * fp.okolica + aux * fp.elektrika;
+    elM = hdd.map((h) => (r.Qnet / s) * h + (dhw / s + aux) / 12);
+  } else {
+    const eta = M.izkoristek_kotla[v.energent];
+    pe = ((r.Qnet + dhw) / eta) * fp[v.energent] + aux * fp.elektrika;
+    elM = hdd.map((h) => (v.energent === 'elektrika' ? r.Qnet * h + dhw / 12 : 0) + aux / 12);
+  }
+  const pvKwh = r.pv ? vsota(r.pv.proizvodnja.map((p: number, m: number) => Math.min(p, elM[m]))) : 0;
+  pe -= pvKwh * fp.elektrika;
+  const pe_m2 = pe / A;
+  const fosil = !tc && ['kurilno_olje', 'zemeljski_plin'].includes(v.energent);
+  const ovoj = r.stanje_po === 'izoliran' || r.stanje_po === 'celovita';
+  return { pe_m2, meja: M.zeb_meja_pe_kwh_m2 as number, fosil, ovoj, zeb: pe_m2 <= M.zeb_meja_pe_kwh_m2 && !fosil && ovoj, pv_za_stavbo_kwh: pvKwh };
+}
+
+const ENERGENT_TOZ: Record<string, string> = { kurilno_olje: 'kurilno olje', zemeljski_plin: 'zemeljski plin', peleti: 'pelete', polena: 'polena', daljinska_toplota: 'daljinsko toploto', elektrika: 'elektriko' };
+const evro = (x: number) => `${(Math.round(x / 100) * 100).toLocaleString('sl-SI', { useGrouping: 'always' } as Intl.NumberFormatOptions)} €`;
+
+/** Opozorila »najprej učinkovita raba energije, nato obnovljivi viri«: toplotna črpalka ali elektrarna na neizolirani hiši brez
+ *  ukrepa na ovoju (fasada, streha ali plošča). */
+export function opozorila(D: any, v: Vhod, n: Nastavitve, r: any) {
+  const out: { tip: 'tc' | 'pv' | 'najslabse'; besedilo: string }[] = [];
+  if (blok(v) || v.stanje === 'izoliran' || OVOJ.some((u) => u !== 'okna' && v.ukrepi.includes(u))) return out;
+  const tc = v.ukrepi.includes('tc'), pv = v.ukrepi.includes('pv');
+  if (!tc && !pv) return out;
+  if (tc) {
+    const z = izracun(D, { ...v, ukrepi: [...v.ukrepi, 'fasada', 'plosca_podstrehe'] }, n);
+    const a = r.rezultati.find((x: Rezultat) => x.ukrep === 'tc'), b = z.rezultati.find((x: Rezultat) => x.ukrep === 'tc');
+    const kwh = Math.round((r.el_ogrevanje - z.el_ogrevanje) / 100) * 100;
+    out.push({ tip: 'tc', besedilo: `Toplotna črpalka za ${v.stanje === 'delno' ? 'delno izolirano' : 'neizolirano'} hišo potrebuje okoli ${a.moc_kw} kW. Če bi prej izolirali fasado in strop proti podstrešju, bi zadostovala črpalka za ${b.moc_kw} kW, ki je okoli ${evro(a.strosek - b.strosek)} cenejša in porabi okoli ${kwh.toLocaleString('sl-SI', { useGrouping: 'always' } as Intl.NumberFormatOptions)} kWh elektrike na leto manj. Če ovoj izolirate pozneje, bo črpalka prevelika in bo delala manj učinkovito.` });
+  }
+  if (pv && r.pv) {
+    out.push({ tip: 'pv', besedilo: r.el_ogrevanje > 0
+      ? `Elektrarna proizvede največ poleti, ko hiša ne potrebuje ogrevanja: od decembra do februarja pokrije le okoli ${Math.round(r.pv.pokritost_zima * 100)} % elektrike, ki jo takrat porabite. Toplota, ki je zaradi izolacije ne potrebujete, pozimi prihrani več kot elektrarna.`
+      : `Elektrarna ne zmanjša stroškov ogrevanja na ${ENERGENT_TOZ[v.energent]}, ki so največji strošek neizolirane hiše. Najprej zmanjšajte potrebo po toploti, nato zamenjajte ogrevanje, na koncu dodajte elektrarno.` });
+  }
+  if (bonusNPS(D, v) >= D.spodbude.predlog_NPS_N1.bonus_razred_F_G)
+    out.push({ tip: 'najslabse', besedilo: 'Vaša hiša je verjetno med 43 % energetsko najmanj učinkovitih stavb. Po načelu »energetska učinkovitost na prvem mestu« naj bo prvi korak izolacija ovoja; predlog NPS 2050 za take stavbe predvideva višjo spodbudo (+20 odstotnih točk) in še +10 za celovito prenovo.' });
+  return out;
+}
+
+export interface Korak { ukrep: Ukrep; leto: number }
+
+/** Priporočen vrstni red (leto): ovoj najprej, okna in prezračevanje, nato toplotna črpalka, na koncu elektrarna. */
+export const PRIPOROCEN: Record<Ukrep, number> = { fasada: 0, streha: 0, plosca_podstrehe: 0, okna: 2, prezracevanje: 2, tc: 3, pv: 4 };
+
+/** Prenova po korakih: ukrepi v različnih letih. Kumulativni stroški (naložbe po odbitku spodbude + energija za ogrevanje in elektriko
+ *  gospodinjstva − vrednost elektrike iz elektrarne) za načrt in brez prenove. Spodbuda NPS za načrt po izkazu o prenovi: +10 za vse
+ *  korake, če se konča s celovito prenovo, sicer +5 za korak; vse naenkrat brez dodatka za korak. */
+export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: Obracun = 'brez', let_ = 20) {
+  const B = D.spodbude.predlog_NPS_N1;
+  const vse = koraki.map((k) => k.ukrep);
+  const cel = celovita({ ...v, ukrepi: vse });
+  const pEl = cena(D, 'elektrika', n), gosp = (v.raba_gosp_kwh || D.ukrepi.soncna_elektrarna.raba_gospodinjstva_kwh) * pEl;
+  const naenkrat = new Set(koraki.map((k) => k.leto)).size <= 1;
+  const bonusKorak = cel ? B.bonus_celovita : naenkrat ? 0 : B.bonus_korak_izkaz;
+  const npsDelez = (u: Ukrep) => Math.min(B.najvec, pravilo(D, u, v).delez + bonusNPS(D, v) + bonusKorak);
+  const stanje = (inst: Ukrep[]) => {
+    const r = izracun(D, { ...v, ukrepi: inst }, n);
+    return { r, energija: r.paket.stroski_danes - r.paket.prihranek_eur + gosp - (r.pv ? r.pv.rezimi[obracun].prihranek_eur : 0) };
+  };
+  const s0 = stanje([]);
+  const brez = Array.from({ length: let_ + 1 }, (_, y) => Math.round(y * s0.energija));
+  const dogodki: any[] = [];
+  const serija = { poziv: [0], nps: [0] };
+  let inst: Ukrep[] = [], kp = 0, kn = 0, cur = s0;
+  for (let y = 0; y < let_; y++) {
+    const nova = koraki.filter((k) => k.leto === y).map((k) => k.ukrep);
+    if (nova.length) {
+      inst = [...inst, ...nova];
+      cur = stanje(inst);
+      const pe = primarna(D, { ...v, ukrepi: inst }, cur.r);
+      for (const u of nova) {
+        let c: number, sp = 0, sn = 0, moc: number | undefined, ime: string;
+        if (u === 'pv') { c = cur.r.pv.strosek; ime = `Sončna elektrarna ${cur.r.pv.kw} kW`; }
+        else {
+          const row = cur.r.rezultati.find((x: Rezultat) => x.ukrep === u);
+          c = row.strosek; moc = row.moc_kw; ime = row.ime + (moc ? ` ${moc} kW` : '');
+          sp = n.spodbuda == null ? spodbuda(D, u, c, v) : spodbuda(D, u, c, v, n.spodbuda);
+          sn = spodbuda(D, u, c, v, npsDelez(u));
+        }
+        kp += c - sp; kn += c - sn;
+        dogodki.push({ leto: y, ukrep: u, ime, strosek: c, spodbuda: sp, spodbuda_nps: sn, moc, toplota_m2: cur.r.Q1 / v.povrsina, pe_m2: pe.pe_m2, energija: cur.energija });
+      }
+    }
+    kp += cur.energija; kn += cur.energija;
+    serija.poziv.push(Math.round(kp)); serija.nps.push(Math.round(kn));
+  }
+  const konec = primarna(D, { ...v, ukrepi: inst }, cur.r), zacetek = primarna(D, { ...v, ukrepi: [] }, s0.r);
+  // črpalka, vgrajena pred zadnjim ukrepom na ovoju, je na koncu prevelika
+  const tcK = koraki.find((k) => k.ukrep === 'tc');
+  const zadnjiOvoj = Math.max(-1, ...koraki.filter((k) => OVOJ.includes(k.ukrep)).map((k) => k.leto));
+  const tcKonec = cur.r.rezultati.find((x: Rezultat) => x.ukrep === 'tc'), tcDog = dogodki.find((d) => d.ukrep === 'tc');
+  const prevelika = tcK && tcDog && tcKonec && tcK.leto < zadnjiOvoj && tcDog.moc > tcKonec.moc_kw ? { moc: tcDog.moc as number, moc_konec: tcKonec.moc_kw as number } : null;
+  return {
+    dogodki, serija, brez, skupaj: { poziv: serija.poziv.at(-1)!, nps: serija.nps.at(-1)!, brez: brez.at(-1)! }, celovita: cel, naenkrat, bonus_korak: bonusKorak,
+    spodbuda: { poziv: vsota(dogodki.map((d) => d.spodbuda)), nps: vsota(dogodki.map((d) => d.spodbuda_nps)) },
+    nalozbe: vsota(dogodki.map((d) => d.strosek)), energija_zacetek: s0.energija, energija_konec: cur.energija, zacetek, konec, prevelika,
+  };
+}
+
 
 export const zaokrozi = (x: number) => Math.round(x * 10) / 10;
 
