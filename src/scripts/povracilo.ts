@@ -8,7 +8,8 @@
 // prihranek ni precenjen (dejanska raba je nižja od računske).
 //
 // Sončna elektrarna (samo hiše): mesečna bilanca proizvodnje (PVGIS) in rabe elektrike (gospodinjstvo + ogrevanje po stopinjskih
-// dnevih) za tri načine obračuna – letni in mesečni net metering ter samooskrba brez net meteringa. Prenova po korakih (nacrt):
+// dnevih) za tri načine obračuna – letni net metering (stara shema), nova shema samooskrbe od leta 2024 (mesečni obračun v evrih:
+// sproti porabljena elektrika zmanjša nakup, oddana se proda po odkupni ceni) in hipotetični mesečni net metering. Prenova po korakih (nacrt):
 // kumulativni stroški, ko se ukrepi izvedejo v različnih letih, ocena primarne energije in pogojev za brezemisijsko stavbo (ZEB).
 
 export type Tip = 'hisa' | 'blok';
@@ -16,8 +17,8 @@ export type Obdobje = 'pred_1980' | '1981_2002' | 'po_2002';
 export type Stanje = 'neizoliran' | 'delno' | 'izoliran' | 'celovita';
 export type Energent = 'kurilno_olje' | 'zemeljski_plin' | 'peleti' | 'polena' | 'elektrika' | 'daljinska_toplota';
 export type Ukrep = 'fasada' | 'streha' | 'plosca_podstrehe' | 'okna' | 'prezracevanje' | 'tc' | 'pv';
-export type Obracun = 'letni' | 'mesecni' | 'brez';
-export const OBRACUNI: Obracun[] = ['letni', 'mesecni', 'brez'];
+export type Obracun = 'letni' | 'nova' | 'mesecni';
+export const OBRACUNI: Obracun[] = ['letni', 'nova', 'mesecni'];
 export const OVOJ: Ukrep[] = ['fasada', 'streha', 'plosca_podstrehe', 'okna'];
 export const UKREPI_BLOK: Ukrep[] = ['fasada', 'streha', 'okna', 'prezracevanje'];
 
@@ -242,7 +243,11 @@ export function privzetaMocPV(D: any, el_ogrevanje: number, raba_gosp?: number |
   return Math.min(15, Math.max(3, Math.round(E / vsota(D.ukrepi.soncna_elektrarna.proizvodnja_kwh_kw_mesec))));
 }
 
-/** Sončna elektrarna: mesečna proizvodnja in raba, prihranek in povračilna doba za tri načine obračuna (presežek po odkupni ceni). */
+/** Sončna elektrarna: mesečna proizvodnja in raba, prihranek in povračilna doba za tri načine obračuna.
+ *  Letni net metering: pokrita je letna raba, letni presežek ni plačan. Nova shema: sproti porabljeni delež proizvodnje (brez hranilnika)
+ *  zmanjša nakup in omrežnino za energijo, vsa oddana elektrika se proda po odkupni ceni. Mesečni net metering (hipotetično): pokrita je
+ *  raba v istem mesecu, mesečni presežek po odkupni ceni. Pokrita kWh je vredna kot kupljena elektrika (energija, omrežnina za energijo,
+ *  prispevki, DDV); omrežnina za moč in druge fiksne postavke se ne spremenijo. */
 export function soncna(D: any, v: Vhod, n: Nastavitve, el_ogrevanje: number) {
   const S = D.ukrepi.soncna_elektrarna;
   const kw = v.pv_kw || privzetaMocPV(D, el_ogrevanje, v.raba_gosp_kwh);
@@ -254,26 +259,30 @@ export function soncna(D: any, v: Vhod, n: Nastavitve, el_ogrevanje: number) {
   const Py = vsota(P), Cy = vsota(C);
   const pokrito: Record<Obracun, number> = {
     letni: Math.min(Py, Cy),
+    nova: vsota(P.map((p, m) => Math.min(p * S.delez_sproti, C[m]))),
     mesecni: vsota(P.map((p, m) => Math.min(p, C[m]))),
-    brez: vsota(P.map((p, m) => Math.min(p * S.delez_sproti, C[m]))),
   };
   const strosek = v.stroski?.pv || kw * S.strosek_eur_kw * n.strosek;
   const rezimi = Object.fromEntries(OBRACUNI.map((o) => {
-    const eur = pokrito[o] * pEl + (Py - pokrito[o]) * odk;
-    return [o, { pokrito_kwh: pokrito[o], prodano_kwh: Py - pokrito[o], prihranek_eur: eur, doba: povracilo(strosek, 0, eur) }];
-  })) as Record<Obracun, { pokrito_kwh: number; prodano_kwh: number; prihranek_eur: number; doba: number | null }>;
+    const prodano = o === 'letni' ? 0 : Py - pokrito[o];
+    const eur = pokrito[o] * pEl + prodano * odk;
+    return [o, { pokrito_kwh: pokrito[o], prodano_kwh: prodano, neplacano_kwh: Py - pokrito[o] - prodano, prihranek_eur: eur, doba: povracilo(strosek, 0, eur) }];
+  })) as Record<Obracun, { pokrito_kwh: number; prodano_kwh: number; neplacano_kwh: number; prihranek_eur: number; doba: number | null }>;
   const zima = [11, 0, 1];
   const pokritost_zima = vsota(zima.map((m) => Math.min(P[m], C[m]))) / vsota(zima.map((m) => C[m]));
   return { kw, strosek, zivljenjska_doba: S.zivljenjska_doba as number, proizvodnja: P, raba: C, proizvodnja_kwh: Py, raba_kwh: Cy, rezimi, pokritost_zima, pEl, odkup: odk as number };
 }
 
-/** Ocena skupne primarne energije [kWh/(m²·a)] za ogrevanje, toplo vodo in pomožno elektriko po izbranih ukrepih (r = izracun);
+/** Ocena skupne primarne energije [kWh/(m²·a)] za ogrevanje, toplo vodo in pomožno elektriko po izbranih ukrepih (r = izracun),
+ *  z izgubami razvoda, oddaje in regulacije kot v računski metodi energetske izkaznice;
  *  elektrarna zmanjša elektriko za stavbo v mesecu, ko jo proizvede (mesečna bilanca). Pogoji za brezemisijsko stavbo (ZEB):
  *  pod mejo razreda A, brez fosilnih goriv v stavbi, izoliran ovoj (fasada in streha ali plošča). */
 export function primarna(D: any, v: Vhod, r: any) {
   const M = D.model, A = v.povrsina, fp = M.fp;
   const tc = v.ukrepi.includes('tc');
-  const dhw = M.topla_voda_kwh_m2 * A, aux = M.pomozna_el_kwh_m2 * A, hdd = HDD(D);
+  const fr = M.izkoristek_razvoda_oddaje;
+  const dhw = M.topla_voda_kwh_m2 * A / fr, aux = M.pomozna_el_kwh_m2 * A, hdd = HDD(D);
+  r = { ...r, Qnet: r.Qnet / fr };
   let pe: number, elM: number[];
   if (tc) {
     const s = scop(D, r.stanje_po, v), el = (r.Qnet + dhw) / s;
@@ -326,7 +335,7 @@ export const PRIPOROCEN: Record<Ukrep, number> = { fasada: 0, streha: 0, plosca_
 /** Prenova po korakih: ukrepi v različnih letih. Kumulativni stroški (naložbe po odbitku spodbude + energija za ogrevanje in elektriko
  *  gospodinjstva − vrednost elektrike iz elektrarne) za načrt in brez prenove. Spodbuda NPS za načrt po izkazu o prenovi: +10 za vse
  *  korake, če se konča s celovito prenovo, sicer +5 za korak; vse naenkrat brez dodatka za korak. */
-export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: Obracun = 'brez', let_ = 20) {
+export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: Obracun = 'nova', let_ = 20) {
   const B = D.spodbude.predlog_NPS_N1;
   const vse = koraki.map((k) => k.ukrep);
   const cel = celovita({ ...v, ukrepi: vse });
@@ -410,4 +419,32 @@ export function dveHisi(D: any, S: any) {
     return { id: sc.id, ime: sc.ime, serija, dogodki, moc, nalozbe, spodbude, elektrika_kwh: Math.round(el), skupaj: Math.round(kum) };
   });
   return { brez, scenariji: scen };
+}
+
+/** Razred po primarni energiji (meje A|B … F|G za izbrano vrsto stavbe). */
+export const razred = (pe: number, meje: number[]) => 'ABCDEFG'[meje.filter((b) => pe > b).length];
+
+/** Vrstni red, pri katerem se najprej vgradijo obnovljivi viri (za primerjavo s priporočenim). */
+export const OVE_PRVO: Record<Ukrep, number> = { tc: 0, pv: 1, okna: 3, prezracevanje: 3, fasada: 5, streha: 5, plosca_podstrehe: 5 };
+const URE: Ukrep[] = ['fasada', 'streha', 'plosca_podstrehe', 'okna', 'prezracevanje'];
+
+/** Izpis prenove: različice iz izbranih ukrepov – vse delne prenove (podmnožice; pri več kot štirih ukrepih je ovoj ena enota),
+ *  vsi ukrepi naenkrat, po korakih najprej URE (PRIPOROCEN) in po korakih najprej OVE (OVE_PRVO). */
+export function variante(D: any, v: Vhod, n: Nastavitve, obracun: Obracun = 'nova', let_ = 20) {
+  const sel = v.ukrepi.filter((u) => u !== 'pv' || !blok(v));
+  const ovoj = sel.filter((u) => OVOJ.includes(u));
+  const enote: Ukrep[][] = sel.length > 4 && ovoj.length > 1 ? [ovoj, ...sel.filter((u) => !OVOJ.includes(u)).map((u) => [u])] : sel.map((u) => [u]);
+  const vh = { ...v, ukrepi: [] as Ukrep[] };
+  const run = (uk: Ukrep[], leta: (u: Ukrep) => number) => nacrt(D, vh, n, uk.map((u) => ({ ukrep: u, leto: leta(u) })), obracun, let_);
+  const out: { skupina: 'delna' | 'naenkrat' | 'ure' | 'ove'; ukrepi: Ukrep[]; N: ReturnType<typeof nacrt> }[] = [];
+  const m = enote.length;
+  const podm: Ukrep[][] = [];
+  for (let mask = 1; mask < (1 << m) - 1; mask++) podm.push(enote.filter((_, i) => mask & (1 << i)).flat());
+  podm.sort((a, b) => a.length - b.length);
+  for (const uk of podm) out.push({ skupina: 'delna', ukrepi: uk, N: run(uk, () => 0) });
+  if (sel.length) out.push({ skupina: 'naenkrat', ukrepi: sel, N: run(sel, () => 0) });
+  const imaUre = sel.some((u) => URE.includes(u)), imaOve = sel.some((u) => !URE.includes(u));
+  if (sel.length > 1 && new Set(sel.map((u) => PRIPOROCEN[u])).size > 1) out.push({ skupina: 'ure', ukrepi: sel, N: run(sel, (u) => PRIPOROCEN[u]) });
+  if (imaUre && imaOve) out.push({ skupina: 'ove', ukrepi: sel, N: run(sel, (u) => OVE_PRVO[u]) });
+  return out;
 }

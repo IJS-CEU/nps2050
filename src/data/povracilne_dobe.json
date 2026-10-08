@@ -81,7 +81,9 @@
    0.13,
    0.182
   ],
-  "vir_hdd": "Eurostat nrg_chddr2_m, Slovenija, stopinjski dnevi ogrevanja 2015–2024, delež po mesecih"
+  "vir_hdd": "Eurostat nrg_chddr2_m, Slovenija, stopinjski dnevi ogrevanja 2015–2024, delež po mesecih",
+  "izkoristek_razvoda_oddaje": 0.8,
+  "opomba_razvod": "izgube razvoda, oddaje in regulacije pri oceni primarne energije in razreda (kot računska metoda energetske izkaznice); stroški energije temeljijo na tabeli Qh,nd brez teh izgub (umerjeno na dejansko rabo)"
  },
  "ukrepi": {
   "fasada": {
@@ -196,8 +198,8 @@
     1.15
    ],
    "delez_sproti": 0.3,
-   "odkupna_cena_eur_kwh": 0.06,
-   "opomba_obracun": "letni net metering: elektrarne, priključene do konca leta 2023 (samooskrba po uredbi iz leta 2019, prehodno obdobje do 2038); mesečni net metering: različica za razpravo; brez net meteringa: nove elektrarne od leta 2024 – sproti porabljena elektrika (privzeto 30 % proizvodnje brez hranilnika), presežek prodan po odkupni ceni. Vrednost pokrite kWh = cena elektrike za gospodinjstva; vpliv obračuna omrežnine po moči ni upoštevan."
+   "odkupna_cena_eur_kwh": 0.0,
+   "opomba_obracun": "letni net metering (stara shema): elektrarne, priključene do konca leta 2023 – poračun letne razlike med prevzeto in oddano elektriko, omrežnina za energijo le za pozitivno razliko, letni presežek ni plačan; nova shema samooskrbe (od leta 2024): mesečni obračun v evrih – prevzeto elektriko kupite po polni ceni (z omrežnino za energijo), oddano prodate po pogodbi z dobaviteljem (odkupne cene v ponudbah okoli 0–3 c/kWh, privzeto 0), zato šteje predvsem sproti porabljena elektrika (privzeto 30 % proizvodnje brez hranilnika); mesečni net metering: hipotetična različica za razpravo. Omrežnina za moč in druge fiksne postavke se ne spremenijo."
   }
  },
  "spodbude": {

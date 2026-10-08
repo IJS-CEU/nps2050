@@ -72,10 +72,11 @@ test('stanovanje v bloku do 1980, daljinsko: fasada in okna okoli 27 let brez sp
   assert.ok(r.paket.doba[2] < r.paket.doba[1]);
 });
 
-test('sončna elektrarna: letni net metering ≥ mesečni ≥ brez net meteringa; pozimi pokrije manj kot tretjino elektrike s črpalko', async () => {
+test('sončna elektrarna: letni net metering ≥ mesečni > nova shema (odkup 0); pozimi pokrije manj kot tretjino elektrike s črpalko', async () => {
   const r = izracun(D, { ...base, ukrepi: ['tc', 'pv'] });
   const z = r.pv.rezimi;
-  assert.ok(z.letni.prihranek_eur >= z.mesecni.prihranek_eur && z.mesecni.prihranek_eur > z.brez.prihranek_eur, `${z.letni.prihranek_eur} ≥ ${z.mesecni.prihranek_eur} > ${z.brez.prihranek_eur}`);
+  assert.ok(z.letni.prihranek_eur >= z.mesecni.prihranek_eur && z.mesecni.prihranek_eur > z.nova.prihranek_eur, `${z.letni.prihranek_eur} ≥ ${z.mesecni.prihranek_eur} > ${z.nova.prihranek_eur}`);
+  assert.equal(z.letni.prodano_kwh, 0, 'letni presežek ni plačan');
   assert.ok(Math.abs(r.pv.proizvodnja_kwh / r.pv.kw - 1167) < 2, 'PVGIS 1.167 kWh/kW');
   assert.ok(r.pv.pokritost_zima < 0.35, `zima ${r.pv.pokritost_zima}`);
 });
@@ -98,4 +99,15 @@ test('prenova po korakih: celovita prenova z elektrarno doseže ZEB, brez elektr
   const c = nacrt(D, { ...base, ukrepi: [] }, PRIVZETO, [{ ukrep: 'tc', leto: 0 }, { ukrep: 'fasada', leto: 5 }]);
   assert.ok(c.prevelika && c.prevelika.moc > c.prevelika.moc_konec);
   assert.equal(c.bonus_korak, D.spodbude.predlog_NPS_N1.bonus_korak_izkaz);
+});
+
+test('izpis prenove: delne prenove, naenkrat, najprej URE in najprej OVE; najprej OVE je dražje', async () => {
+  const { variante, razred, PRIVZETO } = await import('../src/scripts/povracilo.ts');
+  const V = variante(D, { ...base, ukrepi: ['fasada', 'tc', 'pv'] }, PRIVZETO);
+  assert.deepEqual(V.map((x) => x.skupina), ['delna', 'delna', 'delna', 'delna', 'delna', 'delna', 'naenkrat', 'ure', 'ove']);
+  const ure = V.find((x) => x.skupina === 'ure').N, ove = V.find((x) => x.skupina === 'ove').N;
+  assert.ok(ove.skupaj.poziv > ure.skupaj.poziv && ove.prevelika, `${ove.skupaj.poziv} > ${ure.skupaj.poziv}`);
+  const M = [75, 166, 257, 347, 438, 529];
+  assert.equal(razred(60, M), 'A'); assert.equal(razred(300, M), 'D'); assert.equal(razred(600, M), 'G');
+  assert.equal(variante(D, { ...base, ukrepi: ['fasada', 'plosca_podstrehe', 'okna', 'prezracevanje', 'tc', 'pv'] }, PRIVZETO).filter((x) => x.skupina === 'delna').length, 14, 'ovoj kot ena enota');
 });

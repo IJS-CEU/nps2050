@@ -22,9 +22,12 @@ const UKREPI = [
   ['pv', 'Sončna elektrarna', `okoli ${nf(U.soncna_elektrarna.strosek_eur_kw)} €/kW, spodbude ni`, '', ''],
 ] as const;
 const PV = U.soncna_elektrarna;
+const FOND = loadData<StavbniFond>('stavbni_fond');
+const MEJE = ((c) => ['A|B', 'B|C', 'C|D', 'D|E', 'E|F', 'F|G'].map((k) => c.class_bounds[k]))(FOND.categories.find((c: any) => c.id === 'HISA') as any);
 const SEZ = 20;
+import { loadData, type StavbniFond } from '../lib/data';
 ---
-<section class="sms" id="se-mi-splaca-kalkulator" aria-labelledby="sms-h">
+<section class="sms" id="se-mi-splaca-kalkulator" aria-labelledby="sms-h" data-meje={JSON.stringify(MEJE)}>
   <h3 id="sms-h" class="visually-hidden">Kalkulator povračilnih dob</h3>
   <form class="sms-form" novalidate>
     <fieldset class="sms-step">
@@ -89,11 +92,18 @@ const SEZ = 20;
       <p class="sms-help">Celovite prenove ni treba narediti naenkrat. Izberite, v katerem letu izvedete posamezen ukrep, in primerjajte stroške v {SEZ} letih z izvedbo vsega naenkrat in s hišo brez prenove. Po predlogu NPS 2050 bi koraki po izkazu o prenovi dobili +5 odstotnih točk spodbude, če se načrt konča s celovito prenovo, pa vsi koraki +10 kot celovita prenova.</p>
       <div class="sms-nbtn"><button type="button" class="btn" id="sms-npri">Priporočen vrstni red</button><button type="button" class="btn" id="sms-nvse">Vse naenkrat</button>
         <label class="sms-nsel">Spodbuda v grafu <select id="sms-nsp"><option value="poziv">po pozivu 2026</option><option value="nps">po predlogu NPS 2050</option></select></label>
-        <label class="sms-nsel" id="sms-nob-l">Obračun elektrarne <select id="sms-nob"><option value="brez">brez net meteringa (nove elektrarne)</option><option value="mesecni">mesečni net metering</option><option value="letni">letni net metering</option></select></label>
+        <label class="sms-nsel" id="sms-nob-l">Obračun elektrarne <select id="sms-nob"><option value="nova">nova shema samooskrbe (od 2024)</option><option value="letni">letni net metering (do 2023)</option><option value="mesecni">mesečni net metering (hipotetično)</option></select></label>
       </div>
       <ol id="sms-nkor" class="sms-nkor"></ol>
       <div id="sms-nout" aria-live="polite"></div>
     </details>
+
+    <fieldset class="sms-step sms-izpis" id="sms-izpis" data-hisa>
+      <legend><span class="sms-n">5</span> Izpis prenove: primerjava različic</legend>
+      <p class="sms-help">Iz izbranih ukrepov kalkulator sestavi vse delne prenove, izvedbo vseh ukrepov naenkrat in postopno prenovo v dveh vrstnih redih – najprej ukrepi za učinkovito rabo energije (URE) ali najprej obnovljivi viri (OVE) – in jih primerja v {SEZ} letih.</p>
+      <div id="sms-iout" aria-live="polite"></div>
+      <div class="sms-btns"><button type="button" class="btn" id="sms-itisk">Natisni ali shrani izpis</button></div>
+    </fieldset>
 
     <details class="sms-step sms-kajce">
       <summary>Kaj če? Spremenite cene energije, strošek naložbe ali delež spodbude</summary>
@@ -119,7 +129,7 @@ const SEZ = 20;
       </div>
     </details>
   </form>
-  <p class="note">Ocena za orientacijo, ne nadomešča energetskega pregleda. Spodbude po javnih pozivih 126SUB-OB26 in 124SUB-OBPO25 (skupni deli večstanovanjskih stavb) veljajo do porabe sredstev; stopnjevane spodbude so predlog iz osnutka NPS 2050 in še niso sprejete. Stroški so mediane priznanih stroškov Eko sklada 2023–2025, ki so za 20 do 40 % nižje od polnih tržnih cen (fasada okoli {nf(U.fasada.strosek_trzni_eur_m2)} €/m², toplotna črpalka z vgradnjo okoli {nf(U.tc_zrak_voda.strosek_trzni_eur)} €); vnesete lahko svojo ponudbo. Za stanovanja v blokih je cena daljinske toplote {nf(D.bloki.cene_energentov_eur_kwh.daljinska_toplota, 3)} €/kWh s prispevki in DDV (Agencija za energijo 2025). Cene energentov (€/kWh): elektrika {nf(C.elektrika, 3)}, plin {nf(C.zemeljski_plin, 3)}, kurilno olje {nf(C.kurilno_olje, 2)}, peleti {nf(C.peleti, 2)}, polena {nf(C.polena, 3)}, daljinska toplota {nf(C.daljinska_toplota, 2)} ({C.vir}). Povračilna doba je nediskontirana: strošek, zmanjšan za spodbudo, deljen z letnim prihrankom. Sončna elektrarna: proizvodnja {nf(PV.proizvodnja_kwh_kw_mesec.reduce((a: number, b: number) => a + b, 0))} kWh na kW na leto po mesecih ({PV.vir_proizvodnje}), raba elektrike gospodinjstva privzeto {nf(PV.raba_gospodinjstva_kwh)} kWh na leto, elektrika za ogrevanje po mesecih po stopinjskih dnevih (Eurostat 2015–2024). Pokrita kWh je vredna toliko kot kupljena elektrika, presežek se proda po odkupni ceni. Letni net metering velja za elektrarne, priključene do konca leta 2023; mesečni net metering je različica za razpravo; brez net meteringa (nove elektrarne od leta 2024) se sproti porabi okoli {nf(PV.delez_sproti * 100)} % proizvodnje (brez hranilnika). Obračun omrežnine po moči ni upoštevan. Prenova po korakih: primarna energija je ocena skupne primarne energije za ogrevanje, toplo vodo in pomožno elektriko (z energijo okolice pri toplotni črpalki), elektrarna jo zmanjša za elektriko, ki jo stavba v istem mesecu porabi; meja za brezemisijsko stavbo je meja razreda A ({nf(D.model.zeb_meja_pe_kwh_m2)} kWh/(m²·a)).</p>
+  <p class="note">Ocena za orientacijo, ne nadomešča energetskega pregleda. Spodbude po javnih pozivih 126SUB-OB26 in 124SUB-OBPO25 (skupni deli večstanovanjskih stavb) veljajo do porabe sredstev; stopnjevane spodbude so predlog iz osnutka NPS 2050 in še niso sprejete. Stroški so mediane priznanih stroškov Eko sklada 2023–2025, ki so za 20 do 40 % nižje od polnih tržnih cen (fasada okoli {nf(U.fasada.strosek_trzni_eur_m2)} €/m², toplotna črpalka z vgradnjo okoli {nf(U.tc_zrak_voda.strosek_trzni_eur)} €); vnesete lahko svojo ponudbo. Za stanovanja v blokih je cena daljinske toplote {nf(D.bloki.cene_energentov_eur_kwh.daljinska_toplota, 3)} €/kWh s prispevki in DDV (Agencija za energijo 2025). Cene energentov (€/kWh): elektrika {nf(C.elektrika, 3)}, plin {nf(C.zemeljski_plin, 3)}, kurilno olje {nf(C.kurilno_olje, 2)}, peleti {nf(C.peleti, 2)}, polena {nf(C.polena, 3)}, daljinska toplota {nf(C.daljinska_toplota, 2)} ({C.vir}). Povračilna doba je nediskontirana: strošek, zmanjšan za spodbudo, deljen z letnim prihrankom. Sončna elektrarna: proizvodnja {nf(PV.proizvodnja_kwh_kw_mesec.reduce((a: number, b: number) => a + b, 0))} kWh na kW na leto po mesecih ({PV.vir_proizvodnje}), raba elektrike gospodinjstva privzeto {nf(PV.raba_gospodinjstva_kwh)} kWh na leto, elektrika za ogrevanje po mesecih po stopinjskih dnevih (Eurostat 2015–2024). Pokrita kWh je vredna toliko kot kupljena elektrika (energija, omrežnina za energijo, prispevki in DDV); omrežnina za moč in druge fiksne postavke se ne spremenijo. Letni net metering (stara shema, elektrarne, priključene do konca leta 2023): poračuna se letna razlika med prevzeto in oddano elektriko, letni presežek ni plačan. Nova shema samooskrbe (od leta 2024): mesečni obračun v evrih – prevzeto elektriko kupite, oddano prodate po pogodbi z dobaviteljem (odkupne cene v ponudbah so okoli 0–3 c/kWh, privzeto 0), zato šteje predvsem elektrika, porabljena sproti (privzeto {nf(PV.delez_sproti * 100)} % proizvodnje brez hranilnika). Mesečni net metering je hipotetična različica za razpravo. Prenova po korakih: primarna energija je ocena skupne primarne energije za ogrevanje, toplo vodo in pomožno elektriko (z energijo okolice pri toplotni črpalki), elektrarna jo zmanjša za elektriko, ki jo stavba v istem mesecu porabi; meja za brezemisijsko stavbo je meja razreda A ({nf(D.model.zeb_meja_pe_kwh_m2)} kWh/(m²·a)); razred je ocena po mejah za enostanovanjske hiše, ne razred na energetski izkaznici.</p>
 </section>
 
 <style>
@@ -161,6 +171,12 @@ const SEZ = 20;
   .sms-pvres:not([hidden]) { border-top: 1px solid var(--line); padding: .8rem 0 0; margin-top: .3rem; }
   :global(.sms-pvres h4) { margin: 0 0 .2rem; font-size: .95rem; }
   :global(.sms-tw) { overflow-x: auto; }
+  :global(.sms-itab tr.grp th) { background: var(--greenbg); font-weight: 700; padding-top: .45rem; }
+  :global(.sms-itab tr.naj td) { background: color-mix(in srgb, var(--greenbg) 55%, transparent); }
+  :global(.sms-itab td), :global(.sms-itab th) { vertical-align: top; }
+  :global(.sms-izpis h4) { margin: 1rem 0 .3rem; font-size: 1rem; }
+  :global(.sms-ug) { margin: 0 0 .5rem; padding-left: 1.2rem; font-size: .92rem; display: grid; gap: .35rem; }
+  :global(.sms-izpis .sms-meta) { font-size: .85rem; color: var(--ink2); }
   :global(.sms-pvres .sms-meta) { font-size: .82rem; color: var(--ink2); margin: 0 0 .4rem; }
   :global(.sms-pvres .sms-leg) { list-style: none; padding: 0; margin: .2rem 0 .4rem; display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .82rem; color: var(--ink2); }
   :global(.sms-pvres .sms-leg li) { display: inline-flex; align-items: center; gap: .4rem; margin: 0; }
@@ -225,7 +241,7 @@ const SEZ = 20;
 
 <script>
   import D from '../data/povracilne_dobe.json';
-  import { izracun, strosekUkrepa, mocTC, potrebnaToplota, privzetaMocPV, opozorila, nacrt, PRIPOROCEN, PRIVZETO, type Vhod, type Nastavitve, type Ukrep, type Rezultat, type Obracun } from '../scripts/povracilo';
+  import { izracun, strosekUkrepa, mocTC, potrebnaToplota, privzetaMocPV, opozorila, nacrt, variante, razred as razredPE, PRIPOROCEN, PRIVZETO, type Vhod, type Nastavitve, type Ukrep, type Rezultat, type Obracun } from '../scripts/povracilo';
 
   const root = document.getElementById('se-mi-splaca-kalkulator') as HTMLElement;
   if (root) {
@@ -308,9 +324,10 @@ const SEZ = 20;
     });
 
     // sončna elektrarna: trije načini obračuna in mesečna bilanca
-    const OB: Obracun[] = ['letni', 'mesecni', 'brez'];
-    const OBI: Record<Obracun, string> = { letni: 'letni net metering', mesecni: 'mesečni net metering', brez: 'brez net meteringa' };
-    const OBO: Record<Obracun, string> = { letni: 'elektrarne, priključene do konca 2023', mesecni: 'različica za razpravo', brez: 'nove elektrarne od 2024' };
+    const OB: Obracun[] = ['letni', 'nova', 'mesecni'];
+    const OBI: Record<Obracun, string> = { letni: 'letni net metering', nova: 'nova shema samooskrbe', mesecni: 'mesečni net metering' };
+    const OBO: Record<Obracun, string> = { letni: 'stara shema, elektrarne do konca 2023', nova: 'od 2024: mesečni obračun v evrih', mesecni: 'hipotetično, za razpravo' };
+    const MEJE: number[] = JSON.parse(root.dataset.meje || '[]');
     const MES = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'avg', 'sep', 'okt', 'nov', 'dec'];
     const kwh = (x: number) => `${nf(Math.round(x / 10) * 10)} kWh`;
     function izrisiPV(r: any) {
@@ -335,10 +352,75 @@ const SEZ = 20;
         <p class="sms-meta">strošek ${eur(P.strosek)} · proizvodnja okoli ${kwh(P.proizvodnja_kwh)} na leto · raba elektrike okoli ${kwh(P.raba_kwh)} na leto${r.el_ogrevanje > 0 ? `, od tega za ogrevanje ${kwh(r.el_ogrevanje)}` : ''} · življenjska doba ${P.zivljenjska_doba} let</p>
         <ul class="sms-leg" aria-hidden="true"><li><i class="m" style="background:#E0A100;border-radius:2px"></i>proizvodnja</li><li><i class="m" style="background:var(--ink2);opacity:.45;border-radius:2px"></i>raba gospodinjstva</li>${r.el_ogrevanje > 0 ? '<li><i class="m" style="background:#B7791F;border-radius:2px"></i>raba za ogrevanje</li>' : ''}</ul>
         ${svg}
-        <div class="sms-tw"><table><thead><tr><th scope="col">Način obračuna</th><th scope="col" class="num">Pokrita lastna raba</th><th scope="col" class="num">Prodani presežek</th><th scope="col" class="num">Prihranek na leto</th><th scope="col" class="num">Povračilna doba</th></tr></thead>
-        <tbody>${OB.map((o) => { const x = P.rezimi[o]; return `<tr><th scope="row">${OBI[o]}<br><small class="sms-hint">${OBO[o]}</small></th><td class="num">${kwh(x.pokrito_kwh)}</td><td class="num">${kwh(x.prodano_kwh)}</td><td class="num">${nf(Math.round(x.prihranek_eur / 10) * 10)} €</td><td class="num"><b>${let_(x.doba)}</b></td></tr>`; }).join('')}</tbody></table></div>
-        <p class="note">Pozimi, ko toplotna črpalka porabi največ, elektrarna proizvede najmanj. Pri letnem net meteringu se poletni presežek prenese v zimo, pri mesečnem le znotraj meseca, brez net meteringa pa se presežek proda po ${nf(Math.round(P.odkup * 100))} c/kWh, kupljena elektrika pa stane ${nf(P.pEl, 3)} €/kWh. Elektrarna ni vključena v paket ogrevanja spodaj.</p>`;
+        <div class="sms-tw"><table><thead><tr><th scope="col">Način obračuna</th><th scope="col" class="num">Pokrita lastna raba</th><th scope="col" class="num">Oddano v omrežje</th><th scope="col" class="num">Prihranek na leto</th><th scope="col" class="num">Povračilna doba</th></tr></thead>
+        <tbody>${OB.map((o) => { const x = P.rezimi[o]; return `<tr><th scope="row">${OBI[o]}<br><small class="sms-hint">${OBO[o]}</small></th><td class="num">${kwh(x.pokrito_kwh)}</td><td class="num">${kwh(x.prodano_kwh + x.neplacano_kwh)}${x.neplacano_kwh > 1 ? '<br><small class="sms-hint">ni plačano</small>' : x.prodano_kwh > 1 ? `<br><small class="sms-hint">po ${nf(Math.round(P.odkup * 100))} c/kWh</small>` : ''}</td><td class="num">${nf(Math.round(x.prihranek_eur / 10) * 10)} €</td><td class="num"><b>${let_(x.doba)}</b></td></tr>`; }).join('')}</tbody></table></div>
+        <p class="note">Pozimi, ko toplotna črpalka porabi največ, elektrarna proizvede najmanj. Pri letnem net meteringu poletni višek pokrije zimski odjem istega leta. Pri novi shemi se vsa oddana elektrika proda po ${nf(Math.round(P.odkup * 100))} c/kWh, prevzeta pa stane ${nf(P.pEl, 3)} €/kWh z omrežnino za energijo, zato šteje predvsem elektrika, ki jo porabite sproti (pomagata hranilnik in raba ob soncu, na primer polnjenje avta ali gretje sanitarne vode). Elektrarna ni vključena v paket ogrevanja spodaj.</p>`;
     }
+
+    // izpis prenove: primerjava različic iz izbranih ukrepov
+    const KRATKO: Record<string, string> = { fasada: 'fasada', streha: 'streha', plosca_podstrehe: 'strop proti podstrešju', okna: 'okna', prezracevanje: 'prezračevanje', tc: 'toplotna črpalka', pv: 'sončna elektrarna' };
+    const SKUP: Record<string, string> = { delna: 'Delne prenove', naenkrat: 'Vsi izbrani ukrepi naenkrat', ure: 'Po korakih: najprej URE', ove: 'Po korakih: najprej OVE' };
+    const seznam = (uk: string[]) => uk.map((u) => KRATKO[u]).join(' + ');
+    let izpisHtml = '', izpisVhod = '';
+    function izrisiIzpis(v: Vhod, n: Nastavitve) {
+      const o = $('sms-iout');
+      if (v.tip === 'blok') { o.replaceChildren(); izpisHtml = ''; return; }
+      if (v.ukrepi.length < 2) { o.innerHTML = '<p class="sms-help">Izberite vsaj dva ukrepa za primerjavo.</p>'; izpisHtml = ''; return; }
+      const ob = $<HTMLSelectElement>('sms-nob').value as Obracun;
+      const V = variante(D, v, n, ob);
+      const N0 = V[0].N, Y = N0.brez.length - 1;
+      const prih = (x: typeof N0) => x.energija_zacetek - x.energija_konec;
+      const doba = (x: typeof N0) => let_(prih(x) > 0 ? (x.nalozbe - x.spodbuda.poziv) / prih(x) : null);
+      const tcMoc = (x: typeof N0) => x.dogodki.find((d: any) => d.ukrep === 'tc')?.moc as number | undefined;
+      const naj = Math.min(...V.map((x) => x.N.skupaj.poziv));
+      const vrsta = (x: (typeof V)[number]) => {
+        const N = x.N, m = tcMoc(N);
+        return `<tr${N.skupaj.poziv === naj ? ' class="naj"' : ''}><td>${x.skupina === 'delna' ? seznam(x.ukrepi) : SKUP[x.skupina]}${N.celovita && x.skupina !== 'delna' ? ' <small class="sms-hint">celovita prenova</small>' : ''}${m ? ` <small class="sms-hint">(črpalka ${m} kW${N.prevelika ? `, na koncu bi zadostovala ${N.prevelika.moc_konec} kW` : ''})</small>` : ''}</td>
+          <td class="num">${eur(N.nalozbe)}</td><td class="num">${eur(N.spodbuda.poziv)} / ${eur(N.spodbuda.nps)}</td><td class="num">${eur(N.energija_konec)}</td>
+          <td class="num">${x.skupina === 'ure' || x.skupina === 'ove' ? '–' : doba(N)}</td><td class="num"><b>${eur(N.skupaj.poziv)}</b></td>
+          <td class="num">${nf(Math.round(N.konec.pe_m2))}</td><td class="num"><b>${razredPE(N.konec.pe_m2, MEJE)}</b></td><td>${N.konec.zeb ? 'da' : 'ne'}</td></tr>`;
+      };
+      const skupine = ['delna', 'naenkrat', 'ure', 'ove'].filter((g) => V.some((x) => x.skupina === g));
+      const tabela = `<div class="sms-tw"><table class="sms-itab"><caption class="visually-hidden">Primerjava različic prenove</caption>
+        <thead><tr><th scope="col">Različica</th><th scope="col" class="num">Naložba</th><th scope="col" class="num">Spodbuda (poziv / NPS)</th><th scope="col" class="num">Energija na leto</th><th scope="col" class="num">Povračilna doba</th><th scope="col" class="num">Stroški v ${Y} letih</th><th scope="col" class="num">Primarna energija</th><th scope="col" class="num">Razred</th><th scope="col">ZEB</th></tr></thead>
+        <tbody><tr><td>Brez prenove</td><td class="num">–</td><td class="num">–</td><td class="num">${eur(N0.energija_zacetek)}</td><td class="num">–</td><td class="num"><b>${eur(N0.brez.at(-1)!)}</b></td><td class="num">${nf(Math.round(N0.zacetek.pe_m2))}</td><td class="num"><b>${razredPE(N0.zacetek.pe_m2, MEJE)}</b></td><td>ne</td></tr>
+        ${skupine.map((g) => `<tr class="grp"><th colspan="9" scope="rowgroup">${SKUP[g]}</th></tr>${V.filter((x) => x.skupina === g).map(vrsta).join('')}`).join('')}</tbody></table></div>`;
+
+      // ugotovitve iz rezultatov: zakaj najprej URE
+      const ug: string[] = [];
+      const najdi = (f: (u: string) => boolean) => V.find((x) => x.skupina === 'delna' && x.ukrepi.every(f) && v.ukrepi.filter(f).length === x.ukrepi.length);
+      const jeUre = (u: string) => !['tc', 'pv'].includes(u);
+      const samoOve = najdi((u) => !jeUre(u)), samoUre = najdi(jeUre);
+      if (samoOve && samoUre) {
+        const a = samoOve.N, b = samoUre.N;
+        ug.push(`Samo obnovljivi viri (${seznam(samoOve.ukrepi)}) zmanjšajo stroške energije za okoli ${eur(prih(a))} na leto, hiša pa ostane v razredu ${razredPE(a.konec.pe_m2, MEJE)}. Samo ukrepi na ovoju (${seznam(samoUre.ukrepi)}) zmanjšajo potrebno toploto z ${nf(Math.round(potrebnaToplota(D, v) / v.povrsina))} na ${nf(Math.round(b.dogodki.at(-1).toplota_m2))} kWh/m² in stroške za okoli ${eur(prih(b))} na leto – ta prihranek ostane ne glede na ceno energije in ogrevalni sistem.`);
+      }
+      const tcSam = V.find((x) => x.skupina === 'delna' && x.ukrepi.length === 1 && x.ukrepi[0] === 'tc'), vse = V.find((x) => x.skupina === 'naenkrat');
+      if (tcSam && vse && tcMoc(tcSam.N) && tcMoc(vse.N) && tcMoc(tcSam.N)! > tcMoc(vse.N)!)
+        ug.push(`Toplotna črpalka za neprenovljeno hišo potrebuje ${tcMoc(tcSam.N)} kW, po izolaciji pa ${tcMoc(vse.N)} kW.`);
+      const ure = V.find((x) => x.skupina === 'ure'), ove = V.find((x) => x.skupina === 'ove');
+      if (ure && ove) ug.push(`Če najprej vgradite obnovljive vire in šele nato izolirate, stane prenova v ${Y} letih okoli ${eur(ove.N.skupaj.poziv - ure.N.skupaj.poziv)} ${ove.N.skupaj.poziv >= ure.N.skupaj.poziv ? 'več' : 'manj'} kot po vrstnem redu najprej URE${ove.N.prevelika ? `, toplotna črpalka pa ostane prevelika (${ove.N.prevelika.moc} kW namesto ${ove.N.prevelika.moc_konec} kW) in dela z nižjim izkoristkom` : ''}.`);
+      const nx = V.find((x) => x.N.skupaj.poziv === naj)!;
+      ug.push(`Najnižji stroški v ${Y} letih: ${nx.skupina === 'delna' ? seznam(nx.ukrepi) : SKUP[nx.skupina].toLowerCase()} (${eur(naj)}, brez prenove ${eur(N0.brez.at(-1)!)}).${V.some((x) => x.N.konec.zeb) ? ` Brezemisijska raven (ZEB) je dosežena pri: ${V.filter((x) => x.N.konec.zeb).map((x) => x.skupina === 'delna' ? seznam(x.ukrepi) : SKUP[x.skupina].toLowerCase()).join('; ')}.` : ' Nobena različica ne doseže brezemisijske ravni (ZEB); praviloma so potrebni izoliran ovoj, toplotna črpalka in sončna elektrarna.'}`);
+
+      izpisVhod = `Hiša ${v.povrsina} m², ${$<HTMLSelectElement>('sms-ob').selectedOptions[0].text}, izolacija: ${$<HTMLSelectElement>('sms-st').selectedOptions[0].text}, ogrevanje: ${$<HTMLSelectElement>('sms-en').selectedOptions[0].text}; izbrani ukrepi: ${seznam(v.ukrepi)}${v.ukrepi.includes('pv') ? `; elektrarna: ${OBI[ob]}` : ''}.`;
+      izpisHtml = `${tabela}
+        <h4>Najprej učinkovita raba energije, nato obnovljivi viri</h4>
+        <ul class="sms-ug">${ug.map((x) => `<li>${x}</li>`).join('')}</ul>
+        <p class="note">Naložba po privzetih ali vaših cenah; spodbuda po pozivu 2026 / po predlogu NPS 2050 (pri postopni prenovi z dodatkom za korak po izkazu o prenovi). Energija na leto: ogrevanje in elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` po odbitku vrednosti elektrike iz elektrarne (${OBI[ob]})` : ''}. Stroški v ${Y} letih: naložbe po odbitku spodbude po pozivu 2026 in energija, brez diskontiranja. Po korakih – najprej URE: ovoj takoj, okna in prezračevanje po 2 letih, toplotna črpalka po 3, elektrarna po 4 letih; najprej OVE: toplotna črpalka takoj, elektrarna po 1 letu, okna in prezračevanje po 3, ovoj po 5 letih. Primarna energija v kWh/(m²·a) in razred sta poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko po mejah za enostanovanjske hiše, ne razred na energetski izkaznici; ZEB: pod mejo razreda A, brez fosilnih goriv, izoliran ovoj.</p>`;
+      o.innerHTML = `<p class="sms-meta">${izpisVhod}</p>${izpisHtml}`;
+    }
+    $('sms-itisk').addEventListener('click', () => {
+      const w = window.open('', '_blank');
+      if (!w) return;
+      w.document.write(`<!doctype html><html lang="sl"><head><meta charset="utf-8"><title>Izpis prenove – Se mi splača?</title><style>
+        body{font:13px/1.45 system-ui,sans-serif;color:#1B2622;margin:24px;} h1{font-size:20px;margin:0 0 4px} h4{font-size:15px;margin:18px 0 6px}
+        table{border-collapse:collapse;width:100%;font-size:12px} th,td{border-bottom:1px solid #ccc;padding:4px 6px;text-align:left;vertical-align:top} .num{text-align:right}
+        tr.grp th{background:#eef3ef;font-weight:700} tr.naj td{background:#f4f9f5} small{color:#555} .note{color:#555;font-size:11px} .visually-hidden{display:none}</style></head><body>
+        <h1>Izpis prenove – Se mi splača?</h1><p>${izpisVhod}</p>${izpisHtml}
+        <p class="note">Ocena za orientacijo, ne nadomešča energetskega pregleda. Strokovne podlage NPS 2050, IJS CEU, ${new Date().toLocaleDateString('sl-SI')}. ${location.href.split('#')[0]}</p></body></html>`);
+      w.document.close(); w.focus(); w.print();
+    });
 
     // prenova po korakih
     const leta: Record<string, number> = { ...PRIPOROCEN };
@@ -377,10 +459,10 @@ const SEZ = 20;
         <p class="sms-zeb ${N.konec.zeb ? 'da' : 'ne'}">${N.konec.zeb
           ? `<b>Na koncu načrta je hiša brezemisijska (ZEB):</b> ocena primarne energije okoli ${nf(Math.round(N.konec.pe_m2))} kWh/(m²·a) (danes ${nf(Math.round(N.zacetek.pe_m2))}), pod mejo ${nf(N.konec.meja)}, brez fosilnih goriv, z izoliranim ovojem.`
           : `<b>Na koncu načrta hiša še ni brezemisijska:</b> ${[N.konec.fosil ? 'ogreva se s fosilnim gorivom (dodajte toplotno črpalko)' : '', !N.konec.ovoj ? 'ovoj ni izoliran (dodajte fasado in streho ali strop)' : '', N.konec.pe_m2 > N.konec.meja ? `ocena primarne energije okoli ${nf(Math.round(N.konec.pe_m2))} kWh/(m²·a) je nad mejo ${nf(N.konec.meja)}${v.ukrepi.includes('pv') ? '' : ' (pogosto pomaga sončna elektrarna)'}` : ''].filter(Boolean).join('; ')}.`}</p>
-        <div class="sms-tw"><table><caption class="visually-hidden">Koraki prenove</caption><thead><tr><th scope="col">Leto</th><th scope="col">Ukrep</th><th scope="col" class="num">Strošek</th><th scope="col" class="num">Spodbuda (poziv / NPS)</th><th scope="col" class="num">Toplota po koraku</th><th scope="col" class="num">Primarna energija</th><th scope="col" class="num">Energija na leto</th></tr></thead>
-        <tbody><tr><td>danes</td><td>brez prenove</td><td></td><td></td><td class="num">${nf(Math.round(potrebnaToplota(D, v) / v.povrsina))} kWh/m²</td><td class="num">${nf(Math.round(N.zacetek.pe_m2))}</td><td class="num">${eur(N.energija_zacetek)}</td></tr>
-        ${N.dogodki.map((d: any) => `<tr><td>${d.leto === 0 ? 'takoj' : d.leto}</td><td>${d.ime}</td><td class="num">${eur(d.strosek)}</td><td class="num">${d.ukrep === 'pv' ? '–' : `${eur(d.spodbuda)} / ${eur(d.spodbuda_nps)}`}</td><td class="num">${nf(Math.round(d.toplota_m2))} kWh/m²</td><td class="num">${nf(Math.round(d.pe_m2))}</td><td class="num">${eur(d.energija)}</td></tr>`).join('')}</tbody></table></div>
-        <p class="note">Energija na leto: ogrevanje, elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` in vrednost elektrike iz elektrarne (${OBI[ob]})` : ''} po stanju po koraku. Primarna energija v kWh/(m²·a): poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko, ne razred na energetski izkaznici. Ker se šteje tudi toplota okolice, toplotna črpalka v slabo izolirani hiši oceno lahko celo zviša; odpravi pa fosilna goriva, z elektrarno pa se ocena zniža. Cene so stalne, brez diskontiranja.</p>`;
+        <div class="sms-tw"><table><caption class="visually-hidden">Koraki prenove</caption><thead><tr><th scope="col">Leto</th><th scope="col">Ukrep</th><th scope="col" class="num">Strošek</th><th scope="col" class="num">Spodbuda (poziv / NPS)</th><th scope="col" class="num">Toplota po koraku</th><th scope="col" class="num">Razred primarne energije</th><th scope="col" class="num">Energija na leto</th></tr></thead>
+        <tbody><tr><td>danes</td><td>brez prenove</td><td></td><td></td><td class="num">${nf(Math.round(potrebnaToplota(D, v) / v.povrsina))} kWh/m²</td><td class="num">${razredPE(N.zacetek.pe_m2, MEJE)}</td><td class="num">${eur(N.energija_zacetek)}</td></tr>
+        ${N.dogodki.map((d: any) => `<tr><td>${d.leto === 0 ? 'takoj' : d.leto}</td><td>${d.ime}</td><td class="num">${eur(d.strosek)}</td><td class="num">${d.ukrep === 'pv' ? '–' : `${eur(d.spodbuda)} / ${eur(d.spodbuda_nps)}`}</td><td class="num">${nf(Math.round(d.toplota_m2))} kWh/m²</td><td class="num">${razredPE(d.pe_m2, MEJE)}</td><td class="num">${eur(d.energija)}</td></tr>`).join('')}</tbody></table></div>
+        <p class="note">Energija na leto: ogrevanje, elektrika gospodinjstva${v.ukrepi.includes('pv') ? ` in vrednost elektrike iz elektrarne (${OBI[ob]})` : ''} po stanju po koraku. Razred primarne energije: poenostavljena ocena za ogrevanje, toplo vodo in pomožno elektriko z izgubami razvoda in oddaje toplote po mejah za enostanovanjske hiše, ne razred na energetski izkaznici. Ker se šteje tudi toplota okolice, toplotna črpalka v slabo izolirani hiši oceno lahko celo zviša; odpravi pa fosilna goriva, z elektrarno pa se ocena zniža. Cene so stalne, brez diskontiranja.</p>`;
     }
     $('sms-nacrt').addEventListener('toggle', () => run());
 
@@ -414,7 +496,7 @@ const SEZ = 20;
       });
       izrisiPV(r);
       out.replaceChildren();
-      if (!r.rezultati.length) { if (!r.pv) out.append(Object.assign(document.createElement('p'), { className: 'sms-help', textContent: 'Izberite vsaj en ukrep.' })); pkt.replaceChildren(); izrisiNacrt(v, n); return; }
+      if (!r.rezultati.length) { if (!r.pv) out.append(Object.assign(document.createElement('p'), { className: 'sms-help', textContent: 'Izberite vsaj en ukrep.' })); pkt.replaceChildren(); izrisiNacrt(v, n); izrisiIzpis(v, n); return; }
       const ax = document.createElement('div'); ax.className = 'sms-axis'; ax.setAttribute('aria-hidden', 'true');
       ax.innerHTML = `<span></span><span class="ax">${[0, 10, 20, 30, 40, 50].map((y) => `<span style="left:${pos(y)}">${y}${y === 50 ? '+ let' : ''}</span>`).join('')}</span>`;
       out.append(ax);
@@ -451,6 +533,7 @@ const SEZ = 20;
         <p class="k"><b>${pl[1]}</b><span>povračilna doba paketa (brez spodbude ${pl[0]}, po predlogu NPS ${pl[2]})</span></p>
         <p class="brez">Povračilna doba paketa ni vsota povračilnih dob ukrepov: je skupni strošek, zmanjšan za spodbudo, deljen s skupnim letnim prihrankom.${P.brez ? ` Brez ukrepov, ki se v življenjski dobi ne povrnejo (${P.brez.ukrepi.map((u: string) => r.rezultati.find((x: any) => x.ukrep === u)?.ime.toLowerCase()).join(', ')}), bi se paket za ${eur(P.brez.strosek)} povrnil v <b>${let_(P.brez.doba[1])}</b> (po predlogu NPS ${let_(P.brez.doba[2])}).` : ''}</p>` : '';
       izrisiNacrt(v, n);
+      izrisiIzpis(v, n);
       povzetek = [`Se mi splača? ${v.tip === 'blok' ? 'Stanovanje v bloku' : 'Hiša'} ${v.povrsina} m², ${$<HTMLSelectElement>('sms-ob').selectedOptions[0].text}, izolacija: ${$<HTMLSelectElement>('sms-st').selectedOptions[0].text}, ogrevanje: ${$<HTMLSelectElement>('sms-en').selectedOptions[0].text}.`,
         ...lines, r.pv ? `– Sončna elektrarna ${nf(r.pv.kw, r.pv.kw % 1 ? 1 : 0)} kW, ${eur(r.pv.strosek)}: povračilna doba ${OB.map((o) => `${OBI[o]} ${let_(r.pv.rezimi[o].doba)}`).join(', ')}.` : '', r.rezultati.length > 1 ? `Paket: strošek ${eur(P.strosek)}, spodbuda ${eur(P.spodbuda)}, prihranek ${nf(Math.round(P.prihranek_eur / 10) * 10)} € na leto, povračilna doba ${pl[1]}.` : '',
         'Ocena za orientacijo (strokovne podlage NPS 2050, IJS CEU); spodbude NPS so predlog. ' + location.href.split('#')[0] + '#se-mi-splaca'].filter(Boolean).join('\n');
