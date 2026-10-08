@@ -104,12 +104,13 @@ test('prenova po korakih: celovita prenova z elektrarno doseže ZEB, brez elektr
 test('izpis prenove: delne prenove, naenkrat, najprej URE in najprej OVE; najprej OVE je dražje', async () => {
   const { variante, razred, PRIVZETO } = await import('../src/scripts/povracilo.ts');
   const V = variante(D, { ...base, ukrepi: ['fasada', 'tc', 'pv'] }, PRIVZETO);
-  assert.deepEqual(V.map((x) => x.skupina), ['delna', 'delna', 'delna', 'delna', 'delna', 'delna', 'naenkrat', 'ure', 'ove']);
+  assert.deepEqual(V.map((x) => x.skupina), ['delna', 'delna', 'delna', 'delna', 'naenkrat', 'ure', 'ove']);
+  assert.deepEqual(V.filter((x) => x.skupina === 'delna').map((x) => x.ukrepi.join('+')), ['fasada', 'tc', 'pv', 'tc+pv']);
   const ure = V.find((x) => x.skupina === 'ure').N, ove = V.find((x) => x.skupina === 'ove').N;
   assert.ok(ove.skupaj.poziv > ure.skupaj.poziv && ove.prevelika, `${ove.skupaj.poziv} > ${ure.skupaj.poziv}`);
   const M = [75, 166, 257, 347, 438, 529];
   assert.equal(razred(60, M), 'A'); assert.equal(razred(300, M), 'D'); assert.equal(razred(600, M), 'G');
-  assert.equal(variante(D, { ...base, ukrepi: ['fasada', 'plosca_podstrehe', 'okna', 'prezracevanje', 'tc', 'pv'] }, PRIVZETO).filter((x) => x.skupina === 'delna').length, 14, 'ovoj kot ena enota');
+  assert.equal(variante(D, { ...base, ukrepi: ['fasada', 'plosca_podstrehe', 'okna', 'prezracevanje', 'tc', 'pv'] }, PRIVZETO).filter((x) => x.skupina === 'delna').length, 6, 'ovoj kot ena enota, vsi URE in vsi OVE');
 });
 
 test('razred: kalkulator je umerjen na izkaznice kot paketi prenove (olje do 1980: D, po fasadi in oknih C; celovita s prezračevanjem in črpalko A)', async () => {
@@ -129,4 +130,18 @@ test('stroški v 20 letih: zamenjava črpalke po 18 letih in preostala vrednost 
   const n = nacrt(D, { ...base, ukrepi: [] }, PRIVZETO, [{ ukrep: 'fasada', leto: 0 }, { ukrep: 'tc', leto: 0 }]);
   assert.equal(n.zamenjave.length, 1); assert.equal(n.zamenjave[0].leto, 18);
   assert.ok(n.ostanek.poziv > 0);
+});
+
+test('stanovanje v bloku: razred umerjen na izkaznice kot paketi prenove (do 1980: E, po fasadi in oknih C)', async () => {
+  const { nacrt, razred, PRIVZETO } = await import('../src/scripts/povracilo.ts');
+  const P = JSON.parse(readFileSync(new URL('../public/data/paketi_prenove.json', import.meta.url), 'utf-8'));
+  const h = P.tipi.find((t) => t.id === 'blok_do1980').variante[0];
+  const M = [75, 124, 173, 223, 272, 321];
+  const vb = { tip: 'blok', povrsina: 59, obdobje: 'pred_1980', stanje: 'neizoliran', energent: 'daljinska_toplota', ukrepi: [] };
+  const a = nacrt(D, vb, PRIVZETO, [{ ukrep: 'fasada', leto: 0 }, { ukrep: 'okna', leto: 0 }]);
+  assert.equal(razred(a.zacetek.pe_m2, M), h.razred_pred);
+  assert.equal(razred(a.konec.pe_m2, M), h.paketi.find((x) => x.id === 'delna').razred_po);
+  const c = nacrt(D, vb, PRIVZETO, ['fasada', 'streha', 'okna', 'prezracevanje'].map((u) => ({ ukrep: u, leto: 0 })));
+  assert.equal(razred(c.konec.pe_m2, M), 'A');
+  assert.ok(c.konec.zeb);
 });

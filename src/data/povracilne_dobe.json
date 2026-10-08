@@ -384,6 +384,14 @@
      "najvec_eur_naprava": 600
     }
    }
+  },
+  "pe_izkaznice_neprenovljene": {
+   "pred_1980": {
+    "daljinsko": 240
+   },
+   "1981_2002": {
+    "daljinsko": 181
+   }
   }
  },
  "referencni_rezultati_blok_59m2_pred1980_daljinsko": {

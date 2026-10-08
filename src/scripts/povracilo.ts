@@ -291,11 +291,11 @@ function primarnaModel(D: any, v: Vhod, r: any) {
   return { pe, elM };
 }
 
-const VIR_IZK: Record<string, string> = { kurilno_olje: 'olje', zemeljski_plin: 'plin', polena: 'les', peleti: 'les' };
+const VIR_IZK: Record<string, string> = { kurilno_olje: 'olje', zemeljski_plin: 'plin', polena: 'les', peleti: 'les', daljinska_toplota: 'daljinsko' };
 /** Umeritev ocene na izkaznice: mediana primarne energije neprenovljenih hiš (obdobje × ogrevanje) ÷ ocena modela za neizolirano hišo. */
 export function umeritevPE(D: any, v: Vhod): number {
-  const R = D.model.pe_izkaznice_neprenovljene?.[v.obdobje];
-  if (blok(v) || !R) return 1;
+  const R = (blok(v) ? D.bloki : D.model).pe_izkaznice_neprenovljene?.[v.obdobje];
+  if (!R) return 1;
   const vals = Object.values(R) as number[];
   const ref = R[VIR_IZK[v.energent]] ?? vals.reduce((a, b) => a + b, 0) / vals.length;
   const v0: Vhod = { ...v, stanje: 'neizoliran', ukrepi: [], raba_kwh: null };
@@ -408,10 +408,9 @@ export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: 
     kp += cur.energija; kn += cur.energija;
     serija.poziv.push(Math.round(kp)); serija.nps.push(Math.round(kn));
   }
-  // preostala vrednost ukrepov ob koncu obdobja (linearno po življenjski dobi) se odšteje v zadnjem letu
+  // preostala vrednost ukrepov ob koncu obdobja (linearno po življenjski dobi): serija so izdatki, skupaj = izdatki − preostala vrednost
   const ost = (k: 'netP' | 'netN') => vsota(vgr.map((g) => g[k] * Math.max(0, g.zd - (let_ - g.leto)) / g.zd));
   const ostanek = { poziv: ost('netP'), nps: ost('netN') };
-  serija.poziv[let_] = Math.round(serija.poziv[let_] - ostanek.poziv); serija.nps[let_] = Math.round(serija.nps[let_] - ostanek.nps);
   const konec = primarna(D, { ...v, ukrepi: inst }, cur.r), zacetek = primarna(D, { ...v, ukrepi: [] }, s0.r);
   // črpalka, vgrajena pred zadnjim ukrepom na ovoju, je na koncu prevelika
   const tcK = koraki.find((k) => k.ukrep === 'tc');
@@ -420,7 +419,8 @@ export function nacrt(D: any, v: Vhod, n: Nastavitve, koraki: Korak[], obracun: 
   const tcKonec = cur.r.rezultati.find((x: Rezultat) => x.ukrep === 'tc'), tcDog = prvi.find((d) => d.ukrep === 'tc');
   const prevelika = tcK && tcDog && tcKonec && tcK.leto < zadnjiOvoj && tcDog.moc > tcKonec.moc_kw ? { moc: tcDog.moc as number, moc_konec: tcKonec.moc_kw as number } : null;
   return {
-    dogodki, serija, brez, ostanek, skupaj: { poziv: serija.poziv.at(-1)!, nps: serija.nps.at(-1)!, brez: brez.at(-1)! }, celovita: cel, naenkrat, bonus_korak: bonusKorak,
+    dogodki, serija, brez, ostanek, izdatki: { poziv: serija.poziv.at(-1)!, nps: serija.nps.at(-1)! },
+    skupaj: { poziv: Math.round(serija.poziv.at(-1)! - ostanek.poziv), nps: Math.round(serija.nps.at(-1)! - ostanek.nps), brez: brez.at(-1)! }, celovita: cel, naenkrat, bonus_korak: bonusKorak,
     spodbuda: { poziv: vsota(prvi.map((d) => d.spodbuda)), nps: vsota(prvi.map((d) => d.spodbuda_nps)) },
     nalozbe: vsota(prvi.map((d) => d.strosek)), zamenjave: dogodki.filter((d) => d.zamenjava), energija_zacetek: s0.energija, energija_konec: cur.energija, zacetek, konec, prevelika,
   };
@@ -467,7 +467,8 @@ export const razred = (pe: number, meje: number[]) => 'ABCDEFG'[meje.filter((b) 
 export const OVE_PRVO: Record<Ukrep, number> = { tc: 0, pv: 1, okna: 3, prezracevanje: 3, fasada: 5, streha: 5, plosca_podstrehe: 5 };
 const URE: Ukrep[] = ['fasada', 'streha', 'plosca_podstrehe', 'okna', 'prezracevanje'];
 
-/** Izpis prenove: različice iz izbranih ukrepov – vse delne prenove (podmnožice; pri več kot štirih ukrepih je ovoj ena enota),
+/** Izpis prenove: različice iz izbranih ukrepov – delne prenove (vsak ukrep posebej, vsi URE skupaj, vsi OVE skupaj; pri več kot štirih
+ *  ukrepih je ovoj ena enota),
  *  vsi ukrepi naenkrat, po korakih najprej URE (PRIPOROCEN) in po korakih najprej OVE (OVE_PRVO). */
 export function variante(D: any, v: Vhod, n: Nastavitve, obracun: Obracun = 'nova', let_ = 20) {
   const sel = v.ukrepi.filter((u) => u !== 'pv' || !blok(v));
@@ -476,10 +477,13 @@ export function variante(D: any, v: Vhod, n: Nastavitve, obracun: Obracun = 'nov
   const vh = { ...v, ukrepi: [] as Ukrep[] };
   const run = (uk: Ukrep[], leta: (u: Ukrep) => number) => nacrt(D, vh, n, uk.map((u) => ({ ukrep: u, leto: leta(u) })), obracun, let_);
   const out: { skupina: 'delna' | 'naenkrat' | 'ure' | 'ove'; ukrepi: Ukrep[]; N: ReturnType<typeof nacrt> }[] = [];
-  const m = enote.length;
-  const podm: Ukrep[][] = [];
-  for (let mask = 1; mask < (1 << m) - 1; mask++) podm.push(enote.filter((_, i) => mask & (1 << i)).flat());
-  podm.sort((a, b) => a.length - b.length);
+  // delne prenove: vsak ukrep posebej ter vsi ukrepi URE skupaj in vsi OVE skupaj (preglednost namesto vseh kombinacij)
+  const kljuc = (a: Ukrep[]) => [...a].sort().join('+');
+  const vsi = kljuc(sel), podm: Ukrep[][] = [];
+  const dodaj = (a: Ukrep[]) => { if (a.length && kljuc(a) !== vsi && !podm.some((x) => kljuc(x) === kljuc(a))) podm.push(a); };
+  enote.forEach(dodaj);
+  dodaj(sel.filter((u) => URE.includes(u)));
+  dodaj(sel.filter((u) => !URE.includes(u)));
   for (const uk of podm) out.push({ skupina: 'delna', ukrepi: uk, N: run(uk, () => 0) });
   if (sel.length) out.push({ skupina: 'naenkrat', ukrepi: sel, N: run(sel, () => 0) });
   const imaUre = sel.some((u) => URE.includes(u)), imaOve = sel.some((u) => !URE.includes(u));
