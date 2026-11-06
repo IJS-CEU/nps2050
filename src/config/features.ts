@@ -16,4 +16,4 @@ export const features = {
 } as const;
 
 /** Obrazec 1KA za vprašanja deležnikov; prazno = obrazec še ni objavljen (stran pokaže obvestilo namesto gumba). */
-export const obrazec1ka = '';
+export const obrazec1ka = 'https://1ka.arnes.si/a/bc49368b';
