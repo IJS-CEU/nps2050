@@ -1,5 +1,6 @@
 /** Zemljevid strani po skupinah obiskovalcev: blok »Kaj iščete?« na naslovnici in noga strani. */
 import { pageUrl, withBase } from '../i18n/routes';
+import { features } from '../config/features';
 
 export interface Skupina { id: string; icon: string; naslov: string; povezave: { label: string; href: string }[] }
 
@@ -30,6 +31,7 @@ export const skupine = (): Skupina[] => [
   { id: 'javnost', icon: 'newspaper', naslov: 'Za javnost in medije', povezave: [
     { label: 'Kaj je NPS 2050', href: pageUrl('kaj-je-nps') },
     { label: 'Javna obravnava', href: pageUrl('javna-obravnava') },
+    ...(features.vprasanja ? [{ label: 'Vprašanja deležnikov', href: pageUrl('vprasanja') }] : []),
     { label: 'Za medije', href: pageUrl('mediji') },
     { label: 'Povzetek (PDF)', href: withBase('nps2050-povzetek.pdf') },
     { label: 'Slovar izrazov', href: pageUrl('slovar') },

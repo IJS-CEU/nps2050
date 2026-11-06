@@ -33,7 +33,7 @@ if (existsSync(metaPath)) {
     <div>
       <p>{t.footerBy}</p>
       {draftDate && <p class="ver">{t.footerVersion} {draftDate}.{features.dnevnik && <> <a href={pageUrl('dnevnik')}>Dnevnik sprememb</a></>}</p>}
-      <p class="ver">Kontakt: <a href="mailto:ceu@ijs.si">{'ceu@ijs.si'}</a></p>
+      <p class="ver">Kontakt: <a href="mailto:ceu@ijs.si">{'ceu@ijs.si'}</a>{features.vprasanja && <> · <a href={pageUrl('vprasanja')}>Postavite vprašanje</a> · <a href={pageUrl('zasebnost')}>Zasebnost</a></>}</p>
       <p class="ver">Besedilo in podatki: CC BY 4.0, z navedbo vira »IJS CEU, strokovne podlage NPS 2050«.</p>
     </div>
     <div class="logos">

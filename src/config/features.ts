@@ -12,7 +12,7 @@ export const features = {
   /** 11.3 Drsnik »Kaj pa, če« pod trajektorijo na strani Strokovne podlage (do pregleda skrit). */
   drsnik: true,
   /** Vprašanja deležnikov: stran z odgovori in povezavo na obrazec 1KA (povezave s strani in iz noge do potrditve skrite). */
-  vprasanja: false,
+  vprasanja: true,
 } as const;
 
 /** Obrazec 1KA za vprašanja deležnikov; prazno = obrazec še ni objavljen (stran pokaže obvestilo namesto gumba). */
