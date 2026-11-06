@@ -1,0 +1,112 @@
+---
+/**
+ * Vprašanja deležnikov: odgovori iz src/content/vprasanja/*.md, filter po skupini in temi ter iskanje.
+ * Vprašanja se zbirajo z obrazcem 1KA (src/config/features.ts, obrazec1ka); enkrat na mesec jih združimo in odgovorimo.
+ * Brez JavaScripta so prikazani vsi odgovori.
+ */
+import { getCollection, render } from 'astro:content';
+import { SKUPINE, TEME } from '../lib/vprasanja';
+import { pageUrl } from '../i18n/routes';
+import { nav } from '../i18n/ui';
+import { obrazec1ka } from '../config/features';
+
+const all = (await getCollection('vprasanja')).sort((a, b) => b.data.datum.localeCompare(a.data.datum) || a.id.localeCompare(b.id));
+const items = await Promise.all(all.map(async (e) => ({ e, Content: (await render(e)).Content })));
+const datum = (d: string) => { const [y, m, dd] = d.split('-'); return `${Number(dd)}. ${Number(m)}. ${y}`; };
+const zadnji = all.length ? datum(all.map((e) => e.data.datum).sort().at(-1)!) : null;
+const teme = Object.entries(TEME).filter(([k]) => all.some((e) => e.data.tema === k));
+---
+<section class="vd" id="vd">
+  <div class="vd-cta">
+    <div>
+      <h2 class="vd-h">Postavite vprašanje</h2>
+      <p>Vprašanja zbiramo z obrazcem in nanje odgovorimo <strong>enkrat na mesec</strong>. Podobna vprašanja združimo v en odgovor in ga objavimo na tej strani, brez imen in drugih osebnih podatkov.</p>
+      {obrazec1ka
+        ? <p><a class="btn primary" href={obrazec1ka} rel="noopener">Odpri obrazec za vprašanje (1KA) →</a></p>
+        : <p class="vd-skoraj">Obrazec bo na voljo v kratkem. Do takrat lahko pišete na <a href="mailto:ceu@ijs.si">ceu@ijs.si</a>.</p>}
+    </div>
+    <ul class="vd-pravila">
+      <li><strong>Za vprašanja, ne za pripombe.</strong> Pripombe na osnutek NPS 2050 se oddajo po uradnem kanalu ministrstva: <a href={pageUrl('javna-obravnava')}>Javna obravnava</a>.</li>
+      <li><strong>Odgovarja IJS CEU</strong> kot pripravljavec strokovnih podlag. Odgovori niso uradno stališče ministrstva ali Eko sklada.</li>
+      <li><strong>Brez osebnih podatkov.</strong> <a href={pageUrl('zasebnost')}>Zasebnost</a></li>
+    </ul>
+  </div>
+
+  <div class="vd-filt js-only" role="search">
+    <label class="vd-q"><span class="visually-hidden">Iskanje po vprašanjih</span><input type="search" id="vd-q" placeholder="Iščite po vprašanjih in odgovorih" /></label>
+    <fieldset class="vd-chips"><legend>Skupina</legend>
+      <label><input type="radio" name="vd-s" value="" checked /> Vse</label>
+      {Object.entries(SKUPINE).map(([k, v]) => <label><input type="radio" name="vd-s" value={k} /> {v}</label>)}
+    </fieldset>
+    <fieldset class="vd-chips"><legend>Tema</legend>
+      <label><input type="radio" name="vd-t" value="" checked /> Vse</label>
+      {teme.map(([k, v]) => <label><input type="radio" name="vd-t" value={k} /> {v}</label>)}
+    </fieldset>
+    <p class="vd-n" id="vd-n" aria-live="polite"></p>
+  </div>
+
+  {zadnji && <p class="vd-meta">{all.length} odgovorov, zadnji objavljeni {zadnji}.</p>}
+  <div class="faq vd-list">
+    {items.map(({ e, Content }) => (
+      <details data-s={e.data.skupine.join(' ')} data-t={e.data.tema}>
+        <summary>{e.data.vprasanje}</summary>
+        <div class="vd-a"><Content /></div>
+        <p class="vd-tags">
+          <span>{TEME[e.data.tema]}</span>
+          {e.data.skupine.map((s) => <span class="s">{SKUPINE[s]}</span>)}
+          <span class="d">{e.data.zdruzeno > 0 ? `${e.data.zdruzeno} ${e.data.zdruzeno === 1 ? 'vprašanje' : e.data.zdruzeno === 2 ? 'vprašanji' : e.data.zdruzeno < 5 ? 'vprašanja' : 'vprašanj'} · ` : ''}{datum(e.data.datum)}</span>
+          {e.data.povezava && <a href={pageUrl(e.data.povezava)}>{nav[e.data.povezava] ?? 'Več o tem'} →</a>}
+        </p>
+      </details>
+    ))}
+  </div>
+  <p class="vd-ni" id="vd-ni" hidden>Za izbrane pogoje še ni odgovora. Postavite vprašanje z obrazcem zgoraj.</p>
+</section>
+
+<style>
+  .vd-cta { display: grid; grid-template-columns: 1.3fr 1fr; gap: 1rem 2rem; background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--green); border-radius: 16px; padding: 1.1rem 1.3rem; margin: 1rem 0 1.5rem; }
+  .vd-h { margin: 0 0 .4rem; font-size: 1.25rem; }
+  .vd-cta p { margin: 0 0 .6rem; max-width: none; }
+  .vd-skoraj { color: var(--ink2); font-size: .92rem; }
+  .vd-pravila { margin: 0; padding-left: 1.1rem; font-size: .88rem; display: grid; gap: .45rem; color: var(--ink2); }
+  .vd-filt { display: grid; gap: .6rem; margin: 0 0 1rem; }
+  .vd-q input { width: 100%; font: inherit; padding: .55rem .8rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--ink); }
+  .vd-chips { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .35rem .4rem; align-items: center; }
+  .vd-chips legend { float: left; font-size: .8rem; font-weight: 700; color: var(--ink2); margin-right: .4rem; padding: 0; }
+  .vd-chips label { font-size: .82rem; border: 1px solid var(--line); border-radius: 999px; padding: .2rem .65rem; cursor: pointer; background: var(--panel); }
+  .vd-chips input { position: absolute; opacity: 0; pointer-events: none; }
+  .vd-chips label:has(input:checked) { background: var(--green); border-color: var(--green); color: var(--on-green); }
+  .vd-chips label:has(input:focus-visible) { outline: 2px solid var(--green); outline-offset: 2px; }
+  .vd-n, .vd-meta { font-size: .82rem; color: var(--ink2); margin: 0; }
+  .vd-a :global(p) { margin: .3rem 0 .5rem; }
+  .vd-tags { display: flex; flex-wrap: wrap; gap: .3rem .6rem; align-items: center; font-size: .76rem; margin: .4rem 0 0; }
+  .vd-tags span { background: var(--greenbg); border-radius: 999px; padding: .1rem .55rem; color: var(--ink); }
+  .vd-tags span.s { background: var(--panel); border: 1px solid var(--line); }
+  .vd-tags span.d { background: none; color: var(--ink2); padding: 0; }
+  .vd-ni { color: var(--ink2); }
+  @media (max-width: 760px) { .vd-cta { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+  const root = document.getElementById('vd');
+  if (root) {
+    const q = root.querySelector<HTMLInputElement>('#vd-q')!, n = root.querySelector('#vd-n')!, ni = root.querySelector<HTMLElement>('#vd-ni')!;
+    const items = [...root.querySelectorAll<HTMLDetailsElement>('.vd-list details')];
+    const val = (name: string) => root.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`)?.value ?? '';
+    const run = () => {
+      const s = val('vd-s'), t = val('vd-t'), w = q.value.trim().toLowerCase();
+      let k = 0;
+      for (const d of items) {
+        const ok = (!s || d.dataset.s!.split(' ').includes(s)) && (!t || d.dataset.t === t) && (!w || d.textContent!.toLowerCase().includes(w));
+        d.hidden = !ok; if (ok) k++;
+        if (w && ok) d.open = true;
+      }
+      n.textContent = s || t || w ? `Prikazanih ${k} od ${items.length} odgovorov.` : '';
+      ni.hidden = k > 0;
+    };
+    root.querySelectorAll('input').forEach((x) => x.addEventListener('input', run));
+    const p = new URLSearchParams(location.search).get('skupina');
+    if (p) { const r = root.querySelector<HTMLInputElement>(`input[name="vd-s"][value="${p}"]`); if (r) r.checked = true; }
+    run();
+  }
+</script>

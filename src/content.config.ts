@@ -2,6 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { pageIds } from './i18n/routes';
+import { SKUPINE, TEME } from './lib/vprasanja';
 
 // Ena datoteka MDX na rubriko: src/content/pages/<id>.mdx
 const pages = defineCollection({
@@ -41,4 +42,19 @@ const napacna = defineCollection({
   }),
 });
 
-export const collections = { pages, dnevnik, napacna };
+// Vprašanja deležnikov: en vnos na datoteko src/content/vprasanja/<nn>-<ime>.md, besedilo = odgovor
+const vprasanja = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/vprasanja' }),
+  schema: z.object({
+    vprasanje: z.string(),
+    skupine: z.array(z.enum(Object.keys(SKUPINE) as [keyof typeof SKUPINE, ...(keyof typeof SKUPINE)[]])).min(1),
+    tema: z.enum(Object.keys(TEME) as [keyof typeof TEME, ...(keyof typeof TEME)[]]),
+    /** datum objave odgovora */
+    datum: z.string(),
+    /** število vprašanj iz obrazca, ki jih odgovor združuje (0 = začetno vprašanje uredništva) */
+    zdruzeno: z.number().int().default(0),
+    povezava: z.enum(pageIds).optional(),
+  }),
+});
+
+export const collections = { pages, dnevnik, napacna, vprasanja };

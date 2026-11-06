@@ -20,6 +20,8 @@ export const pages = [
   { id: 'paketi', slug: 'paketi-prenove' },
   { id: 'koledar', slug: 'koledar' },
   { id: 'iskanje', slug: 'iskanje' },
+  { id: 'vprasanja', slug: 'vprasanja-deleznikov' },
+  { id: 'zasebnost', slug: 'zasebnost' },
 ] as const;
 
 export type PageId = (typeof pages)[number]['id'];
@@ -30,6 +32,7 @@ export const parent: Partial<Record<PageId, PageId>> = {
   napacna: 'kaj-je-nps', koledar: 'kaj-je-nps',
   primerjava: 'obcine',
   slovar: 'dokumenti', dnevnik: 'dokumenti',
+  vprasanja: 'kaj-je-nps',
 };
 export const pageIds = pages.map((p) => p.id) as [PageId, ...PageId[]];
 
